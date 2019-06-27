@@ -1,0 +1,21 @@
+FLOWGRAPH -> blocos que se conectam
+
+Blocos:
+	Options: default é criar uma GUI
+	Variable: Samp_rate -> metodo para definir a taxa de amostragem (arbitrario)
+
+
+Tutorial: https://www.youtube.com/watch?v=S5Fm1yu-bbc
+Source é o inicio de um flowgraph
+Sink é o fim de um flowgraph
+
+	Throttle - factor de limite, sem ele o processador irá correr o mais rápido que consegue.
+
+
+
+Tutorial1:  https://youtu.be/N9SLAnGlGQs
+Blocos FLOW:
+	Signal source: definição da onda e a taxa de amostragem (variavel dos blocos) - contem frequencia, amplitude e offset.
+
+	Audio Sink -> repredenta a codificação do som-> mas está em 48 Khz ou seja temos que passar de 8k para 48khz para a onde que produzirmos -> utiliza-se o rational resampler
+	Rational Resampler -> converter X hz em Y hz, neste caso de 8Hz para 48 Khz.
