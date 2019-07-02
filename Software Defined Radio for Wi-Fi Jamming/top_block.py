@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Software Defined Radio for Wi-Fi Jamming
-# Generated: Thu Jun 27 18:01:06 2019
+# Generated: Tue Jul  2 09:36:19 2019
 ##################################################
 
 
@@ -40,9 +40,12 @@ class top_block(grc_wxgui.top_block_gui):
         ##################################################
         # Variables
         ##################################################
+        self.sample_rate_1_0 = sample_rate_1_0 = 32000
         self.sample_rate_1 = sample_rate_1 = 32000
         self.samp_rate = samp_rate = 250000
+        self.gain_0 = gain_0 = 0
         self.gain = gain = 0
+        self.freq_0 = freq_0 = 2442000000
         self.freq = freq = 2442000000
 
         ##################################################
@@ -102,8 +105,20 @@ class top_block(grc_wxgui.top_block_gui):
         	converter=forms.float_converter(),
         )
         self.Add(self._freq_text_box)
+        self.uhd_usrp_sink_0_0 = uhd.usrp_sink(
+        	",".join(("serial=F5EAC0", "")),
+        	uhd.stream_args(
+        		cpu_format="fc32",
+        		channels=range(1),
+        	),
+        )
+        self.uhd_usrp_sink_0_0.set_clock_rate(30.72e6, uhd.ALL_MBOARDS)
+        self.uhd_usrp_sink_0_0.set_samp_rate(sample_rate_1)
+        self.uhd_usrp_sink_0_0.set_center_freq(freq, 0)
+        self.uhd_usrp_sink_0_0.set_gain(gain, 0)
+        self.uhd_usrp_sink_0_0.set_antenna('TX/RX', 0)
         self.uhd_usrp_sink_0 = uhd.usrp_sink(
-        	",".join(("", "")),
+        	",".join(("serial=F5EAE1", "")),
         	uhd.stream_args(
         		cpu_format="fc32",
         		channels=range(1),
@@ -114,6 +129,61 @@ class top_block(grc_wxgui.top_block_gui):
         self.uhd_usrp_sink_0.set_center_freq(freq, 0)
         self.uhd_usrp_sink_0.set_gain(gain, 0)
         self.uhd_usrp_sink_0.set_antenna('TX/RX', 0)
+        _sample_rate_1_0_sizer = wx.BoxSizer(wx.VERTICAL)
+        self._sample_rate_1_0_text_box = forms.text_box(
+        	parent=self.GetWin(),
+        	sizer=_sample_rate_1_0_sizer,
+        	value=self.sample_rate_1_0,
+        	callback=self.set_sample_rate_1_0,
+        	label='Sample Rate',
+        	converter=forms.float_converter(),
+        	proportion=0,
+        )
+        self._sample_rate_1_0_slider = forms.slider(
+        	parent=self.GetWin(),
+        	sizer=_sample_rate_1_0_sizer,
+        	value=self.sample_rate_1_0,
+        	callback=self.set_sample_rate_1_0,
+        	minimum=0,
+        	maximum=20000000,
+        	num_steps=100,
+        	style=wx.SL_HORIZONTAL,
+        	cast=float,
+        	proportion=1,
+        )
+        self.Add(_sample_rate_1_0_sizer)
+        _gain_0_sizer = wx.BoxSizer(wx.VERTICAL)
+        self._gain_0_text_box = forms.text_box(
+        	parent=self.GetWin(),
+        	sizer=_gain_0_sizer,
+        	value=self.gain_0,
+        	callback=self.set_gain_0,
+        	label='Gain',
+        	converter=forms.float_converter(),
+        	proportion=0,
+        )
+        self._gain_0_slider = forms.slider(
+        	parent=self.GetWin(),
+        	sizer=_gain_0_sizer,
+        	value=self.gain_0,
+        	callback=self.set_gain_0,
+        	minimum=0,
+        	maximum=90,
+        	num_steps=100,
+        	style=wx.SL_HORIZONTAL,
+        	cast=float,
+        	proportion=1,
+        )
+        self.Add(_gain_0_sizer)
+        self._freq_0_text_box = forms.text_box(
+        	parent=self.GetWin(),
+        	value=self.freq_0,
+        	callback=self.set_freq_0,
+        	label='Frequencia',
+        	converter=forms.float_converter(),
+        )
+        self.Add(self._freq_0_text_box)
+        self.analog_fastnoise_source_x_0_0 = analog.fastnoise_source_c(analog.GR_GAUSSIAN, 1, 0, 8192)
         self.analog_fastnoise_source_x_0 = analog.fastnoise_source_c(analog.GR_GAUSSIAN, 1, 0, 8192)
 
 
@@ -122,6 +192,15 @@ class top_block(grc_wxgui.top_block_gui):
         # Connections
         ##################################################
         self.connect((self.analog_fastnoise_source_x_0, 0), (self.uhd_usrp_sink_0, 0))
+        self.connect((self.analog_fastnoise_source_x_0_0, 0), (self.uhd_usrp_sink_0_0, 0))
+
+    def get_sample_rate_1_0(self):
+        return self.sample_rate_1_0
+
+    def set_sample_rate_1_0(self, sample_rate_1_0):
+        self.sample_rate_1_0 = sample_rate_1_0
+        self._sample_rate_1_0_slider.set_value(self.sample_rate_1_0)
+        self._sample_rate_1_0_text_box.set_value(self.sample_rate_1_0)
 
     def get_sample_rate_1(self):
         return self.sample_rate_1
@@ -130,6 +209,7 @@ class top_block(grc_wxgui.top_block_gui):
         self.sample_rate_1 = sample_rate_1
         self._sample_rate_1_slider.set_value(self.sample_rate_1)
         self._sample_rate_1_text_box.set_value(self.sample_rate_1)
+        self.uhd_usrp_sink_0_0.set_samp_rate(self.sample_rate_1)
         self.uhd_usrp_sink_0.set_samp_rate(self.sample_rate_1)
 
     def get_samp_rate(self):
@@ -138,6 +218,14 @@ class top_block(grc_wxgui.top_block_gui):
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
 
+    def get_gain_0(self):
+        return self.gain_0
+
+    def set_gain_0(self, gain_0):
+        self.gain_0 = gain_0
+        self._gain_0_slider.set_value(self.gain_0)
+        self._gain_0_text_box.set_value(self.gain_0)
+
     def get_gain(self):
         return self.gain
 
@@ -145,8 +233,17 @@ class top_block(grc_wxgui.top_block_gui):
         self.gain = gain
         self._gain_slider.set_value(self.gain)
         self._gain_text_box.set_value(self.gain)
+        self.uhd_usrp_sink_0_0.set_gain(self.gain, 0)
+
         self.uhd_usrp_sink_0.set_gain(self.gain, 0)
 
+
+    def get_freq_0(self):
+        return self.freq_0
+
+    def set_freq_0(self, freq_0):
+        self.freq_0 = freq_0
+        self._freq_0_text_box.set_value(self.freq_0)
 
     def get_freq(self):
         return self.freq
@@ -154,6 +251,7 @@ class top_block(grc_wxgui.top_block_gui):
     def set_freq(self, freq):
         self.freq = freq
         self._freq_text_box.set_value(self.freq)
+        self.uhd_usrp_sink_0_0.set_center_freq(self.freq, 0)
         self.uhd_usrp_sink_0.set_center_freq(self.freq, 0)
 
 
