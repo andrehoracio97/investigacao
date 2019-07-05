@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html class="client-js" dir="ltr" lang="en"><link type="text/css" id="dark-mode" rel="stylesheet" href=""><style type="text/css" id="dark-mode-custom-style"></style><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>Guided Tutorial PSK Demodulation - GNU Radio</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>(window.RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Guided_Tutorial_PSK_Demodulation","wgTitle":"Guided Tutorial PSK Demodulation","wgCurRevisionId":4470,"wgRevisionId":4470,"wgArticleId":87,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Guided Tutorials"],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Guided_Tutorial_PSK_Demodulation","wgRelevantArticleId":87,"wgRequestId":"187380567bd4bbe2a64827ca","wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.state({"site.styles":"ready","noscript":"ready","user.styles":"ready","user.cssprefs":"ready","user":"ready","user.options":"loading","user.tokens":"loading","mediawiki.legacy.shared":"ready","mediawiki.legacy.commonPrint":"ready","mediawiki.sectionAnchor":"ready","mediawiki.skinning.interface":"ready","skins.vector.styles":"ready"});mw.loader.implement("user.options@0j3lz3q",function($,jQuery,require,module){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens@008h9ls",function ( $, jQuery, require, module ) {
+mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});/*@nomin*/;
+
+});mw.loader.load(["mediawiki.page.startup","skins.vector.js"]);});</script>
+<link rel="stylesheet" href="Guided%20Tutorial%20PSK%20Demodulation%20-%20GNU%20Radio_files/load.css">
+<script async="" src="Guided%20Tutorial%20PSK%20Demodulation%20-%20GNU%20Radio_files/load.php"></script>
+<style>
+.mw-collapsible-toggle{float:right;-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none}  .mw-content-ltr .mw-collapsible-toggle,.mw-content-rtl .mw-content-ltr .mw-collapsible-toggle{float:right} .mw-content-rtl .mw-collapsible-toggle,.mw-content-ltr .mw-content-rtl .mw-collapsible-toggle{float:left}.mw-customtoggle,.mw-collapsible-toggle{cursor:pointer} caption .mw-collapsible-toggle,.mw-content-ltr caption .mw-collapsible-toggle,.mw-content-rtl caption .mw-collapsible-toggle,.mw-content-rtl .mw-content-ltr caption .mw-collapsible-toggle,.mw-content-ltr .mw-content-rtl caption .mw-collapsible-toggle{float:none} li .mw-collapsible-toggle,.mw-content-ltr li .mw-collapsible-toggle,.mw-content-rtl li .mw-collapsible-toggle,.mw-content-rtl .mw-content-ltr li .mw-collapsible-toggle,.mw-content-ltr .mw-content-rtl li .mw-collapsible-toggle{float:none} .mw-collapsible-toggle-li{list-style:none}
+@media screen {
+	.tochidden,.toctoggle{-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none}.toctoggle{font-size:94%}}
+@media print {
+	#toc.tochidden,.toctoggle{display:none}}
+.suggestions{overflow:hidden;position:absolute;top:0;left:0;width:0;border:none;z-index:1099;padding:0;margin:-1px 0 0 0}.suggestions-special{position:relative;background-color:#fff;cursor:pointer;border:solid 1px #aaa;padding:0;margin:0;margin-top:-2px;display:none;padding:0.25em 0.25em;line-height:1.25em}.suggestions-results{background-color:#fff;cursor:pointer;border:solid 1px #aaa;padding:0;margin:0}.suggestions-result{color:#000;margin:0;line-height:1.5em;padding:0.01em 0.25em;text-align:left; overflow:hidden;-o-text-overflow:ellipsis; text-overflow:ellipsis;white-space:nowrap}.suggestions-result-current{background-color:#4c59a6;color:#fff}.suggestions-special .special-label{color:#808080;text-align:left}.suggestions-special .special-query{color:#000;font-style:italic;text-align:left}.suggestions-special .special-hover{background-color:#c0c0c0}.suggestions-result-current .special-label,.suggestions-result-current .special-query{color:#fff}.highlight{font-weight:bold}
+.postedit-container{margin:0 auto;position:fixed;top:0;height:0;left:50%;z-index:1000;font-size:13px}.postedit-container:hover{cursor:pointer}.postedit{position:relative;top:0.6em;left:-50%;padding:.6em 3.6em .6em 1.1em;line-height:1.5625em;color:#626465;background-color:#f4f4f4;border:1px solid #dcd9d9;text-shadow:0 0.0625em 0 rgba( 255,255,255,0.5 );border-radius:5px;box-shadow:0 2px 5px 0 #ccc;-webkit-transition:all 0.25s ease-in-out;-moz-transition:all 0.25s ease-in-out;-ms-transition:all 0.25s ease-in-out;-o-transition:all 0.25s ease-in-out;transition:all 0.25s ease-in-out}.skin-monobook .postedit{top:6em !important}.postedit-faded{opacity:0}.postedit-icon{padding-left:41px;  line-height:25px;background-repeat:no-repeat;background-position:8px 50%}.postedit-icon-checkmark{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB9ElEQVR4AZWRA3AYURQArxrVHtW2bdu2bdu2zdi2bdu2bWxs7zeehZaw4f70kbs+zI3e/nWK+RWx3aOFlrL56Sy5SxrruG69hlv6OyK+mz+8KDSXdXembj0ispT7tjs4ZTIbpYBvxGSGKzZTeFrb7W/meN002swFs0U8ttpHTkF2BvCqWQrW35929bTsKm5Zb+SEwWwcY8wAngB9m7Z+d+rIPZ/npdy12M5p47n8dXsCYAf0qPy06eGMdktuDu9Qf+JmKl3SWM91qzVcN9tAbEYkwMaq0tyb1m/To5kP170el/BK8/qa6sJr70ydf+T/Uu5ab+Oo/lS0AkUBpIFWlZ9WPhxpse/PHO7YbOOczjL0vZV2lNxPPtG73dYXM+xvm2znrOl83tidoqCwMBgYXsPFB0on5S6pr+eK5TKuW67lgvaKvF8mL1dtfTL32FHxRdyx3cQpg7m4x9sCXKkTIzA4LDH44zWdzaUf71hv5rTG4uyzcusybxSX7aThbMQ8XgCYAp3rzTTQOiIh9PNlzY3FSuZxrzjme1Y7uGS6kjsWO4jPjM4FVjRZsvD4kO9XtTZzQn82NyzWc0B7AmZh6gA/hOYSGhfw9YbOVnarj+S7800AL2BIsxUAbWNToj7bhBuQmZcOsFdoKUC74rGheCwXmqAIQTc9jQcrADIAAAAASUVORK5CYII=);background-image:url(/resources/src/mediawiki.action/images/green-checkmark.png?d94f1)!ie;background-position:left}.postedit-close{position:absolute;padding:0 .8em;right:0;top:0;font-size:1.25em;font-weight:bold;line-height:2.3em;color:#000;text-shadow:0 0.0625em 0 #fff;text-decoration:none;opacity:0.2;filter:alpha( opacity=20 )}.postedit-close:hover{color:#000;text-decoration:none;opacity:0.4;filter:alpha( opacity=40 )}</style><style>
+.suggestions a.mw-searchSuggest-link,.suggestions a.mw-searchSuggest-link:hover,.suggestions a.mw-searchSuggest-link:active,.suggestions a.mw-searchSuggest-link:focus{color:#000;text-decoration:none}.suggestions-result-current a.mw-searchSuggest-link,.suggestions-result-current a.mw-searchSuggest-link:hover,.suggestions-result-current a.mw-searchSuggest-link:active,.suggestions-result-current a.mw-searchSuggest-link:focus{color:#fff}.suggestions a.mw-searchSuggest-link .special-query{ overflow:hidden;-o-text-overflow:ellipsis; text-overflow:ellipsis;white-space:nowrap}</style><meta name="ResourceLoaderDynamicStyles" content="">
+<meta name="generator" content="MediaWiki 1.28.0">
+<link rel="shortcut icon" href="https://wiki.gnuradio.org/favicon.ico">
+<link rel="search" type="application/opensearchdescription+xml" href="https://wiki.gnuradio.org/opensearch_desc.php" title="GNU Radio (en)">
+<link rel="EditURI" type="application/rsd+xml" href="https://wiki.gnuradio.org/api.php?action=rsd">
+<link rel="copyright" href="http://creativecommons.org/licenses/by-sa/3.0/">
+<link rel="alternate" type="application/atom+xml" title="GNU Radio Atom feed" href="https://wiki.gnuradio.org/index.php?title=Special:RecentChanges&amp;feed=atom">
+<script src="Guided%20Tutorial%20PSK%20Demodulation%20-%20GNU%20Radio_files/load_002.php"></script></head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Guided_Tutorial_PSK_Demodulation rootpage-Guided_Tutorial_PSK_Demodulation skin-vector action-view">		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+
+						<div class="mw-indicators">
+</div>
+			<h1 id="firstHeading" class="firstHeading" lang="en">Guided Tutorial PSK Demodulation</h1>
+									<div id="bodyContent" class="mw-body-content">
+									<div id="siteSub">From GNU Radio</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					Jump to:					<a href="#mw-head">navigation</a>, 					<a href="#p-search">search</a>
+				</div>
+				<div id="mw-content-text" dir="ltr" class="mw-content-ltr" lang="en"><p><br>
+</p>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2><span class="toctoggle">&nbsp;[<a role="button" tabindex="0" id="togglelink">hide</a>]&nbsp;</span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Objectives"><span class="tocnumber">1</span> <span class="toctext">Objectives</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Prerequisites"><span class="tocnumber">2</span> <span class="toctext">Prerequisites</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Introduction"><span class="tocnumber">3</span> <span class="toctext">Introduction</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Transmitting_a_Signal"><span class="tocnumber">4</span> <span class="toctext">Transmitting a Signal</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="#Constellation_Modulator"><span class="tocnumber">4.1</span> <span class="toctext">Constellation Modulator</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-6"><a href="#Adding_a_Channel"><span class="tocnumber">5</span> <span class="toctext">Adding a Channel</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Recovering_Timing"><span class="tocnumber">6</span> <span class="toctext">Recovering Timing</span></a>
+<ul>
+<li class="toclevel-2 tocsection-8"><a href="#Details_of_the_PFB_Clock_Recovery_Block"><span class="tocnumber">6.1</span> <span class="toctext">Details of the PFB Clock Recovery Block</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Using_the_PFB_Clock_Recovery_Block_in_Our_Receiver"><span class="tocnumber">6.2</span> <span class="toctext">Using the PFB Clock Recovery Block in Our Receiver</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-10"><a href="#Multipath"><span class="tocnumber">7</span> <span class="toctext">Multipath</span></a></li>
+<li class="toclevel-1 tocsection-11"><a href="#Equalizers"><span class="tocnumber">8</span> <span class="toctext">Equalizers</span></a></li>
+<li class="toclevel-1 tocsection-12"><a href="#LMS-DD_Equalizer"><span class="tocnumber">9</span> <span class="toctext">LMS-DD Equalizer</span></a>
+<ul>
+<li class="toclevel-2 tocsection-13"><a href="#More_Equalizers"><span class="tocnumber">9.1</span> <span class="toctext">More Equalizers</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-14"><a href="#Phase_and_Fine_Frequency_Correction"><span class="tocnumber">10</span> <span class="toctext">Phase and Fine Frequency Correction</span></a></li>
+<li class="toclevel-1 tocsection-15"><a href="#Decoding"><span class="tocnumber">11</span> <span class="toctext">Decoding</span></a></li>
+<li class="toclevel-1 tocsection-16"><a href="#Quiz"><span class="tocnumber">12</span> <span class="toctext">Quiz</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Objectives">Objectives</span></h2>
+<ul><li> Understand issues of signal distortion and channel effects.</li>
+<li> Recognize the stages required to recover signals.
+<ul><li> Timing recovery</li>
+<li> Multipath channels</li>
+<li> Phase and frequency correction</li></ul></li>
+<li> Decoding symbols and bit ordering</li></ul>
+<h2><span class="mw-headline" id="Prerequisites">Prerequisites</span></h2>
+<ul><li> Basic knowledge of radio and RF
+<ul><li> <a href="https://wiki.gnuradio.org/index.php/SuggestedReading" title="SuggestedReading">Our Suggested Reading</a> list</li>
+<li> The ARRL Handbook</li></ul></li>
+<li> Basic signal process / DSP concepts</li>
+<li> Previous Tutorials recommended
+<ul><li> <a href="https://wiki.gnuradio.org/index.php/Guided_Tutorial_Introduction" title="Guided Tutorial Introduction">Tutorials Introductions</a></li>
+<li> <a href="https://wiki.gnuradio.org/index.php/Guided_Tutorial_Hardware_Considerations" title="Guided Tutorial Hardware Considerations">Using GNU Radio with Hardware</a></li></ul></li></ul>
+<p><br>
+</p>
+<h2><span class="mw-headline" id="Introduction">Introduction</span></h2>
+<p>In this tutorial, we will be building off of the previous tutorials 
+to see how we deal with issues of receiving digitally modulated signals.
+ Though we're focused on simulation and not over-the-air, we want to 
+understand many of the issues involved with what goes on when 
+transmitting and then receiving real signals through real hardware and 
+channel effects. Here, we'll walk through the stages of setting up our 
+simulation and then step-by-step walk through how to recover the signal.
+</p><p>As we walk through the recovery stages, we should keep in mind that this is just <i>one way</i>
+ of handling digital signal reception. There are various algorithms and 
+methods that have been designed for these steps, and different types of 
+digital signals will behave differently. Here, we go through a set of 
+stages and use of algorithms readily available in GNU Radio for PSK 
+signal reception and demodulation. This tutorial, however, should in no 
+way be meant to suggest that this is the only way to accomplish this 
+task.
+</p>
+<h2><span class="mw-headline" id="Transmitting_a_Signal">Transmitting a Signal</span></h2>
+<p>The first stage is transmitting the signal. We take a stream of bits 
+and modulate it onto a complex constellation. To do this, we use the 
+Constellation Modulator block, which takes in a constellation object and
+ other settings that establish how we want to control the transmitted 
+signal. First, let's look at the constellation object.
+</p>
+<h3><span class="mw-headline" id="Constellation_Modulator">Constellation Modulator</span></h3>
+<p>Tutorial 4 already introduced us to the modulation side of our QPSK 
+modem. We have changed this tutorial to use the Constellation Modulator 
+block with a <a rel="nofollow" class="external text" href="http://gnuradio.org/doc/doxygen/classgr_1_1digital_1_1constellation.html">Constellation Object</a>
+ because of the greater flexibility in defining the modulation. We can 
+set the constellation points as well as how the symbols are mapped to 
+those points. The constellation object allows us to determine how the 
+symbols are coded and if we want to use Gray coding or not. The 
+modulator block can then use this modulation scheme with or without 
+differential encoding. The constellation modulator expects packed bytes,
+ so we have a random source generator providing bytes with values 0 - 
+255. The <a rel="nofollow" class="external text" href="http://gnuradio.org/doc/doxygen/page_digital.html">manual page on digital modulation</a> explains more of these concepts.
+</p><p>When dealing with the number of samples per symbol, we have two 
+criteria. First, we want to keep this value as small as possible with a 
+minimum value of 2. Generally, we can use this value to help us match 
+the desired bit rate with the sample rate of the hardware device we'll 
+be using. Since we're starting in simulation mode, the samples per 
+symbol is only important in making sure we match this rate at all 
+important points. We'll use 4 here, which is greater than what we need 
+(e.g., 2) but useful to visualize the signal in the different domains.
+</p><p>Finally, we set the excess bandwidth value. The constellation 
+modulator uses a root raised cosine (RRC) pulse shaping filter, which 
+gives us a single parameter to adjust the roll-off factor of the filter,
+ often known mathematically as 'alpha.' The following figure is 
+generated from the <b>mpsk_rrc_rolloff.grc</b> example in "gr-tutorial:<a rel="nofollow" class="external free" href="https://github.com/gnuradio/gr-tutorial">https://github.com/gnuradio/gr-tutorial</a> and shows different values of the excess bandwidth. Typical values these days are between 0.2 and 0.35.
+</p><p><a href="https://wiki.gnuradio.org/index.php/File:Rrc_rolloff.png" class="image"><img alt="Rrc rolloff.png" src="Guided%20Tutorial%20PSK%20Demodulation%20-%20GNU%20Radio_files/600px-Rrc_rolloff.png" srcset="/images/thumb/4/4b/Rrc_rolloff.png/900px-Rrc_rolloff.png 1.5x, /images/4/4b/Rrc_rolloff.png 2x" width="600" height="361"></a>
+</p><p>The example file <b>mpsk_stage1.grc</b> transmits a pulse 
+shape-filtered, up-sampled QPSK constellation. This flowgraph plots both
+ the transmitted signal as well as part of the receiver chain in time, 
+frequency, and the constellation plot.
+</p><p><a href="https://wiki.gnuradio.org/index.php/File:Stage1_grc.png" class="image"><img alt="Stage1 grc.png" src="Guided%20Tutorial%20PSK%20Demodulation%20-%20GNU%20Radio_files/600px-Stage1_grc.png" srcset="/images/8/85/Stage1_grc.png 1.5x" width="600" height="386"></a>
+</p><p>When running, first, let's turn off all of the RX signals by just clicking on them in the legends.
+</p><p>In the constellation plot, we see the effects of the up-sampling 
+and filtering process. In this case, the RRC filter adds intentional 
+self-interference, known as inter-symbol interference (ISI). ISI is bad 
+for a received signal because it blurs the symbols together, and we'll 
+look into this in-depth during the timing recovery section. Right now, 
+let's just see what we're doing to the signal. If you are just looking 
+at the transmitted signals from this graph, then you should see a number
+ of things happening. First and foremost, the frequency plot is showing a
+ signal that has a nice shape to it and that rolls-off into the noise. 
+If we didn't put a shaping filter on the signal, we would be 
+transmitting square waves that produce a lot of energy in the adjacent 
+channels. On your own, try creating a simple flowgraph of a signal 
+source set to generate a square wave into a frequency sink and you'll 
+see what we mean. By reducing the out-of-band emissions, our signal now 
+stays nicely within our channel's bandwidth. But there is a slight 
+problem with this signal that can be best seen in the time domain plot.
+</p><p><a href="https://wiki.gnuradio.org/index.php/File:Stage1.png" class="image"><img alt="Stage1.png" src="Guided%20Tutorial%20PSK%20Demodulation%20-%20GNU%20Radio_files/600px-Stage1.png" srcset="/images/thumb/8/89/Stage1.png/900px-Stage1.png 1.5x, /images/8/89/Stage1.png 2x" width="600" height="477"></a>
+</p><p>Let's turn off all of the signals in the time domain plot except 
+the real part of the transmitted signal (i.e., "Re{TX}"). Next, by 
+clicking the middle mouse button to open a menu, increase the number of 
+point from 200 to 5000. Using the same menu, under the line label 
+Re{TX}, go to "Line Marker" and click circle. What you should see is a 
+bit of a mess of points. How are we supposed to receive these samples 
+when we thought we were transmitting 1's and 0's? Use the drop-down 
+button to show the transmitted signal.
+</p><p><a href="https://wiki.gnuradio.org/index.php/File:Stage1_tx.png" class="image"><img alt="Stage1 tx.png" src="Guided%20Tutorial%20PSK%20Demodulation%20-%20GNU%20Radio_files/Stage1_tx.png" width="600" height="456"></a><br>
+</p><p>What we are seeing in this image is actually the ISI that we 
+mentioned before. We get rid of ISI by using another filter at the 
+receiver. Basically, what we've done is purposefully used a filter on 
+the transmitter, the RRC filter, that creates the ISI. But when we 
+convolve two RRC filters together, we get a <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Raised-cosine_filter">raised cosine filter</a>, which is a form of a <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Nyquist_ISI_criterion">Nyquist filter</a>.
+ So, knowing this property of the RRC filter, we can use another RRC 
+filter at the receiver. Filtering is just a convolution here, so the 
+output of the receive-side RRC filter is a raised cosine pulse shaped 
+signal with minimized ISI. The other benefit is that absent effects of 
+the channel, what we are also doing is using a <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Matched_filter">matched filter</a> at the receiver.
+</p><p>So what does the signal received through the matched RRC filter 
+look like? In the time plot, we can turn back on the "Re{RX}" signal and
+ using the drop-down menu controls add a symbol to this output. As 
+opposed to the mess of the transmitted signal, this received version has
+ three distinct lines at +1, -1, and 0 (the zeros might be difficult to 
+see, so you'll have to look closely). Use the drop-down button to show 
+the cleaned-up signal at the receiver. For those keeping score, this 
+matched filter satisfies the Nyquist ISI criterion. We'll see this again
+ in a different format during the timing recovery stage.
+</p><p><a href="https://wiki.gnuradio.org/index.php/File:Stage1_rc.png" class="image"><img alt="Stage1 rc.png" src="Guided%20Tutorial%20PSK%20Demodulation%20-%20GNU%20Radio_files/600px-Stage1_rc.png" srcset="/images/1/11/Stage1_rc.png 1.5x" width="600" height="429"></a>
+</p>
+<h2><span class="mw-headline" id="Adding_a_Channel">Adding a Channel</span></h2>
+<p>That first stage example only dealt with the particulars of the 
+mechanics of transmitting a QPSK signal. We'll now start to look into 
+the effects of the channel and how the signal is distorted between when 
+it was transmitted and when we see the signal in the receiver. The first
+ step is to add a channel model, which is done using the example <b>mpsk_stage2.grc</b>. To start with, we'll use the most basic <a rel="nofollow" class="external text" href="http://gnuradio.org/doc/doxygen/page_channels.html">Channel Model</a> block of GNU Radio.
+</p><p>This block allows us to simulate a few main issues that we have 
+to deal with. The first, fundamental issue with receivers is noise. 
+Thermal noise in our receivers causes noise that we know of as <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Additive_white_Gaussian_noise">additive white Gaussian noise AWGN</a>.
+ We set the noise power by adjusting the noise voltage value of the 
+channel model. We specify the voltage here instead of power because we 
+need to know the bandwidth of the signal in order to the power properly.
+ One of the defining aspects of GNU Radio is the independence of the 
+blocks, so the channel model doesn't know anything about the incoming 
+signal itself. Instead, we use the voltage concept because of its 
+independence to the signal itself. We can calculate the noise voltage 
+from a desired power level ourselves knowing the other parameters of 
+simulation.
+</p><p>Another significant problem between two radios is different 
+clocks, which drive the frequency of the radios. The clocks are, for one
+ thing, imperfect, and therefore different between radios. One radio 
+transmits nominally at fc (say, 450 MHz), but the imperfections mean 
+that it is really transmitting at fc + f_delta_1. Meanwhile, the other 
+radio has a different clock and therefore a different offset, f_delta_2.
+ When it's set to fc, the real frequency is at fc + f_delta_2. In the 
+end, the received signal will be f_delta_1 + f_delta_2 off where we 
+think it should be (these deltas may be positive or negative).
+</p><p>Related to the clock problem is the ideal sampling point. We've 
+up-sampled our signal in the transmitter and shaped it, but when 
+receiving it, we need to sample the signal at the original sampling 
+point in order to maximize the signal power and minimize and 
+inter-symbol interference. Like in our stage 1 simulation after adding 
+the second RRC filter, we can see that among the 4 samples per symbol, 
+one of them is at the ideal sampling point of +1, -1, or 0. But again, 
+the two radios are running at two different speeds, and so the ideal 
+sampling point is an unknown.
+</p><p>The second stage of our simulation allows us to play with these 
+concepts of additive noise, frequency offset, and timing offset. When we
+ first run this graph, shown below, we have turned all of these effects 
+off but have sliders to adjust the settings. We can add a bit of noise 
+(0.2), some frequency offset 0.025), and some timing offset (1.0005) to 
+see the resulting signal from where we started.
+</p><p><a href="https://wiki.gnuradio.org/index.php/File:Stage2_grc.png" class="image"><img alt="Stage2 grc.png" src="Guided%20Tutorial%20PSK%20Demodulation%20-%20GNU%20Radio_files/600px-Stage2_grc.png" srcset="/images/8/86/Stage2_grc.png 1.5x" width="600" height="377"></a>
+</p><p><a href="https://wiki.gnuradio.org/index.php/File:Stage2.png" class="image"><img alt="Stage2.png" src="Guided%20Tutorial%20PSK%20Demodulation%20-%20GNU%20Radio_files/600px-Stage2.png" srcset="/images/thumb/0/0e/Stage2.png/900px-Stage2.png 1.5x, /images/0/0e/Stage2.png 2x" width="600" height="565"></a>
+</p><p>The constellation plot shows us a cloud of samples, far worse 
+that what we started off with in the last stage. From this received 
+signal, we now have to undo all of these effects.
+</p>
+<h2><span class="mw-headline" id="Recovering_Timing">Recovering Timing</span></h2>
+<p>We'll now walk step-by-step through the recovery process. Keep in 
+mind, though, that there are many algorithms we could potentially use 
+for recovery of each stage. Some, even, can do joint recovery of 
+multiple stages at the same time. We will specifically use the polyphase
+ clock recovery algorithm here.
+</p><p>In our stages here, we start off with timing recovery. We're 
+trying to find the best time to sample the incoming signals, which will 
+maximize the SNR of each sample as well as reduce the effects of inter 
+symbol interference (ISI).
+</p><p>We can illustrate the ISI problem using the example flowgraph <b>symbol_sampling.grc</b>
+ where we simply create four separate symbols of 1's in row then filter 
+them. The first stage of filtering performs up-sampling to the 'sps' 
+samples per symbol and uses a root raised cosine filter. We follow this 
+with another root raised cosine filter that does no rate changes. The 
+second RRC filter here converts the signals from using the non-Nyquist 
+RRC filter to a Nyquist raised cosine (RC) filter as we discussed in the
+ first stage of this tutorial. The output, shown in the figures below, 
+shows the differences between the RRC- and RC-filtered symbols. Without 
+Nyquist filtering, we can see how at the ideal sampling point of each 
+symbol, the other symbols have some energy. If we summed these symbols 
+together like we would in a continuous stream of samples, the energy of 
+those other samples add together and distort the symbol at that point. 
+Conversely, in the RC filtered output, the energy from the other samples
+ are at 0 at the ideal sampling point for the given symbol in time. That
+ means that if we sample at exactly the correct sample point, we only 
+get energy from the current symbol with no interference from the other 
+symbols in the stream. Again, what we're seeing is how the timing 
+recovery applies a matched filter to satisfy the Nyquist ISI criterion.
+</p><p><a href="https://wiki.gnuradio.org/index.php/File:Symbol_sync_tx.png" class="image"><img alt="Symbol sync tx.png" src="Guided%20Tutorial%20PSK%20Demodulation%20-%20GNU%20Radio_files/600px-Symbol_sync_tx.png" srcset="/images/thumb/8/88/Symbol_sync_tx.png/900px-Symbol_sync_tx.png 1.5x, /images/8/88/Symbol_sync_tx.png 2x" width="600" height="651"></a><br>
+<a href="https://wiki.gnuradio.org/index.php/File:Symbol_sync_rx.png" class="image"><img alt="Symbol sync rx.png" src="Guided%20Tutorial%20PSK%20Demodulation%20-%20GNU%20Radio_files/600px-Symbol_sync_rx.png" srcset="/images/thumb/9/9e/Symbol_sync_rx.png/900px-Symbol_sync_rx.png 1.5x, /images/9/9e/Symbol_sync_rx.png 2x" width="600" height="651"></a>
+</p><p>This simulation allows us to easily adjust things like the number
+ of samples per symbol, excess bandwidth of the RRC filters, and the 
+number of taps. We can then play with these different values to see how 
+they affect the behavior of the sampling point.
+</p><p>Next, let's look at what happens due to the different clocks 
+affecting the sampling points between the transmitter and receiver. 
+Using the example flowgraph in <b>symbol_sampling_diff.grc</b>, we 
+simulate the effect of the different clocks in the transmitter and 
+receiver. Each clock is imperfect and so a) will start at a different 
+point in time and b) drift relative to the other clocks. We simulate 
+this by adding a resampler that adjusts the symbol sampling time 
+slightly between the transmitted signal (in the transmit image above) 
+and the receiver, shown below. The clock difference shown here of 1.125 
+is extreme as a way of showing it in this setup as a visualization 
+technique. In reality, timing differences are on the order or parts per 
+million. But here, notice that with the samples being collected at 
+different points in time, the ideal sampling period is not known and any
+ sampling done will also include ISI.
+</p><p><a href="https://wiki.gnuradio.org/index.php/File:Symbol_sampling_rate_rx.png" class="image"><img alt="Symbol sampling rate rx.png" src="Guided%20Tutorial%20PSK%20Demodulation%20-%20GNU%20Radio_files/600px-Symbol_sampling_rate_rx.png" srcset="/images/thumb/c/c6/Symbol_sampling_rate_rx.png/900px-Symbol_sampling_rate_rx.png 1.5x, /images/thumb/c/c6/Symbol_sampling_rate_rx.png/1200px-Symbol_sampling_rate_rx.png 2x" width="600" height="308"></a>
+</p><p>Our task here is to synchronize the transmit and receiver clocks 
+using only information at the receiver from the incoming samples. This 
+job is known as clock or timing recovery.
+</p>
+<h3><span class="mw-headline" id="Details_of_the_PFB_Clock_Recovery_Block">Details of the PFB Clock Recovery Block</span></h3>
+<p>There are various algorithms that we can use to recovery the clock at
+ the receiver, and almost all of them involve some kind of feedback 
+control loop. Those that don't are generally data aided using a known 
+word like a preamble. We'll use a <a rel="nofollow" class="external text" href="http://gnuradio.org/doc/doxygen/classgr_1_1digital_1_1pfb__clock__sync__ccf.html">polyphase filterbank clock recovery</a> technique that can be found in <i>Multirate Signal Processing for Communications Systems</i>
+ by fred harris. This block does three things for us. First, it performs
+ the clock recovery. Second, it does the receiver matched filter to 
+remove the ISI problem. Third, it down-samples the signal and produces 
+samples at 1 sps.
+</p><p>The block works by calculating the first differential of the 
+incoming signal, which will be related to its clock offset. If we 
+simulate this very simply at first, we can see how the differential 
+filter will work for us. First, using the example flowgraph <b>symbol_differential_filter.grc</b>,
+ we can see how everything looks perfect when our rate parameter is 1 
+(i.e., there is no clock offset). The sample we want is obviously at 
+0.25 ms. The difference filter ([-1, 0, 1]) generates the differential 
+of the symbol, and as the following figure shows, the output of this 
+filter at the correct sampling point is 0. We can then invert that 
+statement and instead say when the output of the differential filter is 0
+ we have found the optimal sampling point.
+</p><p><a href="https://wiki.gnuradio.org/index.php/File:Symbol_differential_filter0.png" class="image"><img alt="Symbol differential filter0.png" src="Guided%20Tutorial%20PSK%20Demodulation%20-%20GNU%20Radio_files/600px-Symbol_differential_filter0.png" srcset="/images/thumb/9/90/Symbol_differential_filter0.png/900px-Symbol_differential_filter0.png 1.5x, /images/thumb/9/90/Symbol_differential_filter0.png/1200px-Symbol_differential_filter0.png 2x" width="600" height="389"></a>
+</p><p>What happens when we have a timing offset? That output is shown 
+below shows that the timing offset where the peak of the symbol is off 
+and the derivative filter does not show us a point at zero.
+</p><p><a href="https://wiki.gnuradio.org/index.php/File:Symbol_differential_filter1.png" class="image"><img alt="Symbol differential filter1.png" src="Guided%20Tutorial%20PSK%20Demodulation%20-%20GNU%20Radio_files/600px-Symbol_differential_filter1.png" srcset="/images/thumb/b/b6/Symbol_differential_filter1.png/900px-Symbol_differential_filter1.png 1.5x, /images/thumb/b/b6/Symbol_differential_filter1.png/1200px-Symbol_differential_filter1.png 2x" width="600" height="389"></a>
+</p><p>Instead of using a single filter, what we can do is build up a 
+series of filters, each with a different phase. If we have enough 
+filters at different phases, one of them is the correct filter phase 
+that will give us the timing value we desire. Let's look at a simulation
+ that builds 5 filters, which means 5 different phases. Think of each 
+filter as segmenting the unit circle (0 to 2pi) into 5 equal slices. 
+Using the example flowgraph <b>symbol_differential_filter_phase.grc</b>, we can see how this helps us. Notice here that we are using the <a rel="nofollow" class="external text" href="http://gnuradio.org/doc/doxygen/classgr_1_1filter_1_1fractional__resampler__ff.html">fractional_resampler_ff</a>
+ here because it makes it easy to do the phase shift (between 0 and 1), 
+but it also changes the filter delays of the signals, so we correct for 
+that using the follow-on delay blocks.
+</p><p>The figure below now gives us an idea of what we're dealing with,
+ although it's a bit inexact. What we can see is that the signal labeled
+ as d(sym0)/dt + phi3 has a sample point at exactly 0. This tells us 
+that our ideal sampling point occurs at this phase offset. Therefore, if
+ we take a the RRC filter of our receiver and adjust its phase by phi3 
+(which is 3*2pi/5), then we can correct for the timing mismatch and 
+select the ideal sampling point at this sample time.
+</p><p><a href="https://wiki.gnuradio.org/index.php/File:Symbol_differential_filter2.png" class="image"><img alt="Symbol differential filter2.png" src="Guided%20Tutorial%20PSK%20Demodulation%20-%20GNU%20Radio_files/600px-Symbol_differential_filter2.png" srcset="/images/thumb/8/87/Symbol_differential_filter2.png/900px-Symbol_differential_filter2.png 1.5x, /images/8/87/Symbol_differential_filter2.png 2x" width="600" height="373"></a>
+</p><p>But as we have discussed, this is only a simulated approximation;
+ in reality, the samples of each filter wouldn't occur at the same point
+ in time. We have to up-sample by the number of filter (e.g., 5) to 
+really see this behavior. However, that can clue us into what's 
+happening a bit farther. We can look at these different filters as parts
+ of one big filter that is over-sampled by M, where M=5 in our simple 
+example here. We could up-sample our incoming signal by this much and 
+select the point in time where we get the 0 output of the difference 
+filter. The trouble with that is we are talking about a large amount of 
+added computational complexity, since that is proportional to our sample
+ rate. Instead, we're working on filters of different phases at the 
+incoming sample rate, but with the bank of them at these different 
+phases, we can get the effect of working with the over-sampled filter 
+without the added computational cost.
+</p><p>Ok, so in our example above, we offset our sampling rate by some 
+known factor of 1.2 and found that we could use one of five filters as 
+the ideal sampling point. Unfortunately, we really only have 5 different
+ phases we can exactly produce and correct for here. Any sampling offset
+ between these phases will still produce a mistimed sample with added 
+ISI as we explored previously. So instead, we use way more than 5 
+filters in our clock recovery algorithm. Without exploring the math (see
+ harris' book referenced above), we can use 32 filters to give us a 
+maximum ISI noise factor that is less than the quantization noise of a 
+16 bit value. If we want more than 16 bits of precision, we can use more
+ filters.
+</p><p>Alright, so what? We have a large bank of filters where one of 
+them is at (or very close to) the ideal sampling phase offset. How do we
+ automatically find that? Well, we use a <a rel="nofollow" class="external text" href="http://www.trondeau.com/blog/2011/8/13/control-loop-gain-values.html">2nd order control loop</a>,
+ like we almost always do in these recovery situations. The error signal
+ for the recovery is the output of the differential filter. The control 
+loop starts at one of the filters and calculates the output as the error
+ signal. It then moves its way up or down the bank of filters 
+proportionally to the error signal, and so we're trying to find where 
+that error signal is closest to 0. This is our optimal filter for the 
+sampling point. And because we expect the transmit and receive clocks to
+ drift relative to each other, we use a second order control loop to 
+acquire both the correct filter phase as well as the rate difference 
+between the two clocks.
+</p><p>GNU Radio comes with an example found in the digital examples 
+directory called source:gr-digital/examples/example_timing.py. You can 
+run this script on your own to see the convergence behavior of the 
+source:gr-digital/lib/pfb_clock_sync_ccf_impl.cc recovery block.
+</p>
+<h3><span class="mw-headline" id="Using_the_PFB_Clock_Recovery_Block_in_Our_Receiver">Using the PFB Clock Recovery Block in Our Receiver</span></h3>
+<p>Now let's put this block to use in our simulation. The example flowgraph <b>mpsk_stage3.grc</b>
+ script takes the output of the channel model and passes it through our 
+Polyphase Clock Sync block. This block is setup with 32 filters, for the
+ reasons we discussed above, and a loop bandwidth of 2pi/100. The block 
+also takes in a value for the expected samples per symbol, but this is 
+just our guess at what we think this value should be. Internally, the 
+block will adapt around this value based on the rates of the incoming 
+signal. Notice, however, that I have set this simulation up where the 
+estimate is slightly off of the 4 sps we transmit with. This is to 
+simulate an initial timing offset between the transmitter and receiver 
+since we initialize our Timing Offset control to 1.0. It makes things 
+slightly harder so that we can observe the convergence of the 
+constellation.
+</p><p><a href="https://wiki.gnuradio.org/index.php/File:Stage3_grc.png" class="image"><img alt="Stage3 grc.png" src="Guided%20Tutorial%20PSK%20Demodulation%20-%20GNU%20Radio_files/600px-Stage3_grc.png" srcset="/images/4/4e/Stage3_grc.png 1.5x" width="600" height="382"></a>
+</p><p><a href="https://wiki.gnuradio.org/index.php/File:Stage3.png" class="image"><img alt="Stage3.png" src="Guided%20Tutorial%20PSK%20Demodulation%20-%20GNU%20Radio_files/600px-Stage3.png" srcset="/images/thumb/4/4b/Stage3.png/900px-Stage3.png 1.5x, /images/thumb/4/4b/Stage3.png/1200px-Stage3.png 2x" width="600" height="340"></a>
+</p><p>When running this script, we see the constellation on the left as
+ the received signal before timing recovery and on the right after 
+timing recovery. It's still a little noisy as a result of the ISI after 
+the 32 filters, which is quickly absorbed by noise once we adjust the 
+channels Noise Voltage setting to be more than 0.
+</p><p>We can then play around with changing the timing and frequency 
+offset. Moving the timing bar around shows us how the clock sync block 
+keeps the signal locked in time and outputs samples at (or very near) 
+the ideal constellation points. When we add frequency offset, we can see
+ that the constellation becomes a circle. The constellation is still on 
+the unit circle, so we know that it's still keeping the correct timing, 
+but the block isn't allowing us to correct for a frequency offset. We 
+still need to handle this, but later.
+</p><p>Likewise, we can change the multipath simulation environment by 
+changing which version of the taps variable we use. Adding multipath 
+will show us that the clock recovery block is robust to multipath but 
+won't correct for it, so again, we need something else to handle that.
+</p>
+<h2><span class="mw-headline" id="Multipath">Multipath</span></h2>
+<p>Let's first understand what multipath is. There is already quite a 
+lot written on the subject of multipath, we'll just explore it enough 
+here to get a general sense of where it comes from and how it affects 
+our communications capabilities. We won't be going into details about 
+real fading channels or how to analyze their properties.
+</p><p>Multipath results from that fact that in most communication 
+environments, we don't have a single path for the signal to travel from 
+the transmitter to the receiver. Like the cartoon below shows, any time 
+there is an object that is reflective to the signal, a new path can be 
+established between the two nodes. Surfaces like buildings, signs, 
+trees, people, cats, etc. can all produce signal reflections. Each of 
+these reflective paths will show up at the receiver at different times 
+based on the length of the path. Summing these together at the receiver 
+causes distortions, both constructively and destructively.
+</p><p><a href="https://wiki.gnuradio.org/index.php/File:Multipath_cartoon.png" class="image" title="Multipath_cartoon.png"><img alt="Multipath_cartoon.png" src="Guided%20Tutorial%20PSK%20Demodulation%20-%20GNU%20Radio_files/Multipath_cartoon.png" width="470" height="317"></a>
+</p><p>The impact of the combination of these signals at the receiver is
+ distortions of the signal. If the difference in time between 
+reflections is small enough relative to the width of the symbol, the 
+distortion can be within the symbol -- intra-symbol interference. When 
+the reflections are longer than the symbol time, the reflection from one
+ symbol will affect the signals following -- another reason for 
+inter-symbol interference.
+</p><p>We need to correct for this behavior, and we can do so using a 
+mechanism very much like a stereo equalizer. In fact, we call them 
+equalizers. With a stereo equalizer, we can change the gain of certain 
+frequencies to either suppress or enhance those signals -- bass and 
+treble being the common ones. I've created a very simple example called <b>multipath_sim.grc</b> to help us explore what this looks like in the frequency domain.
+</p><p>The <b>multipath_sim.grc</b> simply sets up a channel model to 
+provide a channel with five equalizer knobs, four of which we can 
+change. These knobs are simply set up equally in frequency and we can 
+adjust them from 0 to 1. At a value of 1, the knob will allow those 
+frequencies to pass without hindrance. At a value of 0, they will 
+produce a deep null in the spectrum, which will affect all those 
+frequencies around it. When running the script, it's best to set the 
+frequency plot to average (by right clicking the graph and selecting 
+"Average"; a value of "Medium" is good for this).
+</p><p>While in this example, we are controlling the frequency domain 
+explicitly, what we're really playing with is the ability to create an 
+equalizer that can correct or adjust the frequency response of a 
+received signal. Ultimately, the goal is shown in the figure below where
+ the multipath channel is creating some distortion in the signal as 
+shown in the frequency domain. The task of the equalizer is to invert 
+that channel. Basically, we want to undo the distortion that's caused by
+ the channel such that the output of the equalizer is flat. But, instead
+ of adjusting the taps by hand, we have algorithms that update these 
+taps for us. Our job is to use the right equalizer algorithm and set up 
+the parameters. One important parameter here is the number of taps in 
+the equalizer. As we can see in our simulation, five taps gives fairly 
+coarse control over the frequency response. Alternatively, the more 
+taps, the more time it takes to both compute the taps as well as run the
+ equalizer against the signal.
+</p><p><a href="https://wiki.gnuradio.org/index.php/File:Multipath_equalizing.png" class="image"><img alt="Multipath equalizing.png" src="Guided%20Tutorial%20PSK%20Demodulation%20-%20GNU%20Radio_files/Multipath_equalizing.png" width="600" height="235"></a>
+</p>
+<h2><span class="mw-headline" id="Equalizers">Equalizers</span></h2>
+<p>GNU Radio comes with two easily usable <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Equalization">equalizers</a>. The CMA Equalizer and the LMS DD Equalizer. The CMA, or Constant Modulus Algorithm, is a <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Blind_equalization">blind equalizer</a>,
+ but it only works on signals that have a constant amplitude, or 
+modulus. This means that digital signals like MPSK are good candidates 
+since they have points only on the unit circle (think back to the 
+experiment we did where we locked the signal timing but had a frequency 
+offset; what we were seeing was the unit circle).
+</p><p>The CMA algorithm accepts the number of taps to use in the 
+equalizer, which will be based on some combination of an educated guess,
+ known best practices, and maybe some actual knowledge of the channel 
+itself. We want to keep this number small to reduce the overhead of the 
+algorithm while making sure there are enough degrees of freedom to 
+correct for our channel.
+</p><p>In the <b>mpsk_stage4.grc</b> example, we use the CMA algorithm 
+with 11 taps. This is a simulation, and that number has worked well in 
+the past. Play around with it and see how it affects performance, both 
+from a computational and signal standpoint.
+</p><p><a href="https://wiki.gnuradio.org/index.php/File:Stage4_grc.png" class="image"><img alt="Stage4 grc.png" src="Guided%20Tutorial%20PSK%20Demodulation%20-%20GNU%20Radio_files/600px-Stage4_grc.png" srcset="/images/thumb/b/b8/Stage4_grc.png/900px-Stage4_grc.png 1.5x, /images/b/b8/Stage4_grc.png 2x" width="600" height="377"></a>
+</p><p>We can watch the CMA algorithm converge. Note, too, that since we
+ have both a clock sync and equalizer block, they are converging 
+independently, but the one stage will affect the next stage. So there is
+ some interaction going on here while both are locking on to the signal.
+ In the end, though, we can see the effect of the time-locked multipath 
+signal before and after the equalizer. Before the equalizer, we have a 
+very ugly signal, even without noise. The equalizer nicely figures out 
+how to invert and cancel out this channel so that we have a nice, clean 
+signal again. We can also see the channel itself and how it flattens out
+ nicely after the equalizer.
+</p><p><a href="https://wiki.gnuradio.org/index.php/File:Stage4.png" class="image"><img alt="Stage4.png" src="Guided%20Tutorial%20PSK%20Demodulation%20-%20GNU%20Radio_files/600px-Stage4.png" srcset="/images/thumb/4/4e/Stage4.png/900px-Stage4.png 1.5x, /images/thumb/4/4e/Stage4.png/1200px-Stage4.png 2x" width="600" height="450"></a>
+</p><p>Play with the taps provided to the channel model block to change 
+the multipath. The current taps were simply randomly generated to 
+provide a multipath profile with no real mathematical basis for them. 
+For more complex channel models with fading simulations, see the <a rel="nofollow" class="external text" href="http://gnuradio.org/doc/doxygen/page_channels.html">Channel Models</a> page in the GNU Radio manual.
+</p>
+<h2><span class="mw-headline" id="LMS-DD_Equalizer">LMS-DD Equalizer</span></h2>
+<p>A good challenge now is to use the <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Least_mean_squares_filter">Least Mean Squared Decision-Directed (LMS-DD) equalizer</a>
+ block. There is a lot of overlap between the parameters, except for one
+ major feature. Instead of a blind equalizer like the CMA, this 
+equalizer requires knowledge of the received signal. The equalizer needs
+ to know the constellation points in order to correct, and it uses 
+decisions about the samples to inform how to update the taps for the 
+equalizer.
+</p><p>This equalizer is great for signals that don't fit the constant 
+modulus requirement of the CMA algorithm, so it can work with things 
+like QAM-type modulations. On the other hand, if the SNR is bad enough, 
+the decisions being made are incorrect, which can ruin the receiver's 
+performance. The block is also more computationally complex in its 
+performance. When the signal is of good quality, though, this equalizer 
+can produce better quality signals because it has direct knowledge of 
+the signal. A common model is to use a blind equalizer for initial 
+acquisition to get the signal good enough for a directed equalizer to 
+take over. We won't try and do something like that here, though.
+</p><p>As a challenge, take the <b>mpsk_stage4.grc</b> file and replace the CMA equalizer recovery with the LMS-DD equalizer and see if you can get it to converge. This block uses a <a rel="nofollow" class="external text" href="http://gnuradio.org/doc/doxygen/page_digital.html">Constellation Object</a>, so part of the difficulty here is creating the proper constellation object for the QPSK signal and applying that.
+</p>
+<h3><span class="mw-headline" id="More_Equalizers">More Equalizers</span></h3>
+<p>There are plenty of other equalizer algorithms out there that are not yet part of the main GNU Radio release.
+</p>
+<h2><span class="mw-headline" id="Phase_and_Fine_Frequency_Correction">Phase and Fine Frequency Correction</span></h2>
+<p>Given that we've equalized the channel, we still have a problem of 
+phase and frequency offset. Equalizers tend not to adapt quickly, and so
+ a frequency offset can be easily beyond the ability of the equalizer to
+ keep up. Also, if we're just running the CMA equalizer, all it cares 
+about is converging to the unit circle. It has no knowledge of the 
+constellation, so when it locks, it will lock at any given phase. We now
+ need to correct for any phase offset as well as any frequency offset.
+</p><p>Two things about this stage. First, we'll use a second order loop
+ so that we can track both phase and frequency, which is the derivative 
+of the phase over time. Second, the type of recovery we'll deal with 
+here assumes that we are doing <i>fine</i> frequency correction. So we 
+must be sure that we are already within a decent range of the ideal 
+frequency. If we are too far away, our loop here won't converge and 
+we'll continue to spin. There are ways to do coarse frequency 
+correction, but we won't get getting into those here.
+</p><p>For this task, we're going to use the <a rel="nofollow" class="external text" href="http://gnuradio.org/doc/doxygen/classgr_1_1digital_1_1costas__loop__cc.html">Costas Loop</a> in example <b>mpsk_stage5.grc</b> (the <a rel="nofollow" class="external text" href="http://gnuradio.org/doc/doxygen/classgr_1_1digital_1_1constellation__receiver__cb.html">Constellation Receiver</a>
+ can also be used here). The Costas Loop block can synchronize BPSK, 
+QPSK, and 8PSK. The Constellation Receiver will lock to any given 
+constellation object, though depending on the constellation, the 
+decision making function may be more or less complex.
+</p><p><a href="https://wiki.gnuradio.org/index.php/File:Stage5_grc.png" class="image"><img alt="Stage5 grc.png" src="Guided%20Tutorial%20PSK%20Demodulation%20-%20GNU%20Radio_files/600px-Stage5_grc.png" srcset="/images/6/6f/Stage5_grc.png 1.5x" width="600" height="377"></a>
+</p><p>This block, like all of our others, uses a second order loop and 
+is therefore defined with a loop bandwidth parameter. The other thing it
+ needs to know is the order of the PSK modulation, so 2 for BPSK, 4 for 
+QPSK, and 8 for 8PSK. In the next image, we have set noise, timing 
+offset, a simple multipath channel, and a frequency offset. After the 
+equalizer, we can see that the symbols are all on the unit circle, but 
+rotating due to the frequency offset that nothing is yet correcting for.
+ At the output of the Costas loop block, we can see the locked 
+constellation like we started with plus the extra noise, which we can't 
+do anything about.
+</p><p><a href="https://wiki.gnuradio.org/index.php/File:Stage5.png" class="image"><img alt="Stage5.png" src="Guided%20Tutorial%20PSK%20Demodulation%20-%20GNU%20Radio_files/600px-Stage5.png" srcset="/images/thumb/1/17/Stage5.png/900px-Stage5.png 1.5x, /images/thumb/1/17/Stage5.png/1200px-Stage5.png 2x" width="600" height="414"></a>
+</p>
+<h2><span class="mw-headline" id="Decoding">Decoding</span></h2>
+<p>Now that the hard part is done, we get to decode the signal. Using the <b>my_qpsk_demodulator</b> block from Tutorial 4, we have a locked constellation that can be properly turned back into bits. Using the <b>mpsk_stage6.grc</b>
+ example flowgraph, we insert the demodulator after the Costas loop, but
+ our work is not quite done. At this point, we get out symbols from 0 to
+ 3 because this is the size of our alphabet in a QPSK scheme. 
+Furthermore, of those 0-3 symbols, how do we know for sure that we have 
+the same mapping of symbols to constellation points that we did when we 
+transmitted? Notice in our discussion above that nothing we did had any 
+knowledge of the transmitted symbol-to-constellation mapping, which 
+means we might have an ambiguity of 90 degrees in the constellation. 
+Luckily, we avoided this problem by transmitting <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Differential_coding"><i>differential</i> symbols</a>.
+ We didn't actually transmit the constellation itself, we transmitted 
+the difference between symbols of the constellation by setting the 
+Differential setting in the PSK Mod block to True. So now we undo that.
+</p><p><a href="https://wiki.gnuradio.org/index.php/File:Stage6_grc.png" class="image"><img alt="Stage6 grc.png" src="Guided%20Tutorial%20PSK%20Demodulation%20-%20GNU%20Radio_files/600px-Stage6_grc.png" srcset="/images/thumb/5/55/Stage6_grc.png/900px-Stage6_grc.png 1.5x, /images/thumb/5/55/Stage6_grc.png/1200px-Stage6_grc.png 2x" width="600" height="288"></a>
+</p><p>The flowgraph uses the <a rel="nofollow" class="external text" href="http://gnuradio.org/doc/doxygen/classgr_1_1digital_1_1diff__decoder__bb.html">Differential Decoder</a>
+ block to translate the differential coded symbols back to their 
+original symbols due to the phase transitions, not the absolute phase 
+itself. But even out of here, our symbols are not exactly right. This is
+ the hardest part about demodulation, really. In the synchronization 
+steps, we had basic physics and math on our side. Now, though, we have 
+to interpret some symbol based on what someone else said it was. We, 
+basically, just have to know this mapping. And luckily we do, so we use 
+the map:"<a rel="nofollow" class="external free" href="http://gnuradio.org/doc/doxygen/classgr_1_1digital_1_1map__bb.html%22">http://gnuradio.org/doc/doxygen/classgr_1_1digital_1_1map__bb.html%22</a>
+ block to convert the symbols from the differential decoder to the 
+original symbols we transmitted. At this point, we now have the original
+ symbols from 0-3, so lets unpack those 2 bits per symbol into bits 
+using the <a rel="nofollow" class="external text" href="http://gnuradio.org/doc/doxygen/classgr_1_1blocks_1_1unpack__k__bits__bb.html">unpack bits</a> block. Now, we have the original bit stream of data!
+</p><p>But how do we know that it's the original bit stream? To do so, 
+we'll compare to the input bit stream, which we can do because this is a
+ simulation and we have access to the transmitted data. But of course, 
+the transmitter produced <i>packed bits</i>, so we again use the unpack 
+bit block to unpack from 8-bits per byte to 1-bit per byte. We then 
+convert these streams to floating point values of 0.0 and 1.0 simply 
+because our time sinks only accept float and complex values. Comparing 
+these two directly would show us... nothing. Why? Because the receiver 
+chain has many blocks and filters that delay the signal, so the received
+ signal is some number of bits behind. To compensate, we have to delay 
+the transmitted bits by the same amount using the <a rel="nofollow" class="external text" href="http://gnuradio.org/doc/doxygen/classgr_1_1blocks_1_1delay.html">delay</a>
+ block. I have programmed this to set the delay to 0 to start with. You 
+can then adjust the delay to find the correct value and see how the bits
+ synchronize.
+</p><p><a href="https://wiki.gnuradio.org/index.php/File:Stage6.png" class="image"><img alt="Stage6.png" src="Guided%20Tutorial%20PSK%20Demodulation%20-%20GNU%20Radio_files/600px-Stage6.png" srcset="/images/thumb/a/a2/Stage6.png/900px-Stage6.png 1.5x, /images/thumb/a/a2/Stage6.png/1200px-Stage6.png 2x" width="600" height="408"></a>
+</p><p>For the answer <a href="https://wiki.gnuradio.org/index.php/Answer_to_PSK_Demod_tutorial" title="Answer to PSK Demod tutorial">click here</a>
+</p><p>You can also subtract one signal from the other to see when they 
+are synchronized as the output will be 0. Adding noise and other channel
+ affects can then be easily seen as bit errors whenever this signal is 
+not 0.
+</p><p>As a final experiment, notice that we are using a finite length 
+random number generator, so we should be able to see the pattern in the 
+received signal. Using the Time Raster QTGUI plotting tool, set it up so
+ that you can see this pattern. Keep in mind that the Time Raster plot, 
+like all of our plotters, samples the stream, and so the resulting 
+display might not be exactly what you would expect. But the pattern 
+itself should be visible if you have set it up correctly.
+</p><p>(Also note that the Time Raster plotter does not work under QWT5,
+ and it will warn you if you are trying to run it using that library 
+version. QWT6 fixed some raster plotting issues to make this usable.)
+</p>
+<h2><span class="mw-headline" id="Quiz">Quiz</span></h2>
+<ul><li> What does the roll-off factor change?</li>
+<li> Why do we need synchronization, and which types of synchronization are there?</li>
+<li> What can we do about noise (AWGN)?</li>
+<li> What would we need to change if the encoder we use in the final example was not differential?</li>
+<li> Why do we put the map block in front of the differential decoder?</li></ul>
+
+<!-- 
+NewPP limit report
+Cached time: 20190702102238
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.092 seconds
+Real time usage: 0.103 seconds
+Preprocessor visited node count: 65/1000000
+Preprocessor generated node count: 72/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 - -total
+-->
+
+<!-- Saved in parser cache with key mediawiki:pcache:idhash:87-0!*!0!!en!5!* and timestamp 20190702102238 and revision id 4470
+ -->
+</div>					<div class="printfooter">
+						Retrieved from "<a dir="ltr" href="https://wiki.gnuradio.org/index.php?title=Guided_Tutorial_PSK_Demodulation&amp;oldid=4470">https://wiki.gnuradio.org/index.php?title=Guided_Tutorial_PSK_Demodulation&amp;oldid=4470</a>"					</div>
+				<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="https://wiki.gnuradio.org/index.php/Special:Categories" title="Special:Categories">Category</a>: <ul><li><a href="https://wiki.gnuradio.org/index.php/Category:Guided_Tutorials" title="Category:Guided Tutorials">Guided Tutorials</a></li></ul></div><br><hr><a href="https://wiki.gnuradio.org/index.php/Category:Tutorials" title="Category:Tutorials">Tutorials</a> &gt; <a href="https://wiki.gnuradio.org/index.php/Category:Guided_Tutorials" title="Category:Guided Tutorials">Guided Tutorials</a></div>				<div class="visualClear"></div>
+							</div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Navigation menu</h2>
+
+			<div id="mw-head">
+									<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+						<h3 id="p-personal-label">Personal tools</h3>
+						<ul>
+							<li id="pt-login"><a href="https://wiki.gnuradio.org/index.php?title=Special:UserLogin&amp;returnto=Guided+Tutorial+PSK+Demodulation" title="You are encouraged to log in; however, it is not mandatory [Alt+Shift+o]" accesskey="o">Log in</a></li><li id="pt-createaccount"><a href="https://wiki.gnuradio.org/index.php/Special:RequestAccount" title="You are encouraged to create an account and log in; however, it is not mandatory">Request account</a></li>						</ul>
+					</div>
+									<div id="left-navigation">
+										<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+						<h3 id="p-namespaces-label">Namespaces</h3>
+						<ul>
+															<li id="ca-nstab-main" class="selected"><span><a href="https://wiki.gnuradio.org/index.php/Guided_Tutorial_PSK_Demodulation" title="View the content page [Alt+Shift+c]" accesskey="c">Page</a></span></li>
+															<li id="ca-talk" class="new"><span><a href="https://wiki.gnuradio.org/index.php?title=Talk:Guided_Tutorial_PSK_Demodulation&amp;action=edit&amp;redlink=1" title="Discussion about the content page [Alt+Shift+t]" accesskey="t" rel="discussion">Discussion</a></span></li>
+													</ul>
+					</div>
+										<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+												<h3 id="p-variants-label" tabindex="0">
+							<span>Variants</span><a href="#" tabindex="-1"></a>
+						</h3>
+
+						<div class="menu">
+							<ul>
+															</ul>
+						</div>
+					</div>
+									</div>
+				<div id="right-navigation">
+										<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+						<h3 id="p-views-label">Views</h3>
+						<ul>
+															<li id="ca-view" class="selected"><span><a href="https://wiki.gnuradio.org/index.php/Guided_Tutorial_PSK_Demodulation">Read</a></span></li>
+															<li id="ca-viewsource"><span><a href="https://wiki.gnuradio.org/index.php?title=Guided_Tutorial_PSK_Demodulation&amp;action=edit" title="This page is protected.
+You can view its source [Alt+Shift+e]" accesskey="e">View source</a></span></li>
+															<li id="ca-history" class="collapsible"><span><a href="https://wiki.gnuradio.org/index.php?title=Guided_Tutorial_PSK_Demodulation&amp;action=history" title="Past revisions of this page [Alt+Shift+h]" accesskey="h">View history</a></span></li>
+													</ul>
+					</div>
+										<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label" style="">
+						<h3 id="p-cactions-label" tabindex="0"><span>More</span><a href="#" tabindex="-1"></a></h3>
+
+						<div class="menu">
+							<ul>
+															</ul>
+						</div>
+					</div>
+										<div id="p-search" role="search">
+						<h3>
+							<label for="searchInput">Search</label>
+						</h3>
+
+						<form action="/index.php" id="searchform">
+							<div id="simpleSearch">
+							<input type="search" name="search" placeholder="Search GNU Radio" title="Search GNU Radio [Alt+Shift+f]" accesskey="f" id="searchInput" tabindex="1" autocomplete="off"><input type="hidden" value="Special:Search" name="title"><input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchButton" class="searchButton">							</div>
+						</form>
+					</div>
+									</div>
+			</div>
+			<div id="mw-panel">
+				<div id="p-logo" role="banner"><a class="mw-wiki-logo" href="https://wiki.gnuradio.org/index.php/Main_Page" title="Visit the main page"></a></div>
+						<div class="portal" role="navigation" id="p-navigation" aria-labelledby="p-navigation-label">
+			<h3 id="p-navigation-label">Navigation</h3>
+
+			<div class="body">
+									<ul>
+						<li id="n-mainpage-description"><a href="https://wiki.gnuradio.org/index.php/Main_Page" title="Visit the main page [Alt+Shift+z]" accesskey="z">Main page</a></li><li id="n-Homepage"><a href="https://gnuradio.org/" rel="nofollow">Homepage</a></li><li id="n-FAQ"><a href="https://wiki.gnuradio.org/index.php/FAQ">FAQ</a></li><li id="n-Tutorials"><a href="https://wiki.gnuradio.org/index.php/Tutorials">Tutorials</a></li><li id="n-Contributing"><a href="https://wiki.gnuradio.org/index.php/Development">Contributing</a></li><li id="n-Installing-GNU-Radio"><a href="https://wiki.gnuradio.org/index.php/InstallingGR">Installing GNU Radio</a></li><li id="n-recentchanges"><a href="https://wiki.gnuradio.org/index.php/Special:RecentChanges" title="A list of recent changes in the wiki [Alt+Shift+r]" accesskey="r">Recent changes</a></li><li id="n-randompage"><a href="https://wiki.gnuradio.org/index.php/Special:Random" title="Load a random page [Alt+Shift+x]" accesskey="x">Random page</a></li><li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>					</ul>
+							</div>
+		</div>
+			<div class="portal" role="navigation" id="p-tb" aria-labelledby="p-tb-label">
+			<h3 id="p-tb-label">Tools</h3>
+
+			<div class="body">
+									<ul>
+						<li id="t-whatlinkshere"><a href="https://wiki.gnuradio.org/index.php/Special:WhatLinksHere/Guided_Tutorial_PSK_Demodulation" title="A list of all wiki pages that link here [Alt+Shift+j]" accesskey="j">What links here</a></li><li id="t-recentchangeslinked"><a href="https://wiki.gnuradio.org/index.php/Special:RecentChangesLinked/Guided_Tutorial_PSK_Demodulation" rel="nofollow" title="Recent changes in pages linked from this page [Alt+Shift+k]" accesskey="k">Related changes</a></li><li id="t-specialpages"><a href="https://wiki.gnuradio.org/index.php/Special:SpecialPages" title="A list of all special pages [Alt+Shift+q]" accesskey="q">Special pages</a></li><li id="t-print"><a href="https://wiki.gnuradio.org/index.php?title=Guided_Tutorial_PSK_Demodulation&amp;printable=yes" rel="alternate" title="Printable version of this page [Alt+Shift+p]" accesskey="p">Printable version</a></li><li id="t-permalink"><a href="https://wiki.gnuradio.org/index.php?title=Guided_Tutorial_PSK_Demodulation&amp;oldid=4470" title="Permanent link to this revision of the page">Permanent link</a></li><li id="t-info"><a href="https://wiki.gnuradio.org/index.php?title=Guided_Tutorial_PSK_Demodulation&amp;action=info" title="More information about this page">Page information</a></li>					</ul>
+							</div>
+		</div>
+				</div>
+		</div>
+		<div id="footer" role="contentinfo">
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> This page was last modified on 17 September 2018, at 20:36.</li>
+											<li id="footer-info-copyright">Content is available under <a class="external" rel="nofollow" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike</a> unless otherwise noted.</li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="https://wiki.gnuradio.org/index.php/GNU_Radio:Privacy_policy" title="GNU Radio:Privacy policy">Privacy policy</a></li>
+											<li id="footer-places-about"><a href="https://wiki.gnuradio.org/index.php/GNU_Radio:About" title="GNU Radio:About">About GNU Radio</a></li>
+											<li id="footer-places-disclaimer"><a href="https://wiki.gnuradio.org/index.php/GNU_Radio:General_disclaimer" title="GNU Radio:General disclaimer">Disclaimers</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+											<li id="footer-copyrightico">
+							<a href="http://creativecommons.org/licenses/by-sa/3.0/"><img src="Guided%20Tutorial%20PSK%20Demodulation%20-%20GNU%20Radio_files/cc-by-sa.png" alt="Creative Commons Attribution-ShareAlike" width="88" height="31"></a>						</li>
+											<li id="footer-poweredbyico">
+							<a href="https://www.mediawiki.org/"><img src="Guided%20Tutorial%20PSK%20Demodulation%20-%20GNU%20Radio_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31"></a>						</li>
+									</ul>
+						<div style="clear:both"></div>
+		</div>
+		<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.load(["mediawiki.toc","mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);});</script><script>(window.RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":112});});</script>
+	
+
+<div style="display: none; font-size: 13px;" class="suggestions"><div class="suggestions-results"></div><div class="suggestions-special"></div></div></body></html>

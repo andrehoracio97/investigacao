@@ -1,0 +1,63 @@
+Tutorual Wiki Gnu Radio
+
+1ºStage:
+	Pegar numa stream de bits, modular numa constelação complexa. O bloco Constellation Modulato pega num objjeto constelattion e outras configurações para definir o como controlamos o sinal tranmitido.
+
+	Relativamente ao nº de samples por simbolo, temos 2 criterios:
+		1-> deixar este valor o < possivel com minimo de 2.
+		2->Podemos usar este valor para nos ajudar a match o bit rate desejado com o sample rate do hardware do dispositivo que estamos a usar.
+
+	Definimos agora o bandwith excess. 
+		O modulador usa RRC (root raised coisine) pulse shaping, que tem como parametro para ajustar o roll-off facto. (Matematicamente como alpha) --> Adiciona self-interference inencional conhecido como inter-symbols interference (ISI).
+		É tipicamente valores entre 0.2 e 0.35.
+
+
+No mpsk_stage1.grc:
+	Transmute um pulse sshape-filterd, up-sampled QPSK constellation
+	O que estamos a fazer ao sinal?
+		O Frequency plot mostra um sinal bem definido e depois rolls-off em ruido.
+		Se não pusermos um filtero de shaping no sinal, vai transmitir ondas que produzem muita energia em cnais adjacentes.
+
+	O que vemos é o ISI, para o eliminar temos que usar um outro filtro no reciver. 
+
+No mpsk_stage2.grc
+	Adicionar canal: Estavamos a utilizar sem qualquer tipo de canal, o que não é real, etse bloco permite-nos simular alguns problemas que temos que resolver_
+		->No reciver é o ruido: Thermal noire no reciver causa ruido conhecido como additive white gaussian noise AWGN. Ao ajustar a voltagem ajustamos o power de ruido no bloco do canal. (Explicação de PQ voltage e nao power lá)
+		->Outro problema são =/= clocks que leva a frequencia dos radio. 
+		->Outro problema relacionado com o anterior, é o sampling point ideal: Temos up-sampled o nosso sinal no transmissor e shapped, mas ao receber necessitamos de sample o sinal para o sampling point original de modo a maximizar o signal powe e minimizar o inter-symbol interface. Os dois radios estão a correr a diferentes clocks ppor isso ão sabemos o sampling point ideial.
+
+	Vamos então mexer squi com estes conceitos:additive noise, frequency offset e timming offset.
+	Temos então que no recetor desfazer todos estes efeitos.
+
+No mpsk_stage3.grc
+Recovery Timing:
+	Tentar encontrar o melhor tempo de sample dos sinais que chegam de forma a maximzar o SNR de cada amostra e reduzir o efeito do inter symbol interference (ISI)
+
+	O bloco faz 3 coisas:
+		->Clock recovery
+		->Reciver matched filter para remover o problema ISI
+		->Down-samples do sinal e produz smaples a 1 sps
+
+	Recebe:
+		->32 filtros
+		->loop bandwidth de 2pi/100
+		->valor de samples per symbol (apenas o que achamos porque o bloco adapta-se)
+
+	Ao alterar:
+		->O timming offset vemos que o cloch sync block mantem o sinal bloqueado no tempo e outputs samples aos ponteos ideis de contselação.
+		->O Frequency offset vemos que a constelação fica a ser um circulo ou seja -->este bloco corrige-nos o offset do tempo mas não corrige o offset da frequencia.
+
+No mpsk_stage4.grc
+	O CMA equalizer funciona para sinais com amplitude constante ou modulus. O que faz é converger para um circulo unitario. Sem qualquer tipo de conhecimento da constelação, por isso quando bloqueia, bloqueia em qualquer fase dada.
+
+
+Correção de o offset tanto da frequencia como da fase
+	Mesmo depis de equalizarmos o canal, continuamos com problemas de offset de fase e de frequencia. 
+
+	2 coisas nestastage:
+		->Utilização de second order loop para track a fase a frequencia que deriva da fase over time.
+		->Typo de  recuperação que vamos fazer, assumindo que estamos a fazer fine frequency correction, por isto necessitamos de saber se já estamos dentro do range decente ou ideal de frequencia.
+	Para isto usamos Costas loop.
+
+No mpsk_stage5.grc
+	O costas loop pode sincrinizar BPSL, QPSK e 8PSK. o Constelation recivre vai lock o constelatio object dependendo da constelação.
