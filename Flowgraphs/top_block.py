@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Top Block
-# Generated: Tue Jul  2 13:31:38 2019
+# Generated: Mon Jul  8 13:10:19 2019
 ##################################################
 
 
@@ -43,7 +43,7 @@ class top_block(grc_wxgui.top_block_gui):
         ##################################################
         # Variables
         ##################################################
-        self.samp_rate = samp_rate = 400000
+        self.samp_rate = samp_rate = 32000
         self.gain = gain = 30
 
         ##################################################
@@ -84,18 +84,22 @@ class top_block(grc_wxgui.top_block_gui):
         self.uhd_usrp_sink_0.set_center_freq(1000000000, 0)
         self.uhd_usrp_sink_0.set_gain(gain, 0)
         self.uhd_usrp_sink_0.set_antenna('TX/RX', 0)
-        self.digital_gmsk_mod_0 = digital.gmsk_mod(
-        	samples_per_symbol=2,
-        	bt=0.35,
-        	verbose=False,
-        	log=False,
-        )
+        self.uhd_usrp_sink_0.set_bandwidth(100000, 0)
+        self.digital_psk_mod_0 = digital.psk.psk_mod(
+          constellation_points=8,
+          mod_code="gray",
+          differential=True,
+          samples_per_symbol=2,
+          excess_bw=0.35,
+          verbose=False,
+          log=False,
+          )
         self.blocks_throttle_0 = blocks.throttle(gr.sizeof_gr_complex*1, samp_rate,True)
         self.blocks_file_source_0 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Desktop/wall.jpg', False)
         self.blocks_file_source_0.set_begin_tag(pmt.PMT_NIL)
         self.blks2_packet_encoder_0 = grc_blks2.packet_mod_b(grc_blks2.packet_encoder(
         		samples_per_symbol=2,
-        		bits_per_symbol=1,
+        		bits_per_symbol=2,
         		preamble='',
         		access_code='',
         		pad_for_usrp=True,
@@ -108,10 +112,10 @@ class top_block(grc_wxgui.top_block_gui):
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.blks2_packet_encoder_0, 0), (self.digital_gmsk_mod_0, 0))
+        self.connect((self.blks2_packet_encoder_0, 0), (self.digital_psk_mod_0, 0))
         self.connect((self.blocks_file_source_0, 0), (self.blks2_packet_encoder_0, 0))
         self.connect((self.blocks_throttle_0, 0), (self.uhd_usrp_sink_0, 0))
-        self.connect((self.digital_gmsk_mod_0, 0), (self.blocks_throttle_0, 0))
+        self.connect((self.digital_psk_mod_0, 0), (self.blocks_throttle_0, 0))
 
     def get_samp_rate(self):
         return self.samp_rate

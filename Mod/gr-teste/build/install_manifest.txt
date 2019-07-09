@@ -1,9 +1,0 @@
-/usr/local/lib/cmake/teste/testeConfig.cmake
-/usr/local/include/teste/api.h
-/usr/local/lib/python2.7/dist-packages/teste/__init__.py
-/usr/local/lib/python2.7/dist-packages/teste/qpsk_demod_py_cb.py
-/usr/local/lib/python2.7/dist-packages/teste/__init__.pyc
-/usr/local/lib/python2.7/dist-packages/teste/qpsk_demod_py_cb.pyc
-/usr/local/lib/python2.7/dist-packages/teste/__init__.pyo
-/usr/local/lib/python2.7/dist-packages/teste/qpsk_demod_py_cb.pyo
-/usr/local/share/gnuradio/grc/blocks/teste_qpsk_demod_py_cb.xml

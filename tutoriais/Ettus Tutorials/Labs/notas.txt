@@ -1,0 +1,35 @@
+Throttle: 
+	-Will throttle the rate at which samples pass through this block (thus setting the rate at which samples pass through the whole flow graph).
+
+Sample Rate (DSP): 
+	-Matematicamente para o calculo da amplitude de um determinado ponto no tempo é necessário tanto a frequencia como a taxa de amostragem.
+	-Think of it as being used to calculate the discrete step size from one sample to the next within a DSP operation (e.g. the time step when calculating the amplitude of the next sample in the sine wave generator)
+	-Pelo teorema de nyquist, é necessário que seja maior que 2 vezes a frequencia maxima do sinal original.
+
+
+Sample Rate (Hardware): 
+	-É =/= do DSP, pois aqui refere-se á taxa que passa no flowgraph. Sem este controlo o hardware clock or tthrottling as amostras vão ser geradas  pelo flowgraph o mais rápido que o CPU consiga sendo consumidas pela rapidez o CPU--> O flowgraph fica ligado ao CPU. O pretendido é ter o mais rápido possivel mas controlado (fixo).
+	-Apenas blocos que utilizam hardware (como o USRP) é que usam o "Sample Rate" para definir o clock de hardware --> efeito na aplicação do rate control das samples no flowgraph.
+	-Um bloco Source produz samples a uma taxa fixa (relativa ao wall clock).
+	-Um bloco Sink irá consumir a uma taxa fixa (relatica ao wall clock). Irá aplicar "back pressure" para upstream blocks  
+	-Em geral sṕ deve existir 1 bloco que faça throotle da taxa no flowgraph, caso contrario pode existir varios unsynchronised clock sources causando overflow/underruns consoante as taxas de produção/consumo vão diferenciando. ---> 2 clock problem (Work arounds: allow non-blocking I/O, and/or tweak resampling rates to account for the clock offsets)
+
+
+LAB 3: AUDIO
+
+	A full scale do audio seia de -1 a 1. Pelo que ao multiplicarmos o som por 0.7 estamos a normalizar. -> Maximo fica a ser 0.7 < 1 --> Boa prática tbm nos USRPs 
+	No bloco do audio (o que reproduz) tem uma opção "OK to Block" que aplica backpresure. Isto é bom. Mas se tiver como source outro bloco de harware como o USRP é um problema pq ficam a ser 2 clocks diferentes que irao estar desfasados, assim a taxa de consumo e a taxa de produção iriam ser diferentes, --> Solução não por a oçao OK to Block, mas se o USRP produzir samples um pouco mais rápido este bloco vai ter que as dropar. E quando underrun? Print UUUUUUUUUUUu
+
+	A 'O' on the console indicates an overrun, and occurs when the host is not able to consume samples quickly enough.
+	A 'U' on the console indicates the USRP ran out of samples to transmit, so the host isn't producing them quickly enough.
+
+
+Valid Values:
+Antenna: Tx/Rx, Rx2
+Frequency: 70 MHz – 6 GHz
+RX Gain: 0 – 73
+TX Gain: 0 - 89.8
+Sample Rate: 62.5 ksps - 56 Msps  --> (62.5e3 - 56e6)
+	Default Master_Clock_Rate=32e6 (max:61.44e6)
+	MCR/Sample rate -> deve dar inteiro e deve ser divisivel por 4 para melhor performance.
+	MCR can be changed with “master_clock_rate=X” in Device Addr, where X is new MCR in Hz (e.g. 40e6)

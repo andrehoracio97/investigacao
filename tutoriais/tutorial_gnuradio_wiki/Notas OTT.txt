@@ -1,0 +1,25 @@
+COMO ADICIONAR:
+Primeiro criar uma pasta onde quisermos.
+Usar o modtool para adicionar um modulo:
+1)gr_modtool newmod nome_do_modulo
+
+
+Depois criar o bloco com o nome que pretendermos:
+2)gr_modtool new -t sync -l python
+Inserir nome, com QA.
+
+3)Editar o ficheiro python criado dentro da pasta python.
+4)Editar o ficheiro QA_nome_modulo para testes unitarios --> UTEIS
+
+5)Editar o XML dentro da pasta grc
+
+6)Sair da pasta grc e criar uma: mkdir build && cd build
+
+7)
+cmake ../
+make
+sudo make install
+sudo ldconfig
+
+
+
