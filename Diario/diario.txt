@@ -1,0 +1,14 @@
+ID-DIA
+
+1ºSemana
+1/7 -> Reunião e instalação de programas (Gnuradio e UHD)
+01-2/7 -> Criação flowgraphs Rx e Tx para ficheiro de Texto e Img. Adicionado Jamming no RX. Tudo com GMSK.
+3/7 -> Tentativa QPSK ou BPSK (Falhado) e inicio resumo papers. Tutoriais Youtube 1 e 2.
+4/7 -> Resumo papers e inicio leitura do 9. Precorrer tutorial Wiki Gnuradio com notas: https://wiki.gnuradio.org/index.php/Tutorials 
+5/7 -> Conclusao do 9 nos resumos dos papers. Perceber como criar OOT modules. Continuar tentar QPSK: Stete e Bhaumil
+
+2ºSemana
+8/7 -> Criação de modulos OTT (QPSK costum). Tentativa QPSK. Curso professor.
+02-9/7 -> Sucesso de BPSK e QPSK por chanel model USRP. Leitura LABS com notas: https://files.ettus.com/tutorials/labs/. Sucesso transmissão txt QPSK pelos USRP mas só apos algum tempo em execução (depois de adaptação). Não envia img por esta razão. Tenho que ver exatamente para que serve o Polyyphase, o CMA e o Costas Lop, e mexer nesses valores para não existir adaptação e ser direto.
+
+10/7 ->OBJETIVO: Alterar valores e conseguir enviar img.

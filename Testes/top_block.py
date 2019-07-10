@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Top Block
-# Generated: Tue Jul  9 17:21:41 2019
+# Generated: Wed Jul 10 10:27:46 2019
 ##################################################
 
 from distutils.version import StrictVersion
@@ -84,20 +84,21 @@ class top_block(gr.top_block, Qt.QWidget):
         self.noise_volt = noise_volt = 0.0000
         self.frequencia_usrp = frequencia_usrp = 435000000
         self.freq_offset = freq_offset = 0
+        self.excess_bw = excess_bw = 0.35
         self.eq_gain = eq_gain = 0.01
         self.arity = arity = 4
 
         ##################################################
         # Blocks
         ##################################################
-        self._variable_qtgui_range_0_1_range = Range(0, 100, 1, 40, 200)
+        self._variable_qtgui_range_0_1_range = Range(0, 73, 1, 40, 200)
         self._variable_qtgui_range_0_1_win = RangeWidget(self._variable_qtgui_range_0_1_range, self.set_variable_qtgui_range_0_1, 'Gain_RX', "counter_slider", float)
         self.top_grid_layout.addWidget(self._variable_qtgui_range_0_1_win, 0, 3, 1, 1)
         for r in range(0, 1):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(3, 4):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self._variable_qtgui_range_0_range = Range(0, 100, 1, 40, 200)
+        self._variable_qtgui_range_0_range = Range(0, 90, 1, 40, 200)
         self._variable_qtgui_range_0_win = RangeWidget(self._variable_qtgui_range_0_range, self.set_variable_qtgui_range_0, 'Gain_TX', "counter_slider", float)
         self.top_grid_layout.addWidget(self._variable_qtgui_range_0_win, 0, 2, 1, 1)
         for r in range(0, 1):
@@ -112,7 +113,7 @@ class top_block(gr.top_block, Qt.QWidget):
         for c in range(3, 4):
             self.top_grid_layout.setColumnStretch(c, 1)
         self._samp_rate_range = Range(0, 10000000, 1, 250000, 200)
-        self._samp_rate_win = RangeWidget(self._samp_rate_range, self.set_samp_rate, 'samp_rate', "counter_slider", float)
+        self._samp_rate_win = RangeWidget(self._samp_rate_range, self.set_samp_rate, 'samp_rate', "counter_slider", int)
         self.top_grid_layout.addWidget(self._samp_rate_win, 0, 1, 1, 1)
         for r in range(0, 1):
             self.top_grid_layout.setRowStretch(r, 1)
@@ -160,10 +161,10 @@ class top_block(gr.top_block, Qt.QWidget):
         self.uhd_usrp_sink_0.set_antenna('TX/RX', 0)
         self._time_offset_range = Range(0.999, 1.001, 0.0001, 1.00, 200)
         self._time_offset_win = RangeWidget(self._time_offset_range, self.set_time_offset, 'Timing Offset', "counter_slider", float)
-        self.top_grid_layout.addWidget(self._time_offset_win, 5, 1, 1, 2)
-        for r in range(5, 6):
+        self.top_grid_layout.addWidget(self._time_offset_win, 3, 3, 1, 1)
+        for r in range(3, 4):
             self.top_grid_layout.setRowStretch(r, 1)
-        for c in range(1, 3):
+        for c in range(3, 4):
             self.top_grid_layout.setColumnStretch(c, 1)
         self.qtgui_freq_sink_x_0_0_0 = qtgui.freq_sink_c(
         	1024, #size
@@ -443,17 +444,17 @@ class top_block(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setColumnStretch(c, 1)
         self._noise_volt_range = Range(0, 1, 0.01, 0.0000, 200)
         self._noise_volt_win = RangeWidget(self._noise_volt_range, self.set_noise_volt, 'Noise Voltage', "slider", float)
-        self.top_grid_layout.addWidget(self._noise_volt_win, 3, 1, 1, 2)
+        self.top_grid_layout.addWidget(self._noise_volt_win, 3, 1, 1, 1)
         for r in range(3, 4):
             self.top_grid_layout.setRowStretch(r, 1)
-        for c in range(1, 3):
+        for c in range(1, 2):
             self.top_grid_layout.setColumnStretch(c, 1)
         self._freq_offset_range = Range(-0.1, 0.1, 0.001, 0, 200)
         self._freq_offset_win = RangeWidget(self._freq_offset_range, self.set_freq_offset, 'Frequency Offset', "counter_slider", float)
-        self.top_grid_layout.addWidget(self._freq_offset_win, 4, 1, 1, 2)
-        for r in range(4, 5):
+        self.top_grid_layout.addWidget(self._freq_offset_win, 3, 2, 1, 1)
+        for r in range(3, 4):
             self.top_grid_layout.setRowStretch(r, 1)
-        for c in range(1, 3):
+        for c in range(2, 3):
             self.top_grid_layout.setColumnStretch(c, 1)
         self.digital_pfb_clock_sync_xxx_0 = digital.pfb_clock_sync_ccf(sps, timing_loop_bw, (rrc_taps), nfilts, nfilts/2, 1.5, 2)
         self.digital_diff_decoder_bb_0 = digital.diff_decoder_bb(4)
@@ -463,7 +464,7 @@ class top_block(gr.top_block, Qt.QWidget):
           differential=True,
           samples_per_symbol=sps,
           pre_diff_code=True,
-          excess_bw=0.35,
+          excess_bw=excess_bw,
           verbose=False,
           log=False,
           )
@@ -619,6 +620,12 @@ class top_block(gr.top_block, Qt.QWidget):
 
     def set_freq_offset(self, freq_offset):
         self.freq_offset = freq_offset
+
+    def get_excess_bw(self):
+        return self.excess_bw
+
+    def set_excess_bw(self, excess_bw):
+        self.excess_bw = excess_bw
 
     def get_eq_gain(self):
         return self.eq_gain
