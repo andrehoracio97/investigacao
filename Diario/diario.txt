@@ -12,3 +12,4 @@ ID-DIA
 02-9/7 -> Sucesso de BPSK e QPSK por chanel model USRP. Leitura LABS com notas: https://files.ettus.com/tutorials/labs/. Sucesso transmissão txt QPSK pelos USRP mas só apos algum tempo em execução (depois de adaptação). Não envia img por esta razão. Tenho que ver exatamente para que serve o Polyyphase, o CMA e o Costas Lop, e mexer nesses valores para não existir adaptação e ser direto.
 
 10/7 ->OBJETIVO: Alterar valores e conseguir enviar img.
+Ler novamente o Wiki tutorial depois do curso do prof para perceber melhor coisas que tinha entendido

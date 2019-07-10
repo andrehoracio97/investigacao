@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Top Block
-# Generated: Wed Jul 10 10:27:46 2019
+# Generated: Wed Jul 10 17:44:52 2019
 ##################################################
 
 from distutils.version import StrictVersion
@@ -72,14 +72,13 @@ class top_block(gr.top_block, Qt.QWidget):
         self.nfilts = nfilts = 32
         self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 40
         self.variable_qtgui_range_0 = variable_qtgui_range_0 = 40
-
-        self.variable_constellation_0 = variable_constellation_0 = digital.constellation_qpsk().base()
-
         self.timing_loop_bw = timing_loop_bw = 6.28/100.0
         self.time_offset = time_offset = 1.00
         self.taps_channel_model = taps_channel_model = [1.0]
         self.samp_rate = samp_rate = 250000
         self.rrc_taps = rrc_taps = firdes.root_raised_cosine(nfilts, nfilts, 1.0/float(sps), 0.35, 11*sps*nfilts)
+        self.qpsk = qpsk = digital.constellation_rect(([0.707+0.707j, -0.707+0.707j, -0.707-0.707j, 0.707-0.707j]), ([0, 1, 2, 3]), 4, 2, 2, 1, 1).base()
+        self.preamble_random = preamble_random = "101010101010101010101010101010"
         self.phase_bw = phase_bw = 6.28/100.0
         self.noise_volt = noise_volt = 0.0000
         self.frequencia_usrp = frequencia_usrp = 435000000
@@ -127,7 +126,7 @@ class top_block(gr.top_block, Qt.QWidget):
         for c in range(1, 2):
             self.top_grid_layout.setColumnStretch(c, 1)
         self._eq_gain_range = Range(0.0, 0.1, 0.001, 0.01, 200)
-        self._eq_gain_win = RangeWidget(self._eq_gain_range, self.set_eq_gain, 'Equalizer: rate', "slider", float)
+        self._eq_gain_win = RangeWidget(self._eq_gain_range, self.set_eq_gain, 'Equalizer: rate (Gain)', "slider", float)
         self.top_grid_layout.addWidget(self._eq_gain_win, 6, 2, 1, 1)
         for r in range(6, 7):
             self.top_grid_layout.setRowStretch(r, 1)
@@ -165,6 +164,194 @@ class top_block(gr.top_block, Qt.QWidget):
         for r in range(3, 4):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(3, 4):
+            self.top_grid_layout.setColumnStretch(c, 1)
+        self.qtgui_freq_sink_x_0_0_0_0_0_0_0 = qtgui.freq_sink_f(
+        	1024, #size
+        	firdes.WIN_FLATTOP, #wintype
+        	0, #fc
+        	samp_rate, #bw
+        	"Frequencia Tratado", #name
+        	1 #number of inputs
+        )
+        self.qtgui_freq_sink_x_0_0_0_0_0_0_0.set_update_time(0.10)
+        self.qtgui_freq_sink_x_0_0_0_0_0_0_0.set_y_axis(-140, 10)
+        self.qtgui_freq_sink_x_0_0_0_0_0_0_0.set_y_label('Relative Gain', 'dB')
+        self.qtgui_freq_sink_x_0_0_0_0_0_0_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, 0.0, 0, "")
+        self.qtgui_freq_sink_x_0_0_0_0_0_0_0.enable_autoscale(False)
+        self.qtgui_freq_sink_x_0_0_0_0_0_0_0.enable_grid(False)
+        self.qtgui_freq_sink_x_0_0_0_0_0_0_0.set_fft_average(1.0)
+        self.qtgui_freq_sink_x_0_0_0_0_0_0_0.enable_axis_labels(True)
+        self.qtgui_freq_sink_x_0_0_0_0_0_0_0.enable_control_panel(False)
+
+        if not True:
+          self.qtgui_freq_sink_x_0_0_0_0_0_0_0.disable_legend()
+
+        if "float" == "float" or "float" == "msg_float":
+          self.qtgui_freq_sink_x_0_0_0_0_0_0_0.set_plot_pos_half(not True)
+
+        labels = ['', '', '', '', '',
+                  '', '', '', '', '']
+        widths = [1, 1, 1, 1, 1,
+                  1, 1, 1, 1, 1]
+        colors = ["blue", "red", "green", "black", "cyan",
+                  "magenta", "yellow", "dark red", "dark green", "dark blue"]
+        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
+                  1.0, 1.0, 1.0, 1.0, 1.0]
+        for i in xrange(1):
+            if len(labels[i]) == 0:
+                self.qtgui_freq_sink_x_0_0_0_0_0_0_0.set_line_label(i, "Data {0}".format(i))
+            else:
+                self.qtgui_freq_sink_x_0_0_0_0_0_0_0.set_line_label(i, labels[i])
+            self.qtgui_freq_sink_x_0_0_0_0_0_0_0.set_line_width(i, widths[i])
+            self.qtgui_freq_sink_x_0_0_0_0_0_0_0.set_line_color(i, colors[i])
+            self.qtgui_freq_sink_x_0_0_0_0_0_0_0.set_line_alpha(i, alphas[i])
+
+        self._qtgui_freq_sink_x_0_0_0_0_0_0_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0_0_0_0_0_0_0.pyqwidget(), Qt.QWidget)
+        self.top_grid_layout.addWidget(self._qtgui_freq_sink_x_0_0_0_0_0_0_0_win, 1, 7, 1, 1)
+        for r in range(1, 2):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(7, 8):
+            self.top_grid_layout.setColumnStretch(c, 1)
+        self.qtgui_freq_sink_x_0_0_0_0_0_0 = qtgui.freq_sink_f(
+        	1024, #size
+        	firdes.WIN_FLATTOP, #wintype
+        	0, #fc
+        	samp_rate, #bw
+        	"Phase Tratado", #name
+        	1 #number of inputs
+        )
+        self.qtgui_freq_sink_x_0_0_0_0_0_0.set_update_time(0.10)
+        self.qtgui_freq_sink_x_0_0_0_0_0_0.set_y_axis(-140, 10)
+        self.qtgui_freq_sink_x_0_0_0_0_0_0.set_y_label('Relative Gain', 'dB')
+        self.qtgui_freq_sink_x_0_0_0_0_0_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, 0.0, 0, "")
+        self.qtgui_freq_sink_x_0_0_0_0_0_0.enable_autoscale(False)
+        self.qtgui_freq_sink_x_0_0_0_0_0_0.enable_grid(False)
+        self.qtgui_freq_sink_x_0_0_0_0_0_0.set_fft_average(1.0)
+        self.qtgui_freq_sink_x_0_0_0_0_0_0.enable_axis_labels(True)
+        self.qtgui_freq_sink_x_0_0_0_0_0_0.enable_control_panel(False)
+
+        if not True:
+          self.qtgui_freq_sink_x_0_0_0_0_0_0.disable_legend()
+
+        if "float" == "float" or "float" == "msg_float":
+          self.qtgui_freq_sink_x_0_0_0_0_0_0.set_plot_pos_half(not True)
+
+        labels = ['', '', '', '', '',
+                  '', '', '', '', '']
+        widths = [1, 1, 1, 1, 1,
+                  1, 1, 1, 1, 1]
+        colors = ["blue", "red", "green", "black", "cyan",
+                  "magenta", "yellow", "dark red", "dark green", "dark blue"]
+        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
+                  1.0, 1.0, 1.0, 1.0, 1.0]
+        for i in xrange(1):
+            if len(labels[i]) == 0:
+                self.qtgui_freq_sink_x_0_0_0_0_0_0.set_line_label(i, "Data {0}".format(i))
+            else:
+                self.qtgui_freq_sink_x_0_0_0_0_0_0.set_line_label(i, labels[i])
+            self.qtgui_freq_sink_x_0_0_0_0_0_0.set_line_width(i, widths[i])
+            self.qtgui_freq_sink_x_0_0_0_0_0_0.set_line_color(i, colors[i])
+            self.qtgui_freq_sink_x_0_0_0_0_0_0.set_line_alpha(i, alphas[i])
+
+        self._qtgui_freq_sink_x_0_0_0_0_0_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0_0_0_0_0_0.pyqwidget(), Qt.QWidget)
+        self.top_grid_layout.addWidget(self._qtgui_freq_sink_x_0_0_0_0_0_0_win, 1, 5, 1, 1)
+        for r in range(1, 2):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(5, 6):
+            self.top_grid_layout.setColumnStretch(c, 1)
+        self.qtgui_freq_sink_x_0_0_0_0_0 = qtgui.freq_sink_f(
+        	1024, #size
+        	firdes.WIN_FLATTOP, #wintype
+        	0, #fc
+        	samp_rate, #bw
+        	"Error Tratado", #name
+        	1 #number of inputs
+        )
+        self.qtgui_freq_sink_x_0_0_0_0_0.set_update_time(0.10)
+        self.qtgui_freq_sink_x_0_0_0_0_0.set_y_axis(-140, 10)
+        self.qtgui_freq_sink_x_0_0_0_0_0.set_y_label('Relative Gain', 'dB')
+        self.qtgui_freq_sink_x_0_0_0_0_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, 0.0, 0, "")
+        self.qtgui_freq_sink_x_0_0_0_0_0.enable_autoscale(False)
+        self.qtgui_freq_sink_x_0_0_0_0_0.enable_grid(False)
+        self.qtgui_freq_sink_x_0_0_0_0_0.set_fft_average(1.0)
+        self.qtgui_freq_sink_x_0_0_0_0_0.enable_axis_labels(True)
+        self.qtgui_freq_sink_x_0_0_0_0_0.enable_control_panel(False)
+
+        if not True:
+          self.qtgui_freq_sink_x_0_0_0_0_0.disable_legend()
+
+        if "float" == "float" or "float" == "msg_float":
+          self.qtgui_freq_sink_x_0_0_0_0_0.set_plot_pos_half(not True)
+
+        labels = ['', '', '', '', '',
+                  '', '', '', '', '']
+        widths = [1, 1, 1, 1, 1,
+                  1, 1, 1, 1, 1]
+        colors = ["blue", "red", "green", "black", "cyan",
+                  "magenta", "yellow", "dark red", "dark green", "dark blue"]
+        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
+                  1.0, 1.0, 1.0, 1.0, 1.0]
+        for i in xrange(1):
+            if len(labels[i]) == 0:
+                self.qtgui_freq_sink_x_0_0_0_0_0.set_line_label(i, "Data {0}".format(i))
+            else:
+                self.qtgui_freq_sink_x_0_0_0_0_0.set_line_label(i, labels[i])
+            self.qtgui_freq_sink_x_0_0_0_0_0.set_line_width(i, widths[i])
+            self.qtgui_freq_sink_x_0_0_0_0_0.set_line_color(i, colors[i])
+            self.qtgui_freq_sink_x_0_0_0_0_0.set_line_alpha(i, alphas[i])
+
+        self._qtgui_freq_sink_x_0_0_0_0_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0_0_0_0_0.pyqwidget(), Qt.QWidget)
+        self.top_grid_layout.addWidget(self._qtgui_freq_sink_x_0_0_0_0_0_win, 1, 6, 1, 1)
+        for r in range(1, 2):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(6, 7):
+            self.top_grid_layout.setColumnStretch(c, 1)
+        self.qtgui_freq_sink_x_0_0_0_0 = qtgui.freq_sink_c(
+        	1024, #size
+        	firdes.WIN_FLATTOP, #wintype
+        	0, #fc
+        	samp_rate, #bw
+        	"Recebido Tratado - Constelation Rec", #name
+        	1 #number of inputs
+        )
+        self.qtgui_freq_sink_x_0_0_0_0.set_update_time(0.10)
+        self.qtgui_freq_sink_x_0_0_0_0.set_y_axis(-140, 10)
+        self.qtgui_freq_sink_x_0_0_0_0.set_y_label('Relative Gain', 'dB')
+        self.qtgui_freq_sink_x_0_0_0_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, 0.0, 0, "")
+        self.qtgui_freq_sink_x_0_0_0_0.enable_autoscale(False)
+        self.qtgui_freq_sink_x_0_0_0_0.enable_grid(False)
+        self.qtgui_freq_sink_x_0_0_0_0.set_fft_average(1.0)
+        self.qtgui_freq_sink_x_0_0_0_0.enable_axis_labels(True)
+        self.qtgui_freq_sink_x_0_0_0_0.enable_control_panel(False)
+
+        if not True:
+          self.qtgui_freq_sink_x_0_0_0_0.disable_legend()
+
+        if "complex" == "float" or "complex" == "msg_float":
+          self.qtgui_freq_sink_x_0_0_0_0.set_plot_pos_half(not True)
+
+        labels = ['', '', '', '', '',
+                  '', '', '', '', '']
+        widths = [1, 1, 1, 1, 1,
+                  1, 1, 1, 1, 1]
+        colors = ["blue", "red", "green", "black", "cyan",
+                  "magenta", "yellow", "dark red", "dark green", "dark blue"]
+        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
+                  1.0, 1.0, 1.0, 1.0, 1.0]
+        for i in xrange(1):
+            if len(labels[i]) == 0:
+                self.qtgui_freq_sink_x_0_0_0_0.set_line_label(i, "Data {0}".format(i))
+            else:
+                self.qtgui_freq_sink_x_0_0_0_0.set_line_label(i, labels[i])
+            self.qtgui_freq_sink_x_0_0_0_0.set_line_width(i, widths[i])
+            self.qtgui_freq_sink_x_0_0_0_0.set_line_color(i, colors[i])
+            self.qtgui_freq_sink_x_0_0_0_0.set_line_alpha(i, alphas[i])
+
+        self._qtgui_freq_sink_x_0_0_0_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0_0_0_0.pyqwidget(), Qt.QWidget)
+        self.top_grid_layout.addWidget(self._qtgui_freq_sink_x_0_0_0_0_win, 1, 4, 1, 1)
+        for r in range(1, 2):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(4, 5):
             self.top_grid_layout.setColumnStretch(c, 1)
         self.qtgui_freq_sink_x_0_0_0 = qtgui.freq_sink_c(
         	1024, #size
@@ -306,6 +493,51 @@ class top_block(gr.top_block, Qt.QWidget):
         for r in range(1, 2):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(1, 2):
+            self.top_grid_layout.setColumnStretch(c, 1)
+        self.qtgui_const_sink_x_0_0_0_0 = qtgui.const_sink_c(
+        	1024, #size
+        	'"Recebido Tratado - Constelation Rec""', #name
+        	1 #number of inputs
+        )
+        self.qtgui_const_sink_x_0_0_0_0.set_update_time(0.10)
+        self.qtgui_const_sink_x_0_0_0_0.set_y_axis(-2, 2)
+        self.qtgui_const_sink_x_0_0_0_0.set_x_axis(-2, 2)
+        self.qtgui_const_sink_x_0_0_0_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, qtgui.TRIG_SLOPE_POS, 0.0, 0, "")
+        self.qtgui_const_sink_x_0_0_0_0.enable_autoscale(False)
+        self.qtgui_const_sink_x_0_0_0_0.enable_grid(False)
+        self.qtgui_const_sink_x_0_0_0_0.enable_axis_labels(True)
+
+        if not True:
+          self.qtgui_const_sink_x_0_0_0_0.disable_legend()
+
+        labels = ['', '', '', '', '',
+                  '', '', '', '', '']
+        widths = [1, 1, 1, 1, 1,
+                  1, 1, 1, 1, 1]
+        colors = ["blue", "red", "red", "red", "red",
+                  "red", "red", "red", "red", "red"]
+        styles = [0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0]
+        markers = [0, 0, 0, 0, 0,
+                   0, 0, 0, 0, 0]
+        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
+                  1.0, 1.0, 1.0, 1.0, 1.0]
+        for i in xrange(1):
+            if len(labels[i]) == 0:
+                self.qtgui_const_sink_x_0_0_0_0.set_line_label(i, "Data {0}".format(i))
+            else:
+                self.qtgui_const_sink_x_0_0_0_0.set_line_label(i, labels[i])
+            self.qtgui_const_sink_x_0_0_0_0.set_line_width(i, widths[i])
+            self.qtgui_const_sink_x_0_0_0_0.set_line_color(i, colors[i])
+            self.qtgui_const_sink_x_0_0_0_0.set_line_style(i, styles[i])
+            self.qtgui_const_sink_x_0_0_0_0.set_line_marker(i, markers[i])
+            self.qtgui_const_sink_x_0_0_0_0.set_line_alpha(i, alphas[i])
+
+        self._qtgui_const_sink_x_0_0_0_0_win = sip.wrapinstance(self.qtgui_const_sink_x_0_0_0_0.pyqwidget(), Qt.QWidget)
+        self.top_grid_layout.addWidget(self._qtgui_const_sink_x_0_0_0_0_win, 2, 4, 1, 1)
+        for r in range(2, 3):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(4, 5):
             self.top_grid_layout.setColumnStretch(c, 1)
         self.qtgui_const_sink_x_0_0_0 = qtgui.const_sink_c(
         	1024, #size
@@ -460,7 +692,7 @@ class top_block(gr.top_block, Qt.QWidget):
         self.digital_diff_decoder_bb_0 = digital.diff_decoder_bb(4)
         self.digital_costas_loop_cc_0 = digital.costas_loop_cc(phase_bw, arity, False)
         self.digital_constellation_modulator_0 = digital.generic_mod(
-          constellation=variable_constellation_0,
+          constellation=qpsk,
           differential=True,
           samples_per_symbol=sps,
           pre_diff_code=True,
@@ -468,18 +700,20 @@ class top_block(gr.top_block, Qt.QWidget):
           verbose=False,
           log=False,
           )
-        self.digital_constellation_decoder_cb_0 = digital.constellation_decoder_cb(variable_constellation_0)
+        self.digital_constellation_decoder_cb_0 = digital.constellation_decoder_cb(qpsk)
         self.digital_cma_equalizer_cc_0 = digital.cma_equalizer_cc(15, 1, eq_gain, 2)
         self.blocks_repack_bits_bb_0 = blocks.repack_bits_bb(2, 8, "", False, gr.GR_MSB_FIRST)
         self.blocks_packed_to_unpacked_xx_0 = blocks.packed_to_unpacked_bb(1, gr.GR_MSB_FIRST)
-        self.blocks_file_source_0 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Desktop/transmit_maior.txt', True)
-        self.blocks_file_source_0.set_begin_tag(pmt.PMT_NIL)
-        self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_char*1, '/home/andre/Desktop/transmitido/depois.txt', False)
-        self.blocks_file_sink_0.set_unbuffered(False)
+        self.blocks_multiply_const_vxx_1_0 = blocks.multiply_const_vcc((1/0.7, ))
+        self.blocks_multiply_const_vxx_1 = blocks.multiply_const_vcc((0.7, ))
+        self.blocks_file_source_1 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Desktop/img.jpg', False)
+        self.blocks_file_source_1.set_begin_tag(pmt.PMT_NIL)
+        self.blocks_file_sink_0_0 = blocks.file_sink(gr.sizeof_char*1, '/home/andre/Desktop/transmitido/img.jpg', False)
+        self.blocks_file_sink_0_0.set_unbuffered(False)
         self.blks2_packet_encoder_0 = grc_blks2.packet_mod_b(grc_blks2.packet_encoder(
         		samples_per_symbol=sps,
         		bits_per_symbol=2,
-        		preamble='',
+        		preamble=preamble_random,
         		access_code='',
         		pad_for_usrp=True,
         	),
@@ -497,24 +731,26 @@ class top_block(gr.top_block, Qt.QWidget):
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.blks2_packet_decoder_0, 0), (self.blocks_file_sink_0, 0))
+        self.connect((self.blks2_packet_decoder_0, 0), (self.blocks_file_sink_0_0, 0))
         self.connect((self.blks2_packet_encoder_0, 0), (self.digital_constellation_modulator_0, 0))
-        self.connect((self.blocks_file_source_0, 0), (self.blks2_packet_encoder_0, 0))
+        self.connect((self.blocks_file_source_1, 0), (self.blks2_packet_encoder_0, 0))
+        self.connect((self.blocks_multiply_const_vxx_1, 0), (self.qtgui_const_sink_x_0, 0))
+        self.connect((self.blocks_multiply_const_vxx_1, 0), (self.qtgui_freq_sink_x_0, 0))
+        self.connect((self.blocks_multiply_const_vxx_1, 0), (self.uhd_usrp_sink_0, 0))
+        self.connect((self.blocks_multiply_const_vxx_1_0, 0), (self.digital_pfb_clock_sync_xxx_0, 0))
+        self.connect((self.blocks_multiply_const_vxx_1_0, 0), (self.qtgui_const_sink_x_0_0, 0))
+        self.connect((self.blocks_multiply_const_vxx_1_0, 0), (self.qtgui_freq_sink_x_0_0, 0))
         self.connect((self.blocks_packed_to_unpacked_xx_0, 0), (self.blks2_packet_decoder_0, 0))
         self.connect((self.blocks_repack_bits_bb_0, 0), (self.blocks_packed_to_unpacked_xx_0, 0))
         self.connect((self.digital_cma_equalizer_cc_0, 0), (self.digital_costas_loop_cc_0, 0))
         self.connect((self.digital_constellation_decoder_cb_0, 0), (self.digital_diff_decoder_bb_0, 0))
-        self.connect((self.digital_constellation_modulator_0, 0), (self.qtgui_const_sink_x_0, 0))
-        self.connect((self.digital_constellation_modulator_0, 0), (self.qtgui_freq_sink_x_0, 0))
-        self.connect((self.digital_constellation_modulator_0, 0), (self.uhd_usrp_sink_0, 0))
+        self.connect((self.digital_constellation_modulator_0, 0), (self.blocks_multiply_const_vxx_1, 0))
         self.connect((self.digital_costas_loop_cc_0, 0), (self.digital_constellation_decoder_cb_0, 0))
         self.connect((self.digital_costas_loop_cc_0, 0), (self.qtgui_const_sink_x_0_0_0, 0))
         self.connect((self.digital_costas_loop_cc_0, 0), (self.qtgui_freq_sink_x_0_0_0, 0))
         self.connect((self.digital_diff_decoder_bb_0, 0), (self.blocks_repack_bits_bb_0, 0))
         self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.digital_cma_equalizer_cc_0, 0))
-        self.connect((self.uhd_usrp_source_0, 0), (self.digital_pfb_clock_sync_xxx_0, 0))
-        self.connect((self.uhd_usrp_source_0, 0), (self.qtgui_const_sink_x_0_0, 0))
-        self.connect((self.uhd_usrp_source_0, 0), (self.qtgui_freq_sink_x_0_0, 0))
+        self.connect((self.uhd_usrp_source_0, 0), (self.blocks_multiply_const_vxx_1_0, 0))
 
     def closeEvent(self, event):
         self.settings = Qt.QSettings("GNU Radio", "top_block")
@@ -551,12 +787,6 @@ class top_block(gr.top_block, Qt.QWidget):
         self.uhd_usrp_sink_0.set_gain(self.variable_qtgui_range_0, 0)
 
 
-    def get_variable_constellation_0(self):
-        return self.variable_constellation_0
-
-    def set_variable_constellation_0(self, variable_constellation_0):
-        self.variable_constellation_0 = variable_constellation_0
-
     def get_timing_loop_bw(self):
         return self.timing_loop_bw
 
@@ -583,6 +813,10 @@ class top_block(gr.top_block, Qt.QWidget):
         self.samp_rate = samp_rate
         self.uhd_usrp_source_0.set_samp_rate(self.samp_rate)
         self.uhd_usrp_sink_0.set_samp_rate(self.samp_rate)
+        self.qtgui_freq_sink_x_0_0_0_0_0_0_0.set_frequency_range(0, self.samp_rate)
+        self.qtgui_freq_sink_x_0_0_0_0_0_0.set_frequency_range(0, self.samp_rate)
+        self.qtgui_freq_sink_x_0_0_0_0_0.set_frequency_range(0, self.samp_rate)
+        self.qtgui_freq_sink_x_0_0_0_0.set_frequency_range(0, self.samp_rate)
         self.qtgui_freq_sink_x_0_0_0.set_frequency_range(0, self.samp_rate)
         self.qtgui_freq_sink_x_0_0.set_frequency_range(0, self.samp_rate)
         self.qtgui_freq_sink_x_0.set_frequency_range(0, self.samp_rate)
@@ -593,6 +827,18 @@ class top_block(gr.top_block, Qt.QWidget):
     def set_rrc_taps(self, rrc_taps):
         self.rrc_taps = rrc_taps
         self.digital_pfb_clock_sync_xxx_0.update_taps((self.rrc_taps))
+
+    def get_qpsk(self):
+        return self.qpsk
+
+    def set_qpsk(self, qpsk):
+        self.qpsk = qpsk
+
+    def get_preamble_random(self):
+        return self.preamble_random
+
+    def set_preamble_random(self, preamble_random):
+        self.preamble_random = preamble_random
 
     def get_phase_bw(self):
         return self.phase_bw

@@ -1,7 +1,7 @@
 Tutorual Wiki Gnu Radio
 
 1ºStage:
-	Pegar numa stream de bits, modular numa constelação complexa. O bloco Constellation Modulato pega num objjeto constelattion e outras configurações para definir o como controlamos o sinal tranmitido.
+	Pegar numa stream de bits, modular numa constelação complexa. O bloco Constellation Modulator pega num objjeto constelattion e outras configurações para definir o como controlamos o sinal tranmitido.
 
 	Relativamente ao nº de samples por simbolo, temos 2 criterios:
 		1-> deixar este valor o < possivel com minimo de 2.
