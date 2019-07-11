@@ -11,5 +11,5 @@ ID-DIA
 8/7 -> Criação de modulos OTT (QPSK costum). Tentativa QPSK. Curso professor.
 02-9/7 -> Sucesso de BPSK e QPSK por chanel model USRP. Leitura LABS com notas: https://files.ettus.com/tutorials/labs/. Sucesso transmissão txt QPSK pelos USRP mas só apos algum tempo em execução (depois de adaptação). Não envia img por esta razão. Tenho que ver exatamente para que serve o Polyyphase, o CMA e o Costas Lop, e mexer nesses valores para não existir adaptação e ser direto.
 
-10/7 ->OBJETIVO: Alterar valores e conseguir enviar img.
-Ler novamente o Wiki tutorial depois do curso do prof para perceber melhor coisas que tinha entendido
+10/7 ->Ler novamente o Wiki tutorial depois do curso do prof para perceber melhor coisas que tinha entendido. Melhoramento do flowgraph com addicao de contellation reciver e de LMS DD. Exprimentação de varios valores. Funcional a maior parte das vezes a enviar imagem. Problema que não envia o texto todo quando não é repetitivo.
+11/7 ->Reunião. Resolução de problema conta email it. Perceber como pack e unpack data antes da modulacao e depois da demodulacao tratada - Esquema folha. Tentativa de tirar bloco deprecated- FAIL, yet.  

@@ -1,0 +1,44 @@
+Plano
+
+Transmissão img entre 2 USRP
+	Transmissão GMSK simples txt entre 2 USRP
+	Transmissão GMSK simples entre 2 USRP
+	Criação Jamming no Rx
+	Transmissão PSK mod entre 2 USRP
+	Substituicao PSK mod decrecated pela Constellation Mod em um canal model (QPSK)
+	Addição de recuperação: clock/timing recover; multipath; fase e frequencia pelo channel model
+	Substituição do channel model pelas USRP
+	Redução tempo de adaptação da USRP
+
+	Adição de preambulo para envio de imagem sem erros no header
+	Eliminação do Packet encoder -- Pelos foruns dropa bits(traz consequencias para depois com o LDPC)
+	Divisão codigo em 2 partes para execução da EVE tambem. 1TX para 2 RX.
+
+Integração Jamming no Rx
+	Criação Jamming no Rx
+	Cancelar a interferencia do Jamming no RX
+	Recuperar com sucesso o que foi enviado pelo Tx e a Eve não consegue.
+
+
+Criação Coding Scheme
+	Random Key generator:
+		Interleaver/Scrambler e Deinterleaver/Descrambler
+		MUX???? ----Concatenacao no final???------------------------------------------
+
+	Adição LDPC encoder/decoder
+	Puncturing????---------------------------------------------------------------------
+	BARKER CODE COM MUX AQUI PARA QUE????----------------------------------------------
+
+	AGC??????--------------------------------------------------------------------------
+
+
+
+METRICAS
+
+
+
+
+
+
+
+
