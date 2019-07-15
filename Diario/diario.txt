@@ -13,3 +13,9 @@ ID-DIA
 
 10/7 ->Ler novamente o Wiki tutorial depois do curso do prof para perceber melhor coisas que tinha entendido. Melhoramento do flowgraph com addicao de contellation reciver e de LMS DD. Exprimentação de varios valores. Funcional a maior parte das vezes a enviar imagem. Problema que não envia o texto todo quando não é repetitivo.
 11/7 ->Reunião. Resolução de problema conta email it. Perceber como pack e unpack data antes da modulacao e depois da demodulacao tratada - Esquema folha. Tentativa de tirar bloco deprecated- FAIL, yet.  
+12/7 -> Tentativa enviar video (Sucesso pelo Channel e Fail pelas USRPS), tentativa criar preambulo para imagem (não existe funcoes já feitas em principio terei eu que a criar) e tentativa de substituição do packet encoder onde tentei varias coisas e nada funcionou nem existe nenhuma implementação já feita.
+
+3ºSemana
+15/7 ->Perceber como TAG's funcionam. Contrução de packet encoder com sucesso em QPSK apeas com 1samples per simbol,  atravez da utilizacao do bloco chuncks to symbols. Prob: não uma modulação realista, sem sps, sem rolloff etc etc. --> HPD_test_success.grc.
+Tentativa de integração deste encoder no projeto principal --> Fail. O contellation modulator multiplica offset das tags, dando problemas das mesmas (not matched). Continuar a tentar no hpd_test_sucess_constellation_nao_da_missing_fail.grc.
+16/7 ->
