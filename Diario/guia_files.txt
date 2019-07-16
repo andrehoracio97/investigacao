@@ -1,0 +1,30 @@
+#######01#######
+01tx_txt_usrp ->modulacao de texto em GMSK e encio do mesmo pela usrp
+02rx_txt_usrp ->demodulação de texto e receção do mesmo pela usrp
+03trx_txt_2_usrp-> juncao dos ultimos 2 num só.
+
+04tx_img_usrp ->modulação imagem em GMSK e envio da mesma
+05rx_jamming ->cria jamming numa usrp
+
+06rx_txt_with_jamming ->rececao de um ficheiro de texto com GMSK e jamming.
+
+07rx_img_with_jamming ->implementa receção de uma imagem atravez de modulação GMSK, inclui tambem jamming.
+
+08tx_img_usrp_psk -> envio de imagem pela usrp com modulacao PSK (deprecated)
+
+09rx_img_with_jamming_psk-> rececao de imagem com jamming com modulcao PSK(deprecated)
+
+#######02#######
+01bpsk_modulacao ->introducao de channel model, tx e rx de txt com PSK (deprecated) em BPSK
+02psk_modulator_block ->introducao de channel model, tx e rx de txt com PSK (deprecated) em QPSK
+
+03qpsk_modulacao_com_constellation_block ->introducao do constellation modulator, do polyfase, do CMA equalizer e do Costas loop para modulaçao QPSK tratada.
+
+#######03#######
+
+01hpd_test_success->introducao de HPD com mapeamento de chunks to symbols e devida descodificação. Atravez de TAGs. Sucesso mas sem o constellation modulator.
+
+
+02hpd_test_success_constelation->Tentativa de incluir o constellation modulator para funcionar juntamente com o HPD-O offset das tags aumentam 16 vezes mais (4sps*4qpsk) pelo que não dá mesmo tnetanto aplicar bloco Tagged Stream Multiply Length Tag ou o Tagged stream Align.
+
+03hpd_test_success_testes->Introducao de channel model e de USRP juntamente com HPD, no entanto TAGs nao passam --FAIL

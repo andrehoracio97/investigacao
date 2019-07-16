@@ -10,8 +10,8 @@ Transmissão img entre 2 USRP
 	Substituição do channel model pelas USRP
 	Redução tempo de adaptação da USRP
 
-	Adição de preambulo para envio de imagem sem erros no header
-	Eliminação do Packet encoder -- Pelos foruns dropa bits(traz consequencias para depois com o LDPC)
+	Adição de preambulo para envio de imagem sem erros no header XXXXX-não necessário--> envio de video ao inicio corrige isso.
+	Eliminação do Packet encoder -- Pelos foruns dropa bits(traz consequencias para depois com o LDPC) -->tentativa falhada
 	Divisão codigo em 2 partes para execução da EVE tambem. 1TX para 2 RX.
 
 Integração Jamming no Rx

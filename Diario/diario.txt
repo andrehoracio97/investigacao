@@ -16,6 +16,6 @@ ID-DIA
 12/7 -> Tentativa enviar video (Sucesso pelo Channel e Fail pelas USRPS), tentativa criar preambulo para imagem (não existe funcoes já feitas em principio terei eu que a criar) e tentativa de substituição do packet encoder onde tentei varias coisas e nada funcionou nem existe nenhuma implementação já feita.
 
 3ºSemana
-15/7 ->Perceber como TAG's funcionam. Contrução de packet encoder com sucesso em QPSK apeas com 1samples per simbol,  atravez da utilizacao do bloco chuncks to symbols. Prob: não uma modulação realista, sem sps, sem rolloff etc etc. --> HPD_test_success.grc.
-Tentativa de integração deste encoder no projeto principal --> Fail. O contellation modulator multiplica offset das tags, dando problemas das mesmas (not matched). Continuar a tentar no hpd_test_sucess_constellation_nao_da_missing_fail.grc.
-16/7 ->
+03-15/7 ->Perceber como TAG's funcionam. Contrução de packet encoder com sucesso em QPSK apeas com 1samples per simbol,  atravez da utilizacao do bloco chuncks to symbols. Prob: não uma modulação realista, sem sps, sem rolloff etc etc. --> HPD_test_success.grc.
+Tentativa de integração deste encoder no projeto principal --> Fail. O contellation modulator multiplica offset das tags, dando problemas das mesmas (not matched). Continuar a tentar no 02hpd_test_success_constelation e no 03hpd_test_success_testes
+04-16/7 ->Continuação tentativa substituição do packet encoder pelo HPD. Falei com prof e vou ignorar esta parte e partir par aa adicao do LDPC ou de Convolution Codes. Inicio pesquisa de qual o melhor e de implementações embora poucas encontradas. Criacao de encoder_ccsds_pelo_channel_model com semi-sucesso. Tentativa de implementar LDPC --Fail. Add examples de fec encoders e decoders.
