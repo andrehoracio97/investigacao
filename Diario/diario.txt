@@ -2,20 +2,33 @@ ID-DIA
 
 1ºSemana
 1/7 -> Reunião e instalação de programas (Gnuradio e UHD)
+
 01-2/7 -> Criação flowgraphs Rx e Tx para ficheiro de Texto e Img. Adicionado Jamming no RX. Tudo com GMSK.
+
 3/7 -> Tentativa QPSK ou BPSK (Falhado) e inicio resumo papers. Tutoriais Youtube 1 e 2.
+
 4/7 -> Resumo papers e inicio leitura do 9. Precorrer tutorial Wiki Gnuradio com notas: https://wiki.gnuradio.org/index.php/Tutorials 
+
 5/7 -> Conclusao do 9 nos resumos dos papers. Perceber como criar OOT modules. Continuar tentar QPSK: Stete e Bhaumil
 
 2ºSemana
+
 8/7 -> Criação de modulos OTT (QPSK costum). Tentativa QPSK. Curso professor.
+
 02-9/7 -> Sucesso de BPSK e QPSK por chanel model USRP. Leitura LABS com notas: https://files.ettus.com/tutorials/labs/. Sucesso transmissão txt QPSK pelos USRP mas só apos algum tempo em execução (depois de adaptação). Não envia img por esta razão. Tenho que ver exatamente para que serve o Polyyphase, o CMA e o Costas Lop, e mexer nesses valores para não existir adaptação e ser direto.
 
 10/7 ->Ler novamente o Wiki tutorial depois do curso do prof para perceber melhor coisas que tinha entendido. Melhoramento do flowgraph com addicao de contellation reciver e de LMS DD. Exprimentação de varios valores. Funcional a maior parte das vezes a enviar imagem. Problema que não envia o texto todo quando não é repetitivo.
+
 11/7 ->Reunião. Resolução de problema conta email it. Perceber como pack e unpack data antes da modulacao e depois da demodulacao tratada - Esquema folha. Tentativa de tirar bloco deprecated- FAIL, yet.  
+
 12/7 -> Tentativa enviar video (Sucesso pelo Channel e Fail pelas USRPS), tentativa criar preambulo para imagem (não existe funcoes já feitas em principio terei eu que a criar) e tentativa de substituição do packet encoder onde tentei varias coisas e nada funcionou nem existe nenhuma implementação já feita.
 
 3ºSemana
 03-15/7 ->Perceber como TAG's funcionam. Contrução de packet encoder com sucesso em QPSK apeas com 1samples per simbol,  atravez da utilizacao do bloco chuncks to symbols. Prob: não uma modulação realista, sem sps, sem rolloff etc etc. --> HPD_test_success.grc.
 Tentativa de integração deste encoder no projeto principal --> Fail. O contellation modulator multiplica offset das tags, dando problemas das mesmas (not matched). Continuar a tentar no 02hpd_test_success_constelation e no 03hpd_test_success_testes
+
 04-16/7 ->Continuação tentativa substituição do packet encoder pelo HPD. Falei com prof e vou ignorar esta parte e partir par aa adicao do LDPC ou de Convolution Codes. Inicio pesquisa de qual o melhor e de implementações embora poucas encontradas. Criacao de encoder_ccsds_pelo_channel_model com semi-sucesso. Tentativa de implementar LDPC --Fail. Add examples de fec encoders e decoders.
+
+05-17/7 ->Comunicacao com desenvolverdor da Ettus pelo slack (slack_1 e slcak_2).De volta a tentar tirar o packet encoder (Main_teste_sem_pkt_encoder_com_ldpc_encoder) e finalmente perceber o porque que não funciona sem o mesmo-Tudo explicado na pasta "05/porque_nao_pode_ser_sem_packet_encoder". Aprender a utilizar hier blocs (cricao de 2 - simple_packet_encoder_and_modulation/mod_with_packet_encoder) e desenvolver script para eliminar os criados. Mais testes de introducao de CC usando hier block(Main_tests_CC_ldpc)
+
+18/7 - Ver o que sai do FEC Extended Encoder (consome 1 bit por byte e sai 1 bit por byte)--> Juntar os Bits em 1 byte e mandar para o packet encoder->modulator? Será que funciona? -Testar ccEncoder_Mod_Demod_ccDecoder ou Main_tests_CC_ldpc.

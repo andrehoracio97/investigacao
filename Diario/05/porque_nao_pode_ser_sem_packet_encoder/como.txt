@@ -1,0 +1,10 @@
+Input: AB repetitivo. A=01000001 B=01000010
+
+2 parte do print o output em que os ultimos 2 bits é que são importantes. 
+
+Aplicando o Bloco Repack Bits de 2 para 8 em MSB, como em anexo, resulta no 2 parte print.
+Nessa parte o que está sublinhado é a parte que está mal. Como fica a meio de outro bit, byte fica com offset assim nunca recuperando o byte certo.
+
+
+
+AO HABILITAR/DESABILITAR o repack bits no GRC dado pode-se verificar isso.
