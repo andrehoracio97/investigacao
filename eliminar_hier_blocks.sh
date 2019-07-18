@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Runing Ber_Vs_SNR"
+echo "Removing Hier Blocks"
 cd 
 cd .grc_gnuradio
 ls
