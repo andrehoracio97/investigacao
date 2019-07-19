@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Top Block
-# Generated: Thu Jul 18 17:34:26 2019
+# Generated: Fri Jul 19 14:58:58 2019
 ##################################################
 
 from distutils.version import StrictVersion
@@ -23,7 +23,6 @@ import sys
 sys.path.append(os.environ.get('GRC_HIER_PATH', os.path.expanduser('~/.grc_gnuradio')))
 
 from PyQt5 import Qt, QtCore
-from extremly_simple_packet_encoder_and_soft_modulation import extremly_simple_packet_encoder_and_soft_modulation  # grc-generated hier_block
 from gnuradio import blocks
 from gnuradio import digital
 from gnuradio import eng_notation
@@ -33,13 +32,14 @@ from gnuradio.eng_option import eng_option
 from gnuradio.filter import firdes
 from gnuradio.qtgui import Range, RangeWidget
 from optparse import OptionParser
+from simple_pkt_encoder_and_pkt_decoder import simple_pkt_encoder_and_pkt_decoder  # grc-generated hier_block
 import pmt
 from gnuradio import qtgui
 
 
 class top_block(gr.top_block, Qt.QWidget):
 
-    def __init__(self, frame_size=30, puncpat='11'):
+    def __init__(self, frame_size=32, puncpat='11'):
         gr.top_block.__init__(self, "Top Block")
         Qt.QWidget.__init__(self)
         self.setWindowTitle("Top Block")
@@ -75,7 +75,6 @@ class top_block(gr.top_block, Qt.QWidget):
         ##################################################
         self.sps = sps = 4
         self.nfilts = nfilts = 32
-        self.H = H = fec.ldpc_H_matrix(gr.prefix() + "/share/gnuradio/fec/ldpc/" + "n_0100_k_0042_gap_02.alist", 2)
         self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 50
         self.variable_qtgui_range_0 = variable_qtgui_range_0 = 34
         self.timing_loop_bw = timing_loop_bw = 6.28/100.0
@@ -96,16 +95,19 @@ class top_block(gr.top_block, Qt.QWidget):
         self.eq_gain = eq_gain = 0.01
 
 
-        self.encoder = encoder = fec.ldpc_par_mtrx_encoder_make_H(H)
+        self.encoder = encoder = fec.ccsds_encoder_make(256, 0, fec.CC_TAILBITING)
+
         self.documentacao = documentacao = "1010010011110010"
 
 
-        self.decoder = decoder = fec.ldpc_bit_flip_decoder.make(H.get_base_sptr(), 100)
+        self.decoder = decoder = fec.cc_decoder.make(256, 7, 2, ([109,79]), 0, -1, fec.CC_TAILBITING, False)
+
         self.barker_code_13_2vezes = barker_code_13_2vezes = "11111001101011111100110101"
         self.barker_code_13 = barker_code_13 = "1111100110101"
         self.arity = arity = 4
         self.ac_site = ac_site = "010110011011101100010101011111101001001110001011010001101010001"
         self.ac = ac = "1010110011011101101001001110001011110010100011000010000011111100"
+        self.H = H = fec.ldpc_H_matrix(gr.prefix() + "/share/gnuradio/fec/ldpc/" + "n_0100_k_0042_gap_02.alist", 2)
         self.G = G = fec.ldpc_G_matrix(gr.prefix() + "/share/gnuradio/fec/ldpc/" + "n_0100_k_0058_gen_matrix.alist")
         self.AC_documentacao_2_DEFAULT = AC_documentacao_2_DEFAULT = "1010110011011101101001001110001011110010100011000010000011111100"
         self.AC_documentacao = AC_documentacao = "010101010111000100"
@@ -113,13 +115,6 @@ class top_block(gr.top_block, Qt.QWidget):
         ##################################################
         # Blocks
         ##################################################
-        self._timing_loop_bw_range = Range(0.0, 0.2, 0.01, 6.28/100.0, 200)
-        self._timing_loop_bw_win = RangeWidget(self._timing_loop_bw_range, self.set_timing_loop_bw, 'Time: BW', "slider", float)
-        self.top_grid_layout.addWidget(self._timing_loop_bw_win, 6, 3, 1, 1)
-        for r in range(6, 7):
-            self.top_grid_layout.setRowStretch(r, 1)
-        for c in range(3, 4):
-            self.top_grid_layout.setColumnStretch(c, 1)
         self._samp_rate_range = Range(0, 10000000, 1, 250000, 200)
         self._samp_rate_win = RangeWidget(self._samp_rate_range, self.set_samp_rate, 'samp_rate', "counter_slider", int)
         self.top_grid_layout.addWidget(self._samp_rate_win, 0, 1, 1, 1)
@@ -127,6 +122,41 @@ class top_block(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(1, 2):
             self.top_grid_layout.setColumnStretch(c, 1)
+        self._variable_qtgui_range_0_1_range = Range(0, 73, 1, 50, 200)
+        self._variable_qtgui_range_0_1_win = RangeWidget(self._variable_qtgui_range_0_1_range, self.set_variable_qtgui_range_0_1, 'Gain_RX', "counter_slider", float)
+        self.top_grid_layout.addWidget(self._variable_qtgui_range_0_1_win, 0, 3, 1, 1)
+        for r in range(0, 1):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(3, 4):
+            self.top_grid_layout.setColumnStretch(c, 1)
+        self._variable_qtgui_range_0_range = Range(0, 90, 1, 34, 200)
+        self._variable_qtgui_range_0_win = RangeWidget(self._variable_qtgui_range_0_range, self.set_variable_qtgui_range_0, 'Gain_TX', "counter_slider", float)
+        self.top_grid_layout.addWidget(self._variable_qtgui_range_0_win, 0, 2, 1, 1)
+        for r in range(0, 1):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(2, 3):
+            self.top_grid_layout.setColumnStretch(c, 1)
+        self._timing_loop_bw_range = Range(0.0, 0.2, 0.01, 6.28/100.0, 200)
+        self._timing_loop_bw_win = RangeWidget(self._timing_loop_bw_range, self.set_timing_loop_bw, 'Time: BW', "slider", float)
+        self.top_grid_layout.addWidget(self._timing_loop_bw_win, 6, 3, 1, 1)
+        for r in range(6, 7):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(3, 4):
+            self.top_grid_layout.setColumnStretch(c, 1)
+        self._time_offset_range = Range(0.999, 1.001, 0.0001, 1.00, 200)
+        self._time_offset_win = RangeWidget(self._time_offset_range, self.set_time_offset, 'Timing Offset', "counter_slider", float)
+        self.top_grid_layout.addWidget(self._time_offset_win, 3, 3, 1, 1)
+        for r in range(3, 4):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(3, 4):
+            self.top_grid_layout.setColumnStretch(c, 1)
+        self.simple_pkt_encoder_and_pkt_decoder_0 = simple_pkt_encoder_and_pkt_decoder(
+            access_code=AC_documentacao_2_DEFAULT,
+            payload_length=0,
+            preambulo="",
+            samp_rate=samp_rate,
+            threshold=-1,
+        )
         self._phase_bw_range = Range(0.0, 1.0, 0.01, 6.28/100.0, 200)
         self._phase_bw_win = RangeWidget(self._phase_bw_range, self.set_phase_bw, 'Phase: Bandwidth', "dial", float)
         self.top_grid_layout.addWidget(self._phase_bw_win, 6, 1, 1, 1)
@@ -155,72 +185,20 @@ class top_block(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(2, 3):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self._variable_qtgui_range_0_1_range = Range(0, 73, 1, 50, 200)
-        self._variable_qtgui_range_0_1_win = RangeWidget(self._variable_qtgui_range_0_1_range, self.set_variable_qtgui_range_0_1, 'Gain_RX', "counter_slider", float)
-        self.top_grid_layout.addWidget(self._variable_qtgui_range_0_1_win, 0, 3, 1, 1)
-        for r in range(0, 1):
-            self.top_grid_layout.setRowStretch(r, 1)
-        for c in range(3, 4):
-            self.top_grid_layout.setColumnStretch(c, 1)
-        self._variable_qtgui_range_0_range = Range(0, 90, 1, 34, 200)
-        self._variable_qtgui_range_0_win = RangeWidget(self._variable_qtgui_range_0_range, self.set_variable_qtgui_range_0, 'Gain_TX', "counter_slider", float)
-        self.top_grid_layout.addWidget(self._variable_qtgui_range_0_win, 0, 2, 1, 1)
-        for r in range(0, 1):
-            self.top_grid_layout.setRowStretch(r, 1)
-        for c in range(2, 3):
-            self.top_grid_layout.setColumnStretch(c, 1)
-        self._time_offset_range = Range(0.999, 1.001, 0.0001, 1.00, 200)
-        self._time_offset_win = RangeWidget(self._time_offset_range, self.set_time_offset, 'Timing Offset', "counter_slider", float)
-        self.top_grid_layout.addWidget(self._time_offset_win, 3, 3, 1, 1)
-        for r in range(3, 4):
-            self.top_grid_layout.setRowStretch(r, 1)
-        for c in range(3, 4):
-            self.top_grid_layout.setColumnStretch(c, 1)
-        self.fec_extended_encoder_1 = fec.extended_encoder(encoder_obj_list=encoder, threading='capillary', puncpat=puncpat)
-        self.fec_extended_decoder_0 = fec.extended_decoder(decoder_obj_list=decoder, threading= None, ann=None, puncpat=puncpat, integration_period=10000)
-        self.extremly_simple_packet_encoder_and_soft_modulation_0 = extremly_simple_packet_encoder_and_soft_modulation(
-            access_code=AC_documentacao_2_DEFAULT,
-            eq_gain=0.01,
-            freq_offset=0,
-            noise_volt=0.0000,
-            payload_length=0,
-            phase_bw=6.28/100.0,
-            preambulo="",
-            samp_rate=samp_rate,
-            threshold=-1,
-            timing_loop_bw=6.28/100.0,
-        )
-        self.top_grid_layout.addWidget(self.extremly_simple_packet_encoder_and_soft_modulation_0)
-        self.digital_map_bb_0 = digital.map_bb((-1, 1))
-        self.blocks_throttle_0_1_0 = blocks.throttle(gr.sizeof_char*1, samp_rate,True)
-        self.blocks_throttle_0_0 = blocks.throttle(gr.sizeof_char*1, samp_rate,True)
-        self.blocks_repack_bits_bb_1 = blocks.repack_bits_bb(8, 1, '', False, gr.GR_MSB_FIRST)
-        self.blocks_repack_bits_bb_0_0_0 = blocks.repack_bits_bb(1, 8, '', True, gr.GR_MSB_FIRST)
-        self.blocks_repack_bits_bb_0_0 = blocks.repack_bits_bb(8, 1, "", True, gr.GR_MSB_FIRST)
-        self.blocks_repack_bits_bb_0 = blocks.repack_bits_bb(1, 8, "", False, gr.GR_MSB_FIRST)
+        self.blocks_throttle_0_0_0 = blocks.throttle(gr.sizeof_char*1, samp_rate,True)
         self.blocks_file_source_0_0_0_0 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Desktop/video.mpg', False)
         self.blocks_file_source_0_0_0_0.set_begin_tag(pmt.PMT_NIL)
         self.blocks_file_sink_0_0_1_0 = blocks.file_sink(gr.sizeof_char*1, '/home/andre/Desktop/transmitido/depois.mpg', False)
         self.blocks_file_sink_0_0_1_0.set_unbuffered(False)
-        self.blocks_char_to_float_0 = blocks.char_to_float(1, 1)
 
 
 
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.blocks_char_to_float_0, 0), (self.fec_extended_decoder_0, 0))
-        self.connect((self.blocks_file_source_0_0_0_0, 0), (self.blocks_throttle_0_1_0, 0))
-        self.connect((self.blocks_repack_bits_bb_0, 0), (self.blocks_file_sink_0_0_1_0, 0))
-        self.connect((self.blocks_repack_bits_bb_0_0, 0), (self.digital_map_bb_0, 0))
-        self.connect((self.blocks_repack_bits_bb_0_0_0, 0), (self.blocks_throttle_0_0, 0))
-        self.connect((self.blocks_repack_bits_bb_1, 0), (self.fec_extended_encoder_1, 0))
-        self.connect((self.blocks_throttle_0_0, 0), (self.extremly_simple_packet_encoder_and_soft_modulation_0, 0))
-        self.connect((self.blocks_throttle_0_1_0, 0), (self.blocks_repack_bits_bb_1, 0))
-        self.connect((self.digital_map_bb_0, 0), (self.blocks_char_to_float_0, 0))
-        self.connect((self.extremly_simple_packet_encoder_and_soft_modulation_0, 0), (self.blocks_repack_bits_bb_0_0, 0))
-        self.connect((self.fec_extended_decoder_0, 0), (self.blocks_repack_bits_bb_0, 0))
-        self.connect((self.fec_extended_encoder_1, 0), (self.blocks_repack_bits_bb_0_0_0, 0))
+        self.connect((self.blocks_file_source_0_0_0_0, 0), (self.blocks_throttle_0_0_0, 0))
+        self.connect((self.blocks_throttle_0_0_0, 0), (self.simple_pkt_encoder_and_pkt_decoder_0, 0))
+        self.connect((self.simple_pkt_encoder_and_pkt_decoder_0, 0), (self.blocks_file_sink_0_0_1_0, 0))
 
     def closeEvent(self, event):
         self.settings = Qt.QSettings("GNU Radio", "top_block")
@@ -252,12 +230,6 @@ class top_block(gr.top_block, Qt.QWidget):
     def set_nfilts(self, nfilts):
         self.nfilts = nfilts
         self.set_rrc_taps(firdes.root_raised_cosine(self.nfilts, self.nfilts, 1.0/float(self.sps), 0.35, 11*self.sps*self.nfilts))
-
-    def get_H(self):
-        return self.H
-
-    def set_H(self, H):
-        self.H = H
 
     def get_variable_qtgui_range_0_1(self):
         return self.variable_qtgui_range_0_1
@@ -294,9 +266,8 @@ class top_block(gr.top_block, Qt.QWidget):
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
-        self.extremly_simple_packet_encoder_and_soft_modulation_0.set_samp_rate(self.samp_rate)
-        self.blocks_throttle_0_1_0.set_sample_rate(self.samp_rate)
-        self.blocks_throttle_0_0.set_sample_rate(self.samp_rate)
+        self.simple_pkt_encoder_and_pkt_decoder_0.set_samp_rate(self.samp_rate)
+        self.blocks_throttle_0_0_0.set_sample_rate(self.samp_rate)
 
     def get_rrc_taps(self):
         return self.rrc_taps
@@ -418,6 +389,12 @@ class top_block(gr.top_block, Qt.QWidget):
     def set_ac(self, ac):
         self.ac = ac
 
+    def get_H(self):
+        return self.H
+
+    def set_H(self, H):
+        self.H = H
+
     def get_G(self):
         return self.G
 
@@ -429,7 +406,7 @@ class top_block(gr.top_block, Qt.QWidget):
 
     def set_AC_documentacao_2_DEFAULT(self, AC_documentacao_2_DEFAULT):
         self.AC_documentacao_2_DEFAULT = AC_documentacao_2_DEFAULT
-        self.extremly_simple_packet_encoder_and_soft_modulation_0.set_access_code(self.AC_documentacao_2_DEFAULT)
+        self.simple_pkt_encoder_and_pkt_decoder_0.set_access_code(self.AC_documentacao_2_DEFAULT)
 
     def get_AC_documentacao(self):
         return self.AC_documentacao
@@ -441,7 +418,7 @@ class top_block(gr.top_block, Qt.QWidget):
 def argument_parser():
     parser = OptionParser(usage="%prog: [options]", option_class=eng_option)
     parser.add_option(
-        "", "--frame-size", dest="frame_size", type="intx", default=30,
+        "", "--frame-size", dest="frame_size", type="intx", default=32,
         help="Set Frame Size [default=%default]")
     parser.add_option(
         "", "--puncpat", dest="puncpat", type="string", default='11',

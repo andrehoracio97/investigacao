@@ -1446,7 +1446,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(248, 140)</value>
+      <value>(256, 148)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1556,7 +1556,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1312, 100)</value>
+      <value>(1016, 180)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1717,7 +1717,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1882,7 +1882,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2208,7 +2208,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(688, 96)</value>
+      <value>(712, 96)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2413,6 +2413,65 @@
     </param>
   </block>
   <block>
+    <key>digital_chunks_to_symbols_xx</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>dimension</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(984, 100)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>digital_chunks_to_symbols_xx_0</value>
+    </param>
+    <param>
+      <key>in_type</key>
+      <value>byte</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>num_ports</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>out_type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>symbol_table</key>
+      <value>qpsk.points()</value>
+    </param>
+  </block>
+  <block>
     <key>digital_cma_equalizer_cc</key>
     <param>
       <key>alias</key>
@@ -2428,7 +2487,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2491,7 +2550,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(464, 564)</value>
+      <value>(472, 564)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2573,69 +2632,6 @@
     </param>
     <param>
       <key>differential</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>excess_bw</key>
-      <value>0.35</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1008, 84)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>digital_constellation_modulator_0</value>
-    </param>
-    <param>
-      <key>log</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>samples_per_symbol</key>
-      <value>sps</value>
-    </param>
-    <param>
-      <key>verbose</key>
-      <value>False</value>
-    </param>
-  </block>
-  <block>
-    <key>digital_constellation_modulator</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>constellation</key>
-      <value>qpsk</value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>differential</key>
       <value>False</value>
     </param>
     <param>
@@ -2680,6 +2676,69 @@
     </param>
   </block>
   <block>
+    <key>digital_constellation_modulator</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>constellation</key>
+      <value>qpsk</value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>differential</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>excess_bw</key>
+      <value>0.35</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1448, 20)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>digital_constellation_modulator_0_1</value>
+    </param>
+    <param>
+      <key>log</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>samples_per_symbol</key>
+      <value>sps</value>
+    </param>
+    <param>
+      <key>verbose</key>
+      <value>False</value>
+    </param>
+  </block>
+  <block>
     <key>digital_costas_loop_cc</key>
     <param>
       <key>alias</key>
@@ -2695,7 +2754,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2750,7 +2809,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(240, 60)</value>
+      <value>(232, 68)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3021,7 +3080,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>filter_size</key>
@@ -3029,7 +3088,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(560, 884)</value>
+      <value>(536, 884)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3061,7 +3120,78 @@
     </param>
     <param>
       <key>osps</key>
-      <value>2</value>
+      <value>1</value>
+    </param>
+    <param>
+      <key>sps</key>
+      <value>sps</value>
+    </param>
+    <param>
+      <key>taps</key>
+      <value>rrc_taps</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>ccf</value>
+    </param>
+  </block>
+  <block>
+    <key>digital_pfb_clock_sync_xxx</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>filter_size</key>
+      <value>nfilts</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1656, 28)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>digital_pfb_clock_sync_xxx_0_0</value>
+    </param>
+    <param>
+      <key>init_phase</key>
+      <value>nfilts/2</value>
+    </param>
+    <param>
+      <key>loop_bw</key>
+      <value>timing_loop_bw</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>max_dev</key>
+      <value>1.5</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>osps</key>
+      <value>1</value>
     </param>
     <param>
       <key>sps</key>
@@ -3156,7 +3286,7 @@
   </connection>
   <connection>
     <source_block_id>blocks_tagged_stream_mux_0</source_block_id>
-    <sink_block_id>digital_constellation_modulator_0</sink_block_id>
+    <sink_block_id>digital_chunks_to_symbols_xx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -3185,6 +3315,12 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
+    <source_block_id>digital_chunks_to_symbols_xx_0</source_block_id>
+    <sink_block_id>blocks_tag_debug_1_1_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
     <source_block_id>digital_cma_equalizer_cc_0</source_block_id>
     <sink_block_id>blocks_tag_debug_1_1_0_0_1_0_1_0</sink_block_id>
     <source_key>0</source_key>
@@ -3209,20 +3345,14 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>digital_constellation_modulator_0</source_block_id>
-    <sink_block_id>blocks_tag_debug_1_1_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>digital_constellation_modulator_0</source_block_id>
-    <sink_block_id>digital_pfb_clock_sync_xxx_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
     <source_block_id>digital_constellation_modulator_0_0</source_block_id>
     <sink_block_id>blocks_tag_debug_1_1_0_0_1</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>digital_constellation_modulator_0_1</source_block_id>
+    <sink_block_id>blocks_tag_debug_1_1_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

@@ -33,3 +33,10 @@ Tentativa de integração deste encoder no projeto principal --> Fail. O contell
 
 18/7 - Aplicação de codigos como LDPC (G,H), CC, DUMMY, REPETITION sem qualquer tipo de modulação nem pkt encoder(File->Codificador->Descodificador->File)->Funciona Bem (sem testes de erros).
 Criação de Hier Blocks (extremly_simple_packet_encoder_and_soft_modulation (soft encoder sem CMA equalizer e Costas loop) e simple_packet_encoder_and_soft_modulation ((soft encoder sem CMA equalizer e Costas loop) e de simple_pkt_encoder_and_pkt_decoder(apenas o pkt encoder e decoder -para testes). Integração de tudos estes blocos e execucao de muitos testes no GRC: Tests_principal_CC_LDPC_Hier_Blocks. Conclusão que o packet encoder perde bits e na integracao com os codigos nao funciona. 
+
+
+19/7 ->Testes com o que já tinha: o dummy corrige erros do packet encoder. Reunião. Comecar gradualmente com o HPD. ---Não me parece que vá dar mas ver melhor.
+Para a semana:
+Ver melhor o que estava a fazer pelo HPD, as tags nao passam pelas USRPS (testado, mesmo depois de  moduladas) --> Nao percebo como funciona nada disto. Desisto da vida.
+EScolher entre: https://dsp.stackexchange.com/questions/56321/gnu-radio-transceiver-loopback-adapted-transmission-stops-unexpectedly
+Ou comecar OFDM.

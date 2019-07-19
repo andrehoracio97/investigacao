@@ -1,0 +1,5 @@
+01hpd_SUCCESS_chunks_to_symbols --> Base a começar a trabalhar Funciona Bem.
+
+02hpd --> trazer o Tagged Stream mux antes do chunks to symbols. Funciona bem.
+
+03hdp --> Substituicao do chunks to symbols pelo constellation modulator.

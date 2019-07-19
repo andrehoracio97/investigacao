@@ -190,7 +190,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1600, 996)</value>
+      <value>(1600, 1004)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -199,6 +199,111 @@
     <param>
       <key>gap</key>
       <value>2</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>H</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>"ok"</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_ldpc_H_matrix_def</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>filename</key>
+      <value>/usr/share/gnuradio/fec/ldpc/n_0500_k_0202_gap_11.alist</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1600, 1100)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>gap</key>
+      <value>11</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>H</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>"ok"</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_ldpc_H_matrix_def</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>filename</key>
+      <value>/usr/share/gnuradio/fec/ldpc/n_0300_k_0152_gap_03.alist</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1600, 1244)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>gap</key>
+      <value>3</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>H</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>"ok"</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_ldpc_H_matrix_def</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>filename</key>
+      <value>/usr/share/gnuradio/fec/ldpc/n_1300_k_0522_gap_30.alist</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1600, 1172)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>gap</key>
+      <value>30</value>
     </param>
     <param>
       <key>id</key>
@@ -302,7 +407,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(328, 292)</value>
+      <value>(376, 292)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -329,7 +434,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(456, 292)</value>
+      <value>(512, 292)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -439,7 +544,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>state_end</key>
@@ -592,7 +697,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -815,7 +920,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>framebits</key>
@@ -944,7 +1049,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2024,7 +2129,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(960, 460)</value>
+      <value>(968, 460)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2130,7 +2235,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(880, 964)</value>
+      <value>(856, 964)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2181,7 +2286,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(872, 1044)</value>
+      <value>(856, 1044)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2291,7 +2396,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(64, 1148)</value>
+      <value>(48, 1148)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2350,7 +2455,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(64, 1228)</value>
+      <value>(48, 1228)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2531,7 +2636,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(960, 628)</value>
+      <value>(952, 644)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2755,7 +2860,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(776, 340)</value>
+      <value>(752, 332)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2810,7 +2915,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(96, 780)</value>
+      <value>(80, 780)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2861,11 +2966,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>2</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(968, 756)</value>
+      <value>(968, 724)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2920,7 +3025,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(88, 316)</value>
+      <value>(72, 316)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2971,7 +3076,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>2</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -3026,7 +3131,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>2</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -3085,7 +3190,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(768, 636)</value>
+      <value>(768, 652)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3305,7 +3410,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(976, 404)</value>
+      <value>(984, 404)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3326,6 +3431,89 @@
     <param>
       <key>minoutbuf</key>
       <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>extremly_simple_packet_encoder_and_modulation</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>eq_gain</key>
+      <value>0.01</value>
+    </param>
+    <param>
+      <key>freq_offset</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(304, 876)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>extremly_simple_packet_encoder_and_modulation_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>noise_volt</key>
+      <value>0.0000</value>
+    </param>
+    <param>
+      <key>phase_bw</key>
+      <value>6.28/100.0</value>
+    </param>
+    <param>
+      <key>timing_loop_bw</key>
+      <value>6.28/100.0</value>
+    </param>
+    <param>
+      <key>access_code</key>
+      <value>AC_documentacao_2_DEFAULT</value>
+    </param>
+    <param>
+      <key>payload_length</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>preambulo</key>
+      <value>""</value>
+    </param>
+    <param>
+      <key>samp_rate</key>
+      <value>250000</value>
+    </param>
+    <param>
+      <key>threshold</key>
+      <value>-1</value>
     </param>
   </block>
   <block>
@@ -3356,7 +3544,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(304, 532)</value>
+      <value>(296, 676)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -3439,7 +3627,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(936, 524)</value>
+      <value>(944, 532)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3494,7 +3682,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(64, 540)</value>
+      <value>(64, 548)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3503,6 +3691,57 @@
     <param>
       <key>id</key>
       <value>fec_extended_encoder_1</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>puncpat</key>
+      <value>puncpat</value>
+    </param>
+    <param>
+      <key>threadtype</key>
+      <value>none</value>
+    </param>
+  </block>
+  <block>
+    <key>fec_extended_encoder</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>encoder_list</key>
+      <value>encoder</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(344, 460)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>fec_extended_encoder_1_0</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -3537,7 +3776,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1464, 684)</value>
+      <value>(1472, 692)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3565,7 +3804,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>30</value>
+      <value>32</value>
     </param>
   </block>
   <block>
@@ -3615,7 +3854,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1232, 308)</value>
+      <value>(1232, 316)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3628,6 +3867,120 @@
     <param>
       <key>note</key>
       <value>Do pdf</value>
+    </param>
+  </block>
+  <block>
+    <key>note</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(352, 420)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>note_0_0_0</value>
+    </param>
+    <param>
+      <key>note</key>
+      <value>DUMMY É CAPILLARY</value>
+    </param>
+  </block>
+  <block>
+    <key>only_extremly_simple_soft_modulation</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>eq_gain</key>
+      <value>0.01</value>
+    </param>
+    <param>
+      <key>freq_offset</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(360, 1604)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>only_extremly_simple_soft_modulation_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>noise_volt</key>
+      <value>0.0000</value>
+    </param>
+    <param>
+      <key>phase_bw</key>
+      <value>6.28/100.0</value>
+    </param>
+    <param>
+      <key>timing_loop_bw</key>
+      <value>6.28/100.0</value>
+    </param>
+    <param>
+      <key>access_code</key>
+      <value>AC_documentacao_2_DEFAULT</value>
+    </param>
+    <param>
+      <key>payload_length</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>preambulo</key>
+      <value>""</value>
+    </param>
+    <param>
+      <key>samp_rate</key>
+      <value>250000</value>
+    </param>
+    <param>
+      <key>threshold</key>
+      <value>-1</value>
     </param>
   </block>
   <block>
@@ -3646,7 +3999,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1280, 124)</value>
+      <value>(1336, 148)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3705,7 +4058,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(360, 916)</value>
+      <value>(344, 1284)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -3788,7 +4141,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(344, 724)</value>
+      <value>(328, 1084)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -3863,7 +4216,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(384, 1108)</value>
+      <value>(368, 1484)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3970,7 +4323,19 @@
   </connection>
   <connection>
     <source_block_id>blocks_throttle_0_0</source_block_id>
+    <sink_block_id>extremly_simple_packet_encoder_and_modulation_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_throttle_0_0</source_block_id>
     <sink_block_id>extremly_simple_packet_encoder_and_soft_modulation_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_throttle_0_0</source_block_id>
+    <sink_block_id>only_extremly_simple_soft_modulation_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -4023,6 +4388,12 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
+    <source_block_id>blocks_throttle_0_1_0_0</source_block_id>
+    <sink_block_id>fec_extended_encoder_1_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
     <source_block_id>blocks_throttle_0_1_0_0_0</source_block_id>
     <sink_block_id>blocks_repack_bits_bb_0_0_0</sink_block_id>
     <source_key>0</source_key>
@@ -4059,6 +4430,12 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
+    <source_block_id>extremly_simple_packet_encoder_and_modulation_0</source_block_id>
+    <sink_block_id>blocks_throttle_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
     <source_block_id>extremly_simple_packet_encoder_and_soft_modulation_0</source_block_id>
     <sink_block_id>blocks_throttle_0</sink_block_id>
     <source_key>0</source_key>
@@ -4073,6 +4450,18 @@
   <connection>
     <source_block_id>fec_extended_encoder_1</source_block_id>
     <sink_block_id>blocks_throttle_0_1_0_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>fec_extended_encoder_1_0</source_block_id>
+    <sink_block_id>blocks_throttle_0_1_0_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>only_extremly_simple_soft_modulation_0</source_block_id>
+    <sink_block_id>blocks_throttle_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
