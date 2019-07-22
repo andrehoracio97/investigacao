@@ -40,3 +40,6 @@ Para a semana:
 Ver melhor o que estava a fazer pelo HPD, as tags nao passam pelas USRPS (testado, mesmo depois de  moduladas) --> Nao percebo como funciona nada disto. Desisto da vida.
 EScolher entre: https://dsp.stackexchange.com/questions/56321/gnu-radio-transceiver-loopback-adapted-transmission-stops-unexpectedly
 Ou comecar OFDM.
+
+4ºSemana
+22/7 ->Leitura e resumo de: https://www.gnuradio.org/doc/doxygen/page_packet_comms.html, Seguir por correlation estimator e varios testes.

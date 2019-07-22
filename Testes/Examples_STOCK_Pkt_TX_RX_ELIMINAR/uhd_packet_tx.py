@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Uhd Packet Tx
-# Generated: Fri Jul 19 18:14:42 2019
+# Generated: Mon Jul 22 17:23:46 2019
 ##################################################
 
 from distutils.version import StrictVersion
@@ -158,7 +158,7 @@ class uhd_packet_tx(gr.top_block, Qt.QWidget):
         for c in range(1, 2):
             self.top_grid_layout.setColumnStretch(c, 1)
         self.uhd_usrp_sink_0 = uhd.usrp_sink(
-        	",".join(("serial=F5EAE1", "")),
+        	",".join(("serial=F5EAE1", "master_clock_rate=32e6")),
         	uhd.stream_args(
         		cpu_format="fc32",
         		channels=range(1),
@@ -307,17 +307,16 @@ class uhd_packet_tx(gr.top_block, Qt.QWidget):
         self.tab0_grid_layout_2.addWidget(self._qtgui_const_sink_x_0_win)
         self.packet_tx_0 = packet_tx(
             hdr_const=Const_HDR,
-            hdr_enc= fec.dummy_encoder_make(8000),
+            hdr_enc=enc_hdr,
             hdr_format=digital.header_format_default(digital.packet_utils.default_access_code, 0),
             pld_const=Const_PLD,
-            pld_enc= fec.dummy_encoder_make(8000),
+            pld_enc=enc,
             psf_taps=tx_rrc_taps,
             sps=sps,
         )
         self.blocks_random_pdu_0 = blocks.random_pdu(15, 150, chr(0xff), 1)
         self.blocks_multiply_const_vxx_0 = blocks.multiply_const_vcc((amp, ))
         self.blocks_message_strobe_0 = blocks.message_strobe(pmt.intern("TEST"), 2000)
-        self.blocks_message_debug_0 = blocks.message_debug()
 
 
 
@@ -435,12 +434,14 @@ class uhd_packet_tx(gr.top_block, Qt.QWidget):
 
     def set_enc_hdr(self, enc_hdr):
         self.enc_hdr = enc_hdr
+        self.packet_tx_0.set_hdr_enc(self.enc_hdr)
 
     def get_enc(self):
         return self.enc
 
     def set_enc(self, enc):
         self.enc = enc
+        self.packet_tx_0.set_pld_enc(self.enc)
 
     def get_amp(self):
         return self.amp

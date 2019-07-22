@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Uhd Packet Rx
-# Generated: Fri Jul 19 18:15:57 2019
+# Generated: Mon Jul 22 17:23:54 2019
 ##################################################
 
 from distutils.version import StrictVersion
@@ -175,7 +175,7 @@ class uhd_packet_rx(gr.top_block, Qt.QWidget):
         for c in range(1, 2):
             self.top_grid_layout.setColumnStretch(c, 1)
         self.uhd_usrp_source_0 = uhd.usrp_source(
-        	",".join(("serial=F5EAC0", "")),
+        	",".join(("serial=F5EAC0", "master_clock_rate=32e6")),
         	uhd.stream_args(
         		cpu_format="fc32",
         		channels=range(1),
@@ -185,9 +185,9 @@ class uhd_packet_rx(gr.top_block, Qt.QWidget):
         self.uhd_usrp_source_0.set_time_now(uhd.time_spec(time.time()), uhd.ALL_MBOARDS)
         self.uhd_usrp_source_0.set_center_freq(uhd.tune_request(freq, samp_rate/2.0), 0)
         self.uhd_usrp_source_0.set_gain(gain, 0)
-        self.uhd_usrp_source_0.set_antenna('TX/RX', 0)
-        self.uhd_usrp_source_0.set_auto_dc_offset(False, 0)
-        self.uhd_usrp_source_0.set_auto_iq_balance(False, 0)
+        self.uhd_usrp_source_0.set_antenna('RX2', 0)
+        self.uhd_usrp_source_0.set_auto_dc_offset(True, 0)
+        self.uhd_usrp_source_0.set_auto_iq_balance(True, 0)
         self.qtgui_time_sink_x_1_0_0_1 = qtgui.time_sink_c(
         	1250, #size
         	1, #samp_rate
@@ -383,10 +383,8 @@ class uhd_packet_rx(gr.top_block, Qt.QWidget):
             sps=sps,
         )
         self.digital_fll_band_edge_cc_0 = digital.fll_band_edge_cc(sps, eb, 44, 0.05)
-        self.blocks_tag_debug_0 = blocks.tag_debug(gr.sizeof_gr_complex*1, 'TESTE', ''); self.blocks_tag_debug_0.set_display(True)
         self.blocks_multiply_const_vxx_1 = blocks.multiply_const_vcc((on, ))
         self.blocks_multiply_const_vxx_0 = blocks.multiply_const_vcc((amp, ))
-        self.blocks_message_debug_0_0_0 = blocks.message_debug()
 
 
 
@@ -400,7 +398,6 @@ class uhd_packet_rx(gr.top_block, Qt.QWidget):
         self.connect((self.packet_rx_0, 1), (self.qtgui_const_sink_x_0_0_0, 0))
         self.connect((self.packet_rx_0, 2), (self.qtgui_time_sink_x_1_0_0_1, 0))
         self.connect((self.uhd_usrp_source_0, 0), (self.blocks_multiply_const_vxx_0, 0))
-        self.connect((self.uhd_usrp_source_0, 0), (self.blocks_tag_debug_0, 0))
         self.connect((self.uhd_usrp_source_0, 0), (self.digital_fll_band_edge_cc_0, 0))
 
     def closeEvent(self, event):

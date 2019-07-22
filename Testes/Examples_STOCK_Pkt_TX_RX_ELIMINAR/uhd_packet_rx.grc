@@ -258,7 +258,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(176, 595)</value>
+      <value>(176, 676)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -341,7 +341,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(680, 555)</value>
+      <value>(696, 668)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -400,7 +400,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(496, 555)</value>
+      <value>(512, 668)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -443,7 +443,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(480, 635)</value>
+      <value>(480, 716)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -494,7 +494,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(592, 475)</value>
+      <value>(608, 588)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -556,7 +556,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(176, 467)</value>
+      <value>(176, 548)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -619,7 +619,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(48, 595)</value>
+      <value>(48, 676)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -740,7 +740,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(904, 619)</value>
+      <value>(904, 700)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -802,7 +802,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(312, 635)</value>
+      <value>(312, 716)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -841,7 +841,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(952, 683)</value>
+      <value>(952, 764)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -868,7 +868,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(976, 619)</value>
+      <value>(976, 700)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -895,7 +895,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(880, 683)</value>
+      <value>(880, 764)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -969,7 +969,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(48, 467)</value>
+      <value>(48, 548)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -1044,6 +1044,57 @@
     </param>
   </block>
   <block>
+    <key>blocks_file_sink</key>
+    <param>
+      <key>append</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>file</key>
+      <value>/home/andre/Desktop/transmitido/depois.txt</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1408, 156)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_file_sink_0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>byte</value>
+    </param>
+    <param>
+      <key>unbuffered</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
     <key>blocks_message_debug</key>
     <param>
       <key>alias</key>
@@ -1059,11 +1110,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1160, 136)</value>
+      <value>(1248, 64)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1098,7 +1149,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(320, 180)</value>
+      <value>(336, 196)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1152,7 +1203,7 @@ to the receiver.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(568, 324)</value>
+      <value>(560, 340)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1180,7 +1231,7 @@ to the receiver.</value>
     </param>
   </block>
   <block>
-    <key>blocks_tag_debug</key>
+    <key>blocks_pdu_to_tagged_stream</key>
     <param>
       <key>alias</key>
       <value></value>
@@ -1194,16 +1245,12 @@ to the receiver.</value>
       <value></value>
     </param>
     <param>
-      <key>display</key>
-      <value>True</value>
-    </param>
-    <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(328, 228)</value>
+      <value>(1120, 212)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1211,27 +1258,23 @@ to the receiver.</value>
     </param>
     <param>
       <key>id</key>
-      <value>blocks_tag_debug_0</value>
+      <value>blocks_pdu_to_tagged_stream_0</value>
     </param>
     <param>
       <key>type</key>
-      <value>complex</value>
+      <value>byte</value>
     </param>
     <param>
-      <key>filter</key>
-      <value></value>
+      <key>tag</key>
+      <value>packet_len</value>
     </param>
     <param>
-      <key>name</key>
-      <value>TESTE</value>
+      <key>maxoutbuf</key>
+      <value>0</value>
     </param>
     <param>
-      <key>num_inputs</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
+      <key>minoutbuf</key>
+      <value>0</value>
     </param>
   </block>
   <block>
@@ -1258,7 +1301,7 @@ to the receiver.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(320, 328)</value>
+      <value>(336, 344)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1317,7 +1360,7 @@ to the receiver.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(800, 232)</value>
+      <value>(792, 248)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1392,7 +1435,7 @@ to the receiver.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(568, 164)</value>
+      <value>(520, 180)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -1739,7 +1782,7 @@ to the receiver.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1168, 284)</value>
+      <value>(1128, 308)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -2094,7 +2137,7 @@ to the receiver.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(568, 228)</value>
+      <value>(520, 244)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -2461,7 +2504,7 @@ to the receiver.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1160, 380)</value>
+      <value>(1128, 396)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -2808,7 +2851,7 @@ to the receiver.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(312, 467)</value>
+      <value>(328, 580)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -2923,7 +2966,7 @@ to the receiver.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(312, 547)</value>
+      <value>(328, 660)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -3030,7 +3073,7 @@ to the receiver.</value>
     </param>
     <param>
       <key>ant0</key>
-      <value>TX/RX</value>
+      <value>RX2</value>
     </param>
     <param>
       <key>bw0</key>
@@ -3042,11 +3085,11 @@ to the receiver.</value>
     </param>
     <param>
       <key>dc_offs_enb0</key>
-      <value>False</value>
+      <value>True</value>
     </param>
     <param>
       <key>iq_imbal_enb0</key>
-      <value>False</value>
+      <value>True</value>
     </param>
     <param>
       <key>norm_gain0</key>
@@ -4198,7 +4241,7 @@ to the receiver.</value>
     </param>
     <param>
       <key>dev_args</key>
-      <value>""</value>
+      <value>"master_clock_rate=32e6"</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -4206,7 +4249,7 @@ to the receiver.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(48, 171)</value>
+      <value>(24, 252)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -4380,10 +4423,28 @@ to the receiver.</value>
     <sink_key>0</sink_key>
   </connection>
   <connection>
+    <source_block_id>blocks_pdu_to_tagged_stream_0</source_block_id>
+    <sink_block_id>blocks_file_sink_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
     <source_block_id>digital_fll_band_edge_cc_0</source_block_id>
     <sink_block_id>blocks_multiply_const_vxx_1</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>packet_rx_0</source_block_id>
+    <sink_block_id>blocks_message_debug_0_0_0</sink_block_id>
+    <source_key>pkt out</source_key>
+    <sink_key>print_pdu</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>packet_rx_0</source_block_id>
+    <sink_block_id>blocks_pdu_to_tagged_stream_0</sink_block_id>
+    <source_key>pkt out</source_key>
+    <sink_key>pdus</sink_key>
   </connection>
   <connection>
     <source_block_id>packet_rx_0</source_block_id>
@@ -4400,12 +4461,6 @@ to the receiver.</value>
   <connection>
     <source_block_id>uhd_usrp_source_0</source_block_id>
     <sink_block_id>blocks_multiply_const_vxx_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>uhd_usrp_source_0</source_block_id>
-    <sink_block_id>blocks_tag_debug_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

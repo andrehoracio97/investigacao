@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<?grc format='1' created='3.7.13'?>
+<?grc format='1' created='3.7.10'?>
 <flow_graph>
   <timestamp>Thu Dec  4 14:34:25 2014</timestamp>
   <block>
@@ -73,20 +73,12 @@
       <value>True</value>
     </param>
     <param>
-      <key>sizing_mode</key>
-      <value>fixed</value>
-    </param>
-    <param>
       <key>thread_safe_setters</key>
       <value></value>
     </param>
     <param>
       <key>title</key>
       <value></value>
-    </param>
-    <param>
-      <key>placement</key>
-      <value>(0,0)</value>
     </param>
   </block>
   <block>
@@ -669,10 +661,6 @@
       <value>hdr_format</value>
     </param>
     <param>
-      <key>bps</key>
-      <value>1</value>
-    </param>
-    <param>
       <key>threshold</key>
       <value>3</value>
     </param>
@@ -1101,7 +1089,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(888, 196)</value>
+      <value>(952, 211)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1152,7 +1140,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(224, 188)</value>
+      <value>(240, 187)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1207,7 +1195,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1512, 260)</value>
+      <value>(1472, 275)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1258,7 +1246,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(472, 164)</value>
+      <value>(496, 163)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2266,10 +2254,6 @@
       <value>1</value>
     </param>
     <param>
-      <key>stemplot</key>
-      <value>False</value>
-    </param>
-    <param>
       <key>tr_chan</key>
       <value>0</value>
     </param>
@@ -3121,7 +3105,7 @@
     </param>
     <param>
       <key>clock_source0</key>
-      <value></value>
+      <value>gpsdo</value>
     </param>
     <param>
       <key>sd_spec0</key>
@@ -3129,7 +3113,7 @@
     </param>
     <param>
       <key>time_source0</key>
-      <value></value>
+      <value>gpsdo</value>
     </param>
     <param>
       <key>clock_source1</key>
@@ -3230,10 +3214,6 @@
     <param>
       <key>hide_cmd_port</key>
       <value>False</value>
-    </param>
-    <param>
-      <key>hide_lo_controls</key>
-      <value>True</value>
     </param>
     <param>
       <key>stream_args</key>
