@@ -43,3 +43,5 @@ Ou comecar OFDM.
 
 4ºSemana
 22/7 ->Leitura e resumo de: https://www.gnuradio.org/doc/doxygen/page_packet_comms.html, Seguir por correlation estimator e varios testes.
+23/7 ->Mais pesquisa sobre correlation estimator, ir pouco a pouco juntando num só flowgraph.-FAIL.
+24/7 ->Criar o Evolution onde iria pouco a pouco adicionando blocos. Fail pq das dependencias de muitos blocos ao memso tempo. Tentativa de usar o loobback, com sucesso e adaptação das mensagens para ficheiro com sucesso. Tentativa de add CRC - Fail. FEC adicionado mas ainda incompleto. Está a funcionar o do payload com repertition, no header nao. Ou funciona o fec do header ou funciona o fec do payload.--> Problema vem das tags antes de mux, arranjar maneira para contrornar isso. 

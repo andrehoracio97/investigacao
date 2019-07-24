@@ -1,0 +1,94 @@
+https://dsp.stackexchange.com/questions/56321/gnu-radio-transceiver-loopback-adapted-transmission-stops-unexpectedly
+
+
+
+https://www.gnuradio.org/doc/doxygen/page_packet_comms.html
+
+TRANSMITTER:
+Um transmtter de physical layer define-se com as seguintes propriedades:
+	-Data integrity check - Normalmente o CRC32 do payload e juntado ao final do frame.
+
+	-Forward Error Correction (FEC) - Correção de bit durante a rececão. -https://www.gnuradio.org/doc/doxygen/page_fec.html
+
+	-Frame formatting: Esperamos os dados a serem recebido do tranmsissor por alguma camada acima (MAC/Rede), que é o que nos tratamos como o payload. A camada fisica de seguida, coloca o seu proprio framming de modo a transmitir corretamente a outros radios e estes receberem corretamente, isto envolve alguma info do formato do payload (como tamanho, tipo de FEC usado, tipo de modulacao e parametros da modulacao). ------>>>>>A frame fisica adiciona uma word conhecida para ajudar na identificação e sincronzação.<<<<-------
+	A utilizacao do Packet Header Formatter block para isto. https://www.gnuradio.org/doc/doxygen/classgr_1_1digital_1_1header__format__base.html
+
+	-O Protoccol formatter(aync) tem 2 outputs: "Header" que emite o header criado para o payload baseado no formatter object. e o "Payload" que é o input re-emitted.  PErmitindo assim 2 caminhos para modulação diferenciada e codificação FEC diferenciada. (FEC mais robusto no header para garantir receção, e menos no payload para maximizar throughput) 
+
+	NOTA IMP: Se aplicarmos adicionarmos Access code no Header e aplicarmos o FEC ao header, então o AC é encoded tambem, temos que garantir que o reciver está à procura do AC corretamente. (NO packet_tx ao usar o repetition emcoder, o AC tem 3 bit por cada 1 que tinha, e o packet_rx tem que ter em conta isto no COrretaltion estimator  nessa word)
+
+	-Modular, podemos criar um modulador tanto para o header como para o payload. 
+
+	-Depois podemos juntar numa unica stream para o envio da mesma. (Com o bloco Tagged Stream Mux block)
+
+	-Burst Shapping and Filtering: shapes the packet for burst transmission, 2 blocos para que isto aconteca corretamente.
+	Manipula a estrutura do burst aplicando diferentes formas de padding. Primeiro existe uma janela que é aplicada ao dominio do tempo do burst. Isto involve ramping up stage de 0 e ramping down stage para 0. A window é definida como vetor e a fft.window define funcoes como seé Hann ou Kaiser. O tamanho da janela é dividido a meio, a parte da esquerda para ramp-up e a parte da direita para ramp-down. 
+	A janela tem 2 modos: Inserir/Não inserir phasing symbols. 
+		Quando se insere, uma sequencia de 1's e -1's são inseridos drante periodos ramp-up e ramp-down, assim uma janela com 20 de tamanho, irá produzir 10 1's e -1's alternativos á frente do burst e outros 10 simbolos alternativos atraz do burst. A window é aplicada aos simbolos de phase e não afeta os burst symbols diretamente.
+		Quando não usamos os phasing symbols, a janela é aplicada á frente e a traz do burst diretamente.
+	O Burst shapper pode, tambem adicionar 0's á frente e atraz do burst, permitindo mais controlo da estrutura do burst. em particular aidiconar post-padding 0's que é o comprimento do delay do pulse shapping filter que vem a seguir, isto garante que o burst completo das samples é empurrado para o filtro e transmitido completamente.
+	                  ____________________
+                     /                    \
+                    /                      \
+                   /                        \
+            ______/                          \____
+            |  E  | D |        C         | B | A |
+
+  	A: Pre-padding 0's
+  	B: Ramp-up window
+ 	C: Frame
+	D: Ramp-down window
+	E: Post-padding 0's
+
+
+	Quando usamos hasing symbols: C é a frame inteira e B e D são cheios de 1's e -1's.
+	Quando não usamos phase symbols a frame extende B atravez de C até D.
+
+	EXEMPLOS STOCK: burst_tagger.grc
+
+	Após isto colocamos o burst em pulse shapping filter. Este filtro modela complex samples em symbolos apropriados para transmissa baseado numa mascara espectral bem como up-samples do burst para o numero especificado de samples per second.   -->Polyphase Arbitrary Resampler, podemos assim especficar um valor de numero de SPS >=2. Um filtro tipico é o RRC (Root Raised Cosine) (TBM dá Gaussioan Filters).
+	Como este filtro up-sample, usamos o Tagged Stream Multiply Length Tag block. O resamples não sabe de nada sobre tagged streams, por isso quando up-samples, o "tag value" dp TSB(tagged stream block) não altera, por isso temos que ser nos a alterar-lo. Isto ajuda principalmente quando estamos a usar UHD's e explicitmaente dizemos ao UHD Sink para experar uma tagged stream para gerir a transmissão em burst.
+
+
+RECIVER:
+É bem mais complicado na medida em que é involvido todo um conjunto de mecanismos de detenção e sincronização das frames recebidas. Assumindo que os bursys são potenencialmente com intervalos de tempo random.
+
+É importante percbeer que é muito dificil fazer um simples protcolo funcional em todos os cenario, pois temos que assumir que os pacotes são perdidos ou porque não foi detetado o inicio ou pq de estatisticas de sincronização pobres durante o processo de burst.
+
+	O FFL Band-Edge funciona bem mas é desnecessário caso os radio estao sincronizados na frequencia de alguma maneira (Ex com o GPSDO nos USRPs)
+
+	Correlation estimator - O main flow das samples é detetar o frame com base na known word, que fronece tambem estimativas iniciais de timming e de phase offsets do recived frame. 
+
+	Polyfase clock sync - Processigoms para o Clock Sync block para executar um matched filtering e sample time correcion para produzir samples a 1 sample por simbolo. 
+
+	Header/Payload demux - Temos agora que dividir as samples em header/payload. Devemos ter informacao dentro do header que ajuda o reciver a perceber o pyload (por exemplo o tamanho do payload é normalmente codificado no header) 
+
+	Caminho do Header - Assumimos que conhecemos o tamanho dos simbolos do header, conhecendo a modulacao do header sincronizamos em fase e em frequencia, demodulamos os simbolos em soft bits, descodificamoes esses soft bits com um FEC code e depois fazemos parse da informacao. Este parser extrai a info sobre o payload como numero de simbolos do payload e possivelmente o numero de vits/simbolo usado na modulacao do payload.
+
+	Caminho do Payload - O HPD encia o numero de samples apropriadas para o caminho do payload, onde é executado sincronizacao de fase/frequencia a constelacao apropriada  utilizada no payload, decodes as samples em soft bits e executa FEC deconding, passando por CRC32 check. Caso passe, o payload é enviado para o hierblock comoum PDU com a physical layer stripped. 
+
+
+
+
+BOLOCO A BLOCO
+Correlation Estimator
+
+	Numa primeira fase o reciver procura pela known word que foi adicionada aos bursts do transmittor. A known word passou por 2 fases de processamento: Encoding(como FEC-opcional) e modulada pelo modulador do header. Por isso temos que recrear a modulacao e possivelmente a codificacao da known word. Assin sendo coficamos a knwon word e depois modulamos (incluindo o pulse shapping filter), isto atravez do bloco Modulate vector onde tem como input o vetor a modular (neste caso o preambulo já com FEC encoded) e o modulador (que é recriado com o rxmod onde tem como inputs os samples per symbol, pulse shape filter bandwith) e é dado o resultado da knwon word modulada (modulated_sync_word) ao estimator block.
+
+	Uma coisa complicadanas comunicacoes em burst e redes é que o power das samples recebidas é desconhecido e variavel no tempo. É preferivvel tentar a autodetecao do burst e escalar para +/-1 antes de ir ao packet_rx. Existe ainda muito trabalho a ser feito em AGC loops no hardware e scaling automatico em softwoare, o correlation estimator tenta tratar disto. Usamos um thresolh como uma probabilidade de aproximacao de detecao. Este valor deve ser definido como muito alto (defaul 99.9%)  
+
+	Outra coisa que faz para nos é dar informacao sofre digital scaling samples.Quando recebidos pelo hardware os sinais tendem a ser pequenos, no entanto muito processamento à frente assume +/- 1. O Correlation estimator descobre a ambplitude da sample que o pico de correlacao foi encontrado e inverte-o, enviando-o com a tag "amp_est", que a podemos utilizar para down stream para ajustar a amplitude by rescalling as samples apartir deste valor com o bloco "Multiply by tag value" que multiplica baseado na tag.
+
+	Finalmente, o main porpouse do Correlation estimator é providenciar o down-stream synchronization blocks com estimativas iniciais de offset de timmming e de fase. O pico de magnitude do evente de correlacao corresponde ao sampling time da data stream. 
+
+	2 cenario de correlcao:
+    1.   /\      2.   _
+        /  \         / \
+     __/    \__   __/   \__
+
+
+     No cenario 1 o timming é exato e a sample no puco da curva é o sample time apropriado do ultimo simbolo da known word. No cenario 2 existe um offset de timming onde o offset correto de tempo está a uma distacnia de 2 samples. Aqui o timminf offser de 0.5/-0.5 conhecendo onde o offset estimado está ajuda o nosso recover block a comecar perto da sample correta e depois seguir-la apartir daí.
+
+     A magnitude da correlacao ajuda-nos  descobrir o offset de tempo, a correlacao em si mesma é um vetor complexo. Por isso onde o pico de magnitude acontece podemos olhar par o valor complexo e a correlacao ao mesmo ponto e a diferenca entre a fase das partes reais do imaginarias é o offset de fase do nosso sinal.
+     Calcula assim o time e phase offset e e cria tags "time_est" e "phase_est". 
+     Tambem cria 2 tags "corr_start" e "corr_est", ambas contem o valor do pico da magnitude da correlacao pois existe um delay no algoritmo de correcao que é afetado pelo tamanho da correlcao, precisamos assim de ajustar onde o evento de correlacao ocorreu para onde as tags são realmente colodadas na output stream. O bloco coloca a tag "corr_start" na smaple onde a correlcacao realmente ocorreu. Depois coloca as outras 3 tags de offset em um "Tag marking delay" que é um valor calculado pelo utilizador para a colocação das tags no sitio correto da data stream onde foi o iniciio real do primeira known word symbol.
