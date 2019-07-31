@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Packet Loopback Hier
-# Generated: Mon Jul 29 09:38:54 2019
+# Generated: Mon Jul 29 10:10:39 2019
 ##################################################
 
 from distutils.version import StrictVersion
@@ -592,7 +592,7 @@ class packet_loopback_hier(gr.top_block, Qt.QWidget):
         self.packet_tx_0 = packet_tx(
             hdr_const=Const_HDR,
             hdr_format=hdr_format,
-            pkt_len=42,
+            pkt_len=100,
             pld_const=Const_PLD,
             psf_taps=tx_rrc_taps,
             puncpat='11',
@@ -603,7 +603,7 @@ class packet_loopback_hier(gr.top_block, Qt.QWidget):
             eb=eb,
             hdr_const=Const_HDR,
             hdr_format=hdr_format,
-            pkt_len=42,
+            pkt_len=100,
             pld_const=Const_PLD,
             psf_taps=rx_rrc_taps,
             puncpat='11',

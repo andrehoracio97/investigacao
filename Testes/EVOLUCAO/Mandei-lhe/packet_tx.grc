@@ -101,7 +101,7 @@
     </param>
     <param>
       <key>filename</key>
-      <value>/usr/share/gnuradio/fec/ldpc/n_1100_k_0442_gap_24.alist</value>
+      <value>/usr/local/share/gnuradio/fec/ldpc/n_1100_k_0442_gap_24.alist</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1297,7 +1297,7 @@ future and I need to Protocol formatter</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>2</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1639,7 +1639,7 @@ future and I need to Protocol formatter</value>
     </param>
     <param>
       <key>puncpat</key>
-      <value>'11'</value>
+      <value>puncpat</value>
     </param>
     <param>
       <key>threadtype</key>

@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Packet Loopback Hier
-# Generated: Mon Jul 29 09:38:54 2019
+# Generated: Thu Jul 25 14:35:01 2019
 ##################################################
 
 from distutils.version import StrictVersion
@@ -28,6 +28,7 @@ from gnuradio import blocks
 from gnuradio import channels
 from gnuradio import digital
 from gnuradio import eng_notation
+from gnuradio import fec
 from gnuradio import gr
 from gnuradio import qtgui
 from gnuradio.eng_option import eng_option
@@ -84,7 +85,7 @@ class packet_loopback_hier(gr.top_block, Qt.QWidget):
         self.time_offset = time_offset = 1.0
         self.samp_rate = samp_rate = 200000
 
-        self.rx_rrc_taps = rx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts*sps, 1.0, eb, 11*sps*nfilts)
+        self.rx_rrc_taps = rx_rrc_taps = firdes.root_raised_cosine(nfilts, sps*nfilts, 1.0, eb, 11*sps*nfilts)
 
         self.rep = rep = 3
         self.rate = rate = 2
@@ -93,6 +94,14 @@ class packet_loopback_hier(gr.top_block, Qt.QWidget):
         self.k = k = 7
         self.hdr_format = hdr_format = digital.header_format_counter(digital.packet_utils.default_access_code, 3, Const_PLD.bits_per_symbol())
         self.freq_offset = freq_offset = 0
+
+
+        self.enc = enc = fec.dummy_encoder_make(8000)
+
+
+
+        self.dec = dec = fec.dummy_decoder.make(8000)
+
         self.amp = amp = 1.0
 
         self.Const_HDR = Const_HDR = digital.constellation_calcdist((digital.psk_2()[0]), (digital.psk_2()[1]), 2, 1).base()
@@ -325,102 +334,6 @@ class packet_loopback_hier(gr.top_block, Qt.QWidget):
 
         self._qtgui_time_sink_x_1_win = sip.wrapinstance(self.qtgui_time_sink_x_1.pyqwidget(), Qt.QWidget)
         self.tab0_grid_layout_0.addWidget(self._qtgui_time_sink_x_1_win)
-        self.qtgui_time_sink_x_0_0 = qtgui.time_sink_f(
-        	100*2, #size
-        	samp_rate, #samp_rate
-        	'Tx Data', #name
-        	1 #number of inputs
-        )
-        self.qtgui_time_sink_x_0_0.set_update_time(0.10)
-        self.qtgui_time_sink_x_0_0.set_y_axis(-1, 256)
-
-        self.qtgui_time_sink_x_0_0.set_y_label('Amplitude', "")
-
-        self.qtgui_time_sink_x_0_0.enable_tags(-1, True)
-        self.qtgui_time_sink_x_0_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, qtgui.TRIG_SLOPE_POS, 0.0, 0, 0, 'packet_length_tag_key')
-        self.qtgui_time_sink_x_0_0.enable_autoscale(False)
-        self.qtgui_time_sink_x_0_0.enable_grid(True)
-        self.qtgui_time_sink_x_0_0.enable_axis_labels(True)
-        self.qtgui_time_sink_x_0_0.enable_control_panel(False)
-        self.qtgui_time_sink_x_0_0.enable_stem_plot(False)
-
-        if not True:
-          self.qtgui_time_sink_x_0_0.disable_legend()
-
-        labels = ['', '', '', '', '',
-                  '', '', '', '', '']
-        widths = [1, 1, 1, 1, 1,
-                  1, 1, 1, 1, 1]
-        colors = ["blue", "red", "green", "black", "cyan",
-                  "magenta", "yellow", "dark red", "dark green", "blue"]
-        styles = [1, 1, 1, 1, 1,
-                  1, 1, 1, 1, 1]
-        markers = [-1, -1, -1, -1, -1,
-                   -1, -1, -1, -1, -1]
-        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
-                  1.0, 1.0, 1.0, 1.0, 1.0]
-
-        for i in xrange(1):
-            if len(labels[i]) == 0:
-                self.qtgui_time_sink_x_0_0.set_line_label(i, "Data {0}".format(i))
-            else:
-                self.qtgui_time_sink_x_0_0.set_line_label(i, labels[i])
-            self.qtgui_time_sink_x_0_0.set_line_width(i, widths[i])
-            self.qtgui_time_sink_x_0_0.set_line_color(i, colors[i])
-            self.qtgui_time_sink_x_0_0.set_line_style(i, styles[i])
-            self.qtgui_time_sink_x_0_0.set_line_marker(i, markers[i])
-            self.qtgui_time_sink_x_0_0.set_line_alpha(i, alphas[i])
-
-        self._qtgui_time_sink_x_0_0_win = sip.wrapinstance(self.qtgui_time_sink_x_0_0.pyqwidget(), Qt.QWidget)
-        self.top_grid_layout.addWidget(self._qtgui_time_sink_x_0_0_win)
-        self.qtgui_time_sink_x_0 = qtgui.time_sink_f(
-        	100*2, #size
-        	samp_rate, #samp_rate
-        	'Rx Data', #name
-        	1 #number of inputs
-        )
-        self.qtgui_time_sink_x_0.set_update_time(0.10)
-        self.qtgui_time_sink_x_0.set_y_axis(-1, 256)
-
-        self.qtgui_time_sink_x_0.set_y_label('Amplitude', "")
-
-        self.qtgui_time_sink_x_0.enable_tags(-1, True)
-        self.qtgui_time_sink_x_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, qtgui.TRIG_SLOPE_POS, 0.0, 0, 0, 'packet_length_tag_key')
-        self.qtgui_time_sink_x_0.enable_autoscale(True)
-        self.qtgui_time_sink_x_0.enable_grid(True)
-        self.qtgui_time_sink_x_0.enable_axis_labels(True)
-        self.qtgui_time_sink_x_0.enable_control_panel(False)
-        self.qtgui_time_sink_x_0.enable_stem_plot(False)
-
-        if not True:
-          self.qtgui_time_sink_x_0.disable_legend()
-
-        labels = ['', '', '', '', '',
-                  '', '', '', '', '']
-        widths = [1, 1, 1, 1, 1,
-                  1, 1, 1, 1, 1]
-        colors = ["blue", "red", "green", "black", "cyan",
-                  "magenta", "yellow", "dark red", "dark green", "blue"]
-        styles = [1, 1, 1, 1, 1,
-                  1, 1, 1, 1, 1]
-        markers = [-1, -1, -1, -1, -1,
-                   -1, -1, -1, -1, -1]
-        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
-                  1.0, 1.0, 1.0, 1.0, 1.0]
-
-        for i in xrange(1):
-            if len(labels[i]) == 0:
-                self.qtgui_time_sink_x_0.set_line_label(i, "Data {0}".format(i))
-            else:
-                self.qtgui_time_sink_x_0.set_line_label(i, labels[i])
-            self.qtgui_time_sink_x_0.set_line_width(i, widths[i])
-            self.qtgui_time_sink_x_0.set_line_color(i, colors[i])
-            self.qtgui_time_sink_x_0.set_line_style(i, styles[i])
-            self.qtgui_time_sink_x_0.set_line_marker(i, markers[i])
-            self.qtgui_time_sink_x_0.set_line_alpha(i, alphas[i])
-
-        self._qtgui_time_sink_x_0_win = sip.wrapinstance(self.qtgui_time_sink_x_0.pyqwidget(), Qt.QWidget)
-        self.top_grid_layout.addWidget(self._qtgui_time_sink_x_0_win)
         self.qtgui_freq_sink_x_0_0 = qtgui.freq_sink_c(
         	1024, #size
         	firdes.WIN_BLACKMAN_hARRIS, #wintype
@@ -592,8 +505,8 @@ class packet_loopback_hier(gr.top_block, Qt.QWidget):
         self.packet_tx_0 = packet_tx(
             hdr_const=Const_HDR,
             hdr_format=hdr_format,
-            pkt_len=42,
             pld_const=Const_PLD,
+            pld_enc= fec.dummy_encoder_make(8000),
             psf_taps=tx_rrc_taps,
             puncpat='11',
             samp_rate=samp_rate,
@@ -603,7 +516,6 @@ class packet_loopback_hier(gr.top_block, Qt.QWidget):
             eb=eb,
             hdr_const=Const_HDR,
             hdr_format=hdr_format,
-            pkt_len=42,
             pld_const=Const_PLD,
             psf_taps=rx_rrc_taps,
             puncpat='11',
@@ -614,39 +526,36 @@ class packet_loopback_hier(gr.top_block, Qt.QWidget):
         	noise_voltage=noise,
         	frequency_offset=freq_offset,
         	epsilon=time_offset,
-        	taps=(1.0 + 1.0j, ),
+        	taps=(1.0, ),
         	noise_seed=0,
         	block_tags=True
         )
         self.blocks_throttle_0_0 = blocks.throttle(gr.sizeof_gr_complex*1, samp_rate,True)
+        self.blocks_throttle_0 = blocks.throttle(gr.sizeof_char*1, samp_rate,True)
+        self.blocks_tag_debug_0 = blocks.tag_debug(gr.sizeof_gr_complex*1, 'AFTER PKT RX', ""); self.blocks_tag_debug_0.set_display(True)
         self.blocks_multiply_const_vxx_0 = blocks.multiply_const_vcc((amp, ))
-        self.blocks_file_source_0_0_1 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Desktop/book.txt', False)
-        self.blocks_file_source_0_0_1.set_begin_tag(pmt.PMT_NIL)
+        self.blocks_file_source_0_0 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Desktop/trasmit_1_mb.txt', False)
+        self.blocks_file_source_0_0.set_begin_tag(pmt.PMT_NIL)
         self.blocks_file_sink_0_0_0 = blocks.file_sink(gr.sizeof_char*1, '/home/andre/Desktop/transmitido/depois.txt', False)
         self.blocks_file_sink_0_0_0.set_unbuffered(False)
-        self.blocks_char_to_float_1_0_0 = blocks.char_to_float(1, 1)
-        self.blocks_char_to_float_1_0 = blocks.char_to_float(1, 1)
 
 
 
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.blocks_char_to_float_1_0, 0), (self.qtgui_time_sink_x_0, 0))
-        self.connect((self.blocks_char_to_float_1_0_0, 0), (self.qtgui_time_sink_x_0_0, 0))
-        self.connect((self.blocks_file_source_0_0_1, 0), (self.blocks_char_to_float_1_0_0, 0))
-        self.connect((self.blocks_file_source_0_0_1, 0), (self.packet_tx_0, 0))
+        self.connect((self.blocks_file_source_0_0, 0), (self.blocks_throttle_0, 0))
         self.connect((self.blocks_multiply_const_vxx_0, 0), (self.packet_rx_0, 0))
+        self.connect((self.blocks_throttle_0, 0), (self.packet_tx_0, 0))
         self.connect((self.blocks_throttle_0_0, 0), (self.blocks_multiply_const_vxx_0, 0))
         self.connect((self.channels_channel_model_0, 0), (self.blocks_throttle_0_0, 0))
         self.connect((self.channels_channel_model_0, 0), (self.qtgui_const_sink_x_0, 0))
         self.connect((self.channels_channel_model_0, 0), (self.qtgui_freq_sink_x_0, 0))
         self.connect((self.channels_channel_model_0, 0), (self.qtgui_time_sink_x_1, 0))
-        self.connect((self.packet_rx_0, 0), (self.blocks_char_to_float_1_0, 0))
         self.connect((self.packet_rx_0, 0), (self.blocks_file_sink_0_0_0, 0))
+        self.connect((self.packet_rx_0, 1), (self.blocks_tag_debug_0, 0))
         self.connect((self.packet_rx_0, 1), (self.qtgui_const_sink_x_0_0_0, 0))
         self.connect((self.packet_rx_0, 1), (self.qtgui_freq_sink_x_0_0, 0))
-        self.connect((self.packet_rx_0, 1), (self.qtgui_time_sink_x_1_0_0_0, 0))
         self.connect((self.packet_rx_0, 1), (self.qtgui_time_sink_x_1_0_0_1, 0))
         self.connect((self.packet_tx_0, 0), (self.channels_channel_model_0, 0))
 
@@ -703,11 +612,10 @@ class packet_loopback_hier(gr.top_block, Qt.QWidget):
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
-        self.qtgui_time_sink_x_0_0.set_samp_rate(self.samp_rate)
-        self.qtgui_time_sink_x_0.set_samp_rate(self.samp_rate)
         self.packet_tx_0.set_samp_rate(self.samp_rate)
         self.packet_rx_0.set_samp_rate(self.samp_rate)
         self.blocks_throttle_0_0.set_sample_rate(self.samp_rate)
+        self.blocks_throttle_0.set_sample_rate(self.samp_rate)
 
     def get_rx_rrc_taps(self):
         return self.rx_rrc_taps
@@ -761,6 +669,18 @@ class packet_loopback_hier(gr.top_block, Qt.QWidget):
     def set_freq_offset(self, freq_offset):
         self.freq_offset = freq_offset
         self.channels_channel_model_0.set_frequency_offset(self.freq_offset)
+
+    def get_enc(self):
+        return self.enc
+
+    def set_enc(self, enc):
+        self.enc = enc
+
+    def get_dec(self):
+        return self.dec
+
+    def set_dec(self, dec):
+        self.dec = dec
 
     def get_amp(self):
         return self.amp

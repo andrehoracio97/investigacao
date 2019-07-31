@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Packet Loopback Hier
-# Generated: Mon Jul 29 09:38:54 2019
+# Generated: Mon Jul 29 10:07:58 2019
 ##################################################
 
 from distutils.version import StrictVersion
@@ -592,7 +592,7 @@ class packet_loopback_hier(gr.top_block, Qt.QWidget):
         self.packet_tx_0 = packet_tx(
             hdr_const=Const_HDR,
             hdr_format=hdr_format,
-            pkt_len=42,
+            pkt_len=100,
             pld_const=Const_PLD,
             psf_taps=tx_rrc_taps,
             puncpat='11',
@@ -603,7 +603,7 @@ class packet_loopback_hier(gr.top_block, Qt.QWidget):
             eb=eb,
             hdr_const=Const_HDR,
             hdr_format=hdr_format,
-            pkt_len=42,
+            pkt_len=100,
             pld_const=Const_PLD,
             psf_taps=rx_rrc_taps,
             puncpat='11',
@@ -620,8 +620,8 @@ class packet_loopback_hier(gr.top_block, Qt.QWidget):
         )
         self.blocks_throttle_0_0 = blocks.throttle(gr.sizeof_gr_complex*1, samp_rate,True)
         self.blocks_multiply_const_vxx_0 = blocks.multiply_const_vcc((amp, ))
-        self.blocks_file_source_0_0_1 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Desktop/book.txt', False)
-        self.blocks_file_source_0_0_1.set_begin_tag(pmt.PMT_NIL)
+        self.blocks_file_source_0_0 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Desktop/trasmit_1_mb_2.txt', False)
+        self.blocks_file_source_0_0.set_begin_tag(pmt.PMT_NIL)
         self.blocks_file_sink_0_0_0 = blocks.file_sink(gr.sizeof_char*1, '/home/andre/Desktop/transmitido/depois.txt', False)
         self.blocks_file_sink_0_0_0.set_unbuffered(False)
         self.blocks_char_to_float_1_0_0 = blocks.char_to_float(1, 1)
@@ -634,8 +634,8 @@ class packet_loopback_hier(gr.top_block, Qt.QWidget):
         ##################################################
         self.connect((self.blocks_char_to_float_1_0, 0), (self.qtgui_time_sink_x_0, 0))
         self.connect((self.blocks_char_to_float_1_0_0, 0), (self.qtgui_time_sink_x_0_0, 0))
-        self.connect((self.blocks_file_source_0_0_1, 0), (self.blocks_char_to_float_1_0_0, 0))
-        self.connect((self.blocks_file_source_0_0_1, 0), (self.packet_tx_0, 0))
+        self.connect((self.blocks_file_source_0_0, 0), (self.blocks_char_to_float_1_0_0, 0))
+        self.connect((self.blocks_file_source_0_0, 0), (self.packet_tx_0, 0))
         self.connect((self.blocks_multiply_const_vxx_0, 0), (self.packet_rx_0, 0))
         self.connect((self.blocks_throttle_0_0, 0), (self.blocks_multiply_const_vxx_0, 0))
         self.connect((self.channels_channel_model_0, 0), (self.blocks_throttle_0_0, 0))

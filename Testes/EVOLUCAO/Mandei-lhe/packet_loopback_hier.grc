@@ -113,7 +113,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(240, 11)</value>
+      <value>(248, 12)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -215,7 +215,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(400, 11)</value>
+      <value>(432, 12)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -258,7 +258,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(64, 620)</value>
+      <value>(16, 620)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -952,7 +952,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(872, 284)</value>
+      <value>(872, 292)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -1158,7 +1158,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(768, 284)</value>
+      <value>(768, 292)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -1407,7 +1407,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>200000</value>
+      <value>300000</value>
     </param>
   </block>
   <block>
@@ -1453,7 +1453,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(984, 284)</value>
+      <value>(984, 292)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -1563,7 +1563,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(504, 588)</value>
+      <value>(576, 700)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1610,7 +1610,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(256, 268)</value>
+      <value>(224, 252)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1818,7 +1818,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(48, 244)</value>
+      <value>(16, 244)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1877,7 +1877,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(48, 180)</value>
+      <value>(16, 180)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1936,7 +1936,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(40, 316)</value>
+      <value>(16, 316)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1995,7 +1995,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(40, 388)</value>
+      <value>(16, 388)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2054,7 +2054,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(40, 140)</value>
+      <value>(16, 140)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2109,7 +2109,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(64, 572)</value>
+      <value>(24, 572)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2160,7 +2160,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(328, 668)</value>
+      <value>(312, 668)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2352,7 +2352,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>rolloff</key>
@@ -2466,7 +2466,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(232, 424)</value>
+      <value>(232, 440)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2474,7 +2474,7 @@
     </param>
     <param>
       <key>hdr_format</key>
-      <value>hdr_format</value>
+      <value>digital.header_format_default(digital.packet_utils.default_access_code, 0)</value>
     </param>
     <param>
       <key>hdr_const</key>
@@ -2537,7 +2537,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(424, 180)</value>
+      <value>(560, 180)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2545,7 +2545,7 @@
     </param>
     <param>
       <key>hdr_format</key>
-      <value>hdr_format</value>
+      <value>digital.header_format_default(digital.packet_utils.default_access_code, 0)</value>
     </param>
     <param>
       <key>hdr_const</key>
@@ -2963,7 +2963,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(560, 708)</value>
+      <value>(504, 804)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -3629,7 +3629,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(560, 772)</value>
+      <value>(504, 868)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -3916,7 +3916,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(600, 604)</value>
+      <value>(728, 676)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -4283,7 +4283,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(264, 316)</value>
+      <value>(368, 300)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -5017,7 +5017,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(560, 932)</value>
+      <value>(504, 1028)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -5384,7 +5384,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(560, 852)</value>
+      <value>(504, 948)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -6035,12 +6035,6 @@
   <connection>
     <source_block_id>blocks_multiply_const_vxx_0</source_block_id>
     <sink_block_id>digital_fll_band_edge_cc_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_multiply_const_vxx_0</source_block_id>
-    <sink_block_id>packet_rx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

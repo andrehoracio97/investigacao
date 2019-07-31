@@ -3,10 +3,8 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Packet Loopback Hier
-# Generated: Mon Jul 29 09:38:54 2019
+# GNU Radio version: 3.7.13.5
 ##################################################
-
-from distutils.version import StrictVersion
 
 if __name__ == '__main__':
     import ctypes
@@ -22,8 +20,7 @@ import os
 import sys
 sys.path.append(os.environ.get('GRC_HIER_PATH', os.path.expanduser('~/.grc_gnuradio')))
 
-from PyQt5 import Qt
-from PyQt5 import Qt, QtCore
+from PyQt4 import Qt
 from gnuradio import blocks
 from gnuradio import channels
 from gnuradio import digital
@@ -65,7 +62,7 @@ class packet_loopback_hier(gr.top_block, Qt.QWidget):
         self.top_layout.addLayout(self.top_grid_layout)
 
         self.settings = Qt.QSettings("GNU Radio", "packet_loopback_hier")
-        self.restoreGeometry(self.settings.value("geometry", type=QtCore.QByteArray))
+        self.restoreGeometry(self.settings.value("geometry").toByteArray())
 
 
         ##################################################
@@ -82,7 +79,7 @@ class packet_loopback_hier(gr.top_block, Qt.QWidget):
         self.tx_rrc_taps = tx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts, 1.0, eb, 5*sps*nfilts)
 
         self.time_offset = time_offset = 1.0
-        self.samp_rate = samp_rate = 200000
+        self.samp_rate = samp_rate = 300000
 
         self.rx_rrc_taps = rx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts*sps, 1.0, eb, 11*sps*nfilts)
 
@@ -591,7 +588,7 @@ class packet_loopback_hier(gr.top_block, Qt.QWidget):
         self.tab0_grid_layout_2.addWidget(self._qtgui_const_sink_x_0_win)
         self.packet_tx_0 = packet_tx(
             hdr_const=Const_HDR,
-            hdr_format=hdr_format,
+            hdr_format=digital.header_format_default(digital.packet_utils.default_access_code, 0),
             pkt_len=42,
             pld_const=Const_PLD,
             psf_taps=tx_rrc_taps,
@@ -602,7 +599,7 @@ class packet_loopback_hier(gr.top_block, Qt.QWidget):
         self.packet_rx_0 = packet_rx(
             eb=eb,
             hdr_const=Const_HDR,
-            hdr_format=hdr_format,
+            hdr_format=digital.header_format_default(digital.packet_utils.default_access_code, 0),
             pkt_len=42,
             pld_const=Const_PLD,
             psf_taps=rx_rrc_taps,
@@ -610,6 +607,7 @@ class packet_loopback_hier(gr.top_block, Qt.QWidget):
             samp_rate=samp_rate,
             sps=sps,
         )
+        self.digital_fll_band_edge_cc_0 = digital.fll_band_edge_cc(sps, eb, 44, 0.05)
         self.channels_channel_model_0 = channels.channel_model(
         	noise_voltage=noise,
         	frequency_offset=freq_offset,
@@ -636,12 +634,13 @@ class packet_loopback_hier(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_char_to_float_1_0_0, 0), (self.qtgui_time_sink_x_0_0, 0))
         self.connect((self.blocks_file_source_0_0_1, 0), (self.blocks_char_to_float_1_0_0, 0))
         self.connect((self.blocks_file_source_0_0_1, 0), (self.packet_tx_0, 0))
-        self.connect((self.blocks_multiply_const_vxx_0, 0), (self.packet_rx_0, 0))
+        self.connect((self.blocks_multiply_const_vxx_0, 0), (self.digital_fll_band_edge_cc_0, 0))
         self.connect((self.blocks_throttle_0_0, 0), (self.blocks_multiply_const_vxx_0, 0))
         self.connect((self.channels_channel_model_0, 0), (self.blocks_throttle_0_0, 0))
         self.connect((self.channels_channel_model_0, 0), (self.qtgui_const_sink_x_0, 0))
         self.connect((self.channels_channel_model_0, 0), (self.qtgui_freq_sink_x_0, 0))
         self.connect((self.channels_channel_model_0, 0), (self.qtgui_time_sink_x_1, 0))
+        self.connect((self.digital_fll_band_edge_cc_0, 0), (self.packet_rx_0, 0))
         self.connect((self.packet_rx_0, 0), (self.blocks_char_to_float_1_0, 0))
         self.connect((self.packet_rx_0, 0), (self.blocks_file_sink_0_0_0, 0))
         self.connect((self.packet_rx_0, 1), (self.qtgui_const_sink_x_0_0_0, 0))
@@ -752,8 +751,6 @@ class packet_loopback_hier(gr.top_block, Qt.QWidget):
 
     def set_hdr_format(self, hdr_format):
         self.hdr_format = hdr_format
-        self.packet_tx_0.set_hdr_format(self.hdr_format)
-        self.packet_rx_0.set_hdr_format(self.hdr_format)
 
     def get_freq_offset(self):
         return self.freq_offset
@@ -780,6 +777,10 @@ class packet_loopback_hier(gr.top_block, Qt.QWidget):
 
 def main(top_block_cls=packet_loopback_hier, options=None):
 
+    from distutils.version import StrictVersion
+    if StrictVersion(Qt.qVersion()) >= StrictVersion("4.5.0"):
+        style = gr.prefs().get_string('qtgui', 'style', 'raster')
+        Qt.QApplication.setGraphicsSystem(style)
     qapp = Qt.QApplication(sys.argv)
 
     tb = top_block_cls()
@@ -789,7 +790,7 @@ def main(top_block_cls=packet_loopback_hier, options=None):
     def quitting():
         tb.stop()
         tb.wait()
-    qapp.aboutToQuit.connect(quitting)
+    qapp.connect(qapp, Qt.SIGNAL("aboutToQuit()"), quitting)
     qapp.exec_()
 
 

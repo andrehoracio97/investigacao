@@ -2494,7 +2494,7 @@
     </param>
     <param>
       <key>pkt_len</key>
-      <value>42</value>
+      <value>100</value>
     </param>
     <param>
       <key>pld_const</key>
@@ -2565,7 +2565,7 @@
     </param>
     <param>
       <key>pkt_len</key>
-      <value>42</value>
+      <value>100</value>
     </param>
     <param>
       <key>pld_const</key>

@@ -92,3 +92,75 @@ Correlation Estimator
      A magnitude da correlacao ajuda-nos  descobrir o offset de tempo, a correlacao em si mesma é um vetor complexo. Por isso onde o pico de magnitude acontece podemos olhar par o valor complexo e a correlacao ao mesmo ponto e a diferenca entre a fase das partes reais do imaginarias é o offset de fase do nosso sinal.
      Calcula assim o time e phase offset e e cria tags "time_est" e "phase_est". 
      Tambem cria 2 tags "corr_start" e "corr_est", ambas contem o valor do pico da magnitude da correlacao pois existe um delay no algoritmo de correcao que é afetado pelo tamanho da correlcao, precisamos assim de ajustar onde o evento de correlacao ocorreu para onde as tags são realmente colodadas na output stream. O bloco coloca a tag "corr_start" na smaple onde a correlcacao realmente ocorreu. Depois coloca as outras 3 tags de offset em um "Tag marking delay" que é um valor calculado pelo utilizador para a colocação das tags no sitio correto da data stream onde foi o iniciio real do primeira known word symbol.
+
+
+
+
+
+
+
+
+
+=========================================OUTROS SOBRE FEC===========================
+https://www.gnuradio.org/doc/doxygen/page_fec.html
+
+Tagged Stream Deployments
+
+	GNU Radio's gr-fec also comes with simple deployments for Tagged Stream Blocks blocks. These deployments work similarly to the normal streaming deployments but fit into a tagged stream system by setting a tagged stream tag to control the frame size. Like all tagged stream blocks, they expect the tag to be located in the stream in order to properly function.
+
+	The simplest form of the tagged stream deployments are just the C++ blocks gr::fec::tagged_encoder and gr::fec::tagged_decoder. These do not handle any input or output conversion. They expect the inputs to be already properly formatted for the encoding/decoding variables, and the outputs will be whatever the variable naturally produce.
+
+	In the tagged stream deployments, the frame size set for a variable is no longer the static frame size like we expected in the streaming data implementations. Instead, we look at the frame size of the encoder/decoder variable during construction of the deployment as the maximum frame size, or a maximum transmission unit (MTU). This allows us to set up some internal memory to handle up to the required maximum length. When a tagged stream comes into this block, the frame size is then set based on that tagged stream information. If the frame is larger than the established MTU, a warning is sent out and the deployment only handles up to the MTU of the given frame.
+
+	The extended Python tagged deployments, fec.extended_tagged_encoder and fec.extended_tagged_decoder, offer additional handling of the FEC API like we saw with the fec.extended_encoder and fec.extended_decoder. These extended deployments wrap up the puncturing and depuncturing as well as use the FEC API to do any input and output translation for the formatting of data streams. The fec.extended_tagged_encoder expects unpacked bits in and produces unpacked bits out. The fec.extended_tagged_decoder takes in floats (generally soft decisions from -1 to 1) and produces unpacked bits.
+
+	See fec/fecapi_tagged_encoders.grc and fec/fecapi_tagged_decoders.grc in the installed examples for an example of how to work with these deployments given the three initial FEC coders available.
+
+
+
+Convolutional Code Decoding class.
+
+	This class performs convolutional decoding via the Viterbi algorithm. While it is set up to take variable values for K, rate, and the polynomials, currently, the block is only capable of handling the following settings:
+
+	    K = 7
+	    rate = 1/2 (given as 2 to the constructor)
+	    polynomials = [109, 79]
+
+	This is the well-known convolutional part of the Voyager code implemented in the CCSDS encoder.
+
+	The intent of having this FECAPI code classes fully parameterizable is to eventually allow it to take on generic settings, much like the cc_encoder class where the CCSDS settings would be a highly-optimized version of this.
+
+	The decoder is set up with a number of bits per frame in the constructor. When not being used in a tagged stream mode, this encoder will only process frames of the length provided here. If used in a tagged stream block, this setting becomes the maximum allowable frame size that the block may process.
+
+	The mode is a cc_mode_t that specifies how the convolutional encoder will behave and under what conditions.
+
+	    'CC_STREAMING': mode expects an uninterrupted flow of samples into the encoder, and the output stream is continually encoded. This mode is the only mode for this decoder that has a history requirement because it requires rate*(K-1) bits more to finish the decoding properly. This mode does not work with any deployments that do not allow history.
+
+	    'CC_TERMINATED': is a mode designed for packet-based systems. This mode adds rate*(k-1) bits to the output as a way to help flush the decoder.
+
+	    'CC_TAILBITING': is another packet-based method. Instead of adding bits onto the end of the packet, this mode will continue the code between the payloads of packets by pre-initializing the state of the new packet based on the state of the last packet for (k-1) bits.
+
+	    'CC_TRUNCATED': a truncated code always resets the registers to the start_state between frames.
+
+
+
+
+Parallelism
+	The code variables in GNU Radio Companion have the ability to create multiple encoder/decoder variables by selecting the level of parallelism. It is up the encoder to understand how to handle the parallelism. The following discussion explains the difference between the two levels and how and when to use. Generally, normal applications will just use a single level of parallelism.
+
+	The GRC variable declarations for the different coders has a setting for Parallelism, which can be either 1 or 2. If set to 1, then the resulting variable is a list of coder blocks with the same settings. If set to 2, then the resulting variable is a list of lists of coder blocks. The code that accepts these variables must understand how to handle the parallelism. Most applications would set this to 1.
+
+	The standard fec.extended_encoder ("FEC Extended Encoder" in GRC) and fec.extended_decoder ("FEC Extended Decoder" in GRC) can handle a Parallelism of 1. They accept a list of coder variables as defined by Dimension 1 and can multithread the application based on the "Threading Type" setting:
+
+	    None: does no parallel threading of the coders. Even if Dimension 1 is > 1, the encoder/decoder will ignore this setting and only use the first object in the list.
+
+	    Ordinary: all "Dimension 1" number (N) of encoder/decoder blocks will be used in parallel. The hier_block2 will block deinterleave the packets into N streams (using gr::blocks::deinterleave with a value of blocksize as the frame length and no relative rate changes) and pass these to each of the N coders to process the frames in parallel. The output of each coder is then interleaved back together to make a single output stream.
+
+	    Capillary: all "Dimension 1" number (N) of encoder/decoder blocks will be used in parallel, much like in the Ordinary mode. In this mode, however, the frames get split up in a tree-like fashion, where each branch launches 2 more branches. This means that N must be a factor of 2 for this mode to work. It tends to handle the load of the encoders/decoders better than the Ordinary mode.
+
+	Note that the threading modes only work when using constant-length frames. If using the coders in tagged stream mode where the frame lengths may change, the Ordinary and Capillary modes are not available.
+
+	The GRC example "ber_curve_gen.grc" uses a Parallelism of 2. This creates a list of lists of coders. The first dimension of the list corresponds to the number of Es/N0 values being used in the BER simulation. This allows the application to process all values of Es/N0 simultaneously. Dimension 2 in this case allows the same concept of parallelism discussed above with the None, Ordinary, and Capillary models of threading
+
+
+

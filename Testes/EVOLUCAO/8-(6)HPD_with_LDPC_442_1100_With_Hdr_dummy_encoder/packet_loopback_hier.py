@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Packet Loopback Hier
-# Generated: Mon Jul 29 09:38:54 2019
+# Generated: Mon Jul 29 15:10:51 2019
 ##################################################
 
 from distutils.version import StrictVersion
@@ -75,10 +75,6 @@ class packet_loopback_hier(gr.top_block, Qt.QWidget):
         self.nfilts = nfilts = 32
         self.eb = eb = 0.22
 
-        self.Const_PLD = Const_PLD = digital.constellation_calcdist((digital.psk_2()[0]), (digital.psk_2()[1]), 2, 1).base()
-
-        self.Const_PLD.gen_soft_dec_lut(8)
-
         self.tx_rrc_taps = tx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts, 1.0, eb, 5*sps*nfilts)
 
         self.time_offset = time_offset = 1.0
@@ -91,9 +87,12 @@ class packet_loopback_hier(gr.top_block, Qt.QWidget):
         self.polys = polys = [109, 79]
         self.noise = noise = 0.0
         self.k = k = 7
-        self.hdr_format = hdr_format = digital.header_format_counter(digital.packet_utils.default_access_code, 3, Const_PLD.bits_per_symbol())
         self.freq_offset = freq_offset = 0
         self.amp = amp = 1.0
+
+        self.Const_PLD = Const_PLD = digital.constellation_calcdist((digital.psk_2()[0]), (digital.psk_2()[1]), 2, 1).base()
+
+        self.Const_PLD.gen_soft_dec_lut(8)
 
         self.Const_HDR = Const_HDR = digital.constellation_calcdist((digital.psk_2()[0]), (digital.psk_2()[1]), 2, 1).base()
 
@@ -591,7 +590,6 @@ class packet_loopback_hier(gr.top_block, Qt.QWidget):
         self.tab0_grid_layout_2.addWidget(self._qtgui_const_sink_x_0_win)
         self.packet_tx_0 = packet_tx(
             hdr_const=Const_HDR,
-            hdr_format=hdr_format,
             pkt_len=42,
             pld_const=Const_PLD,
             psf_taps=tx_rrc_taps,
@@ -602,7 +600,6 @@ class packet_loopback_hier(gr.top_block, Qt.QWidget):
         self.packet_rx_0 = packet_rx(
             eb=eb,
             hdr_const=Const_HDR,
-            hdr_format=hdr_format,
             pkt_len=42,
             pld_const=Const_PLD,
             psf_taps=rx_rrc_taps,
@@ -676,14 +673,6 @@ class packet_loopback_hier(gr.top_block, Qt.QWidget):
         self.eb = eb
         self.packet_rx_0.set_eb(self.eb)
 
-    def get_Const_PLD(self):
-        return self.Const_PLD
-
-    def set_Const_PLD(self, Const_PLD):
-        self.Const_PLD = Const_PLD
-        self.packet_tx_0.set_pld_const(self.Const_PLD)
-        self.packet_rx_0.set_pld_const(self.Const_PLD)
-
     def get_tx_rrc_taps(self):
         return self.tx_rrc_taps
 
@@ -747,14 +736,6 @@ class packet_loopback_hier(gr.top_block, Qt.QWidget):
     def set_k(self, k):
         self.k = k
 
-    def get_hdr_format(self):
-        return self.hdr_format
-
-    def set_hdr_format(self, hdr_format):
-        self.hdr_format = hdr_format
-        self.packet_tx_0.set_hdr_format(self.hdr_format)
-        self.packet_rx_0.set_hdr_format(self.hdr_format)
-
     def get_freq_offset(self):
         return self.freq_offset
 
@@ -768,6 +749,14 @@ class packet_loopback_hier(gr.top_block, Qt.QWidget):
     def set_amp(self, amp):
         self.amp = amp
         self.blocks_multiply_const_vxx_0.set_k((self.amp, ))
+
+    def get_Const_PLD(self):
+        return self.Const_PLD
+
+    def set_Const_PLD(self, Const_PLD):
+        self.Const_PLD = Const_PLD
+        self.packet_tx_0.set_pld_const(self.Const_PLD)
+        self.packet_rx_0.set_pld_const(self.Const_PLD)
 
     def get_Const_HDR(self):
         return self.Const_HDR

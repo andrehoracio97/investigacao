@@ -152,6 +152,72 @@
     </param>
   </block>
   <block>
+    <key>variable_dummy_encoder_def</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>dim1</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>dim2</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>framebits</key>
+      <value>hdr_format.header_nbits()</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1464, 780)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>hdr_enc</value>
+    </param>
+    <param>
+      <key>ndim</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(920, 92)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>hdr_format</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>digital.header_format_counter(digital.packet_utils.default_access_code, 3, pld_const.bits_per_symbol())</value>
+    </param>
+  </block>
+  <block>
     <key>variable</key>
     <param>
       <key>comment</key>
@@ -675,7 +741,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>2</value>
+      <value>1</value>
     </param>
     <param>
       <key>endianness</key>
@@ -695,7 +761,7 @@
     </param>
     <param>
       <key>len_tag_key</key>
-      <value></value>
+      <value>packet_len</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -707,7 +773,7 @@
     </param>
     <param>
       <key>align_output</key>
-      <value>True</value>
+      <value>False</value>
     </param>
   </block>
   <block>
@@ -734,7 +800,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>2</value>
+      <value>1</value>
     </param>
     <param>
       <key>endianness</key>
@@ -754,7 +820,7 @@
     </param>
     <param>
       <key>len_tag_key</key>
-      <value></value>
+      <value>packet_len</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -1584,7 +1650,7 @@ future and I need to Protocol formatter</value>
     </param>
     <param>
       <key>len_tag_key</key>
-      <value>"packet_len"</value>
+      <value>packet_len</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -1662,7 +1728,7 @@ future and I need to Protocol formatter</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>2</value>
+      <value>1</value>
     </param>
     <param>
       <key>encoder_list</key>
@@ -1803,7 +1869,7 @@ future and I need to Protocol formatter</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>

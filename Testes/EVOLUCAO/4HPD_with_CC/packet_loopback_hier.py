@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Packet Loopback Hier
-# Generated: Mon Jul 29 09:38:54 2019
+# Generated: Mon Jul 29 10:19:06 2019
 ##################################################
 
 from distutils.version import StrictVersion
@@ -89,6 +89,7 @@ class packet_loopback_hier(gr.top_block, Qt.QWidget):
         self.rep = rep = 3
         self.rate = rate = 2
         self.polys = polys = [109, 79]
+        self.pkt_len = pkt_len = 100
         self.noise = noise = 0.0
         self.k = k = 7
         self.hdr_format = hdr_format = digital.header_format_counter(digital.packet_utils.default_access_code, 3, Const_PLD.bits_per_symbol())
@@ -326,7 +327,7 @@ class packet_loopback_hier(gr.top_block, Qt.QWidget):
         self._qtgui_time_sink_x_1_win = sip.wrapinstance(self.qtgui_time_sink_x_1.pyqwidget(), Qt.QWidget)
         self.tab0_grid_layout_0.addWidget(self._qtgui_time_sink_x_1_win)
         self.qtgui_time_sink_x_0_0 = qtgui.time_sink_f(
-        	100*2, #size
+        	pkt_len*2, #size
         	samp_rate, #samp_rate
         	'Tx Data', #name
         	1 #number of inputs
@@ -374,7 +375,7 @@ class packet_loopback_hier(gr.top_block, Qt.QWidget):
         self._qtgui_time_sink_x_0_0_win = sip.wrapinstance(self.qtgui_time_sink_x_0_0.pyqwidget(), Qt.QWidget)
         self.top_grid_layout.addWidget(self._qtgui_time_sink_x_0_0_win)
         self.qtgui_time_sink_x_0 = qtgui.time_sink_f(
-        	100*2, #size
+        	pkt_len*2, #size
         	samp_rate, #samp_rate
         	'Rx Data', #name
         	1 #number of inputs
@@ -592,7 +593,7 @@ class packet_loopback_hier(gr.top_block, Qt.QWidget):
         self.packet_tx_0 = packet_tx(
             hdr_const=Const_HDR,
             hdr_format=hdr_format,
-            pkt_len=42,
+            pkt_len=pkt_len,
             pld_const=Const_PLD,
             psf_taps=tx_rrc_taps,
             puncpat='11',
@@ -603,7 +604,7 @@ class packet_loopback_hier(gr.top_block, Qt.QWidget):
             eb=eb,
             hdr_const=Const_HDR,
             hdr_format=hdr_format,
-            pkt_len=42,
+            pkt_len=pkt_len,
             pld_const=Const_PLD,
             psf_taps=rx_rrc_taps,
             puncpat='11',
@@ -620,8 +621,8 @@ class packet_loopback_hier(gr.top_block, Qt.QWidget):
         )
         self.blocks_throttle_0_0 = blocks.throttle(gr.sizeof_gr_complex*1, samp_rate,True)
         self.blocks_multiply_const_vxx_0 = blocks.multiply_const_vcc((amp, ))
-        self.blocks_file_source_0_0_1 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Desktop/book.txt', False)
-        self.blocks_file_source_0_0_1.set_begin_tag(pmt.PMT_NIL)
+        self.blocks_file_source_0_0 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Desktop/book.txt', False)
+        self.blocks_file_source_0_0.set_begin_tag(pmt.PMT_NIL)
         self.blocks_file_sink_0_0_0 = blocks.file_sink(gr.sizeof_char*1, '/home/andre/Desktop/transmitido/depois.txt', False)
         self.blocks_file_sink_0_0_0.set_unbuffered(False)
         self.blocks_char_to_float_1_0_0 = blocks.char_to_float(1, 1)
@@ -634,14 +635,14 @@ class packet_loopback_hier(gr.top_block, Qt.QWidget):
         ##################################################
         self.connect((self.blocks_char_to_float_1_0, 0), (self.qtgui_time_sink_x_0, 0))
         self.connect((self.blocks_char_to_float_1_0_0, 0), (self.qtgui_time_sink_x_0_0, 0))
-        self.connect((self.blocks_file_source_0_0_1, 0), (self.blocks_char_to_float_1_0_0, 0))
-        self.connect((self.blocks_file_source_0_0_1, 0), (self.packet_tx_0, 0))
+        self.connect((self.blocks_file_source_0_0, 0), (self.blocks_char_to_float_1_0_0, 0))
+        self.connect((self.blocks_file_source_0_0, 0), (self.packet_tx_0, 0))
         self.connect((self.blocks_multiply_const_vxx_0, 0), (self.packet_rx_0, 0))
         self.connect((self.blocks_throttle_0_0, 0), (self.blocks_multiply_const_vxx_0, 0))
+        self.connect((self.blocks_throttle_0_0, 0), (self.qtgui_const_sink_x_0, 0))
+        self.connect((self.blocks_throttle_0_0, 0), (self.qtgui_freq_sink_x_0, 0))
+        self.connect((self.blocks_throttle_0_0, 0), (self.qtgui_time_sink_x_1, 0))
         self.connect((self.channels_channel_model_0, 0), (self.blocks_throttle_0_0, 0))
-        self.connect((self.channels_channel_model_0, 0), (self.qtgui_const_sink_x_0, 0))
-        self.connect((self.channels_channel_model_0, 0), (self.qtgui_freq_sink_x_0, 0))
-        self.connect((self.channels_channel_model_0, 0), (self.qtgui_time_sink_x_1, 0))
         self.connect((self.packet_rx_0, 0), (self.blocks_char_to_float_1_0, 0))
         self.connect((self.packet_rx_0, 0), (self.blocks_file_sink_0_0_0, 0))
         self.connect((self.packet_rx_0, 1), (self.qtgui_const_sink_x_0_0_0, 0))
@@ -733,6 +734,14 @@ class packet_loopback_hier(gr.top_block, Qt.QWidget):
 
     def set_polys(self, polys):
         self.polys = polys
+
+    def get_pkt_len(self):
+        return self.pkt_len
+
+    def set_pkt_len(self, pkt_len):
+        self.pkt_len = pkt_len
+        self.packet_tx_0.set_pkt_len(self.pkt_len)
+        self.packet_rx_0.set_pkt_len(self.pkt_len)
 
     def get_noise(self):
         return self.noise

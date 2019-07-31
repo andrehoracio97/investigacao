@@ -608,7 +608,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1560, 555)</value>
+      <value>(1560, 540)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -917,7 +917,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1560, 459)</value>
+      <value>(1560, 460)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1015,7 +1015,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(768, 12)</value>
+      <value>(784, 60)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1042,11 +1042,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(776, 92)</value>
+      <value>(664, 116)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1059,6 +1059,33 @@
     <param>
       <key>value</key>
       <value>digital.header_format_counter(digital.packet_utils.default_access_code, 3, Const_PLD.bits_per_symbol())</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(792, 4)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>hdr_format_default</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>digital.header_format_default(digital.packet_utils.default_access_code, 0)</value>
     </param>
   </block>
   <block>
@@ -2473,10 +2500,6 @@
       <value>0</value>
     </param>
     <param>
-      <key>hdr_format</key>
-      <value>hdr_format</value>
-    </param>
-    <param>
       <key>hdr_const</key>
       <value>Const_HDR</value>
     </param>
@@ -2542,10 +2565,6 @@
     <param>
       <key>_rotation</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>hdr_format</key>
-      <value>hdr_format</value>
     </param>
     <param>
       <key>hdr_const</key>
