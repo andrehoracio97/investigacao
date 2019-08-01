@@ -1,19 +1,18 @@
 1: Install VOLK
-
 https://github.com/gnuradio/volk
 
-do:
-
-$ mkdir build
-$ cd build
-$ cmake ..
-$ make
-$ make test
-$ sudo make install
+git clone https://github.com/gnuradio/volk
+cd volk
+mkdir build
+cd build
+cmake ..
+make
+make test
+sudo make install
 sudo ldconfig
 
 
-After: Install dependences:
+Install dependences:
 https://wiki.gnuradio.org/index.php/UbuntuInstall#Install_Dependencies
 
 sudo apt install cmake git g++ libboost-all-dev python-dev python-mako \
@@ -26,18 +25,21 @@ pkg-config python-sip-dev
 Install gnuradio:
 https://github.com/gnuradio/gnuradio
 
-git clone --recursive https://github.com/gnuradio/gnuradio.git
-git checkout mint-3.7
-$ cd gnuradio
-$ mkdir build
-$ cd build
-$ cmake -DENABLE_INTERNAL_VOLK=OFF ..
-$ make
-$ make test
-$ sudo make install
+git clone https://github.com/gnuradio/gnuradio.git
+cd gnuradio
+git checkout maint-3.7
+mkdir build
+cd build
+cmake -DENABLE_INTERNAL_VOLK=OFF ..
+make
+make test
+sudo make install
 sudo ldconfig
 
 
+
+CANBERRA:
+sudo apt install libcanberra-gtk-module libcanberra-gtk3-module
 
 UTEIS:
 
