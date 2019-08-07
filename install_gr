@@ -41,6 +41,11 @@ sudo ldconfig
 CANBERRA:
 sudo apt install libcanberra-gtk-module libcanberra-gtk3-module
 
+Para run o VOLK:
+cd usr/bin
+./volk_profile
+See if writed something in $HOME/.volk/volk_config
+
 UTEIS:
 
 gnuradio-config-info -v
