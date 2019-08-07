@@ -90,159 +90,6 @@
     </param>
   </block>
   <block>
-    <key>variable_constellation</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>const_points</key>
-      <value>digital.psk_2()[0]</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>calcdist</value>
-    </param>
-    <param>
-      <key>dims</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(248, 12)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>Const_HDR</value>
-    </param>
-    <param>
-      <key>rot_sym</key>
-      <value>2</value>
-    </param>
-    <param>
-      <key>soft_dec_lut</key>
-      <value>'auto'</value>
-    </param>
-    <param>
-      <key>precision</key>
-      <value>8</value>
-    </param>
-    <param>
-      <key>sym_map</key>
-      <value>digital.psk_2()[1]</value>
-    </param>
-  </block>
-  <block>
-    <key>variable_constellation</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>const_points</key>
-      <value>digital.psk_4()[0]</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>calcdist</value>
-    </param>
-    <param>
-      <key>dims</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(560, 11)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>Const_PLD</value>
-    </param>
-    <param>
-      <key>rot_sym</key>
-      <value>4</value>
-    </param>
-    <param>
-      <key>soft_dec_lut</key>
-      <value>'auto'</value>
-    </param>
-    <param>
-      <key>precision</key>
-      <value>8</value>
-    </param>
-    <param>
-      <key>sym_map</key>
-      <value>digital.psk_4()[1]</value>
-    </param>
-  </block>
-  <block>
-    <key>variable_constellation</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>const_points</key>
-      <value>digital.psk_2()[0]</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>calcdist</value>
-    </param>
-    <param>
-      <key>dims</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(432, 12)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>Const_PLD</value>
-    </param>
-    <param>
-      <key>rot_sym</key>
-      <value>2</value>
-    </param>
-    <param>
-      <key>soft_dec_lut</key>
-      <value>'auto'</value>
-    </param>
-    <param>
-      <key>precision</key>
-      <value>8</value>
-    </param>
-    <param>
-      <key>sym_map</key>
-      <value>digital.psk_2()[1]</value>
-    </param>
-  </block>
-  <block>
     <key>variable_qtgui_range</key>
     <param>
       <key>comment</key>
@@ -258,7 +105,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(16, 620)</value>
+      <value>(216, 772)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -306,336 +153,6 @@
     </param>
   </block>
   <block>
-    <key>variable_cc_decoder_def</key>
-    <param>
-      <key>padding</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>k</key>
-      <value>k</value>
-    </param>
-    <param>
-      <key>dim1</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>dim2</key>
-      <value>4</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>state_end</key>
-      <value>-1</value>
-    </param>
-    <param>
-      <key>framebits</key>
-      <value>8000</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1152, 635)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>dec</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>"ok"</value>
-    </param>
-    <param>
-      <key>ndim</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>polys</key>
-      <value>polys</value>
-    </param>
-    <param>
-      <key>rate</key>
-      <value>rate</value>
-    </param>
-    <param>
-      <key>state_start</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>mode</key>
-      <value>fec.CC_TERMINATED</value>
-    </param>
-  </block>
-  <block>
-    <key>variable_cc_decoder_def</key>
-    <param>
-      <key>padding</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>k</key>
-      <value>k</value>
-    </param>
-    <param>
-      <key>dim1</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>dim2</key>
-      <value>4</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>state_end</key>
-      <value>-1</value>
-    </param>
-    <param>
-      <key>framebits</key>
-      <value>frame_size*8</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1160, 964)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>dec</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>"ok"</value>
-    </param>
-    <param>
-      <key>ndim</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>polys</key>
-      <value>polys</value>
-    </param>
-    <param>
-      <key>rate</key>
-      <value>rate</value>
-    </param>
-    <param>
-      <key>state_start</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>mode</key>
-      <value>fec.CC_TAILBITING</value>
-    </param>
-  </block>
-  <block>
-    <key>variable_dummy_decoder_def</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>dim1</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>dim2</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>framebits</key>
-      <value>8000</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(768, 556)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>dec</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>"ok"</value>
-    </param>
-    <param>
-      <key>ndim</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>variable_repetition_decoder_def</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>dim1</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>dim2</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>framebits</key>
-      <value>800</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(952, 555)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>dec</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>"ok"</value>
-    </param>
-    <param>
-      <key>ndim</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>rep</key>
-      <value>rep</value>
-    </param>
-    <param>
-      <key>prob</key>
-      <value>0.5</value>
-    </param>
-  </block>
-  <block>
-    <key>variable_dummy_decoder_def</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>dim1</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>dim2</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>framebits</key>
-      <value>hdr_format.header_nbits()</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1376, 539)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>dec_hdr</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>"ok"</value>
-    </param>
-    <param>
-      <key>ndim</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>variable_repetition_decoder_def</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>dim1</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>dim2</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>framebits</key>
-      <value>hdr_format.header_nbits()</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1560, 555)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>dec_hdr</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>"ok"</value>
-    </param>
-    <param>
-      <key>ndim</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>rep</key>
-      <value>rep</value>
-    </param>
-    <param>
-      <key>prob</key>
-      <value>0.5</value>
-    </param>
-  </block>
-  <block>
     <key>variable</key>
     <param>
       <key>comment</key>
@@ -663,280 +180,6 @@
     </param>
   </block>
   <block>
-    <key>variable_cc_encoder_def</key>
-    <param>
-      <key>padding</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>k</key>
-      <value>k</value>
-    </param>
-    <param>
-      <key>dim1</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>dim2</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>framebits</key>
-      <value>8000</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1152, 459)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>enc</value>
-    </param>
-    <param>
-      <key>ndim</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>polys</key>
-      <value>polys</value>
-    </param>
-    <param>
-      <key>rate</key>
-      <value>rate</value>
-    </param>
-    <param>
-      <key>state_start</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>mode</key>
-      <value>fec.CC_TERMINATED</value>
-    </param>
-  </block>
-  <block>
-    <key>variable_ccsds_encoder_def</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>dim1</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>dim2</key>
-      <value>4</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>framebits</key>
-      <value>frame_size*8</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1168, 860)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>enc</value>
-    </param>
-    <param>
-      <key>ndim</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>state_start</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>mode</key>
-      <value>fec.CC_TAILBITING</value>
-    </param>
-  </block>
-  <block>
-    <key>variable_dummy_encoder_def</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>dim1</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>dim2</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>framebits</key>
-      <value>8000</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(768, 460)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>enc</value>
-    </param>
-    <param>
-      <key>ndim</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>variable_repetition_encoder_def</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>dim1</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>dim2</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>framebits</key>
-      <value>800</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(952, 459)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>enc</value>
-    </param>
-    <param>
-      <key>ndim</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>rep</key>
-      <value>rep</value>
-    </param>
-  </block>
-  <block>
-    <key>variable_dummy_encoder_def</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>dim1</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>dim2</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>framebits</key>
-      <value>hdr_format.header_nbits()</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1376, 459)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>enc_hdr</value>
-    </param>
-    <param>
-      <key>ndim</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>variable_repetition_encoder_def</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>dim1</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>dim2</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>framebits</key>
-      <value>8000</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1560, 459)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>enc_hdr</value>
-    </param>
-    <param>
-      <key>ndim</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>rep</key>
-      <value>rep</value>
-    </param>
-  </block>
-  <block>
     <key>variable_qtgui_range</key>
     <param>
       <key>comment</key>
@@ -952,7 +195,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(872, 292)</value>
+      <value>(904, 332)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -1000,149 +243,6 @@
     </param>
   </block>
   <block>
-    <key>variable_header_format_default</key>
-    <param>
-      <key>access_code</key>
-      <value>digital.packet_utils.default_access_code</value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(776, 12)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>hdr_format</value>
-    </param>
-    <param>
-      <key>bps</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>threshold</key>
-      <value>3</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(784, 68)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>hdr_format</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>digital.header_format_counter(digital.packet_utils.default_access_code, 3, Const_PLD.bits_per_symbol())</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(784, 100)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>hdr_format</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>digital.header_format_default(digital.packet_utils.default_access_code, 0)</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1008, 675)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>k</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>7</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1144, 1148)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>k</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>7</value>
-    </param>
-  </block>
-  <block>
     <key>variable</key>
     <param>
       <key>comment</key>
@@ -1185,7 +285,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(768, 292)</value>
+      <value>(800, 332)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -1233,141 +333,6 @@
     </param>
   </block>
   <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1056, 739)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>polys</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>[109, 79]</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1272, 1148)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>polys</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>[109, 79]</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1080, 675)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>rate</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>2</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1208, 1148)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>rate</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>2</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(984, 788)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>rep</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>3</value>
-    </param>
-  </block>
-  <block>
     <key>variable_rrc_filter_taps</key>
     <param>
       <key>comment</key>
@@ -1383,7 +348,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1096, 12)</value>
+      <value>(440, 12)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1480,7 +445,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(984, 292)</value>
+      <value>(1016, 332)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -1543,7 +508,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(960, 12)</value>
+      <value>(304, 12)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1590,7 +555,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(576, 700)</value>
+      <value>(888, 548)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1637,7 +602,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(240, 268)</value>
+      <value>(416, 156)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1688,62 +653,11 @@
     </param>
     <param>
       <key>file</key>
-      <value>/home/andre/git/investigacao/Testes/EVOLUCAO/TESTES_SLACK/4after_packet_tx.txt</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(672, 132)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_file_sink_0</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>complex</value>
-    </param>
-    <param>
-      <key>unbuffered</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-  </block>
-  <block>
-    <key>blocks_file_sink</key>
-    <param>
-      <key>append</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>file</key>
       <value>/home/andre/git/investigacao/Testes/EVOLUCAO/11TESTAR_CORRETALE_TAG/id.jpg</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(576, 444)</value>
+      <value>(1232, 732)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1790,11 +704,11 @@
     </param>
     <param>
       <key>file</key>
-      <value>/home/andre/git/investigacao/Testes/EVOLUCAO/11TESTAR_CORRETALE_TAG/depois.txt</value>
+      <value>/home/andre/Desktop/transmitido/depois.txt</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(576, 364)</value>
+      <value>(1232, 652)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1845,7 +759,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(576, 524)</value>
+      <value>(1232, 812)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1892,7 +806,7 @@
     </param>
     <param>
       <key>file</key>
-      <value>/home/andre/Desktop/transmit_maior.txt</value>
+      <value>/home/andre/Desktop/video.mpg</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2128,7 +1042,7 @@
     </param>
     <param>
       <key>file</key>
-      <value>/home/andre/git/investigacao/Testes/EVOLUCAO/11TESTAR_CORRETALE_TAG/book.txt</value>
+      <value>/home/andre/Desktop/book.txt</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2187,7 +1101,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(24, 572)</value>
+      <value>(216, 732)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2215,61 +1129,6 @@
     </param>
   </block>
   <block>
-    <key>blocks_tag_debug</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>display</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(312, 668)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_tag_debug_0</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>complex</value>
-    </param>
-    <param>
-      <key>filter</key>
-      <value>""</value>
-    </param>
-    <param>
-      <key>name</key>
-      <value>AFTER PKT RX</value>
-    </param>
-    <param>
-      <key>num_inputs</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-  </block>
-  <block>
     <key>blocks_throttle</key>
     <param>
       <key>alias</key>
@@ -2289,7 +1148,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1192, 156)</value>
+      <value>(1280, 244)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2336,7 +1195,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1352, 155)</value>
+      <value>(1464, 244)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2371,7 +1230,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>1</value>
     </param>
     <param>
       <key>epsilon</key>
@@ -2383,7 +1242,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(936, 164)</value>
+      <value>(872, 204)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2438,7 +1297,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(72, 864)</value>
+      <value>(384, 688)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2474,53 +1333,6 @@
     </param>
   </block>
   <block>
-    <key>parameter</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1216, 1204)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>frame_size</value>
-    </param>
-    <param>
-      <key>label</key>
-      <value>Frame Size</value>
-    </param>
-    <param>
-      <key>short_id</key>
-      <value></value>
-    </param>
-    <param>
-      <key>hide</key>
-      <value>none</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>intx</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>32</value>
-    </param>
-  </block>
-  <block>
     <key>packet_rx</key>
     <param>
       <key>alias</key>
@@ -2544,19 +1356,11 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(232, 440)</value>
+      <value>(632, 644)</value>
     </param>
     <param>
       <key>_rotation</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>hdr_format</key>
-      <value>hdr_format</value>
-    </param>
-    <param>
-      <key>hdr_const</key>
-      <value>Const_HDR</value>
     </param>
     <param>
       <key>id</key>
@@ -2572,11 +1376,7 @@
     </param>
     <param>
       <key>pkt_len</key>
-      <value>42</value>
-    </param>
-    <param>
-      <key>pld_const</key>
-      <value>Const_PLD</value>
+      <value>100</value>
     </param>
     <param>
       <key>psf_taps</key>
@@ -2615,19 +1415,11 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(424, 172)</value>
+      <value>(464, 244)</value>
     </param>
     <param>
       <key>_rotation</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>hdr_format</key>
-      <value>hdr_format</value>
-    </param>
-    <param>
-      <key>hdr_const</key>
-      <value>Const_HDR</value>
     </param>
     <param>
       <key>id</key>
@@ -2644,10 +1436,6 @@
     <param>
       <key>pkt_len</key>
       <value>42</value>
-    </param>
-    <param>
-      <key>pld_const</key>
-      <value>Const_PLD</value>
     </param>
     <param>
       <key>psf_taps</key>
@@ -2694,7 +1482,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1352, 363)</value>
+      <value>(1336, 460)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -3041,7 +1829,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(504, 804)</value>
+      <value>(648, 1020)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -3049,7 +1837,7 @@
     </param>
     <param>
       <key>_rotation</key>
-      <value>0</value>
+      <value>180</value>
     </param>
     <param>
       <key>grid</key>
@@ -3408,7 +2196,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1352, 283)</value>
+      <value>(1336, 380)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -3707,7 +2495,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(504, 868)</value>
+      <value>(648, 956)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -3715,7 +2503,7 @@
     </param>
     <param>
       <key>_rotation</key>
-      <value>0</value>
+      <value>180</value>
     </param>
     <param>
       <key>grid</key>
@@ -3994,7 +2782,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(728, 676)</value>
+      <value>(1032, 524)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -4361,7 +3149,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(320, 332)</value>
+      <value>(624, 132)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -4728,7 +3516,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1352, 203)</value>
+      <value>(1336, 300)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -5095,7 +3883,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(504, 1028)</value>
+      <value>(648, 796)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -5103,7 +3891,7 @@
     </param>
     <param>
       <key>_rotation</key>
-      <value>0</value>
+      <value>180</value>
     </param>
     <param>
       <key>grid</key>
@@ -5462,7 +4250,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(504, 948)</value>
+      <value>(648, 876)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -5470,7 +4258,7 @@
     </param>
     <param>
       <key>_rotation</key>
-      <value>0</value>
+      <value>180</value>
     </param>
     <param>
       <key>grid</key>
@@ -5809,7 +4597,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1360, 11)</value>
+      <value>(704, 12)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -5924,7 +4712,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1224, 11)</value>
+      <value>(568, 12)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -6035,7 +4823,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(24, 476)</value>
+      <value>(24, 732)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -6059,6 +4847,18 @@
   <connection>
     <source_block_id>blocks_char_to_float_1_0_0</source_block_id>
     <sink_block_id>qtgui_time_sink_x_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_file_source_0</source_block_id>
+    <sink_block_id>blocks_char_to_float_1_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_file_source_0</source_block_id>
+    <sink_block_id>packet_tx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -6198,12 +4998,6 @@
     <source_block_id>packet_rx_0</source_block_id>
     <sink_block_id>qtgui_time_sink_x_1_0_0_1</sink_block_id>
     <source_key>1</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>packet_tx_0</source_block_id>
-    <sink_block_id>blocks_file_sink_0</sink_block_id>
-    <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>

@@ -5,10 +5,8 @@
 # Title: Soft Decoder Example
 # Author: Tom Rondeau
 # Description: Explore Soft Decoding of constellations. Selec the constellation from the available objects.
-# Generated: Mon Jul 29 11:41:36 2019
+# GNU Radio version: 3.7.13.5
 ##################################################
-
-from distutils.version import StrictVersion
 
 if __name__ == '__main__':
     import ctypes
@@ -20,9 +18,8 @@ if __name__ == '__main__':
         except:
             print "Warning: failed to XInitThreads()"
 
-from PyQt5 import Qt
-from PyQt5 import Qt, QtCore
-from PyQt5.QtCore import QObject, pyqtSlot
+from PyQt4 import Qt
+from PyQt4.QtCore import QObject, pyqtSlot
 from gnuradio import blocks
 from gnuradio import channels
 from gnuradio import digital
@@ -65,7 +62,7 @@ class constellation_soft_decoder(gr.top_block, Qt.QWidget):
         self.top_layout.addLayout(self.top_grid_layout)
 
         self.settings = Qt.QSettings("GNU Radio", "constellation_soft_decoder")
-        self.restoreGeometry(self.settings.value("geometry", type=QtCore.QByteArray))
+        self.restoreGeometry(self.settings.value("geometry").toByteArray())
 
 
         ##################################################
@@ -231,7 +228,8 @@ class constellation_soft_decoder(gr.top_block, Qt.QWidget):
         self.blocks_unpack_k_bits_bb_0_0 = blocks.unpack_k_bits_bb(8)
         self.blocks_unpack_k_bits_bb_0 = blocks.unpack_k_bits_bb(constel.bits_per_symbol())
         self.blocks_throttle_0 = blocks.throttle(gr.sizeof_char*1, samp_rate,True)
-        self.blocks_file_source_0 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Desktop/transmit_maior.txt', True)
+        self.blocks_repack_bits_bb_0 = blocks.repack_bits_bb(2, 8, "", False, gr.GR_MSB_FIRST)
+        self.blocks_file_source_0 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Desktop/book.txt', True)
         self.blocks_file_source_0.set_begin_tag(pmt.PMT_NIL)
         self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_char*1, '/home/andre/Desktop/transmitido/depois.txt', False)
         self.blocks_file_sink_0.set_unbuffered(False)
@@ -250,13 +248,14 @@ class constellation_soft_decoder(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_char_to_float_0_0_0, 0), (self.qtgui_time_sink_x_0, 2))
         self.connect((self.blocks_delay_0, 0), (self.blocks_char_to_float_0_0_0, 0))
         self.connect((self.blocks_file_source_0, 0), (self.blocks_throttle_0, 0))
+        self.connect((self.blocks_repack_bits_bb_0, 0), (self.blocks_file_sink_0, 0))
         self.connect((self.blocks_throttle_0, 0), (self.blocks_unpack_k_bits_bb_0_0, 0))
         self.connect((self.blocks_throttle_0, 0), (self.digital_constellation_modulator_0, 0))
         self.connect((self.blocks_unpack_k_bits_bb_0, 0), (self.blocks_char_to_float_0, 0))
         self.connect((self.blocks_unpack_k_bits_bb_0_0, 0), (self.blocks_delay_0, 0))
         self.connect((self.channels_channel_model_0, 0), (self.digital_pfb_clock_sync_xxx_0, 0))
         self.connect((self.digital_binary_slicer_fb_0, 0), (self.blocks_char_to_float_0_0, 0))
-        self.connect((self.digital_binary_slicer_fb_0, 0), (self.blocks_file_sink_0, 0))
+        self.connect((self.digital_binary_slicer_fb_0, 0), (self.blocks_repack_bits_bb_0, 0))
         self.connect((self.digital_constellation_decoder_cb_0, 0), (self.digital_map_bb_0_0, 0))
         self.connect((self.digital_constellation_modulator_0, 0), (self.channels_channel_model_0, 0))
         self.connect((self.digital_constellation_soft_decoder_cf_0, 0), (self.digital_binary_slicer_fb_0, 0))
@@ -329,6 +328,10 @@ class constellation_soft_decoder(gr.top_block, Qt.QWidget):
 
 def main(top_block_cls=constellation_soft_decoder, options=None):
 
+    from distutils.version import StrictVersion
+    if StrictVersion(Qt.qVersion()) >= StrictVersion("4.5.0"):
+        style = gr.prefs().get_string('qtgui', 'style', 'raster')
+        Qt.QApplication.setGraphicsSystem(style)
     qapp = Qt.QApplication(sys.argv)
 
     tb = top_block_cls()
@@ -338,7 +341,7 @@ def main(top_block_cls=constellation_soft_decoder, options=None):
     def quitting():
         tb.stop()
         tb.wait()
-    qapp.aboutToQuit.connect(quitting)
+    qapp.connect(qapp, Qt.SIGNAL("aboutToQuit()"), quitting)
     qapp.exec_()
 
 

@@ -60,4 +60,4 @@ Toda a semana, consegui meter a funcionar o HPD, com LDPC  no entanto so funcion
 6ºSemana
 5/8
 6/8 ->Saida do HPD e Utilização do "Correlate Access Code - Tag Stream"  Block - Sucesso com LDPC - Novo caminho a seguir.
-7/8 ->
+7/8 ->MUITA EVOLUCAO, consegui integrar o Main com o CAC block, já com QPSK com GRAY CODING, e com 4 SPS. Não funciona o Burst Shapper com as USRP's- dá UUU....

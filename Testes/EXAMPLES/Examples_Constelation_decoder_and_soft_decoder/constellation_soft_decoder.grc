@@ -818,7 +818,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(880, 203)</value>
+      <value>(912, 116)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -967,7 +967,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>file</key>
@@ -975,7 +975,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(856, 28)</value>
+      <value>(1360, 116)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1081,7 +1081,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>2</value>
+      <value>0</value>
     </param>
     <param>
       <key>endianness</key>
@@ -1234,7 +1234,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(224, 427)</value>
+      <value>(232, 428)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1340,7 +1340,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(736, 208)</value>
+      <value>(744, 208)</value>
     </param>
     <param>
       <key>_rotation</key>
