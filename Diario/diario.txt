@@ -61,3 +61,5 @@ Toda a semana, consegui meter a funcionar o HPD, com LDPC  no entanto so funcion
 5/8
 6/8 ->Saida do HPD e Utilização do "Correlate Access Code - Tag Stream"  Block - Sucesso com LDPC - Novo caminho a seguir.
 7/8 ->MUITA EVOLUCAO, consegui integrar o Main com o CAC block, já com QPSK com GRAY CODING, e com 4 SPS. Não funciona o Burst Shapper com as USRP's- dá UUU....
+8/8 ->Consegui por a funcionar CAC+QPSK+Gray Coding+4 SPS+Burst Shaper. Começar a integrar com USRP's. Diversos problemas que existem no mundo real que não existiam na simulação: Bandwith limits (Burst Shapper), Saturation limits(Feeding ao USRP valores entre [-1, +1]->Multiply const). Mesmo assim aparece muitos U's pq não estou a dar samples suficientemente rapidas ao USRP.
+9/8 ->COntinuar a tentar passar corretamente entre USRP's. Fiz CC mas nao funciona.
