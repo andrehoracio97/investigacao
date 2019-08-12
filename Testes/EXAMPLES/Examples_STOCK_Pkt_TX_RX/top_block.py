@@ -175,8 +175,8 @@ class top_block(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(0, 1):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self.digital_burst_shaper_xx_0_0 = digital.burst_shaper_cc((firdes.window(firdes.WIN_HANN, 50, 0)), 0, 20, False, 'packet_len')
-        self.digital_burst_shaper_xx_0 = digital.burst_shaper_cc((firdes.window(firdes.WIN_HANN, 50, 0)), 0, 20, True, 'packet_len')
+        self.digital_burst_shaper_xx_0_0 = digital.burst_shaper_cc((firdes.window(firdes.WIN_HANN, 50, 0)), 0, 0, False, 'packet_len')
+        self.digital_burst_shaper_xx_0 = digital.burst_shaper_cc((firdes.window(firdes.WIN_HANN, 50,10)), 0, 0, True, 'packet_len')
         self.blocks_vector_source_x_0 = blocks.vector_source_c([1,1,1,1,1,1,1,1,-1,-1,-1,-1,-1,-1,-1,-1], True, 1, [])
         self.blocks_throttle_0 = blocks.throttle(gr.sizeof_gr_complex*1, samp_rate,True)
         self.blocks_stream_to_tagged_stream_0 = blocks.stream_to_tagged_stream(gr.sizeof_gr_complex, 1, 16*10, "packet_len")

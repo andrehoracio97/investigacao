@@ -1,0 +1,7 @@
+Hi again, I hope you had a good and relaxing weekend with your family.
+I was playing around with the values of Burst Shapper, first I put 5,5 in window Taps, with the same post-padding lenght, and I saw a pattern in "Constellation Treated",  in photo 2,3 and 4 it wasn't write anything, but in photo 5 starts writing, when get out of that pattern for another (2,3,4) stops writing. 
+So I played with that values and see the pattern showed in "Consteltion Teated" (Photo 6) And only with pattern on the photo 10 it write something. Same with 11 and 13.
+
+So, I bypassed the Burst Shapper and enabled the Sink Block with the TSB tag name, and the data points that are entirely I or Q disappeared. However doesn't shows anything in Rx data. I don't know why. If I put in simulating (enabling "Simluate" Virtual Sink" and al the part oh the channel model) works perfectly (with and without the burst shapper).
+
+So I am thinking, It's possible to lock on the wrong Constellation Point (because frequency offset), what I mean is represented in image maybe.png

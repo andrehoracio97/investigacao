@@ -288,7 +288,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(288, 860)</value>
+      <value>(664, 812)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -684,46 +684,30 @@
     </param>
   </block>
   <block>
-    <key>variable_rrc_filter_taps</key>
+    <key>variable</key>
     <param>
       <key>comment</key>
       <value></value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>alpha</key>
-      <value>eb</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(640, 124)</value>
+      <value>(960, 12)</value>
     </param>
     <param>
       <key>_rotation</key>
       <value>0</value>
     </param>
     <param>
-      <key>gain</key>
-      <value>32</value>
-    </param>
-    <param>
       <key>id</key>
-      <value>rx_rrc_taps</value>
+      <value>rrc_taps</value>
     </param>
     <param>
-      <key>ntaps</key>
-      <value>15*sps*nfilts</value>
-    </param>
-    <param>
-      <key>samp_rate</key>
-      <value>nfilts*sps</value>
-    </param>
-    <param>
-      <key>sym_rate</key>
-      <value>1.0</value>
+      <key>value</key>
+      <value>firdes.root_raised_cosine(nfilts, nfilts, 1.0/float(sps), 0.35, 11*sps*nfilts)</value>
     </param>
   </block>
   <block>
@@ -734,7 +718,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>True</value>
     </param>
     <param>
       <key>alpha</key>
@@ -758,7 +742,7 @@
     </param>
     <param>
       <key>ntaps</key>
-      <value>int(11*sps*nfilts)</value>
+      <value>11*sps*nfilts</value>
     </param>
     <param>
       <key>samp_rate</key>
@@ -767,33 +751,6 @@
     <param>
       <key>sym_rate</key>
       <value>1.0</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(968, 84)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>rx_rrc_taps</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>firdes.root_raised_cosine(nfilts,1.0,1.0/(nfilts*sps), eb, int(11*sps*nfilts))</value>
     </param>
   </block>
   <block>
@@ -862,7 +819,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(368, 860)</value>
+      <value>(560, 812)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -948,50 +905,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>alpha</key>
-      <value>eb</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(504, 124)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>gain</key>
-      <value>nfilts</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>tx_rrc_taps</value>
-    </param>
-    <param>
-      <key>ntaps</key>
-      <value>15*sps*nfilts</value>
-    </param>
-    <param>
-      <key>samp_rate</key>
-      <value>nfilts</value>
-    </param>
-    <param>
-      <key>sym_rate</key>
-      <value>1.0</value>
-    </param>
-  </block>
-  <block>
-    <key>variable_rrc_filter_taps</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
+      <value>True</value>
     </param>
     <param>
       <key>alpha</key>
@@ -1024,33 +938,6 @@
     <param>
       <key>sym_rate</key>
       <value>1.0</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(960, 12)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>tx_rrc_taps</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>firdes.root_raised_cosine(nfilts, 1.0, 1.0/nfilts, eb, int(11*sps*nfilts))</value>
     </param>
   </block>
   <block>
@@ -2646,11 +2533,11 @@ USE 10 TO QPSK</value>
     </param>
     <param>
       <key>post_padding</key>
-      <value>10</value>
+      <value>filt_delay</value>
     </param>
     <param>
       <key>pre_padding</key>
-      <value>10</value>
+      <value>0</value>
     </param>
     <param>
       <key>type</key>
@@ -2658,7 +2545,7 @@ USE 10 TO QPSK</value>
     </param>
     <param>
       <key>window</key>
-      <value>firdes.window(firdes.WIN_HANN, 20, 0)</value>
+      <value>firdes.window(firdes.WIN_HANN, 10, 0)</value>
     </param>
   </block>
   <block>
@@ -5605,7 +5492,7 @@ USE 10 TO QPSK</value>
     </param>
     <param>
       <key>tr_tag</key>
-      <value></value>
+      <value>packet_length_tag_key</value>
     </param>
     <param>
       <key>type</key>
@@ -10994,12 +10881,6 @@ USE 10 TO QPSK</value>
   <connection>
     <source_block_id>blocks_multiply_const_vxx_0</source_block_id>
     <sink_block_id>mod_payload_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_multiply_const_vxx_0</source_block_id>
-    <sink_block_id>qtgui_const_sink_x_0_0_0_1</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

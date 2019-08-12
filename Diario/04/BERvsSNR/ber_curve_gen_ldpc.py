@@ -3,10 +3,8 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Ber Curve Gen Ldpc
-# Generated: Wed Jul 17 13:15:41 2019
+# GNU Radio version: 3.7.13.5
 ##################################################
-
-from distutils.version import StrictVersion
 
 if __name__ == '__main__':
     import ctypes
@@ -18,8 +16,7 @@ if __name__ == '__main__':
         except:
             print "Warning: failed to XInitThreads()"
 
-from PyQt5 import Qt, QtCore
-from PyQt5 import Qt
+from PyQt4 import Qt
 from gnuradio import eng_notation
 from gnuradio import fec
 from gnuradio import gr
@@ -57,7 +54,7 @@ class ber_curve_gen_ldpc(gr.top_block, Qt.QWidget):
         self.top_layout.addLayout(self.top_grid_layout)
 
         self.settings = Qt.QSettings("GNU Radio", "ber_curve_gen_ldpc")
-        self.restoreGeometry(self.settings.value("geometry", type=QtCore.QByteArray))
+        self.restoreGeometry(self.settings.value("geometry").toByteArray())
 
 
         ##################################################
@@ -400,6 +397,10 @@ class ber_curve_gen_ldpc(gr.top_block, Qt.QWidget):
 
 def main(top_block_cls=ber_curve_gen_ldpc, options=None):
 
+    from distutils.version import StrictVersion
+    if StrictVersion(Qt.qVersion()) >= StrictVersion("4.5.0"):
+        style = gr.prefs().get_string('qtgui', 'style', 'raster')
+        Qt.QApplication.setGraphicsSystem(style)
     qapp = Qt.QApplication(sys.argv)
 
     tb = top_block_cls()
@@ -409,7 +410,7 @@ def main(top_block_cls=ber_curve_gen_ldpc, options=None):
     def quitting():
         tb.stop()
         tb.wait()
-    qapp.aboutToQuit.connect(quitting)
+    qapp.connect(qapp, Qt.SIGNAL("aboutToQuit()"), quitting)
     qapp.exec_()
 
 
