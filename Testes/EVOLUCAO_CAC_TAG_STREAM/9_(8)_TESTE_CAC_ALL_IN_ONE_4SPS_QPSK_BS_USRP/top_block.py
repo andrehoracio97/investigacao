@@ -30,6 +30,7 @@ from gnuradio.filter import firdes
 from gnuradio.qtgui import Range, RangeWidget
 from optparse import OptionParser
 import pmt
+import random
 import sip
 import sys
 import time
@@ -79,13 +80,13 @@ class top_block(gr.top_block, Qt.QWidget):
         self.eb = eb = 0.35
         self.H_dec = H_dec = fec.ldpc_H_matrix('/usr/local/share/gnuradio/fec/ldpc/n_1100_k_0442_gap_24.alist', 24)
         self.H = H = fec.ldpc_H_matrix('/usr/local/share/gnuradio/fec/ldpc/n_1100_k_0442_gap_24.alist', 24)
-        self.vector = vector = range(0,2400)
-        self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 40
-        self.variable_qtgui_range_0 = variable_qtgui_range_0 = 72
+        self.vector = vector = [int(random.random()*255) for i in range(1200)]
+        self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 36
+        self.variable_qtgui_range_0 = variable_qtgui_range_0 = 50
 
         self.tx_rrc_taps = tx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts, 1.0, eb, 5*sps*nfilts)
 
-        self.samp_rate = samp_rate = samp_rate_array_MCR[0]
+        self.samp_rate = samp_rate = samp_rate_array_MCR[4]
 
         self.rx_rrc_taps = rx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts*sps, 1.0, eb, 11*sps*nfilts)
 
@@ -96,21 +97,21 @@ class top_block(gr.top_block, Qt.QWidget):
 
         self.pld_dec = pld_dec = map((lambda a: fec.ldpc_bit_flip_decoder.make(H_dec.get_base_sptr(), 100)), range(0,4))
         self.pld_const = pld_const = digital.constellation_rect(([0.707+0.707j, -0.707+0.707j, -0.707-0.707j, 0.707-0.707j]), ([0, 1, 2, 3]), 4, 2, 2, 1, 1).base()
-        self.frequencia_usrp = frequencia_usrp = 2400e6
+        self.frequencia_usrp = frequencia_usrp = 484e6
         self.filt_delay = filt_delay = 1+(taps_per_filt-1)/2
         self.MCR = MCR = "master_clock_rate=60e6"
 
         ##################################################
         # Blocks
         ##################################################
-        self._variable_qtgui_range_0_1_range = Range(0, 73, 1, 40, 200)
+        self._variable_qtgui_range_0_1_range = Range(0, 73, 1, 36, 200)
         self._variable_qtgui_range_0_1_win = RangeWidget(self._variable_qtgui_range_0_1_range, self.set_variable_qtgui_range_0_1, 'Gain_RX', "counter_slider", float)
         self.top_grid_layout.addWidget(self._variable_qtgui_range_0_1_win, 0, 2, 1, 1)
         for r in range(0, 1):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(2, 3):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self._variable_qtgui_range_0_range = Range(0, 90, 1, 72, 200)
+        self._variable_qtgui_range_0_range = Range(0, 90, 1, 50, 200)
         self._variable_qtgui_range_0_win = RangeWidget(self._variable_qtgui_range_0_range, self.set_variable_qtgui_range_0, 'Gain_TX', "counter_slider", float)
         self.top_grid_layout.addWidget(self._variable_qtgui_range_0_win, 0, 1, 1, 1)
         for r in range(0, 1):
@@ -617,6 +618,7 @@ class top_block(gr.top_block, Qt.QWidget):
         self.digital_cma_equalizer_cc_0 = digital.cma_equalizer_cc(15, 1, 0.010, 2)
         self.blocks_vector_source_x_0_0_0 = blocks.vector_source_b([0], True, 1, [])
         self.blocks_vector_source_x_0 = blocks.vector_source_b([0], True, 1, [])
+        self.blocks_vector_insert_x_0 = blocks.vector_insert_b((vector), 12000000, 0)
         self.blocks_tagged_stream_multiply_length_0 = blocks.tagged_stream_multiply_length(gr.sizeof_gr_complex*1, 'packet_len', 16.00)
         self.blocks_stream_to_tagged_stream_0 = blocks.stream_to_tagged_stream(gr.sizeof_char, 1, 1200/8, "packet_len")
         self.blocks_stream_mux_0_1_0 = blocks.stream_mux(gr.sizeof_char*1, (96, 1104))
@@ -629,7 +631,7 @@ class top_block(gr.top_block, Qt.QWidget):
         self.blocks_multiply_const_vxx_1 = blocks.multiply_const_vcc((0.7, ))
         self.blocks_keep_m_in_n_0_1_1_0 = blocks.keep_m_in_n(gr.sizeof_char, 440, 442, 0)
         self.blocks_keep_m_in_n_0_0_2_0 = blocks.keep_m_in_n(gr.sizeof_char, 1100, 1104, 0)
-        self.blocks_file_source_0_0_1 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Desktop/transmitido/book.txt', False)
+        self.blocks_file_source_0_0_1 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Desktop/book.txt', False)
         self.blocks_file_source_0_0_1.set_begin_tag(pmt.PMT_NIL)
         self.blocks_file_sink_0_0_0 = blocks.file_sink(gr.sizeof_char*1, '/home/andre/Desktop/transmitido/depois.txt', False)
         self.blocks_file_sink_0_0_0.set_unbuffered(False)
@@ -667,8 +669,9 @@ class top_block(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_stream_mux_0, 0), (self.fec_extended_encoder_0, 0))
         self.connect((self.blocks_stream_mux_0_0, 0), (self.blocks_stream_mux_0_1_0, 1))
         self.connect((self.blocks_stream_mux_0_1_0, 0), (self.blocks_repack_bits_bb_1_0_0_0, 0))
-        self.connect((self.blocks_stream_to_tagged_stream_0, 0), (self.digital_constellation_modulator_0, 0))
+        self.connect((self.blocks_stream_to_tagged_stream_0, 0), (self.blocks_vector_insert_x_0, 0))
         self.connect((self.blocks_tagged_stream_multiply_length_0, 0), (self.blocks_multiply_const_vxx_1, 0))
+        self.connect((self.blocks_vector_insert_x_0, 0), (self.digital_constellation_modulator_0, 0))
         self.connect((self.blocks_vector_source_x_0, 0), (self.blocks_stream_mux_0, 1))
         self.connect((self.blocks_vector_source_x_0_0_0, 0), (self.blocks_stream_mux_0_0, 1))
         self.connect((self.digital_cma_equalizer_cc_0, 0), (self.digital_costas_loop_cc_0, 0))
@@ -733,7 +736,7 @@ class top_block(gr.top_block, Qt.QWidget):
 
     def set_samp_rate_array_MCR(self, samp_rate_array_MCR):
         self.samp_rate_array_MCR = samp_rate_array_MCR
-        self.set_samp_rate(self.samp_rate_array_MCR[0])
+        self.set_samp_rate(self.samp_rate_array_MCR[4])
 
     def get_eb(self):
         return self.eb
