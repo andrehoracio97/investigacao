@@ -1,0 +1,47 @@
+Sample Rate Changes
+====
+
+NOTES:
+(a) 1 sample can be a byte, 1 gr_complex, 1 float, whatever.
+(b) when a "byte", can be any number of bits in [1,8]
+(c) Assumes that there is enough data in the FEC Enc to form a frame. If there isn't, then no data will be encoded ... usually the final frame has this issue.
+(d) Assumes that the host computer can keep data flowing to the USRP in real-time. If not, then there will be underruns noted in the USRP.
+
+File Source: SR = N bytes / sec, each is 8 bits
+
+Repack Bits (8:1): SR = N*8 bytes / sec, each is 1 bit
+
+Stream Mux (+2): SR = N*8+2 bytes / sec, each is 1 bit
+
+FEC Enc (R=2, k=7, frame=440, terminated): SR = 16*N+16 bytes / sec, each is 1 bit
+=> R*INPUT+R(K-1)
+=> 2*N*8 + 2*2 + 2*(7-1)
+=> N*16 + 4 + 12
+=> N*16 + 16
+
+Stream Mux (+4): 16*N + 20 bytes / sec, each sample is 1 bit
+
+Vector Sourse + Stream Mux (+96): 16*N + 116 bytes / sec, each is 1 bit
+
+Stream to Tagged Stream: unchanged (1:1)
+
+Repack Bits (1:2): 8*N + 58 bytes / sec, each is 2 bits
+
+Vector Insert: ignoring since it's just once
+
+Map: unchanged (1:1)
+
+Differential Encoder: unchanged (1:1)
+
+Chunks to Symbols: 8*N + 58 gr_complex / sec
+
+Polyphase Arbitrary Resampler (x4): 32N + 232 gr_cmplex / sec
+
+Multiply Const: unchanged (1:1)
+
+USRP: M gr_complex / sec
+
+=====
+
+M == 32N + 232 gr_complex / sec
+N == (M - 232) / 32 bytes / sec

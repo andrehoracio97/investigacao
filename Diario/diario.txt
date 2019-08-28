@@ -42,9 +42,9 @@ EScolher entre: https://dsp.stackexchange.com/questions/56321/gnu-radio-transcei
 Ou comecar OFDM.
 
 4ºSemana
-22/7 ->Leitura e resumo de: https://www.gnuradio.org/doc/doxygen/page_packet_comms.html, Seguir por correlation estimator e varios testes.
+22/7 ->Leitura e Resumo de: https://www.gnuradio.org/doc/doxygen/page_packet_comms.html, Seguir por correlation estimator e HPD e varios testes.
 23/7 ->Mais pesquisa sobre correlation estimator, ir pouco a pouco juntando num só flowgraph.-FAIL.
-24/7 ->Criar o Evolution onde iria pouco a pouco adicionando blocos. Fail pq das dependencias de muitos blocos ao memso tempo. Tentativa de usar o loobback, com sucesso e adaptação das mensagens para ficheiro com sucesso. Tentativa de add CRC - Fail. FEC adicionado mas ainda incompleto. Está a funcionar o do payload com repertition, no header nao. Ou funciona o fec do header ou funciona o fec do payload.--> Problema vem das tags antes de mux, arranjar maneira para contrornar isso. 
+24/7 ->Criar o Evolution onde iria pouco a pouco adicionando blocos. Fail pq das dependencias de muitos blocos ao mesmo tempo. Tentativa de usar o loopback, com sucesso e adaptação das mensagens para ficheiro com sucesso. Tentativa de add CRC - Fail. FEC adicionado mas ainda incompleto. Está a funcionar o do payload com repertition, no header nao. Ou funciona o fec do header ou funciona o fec do payload.--> Problema vem das tags antes de mux, arranjar maneira para contrornar isso. 
 25/7 ->
 26/7 ->
 
@@ -55,15 +55,17 @@ Ou comecar OFDM.
 1/8
 2/8
 
-Toda a semana, consegui meter a funcionar o HPD, com LDPC  no entanto so funciona no OSX e não linux, muito tempo perdido a achar que nao estava a funcuinar de todo. Reinstalei novamente o linux etc. Tentei resolver o erro de não dar bem no linux e não consegui. - Pasta 08
+Toda a semana, consegui meter a funcionar o HPD, com LDPC  no entanto so funciona no OSX e não linux, muito tempo perdido a achar que nao estava a funcionar de todo. Reinstalei novamente o linux, gnuradio pelo Github e não pelo packet manager, instalei novamente todas as dependecias, etc. Tentei resolver o erro de não dar bem no linux e não consegui. - Pasta 08
 
 6ºSemana
 5/8
-6/8 ->Saida do HPD e Utilização do "Correlate Access Code - Tag Stream"  Block - Sucesso com LDPC - Novo caminho a seguir.
+6/8 ->Saida do HPD e Utilização do "Correlate Access Code - Tag Stream"  Block - Sucesso com LDPC - Novo caminho a seguir. (Com BPSK, 2SPS, funcina perfeitamente - TUDO SIMULAÇÃO)
 7/8 ->MUITA EVOLUCAO, consegui integrar o Main com o CAC block, já com QPSK com GRAY CODING, e com 4 SPS. Não funciona o Burst Shapper com as USRP's- dá UUU....
-8/8 ->Consegui por a funcionar CAC+QPSK+Gray Coding+4 SPS+Burst Shaper. Começar a integrar com USRP's. Diversos problemas que existem no mundo real que não existiam na simulação: Bandwith limits (Burst Shapper), Saturation limits(Feeding ao USRP valores entre [-1, +1]->Multiply const). Mesmo assim aparece muitos U's pq não estou a dar samples suficientemente rapidas ao USRP.
-9/8 ->COntinuar a tentar passar corretamente entre USRP's. Fiz CC mas nao funciona.
+8/8 ->Consegui por a funcionar CAC+QPSK+Gray Coding+4 SPS+Burst Shaper. Começar a integrar com USRP's. Diversos problemas que existem no mundo real que não existiam na simulação:- Bandwith limits (Burst Shapper), -Saturation limits(Feeding ao USRP valores entre [-1, +1]->Multiply const). Mesmo assim aparece muitos U's pq não estou a dar samples suficientemente rapidas ao USRP. E só funciona de vez em quando.
+9/8 ->Continuar a tentar passar corretamente entre USRP's. Corrcçao dos U's, pois quer dizer que o USRP não tinha samples suficientes, então eu desci o sample rate dos USRP's. Continua a funcionar de vez em quando só. Fiz CC mas nao funciona.
 
 7ºSemana
-12/8 ->Transmissao USRP com Constelation Modulator, QPSK, 4SPS, Sem Burst Shapper. Nao dá videos, mas texto exceto a primeira parte está perfeita. Utilização de threads aumentou muito a codificacao e descodificacao do LDPC.
-13/8 ->Utilização de diferential encoding com a RRC manual e melhoramento significatico.Já transfere bem entre 2 USRP's quase sempre passa o primeiro packet. Utilização de Vector Insert para adicionar um "preambulo" para underun de rampage e para a adaptação do polyphase/coostas loop
+12/8 ->Alteração de em vez de RRC manual, utilizar o Constelation Modulator, QPSK, 4SPS, Sem Burst Shapper nas USRPs. Nao dá videos, mas texto exceto a primeira parte está perfeita. Utilização de threads aumentou muito a codificacao e descodificacao do LDPC, reparei que quando faço a modulação totalmente manual os pontos da constelação quando giram o CAC deixa de encontrar a code stream por isso deduzi que tinha haver com alguma ambuguidade. (Talvez differential encoding) 
+13/8 ->Utilização de diferential encoding com a RRC manual e melhoramento significativo. Já transfere bem entre 2 USRP's quase sempre passa o primeiro packet. Utilização de Vector Insert para adicionar um "preambulo" para underun de rampage e para a adaptação do polyphase/coostas loop. Utilização de CC em vez de LDPC o que fica muito muito mais rápido, podendo utilizar um smaple rate bastante maior. Testes com diversos videos, alguns funcionam outros não. 
+
+Paso a seguir: Mais testes.
