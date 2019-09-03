@@ -68,4 +68,8 @@ Toda a semana, consegui meter a funcionar o HPD, com LDPC  no entanto so funcion
 12/8 ->Alteração de em vez de RRC manual, utilizar o Constelation Modulator, QPSK, 4SPS, Sem Burst Shapper nas USRPs. Nao dá videos, mas texto exceto a primeira parte está perfeita. Utilização de threads aumentou muito a codificacao e descodificacao do LDPC, reparei que quando faço a modulação totalmente manual os pontos da constelação quando giram o CAC deixa de encontrar a code stream por isso deduzi que tinha haver com alguma ambuguidade. (Talvez differential encoding) 
 13/8 ->Utilização de diferential encoding com a RRC manual e melhoramento significativo. Já transfere bem entre 2 USRP's quase sempre passa o primeiro packet. Utilização de Vector Insert para adicionar um "preambulo" para underun de rampage e para a adaptação do polyphase/coostas loop. Utilização de CC em vez de LDPC o que fica muito muito mais rápido, podendo utilizar um smaple rate bastante maior. Testes com diversos videos, alguns funcionam outros não. 
 
-Paso a seguir: Mais testes.
+Passo a seguir: Mais testes.
+
+Semana
+2/9 -> Chek-in e assinatura contrato
+3/9 -> Testes em vários videos, tentativa substituicao "Vector Insert" Block
