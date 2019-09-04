@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="namespacegr_1_1add__vector" kind="namespace" language="C++">
+    <compoundname>gr::add_vector</compoundname>
+    <innerclass refid="classgr_1_1add__vector_1_1add__vector__2__cpp" prot="public">gr::add_vector::add_vector_2_cpp</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/andre/investigacao/gr-add_vector/include/add_vector/add_vector_2_cpp.h" line="29" column="1"/>
+  </compounddef>
+</doxygen>

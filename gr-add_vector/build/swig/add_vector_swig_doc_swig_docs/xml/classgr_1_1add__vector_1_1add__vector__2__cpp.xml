@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classgr_1_1add__vector_1_1add__vector__2__cpp" kind="class" language="C++" prot="public">
+    <compoundname>gr::add_vector::add_vector_2_cpp</compoundname>
+    <basecompoundref prot="public" virt="virtual">block</basecompoundref>
+    <includes refid="add__vector__2__cpp_8h" local="no">add_vector_2_cpp.h</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classgr_1_1add__vector_1_1add__vector__2__cpp_1ad97a4c6eb765b80770e534c3e9df53d0" prot="public" static="no">
+        <type>boost::shared_ptr&lt; <ref refid="classgr_1_1add__vector_1_1add__vector__2__cpp" kindref="compound">add_vector_2_cpp</ref> &gt;</type>
+        <definition>typedef boost::shared_ptr&lt;add_vector_2_cpp&gt; gr::add_vector::add_vector_2_cpp::sptr</definition>
+        <argsstring></argsstring>
+        <name>sptr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/gr-add_vector/include/add_vector/add_vector_2_cpp.h" line="39" column="1" bodyfile="/home/andre/investigacao/gr-add_vector/include/add_vector/add_vector_2_cpp.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classgr_1_1add__vector_1_1add__vector__2__cpp_1ae03d994f7d78e1846fa052b49c490c45" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classgr_1_1add__vector_1_1add__vector__2__cpp_1ad97a4c6eb765b80770e534c3e9df53d0" kindref="member">sptr</ref></type>
+        <definition>static sptr gr::add_vector::add_vector_2_cpp::make</definition>
+        <argsstring>(const std::vector&lt; int &gt; &amp;vec)</argsstring>
+        <name>make</name>
+        <param>
+          <type>const std::vector&lt; int &gt; &amp;</type>
+          <declname>vec</declname>
+        </param>
+        <briefdescription>
+<para>Return a shared_ptr to a new instance of <ref refid="classgr_1_1add__vector_1_1add__vector__2__cpp" kindref="compound">add_vector::add_vector_2_cpp</ref>. </para>        </briefdescription>
+        <detaileddescription>
+<para>To avoid accidental use of raw pointers, <ref refid="classgr_1_1add__vector_1_1add__vector__2__cpp" kindref="compound">add_vector::add_vector_2_cpp</ref>&apos;s constructor is in a private implementation class. <ref refid="classgr_1_1add__vector_1_1add__vector__2__cpp_1ae03d994f7d78e1846fa052b49c490c45" kindref="member">add_vector::add_vector_2_cpp::make</ref> is the public interface for creating new instances. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/gr-add_vector/include/add_vector/add_vector_2_cpp.h" line="49" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>&lt;+description of block+&gt; </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="0">
+        <label>gr::add_vector::add_vector_2_cpp</label>
+        <link refid="classgr_1_1add__vector_1_1add__vector__2__cpp"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>gr::block</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>gr::add_vector::add_vector_2_cpp</label>
+        <link refid="classgr_1_1add__vector_1_1add__vector__2__cpp"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>gr::block</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/andre/investigacao/gr-add_vector/include/add_vector/add_vector_2_cpp.h" line="37" column="1" bodyfile="/home/andre/investigacao/gr-add_vector/include/add_vector/add_vector_2_cpp.h" bodystart="36" bodyend="50"/>
+    <listofallmembers>
+      <member refid="classgr_1_1add__vector_1_1add__vector__2__cpp_1ae03d994f7d78e1846fa052b49c490c45" prot="public" virt="non-virtual"><scope>gr::add_vector::add_vector_2_cpp</scope><name>make</name></member>
+      <member refid="classgr_1_1add__vector_1_1add__vector__2__cpp_1ad97a4c6eb765b80770e534c3e9df53d0" prot="public" virt="non-virtual"><scope>gr::add_vector::add_vector_2_cpp</scope><name>sptr</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

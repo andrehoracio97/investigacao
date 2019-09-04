@@ -1,0 +1,42 @@
+IEEE:
+SDR Transmitting Data Wireless - Pratical Tutorial
+
+Introducao:
+	O que é SDR, Breve historia.
+	O que é Gnu radio.
+
+Instalação:
+	Passos para a instalação do GNU radio, e das USRP's, VOLK.
+
+Transmissao ficheiro (MEU FG):
+
+Simulação - Explicação Throttling/funcionamento interno das Streams de um FG (Pq usar em simulação e não quando temos que usar sem ser em simulação) 
+
+	TX
+	-Encoding tanto em CC/LDPC (Inc Multithreading)
+	-Formação Payload
+	-Formação Header e MUX
+	-Modulação Packet (Differential encoder???? Chunks to Simbols e Polyphase.)
+
+	RX
+	-Corrections:
+		Polyphase Clock Sync -timing sync
+		Coostas Loop -frequency sync
+	-Demodulação
+	-CAC Block (Find Access Code)
+	-Extração Payload
+	-Decoding
+	-Extração info importante
+
+
+Channel Model VS Real transmittion:
+	-USRP -> MCR e Sample Rate to overcome U's (Tx) and O's (Rx)
+	-Saturação - See (QT Sink) and Overcome (Multiply Conts and Gain in Tx/Rx - Enough SNR to decode)
+
+
+=================
+OOT como criar?
+	-Phyton
+	-CPP
+
+	=/= de velocidade entre um e outro??

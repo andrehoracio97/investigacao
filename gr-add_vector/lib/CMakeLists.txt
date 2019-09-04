@@ -25,9 +25,8 @@ include(GrPlatform) #define LIB_SUFFIX
 
 include_directories(${Boost_INCLUDE_DIR})
 link_directories(${Boost_LIBRARY_DIRS})
-
 list(APPEND add_vector_sources
-)
+    add_vector_2_cpp_impl.cc )
 
 set(add_vector_sources "${add_vector_sources}" PARENT_SCOPE)
 if(NOT add_vector_sources)
@@ -57,11 +56,10 @@ GR_LIBRARY_FOO(gnuradio-add_vector RUNTIME_COMPONENT "add_vector_runtime" DEVEL_
 include(GrTest)
 
 include_directories(${CPPUNIT_INCLUDE_DIRS})
-
 list(APPEND test_add_vector_sources
     ${CMAKE_CURRENT_SOURCE_DIR}/test_add_vector.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/qa_add_vector.cc
-)
+    )
 
 add_executable(test-add_vector ${test_add_vector_sources})
 

@@ -56,18 +56,6 @@ CMAKE_BINARY_DIR = /home/andre/investigacao/gr-add_vector/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
-
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -80,6 +68,28 @@ install/local/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\" \"add_vector_runtime\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -90,6 +100,18 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
 
 # Special rule for the target test
 test:
@@ -112,28 +134,6 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
-
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -167,19 +167,235 @@ depend:
 	cd /home/andre/investigacao/gr-add_vector/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
+# Convenience name for target.
+swig/CMakeFiles/_add_vector_swig.dir/rule:
+	cd /home/andre/investigacao/gr-add_vector/build && $(MAKE) -f CMakeFiles/Makefile2 swig/CMakeFiles/_add_vector_swig.dir/rule
+.PHONY : swig/CMakeFiles/_add_vector_swig.dir/rule
+
+# Convenience name for target.
+_add_vector_swig: swig/CMakeFiles/_add_vector_swig.dir/rule
+
+.PHONY : _add_vector_swig
+
+# fast build rule for target.
+_add_vector_swig/fast:
+	cd /home/andre/investigacao/gr-add_vector/build && $(MAKE) -f swig/CMakeFiles/_add_vector_swig.dir/build.make swig/CMakeFiles/_add_vector_swig.dir/build
+.PHONY : _add_vector_swig/fast
+
+# Convenience name for target.
+swig/CMakeFiles/add_vector_swig_swig_doc.dir/rule:
+	cd /home/andre/investigacao/gr-add_vector/build && $(MAKE) -f CMakeFiles/Makefile2 swig/CMakeFiles/add_vector_swig_swig_doc.dir/rule
+.PHONY : swig/CMakeFiles/add_vector_swig_swig_doc.dir/rule
+
+# Convenience name for target.
+add_vector_swig_swig_doc: swig/CMakeFiles/add_vector_swig_swig_doc.dir/rule
+
+.PHONY : add_vector_swig_swig_doc
+
+# fast build rule for target.
+add_vector_swig_swig_doc/fast:
+	cd /home/andre/investigacao/gr-add_vector/build && $(MAKE) -f swig/CMakeFiles/add_vector_swig_swig_doc.dir/build.make swig/CMakeFiles/add_vector_swig_swig_doc.dir/build
+.PHONY : add_vector_swig_swig_doc/fast
+
+# Convenience name for target.
+swig/CMakeFiles/add_vector_swig_swig_2d0df.dir/rule:
+	cd /home/andre/investigacao/gr-add_vector/build && $(MAKE) -f CMakeFiles/Makefile2 swig/CMakeFiles/add_vector_swig_swig_2d0df.dir/rule
+.PHONY : swig/CMakeFiles/add_vector_swig_swig_2d0df.dir/rule
+
+# Convenience name for target.
+add_vector_swig_swig_2d0df: swig/CMakeFiles/add_vector_swig_swig_2d0df.dir/rule
+
+.PHONY : add_vector_swig_swig_2d0df
+
+# fast build rule for target.
+add_vector_swig_swig_2d0df/fast:
+	cd /home/andre/investigacao/gr-add_vector/build && $(MAKE) -f swig/CMakeFiles/add_vector_swig_swig_2d0df.dir/build.make swig/CMakeFiles/add_vector_swig_swig_2d0df.dir/build
+.PHONY : add_vector_swig_swig_2d0df/fast
+
+# Convenience name for target.
+swig/CMakeFiles/_add_vector_swig_doc_tag.dir/rule:
+	cd /home/andre/investigacao/gr-add_vector/build && $(MAKE) -f CMakeFiles/Makefile2 swig/CMakeFiles/_add_vector_swig_doc_tag.dir/rule
+.PHONY : swig/CMakeFiles/_add_vector_swig_doc_tag.dir/rule
+
+# Convenience name for target.
+_add_vector_swig_doc_tag: swig/CMakeFiles/_add_vector_swig_doc_tag.dir/rule
+
+.PHONY : _add_vector_swig_doc_tag
+
+# fast build rule for target.
+_add_vector_swig_doc_tag/fast:
+	cd /home/andre/investigacao/gr-add_vector/build && $(MAKE) -f swig/CMakeFiles/_add_vector_swig_doc_tag.dir/build.make swig/CMakeFiles/_add_vector_swig_doc_tag.dir/build
+.PHONY : _add_vector_swig_doc_tag/fast
+
+# Convenience name for target.
+swig/CMakeFiles/_add_vector_swig_swig_tag.dir/rule:
+	cd /home/andre/investigacao/gr-add_vector/build && $(MAKE) -f CMakeFiles/Makefile2 swig/CMakeFiles/_add_vector_swig_swig_tag.dir/rule
+.PHONY : swig/CMakeFiles/_add_vector_swig_swig_tag.dir/rule
+
+# Convenience name for target.
+_add_vector_swig_swig_tag: swig/CMakeFiles/_add_vector_swig_swig_tag.dir/rule
+
+.PHONY : _add_vector_swig_swig_tag
+
+# fast build rule for target.
+_add_vector_swig_swig_tag/fast:
+	cd /home/andre/investigacao/gr-add_vector/build && $(MAKE) -f swig/CMakeFiles/_add_vector_swig_swig_tag.dir/build.make swig/CMakeFiles/_add_vector_swig_swig_tag.dir/build
+.PHONY : _add_vector_swig_swig_tag/fast
+
+# Convenience name for target.
+swig/CMakeFiles/pygen_swig_9a695.dir/rule:
+	cd /home/andre/investigacao/gr-add_vector/build && $(MAKE) -f CMakeFiles/Makefile2 swig/CMakeFiles/pygen_swig_9a695.dir/rule
+.PHONY : swig/CMakeFiles/pygen_swig_9a695.dir/rule
+
+# Convenience name for target.
+pygen_swig_9a695: swig/CMakeFiles/pygen_swig_9a695.dir/rule
+
+.PHONY : pygen_swig_9a695
+
+# fast build rule for target.
+pygen_swig_9a695/fast:
+	cd /home/andre/investigacao/gr-add_vector/build && $(MAKE) -f swig/CMakeFiles/pygen_swig_9a695.dir/build.make swig/CMakeFiles/pygen_swig_9a695.dir/build
+.PHONY : pygen_swig_9a695/fast
+
+_add_vector_swig_doc_tag.o: _add_vector_swig_doc_tag.cpp.o
+
+.PHONY : _add_vector_swig_doc_tag.o
+
+# target to build an object file
+_add_vector_swig_doc_tag.cpp.o:
+	cd /home/andre/investigacao/gr-add_vector/build && $(MAKE) -f swig/CMakeFiles/_add_vector_swig_doc_tag.dir/build.make swig/CMakeFiles/_add_vector_swig_doc_tag.dir/_add_vector_swig_doc_tag.cpp.o
+.PHONY : _add_vector_swig_doc_tag.cpp.o
+
+_add_vector_swig_doc_tag.i: _add_vector_swig_doc_tag.cpp.i
+
+.PHONY : _add_vector_swig_doc_tag.i
+
+# target to preprocess a source file
+_add_vector_swig_doc_tag.cpp.i:
+	cd /home/andre/investigacao/gr-add_vector/build && $(MAKE) -f swig/CMakeFiles/_add_vector_swig_doc_tag.dir/build.make swig/CMakeFiles/_add_vector_swig_doc_tag.dir/_add_vector_swig_doc_tag.cpp.i
+.PHONY : _add_vector_swig_doc_tag.cpp.i
+
+_add_vector_swig_doc_tag.s: _add_vector_swig_doc_tag.cpp.s
+
+.PHONY : _add_vector_swig_doc_tag.s
+
+# target to generate assembly for a file
+_add_vector_swig_doc_tag.cpp.s:
+	cd /home/andre/investigacao/gr-add_vector/build && $(MAKE) -f swig/CMakeFiles/_add_vector_swig_doc_tag.dir/build.make swig/CMakeFiles/_add_vector_swig_doc_tag.dir/_add_vector_swig_doc_tag.cpp.s
+.PHONY : _add_vector_swig_doc_tag.cpp.s
+
+_add_vector_swig_swig_tag.o: _add_vector_swig_swig_tag.cpp.o
+
+.PHONY : _add_vector_swig_swig_tag.o
+
+# target to build an object file
+_add_vector_swig_swig_tag.cpp.o:
+	cd /home/andre/investigacao/gr-add_vector/build && $(MAKE) -f swig/CMakeFiles/_add_vector_swig_swig_tag.dir/build.make swig/CMakeFiles/_add_vector_swig_swig_tag.dir/_add_vector_swig_swig_tag.cpp.o
+.PHONY : _add_vector_swig_swig_tag.cpp.o
+
+_add_vector_swig_swig_tag.i: _add_vector_swig_swig_tag.cpp.i
+
+.PHONY : _add_vector_swig_swig_tag.i
+
+# target to preprocess a source file
+_add_vector_swig_swig_tag.cpp.i:
+	cd /home/andre/investigacao/gr-add_vector/build && $(MAKE) -f swig/CMakeFiles/_add_vector_swig_swig_tag.dir/build.make swig/CMakeFiles/_add_vector_swig_swig_tag.dir/_add_vector_swig_swig_tag.cpp.i
+.PHONY : _add_vector_swig_swig_tag.cpp.i
+
+_add_vector_swig_swig_tag.s: _add_vector_swig_swig_tag.cpp.s
+
+.PHONY : _add_vector_swig_swig_tag.s
+
+# target to generate assembly for a file
+_add_vector_swig_swig_tag.cpp.s:
+	cd /home/andre/investigacao/gr-add_vector/build && $(MAKE) -f swig/CMakeFiles/_add_vector_swig_swig_tag.dir/build.make swig/CMakeFiles/_add_vector_swig_swig_tag.dir/_add_vector_swig_swig_tag.cpp.s
+.PHONY : _add_vector_swig_swig_tag.cpp.s
+
+add_vector_swigPYTHON_wrap.o: add_vector_swigPYTHON_wrap.cxx.o
+
+.PHONY : add_vector_swigPYTHON_wrap.o
+
+# target to build an object file
+add_vector_swigPYTHON_wrap.cxx.o:
+	cd /home/andre/investigacao/gr-add_vector/build && $(MAKE) -f swig/CMakeFiles/_add_vector_swig.dir/build.make swig/CMakeFiles/_add_vector_swig.dir/add_vector_swigPYTHON_wrap.cxx.o
+.PHONY : add_vector_swigPYTHON_wrap.cxx.o
+
+add_vector_swigPYTHON_wrap.i: add_vector_swigPYTHON_wrap.cxx.i
+
+.PHONY : add_vector_swigPYTHON_wrap.i
+
+# target to preprocess a source file
+add_vector_swigPYTHON_wrap.cxx.i:
+	cd /home/andre/investigacao/gr-add_vector/build && $(MAKE) -f swig/CMakeFiles/_add_vector_swig.dir/build.make swig/CMakeFiles/_add_vector_swig.dir/add_vector_swigPYTHON_wrap.cxx.i
+.PHONY : add_vector_swigPYTHON_wrap.cxx.i
+
+add_vector_swigPYTHON_wrap.s: add_vector_swigPYTHON_wrap.cxx.s
+
+.PHONY : add_vector_swigPYTHON_wrap.s
+
+# target to generate assembly for a file
+add_vector_swigPYTHON_wrap.cxx.s:
+	cd /home/andre/investigacao/gr-add_vector/build && $(MAKE) -f swig/CMakeFiles/_add_vector_swig.dir/build.make swig/CMakeFiles/_add_vector_swig.dir/add_vector_swigPYTHON_wrap.cxx.s
+.PHONY : add_vector_swigPYTHON_wrap.cxx.s
+
+add_vector_swig_swig_2d0df.o: add_vector_swig_swig_2d0df.cpp.o
+
+.PHONY : add_vector_swig_swig_2d0df.o
+
+# target to build an object file
+add_vector_swig_swig_2d0df.cpp.o:
+	cd /home/andre/investigacao/gr-add_vector/build && $(MAKE) -f swig/CMakeFiles/add_vector_swig_swig_2d0df.dir/build.make swig/CMakeFiles/add_vector_swig_swig_2d0df.dir/add_vector_swig_swig_2d0df.cpp.o
+.PHONY : add_vector_swig_swig_2d0df.cpp.o
+
+add_vector_swig_swig_2d0df.i: add_vector_swig_swig_2d0df.cpp.i
+
+.PHONY : add_vector_swig_swig_2d0df.i
+
+# target to preprocess a source file
+add_vector_swig_swig_2d0df.cpp.i:
+	cd /home/andre/investigacao/gr-add_vector/build && $(MAKE) -f swig/CMakeFiles/add_vector_swig_swig_2d0df.dir/build.make swig/CMakeFiles/add_vector_swig_swig_2d0df.dir/add_vector_swig_swig_2d0df.cpp.i
+.PHONY : add_vector_swig_swig_2d0df.cpp.i
+
+add_vector_swig_swig_2d0df.s: add_vector_swig_swig_2d0df.cpp.s
+
+.PHONY : add_vector_swig_swig_2d0df.s
+
+# target to generate assembly for a file
+add_vector_swig_swig_2d0df.cpp.s:
+	cd /home/andre/investigacao/gr-add_vector/build && $(MAKE) -f swig/CMakeFiles/add_vector_swig_swig_2d0df.dir/build.make swig/CMakeFiles/add_vector_swig_swig_2d0df.dir/add_vector_swig_swig_2d0df.cpp.s
+.PHONY : add_vector_swig_swig_2d0df.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... install/strip"
 	@echo "... install/local"
+	@echo "... _add_vector_swig"
+	@echo "... add_vector_swig_swig_doc"
+	@echo "... add_vector_swig_swig_2d0df"
+	@echo "... install/strip"
+	@echo "... list_install_components"
+	@echo "... _add_vector_swig_doc_tag"
 	@echo "... edit_cache"
+	@echo "... install"
+	@echo "... _add_vector_swig_swig_tag"
+	@echo "... pygen_swig_9a695"
 	@echo "... test"
 	@echo "... rebuild_cache"
-	@echo "... list_install_components"
-	@echo "... install"
+	@echo "... _add_vector_swig_doc_tag.o"
+	@echo "... _add_vector_swig_doc_tag.i"
+	@echo "... _add_vector_swig_doc_tag.s"
+	@echo "... _add_vector_swig_swig_tag.o"
+	@echo "... _add_vector_swig_swig_tag.i"
+	@echo "... _add_vector_swig_swig_tag.s"
+	@echo "... add_vector_swigPYTHON_wrap.o"
+	@echo "... add_vector_swigPYTHON_wrap.i"
+	@echo "... add_vector_swigPYTHON_wrap.s"
+	@echo "... add_vector_swig_swig_2d0df.o"
+	@echo "... add_vector_swig_swig_2d0df.i"
+	@echo "... add_vector_swig_swig_2d0df.s"
 .PHONY : help
 
 

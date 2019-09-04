@@ -1,11 +1,20 @@
+PYTHON:
+https://wiki.gnuradio.org/index.php/Guided_Tutorial_GNU_Radio_in_Python#3.2.1._Using_gr_modtool
+
+C++: 
+https://wiki.gnuradio.org/index.php/Guided_Tutorial_GNU_Radio_in_C%2B%2B
+
+
 COMO ADICIONAR:
 Primeiro criar uma pasta onde quisermos.
 Usar o modtool para adicionar um modulo:
 1)gr_modtool newmod nome_do_modulo
 
 
-Depois criar o bloco com o nome que pretendermos:
-2)gr_modtool new -t sync -l python
+Depois criar o bloco com o nome que pretendermos: 
+gr_modtool help add
+
+2)gr_modtool add -t sync -l python
 Inserir nome, com QA.
 
 3)Editar o ficheiro python criado dentro da pasta python.
@@ -50,78 +59,11 @@ sudo make install
 sudo ldconfig
 
 
-RESULTOU:
--- Install configuration: "Release"
--- Installing: /usr/local/lib/cmake/add_vector/add_vectorConfig.cmake
--- Installing: /usr/local/include/add_vector/api.h
--- Installing: /usr/local/lib/python2.7/dist-packages/add_vector/__init__.py
--- Installing: /usr/local/lib/python2.7/dist-packages/add_vector/add_vector_bb.py
--- Installing: /usr/local/lib/python2.7/dist-packages/add_vector/multiply.py
--- Installing: /usr/local/lib/python2.7/dist-packages/add_vector/add_vector_2.py
--- Installing: /usr/local/lib/python2.7/dist-packages/add_vector/__init__.pyc
--- Installing: /usr/local/lib/python2.7/dist-packages/add_vector/add_vector_bb.pyc
--- Installing: /usr/local/lib/python2.7/dist-packages/add_vector/multiply.pyc
--- Installing: /usr/local/lib/python2.7/dist-packages/add_vector/add_vector_2.pyc
--- Installing: /usr/local/lib/python2.7/dist-packages/add_vector/__init__.pyo
--- Installing: /usr/local/lib/python2.7/dist-packages/add_vector/add_vector_bb.pyo
--- Installing: /usr/local/lib/python2.7/dist-packages/add_vector/multiply.pyo
--- Installing: /usr/local/lib/python2.7/dist-packages/add_vector/add_vector_2.pyo
--- Installing: /usr/local/share/gnuradio/grc/blocks/add_vector_add_vector_bb.xml
--- Installing: /usr/local/share/gnuradio/grc/blocks/add_vector_multiply.xml
--- Installing: /usr/local/share/gnuradio/grc/blocks/add_vector_add_vector_2.xml
--- Installing: /usr/local/share/doc/gr-add_vector/xml
--- Installing: /usr/local/share/doc/gr-add_vector/xml/indexpage.xml
--- Installing: /usr/local/share/doc/gr-add_vector/xml/compound.xsd
--- Installing: /usr/local/share/doc/gr-add_vector/xml/dir_d44c64559bbebec7f509842c48db8b23.xml
--- Installing: /usr/local/share/doc/gr-add_vector/xml/group__defs_8dox.xml
--- Installing: /usr/local/share/doc/gr-add_vector/xml/group__block.xml
--- Installing: /usr/local/share/doc/gr-add_vector/xml/index.xml
--- Installing: /usr/local/share/doc/gr-add_vector/xml/main__page_8dox.xml
--- Installing: /usr/local/share/doc/gr-add_vector/xml/namespacestd.xml
--- Installing: /usr/local/share/doc/gr-add_vector/xml/combine.xslt
--- Installing: /usr/local/share/doc/gr-add_vector/xml/dir_15a6d3fbdd3c35a5462dcb845c079d08.xml
--- Installing: /usr/local/share/doc/gr-add_vector/xml/index.xsd
--- Installing: /usr/local/share/doc/gr-add_vector/xml/api_8h.xml
--- Installing: /usr/local/share/doc/gr-add_vector/html
--- Installing: /usr/local/share/doc/gr-add_vector/html/tabs.css
--- Installing: /usr/local/share/doc/gr-add_vector/html/nav_g.png
--- Installing: /usr/local/share/doc/gr-add_vector/html/jquery.js
--- Installing: /usr/local/share/doc/gr-add_vector/html/closed.png
--- Installing: /usr/local/share/doc/gr-add_vector/html/group__defs_8dox.html
--- Installing: /usr/local/share/doc/gr-add_vector/html/modules.js
--- Installing: /usr/local/share/doc/gr-add_vector/html/folderclosed.png
--- Installing: /usr/local/share/doc/gr-add_vector/html/tab_a.png
--- Installing: /usr/local/share/doc/gr-add_vector/html/sync_off.png
--- Installing: /usr/local/share/doc/gr-add_vector/html/index.html
--- Installing: /usr/local/share/doc/gr-add_vector/html/modules.html
--- Installing: /usr/local/share/doc/gr-add_vector/html/dir_d44c64559bbebec7f509842c48db8b23.html
--- Installing: /usr/local/share/doc/gr-add_vector/html/tab_h.png
--- Installing: /usr/local/share/doc/gr-add_vector/html/dynsections.js
--- Installing: /usr/local/share/doc/gr-add_vector/html/tab_s.png
--- Installing: /usr/local/share/doc/gr-add_vector/html/sync_on.png
--- Installing: /usr/local/share/doc/gr-add_vector/html/api_8h_source.html
--- Installing: /usr/local/share/doc/gr-add_vector/html/dir_15a6d3fbdd3c35a5462dcb845c079d08.html
--- Installing: /usr/local/share/doc/gr-add_vector/html/nav_f.png
--- Installing: /usr/local/share/doc/gr-add_vector/html/globals_defs.html
--- Installing: /usr/local/share/doc/gr-add_vector/html/globals.html
--- Installing: /usr/local/share/doc/gr-add_vector/html/navtreedata.js
--- Installing: /usr/local/share/doc/gr-add_vector/html/open.png
--- Installing: /usr/local/share/doc/gr-add_vector/html/doxygen.css
--- Installing: /usr/local/share/doc/gr-add_vector/html/bc_s.png
--- Installing: /usr/local/share/doc/gr-add_vector/html/nav_h.png
--- Installing: /usr/local/share/doc/gr-add_vector/html/splitbar.png
--- Installing: /usr/local/share/doc/gr-add_vector/html/navtreeindex0.js
--- Installing: /usr/local/share/doc/gr-add_vector/html/bdwn.png
--- Installing: /usr/local/share/doc/gr-add_vector/html/api_8h.js
--- Installing: /usr/local/share/doc/gr-add_vector/html/api_8h.html
--- Installing: /usr/local/share/doc/gr-add_vector/html/navtree.css
--- Installing: /usr/local/share/doc/gr-add_vector/html/resize.js
--- Installing: /usr/local/share/doc/gr-add_vector/html/doc.png
--- Installing: /usr/local/share/doc/gr-add_vector/html/navtree.js
--- Installing: /usr/local/share/doc/gr-add_vector/html/doxygen.png
--- Installing: /usr/local/share/doc/gr-add_vector/html/files.js
--- Installing: /usr/local/share/doc/gr-add_vector/html/files.html
--- Installing: /usr/local/share/doc/gr-add_vector/html/group__block.html
--- Installing: /usr/local/share/doc/gr-add_vector/html/folderopen.png
--- Installing: /usr/local/share/doc/gr-add_vector/html/main__page_8dox.html
--- Installing: /usr/local/share/doc/gr-add_vector/html/tab_b.png
+
+Creating OOT CPP
+gr_modtool add new_vec
+general 
+cpp
+const std::vector<unsigned char> &vec
+
+https://www.gnuradio.org/doc/doxygen/classgr_1_1block.html#a5bc118d94944d2ff71e378f807fb8d28

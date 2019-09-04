@@ -8,6 +8,9 @@
 %include "add_vector_swig_doc.i"
 
 %{
+#include "add_vector/add_vector_2_cpp.h"
 %}
-
-
+GR_SWIG_BLOCK_MAGIC2(add_vector, add_vector_cpp);
+GR_SWIG_BLOCK_MAGIC2(add_vector, add_vector_2_cpp);
+%include "add_vector/add_vector_2_cpp.h"
+GR_SWIG_BLOCK_MAGIC2(add_vector, add_vector_2_cpp);

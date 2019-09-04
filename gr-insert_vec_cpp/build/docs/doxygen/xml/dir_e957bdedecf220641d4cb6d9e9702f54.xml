@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="dir_e957bdedecf220641d4cb6d9e9702f54" kind="dir">
+    <compoundname>insert_vec_cpp</compoundname>
+    <innerfile refid="api_8h">api.h</innerfile>
+    <innerfile refid="new__vec_8h">new_vec.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/andre/investigacao/gr-insert_vec_cpp/include/insert_vec_cpp/"/>
+  </compounddef>
+</doxygen>

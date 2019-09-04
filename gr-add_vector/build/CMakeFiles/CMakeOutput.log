@@ -704,3 +704,88 @@ make[1]: Leaving directory '/home/andre/investigacao/gr-add_vector/build/CMakeFi
     Feature record: C_FEATURE:0c_restrict
     Feature record: C_FEATURE:0c_static_assert
     Feature record: C_FEATURE:0c_variadic_macros
+Determining if the include file sys/types.h exists passed with the following output:
+Change Dir: /home/andre/investigacao/gr-add_vector/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_bf5c9/fast"
+/usr/bin/make -f CMakeFiles/cmTC_bf5c9.dir/build.make CMakeFiles/cmTC_bf5c9.dir/build
+make[1]: Entering directory '/home/andre/investigacao/gr-add_vector/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_bf5c9.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_bf5c9.dir/CheckIncludeFile.c.o   -c /home/andre/investigacao/gr-add_vector/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_bf5c9
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bf5c9.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_bf5c9.dir/CheckIncludeFile.c.o  -o cmTC_bf5c9 
+make[1]: Leaving directory '/home/andre/investigacao/gr-add_vector/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file stdint.h exists passed with the following output:
+Change Dir: /home/andre/investigacao/gr-add_vector/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_e6d58/fast"
+/usr/bin/make -f CMakeFiles/cmTC_e6d58.dir/build.make CMakeFiles/cmTC_e6d58.dir/build
+make[1]: Entering directory '/home/andre/investigacao/gr-add_vector/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_e6d58.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_e6d58.dir/CheckIncludeFile.c.o   -c /home/andre/investigacao/gr-add_vector/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_e6d58
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e6d58.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_e6d58.dir/CheckIncludeFile.c.o  -o cmTC_e6d58 
+make[1]: Leaving directory '/home/andre/investigacao/gr-add_vector/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file stddef.h exists passed with the following output:
+Change Dir: /home/andre/investigacao/gr-add_vector/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_db303/fast"
+/usr/bin/make -f CMakeFiles/cmTC_db303.dir/build.make CMakeFiles/cmTC_db303.dir/build
+make[1]: Entering directory '/home/andre/investigacao/gr-add_vector/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_db303.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_db303.dir/CheckIncludeFile.c.o   -c /home/andre/investigacao/gr-add_vector/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_db303
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_db303.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_db303.dir/CheckIncludeFile.c.o  -o cmTC_db303 
+make[1]: Leaving directory '/home/andre/investigacao/gr-add_vector/build/CMakeFiles/CMakeTmp'
+
+
+Determining size of size_t passed with the following output:
+Change Dir: /home/andre/investigacao/gr-add_vector/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_52fc8/fast"
+/usr/bin/make -f CMakeFiles/cmTC_52fc8.dir/build.make CMakeFiles/cmTC_52fc8.dir/build
+make[1]: Entering directory '/home/andre/investigacao/gr-add_vector/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_52fc8.dir/SIZEOF_SIZE_T.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_52fc8.dir/SIZEOF_SIZE_T.c.o   -c /home/andre/investigacao/gr-add_vector/build/CMakeFiles/CheckTypeSize/SIZEOF_SIZE_T.c
+Linking C executable cmTC_52fc8
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_52fc8.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_52fc8.dir/SIZEOF_SIZE_T.c.o  -o cmTC_52fc8 
+make[1]: Leaving directory '/home/andre/investigacao/gr-add_vector/build/CMakeFiles/CMakeTmp'
+
+
+Determining size of unsigned int passed with the following output:
+Change Dir: /home/andre/investigacao/gr-add_vector/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_abfb8/fast"
+/usr/bin/make -f CMakeFiles/cmTC_abfb8.dir/build.make CMakeFiles/cmTC_abfb8.dir/build
+make[1]: Entering directory '/home/andre/investigacao/gr-add_vector/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_abfb8.dir/SIZEOF_UINT.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_abfb8.dir/SIZEOF_UINT.c.o   -c /home/andre/investigacao/gr-add_vector/build/CMakeFiles/CheckTypeSize/SIZEOF_UINT.c
+Linking C executable cmTC_abfb8
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_abfb8.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_abfb8.dir/SIZEOF_UINT.c.o  -o cmTC_abfb8 
+make[1]: Leaving directory '/home/andre/investigacao/gr-add_vector/build/CMakeFiles/CMakeTmp'
+
+
+Performing C++ SOURCE FILE Test HAVE_WNO_UNUSED_BUT_SET_VARIABLE succeeded with the following output:
+Change Dir: /home/andre/investigacao/gr-add_vector/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_25e62/fast"
+/usr/bin/make -f CMakeFiles/cmTC_25e62.dir/build.make CMakeFiles/cmTC_25e62.dir/build
+make[1]: Entering directory '/home/andre/investigacao/gr-add_vector/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_25e62.dir/src.cxx.o
+/usr/bin/c++    -DHAVE_WNO_UNUSED_BUT_SET_VARIABLE   -Wno-unused-but-set-variable -o CMakeFiles/cmTC_25e62.dir/src.cxx.o -c /home/andre/investigacao/gr-add_vector/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_25e62
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_25e62.dir/link.txt --verbose=1
+/usr/bin/c++   -DHAVE_WNO_UNUSED_BUT_SET_VARIABLE    -rdynamic CMakeFiles/cmTC_25e62.dir/src.cxx.o  -o cmTC_25e62 
+make[1]: Leaving directory '/home/andre/investigacao/gr-add_vector/build/CMakeFiles/CMakeTmp'
+
+Source file was:
+int main() { return 0; }

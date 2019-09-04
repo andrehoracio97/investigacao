@@ -23,5 +23,5 @@
 ########################################################################
 install(FILES
     api.h
-    DESTINATION include/add_vector
+    add_vector_2_cpp.h DESTINATION include/add_vector
 )

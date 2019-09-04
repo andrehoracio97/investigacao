@@ -80,6 +80,28 @@ install/local/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\" \"add_vector_runtime\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -113,28 +135,6 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
 # The main all target
 all: cmake_check_build_system
 	cd /home/andre/investigacao/gr-add_vector/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/andre/investigacao/gr-add_vector/build/CMakeFiles /home/andre/investigacao/gr-add_vector/build/lib/CMakeFiles/progress.marks
@@ -167,6 +167,117 @@ depend:
 	cd /home/andre/investigacao/gr-add_vector/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
+# Convenience name for target.
+lib/CMakeFiles/gnuradio-add_vector.dir/rule:
+	cd /home/andre/investigacao/gr-add_vector/build && $(MAKE) -f CMakeFiles/Makefile2 lib/CMakeFiles/gnuradio-add_vector.dir/rule
+.PHONY : lib/CMakeFiles/gnuradio-add_vector.dir/rule
+
+# Convenience name for target.
+gnuradio-add_vector: lib/CMakeFiles/gnuradio-add_vector.dir/rule
+
+.PHONY : gnuradio-add_vector
+
+# fast build rule for target.
+gnuradio-add_vector/fast:
+	cd /home/andre/investigacao/gr-add_vector/build && $(MAKE) -f lib/CMakeFiles/gnuradio-add_vector.dir/build.make lib/CMakeFiles/gnuradio-add_vector.dir/build
+.PHONY : gnuradio-add_vector/fast
+
+# Convenience name for target.
+lib/CMakeFiles/test-add_vector.dir/rule:
+	cd /home/andre/investigacao/gr-add_vector/build && $(MAKE) -f CMakeFiles/Makefile2 lib/CMakeFiles/test-add_vector.dir/rule
+.PHONY : lib/CMakeFiles/test-add_vector.dir/rule
+
+# Convenience name for target.
+test-add_vector: lib/CMakeFiles/test-add_vector.dir/rule
+
+.PHONY : test-add_vector
+
+# fast build rule for target.
+test-add_vector/fast:
+	cd /home/andre/investigacao/gr-add_vector/build && $(MAKE) -f lib/CMakeFiles/test-add_vector.dir/build.make lib/CMakeFiles/test-add_vector.dir/build
+.PHONY : test-add_vector/fast
+
+add_vector_2_cpp_impl.o: add_vector_2_cpp_impl.cc.o
+
+.PHONY : add_vector_2_cpp_impl.o
+
+# target to build an object file
+add_vector_2_cpp_impl.cc.o:
+	cd /home/andre/investigacao/gr-add_vector/build && $(MAKE) -f lib/CMakeFiles/gnuradio-add_vector.dir/build.make lib/CMakeFiles/gnuradio-add_vector.dir/add_vector_2_cpp_impl.cc.o
+.PHONY : add_vector_2_cpp_impl.cc.o
+
+add_vector_2_cpp_impl.i: add_vector_2_cpp_impl.cc.i
+
+.PHONY : add_vector_2_cpp_impl.i
+
+# target to preprocess a source file
+add_vector_2_cpp_impl.cc.i:
+	cd /home/andre/investigacao/gr-add_vector/build && $(MAKE) -f lib/CMakeFiles/gnuradio-add_vector.dir/build.make lib/CMakeFiles/gnuradio-add_vector.dir/add_vector_2_cpp_impl.cc.i
+.PHONY : add_vector_2_cpp_impl.cc.i
+
+add_vector_2_cpp_impl.s: add_vector_2_cpp_impl.cc.s
+
+.PHONY : add_vector_2_cpp_impl.s
+
+# target to generate assembly for a file
+add_vector_2_cpp_impl.cc.s:
+	cd /home/andre/investigacao/gr-add_vector/build && $(MAKE) -f lib/CMakeFiles/gnuradio-add_vector.dir/build.make lib/CMakeFiles/gnuradio-add_vector.dir/add_vector_2_cpp_impl.cc.s
+.PHONY : add_vector_2_cpp_impl.cc.s
+
+qa_add_vector.o: qa_add_vector.cc.o
+
+.PHONY : qa_add_vector.o
+
+# target to build an object file
+qa_add_vector.cc.o:
+	cd /home/andre/investigacao/gr-add_vector/build && $(MAKE) -f lib/CMakeFiles/test-add_vector.dir/build.make lib/CMakeFiles/test-add_vector.dir/qa_add_vector.cc.o
+.PHONY : qa_add_vector.cc.o
+
+qa_add_vector.i: qa_add_vector.cc.i
+
+.PHONY : qa_add_vector.i
+
+# target to preprocess a source file
+qa_add_vector.cc.i:
+	cd /home/andre/investigacao/gr-add_vector/build && $(MAKE) -f lib/CMakeFiles/test-add_vector.dir/build.make lib/CMakeFiles/test-add_vector.dir/qa_add_vector.cc.i
+.PHONY : qa_add_vector.cc.i
+
+qa_add_vector.s: qa_add_vector.cc.s
+
+.PHONY : qa_add_vector.s
+
+# target to generate assembly for a file
+qa_add_vector.cc.s:
+	cd /home/andre/investigacao/gr-add_vector/build && $(MAKE) -f lib/CMakeFiles/test-add_vector.dir/build.make lib/CMakeFiles/test-add_vector.dir/qa_add_vector.cc.s
+.PHONY : qa_add_vector.cc.s
+
+test_add_vector.o: test_add_vector.cc.o
+
+.PHONY : test_add_vector.o
+
+# target to build an object file
+test_add_vector.cc.o:
+	cd /home/andre/investigacao/gr-add_vector/build && $(MAKE) -f lib/CMakeFiles/test-add_vector.dir/build.make lib/CMakeFiles/test-add_vector.dir/test_add_vector.cc.o
+.PHONY : test_add_vector.cc.o
+
+test_add_vector.i: test_add_vector.cc.i
+
+.PHONY : test_add_vector.i
+
+# target to preprocess a source file
+test_add_vector.cc.i:
+	cd /home/andre/investigacao/gr-add_vector/build && $(MAKE) -f lib/CMakeFiles/test-add_vector.dir/build.make lib/CMakeFiles/test-add_vector.dir/test_add_vector.cc.i
+.PHONY : test_add_vector.cc.i
+
+test_add_vector.s: test_add_vector.cc.s
+
+.PHONY : test_add_vector.s
+
+# target to generate assembly for a file
+test_add_vector.cc.s:
+	cd /home/andre/investigacao/gr-add_vector/build && $(MAKE) -f lib/CMakeFiles/test-add_vector.dir/build.make lib/CMakeFiles/test-add_vector.dir/test_add_vector.cc.s
+.PHONY : test_add_vector.cc.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -175,11 +286,22 @@ help:
 	@echo "... depend"
 	@echo "... install/strip"
 	@echo "... install/local"
+	@echo "... install"
+	@echo "... list_install_components"
+	@echo "... gnuradio-add_vector"
+	@echo "... test-add_vector"
 	@echo "... edit_cache"
 	@echo "... test"
 	@echo "... rebuild_cache"
-	@echo "... list_install_components"
-	@echo "... install"
+	@echo "... add_vector_2_cpp_impl.o"
+	@echo "... add_vector_2_cpp_impl.i"
+	@echo "... add_vector_2_cpp_impl.s"
+	@echo "... qa_add_vector.o"
+	@echo "... qa_add_vector.i"
+	@echo "... qa_add_vector.s"
+	@echo "... test_add_vector.o"
+	@echo "... test_add_vector.i"
+	@echo "... test_add_vector.s"
 .PHONY : help
 
 

@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="new__vec_8h" kind="file" language="C++">
+    <compoundname>new_vec.h</compoundname>
+    <includes refid="api_8h" local="no">insert_vec_cpp/api.h</includes>
+    <includes local="no">gnuradio/block.h</includes>
+    <includedby refid="new__vec__impl_8h" local="no">new_vec_impl.h</includedby>
+    <incdepgraph>
+      <node id="10">
+        <label>insert_vec_cpp/api.h</label>
+        <link refid="api_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>gnuradio/attributes.h</label>
+      </node>
+      <node id="9">
+        <label>new_vec.h</label>
+        <link refid="new__vec_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>gnuradio/block.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="14">
+        <label>new_vec_impl.h</label>
+        <link refid="new__vec__impl_8h"/>
+      </node>
+      <node id="13">
+        <label>new_vec.h</label>
+        <link refid="new__vec_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classgr_1_1insert__vec__cpp_1_1new__vec" prot="public">gr::insert_vec_cpp::new_vec</innerclass>
+    <innernamespace refid="namespacegr">gr</innernamespace>
+    <innernamespace refid="namespacegr_1_1insert__vec__cpp">gr::insert_vec_cpp</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/andre/investigacao/gr-insert_vec_cpp/include/insert_vec_cpp/new_vec.h"/>
+  </compounddef>
+</doxygen>

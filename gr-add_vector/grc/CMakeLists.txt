@@ -20,5 +20,6 @@
 install(FILES
     add_vector_add_vector_bb.xml
     add_vector_multiply.xml
-    add_vector_add_vector_2.xml DESTINATION share/gnuradio/grc/blocks
+    add_vector_add_vector_2.xml
+    add_vector_add_vector_2_cpp.xml DESTINATION share/gnuradio/grc/blocks
 )

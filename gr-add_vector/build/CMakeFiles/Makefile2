@@ -118,12 +118,14 @@ include/add_vector/preinstall:
 # Directory level rules for directory lib
 
 # Convenience name for "all" pass in the directory.
-lib/all:
+lib/all: lib/CMakeFiles/gnuradio-add_vector.dir/all
+lib/all: lib/CMakeFiles/test-add_vector.dir/all
 
 .PHONY : lib/all
 
 # Convenience name for "clean" pass in the directory.
-lib/clean:
+lib/clean: lib/CMakeFiles/gnuradio-add_vector.dir/clean
+lib/clean: lib/CMakeFiles/test-add_vector.dir/clean
 
 .PHONY : lib/clean
 
@@ -133,15 +135,98 @@ lib/preinstall:
 .PHONY : lib/preinstall
 
 #=============================================================================
+# Target rules for target lib/CMakeFiles/gnuradio-add_vector.dir
+
+# All Build rule for target.
+lib/CMakeFiles/gnuradio-add_vector.dir/all:
+	$(MAKE) -f lib/CMakeFiles/gnuradio-add_vector.dir/build.make lib/CMakeFiles/gnuradio-add_vector.dir/depend
+	$(MAKE) -f lib/CMakeFiles/gnuradio-add_vector.dir/build.make lib/CMakeFiles/gnuradio-add_vector.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/andre/investigacao/gr-add_vector/build/CMakeFiles --progress-num=15,16 "Built target gnuradio-add_vector"
+.PHONY : lib/CMakeFiles/gnuradio-add_vector.dir/all
+
+# Include target in all.
+all: lib/CMakeFiles/gnuradio-add_vector.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+lib/CMakeFiles/gnuradio-add_vector.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/andre/investigacao/gr-add_vector/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 lib/CMakeFiles/gnuradio-add_vector.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/andre/investigacao/gr-add_vector/build/CMakeFiles 0
+.PHONY : lib/CMakeFiles/gnuradio-add_vector.dir/rule
+
+# Convenience name for target.
+gnuradio-add_vector: lib/CMakeFiles/gnuradio-add_vector.dir/rule
+
+.PHONY : gnuradio-add_vector
+
+# clean rule for target.
+lib/CMakeFiles/gnuradio-add_vector.dir/clean:
+	$(MAKE) -f lib/CMakeFiles/gnuradio-add_vector.dir/build.make lib/CMakeFiles/gnuradio-add_vector.dir/clean
+.PHONY : lib/CMakeFiles/gnuradio-add_vector.dir/clean
+
+# clean rule for target.
+clean: lib/CMakeFiles/gnuradio-add_vector.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target lib/CMakeFiles/test-add_vector.dir
+
+# All Build rule for target.
+lib/CMakeFiles/test-add_vector.dir/all: lib/CMakeFiles/gnuradio-add_vector.dir/all
+	$(MAKE) -f lib/CMakeFiles/test-add_vector.dir/build.make lib/CMakeFiles/test-add_vector.dir/depend
+	$(MAKE) -f lib/CMakeFiles/test-add_vector.dir/build.make lib/CMakeFiles/test-add_vector.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/andre/investigacao/gr-add_vector/build/CMakeFiles --progress-num=22,23,24 "Built target test-add_vector"
+.PHONY : lib/CMakeFiles/test-add_vector.dir/all
+
+# Include target in all.
+all: lib/CMakeFiles/test-add_vector.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+lib/CMakeFiles/test-add_vector.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/andre/investigacao/gr-add_vector/build/CMakeFiles 5
+	$(MAKE) -f CMakeFiles/Makefile2 lib/CMakeFiles/test-add_vector.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/andre/investigacao/gr-add_vector/build/CMakeFiles 0
+.PHONY : lib/CMakeFiles/test-add_vector.dir/rule
+
+# Convenience name for target.
+test-add_vector: lib/CMakeFiles/test-add_vector.dir/rule
+
+.PHONY : test-add_vector
+
+# clean rule for target.
+lib/CMakeFiles/test-add_vector.dir/clean:
+	$(MAKE) -f lib/CMakeFiles/test-add_vector.dir/build.make lib/CMakeFiles/test-add_vector.dir/clean
+.PHONY : lib/CMakeFiles/test-add_vector.dir/clean
+
+# clean rule for target.
+clean: lib/CMakeFiles/test-add_vector.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
 # Directory level rules for directory swig
 
 # Convenience name for "all" pass in the directory.
-swig/all:
+swig/all: swig/CMakeFiles/_add_vector_swig.dir/all
+swig/all: swig/CMakeFiles/add_vector_swig_swig_2d0df.dir/all
+swig/all: swig/CMakeFiles/_add_vector_swig_doc_tag.dir/all
+swig/all: swig/CMakeFiles/_add_vector_swig_swig_tag.dir/all
+swig/all: swig/CMakeFiles/pygen_swig_9a695.dir/all
 
 .PHONY : swig/all
 
 # Convenience name for "clean" pass in the directory.
-swig/clean:
+swig/clean: swig/CMakeFiles/_add_vector_swig.dir/clean
+swig/clean: swig/CMakeFiles/add_vector_swig_swig_doc.dir/clean
+swig/clean: swig/CMakeFiles/add_vector_swig_swig_2d0df.dir/clean
+swig/clean: swig/CMakeFiles/_add_vector_swig_doc_tag.dir/clean
+swig/clean: swig/CMakeFiles/_add_vector_swig_swig_tag.dir/clean
+swig/clean: swig/CMakeFiles/pygen_swig_9a695.dir/clean
 
 .PHONY : swig/clean
 
@@ -149,6 +234,224 @@ swig/clean:
 swig/preinstall:
 
 .PHONY : swig/preinstall
+
+#=============================================================================
+# Target rules for target swig/CMakeFiles/_add_vector_swig.dir
+
+# All Build rule for target.
+swig/CMakeFiles/_add_vector_swig.dir/all: lib/CMakeFiles/gnuradio-add_vector.dir/all
+swig/CMakeFiles/_add_vector_swig.dir/all: swig/CMakeFiles/add_vector_swig_swig_2d0df.dir/all
+	$(MAKE) -f swig/CMakeFiles/_add_vector_swig.dir/build.make swig/CMakeFiles/_add_vector_swig.dir/depend
+	$(MAKE) -f swig/CMakeFiles/_add_vector_swig.dir/build.make swig/CMakeFiles/_add_vector_swig.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/andre/investigacao/gr-add_vector/build/CMakeFiles --progress-num=1,2,3,4 "Built target _add_vector_swig"
+.PHONY : swig/CMakeFiles/_add_vector_swig.dir/all
+
+# Include target in all.
+all: swig/CMakeFiles/_add_vector_swig.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+swig/CMakeFiles/_add_vector_swig.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/andre/investigacao/gr-add_vector/build/CMakeFiles 15
+	$(MAKE) -f CMakeFiles/Makefile2 swig/CMakeFiles/_add_vector_swig.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/andre/investigacao/gr-add_vector/build/CMakeFiles 0
+.PHONY : swig/CMakeFiles/_add_vector_swig.dir/rule
+
+# Convenience name for target.
+_add_vector_swig: swig/CMakeFiles/_add_vector_swig.dir/rule
+
+.PHONY : _add_vector_swig
+
+# clean rule for target.
+swig/CMakeFiles/_add_vector_swig.dir/clean:
+	$(MAKE) -f swig/CMakeFiles/_add_vector_swig.dir/build.make swig/CMakeFiles/_add_vector_swig.dir/clean
+.PHONY : swig/CMakeFiles/_add_vector_swig.dir/clean
+
+# clean rule for target.
+clean: swig/CMakeFiles/_add_vector_swig.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target swig/CMakeFiles/add_vector_swig_swig_doc.dir
+
+# All Build rule for target.
+swig/CMakeFiles/add_vector_swig_swig_doc.dir/all: swig/CMakeFiles/_add_vector_swig_doc_tag.dir/all
+	$(MAKE) -f swig/CMakeFiles/add_vector_swig_swig_doc.dir/build.make swig/CMakeFiles/add_vector_swig_swig_doc.dir/depend
+	$(MAKE) -f swig/CMakeFiles/add_vector_swig_swig_doc.dir/build.make swig/CMakeFiles/add_vector_swig_swig_doc.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/andre/investigacao/gr-add_vector/build/CMakeFiles --progress-num=12,13 "Built target add_vector_swig_swig_doc"
+.PHONY : swig/CMakeFiles/add_vector_swig_swig_doc.dir/all
+
+# Build rule for subdir invocation for target.
+swig/CMakeFiles/add_vector_swig_swig_doc.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/andre/investigacao/gr-add_vector/build/CMakeFiles 4
+	$(MAKE) -f CMakeFiles/Makefile2 swig/CMakeFiles/add_vector_swig_swig_doc.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/andre/investigacao/gr-add_vector/build/CMakeFiles 0
+.PHONY : swig/CMakeFiles/add_vector_swig_swig_doc.dir/rule
+
+# Convenience name for target.
+add_vector_swig_swig_doc: swig/CMakeFiles/add_vector_swig_swig_doc.dir/rule
+
+.PHONY : add_vector_swig_swig_doc
+
+# clean rule for target.
+swig/CMakeFiles/add_vector_swig_swig_doc.dir/clean:
+	$(MAKE) -f swig/CMakeFiles/add_vector_swig_swig_doc.dir/build.make swig/CMakeFiles/add_vector_swig_swig_doc.dir/clean
+.PHONY : swig/CMakeFiles/add_vector_swig_swig_doc.dir/clean
+
+# clean rule for target.
+clean: swig/CMakeFiles/add_vector_swig_swig_doc.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target swig/CMakeFiles/add_vector_swig_swig_2d0df.dir
+
+# All Build rule for target.
+swig/CMakeFiles/add_vector_swig_swig_2d0df.dir/all: swig/CMakeFiles/_add_vector_swig_swig_tag.dir/all
+	$(MAKE) -f swig/CMakeFiles/add_vector_swig_swig_2d0df.dir/build.make swig/CMakeFiles/add_vector_swig_swig_2d0df.dir/depend
+	$(MAKE) -f swig/CMakeFiles/add_vector_swig_swig_2d0df.dir/build.make swig/CMakeFiles/add_vector_swig_swig_2d0df.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/andre/investigacao/gr-add_vector/build/CMakeFiles --progress-num=9,10,11 "Built target add_vector_swig_swig_2d0df"
+.PHONY : swig/CMakeFiles/add_vector_swig_swig_2d0df.dir/all
+
+# Include target in all.
+all: swig/CMakeFiles/add_vector_swig_swig_2d0df.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+swig/CMakeFiles/add_vector_swig_swig_2d0df.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/andre/investigacao/gr-add_vector/build/CMakeFiles 9
+	$(MAKE) -f CMakeFiles/Makefile2 swig/CMakeFiles/add_vector_swig_swig_2d0df.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/andre/investigacao/gr-add_vector/build/CMakeFiles 0
+.PHONY : swig/CMakeFiles/add_vector_swig_swig_2d0df.dir/rule
+
+# Convenience name for target.
+add_vector_swig_swig_2d0df: swig/CMakeFiles/add_vector_swig_swig_2d0df.dir/rule
+
+.PHONY : add_vector_swig_swig_2d0df
+
+# clean rule for target.
+swig/CMakeFiles/add_vector_swig_swig_2d0df.dir/clean:
+	$(MAKE) -f swig/CMakeFiles/add_vector_swig_swig_2d0df.dir/build.make swig/CMakeFiles/add_vector_swig_swig_2d0df.dir/clean
+.PHONY : swig/CMakeFiles/add_vector_swig_swig_2d0df.dir/clean
+
+# clean rule for target.
+clean: swig/CMakeFiles/add_vector_swig_swig_2d0df.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target swig/CMakeFiles/_add_vector_swig_doc_tag.dir
+
+# All Build rule for target.
+swig/CMakeFiles/_add_vector_swig_doc_tag.dir/all:
+	$(MAKE) -f swig/CMakeFiles/_add_vector_swig_doc_tag.dir/build.make swig/CMakeFiles/_add_vector_swig_doc_tag.dir/depend
+	$(MAKE) -f swig/CMakeFiles/_add_vector_swig_doc_tag.dir/build.make swig/CMakeFiles/_add_vector_swig_doc_tag.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/andre/investigacao/gr-add_vector/build/CMakeFiles --progress-num=5,6 "Built target _add_vector_swig_doc_tag"
+.PHONY : swig/CMakeFiles/_add_vector_swig_doc_tag.dir/all
+
+# Include target in all.
+all: swig/CMakeFiles/_add_vector_swig_doc_tag.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+swig/CMakeFiles/_add_vector_swig_doc_tag.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/andre/investigacao/gr-add_vector/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 swig/CMakeFiles/_add_vector_swig_doc_tag.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/andre/investigacao/gr-add_vector/build/CMakeFiles 0
+.PHONY : swig/CMakeFiles/_add_vector_swig_doc_tag.dir/rule
+
+# Convenience name for target.
+_add_vector_swig_doc_tag: swig/CMakeFiles/_add_vector_swig_doc_tag.dir/rule
+
+.PHONY : _add_vector_swig_doc_tag
+
+# clean rule for target.
+swig/CMakeFiles/_add_vector_swig_doc_tag.dir/clean:
+	$(MAKE) -f swig/CMakeFiles/_add_vector_swig_doc_tag.dir/build.make swig/CMakeFiles/_add_vector_swig_doc_tag.dir/clean
+.PHONY : swig/CMakeFiles/_add_vector_swig_doc_tag.dir/clean
+
+# clean rule for target.
+clean: swig/CMakeFiles/_add_vector_swig_doc_tag.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target swig/CMakeFiles/_add_vector_swig_swig_tag.dir
+
+# All Build rule for target.
+swig/CMakeFiles/_add_vector_swig_swig_tag.dir/all: swig/CMakeFiles/add_vector_swig_swig_doc.dir/all
+	$(MAKE) -f swig/CMakeFiles/_add_vector_swig_swig_tag.dir/build.make swig/CMakeFiles/_add_vector_swig_swig_tag.dir/depend
+	$(MAKE) -f swig/CMakeFiles/_add_vector_swig_swig_tag.dir/build.make swig/CMakeFiles/_add_vector_swig_swig_tag.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/andre/investigacao/gr-add_vector/build/CMakeFiles --progress-num=7,8 "Built target _add_vector_swig_swig_tag"
+.PHONY : swig/CMakeFiles/_add_vector_swig_swig_tag.dir/all
+
+# Include target in all.
+all: swig/CMakeFiles/_add_vector_swig_swig_tag.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+swig/CMakeFiles/_add_vector_swig_swig_tag.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/andre/investigacao/gr-add_vector/build/CMakeFiles 6
+	$(MAKE) -f CMakeFiles/Makefile2 swig/CMakeFiles/_add_vector_swig_swig_tag.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/andre/investigacao/gr-add_vector/build/CMakeFiles 0
+.PHONY : swig/CMakeFiles/_add_vector_swig_swig_tag.dir/rule
+
+# Convenience name for target.
+_add_vector_swig_swig_tag: swig/CMakeFiles/_add_vector_swig_swig_tag.dir/rule
+
+.PHONY : _add_vector_swig_swig_tag
+
+# clean rule for target.
+swig/CMakeFiles/_add_vector_swig_swig_tag.dir/clean:
+	$(MAKE) -f swig/CMakeFiles/_add_vector_swig_swig_tag.dir/build.make swig/CMakeFiles/_add_vector_swig_swig_tag.dir/clean
+.PHONY : swig/CMakeFiles/_add_vector_swig_swig_tag.dir/clean
+
+# clean rule for target.
+clean: swig/CMakeFiles/_add_vector_swig_swig_tag.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target swig/CMakeFiles/pygen_swig_9a695.dir
+
+# All Build rule for target.
+swig/CMakeFiles/pygen_swig_9a695.dir/all: swig/CMakeFiles/add_vector_swig_swig_2d0df.dir/all
+	$(MAKE) -f swig/CMakeFiles/pygen_swig_9a695.dir/build.make swig/CMakeFiles/pygen_swig_9a695.dir/depend
+	$(MAKE) -f swig/CMakeFiles/pygen_swig_9a695.dir/build.make swig/CMakeFiles/pygen_swig_9a695.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/andre/investigacao/gr-add_vector/build/CMakeFiles --progress-num=19,20,21 "Built target pygen_swig_9a695"
+.PHONY : swig/CMakeFiles/pygen_swig_9a695.dir/all
+
+# Include target in all.
+all: swig/CMakeFiles/pygen_swig_9a695.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+swig/CMakeFiles/pygen_swig_9a695.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/andre/investigacao/gr-add_vector/build/CMakeFiles 12
+	$(MAKE) -f CMakeFiles/Makefile2 swig/CMakeFiles/pygen_swig_9a695.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/andre/investigacao/gr-add_vector/build/CMakeFiles 0
+.PHONY : swig/CMakeFiles/pygen_swig_9a695.dir/rule
+
+# Convenience name for target.
+pygen_swig_9a695: swig/CMakeFiles/pygen_swig_9a695.dir/rule
+
+.PHONY : pygen_swig_9a695
+
+# clean rule for target.
+swig/CMakeFiles/pygen_swig_9a695.dir/clean:
+	$(MAKE) -f swig/CMakeFiles/pygen_swig_9a695.dir/build.make swig/CMakeFiles/pygen_swig_9a695.dir/clean
+.PHONY : swig/CMakeFiles/pygen_swig_9a695.dir/clean
+
+# clean rule for target.
+clean: swig/CMakeFiles/pygen_swig_9a695.dir/clean
+
+.PHONY : clean
 
 #=============================================================================
 # Directory level rules for directory python
@@ -175,7 +478,7 @@ python/preinstall:
 python/CMakeFiles/pygen_python_92a85.dir/all:
 	$(MAKE) -f python/CMakeFiles/pygen_python_92a85.dir/build.make python/CMakeFiles/pygen_python_92a85.dir/depend
 	$(MAKE) -f python/CMakeFiles/pygen_python_92a85.dir/build.make python/CMakeFiles/pygen_python_92a85.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/andre/investigacao/gr-add_vector/build/CMakeFiles --progress-num=2,3 "Built target pygen_python_92a85"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/andre/investigacao/gr-add_vector/build/CMakeFiles --progress-num=17,18 "Built target pygen_python_92a85"
 .PHONY : python/CMakeFiles/pygen_python_92a85.dir/all
 
 # Include target in all.
@@ -321,7 +624,7 @@ docs/doxygen/preinstall:
 docs/doxygen/CMakeFiles/doxygen_target.dir/all:
 	$(MAKE) -f docs/doxygen/CMakeFiles/doxygen_target.dir/build.make docs/doxygen/CMakeFiles/doxygen_target.dir/depend
 	$(MAKE) -f docs/doxygen/CMakeFiles/doxygen_target.dir/build.make docs/doxygen/CMakeFiles/doxygen_target.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/andre/investigacao/gr-add_vector/build/CMakeFiles --progress-num=1 "Built target doxygen_target"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/andre/investigacao/gr-add_vector/build/CMakeFiles --progress-num=14 "Built target doxygen_target"
 .PHONY : docs/doxygen/CMakeFiles/doxygen_target.dir/all
 
 # Include target in all.

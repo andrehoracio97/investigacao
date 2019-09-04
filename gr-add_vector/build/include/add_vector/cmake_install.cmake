@@ -38,6 +38,9 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/add_vector" TYPE FILE FILES "/home/andre/investigacao/gr-add_vector/include/add_vector/api.h")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/add_vector" TYPE FILE FILES
+    "/home/andre/investigacao/gr-add_vector/include/add_vector/api.h"
+    "/home/andre/investigacao/gr-add_vector/include/add_vector/add_vector_2_cpp.h"
+    )
 endif()
 

@@ -127,7 +127,7 @@ install/fast: preinstall/fast
 
 # Special rule for the target list_install_components
 list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\" \"add_vector_runtime\""
 .PHONY : list_install_components
 
 # Special rule for the target list_install_components
@@ -179,6 +179,110 @@ uninstall: cmake_check_build_system
 uninstall/fast:
 	$(MAKE) -f CMakeFiles/uninstall.dir/build.make CMakeFiles/uninstall.dir/build
 .PHONY : uninstall/fast
+
+#=============================================================================
+# Target rules for targets named gnuradio-add_vector
+
+# Build rule for target.
+gnuradio-add_vector: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gnuradio-add_vector
+.PHONY : gnuradio-add_vector
+
+# fast build rule for target.
+gnuradio-add_vector/fast:
+	$(MAKE) -f lib/CMakeFiles/gnuradio-add_vector.dir/build.make lib/CMakeFiles/gnuradio-add_vector.dir/build
+.PHONY : gnuradio-add_vector/fast
+
+#=============================================================================
+# Target rules for targets named test-add_vector
+
+# Build rule for target.
+test-add_vector: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test-add_vector
+.PHONY : test-add_vector
+
+# fast build rule for target.
+test-add_vector/fast:
+	$(MAKE) -f lib/CMakeFiles/test-add_vector.dir/build.make lib/CMakeFiles/test-add_vector.dir/build
+.PHONY : test-add_vector/fast
+
+#=============================================================================
+# Target rules for targets named _add_vector_swig
+
+# Build rule for target.
+_add_vector_swig: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _add_vector_swig
+.PHONY : _add_vector_swig
+
+# fast build rule for target.
+_add_vector_swig/fast:
+	$(MAKE) -f swig/CMakeFiles/_add_vector_swig.dir/build.make swig/CMakeFiles/_add_vector_swig.dir/build
+.PHONY : _add_vector_swig/fast
+
+#=============================================================================
+# Target rules for targets named add_vector_swig_swig_doc
+
+# Build rule for target.
+add_vector_swig_swig_doc: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 add_vector_swig_swig_doc
+.PHONY : add_vector_swig_swig_doc
+
+# fast build rule for target.
+add_vector_swig_swig_doc/fast:
+	$(MAKE) -f swig/CMakeFiles/add_vector_swig_swig_doc.dir/build.make swig/CMakeFiles/add_vector_swig_swig_doc.dir/build
+.PHONY : add_vector_swig_swig_doc/fast
+
+#=============================================================================
+# Target rules for targets named add_vector_swig_swig_2d0df
+
+# Build rule for target.
+add_vector_swig_swig_2d0df: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 add_vector_swig_swig_2d0df
+.PHONY : add_vector_swig_swig_2d0df
+
+# fast build rule for target.
+add_vector_swig_swig_2d0df/fast:
+	$(MAKE) -f swig/CMakeFiles/add_vector_swig_swig_2d0df.dir/build.make swig/CMakeFiles/add_vector_swig_swig_2d0df.dir/build
+.PHONY : add_vector_swig_swig_2d0df/fast
+
+#=============================================================================
+# Target rules for targets named _add_vector_swig_doc_tag
+
+# Build rule for target.
+_add_vector_swig_doc_tag: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _add_vector_swig_doc_tag
+.PHONY : _add_vector_swig_doc_tag
+
+# fast build rule for target.
+_add_vector_swig_doc_tag/fast:
+	$(MAKE) -f swig/CMakeFiles/_add_vector_swig_doc_tag.dir/build.make swig/CMakeFiles/_add_vector_swig_doc_tag.dir/build
+.PHONY : _add_vector_swig_doc_tag/fast
+
+#=============================================================================
+# Target rules for targets named _add_vector_swig_swig_tag
+
+# Build rule for target.
+_add_vector_swig_swig_tag: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _add_vector_swig_swig_tag
+.PHONY : _add_vector_swig_swig_tag
+
+# fast build rule for target.
+_add_vector_swig_swig_tag/fast:
+	$(MAKE) -f swig/CMakeFiles/_add_vector_swig_swig_tag.dir/build.make swig/CMakeFiles/_add_vector_swig_swig_tag.dir/build
+.PHONY : _add_vector_swig_swig_tag/fast
+
+#=============================================================================
+# Target rules for targets named pygen_swig_9a695
+
+# Build rule for target.
+pygen_swig_9a695: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pygen_swig_9a695
+.PHONY : pygen_swig_9a695
+
+# fast build rule for target.
+pygen_swig_9a695/fast:
+	$(MAKE) -f swig/CMakeFiles/pygen_swig_9a695.dir/build.make swig/CMakeFiles/pygen_swig_9a695.dir/build
+.PHONY : pygen_swig_9a695/fast
 
 #=============================================================================
 # Target rules for targets named pygen_python_92a85
@@ -233,6 +337,14 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... install"
 	@echo "... list_install_components"
+	@echo "... gnuradio-add_vector"
+	@echo "... test-add_vector"
+	@echo "... _add_vector_swig"
+	@echo "... add_vector_swig_swig_doc"
+	@echo "... add_vector_swig_swig_2d0df"
+	@echo "... _add_vector_swig_doc_tag"
+	@echo "... _add_vector_swig_swig_tag"
+	@echo "... pygen_swig_9a695"
 	@echo "... pygen_python_92a85"
 	@echo "... pygen_apps_9a6dd"
 	@echo "... doxygen_target"

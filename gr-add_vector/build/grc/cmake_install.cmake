@@ -42,6 +42,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
     "/home/andre/investigacao/gr-add_vector/grc/add_vector_add_vector_bb.xml"
     "/home/andre/investigacao/gr-add_vector/grc/add_vector_multiply.xml"
     "/home/andre/investigacao/gr-add_vector/grc/add_vector_add_vector_2.xml"
+    "/home/andre/investigacao/gr-add_vector/grc/add_vector_add_vector_2_cpp.xml"
     )
 endif()
 

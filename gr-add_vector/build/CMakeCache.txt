@@ -266,11 +266,35 @@ PKG_CONFIG_EXECUTABLE:FILEPATH=/usr/bin/pkg-config
 //Path to a program.
 PYTHON_EXECUTABLE:FILEPATH=/usr/bin/python2
 
+//Path to a file.
+PYTHON_INCLUDE_DIR:PATH=/usr/include/python2.7
+
+//Path to a library.
+PYTHON_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libpython2.7.so
+
+//Path to a library.
+PYTHON_LIBRARY_DEBUG:FILEPATH=PYTHON_LIBRARY_DEBUG-NOTFOUND
+
 //python interpreter for QA tests
 QA_PYTHON_EXECUTABLE:FILEPATH=/usr/bin/python2
 
 //Path to a program.
 SHELL:FILEPATH=/usr/bin/sh
+
+//Path to a file.
+SWIG_DIR:PATH=/usr/share/swig3.0
+
+//Path to a program.
+SWIG_EXECUTABLE:FILEPATH=/usr/bin/swig3.0
+
+//Swig version
+SWIG_VERSION:STRING=3.0.12
+
+//Dependencies for the target
+_add_vector_swig_LIB_DEPENDS:STATIC=general;/usr/lib/x86_64-linux-gnu/libpython2.7.so;general;gnuradio-add_vector;
+
+//Dependencies for the target
+gnuradio-add_vector_LIB_DEPENDS:STATIC=general;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so;general;/usr/lib/x86_64-linux-gnu/libboost_system.so;general;/usr/local/lib/libgnuradio-runtime.so;general;/usr/local/lib/libgnuradio-pmt.so;general;/usr/lib/x86_64-linux-gnu/liblog4cpp.so;
 
 //Value Computed by CMake
 gr-add_vector_BINARY_DIR:STATIC=/home/andre/investigacao/gr-add_vector/build
@@ -468,12 +492,28 @@ FIND_PACKAGE_MESSAGE_DETAILS_Git:INTERNAL=[/usr/bin/git][v()]
 FIND_PACKAGE_MESSAGE_DETAILS_PkgConfig:INTERNAL=[/usr/bin/pkg-config][v0.29.1()]
 //Details about finding PythonInterp
 FIND_PACKAGE_MESSAGE_DETAILS_PythonInterp:INTERNAL=[/usr/bin/python2][v2.7.16(2)]
+//Details about finding PythonLibs
+FIND_PACKAGE_MESSAGE_DETAILS_PythonLibs:INTERNAL=[/usr/lib/x86_64-linux-gnu/libpython2.7.so][/usr/include/python2.7][v2.7.16(2)]
+//Details about finding SWIG
+FIND_PACKAGE_MESSAGE_DETAILS_SWIG:INTERNAL=[/usr/bin/swig3.0][/usr/share/swig3.0][v()]
 //ADVANCED property for variable: GIT_EXECUTABLE
 GIT_EXECUTABLE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: GNURADIO_RUNTIME_INCLUDE_DIRS
 GNURADIO_RUNTIME_INCLUDE_DIRS-ADVANCED:INTERNAL=1
 GR_ADD_VECTOR_INCLUDE_DIRS:INTERNAL=/home/andre/investigacao/gr-add_vector/include
 GR_ADD_VECTOR_SWIG_INCLUDE_DIRS:INTERNAL=/home/andre/investigacao/gr-add_vector/swig
+//Result of TRY_COMPILE
+HAVE_SIZEOF_SIZE_T:INTERNAL=TRUE
+//Result of TRY_COMPILE
+HAVE_SIZEOF_UINT:INTERNAL=TRUE
+//Have include stddef.h
+HAVE_STDDEF_H:INTERNAL=1
+//Have include stdint.h
+HAVE_STDINT_H:INTERNAL=1
+//Have include sys/types.h
+HAVE_SYS_TYPES_H:INTERNAL=1
+//Test HAVE_WNO_UNUSED_BUT_SET_VARIABLE
+HAVE_WNO_UNUSED_BUT_SET_VARIABLE:INTERNAL=1
 PC_CPPUNIT_CFLAGS:INTERNAL=
 PC_CPPUNIT_CFLAGS_I:INTERNAL=
 PC_CPPUNIT_CFLAGS_OTHER:INTERNAL=
@@ -546,6 +586,22 @@ PC_GNURADIO_RUNTIME_gnuradio-runtime_VERSION:INTERNAL=
 PKG_CONFIG_EXECUTABLE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PYTHON_EXECUTABLE
 PYTHON_EXECUTABLE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PYTHON_INCLUDE_DIR
+PYTHON_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PYTHON_LIBRARY
+PYTHON_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PYTHON_LIBRARY_DEBUG
+PYTHON_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//CHECK_TYPE_SIZE: sizeof(size_t)
+SIZEOF_SIZE_T:INTERNAL=8
+//CHECK_TYPE_SIZE: sizeof(unsigned int)
+SIZEOF_UINT:INTERNAL=4
+//ADVANCED property for variable: SWIG_DIR
+SWIG_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: SWIG_EXECUTABLE
+SWIG_EXECUTABLE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: SWIG_VERSION
+SWIG_VERSION-ADVANCED:INTERNAL=1
 //Last used BOOST_LIBRARYDIR value.
 _BOOST_LIBRARYDIR_LAST:INTERNAL=/usr/lib64
 //Last used Boost_ADDITIONAL_VERSIONS value.
