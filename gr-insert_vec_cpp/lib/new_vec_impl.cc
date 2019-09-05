@@ -42,7 +42,9 @@ namespace gr {
       : gr::block("new_vec",
               gr::io_signature::make(1, 1, sizeof(unsigned char)),
               gr::io_signature::make(1, 1, sizeof(unsigned char))),
-      d_data(vec)
+      d_data(vec),
+      flag(0),
+      track_oo(0)
     {}
 
     /*

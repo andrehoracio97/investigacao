@@ -85,7 +85,7 @@ class top_block(gr.top_block, Qt.QWidget):
         self.rate = rate = 2
         self.polys = polys = [109, 79]
         self.k = k = 7
-        self.vector = vector = [int(random.random()*4) for i in range(49600)]
+        self.vector = vector = [int(random.random()*4) for i in range(4960)]
         self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 38
         self.variable_qtgui_range_0 = variable_qtgui_range_0 = 50
         self.samp_rate = samp_rate = samp_rate_array_MCR[2]
@@ -98,7 +98,7 @@ class top_block(gr.top_block, Qt.QWidget):
 
 
         self.pld_dec = pld_dec = map( (lambda a: fec.cc_decoder.make(440, k, rate, (polys), 0, -1, fec.CC_TERMINATED, False)), range(0,4) );
-        self.pld_const = pld_const = digital.constellation_rect(([0.707+0.707j, -0.707+0.707j, -0.707-0.707j, 0.707-0.707j]), ([0, 1, 2, 3]), 4, 2, 2, 1, 1).base()
+        self.pld_const = pld_const = digital.constellation_rect(([0.707+0.707j, -0.707+0.707j, -0.707-0.707j, 0.707-0.707j]), ([0, 1, 3, 2]), 4, 2, 2, 1, 1).base()
         self.pld_const.gen_soft_dec_lut(8)
         self.frequencia_usrp = frequencia_usrp = 484e6
         self.filt_delay = filt_delay = 1+(taps_per_filt-1)/2
@@ -612,6 +612,7 @@ class top_block(gr.top_block, Qt.QWidget):
         self.digital_pfb_clock_sync_xxx_0 = digital.pfb_clock_sync_ccf(sps, 6.28/400.0, (rx_rrc_taps), nfilts, nfilts/2, 1.5, 1)
         self.digital_map_bb_1_0 = digital.map_bb((pld_const.pre_diff_code()))
         self.digital_map_bb_0_0_0_0_0 = digital.map_bb(([-1, 1]))
+        self.digital_map_bb_0 = digital.map_bb((pld_const.pre_diff_code()))
         self.digital_diff_encoder_bb_0 = digital.diff_encoder_bb(4)
         self.digital_diff_decoder_bb_0 = digital.diff_decoder_bb(4)
         self.digital_costas_loop_cc_0_0 = digital.costas_loop_cc(6.28/200.0, pld_const.arity(), False)
@@ -632,10 +633,10 @@ class top_block(gr.top_block, Qt.QWidget):
         self.blocks_multiply_const_vxx_1 = blocks.multiply_const_vcc((0.8, ))
         self.blocks_keep_m_in_n_0_1_1_0 = blocks.keep_m_in_n(gr.sizeof_char, 440, 442, 0)
         self.blocks_keep_m_in_n_0_0_2_0 = blocks.keep_m_in_n(gr.sizeof_char, 892, 896, 0)
-        self.blocks_file_source_0_0_1_0 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Desktop/Files_To_Transmit/trasmit_10_mb.txt', False)
-        self.blocks_file_source_0_0_1_0.set_begin_tag(pmt.PMT_NIL)
-        self.blocks_file_sink_0_0_0 = blocks.file_sink(gr.sizeof_char*1, '/home/andre/Desktop/Trasmited/depois.txt', False)
-        self.blocks_file_sink_0_0_0.set_unbuffered(False)
+        self.blocks_file_source_0_0_1_0_0_0_0 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Desktop/Files_To_Transmit/videofhd.mpg', False)
+        self.blocks_file_source_0_0_1_0_0_0_0.set_begin_tag(pmt.PMT_NIL)
+        self.blocks_file_sink_0_0_0_0_0 = blocks.file_sink(gr.sizeof_char*1, '/home/andre/Desktop/Trasmited/depois.mpg', False)
+        self.blocks_file_sink_0_0_0_0_0.set_unbuffered(False)
         self.blocks_char_to_float_1_0_1 = blocks.char_to_float(1, 1)
         self.blocks_char_to_float_1_0_0 = blocks.char_to_float(1, 1)
         self.blocks_char_to_float_0_2_0_0 = blocks.char_to_float(1, 1)
@@ -654,8 +655,8 @@ class top_block(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_char_to_float_0_2_0_0, 0), (self.fec_extended_decoder_0_0_1_0_1_0, 0))
         self.connect((self.blocks_char_to_float_1_0_0, 0), (self.qtgui_time_sink_x_0_0, 0))
         self.connect((self.blocks_char_to_float_1_0_1, 0), (self.qtgui_time_sink_x_0_1, 0))
-        self.connect((self.blocks_file_source_0_0_1_0, 0), (self.blocks_char_to_float_1_0_0, 0))
-        self.connect((self.blocks_file_source_0_0_1_0, 0), (self.blocks_repack_bits_bb_1_0_0_1, 0))
+        self.connect((self.blocks_file_source_0_0_1_0_0_0_0, 0), (self.blocks_char_to_float_1_0_0, 0))
+        self.connect((self.blocks_file_source_0_0_1_0_0_0_0, 0), (self.blocks_repack_bits_bb_1_0_0_1, 0))
         self.connect((self.blocks_keep_m_in_n_0_0_2_0, 0), (self.digital_map_bb_0_0_0_0_0, 0))
         self.connect((self.blocks_keep_m_in_n_0_1_1_0, 0), (self.blocks_repack_bits_bb_0_0_0_1_0, 0))
         self.connect((self.blocks_multiply_const_vxx_1, 0), (self.qtgui_const_sink_x_0_0_0_0, 0))
@@ -664,8 +665,8 @@ class top_block(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_repack_bits_bb_0, 0), (self.blocks_char_to_float_0, 0))
         self.connect((self.blocks_repack_bits_bb_0, 0), (self.digital_correlate_access_code_xx_ts_0_0, 0))
         self.connect((self.blocks_repack_bits_bb_0_0_0_1_0, 0), (self.blocks_char_to_float_1_0_1, 0))
-        self.connect((self.blocks_repack_bits_bb_0_0_0_1_0, 0), (self.blocks_file_sink_0_0_0, 0))
-        self.connect((self.blocks_repack_bits_bb_1_0_0_0, 0), (self.insert_vec_cpp_new_vec_0, 0))
+        self.connect((self.blocks_repack_bits_bb_0_0_0_1_0, 0), (self.blocks_file_sink_0_0_0_0_0, 0))
+        self.connect((self.blocks_repack_bits_bb_1_0_0_0, 0), (self.digital_diff_encoder_bb_0, 0))
         self.connect((self.blocks_repack_bits_bb_1_0_0_1, 0), (self.blocks_stream_mux_0, 0))
         self.connect((self.blocks_stream_mux_0, 0), (self.fec_extended_encoder_0, 0))
         self.connect((self.blocks_stream_mux_0_0, 0), (self.blocks_stream_mux_0_1_0, 1))
@@ -674,19 +675,20 @@ class top_block(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_vector_source_x_0, 0), (self.blocks_stream_mux_0, 1))
         self.connect((self.blocks_vector_source_x_0_0_0, 0), (self.blocks_stream_mux_0_0, 1))
         self.connect((self.digital_chunks_to_symbols_xx_0_0, 0), (self.pfb_arb_resampler_xxx_0, 0))
-        self.connect((self.digital_constellation_decoder_cb_0, 0), (self.digital_diff_decoder_bb_0, 0))
+        self.connect((self.digital_constellation_decoder_cb_0, 0), (self.digital_map_bb_0, 0))
         self.connect((self.digital_correlate_access_code_xx_ts_0_0, 0), (self.blocks_char_to_float_0_0, 0))
         self.connect((self.digital_correlate_access_code_xx_ts_0_0, 0), (self.blocks_keep_m_in_n_0_0_2_0, 0))
         self.connect((self.digital_costas_loop_cc_0_0, 0), (self.digital_constellation_decoder_cb_0, 0))
         self.connect((self.digital_costas_loop_cc_0_0, 0), (self.qtgui_const_sink_x_0_0_0, 0))
         self.connect((self.digital_diff_decoder_bb_0, 0), (self.blocks_repack_bits_bb_0, 0))
-        self.connect((self.digital_diff_encoder_bb_0, 0), (self.digital_chunks_to_symbols_xx_0_0, 0))
+        self.connect((self.digital_diff_encoder_bb_0, 0), (self.digital_map_bb_1_0, 0))
+        self.connect((self.digital_map_bb_0, 0), (self.digital_diff_decoder_bb_0, 0))
         self.connect((self.digital_map_bb_0_0_0_0_0, 0), (self.blocks_char_to_float_0_2_0_0, 0))
-        self.connect((self.digital_map_bb_1_0, 0), (self.digital_diff_encoder_bb_0, 0))
+        self.connect((self.digital_map_bb_1_0, 0), (self.insert_vec_cpp_new_vec_0, 0))
         self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.digital_costas_loop_cc_0_0, 0))
         self.connect((self.fec_extended_decoder_0_0_1_0_1_0, 0), (self.blocks_keep_m_in_n_0_1_1_0, 0))
         self.connect((self.fec_extended_encoder_0, 0), (self.blocks_stream_mux_0_0, 0))
-        self.connect((self.insert_vec_cpp_new_vec_0, 0), (self.digital_map_bb_1_0, 0))
+        self.connect((self.insert_vec_cpp_new_vec_0, 0), (self.digital_chunks_to_symbols_xx_0_0, 0))
         self.connect((self.pfb_arb_resampler_xxx_0, 0), (self.blocks_multiply_const_vxx_1, 0))
         self.connect((self.uhd_usrp_source_0, 0), (self.digital_pfb_clock_sync_xxx_0, 0))
         self.connect((self.uhd_usrp_source_0, 0), (self.qtgui_const_sink_x_0_0_0_1, 0))

@@ -30,8 +30,8 @@ namespace gr {
     {
      private:
       std::vector<unsigned char> d_data;
-      int flag=0;
-      int track_oo=0;
+      int flag;
+      int track_oo;
       // Nothing to declare in this block.
 
      public:
