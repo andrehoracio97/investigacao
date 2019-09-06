@@ -19,6 +19,7 @@ if __name__ == '__main__':
 
 from PyQt4 import Qt
 from gnuradio import blocks
+from gnuradio import channels
 from gnuradio import digital
 from gnuradio import eng_notation
 from gnuradio import gr
@@ -26,6 +27,7 @@ from gnuradio import qtgui
 from gnuradio.eng_option import eng_option
 from gnuradio.filter import firdes
 from gnuradio.filter import pfb
+from gnuradio.qtgui import Range, RangeWidget
 from optparse import OptionParser
 import pmt
 import sip
@@ -33,7 +35,7 @@ import sys
 from gnuradio import qtgui
 
 
-class tutorial_2(gr.top_block, Qt.QWidget):
+class tutorial_4(gr.top_block, Qt.QWidget):
 
     def __init__(self):
         gr.top_block.__init__(self, "Tutorial")
@@ -56,7 +58,7 @@ class tutorial_2(gr.top_block, Qt.QWidget):
         self.top_grid_layout = Qt.QGridLayout()
         self.top_layout.addLayout(self.top_grid_layout)
 
-        self.settings = Qt.QSettings("GNU Radio", "tutorial_2")
+        self.settings = Qt.QSettings("GNU Radio", "tutorial_4")
         self.restoreGeometry(self.settings.value("geometry").toByteArray())
 
 
@@ -70,17 +72,42 @@ class tutorial_2(gr.top_block, Qt.QWidget):
         self.tx_rrc_taps = tx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts, 1.0, eb, 5*sps*nfilts)
 
         self.taps_per_filt = taps_per_filt = len(tx_rrc_taps)/nfilts
+        self.time_offset = time_offset = 1.0
+        self.taps = taps = [1.0, 0.25-0.25j, 0.50 + 0.10j, -0.3 + 0.2j]
         self.samp_rate = samp_rate = 5000000
 
         self.rx_rrc_taps = rx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts*sps, 1.0, eb, 11*sps*nfilts)
 
         self.pld_const = pld_const = digital.constellation_rect(([0.707+0.707j, -0.707+0.707j, -0.707-0.707j, 0.707-0.707j]), ([0, 1, 2, 3]), 4, 2, 2, 1, 1).base()
         self.pld_const.gen_soft_dec_lut(8)
+        self.noise = noise = 0.0
+        self.freq_offset = freq_offset = 0
         self.filt_delay = filt_delay = 1+(taps_per_filt-1)/2
 
         ##################################################
         # Blocks
         ##################################################
+        self._time_offset_range = Range(0.99, 1.01, 0.00001, 1.0, 200)
+        self._time_offset_win = RangeWidget(self._time_offset_range, self.set_time_offset, 'Time Offset', "counter_slider", float)
+        self.top_grid_layout.addWidget(self._time_offset_win, 0, 3, 1, 1)
+        for r in range(0, 1):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(3, 4):
+            self.top_grid_layout.setColumnStretch(c, 1)
+        self._noise_range = Range(0, 5, 0.01, 0.0, 200)
+        self._noise_win = RangeWidget(self._noise_range, self.set_noise, 'Noise Amp', "counter_slider", float)
+        self.top_grid_layout.addWidget(self._noise_win, 0, 1, 1, 1)
+        for r in range(0, 1):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(1, 2):
+            self.top_grid_layout.setColumnStretch(c, 1)
+        self._freq_offset_range = Range(-0.5, 0.5, 0.0001, 0, 200)
+        self._freq_offset_win = RangeWidget(self._freq_offset_range, self.set_freq_offset, 'Freq. Offset', "counter_slider", float)
+        self.top_grid_layout.addWidget(self._freq_offset_win, 0, 2, 1, 1)
+        for r in range(0, 1):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(2, 3):
+            self.top_grid_layout.setColumnStretch(c, 1)
         self.qtgui_time_sink_x_0_1 = qtgui.time_sink_f(
         	100*2, #size
         	samp_rate, #samp_rate
@@ -326,11 +353,20 @@ class tutorial_2(gr.top_block, Qt.QWidget):
         	  flt_size=nfilts)
         self.pfb_arb_resampler_xxx_0.declare_sample_delay(filt_delay)
 
-        self.digital_pfb_clock_sync_xxx_0 = digital.pfb_clock_sync_ccf(sps, 6.28/400.0, (rx_rrc_taps), nfilts, nfilts/2, 1.5, 1)
+        self.digital_pfb_clock_sync_xxx_0 = digital.pfb_clock_sync_ccf(sps, 6.28/400.0, (rx_rrc_taps), nfilts, nfilts/2, 1.5, 2)
         self.digital_map_bb_0_0 = digital.map_bb((pld_const.pre_diff_code()))
         self.digital_map_bb_0 = digital.map_bb((pld_const.pre_diff_code()))
         self.digital_constellation_decoder_cb_0_0 = digital.constellation_decoder_cb(pld_const)
+        self.digital_cma_equalizer_cc_0 = digital.cma_equalizer_cc(15, 1, 0.01, 2)
         self.digital_chunks_to_symbols_xx_0_0 = digital.chunks_to_symbols_bc((pld_const.points()), 1)
+        self.channels_channel_model_0 = channels.channel_model(
+        	noise_voltage=noise,
+        	frequency_offset=freq_offset,
+        	epsilon=time_offset,
+        	taps=(taps),
+        	noise_seed=0,
+        	block_tags=True
+        )
         self.blocks_throttle_0_0 = blocks.throttle(gr.sizeof_gr_complex*1, samp_rate,True)
         self.blocks_repack_bits_bb_1_0_0_1 = blocks.repack_bits_bb(8, pld_const.bits_per_symbol(), '', False, gr.GR_MSB_FIRST)
         self.blocks_repack_bits_bb_0_0 = blocks.repack_bits_bb(pld_const.bits_per_symbol(), 8, '', False, gr.GR_MSB_FIRST)
@@ -353,19 +389,21 @@ class tutorial_2(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_repack_bits_bb_0_0, 0), (self.blocks_char_to_float_1_0_1, 0))
         self.connect((self.blocks_repack_bits_bb_0_0, 0), (self.blocks_file_sink_0_0_0_2, 0))
         self.connect((self.blocks_repack_bits_bb_1_0_0_1, 0), (self.digital_map_bb_0, 0))
-        self.connect((self.blocks_throttle_0_0, 0), (self.digital_pfb_clock_sync_xxx_0, 0))
+        self.connect((self.blocks_throttle_0_0, 0), (self.channels_channel_model_0, 0))
         self.connect((self.blocks_throttle_0_0, 0), (self.qtgui_const_sink_x_0_0_0_0, 0))
-        self.connect((self.blocks_throttle_0_0, 0), (self.qtgui_const_sink_x_0_0_0_1, 0))
+        self.connect((self.channels_channel_model_0, 0), (self.digital_pfb_clock_sync_xxx_0, 0))
+        self.connect((self.channels_channel_model_0, 0), (self.qtgui_const_sink_x_0_0_0_1, 0))
         self.connect((self.digital_chunks_to_symbols_xx_0_0, 0), (self.pfb_arb_resampler_xxx_0, 0))
+        self.connect((self.digital_cma_equalizer_cc_0, 0), (self.digital_constellation_decoder_cb_0_0, 0))
+        self.connect((self.digital_cma_equalizer_cc_0, 0), (self.qtgui_const_sink_x_0_0_0_1_0, 0))
         self.connect((self.digital_constellation_decoder_cb_0_0, 0), (self.digital_map_bb_0_0, 0))
         self.connect((self.digital_map_bb_0, 0), (self.digital_chunks_to_symbols_xx_0_0, 0))
         self.connect((self.digital_map_bb_0_0, 0), (self.blocks_repack_bits_bb_0_0, 0))
-        self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.digital_constellation_decoder_cb_0_0, 0))
-        self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.qtgui_const_sink_x_0_0_0_1_0, 0))
+        self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.digital_cma_equalizer_cc_0, 0))
         self.connect((self.pfb_arb_resampler_xxx_0, 0), (self.blocks_throttle_0_0, 0))
 
     def closeEvent(self, event):
-        self.settings = Qt.QSettings("GNU Radio", "tutorial_2")
+        self.settings = Qt.QSettings("GNU Radio", "tutorial_4")
         self.settings.setValue("geometry", self.saveGeometry())
         event.accept()
 
@@ -404,6 +442,20 @@ class tutorial_2(gr.top_block, Qt.QWidget):
         self.taps_per_filt = taps_per_filt
         self.set_filt_delay(1+(self.taps_per_filt-1)/2)
 
+    def get_time_offset(self):
+        return self.time_offset
+
+    def set_time_offset(self, time_offset):
+        self.time_offset = time_offset
+        self.channels_channel_model_0.set_timing_offset(self.time_offset)
+
+    def get_taps(self):
+        return self.taps
+
+    def set_taps(self, taps):
+        self.taps = taps
+        self.channels_channel_model_0.set_taps((self.taps))
+
     def get_samp_rate(self):
         return self.samp_rate
 
@@ -426,6 +478,20 @@ class tutorial_2(gr.top_block, Qt.QWidget):
     def set_pld_const(self, pld_const):
         self.pld_const = pld_const
 
+    def get_noise(self):
+        return self.noise
+
+    def set_noise(self, noise):
+        self.noise = noise
+        self.channels_channel_model_0.set_noise_voltage(self.noise)
+
+    def get_freq_offset(self):
+        return self.freq_offset
+
+    def set_freq_offset(self, freq_offset):
+        self.freq_offset = freq_offset
+        self.channels_channel_model_0.set_frequency_offset(self.freq_offset)
+
     def get_filt_delay(self):
         return self.filt_delay
 
@@ -433,7 +499,7 @@ class tutorial_2(gr.top_block, Qt.QWidget):
         self.filt_delay = filt_delay
 
 
-def main(top_block_cls=tutorial_2, options=None):
+def main(top_block_cls=tutorial_4, options=None):
 
     from distutils.version import StrictVersion
     if StrictVersion(Qt.qVersion()) >= StrictVersion("4.5.0"):

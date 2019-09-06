@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>tutorial_3</value>
+      <value>tutorial_4</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -159,7 +159,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(632, 724)</value>
+      <value>(576, 724)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -249,7 +249,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(528, 724)</value>
+      <value>(472, 724)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -648,7 +648,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(744, 724)</value>
+      <value>(688, 724)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -805,7 +805,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1288, 1052)</value>
+      <value>(1304, 1052)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -860,7 +860,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1296, 940)</value>
+      <value>(1312, 940)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -974,7 +974,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1080, 948)</value>
+      <value>(1096, 948)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1147,7 +1147,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(600, 596)</value>
+      <value>(544, 596)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1261,7 +1261,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(712, 956)</value>
+      <value>(728, 956)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1278,6 +1278,57 @@
     <param>
       <key>minoutbuf</key>
       <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>digital_costas_loop_cc</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(504, 960)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>digital_costas_loop_cc_0_0</value>
+    </param>
+    <param>
+      <key>w</key>
+      <value>6.28/200.0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>order</key>
+      <value>pld_const.arity()</value>
+    </param>
+    <param>
+      <key>use_snr</key>
+      <value>False</value>
     </param>
   </block>
   <block>
@@ -1343,7 +1394,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(936, 956)</value>
+      <value>(952, 956)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1390,7 +1441,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(320, 956)</value>
+      <value>(248, 988)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1875,7 +1926,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(320, 1100)</value>
+      <value>(248, 1132)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -2222,7 +2273,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(712, 1020)</value>
+      <value>(728, 1020)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -2944,7 +2995,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1432, 1028)</value>
+      <value>(1464, 1028)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -3314,7 +3365,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(856, 636)</value>
+      <value>(800, 636)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3341,7 +3392,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(256, 636)</value>
+      <value>(200, 636)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3368,7 +3419,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(56, 1004)</value>
+      <value>(0, 1004)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3456,6 +3507,18 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
+    <source_block_id>digital_costas_loop_cc_0_0</source_block_id>
+    <sink_block_id>digital_constellation_decoder_cb_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>digital_costas_loop_cc_0_0</source_block_id>
+    <sink_block_id>qtgui_const_sink_x_0_0_0_1_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
     <source_block_id>digital_map_bb_0</source_block_id>
     <sink_block_id>digital_chunks_to_symbols_xx_0_0</sink_block_id>
     <source_key>0</source_key>
@@ -3469,13 +3532,7 @@
   </connection>
   <connection>
     <source_block_id>digital_pfb_clock_sync_xxx_0</source_block_id>
-    <sink_block_id>digital_constellation_decoder_cb_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>digital_pfb_clock_sync_xxx_0</source_block_id>
-    <sink_block_id>qtgui_const_sink_x_0_0_0_1_0</sink_block_id>
+    <sink_block_id>digital_costas_loop_cc_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

@@ -10,7 +10,7 @@
     </param>
     <param>
       <key>window_size</key>
-      <value>1500, 1500</value>
+      <value>1600, 1500</value>
     </param>
     <param>
       <key>category</key>
@@ -616,7 +616,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1144, 676)</value>
+      <value>(1288, 1052)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -671,7 +671,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1144, 580)</value>
+      <value>(1296, 940)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -785,7 +785,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(928, 588)</value>
+      <value>(1080, 948)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1009,7 +1009,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(560, 596)</value>
+      <value>(712, 956)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1087,11 +1087,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(784, 596)</value>
+      <value>(936, 956)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1138,7 +1138,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(272, 508)</value>
+      <value>(320, 956)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1623,7 +1623,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(240, 660)</value>
+      <value>(320, 1100)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -1970,7 +1970,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(520, 660)</value>
+      <value>(712, 1020)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -2692,7 +2692,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1296, 652)</value>
+      <value>(1432, 1028)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -3062,7 +3062,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(16, 596)</value>
+      <value>(48, 980)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3070,7 +3070,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>virtual_source_0</value>
+      <value>virtual_source_0_0</value>
     </param>
     <param>
       <key>stream_id</key>
@@ -3174,13 +3174,13 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>virtual_source_0</source_block_id>
+    <source_block_id>virtual_source_0_0</source_block_id>
     <sink_block_id>digital_pfb_clock_sync_xxx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>virtual_source_0</source_block_id>
+    <source_block_id>virtual_source_0_0</source_block_id>
     <sink_block_id>qtgui_const_sink_x_0_0_0_1</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
