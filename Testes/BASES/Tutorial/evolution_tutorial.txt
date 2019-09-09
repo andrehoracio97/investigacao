@@ -1,0 +1,78 @@
+IEEE:
+SDR Transmitting Data Wireless - Pratical Tutorial
+
+Introduction:
+	O que é SDR, Breve historia.
+	O que é Gnu radio.
+
+Getting Started:
+	Installation of VOLK, GNU radio and USRP's.
+
+
+Tutorial_1:
+Problem: Simple Modulation 
+	Repack Bits Block
+	Chunks To symbols Block
+	Explaination Throttle
+
+
+
+Tutorial_2:
+Problem: Real World Bandwidth
+Solution: Add RRC and Interpolation
+
+	RRC Filter
+	Roll off
+	SPS
+
+
+
+Tutorial_3:
+Problem: Real World Channel Model
+Solution: Add channel model
+
+	Simulating Properties: 
+		Noise
+		Frequency Offset
+		Timing Offset
+		Multipath
+	Polyphase Clock Sync
+
+Tutorial_4:
+Problem: Multipath and Circle in constellation
+Solution: Add CMA equalizer and Coostas Loop
+
+	Multipath
+	CMA Equalizer
+	Coostas Loop
+
+Tutorial_5:
+Problem: Sometimes doesn't write Data - Ambiguitiy of phase
+Solution: Add Differential Encoding
+
+	Differential Encoding
+	Gray Coding
+
+Tutorial_6:
+Problem: Bit padding
+Solution: Packetize data
+
+	Header
+	CAC
+
+Tutorial_7:
+Problem: Beguining not decoded
+Solution: Add Insert Vector
+
+	OOT
+	
+Tutorial_8:
+Problem: FEC
+Solution: Add FEC Encoder and Decoder
+
+
+
+
+Channel Model VS Real transmittion:
+	-USRP -> MCR e Sample Rate to overcome U's (Tx) and O's (Rx)
+	-Saturação - See (QT Sink) and Overcome (Multiply Conts and Gain in Tx/Rx - Enough SNR to decode)

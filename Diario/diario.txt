@@ -76,3 +76,6 @@ Semana
 4/9 ->Criação de "Vector Insert" em c++, muito mais rápido - não resolveu o problema mas vai ser util para o tutorial. Reunião. Testes de qual é o problema e criaçã de novo FG 4_4_NEW_FG_TESTING para testar onde está o problema, com simulação funciona com userp's não.
 5/9 ->Escrita tutorial - tutorial_1.grc
 6/9 ->Escrita tutorial - tutorial_2.grc,tutorial_3.grc,tutorial_4.grc,tutorial_5.grc
+
+Semana
+9/9 ->Escrita tutorial - tutorial_5.grc,tutorial_6.grc,tutorial_7.grc; Instalar Linux no 2 computador

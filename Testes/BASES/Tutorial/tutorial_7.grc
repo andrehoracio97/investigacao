@@ -10,7 +10,7 @@
     </param>
     <param>
       <key>window_size</key>
-      <value>1700, 1600</value>
+      <value>1900, 1600</value>
     </param>
     <param>
       <key>category</key>
@@ -617,6 +617,60 @@
     </param>
     <param>
       <key>_coordinate</key>
+      <value>(264, 812)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>taps</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>[1.0, 0.25-0.25j, 0.50 + 0.10j, -0.3 + 0.2j]</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(312, 748)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>taps</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>1.0 + 1.0j</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
       <value>(1048, 564)</value>
     </param>
     <param>
@@ -1063,7 +1117,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1312, 916)</value>
+      <value>(1544, 916)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1437,7 +1491,7 @@
     </param>
     <param>
       <key>taps</key>
-      <value>1.0 + 1.0j</value>
+      <value>taps</value>
     </param>
   </block>
   <block>
@@ -1464,7 +1518,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(816, 484)</value>
+      <value>(832, 484)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1500,6 +1554,61 @@
     </param>
   </block>
   <block>
+    <key>digital_cma_equalizer_cc</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(536, 932)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>mu</key>
+      <value>0.01</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>digital_cma_equalizer_cc_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>modulus</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>num_taps</key>
+      <value>15</value>
+    </param>
+    <param>
+      <key>sps</key>
+      <value>2</value>
+    </param>
+  </block>
+  <block>
     <key>digital_constellation_decoder_cb</key>
     <param>
       <key>alias</key>
@@ -1523,7 +1632,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(744, 924)</value>
+      <value>(976, 924)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1617,7 +1726,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(528, 928)</value>
+      <value>(760, 928)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1668,7 +1777,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1112, 924)</value>
+      <value>(1208, 924)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1711,7 +1820,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(624, 492)</value>
+      <value>(648, 492)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1754,7 +1863,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(360, 492)</value>
+      <value>(512, 492)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1797,7 +1906,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(960, 924)</value>
+      <value>(1400, 924)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1876,7 +1985,7 @@
     </param>
     <param>
       <key>osps</key>
-      <value>1</value>
+      <value>2</value>
     </param>
     <param>
       <key>sps</key>
@@ -1942,7 +2051,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(496, 492)</value>
+      <value>(368, 492)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2750,7 +2859,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(744, 988)</value>
+      <value>(976, 988)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -3896,7 +4005,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1520, 924)</value>
+      <value>(1752, 924)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -4123,7 +4232,7 @@
   </connection>
   <connection>
     <source_block_id>blocks_repack_bits_bb_0_1</source_block_id>
-    <sink_block_id>digital_map_bb_0</sink_block_id>
+    <sink_block_id>insert_vec_cpp_new_vec_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -4164,8 +4273,14 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
+    <source_block_id>digital_cma_equalizer_cc_0</source_block_id>
+    <sink_block_id>digital_costas_loop_cc_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
     <source_block_id>digital_constellation_decoder_cb_0_0</source_block_id>
-    <sink_block_id>digital_map_bb_0_0</sink_block_id>
+    <sink_block_id>digital_diff_decoder_bb_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -4189,7 +4304,7 @@
   </connection>
   <connection>
     <source_block_id>digital_diff_decoder_bb_0</source_block_id>
-    <sink_block_id>blocks_repack_bits_bb_0</sink_block_id>
+    <sink_block_id>digital_map_bb_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -4201,25 +4316,25 @@
   </connection>
   <connection>
     <source_block_id>digital_map_bb_0</source_block_id>
-    <sink_block_id>insert_vec_cpp_new_vec_0</sink_block_id>
+    <sink_block_id>digital_diff_encoder_bb_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>digital_map_bb_0_0</source_block_id>
-    <sink_block_id>digital_diff_decoder_bb_0</sink_block_id>
+    <sink_block_id>blocks_repack_bits_bb_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>digital_pfb_clock_sync_xxx_0</source_block_id>
-    <sink_block_id>digital_costas_loop_cc_0_0</sink_block_id>
+    <sink_block_id>digital_cma_equalizer_cc_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>insert_vec_cpp_new_vec_0</source_block_id>
-    <sink_block_id>digital_diff_encoder_bb_0</sink_block_id>
+    <sink_block_id>digital_map_bb_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

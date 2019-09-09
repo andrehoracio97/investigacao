@@ -1,0 +1,12 @@
+https://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/20120008631.pdf
+
+https://wiki.gnuradio.org/index.php/Guided_Tutorial_PSK_Demodulation
+
+https://www.gnuradio.org/doc/doxygen/page_packet_comms.html
+
+
+
+
+OOT:
+https://wiki.gnuradio.org/index.php/Guided_Tutorial_GNU_Radio_in_Python#3.2.1._Using_gr_modtool
+https://wiki.gnuradio.org/index.php/Guided_Tutorial_GNU_Radio_in_C%2B%2B

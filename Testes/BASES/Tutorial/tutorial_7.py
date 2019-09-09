@@ -77,23 +77,23 @@ class tutorial_7(gr.top_block, Qt.QWidget):
         self.taps_per_filt = taps_per_filt = len(tx_rrc_taps)/nfilts
         self.samp_rate_array_MCR = samp_rate_array_MCR = [3750000,3000000,2500000,2000000,1500000,1000000,937500,882352,833333,714285,533333,500000,421052,400000,380952]
         self.vector = vector = [int(random.random()*4) for i in range(49600)]
-        self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 38
+        self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 37
         self.variable_qtgui_range_0 = variable_qtgui_range_0 = 50
-        self.samp_rate = samp_rate = samp_rate_array_MCR[2]
+        self.samp_rate_0 = samp_rate_0 = samp_rate_array_MCR[2]
+        self.samp_rate = samp_rate = 5000000
 
         self.rx_rrc_taps = rx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts*sps, 1.0, eb, 11*sps*nfilts)
 
-        self.pld_const = pld_const = digital.constellation_rect(([0.707+0.707j, -0.707+0.707j, -0.707-0.707j, 0.707-0.707j]), ([0, 1, 2, 3]), 4, 2, 2, 1, 1).base()
+        self.pld_const = pld_const = digital.constellation_rect(([0.707+0.707j, -0.707+0.707j, -0.707-0.707j, 0.707-0.707j]), ([0, 1, 3, 2]), 4, 2, 2, 1, 1).base()
         self.pld_const.gen_soft_dec_lut(8)
         self.frequencia_usrp = frequencia_usrp = 484e6
         self.filt_delay = filt_delay = 1+(taps_per_filt-1)/2
-        self.eq_gain = eq_gain = 0.01
         self.MCR = MCR = "master_clock_rate=60e6"
 
         ##################################################
         # Blocks
         ##################################################
-        self._variable_qtgui_range_0_1_range = Range(0, 73, 1, 38, 200)
+        self._variable_qtgui_range_0_1_range = Range(0, 73, 1, 37, 200)
         self._variable_qtgui_range_0_1_win = RangeWidget(self._variable_qtgui_range_0_1_range, self.set_variable_qtgui_range_0_1, 'Gain_RX', "counter_slider", float)
         self.top_grid_layout.addWidget(self._variable_qtgui_range_0_1_win, 0, 2, 1, 1)
         for r in range(0, 1):
@@ -106,13 +106,6 @@ class tutorial_7(gr.top_block, Qt.QWidget):
         for r in range(0, 1):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(1, 2):
-            self.top_grid_layout.setColumnStretch(c, 1)
-        self._eq_gain_range = Range(0.0, 0.1, 0.001, 0.01, 200)
-        self._eq_gain_win = RangeWidget(self._eq_gain_range, self.set_eq_gain, 'Equalizer: rate (Gain)', "slider", float)
-        self.top_grid_layout.addWidget(self._eq_gain_win, 6, 2, 1, 1)
-        for r in range(6, 7):
-            self.top_grid_layout.setRowStretch(r, 1)
-        for c in range(2, 3):
             self.top_grid_layout.setColumnStretch(c, 1)
         self.uhd_usrp_source_0 = uhd.usrp_source(
         	",".join(("serial=F5EAC0", MCR)),
@@ -395,14 +388,14 @@ class tutorial_7(gr.top_block, Qt.QWidget):
         self.digital_correlate_access_code_xx_ts_0_0 = digital.correlate_access_code_bb_ts(digital.packet_utils.default_access_code,
           1, 'packet_len')
         self.digital_constellation_decoder_cb_0_0 = digital.constellation_decoder_cb(pld_const)
-        self.digital_cma_equalizer_cc_0 = digital.cma_equalizer_cc(15, 1, eq_gain, 2)
+        self.digital_cma_equalizer_cc_0 = digital.cma_equalizer_cc(15, 4, 0.01, 2)
         self.digital_chunks_to_symbols_xx_0_0 = digital.chunks_to_symbols_bc((pld_const.points()), 1)
         self.blocks_stream_mux_0_1_0 = blocks.stream_mux(gr.sizeof_char*1, (96, 896))
         self.blocks_repack_bits_bb_1_0_0_1 = blocks.repack_bits_bb(8, 1, '', False, gr.GR_MSB_FIRST)
         self.blocks_repack_bits_bb_0_1 = blocks.repack_bits_bb(1, pld_const.bits_per_symbol(), '', False, gr.GR_MSB_FIRST)
         self.blocks_repack_bits_bb_0_0 = blocks.repack_bits_bb(1, 8, '', False, gr.GR_MSB_FIRST)
         self.blocks_repack_bits_bb_0 = blocks.repack_bits_bb(pld_const.bits_per_symbol(), 1, '', False, gr.GR_MSB_FIRST)
-        self.blocks_multiply_const_vxx_1 = blocks.multiply_const_vcc((0.8, ))
+        self.blocks_multiply_const_vxx_1 = blocks.multiply_const_vcc((0.7, ))
         self.blocks_file_source_0_0_1_0 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Desktop/Files_To_Transmit/trasmit_10_mb.txt', False)
         self.blocks_file_source_0_0_1_0.set_begin_tag(pmt.PMT_NIL)
         self.blocks_file_sink_0_0_0_2 = blocks.file_sink(gr.sizeof_char*1, '/home/andre/Desktop/Trasmited/depois.txt', False)
@@ -426,7 +419,7 @@ class tutorial_7(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_repack_bits_bb_0, 0), (self.digital_correlate_access_code_xx_ts_0_0, 0))
         self.connect((self.blocks_repack_bits_bb_0_0, 0), (self.blocks_char_to_float_1_0_1, 0))
         self.connect((self.blocks_repack_bits_bb_0_0, 0), (self.blocks_file_sink_0_0_0_2, 0))
-        self.connect((self.blocks_repack_bits_bb_0_1, 0), (self.digital_map_bb_0, 0))
+        self.connect((self.blocks_repack_bits_bb_0_1, 0), (self.insert_vec_cpp_new_vec_0, 0))
         self.connect((self.blocks_repack_bits_bb_1_0_0_1, 0), (self.blocks_stream_mux_0_1_0, 1))
         self.connect((self.blocks_stream_mux_0_1_0, 0), (self.blocks_repack_bits_bb_0_1, 0))
         self.connect((self.digital_chunks_to_symbols_xx_0_0, 0), (self.pfb_arb_resampler_xxx_0, 0))
@@ -436,13 +429,14 @@ class tutorial_7(gr.top_block, Qt.QWidget):
         self.connect((self.digital_costas_loop_cc_0_0, 0), (self.digital_constellation_decoder_cb_0_0, 0))
         self.connect((self.digital_costas_loop_cc_0_0, 0), (self.qtgui_const_sink_x_0_0_0_1_0, 0))
         self.connect((self.digital_diff_decoder_bb_0, 0), (self.blocks_repack_bits_bb_0, 0))
-        self.connect((self.digital_diff_encoder_bb_0, 0), (self.digital_chunks_to_symbols_xx_0_0, 0))
-        self.connect((self.digital_map_bb_0, 0), (self.insert_vec_cpp_new_vec_0, 0))
+        self.connect((self.digital_diff_encoder_bb_0, 0), (self.digital_map_bb_0, 0))
+        self.connect((self.digital_map_bb_0, 0), (self.digital_chunks_to_symbols_xx_0_0, 0))
         self.connect((self.digital_map_bb_0_0, 0), (self.digital_diff_decoder_bb_0, 0))
         self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.digital_cma_equalizer_cc_0, 0))
         self.connect((self.insert_vec_cpp_new_vec_0, 0), (self.digital_diff_encoder_bb_0, 0))
         self.connect((self.pfb_arb_resampler_xxx_0, 0), (self.blocks_multiply_const_vxx_1, 0))
         self.connect((self.uhd_usrp_source_0, 0), (self.digital_pfb_clock_sync_xxx_0, 0))
+        self.connect((self.uhd_usrp_source_0, 0), (self.qtgui_const_sink_x_0_0_0_1, 0))
 
     def closeEvent(self, event):
         self.settings = Qt.QSettings("GNU Radio", "tutorial_7")
@@ -489,7 +483,7 @@ class tutorial_7(gr.top_block, Qt.QWidget):
 
     def set_samp_rate_array_MCR(self, samp_rate_array_MCR):
         self.samp_rate_array_MCR = samp_rate_array_MCR
-        self.set_samp_rate(self.samp_rate_array_MCR[2])
+        self.set_samp_rate_0(self.samp_rate_array_MCR[2])
 
     def get_vector(self):
         return self.vector
@@ -512,6 +506,12 @@ class tutorial_7(gr.top_block, Qt.QWidget):
         self.variable_qtgui_range_0 = variable_qtgui_range_0
         self.uhd_usrp_sink_0_0.set_gain(self.variable_qtgui_range_0, 0)
 
+
+    def get_samp_rate_0(self):
+        return self.samp_rate_0
+
+    def set_samp_rate_0(self, samp_rate_0):
+        self.samp_rate_0 = samp_rate_0
 
     def get_samp_rate(self):
         return self.samp_rate
@@ -549,13 +549,6 @@ class tutorial_7(gr.top_block, Qt.QWidget):
 
     def set_filt_delay(self, filt_delay):
         self.filt_delay = filt_delay
-
-    def get_eq_gain(self):
-        return self.eq_gain
-
-    def set_eq_gain(self, eq_gain):
-        self.eq_gain = eq_gain
-        self.digital_cma_equalizer_cc_0.set_gain(self.eq_gain)
 
     def get_MCR(self):
         return self.MCR
