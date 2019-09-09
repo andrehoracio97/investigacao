@@ -1,0 +1,67 @@
+1: Install VOLK
+https://github.com/gnuradio/volk
+
+git clone https://github.com/gnuradio/volk
+cd volk
+mkdir build
+cd build
+cmake ..
+make
+make test
+sudo make install
+sudo ldconfig
+
+Running VOLK:
+cd /usr/bin
+./volk_profile
+See if writed something in $HOME/.volk/volk_config
+
+
+
+2: Install dependences:
+https://wiki.gnuradio.org/index.php/UbuntuInstall#Install_Dependencies
+
+sudo apt install cmake git g++ libboost-all-dev python-dev python-mako \
+python-numpy python-wxgtk3.0 python-sphinx python-cheetah swig libzmq3-dev \
+libfftw3-dev libgsl-dev libcppunit-dev doxygen libcomedi-dev libqt4-opengl-dev \
+python-qt4 libqwt-dev libsdl1.2-dev libusb-1.0-0-dev python-gtk2 python-lxml \
+pkg-config python-sip-dev 
+
+
+3: Install gnuradio:
+https://github.com/gnuradio/gnuradio
+
+git clone https://github.com/gnuradio/gnuradio.git
+cd gnuradio
+git checkout maint-3.7
+mkdir build
+cd build
+cmake -DENABLE_INTERNAL_VOLK=OFF ../
+make
+make test
+sudo make install
+sudo ldconfig
+
+4: Install UHD:
+https://launchpad.net/~ettusresearch/+archive/ubuntu/uhd/+packages
+https://kb.ettus.com/Verifying_the_Operation_of_the_USRP_Using_UHD_and_GNU_Radio
+https://github.com/EttusResearch/uhd
+
+Install 3 packadges: libuhd-dev, libuhd3.14.1 and uhd-host
+cd /usr/lib/uhd/utils/
+sudo ./uhd_images_downloader.py
+
+
+
+Usefull:
+
+gnuradio-config-info -v
+which gnuradio-config-info
+gnuradio-companion --version
+
+uhd_find_devices
+uhd_usrp_probe
+
+Canberra problem:
+sudo apt install libcanberra-gtk-module libcanberra-gtk3-module
+
