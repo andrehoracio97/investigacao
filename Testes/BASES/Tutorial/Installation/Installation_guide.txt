@@ -26,23 +26,8 @@ cd /usr/local/bin
 ./volk_profile
 Check if it is written something in: /home/$USER/.volk/volk_config
 
-===============================================GNU Radio===============================================
-3: Install gnuradio:
-https://github.com/gnuradio/gnuradio
-
-git clone https://github.com/gnuradio/gnuradio.git
-cd gnuradio
-git checkout maint-3.7
-mkdir build
-cd build
-cmake -DENABLE_INTERNAL_VOLK=OFF ../
-make
-make test
-sudo make install
-sudo ldconfig
-
 ===============================================UHD===============================================
-4: Install UHD:
+3: Install UHD:
 https://kb.ettus.com/Verifying_the_Operation_of_the_USRP_Using_UHD_and_GNU_Radio
 https://github.com/EttusResearch/uhd
 
@@ -59,6 +44,21 @@ Install 3 packadges: libuhd-dev, libuhd3.14.1 and uhd-host
 cd /usr/lib/uhd/utils/
 sudo ./uhd_images_downloader.py
 
+
+===============================================GNU Radio===============================================
+4: Install gnuradio:
+https://github.com/gnuradio/gnuradio
+
+git clone https://github.com/gnuradio/gnuradio.git
+cd gnuradio
+git checkout maint-3.7
+mkdir build
+cd build
+cmake -DENABLE_INTERNAL_VOLK=OFF ../
+make
+make test
+sudo make install
+sudo ldconfig
 
 ===============================================Usefull commands===============================================
 
