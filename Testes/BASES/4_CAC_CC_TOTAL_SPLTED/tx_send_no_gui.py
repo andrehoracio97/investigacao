@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 ##################################################
 # GNU Radio Python Flow Graph
-# Title: Tx No Gui
+# Title: Tx Send No Gui
 # Author: andresilva
 # GNU Radio version: 3.7.13.5
 ##################################################
@@ -23,10 +23,10 @@ import random
 import time
 
 
-class tx_no_gui(gr.top_block):
+class tx_send_no_gui(gr.top_block):
 
     def __init__(self, puncpat='11'):
-        gr.top_block.__init__(self, "Tx No Gui")
+        gr.top_block.__init__(self, "Tx Send No Gui")
 
         ##################################################
         # Parameters
@@ -236,7 +236,7 @@ def argument_parser():
     return parser
 
 
-def main(top_block_cls=tx_no_gui, options=None):
+def main(top_block_cls=tx_send_no_gui, options=None):
     if options is None:
         options, _ = argument_parser().parse_args()
 
