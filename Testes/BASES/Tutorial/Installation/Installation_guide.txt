@@ -1,3 +1,4 @@
+===============================================Dependences===============================================
 1: Install dependences:
 https://wiki.gnuradio.org/index.php/UbuntuInstall#Install_Dependencies
 
@@ -5,7 +6,8 @@ sudo apt install cmake git g++ libboost-all-dev python-dev python-mako python-nu
 
 sudo apt install cmake
 sudo apt-get install build-essential 
-
+ 
+ ===============================================VOLK===============================================
 2: Install VOLK
 https://github.com/gnuradio/volk
 
@@ -20,14 +22,11 @@ sudo make install
 sudo ldconfig
 
 Running VOLK:
-cd /usr/bin
+cd /usr/local/bin
 ./volk_profile
-See if writed something in $HOME/.volk/volk_config
+Check if it is written something in: /home/$USER/.volk/volk_config
 
-
-
-
-
+===============================================GNU Radio===============================================
 3: Install gnuradio:
 https://github.com/gnuradio/gnuradio
 
@@ -42,18 +41,26 @@ make test
 sudo make install
 sudo ldconfig
 
+===============================================UHD===============================================
 4: Install UHD:
-https://launchpad.net/~ettusresearch/+archive/ubuntu/uhd/+packages
 https://kb.ettus.com/Verifying_the_Operation_of_the_USRP_Using_UHD_and_GNU_Radio
 https://github.com/EttusResearch/uhd
 
+Automatically:
+sudo add-apt-repository ppa:ettusresearch/uhd
+sudo apt-get update
+sudo apt-get install libuhd-dev libuhd003 uhd-host
+
+If not works install binaryes manually:
+https://launchpad.net/~ettusresearch/+archive/ubuntu/uhd/+packages
 Install 3 packadges: libuhd-dev, libuhd3.14.1 and uhd-host
+
+
 cd /usr/lib/uhd/utils/
 sudo ./uhd_images_downloader.py
 
 
-
-Usefull:
+===============================================Usefull commands===============================================
 
 gnuradio-config-info -v
 which gnuradio-config-info
@@ -62,6 +69,7 @@ gnuradio-companion --version
 uhd_find_devices
 uhd_usrp_probe
 
+===============================================Problems===============================================
 Canberra problem:
 sudo apt install libcanberra-gtk-module libcanberra-gtk3-module
 

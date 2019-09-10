@@ -82,26 +82,30 @@ This electronic document is a ÒliveÓ template. The various components of your 
 SOMETHING
 
 \section{GETTING STARTED}
-We need a Linux base for getting started, this installing guide was meant to Ubuntu 18.04 or the Ubuntu 19.04.
+We need a Linux base for getting started, this installing guide was meant to Ubuntu 18.04 or the Ubuntu 19.04. First we will need to install all dependencies needed for GR (Gnu Radio) and VOLK, with this commands:
+
+\begin{lstlisting}[breaklines]
+$sudo apt install cmake
+$sudo apt-get install build-essential
+$sudo apt install cmake git g++ libboost-all-dev python-dev python-mako python-numpy python-wxgtk3.0 python-sphinx python-cheetah swig libzmq3-dev libfftw3-dev libgsl-dev libcppunit-dev doxygen libcomedi-dev libqt4-opengl-dev python-qt4 libqwt-dev libsdl1.2-dev libusb-1.0-0-dev python-gtk2 python-lxml pkg-config python-sip-dev
+\end{lstlisting}
+
 \subsection{Installing VOLK}
 First of all we will install VOLK (Vector-Optimized Library of Kernels) because we will not use the internal VOLK of GNU Radio but an external one. VOLK it's a free library that contains kernels for mathematical operations, this means that for an operation is created a proto-kernel and added to VOLK for the architecture that we wish, hence faster operations. To install this follow the next commands:
 
 \begin{lstlisting}[language=bash, breaklines]
 $git clone https://github.com/gnuradio/volk
 $cd volk && mkdir build && cd build
+$sudo apt install cmake
 $cmake ../ && make && make test
 $sudo make install && sudo ldconfig
 \end{lstlisting}
 
-To complete this, we need to create a profile for our architecture, for this go to \verb|/usr/bin/| folder and run \verb|./volk_profile|. Note that the configuration file is written in the next path: \verb|$HOME/.volk/volk_config|.
+To complete this, we need to create a profile for our architecture, for this go to \verb|/usr/local/bin/| folder and run \verb|./volk_profile|. Note that the configuration file is written in the next path: \verb|/home/$USER/.volk/volk_config|.
 
 \subsection{Installing GNU Radio}
-Now moving for GNU Radio, the first thing to do is install all the dependencies needed, with the next command:
-\begin{lstlisting}[breaklines]
-sudo apt install cmake git g++ libboost-all-dev python-dev python-mako python-numpy python-wxgtk3.0 python-sphinx python-cheetah swig libzmq3-dev libfftw3-dev libgsl-dev libcppunit-dev doxygen libcomedi-dev libqt4-opengl-dev python-qt4 libqwt-dev libsdl1.2-dev libusb-1.0-0-dev python-gtk2 python-lxml pkg-config python-sip-dev
-\end{lstlisting}
+Now moving for GNU Radio, although it's available the version 3.8 we will install directly from GIT the last commit of 3.7 version because the most recent one still has a lot of stability problems and bugs:
 
-After dependencies installed we will install GNU Radio via git. It is available the Version 3.8 however still has a lot of stability problems and bugs so we keep with the last commit of 3.7 version:
 \begin{lstlisting}[language=bash, breaklines]
 $git clone https://github.com/gnuradio/gnuradio.git
 $cd gnuradio && git checkout maint-3.7
@@ -110,20 +114,24 @@ $cmake -DENABLE_INTERNAL_VOLK=OFF ../
 $make && make test && sudo make install && sudo ldconfig
 \end{lstlisting}
 
-You can now use the GNU Radio, to see where was installed where it is a usefull command: "which gnuradio-companion".
+You can now use the GNU Radio, to see where was installed with this usefull command: "which gnuradio-companion".
 
 \subsection{Installing UHD Driver}
-To use the USRP's we need to install the UHD Driver, and for that we install three packages:
-\verb|libuhd-dev, libuhd3.14.1| and \verb|uhd-host|.
-This packages can be downloaded here:
-\url{https://launchpad.net/~ettusresearch/+archive/ubuntu/uhd/+packages}.
+To use the USRP's we need to install the UHD Driver, here we have 2 options depending on your Ubuntu's version, first try to use the PPA (Personal Package Archive) provided by Ettus using this next command lines:
+
+\begin{lstlisting}[language=bash, breaklines]
+$sudo add-apt-repository ppa:ettusresearch/uhd
+$sudo apt-get update
+$sudo apt-get install libuhd-dev libuhd003 uhd-host
+\end{lstlisting}
+
+If for some reason you couldn't get automatically, then install the next packages \verb|libuhd-dev, libuhd3.14.1| and \verb|uhd-host| downloaded from Ettus website: \url{https://launchpad.net/~ettusresearch/+archive/ubuntu/uhd/+packages}.
 
 Finally to download the image of your USRP just run: 
 \verb|./uhd_images_downloader.py| inside the folder \verb|/usr/lib/uhd/utils/|.
 
 If everything works you can run the next command to see the devices connected:
-\verb|$uhd_find_devices|, and this one to see information about that devices: \verb|$uhd_usrp_probe"|.
-
+\verb|$uhd_find_devices|, and this one to see information about these devices: \verb|$uhd_usrp_probe"|.
 
 \subsection{Problems and Solutions}
 After installing GNU Radio when you open it if shows some warnings about \verb|Camberra| just install it with:.
@@ -260,7 +268,7 @@ BALBLABLA
     At the RX side we just need to repack to the 2 bits/byte into 1 bit/byte to use the "Correlate Access Code - Tag Stream" block and extract the payload of the packet and finally repack to 8 bits/byte. Now if you take a look at the output file you see that the bits are aligned correctly in the byte needed.
     
 \subsection{Out-Of-Tree Modules - Tutorial\_7.grc}
-    We are getting the bits aligned, but we lose the first packet so we can solve this by transmitting an vector of bits right before we transmit our real data. There is just a big problem: the GR doesn't has that implemented but has a thing called OOT (Out-Of-Tree Modules) where allow us extend GR with our own functions and blocks created in python or in C++. Now I will teach how to create a block in GR: The first thing is going to an folder where you want keep the OOT blocks and run the following commands: 
+    We are getting the bits aligned, but we lose the first packet so we can solve this by transmitting an vector of bits right before we transmit our real data. There is just a big problem: The GR doesn't has that implemented but has a thing called OOT (Out-Of-Tree Modules) where allow us extend GR with our own functions and blocks created in Python or in C++. Now I will teach how to create a block in GR: The first thing to do is go to an folder where you want keep the OOT blocks and run the following commands: 
 
 \begin{lstlisting}[language=bash, breaklines]
 $gr_modtool newmod insert_vec_cpp
@@ -290,16 +298,16 @@ File 'grc/insert_vec_cpp_new_vec.xml'
     The first one is the header file of our source code file witch is the second file and where we will write our code. The last one is an XML file where we link our code to the GR.
     
     %---CODE
-    Let's carefully analyse the source file:
+    Let's carefully analyse the source file, in the constructor we have:
 \begin{lstlisting}[language=c++, breaklines]
 gr::io_signature::make(<+MIN_IN+>, <+MAX_IN+>, sizeof(<+ITYPE+>)),
 gr::io_signature::make(<+MIN_OUT+>, <+MAX_OUT+>, sizeof(<+OTYPE+>)))
 \end{lstlisting}
 
-    The GR adds \verb|<+| and \verb|+>| in places that you need to replace for values that you need. In the first line is where you select how many input connections you need, namely the minimum number, the maximum number, and the size of the type of data that will be on that connections. In our case we want to get in only one connection (so min=1 and max=1) and treat like a byte, this means that we need to set an \verb|unsigned char|.
+    The GR adds \verb|<+| and \verb|+>| in places that you need to replace for values that you need. The first line is where you select how many input connections you need, namely the minimum number, the maximum number, and the size of the type of data that will be on that connections. In our case we want to get in only one connection (so min=1 and max=1) and treat like a byte, this means that we need to set an \verb|unsigned char|.
     The second line is where you select how many output connections you need, namely the minimum number, the maximum number, and the size of the type of data that will be in each connection, so it's exactly the same as before.
     
-    Besides that we will need to use our vector in another function (general\_work), an flag to know if all the vector was sent and finally an index to track how many bits of the vector we already sent.
+    Besides that we will need to add some other things here, for example we need to use our vector in another function (general\_work) so we need to set it here, another variable is an flag to know if all the vector was sent and finally an index to track how many bits of the vector we already sent.
     Resulting in changes in file source and header file, in file source just add this:
 \begin{lstlisting}[language=c++, breaklines]   
 gr::io_signature::make(1, 1, sizeof(unsigned char)),
@@ -353,7 +361,7 @@ for(unsigned i = 0; i < ninputs; i++)
 
 \end{lstlisting}
 
-    Again we need to replace content of the \verb|<+| \verb|+>| for our type of data: \verb|unsigned char|. The consume\_each() function is where we set the number of items that we will consumed and at front of the return is the number of items that we produced.
+    Again, we need to replace content of the \verb|<+| \verb|+>| for our type of data: \verb|unsigned char|. The consume\_each() function is where we set the number of items that we will consumed and at front of the return is the number of items that we produced.
     
     Going for the code itself:
     If all the vector was already inserted, then we just pass through the items doing nothing to them, using the \verb|memcpy()|.
@@ -383,7 +391,7 @@ return oo;
 \end{lstlisting}
 
 %-XML
-    In remaining file we have a XML where we need to set some things so we can link our written code to GR. The first tricky thing is remove the \verb|\&| on the parameter in \verb|<make>| tag. 
+    In remaining file we have a XML where we need to set some things so we can link our written code to GR. The first tricky thing is remove the \verb|&| on the parameter in \verb|<make>| tag. 
     In \verb|<param>| is where we define the parameter that will be parsed in our GR, so we will replace this piece of the template for this:
 \begin{lstlisting}[language=xml, breaklines]
 <param>
@@ -397,20 +405,28 @@ return oo;
     Now that we have all code written we need compile it and link to our GRC with these commands:
     
 \begin{lstlisting}[language=bash, breaklines]
-$wget mkdir build && cd build
+$mkdir build && cd build
 $cmake ../ && make
 $sudo make install
 $sudo ldconfig
 \end{lstlisting}
     
     Finally we just need to click in "Reload Block" in the toolbar in GR and use the block like any other.
-    
-\subsection{Forward Error Correction - LDPC - Tutorial\_10_1.grc}
-as
+    %--------------------------------__FALAR ENTRE QUE VALORES E QUANTO QUEREMOS------------------
+\subsection{Forward Error Correction - LDPC - Tutorial\_8\_LDPC.grc}
+MUX para Encoder
+Mux para depois do encoder mais bit padding
+
+Edit Vector source 
+Edit Stream mux com novos valores
+
+nova linha do packet recived ate ao payload decoded
+
+falar multithreadding
 
 
-\subsection{Forward Error Correction - CC - Tutorial\_10_2.grc}
-as
+\subsection{Forward Error Correction - CC - Tutorial\_8\_CC.grc}
+Editar valores mesma logica. Explicar valores.
 
 \subsection{Equations}
 \subsection{Some Common Mistakes}

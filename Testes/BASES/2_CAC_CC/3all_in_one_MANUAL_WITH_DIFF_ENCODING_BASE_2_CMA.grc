@@ -756,6 +756,60 @@
     </param>
     <param>
       <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(200, 1132)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>taps</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>[1.0, 0.25-0.25j, 0.50 + 0.10j, -0.3 + 0.2j]</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(248, 1068)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>taps</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>1.0 + 1.0j</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
       <value>1</value>
     </param>
     <param>
@@ -1019,7 +1073,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(496, 556)</value>
+      <value>(416, 668)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2736,7 +2790,7 @@
     </param>
     <param>
       <key>taps</key>
-      <value>1.0 + 1.0j</value>
+      <value>taps</value>
     </param>
   </block>
   <block>
@@ -3151,7 +3205,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(368, 620)</value>
+      <value>(552, 620)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3414,7 +3468,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(680, 564)</value>
+      <value>(312, 676)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3449,7 +3503,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(528, 620)</value>
+      <value>(400, 620)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -9685,7 +9739,7 @@
   </connection>
   <connection>
     <source_block_id>digital_map_bb_1_0</source_block_id>
-    <sink_block_id>insert_vec_cpp_new_vec_0</sink_block_id>
+    <sink_block_id>digital_diff_encoder_bb_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -9715,7 +9769,7 @@
   </connection>
   <connection>
     <source_block_id>insert_vec_cpp_new_vec_0</source_block_id>
-    <sink_block_id>digital_diff_encoder_bb_0</sink_block_id>
+    <sink_block_id>digital_map_bb_1_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -9763,7 +9817,7 @@
   </connection>
   <connection>
     <source_block_id>virtual_source_0_0</source_block_id>
-    <sink_block_id>digital_map_bb_1_0</sink_block_id>
+    <sink_block_id>insert_vec_cpp_new_vec_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
