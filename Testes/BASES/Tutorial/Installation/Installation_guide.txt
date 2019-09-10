@@ -1,11 +1,19 @@
-1: Install VOLK
+1: Install dependences:
+https://wiki.gnuradio.org/index.php/UbuntuInstall#Install_Dependencies
+
+sudo apt install cmake git g++ libboost-all-dev python-dev python-mako python-numpy python-wxgtk3.0 python-sphinx python-cheetah swig libzmq3-dev libfftw3-dev libgsl-dev libcppunit-dev doxygen libcomedi-dev libqt4-opengl-dev python-qt4 libqwt-dev libsdl1.2-dev libusb-1.0-0-dev python-gtk2 python-lxml pkg-config python-sip-dev 
+
+sudo apt install cmake
+sudo apt-get install build-essential 
+
+2: Install VOLK
 https://github.com/gnuradio/volk
 
 git clone https://github.com/gnuradio/volk
 cd volk
 mkdir build
 cd build
-cmake ..
+cmake ../
 make
 make test
 sudo make install
@@ -18,14 +26,6 @@ See if writed something in $HOME/.volk/volk_config
 
 
 
-2: Install dependences:
-https://wiki.gnuradio.org/index.php/UbuntuInstall#Install_Dependencies
-
-sudo apt install cmake git g++ libboost-all-dev python-dev python-mako \
-python-numpy python-wxgtk3.0 python-sphinx python-cheetah swig libzmq3-dev \
-libfftw3-dev libgsl-dev libcppunit-dev doxygen libcomedi-dev libqt4-opengl-dev \
-python-qt4 libqwt-dev libsdl1.2-dev libusb-1.0-0-dev python-gtk2 python-lxml \
-pkg-config python-sip-dev 
 
 
 3: Install gnuradio:
