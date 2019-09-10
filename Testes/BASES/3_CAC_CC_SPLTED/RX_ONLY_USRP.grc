@@ -299,7 +299,7 @@
     </param>
     <param>
       <key>dim1</key>
-      <value>4</value>
+      <value>8</value>
     </param>
     <param>
       <key>dim2</key>
@@ -502,7 +502,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>[3750000,3000000,2500000,2000000,1500000,1000000,937500,882352,833333,714285,533333,500000,421052,400000,380952]</value>
+      <value>[7500000,5000000,3750000,3000000,2500000,2000000,1500000,1000000,937500,882352,833333,714285,533333,500000,421052,400000,380952]</value>
     </param>
   </block>
   <block>
@@ -540,7 +540,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>37</value>
+      <value>41</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -807,62 +807,11 @@
     </param>
     <param>
       <key>file</key>
-      <value>/home/andre/Desktop/Trasmited/depois.txt</value>
+      <value>/home/it/Desktop/Transmited/depois.txt</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1440, 1140)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_file_sink_0_0_0</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>byte</value>
-    </param>
-    <param>
-      <key>unbuffered</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-  </block>
-  <block>
-    <key>blocks_file_sink</key>
-    <param>
-      <key>append</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>file</key>
-      <value>/home/andre/Desktop/Trasmited/depois.mpg</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1440, 1204)</value>
+      <value>(1440, 1090)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -913,7 +862,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1440, 1268)</value>
+      <value>(1444, 1250)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -956,15 +905,15 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>file</key>
-      <value>/home/andre/Desktop/Trasmited/depois.jpg</value>
+      <value>/home/it/Desktop/Trasmited/depois.mpeg</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1440, 1092)</value>
+      <value>(1440, 1150)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -972,7 +921,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>blocks_file_sink_0_0_0_1</value>
+      <value>blocks_file_sink_0_0_0_0_1</value>
     </param>
     <param>
       <key>type</key>
@@ -5390,12 +5339,6 @@
   </connection>
   <connection>
     <source_block_id>blocks_repack_bits_bb_0_0_0_1_0</source_block_id>
-    <sink_block_id>blocks_file_sink_0_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_repack_bits_bb_0_0_0_1_0</source_block_id>
     <sink_block_id>blocks_file_sink_0_0_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
@@ -5408,7 +5351,7 @@
   </connection>
   <connection>
     <source_block_id>blocks_repack_bits_bb_0_0_0_1_0</source_block_id>
-    <sink_block_id>blocks_file_sink_0_0_0_1</sink_block_id>
+    <sink_block_id>blocks_file_sink_0_0_0_0_1</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
