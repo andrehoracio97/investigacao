@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>tx_no_gui</value>
+      <value>tx_send_no_gui</value>
     </param>
     <param>
       <key>max_nouts</key>

@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>top_block</value>
+      <value>tx_encode_no_gui</value>
     </param>
     <param>
       <key>max_nouts</key>
