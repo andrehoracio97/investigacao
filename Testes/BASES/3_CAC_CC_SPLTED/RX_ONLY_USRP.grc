@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>top_block</value>
+      <value>tx</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -981,61 +981,6 @@
     <param>
       <key>n</key>
       <value>896</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>byte</value>
-    </param>
-    <param>
-      <key>offset</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>blocks_keep_m_in_n</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(936, 1140)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_keep_m_in_n_0_1_1_0</value>
-    </param>
-    <param>
-      <key>m</key>
-      <value>440</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>n</key>
-      <value>442</value>
     </param>
     <param>
       <key>type</key>
@@ -5314,12 +5259,6 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>blocks_keep_m_in_n_0_1_1_0</source_block_id>
-    <sink_block_id>blocks_repack_bits_bb_0_0_0_1_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
     <source_block_id>blocks_repack_bits_bb_0</source_block_id>
     <sink_block_id>blocks_char_to_float_0</sink_block_id>
     <source_key>0</source_key>
@@ -5417,7 +5356,7 @@
   </connection>
   <connection>
     <source_block_id>fec_extended_decoder_0_0_1_0_1_0</source_block_id>
-    <sink_block_id>blocks_keep_m_in_n_0_1_1_0</sink_block_id>
+    <sink_block_id>blocks_repack_bits_bb_0_0_0_1_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
