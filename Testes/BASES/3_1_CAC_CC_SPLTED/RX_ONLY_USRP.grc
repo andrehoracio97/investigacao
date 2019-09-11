@@ -287,7 +287,7 @@
     <key>variable_cc_decoder_def</key>
     <param>
       <key>padding</key>
-      <value>True</value>
+      <value>False</value>
     </param>
     <param>
       <key>comment</key>
@@ -299,7 +299,7 @@
     </param>
     <param>
       <key>dim1</key>
-      <value>8</value>
+      <value>16</value>
     </param>
     <param>
       <key>dim2</key>
@@ -475,7 +475,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>samp_rate_array_MCR[2]</value>
+      <value>samp_rate_array_MCR[1]</value>
     </param>
   </block>
   <block>
