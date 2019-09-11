@@ -15,7 +15,7 @@
 % on the last page of the document
 
 
-
+\usepackage{comment}
 % The following packages can be found on http:\\www.ctan.org
 \usepackage{graphicx} % for pdf, bitmapped graphics files
 %\usepackage{epsfig} % for postscript graphics files
@@ -26,6 +26,67 @@
 
 %-Para bash and c++
 \usepackage{listings}
+
+\usepackage{xcolor}
+\begin{comment}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+ 
+\lstset{style=mystyle}
+
+\end{comment}
+
+%--OUUU
+\colorlet{mygray}{black!30}
+\colorlet{mygreen}{green!60!blue}
+\colorlet{mymauve}{red!60!blue}
+
+\lstset{
+  backgroundcolor=\color{gray!10},  
+  basicstyle=\ttfamily,
+  columns=fullflexible,
+  breakatwhitespace=false,      
+  breaklines=true,                
+  captionpos=b,                    
+  commentstyle=\color{mygreen}, 
+  extendedchars=true,              
+  frame=single,                   
+  keepspaces=true,             
+  keywordstyle=\color{blue},      
+  language=c++,                 
+  numbers=none,                
+  numbersep=5pt,                   
+  numberstyle=\tiny\color{blue}, 
+  rulecolor=\color{mygray},        
+  showspaces=false,               
+  showtabs=false,                 
+  stepnumber=5,                  
+  stringstyle=\color{mymauve},    
+  tabsize=3,  
+  title=\lstname                
+}
 
 %-Hrefs
 \usepackage{hyperref}
@@ -411,24 +472,51 @@ $sudo make install
 $sudo ldconfig
 \end{lstlisting}
     
-    Finally we just need to click in "Reload Block" in the toolbar in GR and use the block like any other.
-    %--------------------------------__FALAR ENTRE QUE VALORES E QUANTO QUEREMOS------------------
-\subsection{Forward Error Correction - LDPC - Tutorial\_8\_LDPC.grc}
-MUX para Encoder
-Mux para depois do encoder mais bit padding
-
-Edit Vector source 
-Edit Stream mux com novos valores
-
-nova linha do packet recived ate ao payload decoded
-
-falar multithreadding
-
-
+    Finally we just need to click in "Reload Block" in the GR's toolbar and use the block like any other. To create a vector we can use a "Variable" block and use the Python input \verb|[int(random.random()*X) for i in range(Y)]| where X is the alphabet of the vector (I want between 0 and 3), and Y is the length of the vector (Value that needs to be experientially found until starts transmitting well our data).
+    
 \subsection{Forward Error Correction - CC - Tutorial\_8\_CC.grc}
+%-----Intro
+    In a wireless transmission, obviously, we may have transmission errors, so we need to take care of some of these errors by using some error correction. The GR offers a module called FEC (Forward Error Correction) where exists three encoding blocks: "FEC Encoder", "FEC Extended Encoder", "FEC Tagged Encoder" and "FEC Extended Tagged Ecoder". They all expect bits (generally soft decisions, this is, values between -1 and 1) and produce bits (real bits, this is, 0 or 1), this means we need do work with unpacked bytes however there is only a few differences between them: the first one only inputs the data and outputs a bigger stream the data (added of redundancy), the second one it's a wrap (a heir block) of the first where is added puncture (common in this type of encoding), and properly convert the input/output data. The third one, instead using the Frame Bits defined in the encoder object block for knowing how many bits it's inputed to FEC, uses a stream already tagged and automatically increases the length of that tag, finally, the last one is similar to the third however takes care of puncture and some data conversion. All of them uses as a parameter an encoder object which determinate the type of encoding we will use, this object can the one of these encoding types:
+    \begin{itemize}
+        \item Dummy Encoding - The dummy encoding simply redirects the input to output with no error correction. This simply allow us to use and test the the encoder block.
+        \item Repetition Encoding - This encoding only repeats the same bit how many times we define, thus, has a low performance taking into account that we multiply the amount of bits needed to transmit.
+        \item Convolutional Code - This code generates parity symbols by sliding and polynomial function to our data stream. Here we can use 2 blocks, or the "CC Encoder Definition" object which is an generic implementation where it's prepared to use different polynomials, rate and constraint lenght (currently the GR has only implemented the Voyager code from NASA), or use the "CCSDC Encoder Definition" object which is an highly optimized implementation of the Voyager code.
+        \item LDPC (Low-Density-Parity-Check) - Here we have two types that we can use, or we use an already created Matrix (using "LDPC Encoder Definition (via Parity Check)") or we use an Generator Matrix (using "LDPC Encoder Definition (via Generator)").
+    \end{itemize}
+    %-----_EXTRA BER CURVE-----------
+    
+    %----Implementation
+    I will implement the convolutional code using the "CC Encoder Definition" object block to extend the life of this tutorial. As I have told, the "FEC Extended Encoder" expects unpacked bytes so before we send data to that block we need to repack the bits from 8 to 1, and then we can use the block. Now we need to fill the parameters, first we set a puncture pattern of '11' (where there is no puncture), then the "Threading Type" parameter we set to "None" for now (I will be back here). Regrading to the "Encoder Object" we will use the "CC Encoder Definition". This block has a lot of important parameters: The Frame Bits" tells how many bits we want to input of each work (I will set for our example 440 bits).The "Constraint Lenght (k)", the "Rate Inverse (1/R)", and the "Polynomials" I have set "7","2" and "[109,79]" which is the Voyager Code and the only available code at this moment.
+    At "Streamming Behaviour" we have four options:
+    \begin{itemize}
+        \item Streaming: Expects uninterrupted flow of bits to the encoder, where the output is continually encoded.
+        \item Terminated: Used for packet-based, however this mode adds "rate*(K-1)" bits to the output to help flush the decoder.
+        \item Tailbiting: Used for packet-based, however instead adding bits, uses the final bits of the packet when we are decoding.
+        \item Truncated: Here the registers are reseted between frames.
+    \end{itemize}
+    Another important thing to keep in mind is that I want send the packet encoded independent of the last one, so if I lose one packet I don't start a chain of corrupted packets. 
+    
+    Taking in this into account, we can possible we 2 of this modes,the "Terminated" or the "Tailbiting", however I want the packets fully independents of each other so that if I lose one packet I don't start a chain of un-decoded packets,thus, we will use the first mode.
+    
+    With all this our output of the encoder will be the input multiplied by rate plus the added bits to flush decoder resulting in: (Input * Rate) + (Rate*(K-1) = 440 bits * 2 + (2*(7-1)) = 892 bits.
+    
+    Now that we have the payload encoded we just need to create the proper header exactly as before, but we have a problem here: in the header we need to define the payload in bytes, however, we can not convert 892 bits in bytes (892/8=111.5 bytes). To solve this we need to add 4 bits resulting in 896 bits, or 112 bytes converted. We can add this using a "Vector Source" Block concatenating the vector with a "Stram Mux" block. All this step can be visualized in Fig: \ref{fig:multipath_corrected}
+    
+    We can now transmit our packet with the payload already encoded. In reception all we have to do is do the inverse that we have done by using the "FEC Extended Decoder" along with "CC Encoder Definition" object and then only keeps the firs 892 bits of 896 bits with the  "Keep M in N" block. Note that the decoder blocks now uses soft decision bits (floats between -1 and 1), but as we have an hard decoder we get hard decision bits (0's and 1's), so we just need to Map and  then use the "Char to Float" block.
+    
+    If you run the FG and look at the CPU processing you can see that only one thread is running slowing down our FG, so we can use multithreading by creating multiple encoder variables with same settings defined in "Parallelism" parameter of the encoder object. This value can be 1 or 2, where 1 creates a list of variables and 2 create a list of lists of variables. The length of that list is defined in "Dimension 1" parameter also there. The "FEC Encoder" block must know how to handle with these variables, for this we can set one of the two options: "Capillary" or "Ordinary" in parameter "Threading Type". The difference between them in N streams and pass each N stream to one encoder variable to process the frames in parallel and then the output of each variable is interleaved back together making a single stream. The second one is like the another however it creates a tree where each branch launches 2 more branches, thus N must be a factor of 2. This perform better than the other. With this in mind I have set to 1 in "Parallelism" and create 4 variables to the encoder and 8 variables to the decoder because the decoder it's less efficient than the encoder.
+    
+
+\subsection{Forward Error Correction - LDPC - Tutorial\_8\_CC.grc}
 Editar valores mesma logica. Explicar valores.
 
-\subsection{Equations}
+\subsection{USRP - Tutorial\_9.grc}
+
+%-----_PROBLEMA valores -1,1 --Multiypl
+%        E Adaptar RX gain
+
+
+
 \subsection{Some Common Mistakes}
 \section{USING THE TEMPLATE}
 

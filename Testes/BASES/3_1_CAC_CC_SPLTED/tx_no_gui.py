@@ -43,18 +43,18 @@ class tx_no_gui(gr.top_block):
         self.tx_rrc_taps = tx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts, 1.0, eb, 5*sps*nfilts)
 
         self.taps_per_filt = taps_per_filt = len(tx_rrc_taps)/nfilts
-        self.samp_rate_array_MCR = samp_rate_array_MCR = [7500000,4000000,3750000,3000000,2500000,2000000,1500000,1000000,937500,882352,833333,714285,533333,500000,421052,400000,380952]
+        self.samp_rate_array_MCR = samp_rate_array_MCR = [7500000,5000000,3750000,3000000,2500000,2000000,1500000,1000000,937500,882352,833333,714285,533333,500000,421052,400000,380952]
+        self.rate = rate = 2
+        self.polys = polys = [109, 79]
+        self.k = k = 7
         self.vector = vector = [int(random.random()*4) for i in range(49600)]
         self.variable_qtgui_range_0 = variable_qtgui_range_0 = 50
         self.samp_rate = samp_rate = samp_rate_array_MCR[1]
-        self.rate = rate = 2
-        self.polys = polys = [109, 79]
 
 
-        self.pld_enc = pld_enc = map( (lambda a: fec.ccsds_encoder_make(440, 0, fec.CC_TERMINATED)), range(0,16) );
+        self.pld_enc = pld_enc = map( (lambda a: fec.cc_encoder_make(440, k, rate, (polys), 0, fec.CC_TERMINATED, False)), range(0,8) );
         self.pld_const = pld_const = digital.constellation_rect(([0.707+0.707j, -0.707+0.707j, -0.707-0.707j, 0.707-0.707j]), ([0, 1, 2, 3]), 4, 2, 2, 1, 1).base()
         self.pld_const.gen_soft_dec_lut(8)
-        self.k = k = 7
         self.frequencia_usrp = frequencia_usrp = 484e6
         self.filt_delay = filt_delay = 1+(taps_per_filt-1)/2
         self.MCR = MCR = "master_clock_rate=60e6"
@@ -165,6 +165,24 @@ class tx_no_gui(gr.top_block):
         self.samp_rate_array_MCR = samp_rate_array_MCR
         self.set_samp_rate(self.samp_rate_array_MCR[1])
 
+    def get_rate(self):
+        return self.rate
+
+    def set_rate(self, rate):
+        self.rate = rate
+
+    def get_polys(self):
+        return self.polys
+
+    def set_polys(self, polys):
+        self.polys = polys
+
+    def get_k(self):
+        return self.k
+
+    def set_k(self, k):
+        self.k = k
+
     def get_vector(self):
         return self.vector
 
@@ -186,18 +204,6 @@ class tx_no_gui(gr.top_block):
         self.samp_rate = samp_rate
         self.uhd_usrp_sink_0_0.set_samp_rate(self.samp_rate)
 
-    def get_rate(self):
-        return self.rate
-
-    def set_rate(self, rate):
-        self.rate = rate
-
-    def get_polys(self):
-        return self.polys
-
-    def set_polys(self, polys):
-        self.polys = polys
-
     def get_pld_enc(self):
         return self.pld_enc
 
@@ -209,12 +215,6 @@ class tx_no_gui(gr.top_block):
 
     def set_pld_const(self, pld_const):
         self.pld_const = pld_const
-
-    def get_k(self):
-        return self.k
-
-    def set_k(self, k):
-        self.k = k
 
     def get_frequencia_usrp(self):
         return self.frequencia_usrp

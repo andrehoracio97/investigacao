@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>tutorial_8_LDPC</value>
+      <value>tutorial_9</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -467,7 +467,7 @@
     <key>variable_cc_decoder_def</key>
     <param>
       <key>padding</key>
-      <value>True</value>
+      <value>False</value>
     </param>
     <param>
       <key>comment</key>
@@ -538,7 +538,7 @@
     <key>variable_cc_encoder_def</key>
     <param>
       <key>padding</key>
-      <value>True</value>
+      <value>False</value>
     </param>
     <param>
       <key>comment</key>

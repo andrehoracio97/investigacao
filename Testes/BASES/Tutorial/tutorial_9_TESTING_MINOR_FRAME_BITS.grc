@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>tutorial_8_LDPC</value>
+      <value>tutorial_9</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -495,7 +495,7 @@
     </param>
     <param>
       <key>framebits</key>
-      <value>440</value>
+      <value>200</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -538,7 +538,7 @@
     <key>variable_cc_encoder_def</key>
     <param>
       <key>padding</key>
-      <value>True</value>
+      <value>False</value>
     </param>
     <param>
       <key>comment</key>
@@ -558,11 +558,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>framebits</key>
-      <value>440</value>
+      <value>200</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -587,53 +587,6 @@
     <param>
       <key>rate</key>
       <value>rate</value>
-    </param>
-    <param>
-      <key>state_start</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>mode</key>
-      <value>fec.CC_TERMINATED</value>
-    </param>
-  </block>
-  <block>
-    <key>variable_ccsds_encoder_def</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>dim1</key>
-      <value>8</value>
-    </param>
-    <param>
-      <key>dim2</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>framebits</key>
-      <value>440</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1224, 196)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>pld_enc</value>
-    </param>
-    <param>
-      <key>ndim</key>
-      <value>1</value>
     </param>
     <param>
       <key>state_start</key>
@@ -765,7 +718,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>samp_rate_array_MCR[0]</value>
+      <value>samp_rate_array_MCR[2]</value>
     </param>
   </block>
   <block>
@@ -963,7 +916,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>38</value>
+      <value>37</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -1053,10 +1006,7 @@
     </param>
     <param>
       <key>comment</key>
-      <value>64 bits of Access Code +
-16 bits of Lenght of the Payload (112 bytes) + 
-16 bits of Lenght of the Payload (112 bytes) + 
-96 bits of Header</value>
+      <value>64 bits of Access Code + 52</value>
     </param>
     <param>
       <key>affinity</key>
@@ -1104,7 +1054,7 @@
     </param>
     <param>
       <key>vector</key>
-      <value>[0x1, 0x0, 0x1, 0x0, 0x1, 0x1, 0x0, 0x0, 0x1, 0x1, 0x0, 0x1, 0x1, 0x1, 0x0, 0x1, 0x1, 0x0, 0x1, 0x0, 0x0, 0x1, 0x0, 0x0, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x1, 0x0, 0x1, 0x1, 0x1, 0x1, 0x0, 0x0, 0x1, 0x0, 0x1, 0x0, 0x0, 0x0, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0]</value>
+      <value>[0x1, 0x0, 0x1, 0x0, 0x1, 0x1, 0x0, 0x0, 0x1, 0x1, 0x0, 0x1, 0x1, 0x1, 0x0, 0x1, 0x1, 0x0, 0x1, 0x0, 0x0, 0x1, 0x0, 0x0, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x1, 0x0, 0x1, 0x1, 0x1, 0x1, 0x0, 0x0, 0x1, 0x0, 0x1, 0x0, 0x0, 0x0, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x1, 0x0, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x1, 0x0, 0x1, 0x0, 0x0]</value>
     </param>
   </block>
   <block>
@@ -1272,7 +1222,7 @@
     </param>
     <param>
       <key>file</key>
-      <value>/home/andre/Desktop/Trasmited/depois.txt</value>
+      <value>/home/andre/Desktop/Trasmited/depois.mpg</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1319,7 +1269,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>file</key>
@@ -1336,6 +1286,65 @@
     <param>
       <key>id</key>
       <value>blocks_file_source_0_0_1_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>byte</value>
+    </param>
+    <param>
+      <key>repeat</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_file_source</key>
+    <param>
+      <key>begin_tag</key>
+      <value>pmt.PMT_NIL</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>file</key>
+      <value>/home/andre/Desktop/Trasmited/08.mp4</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(24, 324)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_file_source_0_0_1_0_0</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -1390,7 +1399,7 @@
     </param>
     <param>
       <key>m</key>
-      <value>892</value>
+      <value>412</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -1402,7 +1411,7 @@
     </param>
     <param>
       <key>n</key>
-      <value>896</value>
+      <value>416</value>
     </param>
     <param>
       <key>type</key>
@@ -1732,7 +1741,7 @@
     </param>
     <param>
       <key>lengths</key>
-      <value>892, 4</value>
+      <value>412, 4</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -1789,7 +1798,7 @@
     </param>
     <param>
       <key>lengths</key>
-      <value>96, 896</value>
+      <value>96,  416</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -2103,7 +2112,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(760, 1048)</value>
+      <value>(744, 1048)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -7687,6 +7696,18 @@
   </connection>
   <connection>
     <source_block_id>blocks_file_source_0_0_1_0</source_block_id>
+    <sink_block_id>blocks_repack_bits_bb_1_0_0_1</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_file_source_0_0_1_0_0</source_block_id>
+    <sink_block_id>blocks_char_to_float_1_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_file_source_0_0_1_0_0</source_block_id>
     <sink_block_id>blocks_repack_bits_bb_1_0_0_1</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
