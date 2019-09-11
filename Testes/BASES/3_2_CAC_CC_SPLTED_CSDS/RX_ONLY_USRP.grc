@@ -299,7 +299,7 @@
     </param>
     <param>
       <key>dim1</key>
-      <value>8</value>
+      <value>16</value>
     </param>
     <param>
       <key>dim2</key>
@@ -475,7 +475,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>samp_rate_array_MCR[2]</value>
+      <value>samp_rate_array_MCR[1]</value>
     </param>
   </block>
   <block>
@@ -854,7 +854,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>file</key>
@@ -905,7 +905,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>file</key>
