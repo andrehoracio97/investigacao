@@ -1372,7 +1372,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>rolloff</key>
@@ -1404,7 +1404,7 @@
     </param>
     <param>
       <key>filter_size</key>
-      <value>60</value>
+      <value>40</value>
     </param>
     <param>
       <key>samps_per_sym</key>
@@ -5428,6 +5428,12 @@
   <connection>
     <source_block_id>uhd_usrp_source_0</source_block_id>
     <sink_block_id>digital_fll_band_edge_cc_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>uhd_usrp_source_0</source_block_id>
+    <sink_block_id>digital_pfb_clock_sync_xxx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

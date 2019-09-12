@@ -78,7 +78,7 @@ class tx(gr.top_block, Qt.QWidget):
         self.k = k = 7
         self.eb = eb = 0.22
         self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 41
-        self.samp_rate = samp_rate = samp_rate_array_MCR[1]
+        self.samp_rate = samp_rate = samp_rate_array_MCR[2]
 
         self.rx_rrc_taps = rx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts*sps, 1.0, eb, 11*sps*nfilts)
 
@@ -419,7 +419,7 @@ class tx(gr.top_block, Qt.QWidget):
         self.digital_pfb_clock_sync_xxx_0 = digital.pfb_clock_sync_ccf(sps, 6.28/400.0, (rx_rrc_taps), nfilts, nfilts/2, 1.5, 2)
         self.digital_map_bb_1_0_0 = digital.map_bb((pld_const.pre_diff_code()))
         self.digital_map_bb_0_0_0_0_0 = digital.map_bb(([-1, 1]))
-        self.digital_fll_band_edge_cc_0_0 = digital.fll_band_edge_cc(sps, eb, 60, 6.28/400.0)
+        self.digital_fll_band_edge_cc_0_0 = digital.fll_band_edge_cc(sps, eb, 40, 6.28/400.0)
         self.digital_diff_decoder_bb_0 = digital.diff_decoder_bb(4)
         self.digital_costas_loop_cc_0_0 = digital.costas_loop_cc(6.28/100.0, pld_const.arity(), False)
         self.digital_correlate_access_code_xx_ts_0_0 = digital.correlate_access_code_bb_ts(digital.packet_utils.default_access_code,
@@ -488,7 +488,7 @@ class tx(gr.top_block, Qt.QWidget):
 
     def set_samp_rate_array_MCR(self, samp_rate_array_MCR):
         self.samp_rate_array_MCR = samp_rate_array_MCR
-        self.set_samp_rate(self.samp_rate_array_MCR[1])
+        self.set_samp_rate(self.samp_rate_array_MCR[2])
 
     def get_rate(self):
         return self.rate
