@@ -81,3 +81,4 @@ Semana
 9/9 ->Escrita tutorial - tutorial_5.grc,tutorial_6.grc,tutorial_7.grc; Instalar Linux no 2 computador
 10/9 ->Instalation check do tutorial, OOT check do tutorial- Testes em video e criacao de varios ficheiros com 0's, 00's, 01,s 10's. Separacao para utilizacao em 2 PC's. Separacao da parte de codificação -Sem muito efeito. Criaçao Tutorial_8_LDPC e Tutorial_8_CC.  
 11/9 -> Escrita tutorial Tutorial_8_CC. Reinuao. Tests CSDS.
+12/9 Concluão tutorial_8_CC, tutorial_8_LDPC, tutotial_9 e introducao, E COARSE Frequency recover --BOM mas PESADO-->Diminui bastante bit rate. Muitos testes do 0's in row. Seguir para Scramble.

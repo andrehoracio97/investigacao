@@ -49,7 +49,7 @@ class tx_no_gui(gr.top_block):
         self.k = k = 7
         self.vector = vector = [int(random.random()*4) for i in range(49600)]
         self.variable_qtgui_range_0 = variable_qtgui_range_0 = 50
-        self.samp_rate = samp_rate = samp_rate_array_MCR[1]
+        self.samp_rate = samp_rate = samp_rate_array_MCR[2]
 
 
         self.pld_enc = pld_enc = map( (lambda a: fec.cc_encoder_make(440, k, rate, (polys), 0, fec.CC_TERMINATED, False)), range(0,8) );
@@ -163,7 +163,7 @@ class tx_no_gui(gr.top_block):
 
     def set_samp_rate_array_MCR(self, samp_rate_array_MCR):
         self.samp_rate_array_MCR = samp_rate_array_MCR
-        self.set_samp_rate(self.samp_rate_array_MCR[1])
+        self.set_samp_rate(self.samp_rate_array_MCR[2])
 
     def get_rate(self):
         return self.rate
