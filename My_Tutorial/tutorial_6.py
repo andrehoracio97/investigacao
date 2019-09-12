@@ -78,7 +78,7 @@ class tutorial_6(gr.top_block, Qt.QWidget):
 
         self.rx_rrc_taps = rx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts*sps, 1.0, eb, 11*sps*nfilts)
 
-        self.pld_const = pld_const = digital.constellation_rect(([0.707+0.707j, -0.707+0.707j, -0.707-0.707j, 0.707-0.707j]), ([0, 1, 3, 2]), 4, 2, 2, 1, 1).base()
+        self.pld_const = pld_const = digital.constellation_rect(([0.707+0.707j, -0.707+0.707j, -0.707-0.707j, 0.707-0.707j]), ([0, 1, 2, 3]), 4, 2, 2, 1, 1).base()
         self.pld_const.gen_soft_dec_lut(8)
         self.noise = noise = 0.0
         self.freq_offset = freq_offset = 0
@@ -356,8 +356,8 @@ class tutorial_6(gr.top_block, Qt.QWidget):
         self.digital_pfb_clock_sync_xxx_0 = digital.pfb_clock_sync_ccf(sps, 6.28/400.0, (rx_rrc_taps), nfilts, nfilts/2, 1.5, 2)
         self.digital_map_bb_0_0 = digital.map_bb((pld_const.pre_diff_code()))
         self.digital_map_bb_0 = digital.map_bb((pld_const.pre_diff_code()))
-        self.digital_diff_encoder_bb_0 = digital.diff_encoder_bb(4)
-        self.digital_diff_decoder_bb_0 = digital.diff_decoder_bb(4)
+        self.digital_diff_encoder_bb_0 = digital.diff_encoder_bb(pld_const.arity())
+        self.digital_diff_decoder_bb_0 = digital.diff_decoder_bb(pld_const.arity())
         self.digital_costas_loop_cc_0_0 = digital.costas_loop_cc(6.28/200.0, pld_const.arity(), False)
         self.digital_correlate_access_code_xx_ts_0_0 = digital.correlate_access_code_bb_ts(digital.packet_utils.default_access_code,
           1, 'packet_len')

@@ -66,13 +66,14 @@ Solution: Add Insert Vector
 
 	OOT
 	
-Tutorial_8:
+Tutorial_8_CC:
 Problem: FEC
 Solution: Add FEC Encoder and Decoder
 
+Tutorial_8_LDPC:
+Problem: FEC
+Solution: Add FEC Encoder and Decoder
 
-
-
-Channel Model VS Real transmittion:
-	-USRP -> MCR e Sample Rate to overcome U's (Tx) and O's (Rx)
-	-Saturação - See (QT Sink) and Overcome (Multiply Conts and Gain in Tx/Rx - Enough SNR to decode)
+Tutorial_9:
+Problem: Using USRP, Saturation limits, U's and 0's
+Solution: Multiply block, Tweak TX/RX Gain, Improve MCR and Tweak sample rates.

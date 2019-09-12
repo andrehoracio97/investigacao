@@ -113,7 +113,7 @@ class roll_off(gr.top_block, Qt.QWidget):
         if "complex" == "float" or "complex" == "msg_float":
           self.qtgui_freq_sink_x_0.set_plot_pos_half(not True)
 
-        labels = ['', '', '', '', '',
+        labels = ['Roll Off: 0.1', 'Roll Off: 0.22', 'Roll Off: 0.35', 'Roll Off: 0.5', 'Roll Off: 1',
                   '', '', '', '', '']
         widths = [1, 1, 1, 1, 1,
                   1, 1, 1, 1, 1]

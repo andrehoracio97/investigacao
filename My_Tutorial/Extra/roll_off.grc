@@ -2032,7 +2032,7 @@
     </param>
     <param>
       <key>label1</key>
-      <value></value>
+      <value>Roll Off: 0.1</value>
     </param>
     <param>
       <key>width1</key>
@@ -2064,7 +2064,7 @@
     </param>
     <param>
       <key>label2</key>
-      <value></value>
+      <value>Roll Off: 0.22</value>
     </param>
     <param>
       <key>width2</key>
@@ -2080,7 +2080,7 @@
     </param>
     <param>
       <key>label3</key>
-      <value></value>
+      <value>Roll Off: 0.35</value>
     </param>
     <param>
       <key>width3</key>
@@ -2096,7 +2096,7 @@
     </param>
     <param>
       <key>label4</key>
-      <value></value>
+      <value>Roll Off: 0.5</value>
     </param>
     <param>
       <key>width4</key>
@@ -2112,7 +2112,7 @@
     </param>
     <param>
       <key>label5</key>
-      <value></value>
+      <value>Roll Off: 1</value>
     </param>
     <param>
       <key>width5</key>

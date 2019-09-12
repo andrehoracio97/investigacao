@@ -76,13 +76,13 @@
   keepspaces=true,             
   keywordstyle=\color{blue},      
   language=c++,                 
-  numbers=none,                
+  numbers=left,               
   numbersep=5pt,                   
   numberstyle=\tiny\color{blue}, 
   rulecolor=\color{mygray},        
   showspaces=false,               
   showtabs=false,                 
-  stepnumber=5,                  
+  stepnumber=1,                  
   stringstyle=\color{mymauve},    
   tabsize=3,  
   title=\lstname                
@@ -136,14 +136,18 @@ This electronic document is a ÒliveÓ template. The various components of your 
 
 \end{abstract}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{INTRODUCTION}
 
-SOMETHING
+Software Defined Radio (SDR) can be defined in many ways, one of them was an work of the SDR Forum in collaboration with the IEEE where they defined like "Radio in which some or all of the physical layer functions are software defined". An radio it's a device that can transmit/receive signals in radio waves (this is electromagnetic waves), thus SDR is a system for radio communication where instead several components (like modulators/demodulators, filters, amplifiers) being implemented in hardware are in software, hence a lot configurable and useful for many reasons, like research. 
+
+One type of these radios is the Universal Software Radio Peripheral (USRP) and can be used in conjunct with computer programs like GNU Radio (GR), MATLAB,and others. An ideal transmitter would be: A stream of number would be sent to an DAC (Digital-Analog Conversion) which converts the digital samples in analog ones, and then sent to the antenna. An ideal receiver would be getting these
+analog samples though the antenna an then sent to the ADC (Analog-Digital Conversion) which would take care converting the analog samples in digital samples, however neither of these two is completely realizable due to limits of the technology (the problem is mainly in the conversion between digital to analog and vice versa, maintaining high rate and accuracy).
+
+
 
 \section{GETTING STARTED}
-We need a Linux base for getting started, this installing guide was meant to Ubuntu 18.04 or the Ubuntu 19.04. First we will need to install all dependencies needed for GR (Gnu Radio) and VOLK, with this commands:
+We need a Linux base for getting started, this installing guide was meant to Ubuntu 18.04 or the Ubuntu 19.04. First we will need to install all dependencies needed, with this commands:
 
 \begin{lstlisting}[breaklines]
 $sudo apt install cmake
@@ -152,7 +156,7 @@ $sudo apt install cmake git g++ libboost-all-dev python-dev python-mako python-n
 \end{lstlisting}
 
 \subsection{Installing VOLK}
-First of all we will install VOLK (Vector-Optimized Library of Kernels) because we will not use the internal VOLK of GNU Radio but an external one. VOLK it's a free library that contains kernels for mathematical operations, this means that for an operation is created a proto-kernel and added to VOLK for the architecture that we wish, hence faster operations. To install this follow the next commands:
+We need to install VOLK (Vector-Optimized Library of Kernels) because we will not use the internal VOLK of GNU Radio but an external one. VOLK it's a free library that contains kernels for mathematical operations, this means that for an operation it's created a proto-kernel and added to VOLK for the architecture that we wish, hence faster operations. To install this follow the next commands:
 
 \begin{lstlisting}[language=bash, breaklines]
 $git clone https://github.com/gnuradio/volk
@@ -164,18 +168,6 @@ $sudo make install && sudo ldconfig
 
 To complete this, we need to create a profile for our architecture, for this go to \verb|/usr/local/bin/| folder and run \verb|./volk_profile|. Note that the configuration file is written in the next path: \verb|/home/$USER/.volk/volk_config|.
 
-\subsection{Installing GNU Radio}
-Now moving for GNU Radio, although it's available the version 3.8 we will install directly from GIT the last commit of 3.7 version because the most recent one still has a lot of stability problems and bugs:
-
-\begin{lstlisting}[language=bash, breaklines]
-$git clone https://github.com/gnuradio/gnuradio.git
-$cd gnuradio && git checkout maint-3.7
-$mkdir build && cd build
-$cmake -DENABLE_INTERNAL_VOLK=OFF ../
-$make && make test && sudo make install && sudo ldconfig
-\end{lstlisting}
-
-You can now use the GNU Radio, to see where was installed with this usefull command: "which gnuradio-companion".
 
 \subsection{Installing UHD Driver}
 To use the USRP's we need to install the UHD Driver, here we have 2 options depending on your Ubuntu's version, first try to use the PPA (Personal Package Archive) provided by Ettus using this next command lines:
@@ -194,8 +186,21 @@ Finally to download the image of your USRP just run:
 If everything works you can run the next command to see the devices connected:
 \verb|$uhd_find_devices|, and this one to see information about these devices: \verb|$uhd_usrp_probe"|.
 
+\subsection{Installing GNU Radio}
+Now moving for GNU Radio, although it's available the version 3.8 we will install directly from GIT the last commit of 3.7 version because the most recent one still has a lot of stability problems and bugs:
+
+\begin{lstlisting}[language=bash, breaklines]
+$git clone https://github.com/gnuradio/gnuradio.git
+$cd gnuradio && git checkout maint-3.7
+$mkdir build && cd build
+$cmake -DENABLE_INTERNAL_VOLK=OFF ../
+$make && make test && sudo make install && sudo ldconfig
+\end{lstlisting}
+
+You can now use the GNU Radio, to see where was installed with this useful command: \verb|which gnuradio-companion|.
+
 \subsection{Problems and Solutions}
-After installing GNU Radio when you open it if shows some warnings about \verb|Camberra| just install it with:.
+After installing GNU Radio when you open, if it shows some warnings about \verb|Canberra| just install it with:.
 \begin{lstlisting}[language=bash, breaklines]
 $sudo apt install libcanberra-gtk-module libcanberra-gtk3-module
 \end{lstlisting}
@@ -206,13 +211,14 @@ $sudo apt install libcanberra-gtk-module libcanberra-gtk3-module
 BALBLABLA
 
 \subsection{Modulation - Tutorial\_1.grc}
-    In order to transmit data between SDR's it's necessary modulate the signal, so the modulation is the act of varying properties of a waveform, this wave is called carrier and keeps the information transmitted, so the the goal here is pick the data and modulate it so it can be transmitted in single carrier.
+    In order to transmit data between SDR's it's necessary modulate the signal, so the modulation is the act of varying properties of a waveform, this wave is called carrier and keeps the information transmitted, so the goal here is pick the data and modulate it so it can be transmitted in single carrier.
     
-    First we need to understand the working of some blocks and hence the GNU Radio itself. 
+    First we need to understand the working of some blocks and hence the GR (GNU Radio) itself. 
     
     %-----------
     
-    We can convert bytes in complex numbers using the "Chunks to Symbols" block, this block has a parameter called "Symbol Table" where we define the mapping between a byte (a chunk, this is our symbol) and a constellation point (point in the constellation to the symbol). But before we need to do two things:
+    We can convert bytes in complex numbers using the "Chunks to Symbols" block, this block has a parameter called "Symbol Table" where we define the mapping between a byte (or a chunk, this is our symbol) and a constellation point (point in the constellation of the symbol). But before that, we need to do two things:
+        
         First we need to unpack the byte, this means split the 8 bits/byte in X significant bits/byte where X is the number of bits necessary to the symbol of the constellation type, this is, if we want modulate in BPSK X is 1, QPSK X is 2, 8PSK X is 4.
         This is possible using the "Repack Bits" block, this block has 3 important parameters, the "Bits per Input Byte" where we define how many bits we pick in an incoming byte, the "Bits per Output Byte" where we define how many significant bits will have the output byte (the remaining bits will be 0's), and finally the parameter "Endianness" to determinate if we want write in MSB or LSB (always read in LSB). 
     
@@ -238,7 +244,7 @@ BALBLABLA
             \label{fig:mapping_qpsk}
         \end{figure}
         
-        The last block is "Throttle", to understand this block we need understand how GR works. When we do data streaming, we are implicitly using a buffers to hold the data between blocks, this buffers are in finite size, so before the block do anything, it checks the amount of available space in input and output buffers, if there is none available space in that buffers the block don't do anything. This is called "Back-pressure" because we pressure back the data that is incoming, slowing things down. This is how GR controls the data flow, giving data to the block when it's necessary and holding it when block is busy working. We have source/sink blocks that produces/consumes data at a given fixed sample rate like Audio and USRP blocks, these blocks are called "clock" blocks, so typically a FG has only one source or one sink block, and not both because that leads to an problem called as "2 clock problem" where there is 2 blocks with different sample rates leading a asynchronous clock sources causing "underruns"/"overflows" depending on the production/consumption rates are differentiating. As our FG doesn't has any of this "clock" blocks then we need to add the "Throttle" block to act as a clock, without it the FG will run as fast as the CPU can process resulting in non-responsive program and other problems. This means that while we are in simulating mode we need this block to control the flow however when we start using the "USRP" blocks we can take out this block.
+        The last block is "Throttle", to understand this block we need understand how GR works. When we do data streaming, we are implicitly using a buffers to hold the data between blocks, this buffers are in finite size, so before the block do anything, it checks the amount of available space in input and output buffers, if there is none available space in that buffers the block don't do anything. This is called "Back-pressure" because we pressure back the data that is incoming, slowing things down. This is how GR controls the data flow, giving data to the block when it's necessary and holding it when block is busy working. We have source/sink blocks that produces/consumes data at a given fixed sample rate like Audio and USRP blocks, these blocks are called "clock" blocks, so typically an FG (Flow Graph) has only one source or one sink block, and not both because that leads to an problem called as "2 clock problem" where there is 2 blocks with different sample rates leading a asynchronous clock sources causing "underruns"/"overflows" depending on the production/consumption rates are differentiating. As our FG doesn't has any of this "clock" blocks then we need to add the "Throttle" block to act as a clock, without it the FG will run as fast as the CPU can process resulting in non-responsive program and other problems. This means that while we are in simulating mode we need this block to control the flow however when we start using the "USRP" blocks we can take out this block.
         
         To finalize the TX side we send the data to an virtual sink, that redirects the data to the virtual source with the same id, the only purpose of this block it's make the FG more clear, elegant and readable.
         
@@ -255,7 +261,7 @@ BALBLABLA
     %Roll off
     
     Another thing to keep in mind is the roll-off factor, this is the measure of the excess bandwidth of the filter (bandwidth that is occupied beyond Nyquist bandwidth). This parameter is basically the inclination of the wave when rising and falling, when we set more roll-off, let's say 1, then will be easier for the receiver to decode however we will narrow less the bandwidth and that is not our objective, on the other hand, smaller roll-off will result in narrower bandwidth, however the inclination increases so attenuation in stop band is reduced.
-    I provide an FG that made called "roll\_off.grc" inside of "extra" folder where you can analyse the plot of 5 different roll-off factors. In this tutorial we will use the 0.22 value to this parameter.
+    I provide an FG that made called "roll\_off.grc" inside of \verb|Extra| folder where you can analyse the plot of 5 different roll-off factors. In this tutorial we will use the 0.22 value to this parameter.
     %-filter delay.
     %--Decreasing the number of samples (filter delay) reduces the stop band attenuation.
     
@@ -278,8 +284,10 @@ BALBLABLA
 \item Multipath - We can emulate multipath delay by adding taps of a FIR (Finite Impulse Response) filter in the "Taps" parameter.
 \end{itemize}
     
+    %---EXTRA--
     
-    The FG we have is already taken care of noise and timing offset using the "Polyphase Clock Sync" block. If you play with the tweaks "Time Offset" and "Noise Amp" you can see in the plot of "Rx Treated constellation" a nice and clear constellation, however if you tweak the "Freq Offset" you can see that the constellation become a circle, that's because we are not treating that, it will be what we will do next tutorial.
+    I have added in \verb|Extra| folder an example named \verb|data_timming_offset| where inputs some data and simulates an offset clock, then you can see that the data has different arrival times, this is Timming offset, and we need to take care of this in our FG. Fortunately we already taken care (and noise too) by using the "Polyphase Clock Sync" block. If you play with the tweaks "Time Offset" and "Noise Amp" you can see in the plot of "Rx Treated constellation" a nice and clear constellation.
+    In the other hand if you tweak the "Freq Offset" you can see that the constellation become a circle, that's because we are not treating that, it will be what we will do in the next tutorial.
     
 \subsection{Modulation - Tutorial\_4.grc}
     %O que é multipath - tratar MULTIPATH
@@ -484,7 +492,7 @@ $sudo ldconfig
         \item LDPC (Low-Density-Parity-Check) - Here we have two types that we can use, or we use an already created Matrix (using "LDPC Encoder Definition (via Parity Check)") or we use an Generator Matrix (using "LDPC Encoder Definition (via Generator)").
     \end{itemize}
     %-----_EXTRA BER CURVE-----------
-    
+    I have added an example (not created by me, found here: \url{https://github.com/gnuradio/gnuradio/tree/master/gr-fec/examples}) in \verb|Extra| folder called \verb|ber_curve_gen| where you can analyse the BER (bit error rate) curve in different FEC types. I advise you to run directly from console using python to avoid some problems.
     %----Implementation
     I will implement the convolutional code using the "CC Encoder Definition" object block to extend the life of this tutorial. As I have told, the "FEC Extended Encoder" expects unpacked bytes so before we send data to that block we need to repack the bits from 8 to 1, and then we can use the block. Now we need to fill the parameters, first we set a puncture pattern of '11' (where there is no puncture), then the "Threading Type" parameter we set to "None" for now (I will be back here). Regrading to the "Encoder Object" we will use the "CC Encoder Definition". This block has a lot of important parameters: The Frame Bits" tells how many bits we want to input of each work (I will set for our example 440 bits).The "Constraint Lenght (k)", the "Rate Inverse (1/R)", and the "Polynomials" I have set "7","2" and "[109,79]" which is the Voyager Code and the only available code at this moment.
     At "Streamming Behaviour" we have four options:
@@ -494,7 +502,8 @@ $sudo ldconfig
         \item Tailbiting: Used for packet-based, however instead adding bits, uses the final bits of the packet when we are decoding.
         \item Truncated: Here the registers are reseted between frames.
     \end{itemize}
-    Another important thing to keep in mind is that I want send the packet encoded independent of the last one, so if I lose one packet I don't start a chain of corrupted packets. 
+    
+    Another important thing to keep in mind is that I want send the encoded packet independent of the last one, so if I lose one packet I don't start a chain of corrupted packets. 
     
     Taking in this into account, we can possible we 2 of this modes,the "Terminated" or the "Tailbiting", however I want the packets fully independents of each other so that if I lose one packet I don't start a chain of un-decoded packets,thus, we will use the first mode.
     
@@ -508,20 +517,20 @@ $sudo ldconfig
     
 
 \subsection{Forward Error Correction - LDPC - Tutorial\_8\_CC.grc}
-Editar valores mesma logica. Explicar valores.
+    Ihave added an example (not created by me, found here: \url{https://github.com/gnuradio/gnuradio/tree/master/gr-fec/examples}) in \verb|Extra| folder called \verb|ber_curve_gen_ldpc| where you can analyse the BER (bit error rate) curve in different LDPC types (Parity check and Gen. matrix). I advise you to run directly from console using python to avoid some problems.
+
+    Like I have told there is two types of LDPC implementations, I choose to use the "LDPC Encoder Definition (via Parity Check)" and pick a matrix already given by GR. Where for each 442 bits results in 1100 bits. Here I need to give to "FEC Extended Encoder" block 442 bits of data to work, however I want send full bytes but 442 bits it's 55.25 bytes. An work around of this is simply pick 440 bits of data (55 bytes) and add 2 bits just for complete the necessary amount of bits to LDPC work. Hence in the RX side we need to add a "Keep M in N" block where we only keep the first 440 bits of data. The rest of the FG it's analogue to the CC's FG with just some changes about the values of header and the stream mux blocks.
 
 \subsection{USRP - Tutorial\_9.grc}
-
-%-----_PROBLEMA valores -1,1 --Multiypl
-%        E Adaptar RX gain
-
-
-
-\subsection{Some Common Mistakes}
-\section{USING THE TEMPLATE}
-
-\subsection{Headings, etc}
-
+    Now it's time to get fully wireless, for this we will remove all the part of the channel model and add an "USRP Sink" block and an "USRP Source" block. Like I have told in tutorial\_1, note that now we can remove throttling because we will have an "clock" block that consume/produce data at an fixed sample rate. I also told that we can't have 2 "clock" blocks or we would have an 2 "clock" problem, this is totally true but as this blocks are physical both parts of TX an RX will be totally independent not back-pressuring data thus not changing sample rates.
+    
+    To got the FG working you just need to change the parameter "Device Address" for your USRP serial which can be found running the command \verb|uhd_usrp_probe|. 
+    
+    When we change from simulation to real world we introduced an problem called "Saturation Limits", this is, the "USRP Sink" needs to send floating values between -1 and 1 anything below or above is bad causing the signal to be saturated and nonlinear which we don't want of course. We can visualize this by adding an Time Sink (which I already did) and now if you bypass the "Multiply Constant" block you will see in "TX USRP" time sink a lot of values out of the limits, this is why we need to add that block defining the multiplier value by trial and error until we get nice values inside of the limits. However this block doesn't solve for the RX side, for this enable again the previous block and run the FG and play around with the TX/RX gain, once you find good values you can define these values in the correspondent variable blocks. If you don't change the positions of the USRP's and the antennas this should work well.
+    
+    Now that we are providing good values to the USRP's we need to tweak the sample rate in a form that can be the maximum possible (for higher speed) however without drop data. We may have two problems here, it can be printed U' and/or O's in our console. The U's means "Underun", which means that in TX side we are not giving samples enough quick to our USRP to send them, this can be caused for lack of processing power (note that the encoder block requires a lot of power) so what we need to do is: or we change the CPU or we slow down the sample rate of the USRP's. When we have 0's this means "Overrun", this is, in RX side we are not able to consume samples quick enough, probably because of the back-pressure caused by the decoder block. So we need to found the maximum value for the sample rate taking into account 2 things: If it prints U's or 0's, there can be only in beginning because of rampage up, this is here another reason for adding and vector previously sending our real data, so we lose data of the vector and not data of our transition data. Another thing is that we must choose an sample rate where \verb|clock rate/sample rate| must be an integer, and for better performance should be divisible by 4.
+    Taking this into account I improved the MCR (Master Clock Rate) of the USRP for 60e6 and I have created an vector with sample rates that are best for performance, thus, we just need to choose the index on the vector to change the sample rate.
+    
 
 \subsection{Figures and Tables}
 
@@ -580,8 +589,8 @@ References are important to the reader; therefore, each citation must be complet
 
 \begin{thebibliography}{99}
 
-\bibitem{c1} G. O. Young, ÒSynthetic structure of industrial plastics (Book style with paper title and editor),Ó    in Plastics, 2nd ed. vol. 3, J. Peters, Ed.  New York: McGraw-Hill, 1964, pp. 15Ð64.
-\bibitem{c2} W.-K. Chen, Linear Networks and Systems (Book style).  Belmont, CA: Wadsworth, 1993, pp. 123Ð135.
+\bibitem{c1} G. O. Young, ÒSynthetic structure of industrial plastics (Book style with paper title and editor),Ó 	in Plastics, 2nd ed. vol. 3, J. Peters, Ed.  New York: McGraw-Hill, 1964, pp. 15Ð64.
+\bibitem{c2} W.-K. Chen, Linear Networks and Systems (Book style).	Belmont, CA: Wadsworth, 1993, pp. 123Ð135.
 \bibitem{c3} H. Poor, An Introduction to Signal Detection and Estimation.   New York: Springer-Verlag, 1985, ch. 4.
 \bibitem{c4} B. Smith, ÒAn approach to graphs of linear forms (Unpublished work style),Ó unpublished.
 \bibitem{c5} E. H. Miller, ÒA note on reflector arrays (Periodical styleÑAccepted for publication),Ó IEEE Trans. Antennas Propagat., to be publised.

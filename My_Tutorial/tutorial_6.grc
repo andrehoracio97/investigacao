@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>tutorial_7</value>
+      <value>tutorial_6</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -128,7 +128,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1152, 564)</value>
+      <value>(1080, 564)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -671,7 +671,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1048, 564)</value>
+      <value>(976, 564)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -790,33 +790,6 @@
     <param>
       <key>sym_rate</key>
       <value>1.0</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(496, 420)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>vector</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>[int(random.random()*4) for i in range(49600)]</value>
     </param>
   </block>
   <block>
@@ -1117,7 +1090,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1544, 916)</value>
+      <value>(1496, 916)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1396,7 +1369,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1312, 492)</value>
+      <value>(1240, 492)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1518,7 +1491,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(832, 484)</value>
+      <value>(744, 484)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1573,7 +1546,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(536, 932)</value>
+      <value>(520, 932)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1632,7 +1605,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(976, 924)</value>
+      <value>(928, 924)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1726,7 +1699,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(760, 928)</value>
+      <value>(712, 928)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1777,7 +1750,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1208, 924)</value>
+      <value>(1160, 924)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1797,7 +1770,7 @@
     </param>
     <param>
       <key>modulus</key>
-      <value>4</value>
+      <value>pld_const.arity()</value>
     </param>
   </block>
   <block>
@@ -1820,7 +1793,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(648, 492)</value>
+      <value>(520, 492)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1840,7 +1813,7 @@
     </param>
     <param>
       <key>modulus</key>
-      <value>4</value>
+      <value>pld_const.arity()</value>
     </param>
   </block>
   <block>
@@ -1863,7 +1836,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(512, 492)</value>
+      <value>(368, 492)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1906,7 +1879,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1400, 924)</value>
+      <value>(1352, 924)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2001,80 +1974,6 @@
     </param>
   </block>
   <block>
-    <key>import</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(392, 428)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>import_0</value>
-    </param>
-    <param>
-      <key>import</key>
-      <value>import random</value>
-    </param>
-  </block>
-  <block>
-    <key>insert_vec_cpp_new_vec</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(368, 492)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>insert_vec_cpp_new_vec_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>vec</key>
-      <value>vector</value>
-    </param>
-  </block>
-  <block>
     <key>pfb_arb_resampler_xxx</key>
     <param>
       <key>alias</key>
@@ -2094,7 +1993,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1048, 468)</value>
+      <value>(976, 468)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2165,7 +2064,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1504, 508)</value>
+      <value>(1432, 508)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -2859,7 +2758,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(976, 988)</value>
+      <value>(928, 988)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -3924,7 +3823,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1504, 460)</value>
+      <value>(1432, 460)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -4005,7 +3904,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1752, 924)</value>
+      <value>(1704, 924)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -4232,7 +4131,7 @@
   </connection>
   <connection>
     <source_block_id>blocks_repack_bits_bb_0_1</source_block_id>
-    <sink_block_id>insert_vec_cpp_new_vec_0</sink_block_id>
+    <sink_block_id>digital_map_bb_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -4329,12 +4228,6 @@
   <connection>
     <source_block_id>digital_pfb_clock_sync_xxx_0</source_block_id>
     <sink_block_id>digital_cma_equalizer_cc_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>insert_vec_cpp_new_vec_0</source_block_id>
-    <sink_block_id>digital_map_bb_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
