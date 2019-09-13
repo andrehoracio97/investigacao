@@ -475,7 +475,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>samp_rate_array_MCR[1]</value>
+      <value>samp_rate_array_MCR[2]</value>
     </param>
   </block>
   <block>
@@ -540,7 +540,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>35</value>
+      <value>34</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -1627,7 +1627,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>2</value>
     </param>
     <param>
       <key>_coordinate</key>
