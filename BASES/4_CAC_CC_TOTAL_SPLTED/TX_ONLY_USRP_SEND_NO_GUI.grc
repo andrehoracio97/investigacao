@@ -311,69 +311,6 @@
     </param>
   </block>
   <block>
-    <key>variable_cc_encoder_def</key>
-    <param>
-      <key>padding</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>k</key>
-      <value>k</value>
-    </param>
-    <param>
-      <key>dim1</key>
-      <value>8</value>
-    </param>
-    <param>
-      <key>dim2</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>framebits</key>
-      <value>440</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1024, 4)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>pld_enc</value>
-    </param>
-    <param>
-      <key>ndim</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>polys</key>
-      <value>polys</value>
-    </param>
-    <param>
-      <key>rate</key>
-      <value>rate</value>
-    </param>
-    <param>
-      <key>state_start</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>mode</key>
-      <value>fec.CC_TERMINATED</value>
-    </param>
-  </block>
-  <block>
     <key>variable</key>
     <param>
       <key>comment</key>
@@ -451,7 +388,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>samp_rate_array_MCR[1]</value>
+      <value>samp_rate_array_MCR[0]</value>
     </param>
   </block>
   <block>
@@ -939,7 +876,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(456, 472)</value>
+      <value>(472, 472)</value>
     </param>
     <param>
       <key>_rotation</key>

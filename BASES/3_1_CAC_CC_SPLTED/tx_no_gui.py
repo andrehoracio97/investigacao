@@ -49,7 +49,7 @@ class tx_no_gui(gr.top_block):
         self.k = k = 7
         self.vector = vector = [int(random.random()*4) for i in range(49600)]
         self.variable_qtgui_range_0 = variable_qtgui_range_0 = 50
-        self.samp_rate = samp_rate = samp_rate_array_MCR[2]
+        self.samp_rate = samp_rate = samp_rate_array_MCR[1]
 
 
         self.pld_enc = pld_enc = map( (lambda a: fec.cc_encoder_make(440, k, rate, (polys), 0, fec.CC_TERMINATED, False)), range(0,8) );
@@ -82,6 +82,7 @@ class tx_no_gui(gr.top_block):
 
         self.insert_vec_cpp_new_vec_0 = insert_vec_cpp.new_vec((vector))
         self.fec_extended_encoder_0 = fec.extended_encoder(encoder_obj_list=pld_enc, threading='capillary', puncpat=puncpat)
+        self.digital_scrambler_bb_0 = digital.scrambler_bb(0x8A, 0x7F, 7)
         self.digital_map_bb_1_0 = digital.map_bb((pld_const.pre_diff_code()))
         self.digital_diff_encoder_bb_0 = digital.diff_encoder_bb(4)
         self.digital_chunks_to_symbols_xx_0_0 = digital.chunks_to_symbols_bc((pld_const.points()), 1)
@@ -92,8 +93,8 @@ class tx_no_gui(gr.top_block):
         self.blocks_repack_bits_bb_1_0_0_1 = blocks.repack_bits_bb(8, 1, '', False, gr.GR_MSB_FIRST)
         self.blocks_repack_bits_bb_1_0_0_0 = blocks.repack_bits_bb(1, 2, "packet_len", False, gr.GR_MSB_FIRST)
         self.blocks_multiply_const_vxx_1 = blocks.multiply_const_vcc((0.7, ))
-        self.blocks_file_source_0_0_1_0_0_0 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Desktop/Files_To_Transmit/video_lion.mpeg', False)
-        self.blocks_file_source_0_0_1_0_0_0.set_begin_tag(pmt.PMT_NIL)
+        self.blocks_file_source_0_0_1_0_0 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Desktop/Files_To_Transmit/videofhd.mpg', False)
+        self.blocks_file_source_0_0_1_0_0.set_begin_tag(pmt.PMT_NIL)
         self.acode_1104 = blocks.vector_source_b([0x1, 0x0, 0x1, 0x0, 0x1, 0x1, 0x0, 0x0, 0x1, 0x1, 0x0, 0x1, 0x1, 0x1, 0x0, 0x1, 0x1, 0x0, 0x1, 0x0, 0x0, 0x1, 0x0, 0x0, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x1, 0x0, 0x1, 0x1, 0x1, 0x1, 0x0, 0x0, 0x1, 0x0, 0x1, 0x0, 0x0, 0x0, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0], True, 1, [])
 
 
@@ -102,10 +103,10 @@ class tx_no_gui(gr.top_block):
         # Connections
         ##################################################
         self.connect((self.acode_1104, 0), (self.blocks_stream_mux_0_1_0, 0))
-        self.connect((self.blocks_file_source_0_0_1_0_0_0, 0), (self.blocks_repack_bits_bb_1_0_0_1, 0))
+        self.connect((self.blocks_file_source_0_0_1_0_0, 0), (self.blocks_repack_bits_bb_1_0_0_1, 0))
         self.connect((self.blocks_multiply_const_vxx_1, 0), (self.uhd_usrp_sink_0_0, 0))
         self.connect((self.blocks_repack_bits_bb_1_0_0_0, 0), (self.insert_vec_cpp_new_vec_0, 0))
-        self.connect((self.blocks_repack_bits_bb_1_0_0_1, 0), (self.fec_extended_encoder_0, 0))
+        self.connect((self.blocks_repack_bits_bb_1_0_0_1, 0), (self.digital_scrambler_bb_0, 0))
         self.connect((self.blocks_stream_mux_0_0, 0), (self.blocks_stream_mux_0_1_0, 1))
         self.connect((self.blocks_stream_mux_0_1_0, 0), (self.blocks_stream_to_tagged_stream_0_0_0, 0))
         self.connect((self.blocks_stream_to_tagged_stream_0_0_0, 0), (self.blocks_repack_bits_bb_1_0_0_0, 0))
@@ -113,6 +114,7 @@ class tx_no_gui(gr.top_block):
         self.connect((self.digital_chunks_to_symbols_xx_0_0, 0), (self.pfb_arb_resampler_xxx_0, 0))
         self.connect((self.digital_diff_encoder_bb_0, 0), (self.digital_chunks_to_symbols_xx_0_0, 0))
         self.connect((self.digital_map_bb_1_0, 0), (self.digital_diff_encoder_bb_0, 0))
+        self.connect((self.digital_scrambler_bb_0, 0), (self.fec_extended_encoder_0, 0))
         self.connect((self.fec_extended_encoder_0, 0), (self.blocks_stream_mux_0_0, 0))
         self.connect((self.insert_vec_cpp_new_vec_0, 0), (self.digital_map_bb_1_0, 0))
         self.connect((self.pfb_arb_resampler_xxx_0, 0), (self.blocks_multiply_const_vxx_1, 0))
@@ -163,7 +165,7 @@ class tx_no_gui(gr.top_block):
 
     def set_samp_rate_array_MCR(self, samp_rate_array_MCR):
         self.samp_rate_array_MCR = samp_rate_array_MCR
-        self.set_samp_rate(self.samp_rate_array_MCR[2])
+        self.set_samp_rate(self.samp_rate_array_MCR[1])
 
     def get_rate(self):
         return self.rate
