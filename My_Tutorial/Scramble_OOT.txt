@@ -1,0 +1,6 @@
+Scramble
+
+
+gr_modtool newmod sc_cpp
+cd gr-sc_cpp/
+gr_modtool add sc_test

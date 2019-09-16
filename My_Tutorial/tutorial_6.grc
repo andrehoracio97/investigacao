@@ -128,7 +128,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1080, 564)</value>
+      <value>(952, 564)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -671,7 +671,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(976, 564)</value>
+      <value>(848, 564)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1090,7 +1090,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1496, 916)</value>
+      <value>(1376, 916)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1369,7 +1369,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1240, 492)</value>
+      <value>(1112, 492)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1491,7 +1491,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(744, 484)</value>
+      <value>(616, 484)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1793,7 +1793,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(520, 492)</value>
+      <value>(392, 492)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1814,92 +1814,6 @@
     <param>
       <key>modulus</key>
       <value>pld_const.arity()</value>
-    </param>
-  </block>
-  <block>
-    <key>digital_map_bb</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(368, 492)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>digital_map_bb_0</value>
-    </param>
-    <param>
-      <key>map</key>
-      <value>pld_const.pre_diff_code()</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>digital_map_bb</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1352, 924)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>digital_map_bb_0_0</value>
-    </param>
-    <param>
-      <key>map</key>
-      <value>pld_const.pre_diff_code()</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
     </param>
   </block>
   <block>
@@ -1993,7 +1907,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(976, 468)</value>
+      <value>(848, 468)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2064,7 +1978,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1432, 508)</value>
+      <value>(1304, 508)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -3823,7 +3737,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1432, 460)</value>
+      <value>(1304, 460)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3904,7 +3818,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1704, 924)</value>
+      <value>(1584, 924)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -4131,7 +4045,7 @@
   </connection>
   <connection>
     <source_block_id>blocks_repack_bits_bb_0_1</source_block_id>
-    <sink_block_id>digital_map_bb_0</sink_block_id>
+    <sink_block_id>digital_diff_encoder_bb_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -4203,25 +4117,13 @@
   </connection>
   <connection>
     <source_block_id>digital_diff_decoder_bb_0</source_block_id>
-    <sink_block_id>digital_map_bb_0_0</sink_block_id>
+    <sink_block_id>blocks_repack_bits_bb_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>digital_diff_encoder_bb_0</source_block_id>
     <sink_block_id>digital_chunks_to_symbols_xx_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>digital_map_bb_0</source_block_id>
-    <sink_block_id>digital_diff_encoder_bb_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>digital_map_bb_0_0</source_block_id>
-    <sink_block_id>blocks_repack_bits_bb_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

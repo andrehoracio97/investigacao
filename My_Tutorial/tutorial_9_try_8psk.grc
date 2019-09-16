@@ -140,7 +140,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>0.35</value>
+      <value>0.22</value>
     </param>
   </block>
   <block>
@@ -168,6 +168,69 @@
     <param>
       <key>value</key>
       <value>1+(taps_per_filt-1)/2</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_qtgui_range</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1400, 436)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value>0,4</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>freq_offset</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>Freq. Offset</value>
+    </param>
+    <param>
+      <key>min_len</key>
+      <value>200</value>
+    </param>
+    <param>
+      <key>orient</key>
+      <value>Qt.Horizontal</value>
+    </param>
+    <param>
+      <key>start</key>
+      <value>-0.5</value>
+    </param>
+    <param>
+      <key>step</key>
+      <value>0.0001</value>
+    </param>
+    <param>
+      <key>stop</key>
+      <value>0.5</value>
+    </param>
+    <param>
+      <key>rangeType</key>
+      <value>float</value>
+    </param>
+    <param>
+      <key>widget</key>
+      <value>counter_slider</value>
     </param>
   </block>
   <block>
@@ -252,6 +315,69 @@
     </param>
   </block>
   <block>
+    <key>variable_qtgui_range</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>0.0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1296, 436)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value>0,3</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>noise</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>Noise Amp</value>
+    </param>
+    <param>
+      <key>min_len</key>
+      <value>200</value>
+    </param>
+    <param>
+      <key>orient</key>
+      <value>Qt.Horizontal</value>
+    </param>
+    <param>
+      <key>start</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>step</key>
+      <value>0.01</value>
+    </param>
+    <param>
+      <key>stop</key>
+      <value>5</value>
+    </param>
+    <param>
+      <key>rangeType</key>
+      <value>float</value>
+    </param>
+    <param>
+      <key>widget</key>
+      <value>counter_slider</value>
+    </param>
+  </block>
+  <block>
     <key>variable_constellation</key>
     <param>
       <key>comment</key>
@@ -271,7 +397,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -314,7 +440,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -740,6 +866,60 @@
     </param>
     <param>
       <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1104, 500)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>taps</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>[1.0, 0.25-0.25j, 0.50 + 0.10j, -0.3 + 0.2j]</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1184, 428)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>taps</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>1.0 + 1.0j</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
       <value>1</value>
     </param>
     <param>
@@ -757,6 +937,69 @@
     <param>
       <key>value</key>
       <value>len(tx_rrc_taps)/nfilts</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_qtgui_range</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>1.0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1512, 436)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value>0,5</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>time_offset</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>Time Offset</value>
+    </param>
+    <param>
+      <key>min_len</key>
+      <value>200</value>
+    </param>
+    <param>
+      <key>orient</key>
+      <value>Qt.Horizontal</value>
+    </param>
+    <param>
+      <key>start</key>
+      <value>0.99</value>
+    </param>
+    <param>
+      <key>step</key>
+      <value>0.00001</value>
+    </param>
+    <param>
+      <key>stop</key>
+      <value>1.01</value>
+    </param>
+    <param>
+      <key>rangeType</key>
+      <value>float</value>
+    </param>
+    <param>
+      <key>widget</key>
+      <value>counter_slider</value>
     </param>
   </block>
   <block>
@@ -873,7 +1116,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>38</value>
+      <value>36</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -1131,7 +1374,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(840, 1804)</value>
+      <value>(1072, 1804)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1233,7 +1476,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(832, 1700)</value>
+      <value>(1064, 1700)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1382,7 +1625,7 @@
     </param>
     <param>
       <key>const</key>
-      <value>0.7</value>
+      <value>0.5</value>
     </param>
     <param>
       <key>affinity</key>
@@ -1394,7 +1637,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1320, 612)</value>
+      <value>(1376, 612)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1512,7 +1755,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(576, 1708)</value>
+      <value>(808, 1708)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1677,7 +1920,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(696, 296)</value>
+      <value>(1016, 296)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1789,7 +2032,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(528, 332)</value>
+      <value>(848, 332)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1829,6 +2072,69 @@
     </param>
   </block>
   <block>
+    <key>channels_channel_model</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>block_tags</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>epsilon</key>
+      <value>time_offset</value>
+    </param>
+    <param>
+      <key>freq_offset</key>
+      <value>freq_offset</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1368, 308)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>channels_channel_model_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>noise_voltage</key>
+      <value>noise</value>
+    </param>
+    <param>
+      <key>seed</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>taps</key>
+      <value>taps</value>
+    </param>
+  </block>
+  <block>
     <key>digital_chunks_to_symbols_xx</key>
     <param>
       <key>alias</key>
@@ -1852,7 +2158,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(832, 604)</value>
+      <value>(824, 604)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2093,6 +2399,57 @@ R Symbol / R Sample -&gt; 1 symbol 1 sample =100</value>
     </param>
   </block>
   <block>
+    <key>digital_descrambler_bb</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(616, 1712)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>digital_descrambler_bb_0</value>
+    </param>
+    <param>
+      <key>len</key>
+      <value>7</value>
+    </param>
+    <param>
+      <key>mask</key>
+      <value>0x8A</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>seed</key>
+      <value>0x7F</value>
+    </param>
+  </block>
+  <block>
     <key>digital_diff_decoder_bb</key>
     <param>
       <key>alias</key>
@@ -2155,7 +2512,7 @@ R Symbol / R Sample -&gt; 1 symbol 1 sample =100</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(648, 612)</value>
+      <value>(616, 612)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2194,7 +2551,7 @@ R Symbol / R Sample -&gt; 1 symbol 1 sample =100</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>rolloff</key>
@@ -2214,7 +2571,7 @@ R Symbol / R Sample -&gt; 1 symbol 1 sample =100</value>
     </param>
     <param>
       <key>w</key>
-      <value>6.28/800.0</value>
+      <value>6.28/400.0</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -2438,6 +2795,57 @@ R Symbol / R Sample -&gt; 1 symbol 1 sample =100</value>
     </param>
   </block>
   <block>
+    <key>digital_scrambler_bb</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(520, 276)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>digital_scrambler_bb_0</value>
+    </param>
+    <param>
+      <key>len</key>
+      <value>7</value>
+    </param>
+    <param>
+      <key>mask</key>
+      <value>0x8A</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>seed</key>
+      <value>0x7F</value>
+    </param>
+  </block>
+  <block>
     <key>fec_extended_decoder</key>
     <param>
       <key>ann</key>
@@ -2520,7 +2928,7 @@ R Symbol / R Sample -&gt; 1 symbol 1 sample =100</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(456, 252)</value>
+      <value>(776, 252)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -4522,7 +4930,7 @@ R Symbol / R Sample -&gt; 1 symbol 1 sample =100</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(984, 1780)</value>
+      <value>(1216, 1780)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -8128,7 +8536,7 @@ R Symbol / R Sample -&gt; 1 symbol 1 sample =100</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(848, 308)</value>
+      <value>(1168, 308)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -8484,7 +8892,7 @@ R Symbol / R Sample -&gt; 1 symbol 1 sample =100</value>
   </connection>
   <connection>
     <source_block_id>blocks_repack_bits_bb_1_0_0_1</source_block_id>
-    <sink_block_id>fec_extended_encoder_0</sink_block_id>
+    <sink_block_id>digital_scrambler_bb_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -8505,6 +8913,12 @@ R Symbol / R Sample -&gt; 1 symbol 1 sample =100</value>
     <sink_block_id>blocks_stream_mux_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>1</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>channels_channel_model_0</source_block_id>
+    <sink_block_id>blocks_multiply_const_vxx_1</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>digital_chunks_to_symbols_xx_0_0</source_block_id>
@@ -8545,6 +8959,12 @@ R Symbol / R Sample -&gt; 1 symbol 1 sample =100</value>
   <connection>
     <source_block_id>digital_costas_loop_cc_0_0</source_block_id>
     <sink_block_id>qtgui_const_sink_x_0_0_0_1_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>digital_descrambler_bb_0</source_block_id>
+    <sink_block_id>blocks_repack_bits_bb_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -8591,6 +9011,12 @@ R Symbol / R Sample -&gt; 1 symbol 1 sample =100</value>
     <sink_key>0</sink_key>
   </connection>
   <connection>
+    <source_block_id>digital_scrambler_bb_0</source_block_id>
+    <sink_block_id>fec_extended_encoder_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
     <source_block_id>fec_extended_decoder_0_0_1_0_1_0</source_block_id>
     <sink_block_id>virtual_sink_4</sink_block_id>
     <source_key>0</source_key>
@@ -8610,13 +9036,19 @@ R Symbol / R Sample -&gt; 1 symbol 1 sample =100</value>
   </connection>
   <connection>
     <source_block_id>pfb_arb_resampler_xxx_0</source_block_id>
-    <sink_block_id>blocks_multiply_const_vxx_1</sink_block_id>
+    <sink_block_id>channels_channel_model_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>uhd_usrp_source_0</source_block_id>
     <sink_block_id>digital_fll_band_edge_cc_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>uhd_usrp_source_0</source_block_id>
+    <sink_block_id>digital_pfb_clock_sync_xxx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -8658,7 +9090,7 @@ R Symbol / R Sample -&gt; 1 symbol 1 sample =100</value>
   </connection>
   <connection>
     <source_block_id>virtual_source_5</source_block_id>
-    <sink_block_id>blocks_repack_bits_bb_0_0</sink_block_id>
+    <sink_block_id>digital_descrambler_bb_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

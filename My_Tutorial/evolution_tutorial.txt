@@ -8,14 +8,12 @@ Introduction:
 Getting Started:
 	Installation of VOLK, GNU radio and USRP's.
 
-
+===============MODULATION===============
 Tutorial_1:
 Problem: Simple Modulation 
 	Repack Bits Block
 	Chunks To symbols Block
 	Explaination Throttle
-
-
 
 Tutorial_2:
 Problem: Real World Bandwidth
@@ -25,11 +23,9 @@ Solution: Add RRC and Interpolation
 	Roll off
 	SPS
 
-
-
 Tutorial_3:
-Problem: Real World Channel Model
-Solution: Add channel model
+Problem: Real World Channel Model, Noise, and  Timing Offset
+Solution: Add channel model, Polyphase and Multipath.
 
 	Simulating Properties: 
 		Noise
@@ -37,15 +33,16 @@ Solution: Add channel model
 		Timing Offset
 		Multipath
 	Polyphase Clock Sync
+	CMA Equalizer
 
 Tutorial_4:
-Problem: Multipath and Circle in constellation
-Solution: Add CMA equalizer and Coostas Loop
+Problem: Circle in constellation (Frequenci offset) and Big freque
+Solution: Add Coostas Loop and FLL Band-Edge
 
-	Multipath
-	CMA Equalizer
+
 	Coostas Loop
-
+	FLL Band-Edge
+	FLL Band-Edge
 Tutorial_5:
 Problem: Sometimes doesn't write Data - Ambiguitiy of phase
 Solution: Add Differential Encoding
@@ -53,6 +50,8 @@ Solution: Add Differential Encoding
 	Differential Encoding
 	Gray Coding
 
+
+===============PACKET COMMUNICATIONS===============
 Tutorial_6:
 Problem: Bit padding
 Solution: Packetize data
@@ -60,12 +59,12 @@ Solution: Packetize data
 	Header
 	CAC
 
+===============OOT MODULES===============
 Tutorial_7:
 Problem: Beguining not decoded
 Solution: Add Insert Vector
 
-	OOT
-	
+===============FEC===============
 Tutorial_8_CC:
 Problem: FEC
 Solution: Add FEC Encoder and Decoder
@@ -74,6 +73,12 @@ Tutorial_8_LDPC:
 Problem: FEC
 Solution: Add FEC Encoder and Decoder
 
+
+===============USRP===============
 Tutorial_9:
 Problem: Using USRP, Saturation limits, U's and 0's
 Solution: Multiply block, Tweak TX/RX Gain, Improve MCR and Tweak sample rates.
+
+Tutorial_10:
+Problem: Nao dá sequancias grandes de 0's. Perde sincronismode simbolo????
+Solucao: Scramble. (Problema adiciona rnadom byte no inicio resolve-se com skip head)

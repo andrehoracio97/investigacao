@@ -10,7 +10,7 @@
     </param>
     <param>
       <key>window_size</key>
-      <value>1800, 1700</value>
+      <value>2000, 2000</value>
     </param>
     <param>
       <key>category</key>
@@ -859,7 +859,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1472, 1052)</value>
+      <value>(1720, 1052)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -914,7 +914,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1480, 940)</value>
+      <value>(1728, 940)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1028,7 +1028,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1264, 948)</value>
+      <value>(1512, 948)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1311,7 +1311,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(496, 964)</value>
+      <value>(744, 964)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1370,7 +1370,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(896, 956)</value>
+      <value>(1144, 956)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1409,7 +1409,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(688, 960)</value>
+      <value>(936, 960)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1421,7 +1421,7 @@
     </param>
     <param>
       <key>w</key>
-      <value>6.28/200.0</value>
+      <value>6.28/100.0</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -1438,6 +1438,65 @@
     <param>
       <key>use_snr</key>
       <value>False</value>
+    </param>
+  </block>
+  <block>
+    <key>digital_fll_band_edge_cc</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>rolloff</key>
+      <value>eb</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(256, 1040)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>digital_fll_band_edge_cc_0_0</value>
+    </param>
+    <param>
+      <key>w</key>
+      <value>6.28/400.0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>filter_size</key>
+      <value>60</value>
+    </param>
+    <param>
+      <key>samps_per_sym</key>
+      <value>sps</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>cc</value>
     </param>
   </block>
   <block>
@@ -1503,7 +1562,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1120, 956)</value>
+      <value>(1368, 956)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1550,7 +1609,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(248, 988)</value>
+      <value>(496, 988)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2035,7 +2094,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(248, 1132)</value>
+      <value>(256, 1180)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -2382,7 +2441,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(896, 1020)</value>
+      <value>(1144, 1020)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -3048,7 +3107,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(248, 1212)</value>
+      <value>(256, 1260)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -3702,7 +3761,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1616, 1028)</value>
+      <value>(1864, 1028)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -4126,7 +4185,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(0, 1004)</value>
+      <value>(0, 1084)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -4238,6 +4297,12 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
+    <source_block_id>digital_fll_band_edge_cc_0_0</source_block_id>
+    <sink_block_id>digital_pfb_clock_sync_xxx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
     <source_block_id>digital_map_bb_0</source_block_id>
     <sink_block_id>digital_chunks_to_symbols_xx_0_0</sink_block_id>
     <source_key>0</source_key>
@@ -4269,7 +4334,7 @@
   </connection>
   <connection>
     <source_block_id>virtual_source_0_0</source_block_id>
-    <sink_block_id>digital_pfb_clock_sync_xxx_0</sink_block_id>
+    <sink_block_id>digital_fll_band_edge_cc_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

@@ -448,8 +448,6 @@ class tutorial_5(gr.top_block, Qt.QWidget):
         self.pfb_arb_resampler_xxx_0.declare_sample_delay(filt_delay)
 
         self.digital_pfb_clock_sync_xxx_0 = digital.pfb_clock_sync_ccf(sps, 6.28/400.0, (rx_rrc_taps), nfilts, nfilts/2, 1.5, 2)
-        self.digital_map_bb_0_0 = digital.map_bb((pld_const.pre_diff_code()))
-        self.digital_map_bb_0 = digital.map_bb((pld_const.pre_diff_code()))
         self.digital_diff_decoder_bb_0_0 = digital.diff_decoder_bb(pld_const.arity())
         self.digital_diff_decoder_bb_0 = digital.diff_decoder_bb(pld_const.arity())
         self.digital_costas_loop_cc_0_0 = digital.costas_loop_cc(6.28/200.0, pld_const.arity(), False)
@@ -485,7 +483,7 @@ class tutorial_5(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_file_source_0_0_1_0, 0), (self.blocks_repack_bits_bb_1_0_0_1, 0))
         self.connect((self.blocks_repack_bits_bb_0_0, 0), (self.blocks_char_to_float_1_0_1, 0))
         self.connect((self.blocks_repack_bits_bb_0_0, 0), (self.blocks_file_sink_0_0_0_2, 0))
-        self.connect((self.blocks_repack_bits_bb_1_0_0_1, 0), (self.digital_map_bb_0, 0))
+        self.connect((self.blocks_repack_bits_bb_1_0_0_1, 0), (self.digital_diff_decoder_bb_0, 0))
         self.connect((self.blocks_throttle_0_0, 0), (self.channels_channel_model_0, 0))
         self.connect((self.blocks_throttle_0_0, 0), (self.qtgui_const_sink_x_0_0_0_0, 0))
         self.connect((self.blocks_throttle_0_0, 0), (self.qtgui_freq_sink_x_0, 0))
@@ -498,9 +496,7 @@ class tutorial_5(gr.top_block, Qt.QWidget):
         self.connect((self.digital_costas_loop_cc_0_0, 0), (self.digital_constellation_decoder_cb_0_0, 0))
         self.connect((self.digital_costas_loop_cc_0_0, 0), (self.qtgui_const_sink_x_0_0_0_1_0, 0))
         self.connect((self.digital_diff_decoder_bb_0, 0), (self.digital_chunks_to_symbols_xx_0_0, 0))
-        self.connect((self.digital_diff_decoder_bb_0_0, 0), (self.digital_map_bb_0_0, 0))
-        self.connect((self.digital_map_bb_0, 0), (self.digital_diff_decoder_bb_0, 0))
-        self.connect((self.digital_map_bb_0_0, 0), (self.blocks_repack_bits_bb_0_0, 0))
+        self.connect((self.digital_diff_decoder_bb_0_0, 0), (self.blocks_repack_bits_bb_0_0, 0))
         self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.digital_cma_equalizer_cc_0, 0))
         self.connect((self.pfb_arb_resampler_xxx_0, 0), (self.blocks_throttle_0_0, 0))
 

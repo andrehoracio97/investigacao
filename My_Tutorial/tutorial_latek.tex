@@ -139,10 +139,12 @@ This electronic document is a ÒliveÓ template. The various components of your 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{INTRODUCTION}
 
-Software Defined Radio (SDR) can be defined in many ways, one of them was an work of the SDR Forum in collaboration with the IEEE where they defined like "Radio in which some or all of the physical layer functions are software defined". An radio it's a device that can transmit/receive signals in radio waves (this is electromagnetic waves), thus SDR is a system for radio communication where instead several components (like modulators/demodulators, filters, amplifiers) being implemented in hardware are in software, hence a lot configurable and useful for many reasons, like research. 
+Software Defined Radio (SDR) can be defined in many ways, one of them was an work of the SDR Forum in collaboration with the IEEE where they defined as "Radio in which some or all of the physical layer functions are software defined". An radio it's a device that can transmit/receive signals in radio waves (electromagnetic waves), thus, SDR is a system for radio communication where instead several components (like modulators/demodulators, filters, amplifiers among others) being implemented in hardware are in software, hence, much more configurable and useful for many reasons, like research. 
 
-One type of these radios is the Universal Software Radio Peripheral (USRP) and can be used in conjunct with computer programs like GNU Radio (GR), MATLAB,and others. An ideal transmitter would be: A stream of number would be sent to an DAC (Digital-Analog Conversion) which converts the digital samples in analog ones, and then sent to the antenna. An ideal receiver would be getting these
-analog samples though the antenna an then sent to the ADC (Analog-Digital Conversion) which would take care converting the analog samples in digital samples, however neither of these two is completely realizable due to limits of the technology (the problem is mainly in the conversion between digital to analog and vice versa, maintaining high rate and accuracy).
+One type of these radios is the Universal Software Radio Peripheral (USRP) and can be used together with computer programs like GNU Radio (GR), MATLAB, and others. An ideal transmitter would be: A stream of numbers would be sent to an DAC (Digital-Analog Conversion) which converts the digital samples in analog ones, and then sent to the antenna. An ideal receiver would be getting these
+analog samples through the antenna and then sent to the ADC (Analog-Digital Conversion) which would take care of converting the analog samples in digital ones, however neither of these two is completely realizable due to limits of the technology (the problem is mainly in the conversion between digital to analog and vice versa, maintaining high rate and accuracy). 
+
+In this tutorial I will show how we can transmit any file in simulating mode and after using USRP's using GNU Radio (GR) to create a Flowgraph (FG) which is the basic data structure with connections and blocks where is continuing streaming data samples. Here we can manage all the necessary processing of the signal including encoding, modulation, transmission and recover the original signal. Besides that I will show the problems we are getting on the way and it's solutions in a manner easily understandable, going through creating our packets and our own module called OOT (out-of-tree module).
 
 
 
@@ -197,10 +199,10 @@ $cmake -DENABLE_INTERNAL_VOLK=OFF ../
 $make && make test && sudo make install && sudo ldconfig
 \end{lstlisting}
 
-You can now use the GNU Radio, to see where was installed with this useful command: \verb|which gnuradio-companion|.
+You can now use the GNU Radio and to see where was installed use this command: \verb|which gnuradio-companion|.
 
 \subsection{Problems and Solutions}
-After installing GNU Radio when you open, if it shows some warnings about \verb|Canberra| just install it with:.
+After installing GNU Radio when you open, if it shows some warnings about \verb|Canberra| just install it with:
 \begin{lstlisting}[language=bash, breaklines]
 $sudo apt install libcanberra-gtk-module libcanberra-gtk3-module
 \end{lstlisting}
@@ -208,7 +210,7 @@ $sudo apt install libcanberra-gtk-module libcanberra-gtk3-module
 
 \section{GUIDED TUTORIAL - MODULATION}
 
-BALBLABLA
+NÃO SEI SE É NECESSARIO ESCREVER ALGO AQUI 
 
 \subsection{Modulation - Tutorial\_1.grc}
     In order to transmit data between SDR's it's necessary modulate the signal, so the modulation is the act of varying properties of a waveform, this wave is called carrier and keeps the information transmitted, so the goal here is pick the data and modulate it so it can be transmitted in single carrier.
@@ -219,24 +221,24 @@ BALBLABLA
     
     We can convert bytes in complex numbers using the "Chunks to Symbols" block, this block has a parameter called "Symbol Table" where we define the mapping between a byte (or a chunk, this is our symbol) and a constellation point (point in the constellation of the symbol). But before that, we need to do two things:
         
-        First we need to unpack the byte, this means split the 8 bits/byte in X significant bits/byte where X is the number of bits necessary to the symbol of the constellation type, this is, if we want modulate in BPSK X is 1, QPSK X is 2, 8PSK X is 4.
+        First we need to unpack the byte, this means split the 8 bits/byte in X significant bits/byte where X is the number of bits necessary to the symbol of the constellation type, this is, if we want modulate in BPSK X is 1, QPSK X is 2, 8PSK X is 3.
         This is possible using the "Repack Bits" block, this block has 3 important parameters, the "Bits per Input Byte" where we define how many bits we pick in an incoming byte, the "Bits per Output Byte" where we define how many significant bits will have the output byte (the remaining bits will be 0's), and finally the parameter "Endianness" to determinate if we want write in MSB or LSB (always read in LSB). 
     
     For example if we input the byte = "01000010":
     
-    With 8:2 in MSB we got:"000000\textbf{01}", "000000\textbf{00}", "000000\textbf{00}", "000000\textbf{10}".
+    With 8:2 in MSB we got 4 bytes: "000000\textbf{01}", "000000\textbf{00}", "000000\textbf{00}", "000000\textbf{10}".
     
-    With 8:2 in LSB we got:"000000\textbf{10}", "000000\textbf{00}", "000000\textbf{00}", "000000\textbf{01}".
+    With 8:2 in LSB we got 4 bytes: "000000\textbf{10}", "000000\textbf{00}", "000000\textbf{00}", "000000\textbf{01}".
     
-    Note that this block leads to an interpolation of "Bits per Output Byte/Bits per Input Byte, in this case 8/2=4, this is, for every 1 bytes outputs 4 bytes". 
+    Note that this block leads to an interpolation of "Bits per Output Byte"/"Bits per Input Byte", in this case 8/2=4, this is, for every 1 bytes outputs 4 bytes". 
         
         Second we need to map the resulting bits in the symbols that we really want, using the "Map" block that basically does: \verb|output[i] = map[input[i]]|.
     
     Lets suppose we want modulate using QPSK: 
         First we create an "Constellation Object" where we insert the mapping of the symbols relative to the constellation points. 
-        We need to pick the 8 bits/byte and slicing in 2 significant bits per byte, so we use the "Repack bits" with 8 "Bits per Input Byte" and 2 "Bits per output Byte" with MSB endianness. Currently we have a byte with the first 6 bits with 0's and the next 2 bits with 2 bits of data, however it's not our symbol yet).
+        We need to pick the 8 bits/byte and slicing in 2 significant bits per byte, so we use the "Repack bits" with 8 "Bits per Input Byte" and 2 "Bits per output Byte" with MSB endianness. Currently we have a byte with the first 6 bits with 0's and the next 2 bits with 2 bits of data, however it's not our symbol yet.
         Then we map this significant 2 bits into the symbol we want taking into account that we will map this symbols in constellation points next (using the "Constellation object" block). In this case the 2 significant bits coincide with the symbol, but it depends of what you want to do.
-        Resulting in mapping into the constellation points in the \ref{fig:mapping_qpsk}
+        Resulting in mapping into the constellation points in the Figure   \ref{fig:mapping_qpsk}
         \begin{figure}
             \centering
             \includegraphics[width=0.75\linewidth]{mapping_qpsk.jpg}
@@ -244,15 +246,15 @@ BALBLABLA
             \label{fig:mapping_qpsk}
         \end{figure}
         
-        The last block is "Throttle", to understand this block we need understand how GR works. When we do data streaming, we are implicitly using a buffers to hold the data between blocks, this buffers are in finite size, so before the block do anything, it checks the amount of available space in input and output buffers, if there is none available space in that buffers the block don't do anything. This is called "Back-pressure" because we pressure back the data that is incoming, slowing things down. This is how GR controls the data flow, giving data to the block when it's necessary and holding it when block is busy working. We have source/sink blocks that produces/consumes data at a given fixed sample rate like Audio and USRP blocks, these blocks are called "clock" blocks, so typically an FG (Flow Graph) has only one source or one sink block, and not both because that leads to an problem called as "2 clock problem" where there is 2 blocks with different sample rates leading a asynchronous clock sources causing "underruns"/"overflows" depending on the production/consumption rates are differentiating. As our FG doesn't has any of this "clock" blocks then we need to add the "Throttle" block to act as a clock, without it the FG will run as fast as the CPU can process resulting in non-responsive program and other problems. This means that while we are in simulating mode we need this block to control the flow however when we start using the "USRP" blocks we can take out this block.
+        The last block is "Throttle", to understand this block we need understand how GR works: when we do data streaming we are implicitly using buffers to hold the data between blocks, this buffers are in finite size, so before the block do anything, it checks the amount of available space in input and output buffers, if there is none available space in that buffers the block don't do anything. This is called "Back-pressure" because we pressure back the data that is incoming, slowing things down. This is how GR controls the data flow, giving data to the block when it's necessary and holding it when block is busy working. We have source/sink blocks that produces/consumes data at a given fixed sample rate like Audio and USRP blocks, these blocks are called "clock" blocks, so typically an FG has only one source or one sink block, and not both because that leads to an problem called as "2 clock problem" where there is 2 blocks with different sample rates leading a asynchronous clock sources causing "underruns"/"overflows" depending on the production/consumption rates are differentiating. As our FG doesn't has any of this "clock" blocks then we need to add the "Throttle" block to act as a clock, without it the FG will run as fast as the CPU can process resulting in non-responsive program and other problems. This means that while we are in simulating mode we need this block to control the flow however when we start using the "USRP" blocks we can take out this block.
         
-        To finalize the TX side we send the data to an virtual sink, that redirects the data to the virtual source with the same id, the only purpose of this block it's make the FG more clear, elegant and readable.
+        To finalize the TX side we send the data to an virtual sink, that redirects the data to the virtual source with the same ID, the only purpose of this block it's make the FG more clear, elegant and readable.
         
-        Now we move to the RX part of the FG where we use the "Constellation Decoder" to invert what we have done, this is, map the complex points to symbols (using the parameters of the "he "Constellation Object" block), and then we use "Map" block again to map symbols into bits of real data. And then pick the 2 significant bits and pack in a byte exactly the inverse as before.
+        Now we move to the RX part of the FG where we use the "Constellation Decoder" to invert what we have done, this is, map the complex points to symbols (using the parameters of the the "Constellation Object" block), and then we use "Map" block again to map symbols into bits of real data. And then pick the 2 significant bits and pack in a byte exactly the inverse that we did before.
         
         
 \subsection{Modulation - Tutorial\_2.grc}
-    What we have done is not enough because in real world we cant use all the bandwidth, so we need no narrow it, however if the channels are too narrow the symbols will be too wide and the tail of the last symbol will interfere with the present one inducing ISI (Inter-Symbol Interference). A pulse shaping filter we can use to work around is the RRC (Root Raised Cosine) filter because it's a feasible solution and it's implemented in GR.      
+    What we have done is not enough because in real world we cant use all the bandwidth, so we need no narrow it, however if the channels are too narrow the symbols will be too wide and the tail of the last symbol will interfere with the present one inducing ISI (Inter-Symbol Interference). A pulse shaping filter we can use to work around is the RRC (Root Raised Cosine) filter because it's a feasible solution and it's already implemented in GR.      
     
     %--------RRC filter
    If we don't put a shaping filter on the signal, the waves will have a lot of energy in adjacent channels. This filter uses taps to apply against our signal shaping it. This taps are calculated based in how many number of filters we want and how many samples we want per symbol. Theoretically has an infinite number of taps hence we can infinite attenuate the stop band, so really we can define the limit according with processing power we have. Remember that we have added ISI here that we will have to treat in RX side, as we will see.
@@ -261,18 +263,18 @@ BALBLABLA
     %Roll off
     
     Another thing to keep in mind is the roll-off factor, this is the measure of the excess bandwidth of the filter (bandwidth that is occupied beyond Nyquist bandwidth). This parameter is basically the inclination of the wave when rising and falling, when we set more roll-off, let's say 1, then will be easier for the receiver to decode however we will narrow less the bandwidth and that is not our objective, on the other hand, smaller roll-off will result in narrower bandwidth, however the inclination increases so attenuation in stop band is reduced.
-    I provide an FG that made called "roll\_off.grc" inside of \verb|Extra| folder where you can analyse the plot of 5 different roll-off factors. In this tutorial we will use the 0.22 value to this parameter.
+    I provide an FG that I have made called \verb|roll\_off.grc| inside of \verb|Extra| folder where you can analyse the plot of 5 different roll-off factors. In this tutorial we will use the 0.22 value to this parameter.
     %-filter delay.
     %--Decreasing the number of samples (filter delay) reduces the stop band attenuation.
     
     %---SPS
-    Another thing included in modulation is the interpolation, so basically we can set a number of SPS (samples per symbol) that we want however, logically, more samples per symbol leads to less probability of errors hence inducting more overhead to our transmission. What this does is construct new points in the wave between the existing ones thus when we will reconstruct the signal we will be a lot more precise. To find this parameter we have 2 criteria:  First leaving this values small as possible taking into account that is mandatory to be 2 or higher. Second we can use this value to help us match the desired bit rate taking into account the sample rate of the hardware we are using, (currently none but we will use USRP's). We will use 4 for this parameter.
+    Another thing included in modulation is the interpolation which is increase the samples per symbol (samples per symbol), so basically we can set a number of SPS that we want and more samples per symbol leads to less probability of errors, however, logically we are inducting more overhead to our transmission (we are transmitting more information). What this does is construct new points in the wave between the existing ones thereafter when we will reconstruct the signal we will be a lot more precise. To find this parameter we have 2 criteria:  First leaving this values small as possible taking into account that is mandatory to be 2 or higher. Second we can use this value to help us match the desired bit rate taking into account the sample rate of the hardware we are using (currently none but we will use USRP's). We will use 4 for this parameter.
     
     %--------RX SIDE - chega??
-    Note that at this point we have ISI in our signal, so first I have to get rid of this by using another RRC filter. When we combine 2 RRC filter together we get a RRC filter with Nyquist filter form. Knowing this property we can use another RRC filter resulting in a raised cosine pulse shaped filter with less ISI. If you observe the constellation plot "RX Treated Constellation" there is a little noisy as a result of the ISI after the 32 filters however much less noisy than "RX Constellation". 
+    Note that at this point we have ISI in our signal, so first we have to get rid it. When we combine 2 RRC filters together we get a RRC filter with Nyquist filter form. Knowing this property we can use another RRC filter resulting in a raised cosine pulse shaped filter with less ISI. If you observe the constellation plot "RX Treated Constellation" there is a little noisy as a result of the ISI after the 32 filters however much less noisier than "RX Constellation". 
     %--SPS 4-1
     
-    Now that we have applied a RRC filter to our RX signal, in the same way that we have re-sampling by 4 we need to decimate to converting 4 samples per symbol into only 1 sample per symbol.
+    Now that we have applied a RRC filter to our RX signal, in the same way that we have interpolated by 4 we need decimate to converting 4 SPS into just 1.
 
 \subsection{Modulation - Tutorial\_3.grc}
     Now we are ready no get closer to reality, for that let's implement a "Channel Model" block where simulates different properties of a channel that we will need to take care:
@@ -284,24 +286,22 @@ BALBLABLA
 \item Multipath - We can emulate multipath delay by adding taps of a FIR (Finite Impulse Response) filter in the "Taps" parameter.
 \end{itemize}
     
-    %---EXTRA--
+    %---EXTRA-- e POLYPHASE
+    I have added in \verb|Extra| folder an example named \verb|data_timming_offset.grc| where inputs some data and simulates an offset clock, then you can see that the data has different arrival times, this is timing offset, and we need to take care of this in our main FG. Fortunately we already do it (and noise too) by using the "Polyphase Clock Sync" block. 
     
-    I have added in \verb|Extra| folder an example named \verb|data_timming_offset| where inputs some data and simulates an offset clock, then you can see that the data has different arrival times, this is Timming offset, and we need to take care of this in our FG. Fortunately we already taken care (and noise too) by using the "Polyphase Clock Sync" block. If you play with the tweaks "Time Offset" and "Noise Amp" you can see in the plot of "Rx Treated constellation" a nice and clear constellation.
-    In the other hand if you tweak the "Freq Offset" you can see that the constellation become a circle, that's because we are not treating that, it will be what we will do in the next tutorial.
     
-\subsection{Modulation - Tutorial\_4.grc}
     %O que é multipath - tratar MULTIPATH
-    Multipath is having different paths to our receptor like when we are using wireless the signal  reflects on objects of the environment, for example walls, and go to receptor a little after the direct path, so the receptor receives the same signal various times with timing differences. 
-    I added some taps to simulate a multipath property, if you disable "Costas Loop" and the "CMA Equalizer" and set "Output SPS" to 1 in the "Polyphase Clock Sync" block you can see the effect of these taps because the constellation points are no longer clean and really converged: Fig: \ref{fig:multipath_effect}
-
+    Multipath is having different paths to our receptor like when we are using wireless where the signal reflects on environment objects, for example walls, and go to receptor a little after of the direct path signal, so the receptor receives the same signal various times with slight timing differences. 
+    If you bypass "CMA Equalizer" block, enable the first taps variable (which is with almost no taps) and set "Output SPS" to 1 in the "Polyphase Clock Sync" you can play with the tweaks "Time Offset" and "Noise Amp" and you can see in the plot labeled as "Rx Treated constellation" a nice and clear constellation (although a little rotated). Now only enable the second taps variable which I added to simulate a multipath property and run you can now see the effect of these taps because the constellation points are no longer clean and really converged: Figure:  \ref{fig:multipath_effect}
+    
     \begin{figure}
         \centering
         \includegraphics[width=\linewidth]{multipath_effect.png}
         \caption{Effects Multipath on Constellation Plot}
         \label{fig:multipath_effect}
     \end{figure}
-    
-    This, obviously affects our transmission so to take out this problem we will need an equalizer, called "CMA equalizer". Here we define the number of taps where more taps means better final results however more overhead to the algorithm thus we want keep this number small but enough for correcting our channel (based on educated guess, I set 15 because works with other implementations and is enough for now). The "Gain" I set 0.01 and the "Samples per Symbol" of the input signal is set to "2", hence, the "Output SPS" of "Polyphase Clock Sync" block is also set to "2". If you take a look now for the constellation plot you will see a constellation a lot more converged and clean: Fig: \ref{fig:multipath_corrected}
+
+    This obviously affects our transmission, so to take out this problem we will need an equalizer, called "CMA Equalizer". Here we define the number of taps where more taps means better final results however more overhead to the algorithm, thus, we want keep this number small but enough for correcting our channel (based on educated guess, and some experiments I have set 15). The "Gain" I have set 0.01 and the "Samples per Symbol" of the input signal I want set to "2", hence, the "Output SPS" of "Polyphase Clock Sync" block is also set to "2". If you take a look now for the constellation plot you will see a constellation a lot more converged and clean: Figure: \ref{fig:multipath_corrected}
 
     \begin{figure}
         \centering
@@ -310,20 +310,25 @@ BALBLABLA
         \label{fig:multipath_corrected}
     \end{figure}
     
+    Note that the constellation is rotating a little, the "CMA Equalizer" all it cares about is converging in a unit circle without any knowledge of the constellation, so when it locks, locks in a given phase, thus we need to take care of the phase offset (or frequency offset). Besides that if you tweak the "Freq Offset" you can see that the constellation become a circle, that's because we are not treating the frequency offset, it will be what we will do in the next tutorial.
+    
+\subsection{Modulation - Tutorial\_4.grc}
     %TRATAR Frequency offset - COSTAS LOOP -------__MELHORAR??????????
-    Note that the constellation is rotating a little, the "CMA Equalizer" all it cares about is converging in a unit circle without any knowledge of the constellation, so when it locks, locks in a given phase, thus we need to take care of the phase offset. Besides that, if you tweak the "Freq Offset" you will see an circle instead a constellation, that is why we need to take care of the last property mentioned before: "Frequency offset".
-    We can track the offset of both of this things using an second order loop, however this type of recover is "fine frequency correction" this means that we need to be close of the ideal frequency or our constellation won't converge and will keep spinning. 
-    We have to set the "Loop bandwidth" and the "Order" parameters, the first one is relative to the second order loop (I will use 6.28/200.0), the second is about the order of the constellation type (2 to BPSK, 4 to QPSK and 8 to 8PSK, thus 4 for our example). Now you can enable this block you will note that the constellation is no more rotating and if you tweak the Frequency Offset note that it's not getting a circle anymore, instead that, the constellation keeps without rotation, clear and converged.  
+    There exists two types of frequency correction, the fine frequency correction and the coarse frequency correction. We will start by treating the first one, this is, we can track the offset by using an second order loop when our signal is close of the ideal frequency or our constellation won't converge and will keep spinning. For this we will use a "Costas Loop" block where we have to set the "Loop bandwidth" and the "Order" parameters, the first one is relative to the second order loop (I will use 6.28/100.0 which is recommended, this value adapts to the signal in runtime), the second is about the order of the constellation type (2 to BPSK, 4 to QPSK and 8 to 8PSK, thus, 4 for our example). Now if you disable the "FFL Band-Edge" block and run the FG you will note that the constellation is no more rotating and if you tweak the Frequency Offset note that it's not getting a circle anymore, instead that, the constellation keeps without rotation, clear and converged. 
+    
+    %COARSE FREQUENCY OFFSET CORRECTION
+    But, as I have said we have done fine frequency correction so if you continuously keep increasing the "Frequency Offset" tweak you will see that at certain point (close to 0.034) the constellations starts to be a lot noisier. Now we need to take care of "Coarse frequency recover" using "FFl Band-Edge" block. This block uses a frequency lock loop that derives of an band-edge filter that covers both upper and lower bandwidths of the signal to keep it in a range determined by the roll-off factor. This factor together with the SPS positions the frequency of band-edges.
+    Concluding, first we set the SPS by 4, the roll-off factor at 0.22 as previously discussed. We also need to set a number of filter taps that we will generate to apply to our signal (I have set 60) and then the loop bandwidth (I have set 6.28/400.0). If now you tweak the "Frequency Offset" beyond what "Costas loop" alone can handle you see a perfect and clean constellation. 
 
 \subsection{Modulation - Tutorial\_5.grc}
-    If you take a closer look we have an problem writing the file, sometimes writes something and another times doesn't. That's because we might have an ambiguity of 90 degrees in our constellation. The solution for this is: Instead transmitting constellation itself, we will transmit the difference between symbols of the constellation, and then mapping the transmitted symbols into our bits of data. Basically the differential encoding depends not only of the transmitted symbol but also the previous one, removing ambiguity of 90 degrees. If it's the case of BPSK we would have 180 degrees of ambiguity, if it's 8PSK it would be 45 degrees of ambiguity.
-    In our FG we can resolve by adding an "Differential Encoder" Block right after "Map" block resulting in first mapping the bits of data in symbols, and then convert these symbols in differential symbols dependent of the last one, and finally convert to constellation symbols. 
-    In RX is just do the inverse thing, right after we have the transmitted symbols we use "Differential Decoder" to get the real symbols and then map to the bits of data.
+    If you take a closer look we have an problem writing the file, sometimes writes the right bits and another times doesn't. That's because we have an ambiguity of 90 degrees in our constellation. The solution for this is: Instead transmitting the direct mapping in symbols into the constellation, we will transmit the difference between symbols of the constellation using the differential encoding where a symbol depends not only of the transmitted symbol but also the previous one (\verb|y[0] = (x[0] - x[-1]) % M| where M is Modulus of code's alphabet), removing the ambiguity. If it was the case of BPSK we would have 180 degrees of ambiguity, if it was 8PSK it would be 45 degrees of ambiguity.
+    In our FG we will remove the "Map" block (since it does nothing now) and we will add an "Differential Encoder" Block right before "Chunks to Symbols" block resulting convert the input symbol in a one dependent of the last and it's mapping in the constellation point. 
+    In RX is just do the inverse thing, right after we have the transmitted symbols we use "Differential Decoder" to get the real symbols.
     
     
 \subsection{Packet communications - Tutorial\_6.grc}
     %---Header e CAC
-    Now we have successfully modulated and transmitted our signal without ambiguity, but if you take a look in the output file, it will only be junk. This is happening because it's not writing the bits in the supposed byte. Explaining better, if I send the byte "01010101" and for some motive receives 4 bits in 0's and then the right byte, this results in "0000\textbf{0101}" and "\textbf{0101}XXXX", then all the bits forward are not aligned. This is the problem that is happening here because the "Polyphase Clock Sync" block needs some time to adapt and in this time losses some bits, so we need a manner to always receive the bytes aligned. The solution for this is packetize our data and send the packet, consequently, we will lose all that packet but we will always get our bits aligned.
+    Now we have successfully modulated and transmitted our signal without ambiguity, but if you take a look in the output file, it will only be junk. This is happening because it's not writing the bits in the supposed byte. Explaining better, if I send the byte "01010101" and for some motive receives 4 bits in 0's and then the right byte, this results in "0000\textbf{0101}" and "\textbf{0101}XXXX", then all the bits forward are not aligned. This is the problem that is happening here because the "Polyphase Clock Sync" block needs some time to adapt and in this time write some junk bits, so we need a manner to always receive the bytes aligned. The solution for this is packetize our data and send the packet, consequently, we will lose all that first packet but we will always get our bits aligned.
     
     %CAC
     The first thing we need to know is how the "Correlate Access Code - Tag Stream" block works. It expect unpacked data, this means that the input only has 1 significant bit per byte. Then exams the input finding an sequence called "Access Code" of 64 bits taking into account that can be X bits different where X is the "Threshold" parameter. After find this sequence the next 16 bits is the length of the payload (that will be outputted) repeated twice (32 bits in total). Resulting in a header with 64 bits of access code, 16 bits of payload length and another 16 bits of payload length, being that the length of the payload is in bytes. Now that we have the composition of the header of the packet we need to create it.
@@ -495,21 +500,21 @@ $sudo ldconfig
     I have added an example (not created by me, found here: \url{https://github.com/gnuradio/gnuradio/tree/master/gr-fec/examples}) in \verb|Extra| folder called \verb|ber_curve_gen| where you can analyse the BER (bit error rate) curve in different FEC types. I advise you to run directly from console using python to avoid some problems.
     %----Implementation
     I will implement the convolutional code using the "CC Encoder Definition" object block to extend the life of this tutorial. As I have told, the "FEC Extended Encoder" expects unpacked bytes so before we send data to that block we need to repack the bits from 8 to 1, and then we can use the block. Now we need to fill the parameters, first we set a puncture pattern of '11' (where there is no puncture), then the "Threading Type" parameter we set to "None" for now (I will be back here). Regrading to the "Encoder Object" we will use the "CC Encoder Definition". This block has a lot of important parameters: The Frame Bits" tells how many bits we want to input of each work (I will set for our example 440 bits).The "Constraint Lenght (k)", the "Rate Inverse (1/R)", and the "Polynomials" I have set "7","2" and "[109,79]" which is the Voyager Code and the only available code at this moment.
-    At "Streamming Behaviour" we have four options:
+    At "Streaming Behaviour" we have four options:
     \begin{itemize}
         \item Streaming: Expects uninterrupted flow of bits to the encoder, where the output is continually encoded.
         \item Terminated: Used for packet-based, however this mode adds "rate*(K-1)" bits to the output to help flush the decoder.
         \item Tailbiting: Used for packet-based, however instead adding bits, uses the final bits of the packet when we are decoding.
-        \item Truncated: Here the registers are reseted between frames.
+        \item Truncated: Here the registers are reset between frames.
     \end{itemize}
     
     Another important thing to keep in mind is that I want send the encoded packet independent of the last one, so if I lose one packet I don't start a chain of corrupted packets. 
     
-    Taking in this into account, we can possible we 2 of this modes,the "Terminated" or the "Tailbiting", however I want the packets fully independents of each other so that if I lose one packet I don't start a chain of un-decoded packets,thus, we will use the first mode.
+    Taking in this into account, we can possible we 2 of this modes,the "Terminated" or the "Tailbiting", however I want the packets fully independents of each other so that if I lose one packet I don't start a chain of encoded packets, thus, we will use the first mode.
     
     With all this our output of the encoder will be the input multiplied by rate plus the added bits to flush decoder resulting in: (Input * Rate) + (Rate*(K-1) = 440 bits * 2 + (2*(7-1)) = 892 bits.
     
-    Now that we have the payload encoded we just need to create the proper header exactly as before, but we have a problem here: in the header we need to define the payload in bytes, however, we can not convert 892 bits in bytes (892/8=111.5 bytes). To solve this we need to add 4 bits resulting in 896 bits, or 112 bytes converted. We can add this using a "Vector Source" Block concatenating the vector with a "Stram Mux" block. All this step can be visualized in Fig: \ref{fig:multipath_corrected}
+    Now that we have the payload encoded we just need to create the proper header exactly as before, but we have a problem here: in the header we need to define the payload in bytes, however, we can not convert 892 bits in bytes (892/8=111.5 bytes). To solve this we need to add 4 bits resulting in 896 bits, or 112 bytes converted. We can add this using a "Vector Source" Block concatenating the vector with a "Stream Mux" block. All this step can be visualized in Fig: \ref{fig:multipath_corrected}
     
     We can now transmit our packet with the payload already encoded. In reception all we have to do is do the inverse that we have done by using the "FEC Extended Decoder" along with "CC Encoder Definition" object and then only keeps the firs 892 bits of 896 bits with the  "Keep M in N" block. Note that the decoder blocks now uses soft decision bits (floats between -1 and 1), but as we have an hard decoder we get hard decision bits (0's and 1's), so we just need to Map and  then use the "Char to Float" block.
     
@@ -531,7 +536,11 @@ $sudo ldconfig
     Now that we are providing good values to the USRP's we need to tweak the sample rate in a form that can be the maximum possible (for higher speed) however without drop data. We may have two problems here, it can be printed U' and/or O's in our console. The U's means "Underun", which means that in TX side we are not giving samples enough quick to our USRP to send them, this can be caused for lack of processing power (note that the encoder block requires a lot of power) so what we need to do is: or we change the CPU or we slow down the sample rate of the USRP's. When we have 0's this means "Overrun", this is, in RX side we are not able to consume samples quick enough, probably because of the back-pressure caused by the decoder block. So we need to found the maximum value for the sample rate taking into account 2 things: If it prints U's or 0's, there can be only in beginning because of rampage up, this is here another reason for adding and vector previously sending our real data, so we lose data of the vector and not data of our transition data. Another thing is that we must choose an sample rate where \verb|clock rate/sample rate| must be an integer, and for better performance should be divisible by 4.
     Taking this into account I improved the MCR (Master Clock Rate) of the USRP for 60e6 and I have created an vector with sample rates that are best for performance, thus, we just need to choose the index on the vector to change the sample rate.
     
-
+\subsection{USRP - Tutorial\_9.grc}
+    It's everything working perfectly when we are using random bits however if we input a file with some zeros in a row, the FG losses symbol synchronization, for example you can easily testing by inputting the \verb|videofhd.mpeg| file provided. As you can see in output the zeros are not transmitted well, so we need to somehow instead transmit all this zeros in a row, transmit it with some bits at 1 without adding significant overload to FG (by increasing the amount of transmitted bits). A solution for this is adding a scramble block and the after all the transmission undo what we did.
+    
+    The scramble at this view has nothing related to encryption but aims to eliminate long sequence of same bits (called whitening sequences), reducing problems with synchronization at the receiver, it works using a LFSR (linear-feedback shift register) by 
+    
 \subsection{Figures and Tables}
 
 \begin{table}[h]
@@ -589,8 +598,8 @@ References are important to the reader; therefore, each citation must be complet
 
 \begin{thebibliography}{99}
 
-\bibitem{c1} G. O. Young, ÒSynthetic structure of industrial plastics (Book style with paper title and editor),Ó 	in Plastics, 2nd ed. vol. 3, J. Peters, Ed.  New York: McGraw-Hill, 1964, pp. 15Ð64.
-\bibitem{c2} W.-K. Chen, Linear Networks and Systems (Book style).	Belmont, CA: Wadsworth, 1993, pp. 123Ð135.
+\bibitem{c1} G. O. Young, ÒSynthetic structure of industrial plastics (Book style with paper title and editor),Ó  in Plastics, 2nd ed. vol. 3, J. Peters, Ed.  New York: McGraw-Hill, 1964, pp. 15Ð64.
+\bibitem{c2} W.-K. Chen, Linear Networks and Systems (Book style).  Belmont, CA: Wadsworth, 1993, pp. 123Ð135.
 \bibitem{c3} H. Poor, An Introduction to Signal Detection and Estimation.   New York: Springer-Verlag, 1985, ch. 4.
 \bibitem{c4} B. Smith, ÒAn approach to graphs of linear forms (Unpublished work style),Ó unpublished.
 \bibitem{c5} E. H. Miller, ÒA note on reflector arrays (Periodical styleÑAccepted for publication),Ó IEEE Trans. Antennas Propagat., to be publised.
