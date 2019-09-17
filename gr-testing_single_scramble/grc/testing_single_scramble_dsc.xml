@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<block>
+  <name>dsc</name>
+  <key>testing_single_scramble_dsc</key>
+  <category>[testing_single_scramble]</category>
+  <import>import testing_single_scramble</import>
+  <make>testing_single_scramble.dsc($mask, $seed, $len)</make>
+  <param>
+    <name>Polinomio</name>
+    <key>mask</key>
+    <value>0x8A</value>
+    <type>hex</type>
+  </param>
+  <param>
+    <name>Seed</name>
+    <key>seed</key>
+    <value>0x7F</value>
+    <type>hex</type>
+  </param>
+  <param>
+    <name>Lenght</name>
+    <key>len</key>
+    <value>7</value>
+    <type>int</type>
+  </param>
+
+  <!-- Make one 'sink' node per input. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <sink>
+    <name>in</name>
+    <type>byte</type>
+  </sink>
+
+  <!-- Make one 'source' node per output. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <source>
+    <name>out</name>
+    <type>byte</type>
+  </source>
+</block>

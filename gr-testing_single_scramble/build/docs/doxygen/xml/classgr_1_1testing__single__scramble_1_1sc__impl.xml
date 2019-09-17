@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classgr_1_1testing__single__scramble_1_1sc__impl" kind="class" language="C++" prot="public">
+    <compoundname>gr::testing_single_scramble::sc_impl</compoundname>
+    <basecompoundref refid="classgr_1_1testing__single__scramble_1_1sc" prot="public" virt="non-virtual">gr::testing_single_scramble::sc</basecompoundref>
+    <includes refid="sc__impl_8h" local="no">sc_impl.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classgr_1_1testing__single__scramble_1_1sc__impl_1a871b826e31ec61446a2be7a4f7554260" prot="private" static="no" mutable="no">
+        <type>digital::lfsr</type>
+        <definition>digital::lfsr gr::testing_single_scramble::sc_impl::d_lfsr</definition>
+        <argsstring></argsstring>
+        <name>d_lfsr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/gr-testing_single_scramble/lib/sc_impl.h" line="33" column="1" bodyfile="/home/andre/investigacao/gr-testing_single_scramble/lib/sc_impl.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classgr_1_1testing__single__scramble_1_1sc__impl_1ab8213524e1a5a3d1c81ac02a762dbc0a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>gr::testing_single_scramble::sc_impl::sc_impl</definition>
+        <argsstring>(int mask, int seed, int len)</argsstring>
+        <name>sc_impl</name>
+        <param>
+          <type>int</type>
+          <declname>mask</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>seed</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>len</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/gr-testing_single_scramble/lib/sc_impl.h" line="36" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1testing__single__scramble_1_1sc__impl_1a0dd20b5fc4151747a93fe1a8ededfaeb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>gr::testing_single_scramble::sc_impl::~sc_impl</definition>
+        <argsstring>()</argsstring>
+        <name>~sc_impl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/gr-testing_single_scramble/lib/sc_impl.h" line="37" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1testing__single__scramble_1_1sc__impl_1a8471fbbff3834e1b9ef43363e31c2531" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void gr::testing_single_scramble::sc_impl::forecast</definition>
+        <argsstring>(int noutput_items, gr_vector_int &amp;ninput_items_required)</argsstring>
+        <name>forecast</name>
+        <param>
+          <type>int</type>
+          <declname>noutput_items</declname>
+        </param>
+        <param>
+          <type>gr_vector_int &amp;</type>
+          <declname>ninput_items_required</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/gr-testing_single_scramble/lib/sc_impl.h" line="40" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1testing__single__scramble_1_1sc__impl_1a7a76e6ffe4eff0f52e72f0045563fdfc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int gr::testing_single_scramble::sc_impl::general_work</definition>
+        <argsstring>(int noutput_items, gr_vector_int &amp;ninput_items, gr_vector_const_void_star &amp;input_items, gr_vector_void_star &amp;output_items)</argsstring>
+        <name>general_work</name>
+        <param>
+          <type>int</type>
+          <declname>noutput_items</declname>
+        </param>
+        <param>
+          <type>gr_vector_int &amp;</type>
+          <declname>ninput_items</declname>
+        </param>
+        <param>
+          <type>gr_vector_const_void_star &amp;</type>
+          <declname>input_items</declname>
+        </param>
+        <param>
+          <type>gr_vector_void_star &amp;</type>
+          <declname>output_items</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/gr-testing_single_scramble/lib/sc_impl.h" line="42" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="18">
+        <label>block</label>
+      </node>
+      <node id="16">
+        <label>gr::testing_single_scramble::sc_impl</label>
+        <link refid="classgr_1_1testing__single__scramble_1_1sc__impl"/>
+        <childnode refid="17" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>gr::testing_single_scramble::sc</label>
+        <link refid="classgr_1_1testing__single__scramble_1_1sc"/>
+        <childnode refid="18" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="21">
+        <label>block</label>
+      </node>
+      <node id="19">
+        <label>gr::testing_single_scramble::sc_impl</label>
+        <link refid="classgr_1_1testing__single__scramble_1_1sc__impl"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>gr::testing_single_scramble::sc</label>
+        <link refid="classgr_1_1testing__single__scramble_1_1sc"/>
+        <childnode refid="21" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/andre/investigacao/gr-testing_single_scramble/lib/sc_impl.h" line="31" column="1" bodyfile="/home/andre/investigacao/gr-testing_single_scramble/lib/sc_impl.h" bodystart="30" bodyend="46"/>
+    <listofallmembers>
+      <member refid="classgr_1_1testing__single__scramble_1_1sc__impl_1a871b826e31ec61446a2be7a4f7554260" prot="private" virt="non-virtual"><scope>gr::testing_single_scramble::sc_impl</scope><name>d_lfsr</name></member>
+      <member refid="classgr_1_1testing__single__scramble_1_1sc__impl_1a8471fbbff3834e1b9ef43363e31c2531" prot="public" virt="non-virtual"><scope>gr::testing_single_scramble::sc_impl</scope><name>forecast</name></member>
+      <member refid="classgr_1_1testing__single__scramble_1_1sc__impl_1a7a76e6ffe4eff0f52e72f0045563fdfc" prot="public" virt="non-virtual"><scope>gr::testing_single_scramble::sc_impl</scope><name>general_work</name></member>
+      <member refid="classgr_1_1testing__single__scramble_1_1sc_1a42ae86c66379d46bf9e7842ada2cc62d" prot="public" virt="non-virtual"><scope>gr::testing_single_scramble::sc_impl</scope><name>make</name></member>
+      <member refid="classgr_1_1testing__single__scramble_1_1sc__impl_1ab8213524e1a5a3d1c81ac02a762dbc0a" prot="public" virt="non-virtual"><scope>gr::testing_single_scramble::sc_impl</scope><name>sc_impl</name></member>
+      <member refid="classgr_1_1testing__single__scramble_1_1sc_1a50f01c828531fd29764631bb38c6cadb" prot="public" virt="non-virtual"><scope>gr::testing_single_scramble::sc_impl</scope><name>sptr</name></member>
+      <member refid="classgr_1_1testing__single__scramble_1_1sc__impl_1a0dd20b5fc4151747a93fe1a8ededfaeb" prot="public" virt="non-virtual"><scope>gr::testing_single_scramble::sc_impl</scope><name>~sc_impl</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

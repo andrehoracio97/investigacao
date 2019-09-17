@@ -62,7 +62,7 @@ class top_block(gr.top_block, Qt.QWidget):
         # Variables
         ##################################################
         self.samp_rate_array_MCR = samp_rate_array_MCR = [7500000,5000000,3750000,3000000,2500000,2000000,1500000,1000000,937500,882352,833333,714285,533333,500000,421052,400000,380952,3000]
-        self.samp_rate = samp_rate = samp_rate_array_MCR[17]
+        self.samp_rate = samp_rate = samp_rate_array_MCR[0]
 
         ##################################################
         # Blocks
@@ -173,14 +173,11 @@ class top_block(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(1, 2):
             self.top_grid_layout.setColumnStretch(c, 1)
+        self.blocks_throttle_0 = blocks.throttle(gr.sizeof_char*1, samp_rate,True)
         self.blocks_repack_bits_bb_1_0_0_1 = blocks.repack_bits_bb(8, 1, '', False, gr.GR_MSB_FIRST)
         self.blocks_repack_bits_bb_0 = blocks.repack_bits_bb(1, 8, "", False, gr.GR_MSB_FIRST)
         self.blocks_file_source_0_0_1_0 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Desktop/Trasmited/book_edited.txt', False)
         self.blocks_file_source_0_0_1_0.set_begin_tag(pmt.PMT_NIL)
-        self.blocks_file_sink_0_0_0_2_0_0_0 = blocks.file_sink(gr.sizeof_char*1, '/home/andre/Desktop/decoded.txt', False)
-        self.blocks_file_sink_0_0_0_2_0_0_0.set_unbuffered(False)
-        self.blocks_file_sink_0_0_0_2_0_0 = blocks.file_sink(gr.sizeof_char*1, '/home/andre/Desktop/encoded.txt', False)
-        self.blocks_file_sink_0_0_0_2_0_0.set_unbuffered(False)
         self.blocks_file_sink_0_0_0_2 = blocks.file_sink(gr.sizeof_char*1, '/home/andre/Desktop/Trasmited/depois.txt', False)
         self.blocks_file_sink_0_0_0_2.set_unbuffered(False)
         self.blocks_char_to_float_1_0_1 = blocks.char_to_float(1, 1)
@@ -198,10 +195,9 @@ class top_block(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_repack_bits_bb_0, 0), (self.blocks_char_to_float_1_0_1, 0))
         self.connect((self.blocks_repack_bits_bb_0, 0), (self.blocks_file_sink_0_0_0_2, 0))
         self.connect((self.blocks_repack_bits_bb_1_0_0_1, 0), (self.scrambler_cpp_custom_scrambler_0, 0))
-        self.connect((self.scrambler_cpp_custom_descrambler_0, 0), (self.blocks_file_sink_0_0_0_2_0_0_0, 0))
+        self.connect((self.blocks_throttle_0, 0), (self.scrambler_cpp_custom_descrambler_0, 0))
         self.connect((self.scrambler_cpp_custom_descrambler_0, 0), (self.blocks_repack_bits_bb_0, 0))
-        self.connect((self.scrambler_cpp_custom_scrambler_0, 0), (self.blocks_file_sink_0_0_0_2_0_0, 0))
-        self.connect((self.scrambler_cpp_custom_scrambler_0, 0), (self.scrambler_cpp_custom_descrambler_0, 0))
+        self.connect((self.scrambler_cpp_custom_scrambler_0, 0), (self.blocks_throttle_0, 0))
 
     def closeEvent(self, event):
         self.settings = Qt.QSettings("GNU Radio", "top_block")
@@ -213,7 +209,7 @@ class top_block(gr.top_block, Qt.QWidget):
 
     def set_samp_rate_array_MCR(self, samp_rate_array_MCR):
         self.samp_rate_array_MCR = samp_rate_array_MCR
-        self.set_samp_rate(self.samp_rate_array_MCR[17])
+        self.set_samp_rate(self.samp_rate_array_MCR[0])
 
     def get_samp_rate(self):
         return self.samp_rate
@@ -222,6 +218,7 @@ class top_block(gr.top_block, Qt.QWidget):
         self.samp_rate = samp_rate
         self.qtgui_time_sink_x_0_1.set_samp_rate(self.samp_rate)
         self.qtgui_time_sink_x_0_0.set_samp_rate(self.samp_rate)
+        self.blocks_throttle_0.set_sample_rate(self.samp_rate)
 
 
 def main(top_block_cls=top_block, options=None):

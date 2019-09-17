@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="namespacegr_1_1testing__single__scramble" kind="namespace" language="C++">
+    <compoundname>gr::testing_single_scramble</compoundname>
+    <innerclass refid="classgr_1_1testing__single__scramble_1_1dsc" prot="public">gr::testing_single_scramble::dsc</innerclass>
+    <innerclass refid="classgr_1_1testing__single__scramble_1_1dsc__impl" prot="public">gr::testing_single_scramble::dsc_impl</innerclass>
+    <innerclass refid="classgr_1_1testing__single__scramble_1_1sc" prot="public">gr::testing_single_scramble::sc</innerclass>
+    <innerclass refid="classgr_1_1testing__single__scramble_1_1sc__impl" prot="public">gr::testing_single_scramble::sc_impl</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/andre/investigacao/gr-testing_single_scramble/include/testing_single_scramble/dsc.h" line="29" column="1"/>
+  </compounddef>
+</doxygen>

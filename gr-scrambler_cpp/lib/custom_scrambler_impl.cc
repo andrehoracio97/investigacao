@@ -48,7 +48,10 @@ namespace gr {
       n_bits_scrambled(409),
       track_n_bits_seed(0),
       new_seed(0),
-      binary()
+      binary(),
+      flush(0),
+      count(8),
+      added_bits(0)
     {}
 
     /*
@@ -86,15 +89,59 @@ namespace gr {
         //If we still has bits to scramble, go ahead
 
 
-      if(n_bits_scrambled<n_frame){//Normal behaviou - Just Scramble
+         /* if(n_bits_scrambled<n_frame){
+            out[0]=d_lfsr.next_bit_scramble(in[0]);
+            n_bits_scrambled=n_bits_scrambled+1;
+            ii=ii+1;
+            oo=oo+1;
+          }else{
+            out[0]=d_lfsr.next_bit_scramble(0);
+            oo=oo+1;
+          }
+      }*/
+
+
+/*
+          if(n_bits_scrambled==n_frame-1){//Se for o ultimo bit do frame - Mandar mais 8 bits
+            out[0]=d_lfsr.next_bit_scramble(in[0]);
+            n_bits_scrambled=n_bits_scrambled+1;
+            ii=ii+1;
+            oo=oo+1;
+            while (added_bits<8){
+              //printf("faz8\n");
+              out[added_bits+1]=d_lfsr.next_bit_scramble(0);
+              oo=oo+1;
+              added_bits=added_bits+1;
+            }
+          }else{
+            out[0]=d_lfsr.next_bit_scramble(in[0]);
+            n_bits_scrambled=n_bits_scrambled+1;
+            ii=ii+1;
+            oo=oo+1;
+          }
+
+
+*/
+      if(n_bits_scrambled<n_frame){//Normal behaviour - Just Scramble
           out[0]=d_lfsr.next_bit_scramble(in[0]);
           n_bits_scrambled=n_bits_scrambled+1;
           ii=ii+1;
           oo=oo+1;
+
+
+        /*  if(n_bits_scrambled==n_frame-1){
+            while (added_bits<8){
+              printf("faz8\n");
+              out[added_bits+1]=d_lfsr.next_bit_scramble(0);
+              oo=oo+1;
+              added_bits=added_bits+1;
+            }
+            n_bits_scrambled=n_bits_scrambled+1; 
+        }*/
       }
       else{ //end of frame bits, new stuff to do
         if(track_n_bits_seed==0){  //NEW SEED - if we have left bits at 0 (we don't begin creating the new seed yet)
-    
+          added_bits=0;
             new_seed = rand()%255; //Betwen 0 an max value. 2147483647
             //new_seed = 163;
             //std::cout << new_seed;
@@ -115,17 +162,22 @@ namespace gr {
             track_n_bits_seed=0; //Reset track
             std::cout <<"SCRAMBLER:"<< new_seed << "\n";
 
+
+
+
             d_lfsr.reset_to_value(new_seed); //Scramble with new seed
             n_bits_scrambled=0; //Scramble a new packet
 
+            flush=1;
 
-            out[0]=d_lfsr.next_bit_scramble(in[0]);
-            n_bits_scrambled=n_bits_scrambled+1;
-            ii=ii+1;
-            oo=oo+1;
+            //out[0]=d_lfsr.next_bit_scramble(in[0]);
+            //n_bits_scrambled=n_bits_scrambled+1;
+            //ii=ii+1;
+            //oo=oo+1;
 
           }
         }
+    
       
       consume_each (ii);
 

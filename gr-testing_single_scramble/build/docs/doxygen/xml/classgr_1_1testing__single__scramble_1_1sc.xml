@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classgr_1_1testing__single__scramble_1_1sc" kind="class" language="C++" prot="public">
+    <compoundname>gr::testing_single_scramble::sc</compoundname>
+    <basecompoundref prot="public" virt="virtual">block</basecompoundref>
+    <derivedcompoundref refid="classgr_1_1testing__single__scramble_1_1sc__impl" prot="public" virt="non-virtual">gr::testing_single_scramble::sc_impl</derivedcompoundref>
+    <includes refid="sc_8h" local="no">sc.h</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classgr_1_1testing__single__scramble_1_1sc_1a50f01c828531fd29764631bb38c6cadb" prot="public" static="no">
+        <type>boost::shared_ptr&lt; <ref refid="classgr_1_1testing__single__scramble_1_1sc" kindref="compound">sc</ref> &gt;</type>
+        <definition>typedef boost::shared_ptr&lt;sc&gt; gr::testing_single_scramble::sc::sptr</definition>
+        <argsstring></argsstring>
+        <name>sptr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/gr-testing_single_scramble/include/testing_single_scramble/sc.h" line="39" column="1" bodyfile="/home/andre/investigacao/gr-testing_single_scramble/include/testing_single_scramble/sc.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classgr_1_1testing__single__scramble_1_1sc_1a42ae86c66379d46bf9e7842ada2cc62d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classgr_1_1testing__single__scramble_1_1sc_1a50f01c828531fd29764631bb38c6cadb" kindref="member">sptr</ref></type>
+        <definition>static sptr gr::testing_single_scramble::sc::make</definition>
+        <argsstring>(int mask, int seed, int len)</argsstring>
+        <name>make</name>
+        <param>
+          <type>int</type>
+          <declname>mask</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>seed</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>len</declname>
+        </param>
+        <briefdescription>
+<para>Return a shared_ptr to a new instance of <ref refid="classgr_1_1testing__single__scramble_1_1sc" kindref="compound">testing_single_scramble::sc</ref>. </para>        </briefdescription>
+        <detaileddescription>
+<para>To avoid accidental use of raw pointers, <ref refid="classgr_1_1testing__single__scramble_1_1sc" kindref="compound">testing_single_scramble::sc</ref>&apos;s constructor is in a private implementation class. <ref refid="classgr_1_1testing__single__scramble_1_1sc_1a42ae86c66379d46bf9e7842ada2cc62d" kindref="member">testing_single_scramble::sc::make</ref> is the public interface for creating new instances. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/gr-testing_single_scramble/include/testing_single_scramble/sc.h" line="49" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>&lt;+description of block+&gt; </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="12">
+        <label>block</label>
+      </node>
+      <node id="13">
+        <label>gr::testing_single_scramble::sc_impl</label>
+        <link refid="classgr_1_1testing__single__scramble_1_1sc__impl"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>gr::testing_single_scramble::sc</label>
+        <link refid="classgr_1_1testing__single__scramble_1_1sc"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="15">
+        <label>block</label>
+      </node>
+      <node id="14">
+        <label>gr::testing_single_scramble::sc</label>
+        <link refid="classgr_1_1testing__single__scramble_1_1sc"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/andre/investigacao/gr-testing_single_scramble/include/testing_single_scramble/sc.h" line="37" column="1" bodyfile="/home/andre/investigacao/gr-testing_single_scramble/include/testing_single_scramble/sc.h" bodystart="36" bodyend="50"/>
+    <listofallmembers>
+      <member refid="classgr_1_1testing__single__scramble_1_1sc_1a42ae86c66379d46bf9e7842ada2cc62d" prot="public" virt="non-virtual"><scope>gr::testing_single_scramble::sc</scope><name>make</name></member>
+      <member refid="classgr_1_1testing__single__scramble_1_1sc_1a50f01c828531fd29764631bb38c6cadb" prot="public" virt="non-virtual"><scope>gr::testing_single_scramble::sc</scope><name>sptr</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

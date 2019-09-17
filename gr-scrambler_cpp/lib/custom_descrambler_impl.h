@@ -36,6 +36,7 @@ namespace gr {
       int track_n_bits_seed;
       int new_seed;
       std::string binary;
+      int trash;
 
      public:
       custom_descrambler_impl(int mask, int seed, int len, int frame_bits);

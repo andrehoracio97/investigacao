@@ -1,0 +1,7 @@
+/*!
+ * \defgroup block GNU Radio TESTING_SINGLE_SCRAMBLE C++ Signal Processing Blocks
+ * \brief All C++ blocks that can be used from the TESTING_SINGLE_SCRAMBLE GNU Radio
+ *        module are listed here or in the subcategories below.
+ *
+ */
+

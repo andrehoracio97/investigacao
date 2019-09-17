@@ -48,7 +48,8 @@ namespace gr {
       n_bits_descrambled(409),
       track_n_bits_seed(0),
       new_seed(0),
-      binary()
+      binary(),
+      trash(8)
     {}
 
     /*
@@ -79,12 +80,22 @@ namespace gr {
       int ii=0;
       int oo=0;
 
-
       if(n_bits_descrambled<n_frame){
-        out[0]=d_lfsr.next_bit_descramble(in[0]);
-        n_bits_descrambled=n_bits_descrambled+1;
-        ii=ii+1;
-        oo=oo+1;
+
+        //ADDED primeiro bloco do if
+      /*  if(trash!=0){
+          d_lfsr.next_bit_descramble(in[0]);
+          n_bits_descrambled=n_bits_descrambled+1;
+          ii=ii+1;
+          trash=trash-1;
+        }
+        else{*/
+          out[0]=d_lfsr.next_bit_descramble(in[0]);
+          n_bits_descrambled=n_bits_descrambled+1;
+          ii=ii+1;
+          oo=oo+1;
+
+       /* }*/
       }
       else{
         //PICK the 32 bits NEW SEED FROM INPUT
@@ -98,21 +109,25 @@ namespace gr {
 
           //Just consume, not preduce here
           ii=ii+1;
-      
         }else{
-          //new_seed=std::bitset<32>(binary).atoi();.
+
           //RESET REGISTER WITH NEW SEED
           std::cout <<"DESCRAMBLER:"<< new_seed << "\n";
           d_lfsr.reset_to_value(new_seed);
           new_seed=0;
           track_n_bits_seed=0;
           n_bits_descrambled=0;
+          trash=8;
 
-          out[0]=d_lfsr.next_bit_descramble(in[0]);
-          n_bits_descrambled=n_bits_descrambled+1;
+          //out[0]=d_lfsr.next_bit_descramble(in[0]);
+          //n_bits_descrambled=n_bits_descrambled+1;
           //produce and consume
-          oo=oo+1;
-          ii=ii+1;
+          //oo=oo+1;
+          //ii=ii+1;
+
+          //====
+
+
         }
       }
       

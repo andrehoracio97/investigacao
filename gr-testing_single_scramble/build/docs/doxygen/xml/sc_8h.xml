@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="sc_8h" kind="file" language="C++">
+    <compoundname>sc.h</compoundname>
+    <includes refid="api_8h" local="no">testing_single_scramble/api.h</includes>
+    <includes local="no">gnuradio/block.h</includes>
+    <includedby refid="sc__impl_8h" local="no">sc_impl.h</includedby>
+    <incdepgraph>
+      <node id="26">
+        <label>gnuradio/attributes.h</label>
+      </node>
+      <node id="27">
+        <label>gnuradio/block.h</label>
+      </node>
+      <node id="24">
+        <label>sc.h</label>
+        <link refid="sc_8h"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>testing_single_scramble/api.h</label>
+        <link refid="api_8h"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="29">
+        <label>sc_impl.h</label>
+        <link refid="sc__impl_8h"/>
+      </node>
+      <node id="28">
+        <label>sc.h</label>
+        <link refid="sc_8h"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classgr_1_1testing__single__scramble_1_1sc" prot="public">gr::testing_single_scramble::sc</innerclass>
+    <innernamespace refid="namespacegr">gr</innernamespace>
+    <innernamespace refid="namespacegr_1_1testing__single__scramble">gr::testing_single_scramble</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/andre/investigacao/gr-testing_single_scramble/include/testing_single_scramble/sc.h"/>
+  </compounddef>
+</doxygen>
