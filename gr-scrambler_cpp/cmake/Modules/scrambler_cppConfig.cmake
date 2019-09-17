@@ -1,0 +1,30 @@
+INCLUDE(FindPkgConfig)
+PKG_CHECK_MODULES(PC_SCRAMBLER_CPP scrambler_cpp)
+
+FIND_PATH(
+    SCRAMBLER_CPP_INCLUDE_DIRS
+    NAMES scrambler_cpp/api.h
+    HINTS $ENV{SCRAMBLER_CPP_DIR}/include
+        ${PC_SCRAMBLER_CPP_INCLUDEDIR}
+    PATHS ${CMAKE_INSTALL_PREFIX}/include
+          /usr/local/include
+          /usr/include
+)
+
+FIND_LIBRARY(
+    SCRAMBLER_CPP_LIBRARIES
+    NAMES gnuradio-scrambler_cpp
+    HINTS $ENV{SCRAMBLER_CPP_DIR}/lib
+        ${PC_SCRAMBLER_CPP_LIBDIR}
+    PATHS ${CMAKE_INSTALL_PREFIX}/lib
+          ${CMAKE_INSTALL_PREFIX}/lib64
+          /usr/local/lib
+          /usr/local/lib64
+          /usr/lib
+          /usr/lib64
+)
+
+INCLUDE(FindPackageHandleStandardArgs)
+FIND_PACKAGE_HANDLE_STANDARD_ARGS(SCRAMBLER_CPP DEFAULT_MSG SCRAMBLER_CPP_LIBRARIES SCRAMBLER_CPP_INCLUDE_DIRS)
+MARK_AS_ADVANCED(SCRAMBLER_CPP_LIBRARIES SCRAMBLER_CPP_INCLUDE_DIRS)
+

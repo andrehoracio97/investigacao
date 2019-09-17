@@ -3,4 +3,39 @@ Scramble
 
 gr_modtool newmod sc_cpp
 cd gr-sc_cpp/
-gr_modtool add sc_test
+
+
+gr_modtool add custom_scrambler
+sync
+cpp
+int mask, int seed, int len, int frame_bits
+n
+n
+
+
+gr_modtool add custom_descrambler
+sync
+cpp
+int mask, int seed, int len, int frame_bits
+n
+n
+
+
+==========
+gr_modtool newmod scrambler_cpp
+cd gr-scrambler_cpp/
+
+gr_modtool add custom_scrambler
+general
+cpp
+int mask, int seed, int len, int frame_bits
+n
+n
+
+
+gr_modtool add custom_descrambler
+general
+cpp
+int mask, int seed, int len, int frame_bits
+n
+n

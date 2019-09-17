@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.13">
+  <compound refid="classgr_1_1scrambler__cpp_1_1custom__descrambler" kind="class"><name>gr::scrambler_cpp::custom_descrambler</name>
+    <member refid="classgr_1_1scrambler__cpp_1_1custom__descrambler_1ab683206796d601ab03c4fc78befca6e8" kind="typedef"><name>sptr</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1custom__descrambler_1a8a9a24cf69396ee08f33ce0b03914424" kind="function"><name>make</name></member>
+  </compound>
+  <compound refid="classgr_1_1scrambler__cpp_1_1custom__descrambler__impl" kind="class"><name>gr::scrambler_cpp::custom_descrambler_impl</name>
+    <member refid="classgr_1_1scrambler__cpp_1_1custom__descrambler__impl_1a78e6196991e7c49153b3326e1f2f4d70" kind="variable"><name>d_lfsr</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1custom__descrambler__impl_1a3a4d341982836c11d9ebf53b2388fe6e" kind="variable"><name>n_frame</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1custom__descrambler__impl_1a87f0aad07babc59479ec741d51f44cc8" kind="variable"><name>n_bits_descrambled</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1custom__descrambler__impl_1aea3abdd06d6c143ead7b01fe9ed46155" kind="variable"><name>track_n_bits_seed</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1custom__descrambler__impl_1a8eeb9526e3380161598e42f8ae73ff34" kind="variable"><name>new_seed</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1custom__descrambler__impl_1a56d900a454a432c76f695815d5684e85" kind="variable"><name>binary</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1custom__descrambler__impl_1a75042eab203b8a6fe490970a71245dc1" kind="function"><name>custom_descrambler_impl</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1custom__descrambler__impl_1a064c082329eb1a44ff30970f4ebc8fb6" kind="function"><name>~custom_descrambler_impl</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1custom__descrambler__impl_1ad4ad247069b38451cc0ad213dd5d425b" kind="function"><name>forecast</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1custom__descrambler__impl_1a80e58281e023ab4cab567cc9d736afba" kind="function"><name>general_work</name></member>
+  </compound>
+  <compound refid="classgr_1_1scrambler__cpp_1_1custom__scrambler" kind="class"><name>gr::scrambler_cpp::custom_scrambler</name>
+    <member refid="classgr_1_1scrambler__cpp_1_1custom__scrambler_1acb2e86850cbb24a316cdbd63e8b431f5" kind="typedef"><name>sptr</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1custom__scrambler_1a3d3540ee73a508c61cbe90b3dcb085f6" kind="function"><name>make</name></member>
+  </compound>
+  <compound refid="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl" kind="class"><name>gr::scrambler_cpp::custom_scrambler_impl</name>
+    <member refid="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1a7d39665b363d21ba3e451ff9cc2f529a" kind="variable"><name>d_lfsr</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1a92b68eb578c22e85a38a93c03f4e6daf" kind="variable"><name>n_bits_scrambled</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1aa08b2f83edda0d7ba66dc8548b3d3aa8" kind="variable"><name>n_frame</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1aa0a3a92afe411040aa09a91594a6f658" kind="variable"><name>track_n_bits_seed</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1a93829cbb175f2b75a44ad0ad156783b8" kind="variable"><name>new_seed</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1a8194ea0fd87bb5a4779aff40f91b3199" kind="variable"><name>binary</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1a7838084b38b70b5550d7cd3f54222953" kind="function"><name>custom_scrambler_impl</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1a2f3b4b001fcfacb2ddee258e82b83a1e" kind="function"><name>~custom_scrambler_impl</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1af725a6812d723f1f613e438df533a77e" kind="function"><name>forecast</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1a43dc9003a711a16a74d5734e822347ec" kind="function"><name>general_work</name></member>
+  </compound>
+  <compound refid="namespacegr" kind="namespace"><name>gr</name>
+  </compound>
+  <compound refid="namespacegr_1_1scrambler__cpp" kind="namespace"><name>gr::scrambler_cpp</name>
+  </compound>
+  <compound refid="namespacestd" kind="namespace"><name>std</name>
+  </compound>
+  <compound refid="api_8h" kind="file"><name>api.h</name>
+    <member refid="api_8h_1a75f5bfb8209fedbd5cb30431f5955a5f" kind="define"><name>SCRAMBLER_CPP_API</name></member>
+  </compound>
+  <compound refid="custom__descrambler_8h" kind="file"><name>custom_descrambler.h</name>
+  </compound>
+  <compound refid="custom__descrambler__impl_8h" kind="file"><name>custom_descrambler_impl.h</name>
+  </compound>
+  <compound refid="custom__scrambler_8h" kind="file"><name>custom_scrambler.h</name>
+  </compound>
+  <compound refid="custom__scrambler__impl_8h" kind="file"><name>custom_scrambler_impl.h</name>
+  </compound>
+  <compound refid="group__defs_8dox" kind="file"><name>group_defs.dox</name>
+  </compound>
+  <compound refid="main__page_8dox" kind="file"><name>main_page.dox</name>
+  </compound>
+  <compound refid="group__block" kind="group"><name>block</name>
+  </compound>
+  <compound refid="dir_d44c64559bbebec7f509842c48db8b23" kind="dir"><name>include</name>
+  </compound>
+  <compound refid="dir_97aefd0d527b934f1d99a682da8fe6a9" kind="dir"><name>lib</name>
+  </compound>
+  <compound refid="dir_eec20cd2d33e480068c09e037cc9e4b8" kind="dir"><name>scrambler_cpp</name>
+  </compound>
+  <compound refid="indexpage" kind="page"><name>index</name>
+  </compound>
+</doxygenindex>

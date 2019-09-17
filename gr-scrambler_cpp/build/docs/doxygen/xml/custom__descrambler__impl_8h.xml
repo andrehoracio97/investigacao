@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="custom__descrambler__impl_8h" kind="file" language="C++">
+    <compoundname>custom_descrambler_impl.h</compoundname>
+    <includes refid="custom__descrambler_8h" local="no">scrambler_cpp/custom_descrambler.h</includes>
+    <includes local="no">gnuradio/digital/lfsr.h</includes>
+    <incdepgraph>
+      <node id="16">
+        <label>gnuradio/attributes.h</label>
+      </node>
+      <node id="18">
+        <label>gnuradio/digital/lfsr.h</label>
+      </node>
+      <node id="17">
+        <label>gnuradio/block.h</label>
+      </node>
+      <node id="15">
+        <label>scrambler_cpp/api.h</label>
+        <link refid="api_8h"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>custom_descrambler_impl.h</label>
+        <link refid="custom__descrambler__impl_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>scrambler_cpp/custom_descrambler.h</label>
+        <link refid="custom__descrambler_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classgr_1_1scrambler__cpp_1_1custom__descrambler__impl" prot="public">gr::scrambler_cpp::custom_descrambler_impl</innerclass>
+    <innernamespace refid="namespacegr">gr</innernamespace>
+    <innernamespace refid="namespacegr_1_1scrambler__cpp">gr::scrambler_cpp</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_descrambler_impl.h"/>
+  </compounddef>
+</doxygen>
