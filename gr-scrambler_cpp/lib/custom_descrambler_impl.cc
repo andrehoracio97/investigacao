@@ -45,7 +45,7 @@ namespace gr {
               gr::io_signature::make(1, 1, sizeof(unsigned char))),
       d_lfsr(mask, seed, len),
       n_frame(frame_bits),
-      n_bits_descrambled(0),
+      n_bits_descrambled(409),
       track_n_bits_seed(0),
       new_seed(0),
       binary()
@@ -61,8 +61,8 @@ namespace gr {
     void
     custom_descrambler_impl::forecast (int noutput_items, gr_vector_int &ninput_items_required)
     {
-            unsigned ninputs = ninput_items_required.size ();
-      for(unsigned i = 0; i < ninputs; i++)
+    unsigned ninputs = ninput_items_required.size ();
+    for(unsigned i = 0; i < ninputs; i++)
       ninput_items_required[i] = noutput_items;
     }
 
@@ -76,34 +76,50 @@ namespace gr {
       unsigned char *out = (unsigned char *) output_items[0];
 
       // Do <+signal processing+>
-      for(int i=0;i<noutput_items;i++){
-        if(n_bits_descrambled<n_frame){
-          out[i]=d_lfsr.next_bit_descramble(in[i]);
-          n_bits_descrambled=n_bits_descrambled+1;
-        }
-        else{
-          //PICK the 32 bits NEW SEED FROM INPUT
-          if(track_n_bits_seed<32){
-            //binary=in[0]+binary;
-            if(in[0]==1){
-              new_seed=new_seed+pow (2.0, track_n_bits_seed);
-            }
-            track_n_bits_seed=track_n_bits_seed+1;
-          }else{
-            //new_seed=std::bitset<32>(binary).atoi();.
-            d_lfsr.reset_to_value(new_seed);
-            n_bits_descrambled=0;
+      int ii=0;
+      int oo=0;
+
+
+      if(n_bits_descrambled<n_frame){
+        out[0]=d_lfsr.next_bit_descramble(in[0]);
+        n_bits_descrambled=n_bits_descrambled+1;
+        ii=ii+1;
+        oo=oo+1;
+      }
+      else{
+        //PICK the 32 bits NEW SEED FROM INPUT
+        if(track_n_bits_seed<32){
+          //binary=in[0]+binary;
+          if(in[0]==1){
+            new_seed=new_seed+pow(2.0, 31-track_n_bits_seed);
           }
+          //new_seed=163;
+          track_n_bits_seed=track_n_bits_seed+1;
 
+          //Just consume, not preduce here
+          ii=ii+1;
+      
+        }else{
+          //new_seed=std::bitset<32>(binary).atoi();.
           //RESET REGISTER WITH NEW SEED
-          //out[i]=d_lfsr.next_bit_descramble(in[i]);
+          std::cout <<"DESCRAMBLER:"<< new_seed << "\n";
+          d_lfsr.reset_to_value(new_seed);
+          new_seed=0;
+          track_n_bits_seed=0;
+          n_bits_descrambled=0;
 
+          out[0]=d_lfsr.next_bit_descramble(in[0]);
+          n_bits_descrambled=n_bits_descrambled+1;
+          //produce and consume
+          oo=oo+1;
+          ii=ii+1;
         }
       }
-      consume_each (noutput_items);
+      
+      consume_each (ii);
 
       // Tell runtime system how many output items we produced.
-      return noutput_items;
+      return oo;
     }
 
   } /* namespace scrambler_cpp */

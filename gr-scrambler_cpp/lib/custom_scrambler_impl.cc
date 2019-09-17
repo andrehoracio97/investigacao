@@ -45,7 +45,7 @@ namespace gr {
               gr::io_signature::make(1, 1, sizeof(unsigned char))),
       d_lfsr(mask,seed,len),
       n_frame(frame_bits),
-      n_bits_scrambled(0),
+      n_bits_scrambled(409),
       track_n_bits_seed(0),
       new_seed(0),
       binary()
@@ -62,7 +62,7 @@ namespace gr {
     custom_scrambler_impl::forecast (int noutput_items, gr_vector_int &ninput_items_required)
     {
       /* <+forecast+> e.g. ninput_items_required[0] = noutput_items */
-      unsigned ninputs = ninput_items_required.size ();
+    unsigned ninputs = ninput_items_required.size ();
       for(unsigned i = 0; i < ninputs; i++)
       ninput_items_required[i] = noutput_items;
     }
@@ -75,49 +75,62 @@ namespace gr {
     {
       const unsigned char *in = (const unsigned char *) input_items[0];
       unsigned char *out = (unsigned char *) output_items[0];
-
+      int ii=0;
+      int oo=0;
       // Do <+signal processing+>
       // Tell runtime system how many input items we consumed on
       // each input stream.
-      for(int i=0;i<noutput_items;i++){  //in[i] has the unpacked bytes, so we bo byte at byte (in our case bit - unpacked)
+     
 
+      //in[i] has the unpacked bytes, so we bo byte at byte (in our case bit - unpacked)
         //If we still has bits to scramble, go ahead
-        if(n_bits_scrambled<n_frame){
-          out[i]=d_lfsr.next_bit_scramble(in[i]);
+
+
+      if(n_bits_scrambled<n_frame){//Normal behaviou - Just Scramble
+          out[0]=d_lfsr.next_bit_scramble(in[0]);
           n_bits_scrambled=n_bits_scrambled+1;
-        }
-        else{ //end of frame bits, new stuff to do
-
-
-          if(track_n_bits_seed==0){
-            //NEW SEED - if we have left bits at 0 (we don't begin yet)
+          ii=ii+1;
+          oo=oo+1;
+      }
+      else{ //end of frame bits, new stuff to do
+        if(track_n_bits_seed==0){  //NEW SEED - if we have left bits at 0 (we don't begin creating the new seed yet)
+    
             new_seed = rand()%255; //Betwen 0 an max value. 2147483647
+            //new_seed = 163;
+            //std::cout << new_seed;
             //Convert SEED to binary of 32 bits
             binary = std::bitset<32>(new_seed).to_string();
-          }
-          
-
+        }
           //Now we need to add the new 32 bits of the new seet to our stream (BIT per BIT), taking into account the space available on output buffer, we can do this by only tracking the left bits because we come here again (bacause the for cycle).
           //--if we still has bits, then we keep adding and tracking how many left bits and don't and reset n_bits_scrambled).
-          if(track_n_bits_seed<32){
-            out[i]=binary[track_n_bits_seed];
+        if(track_n_bits_seed<32){
+            out[0]=int(binary[track_n_bits_seed]-48);
             track_n_bits_seed=track_n_bits_seed+1;
-          }
-          else{
+            //do not consume, only produce
+          oo=oo+1;
+          ii=0;
+        }
+        else{
           //--if there is no left bits we reset reset seed to lfsr and reset n_bits_scrambled
             track_n_bits_seed=0; //Reset track
+            std::cout <<"SCRAMBLER:"<< new_seed << "\n";
+
             d_lfsr.reset_to_value(new_seed); //Scramble with new seed
             n_bits_scrambled=0; //Scramble a new packet
 
+
+            out[0]=d_lfsr.next_bit_scramble(in[0]);
+            n_bits_scrambled=n_bits_scrambled+1;
+            ii=ii+1;
+            oo=oo+1;
+
           }
         }
-      }
-
-
-      consume_each (noutput_items);
+      
+      consume_each (ii);
 
       // Tell runtime system how many output items we produced.
-      return noutput_items;
+      return oo;
     }
 
   } /* namespace scrambler_cpp */
