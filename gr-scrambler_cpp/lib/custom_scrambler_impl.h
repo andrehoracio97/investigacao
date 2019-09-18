@@ -35,8 +35,6 @@ namespace gr {
       int track_n_bits_seed;
       int new_seed;
       std::string binary;
-      int flush;
-      int count;
       int added_bits;
      public:
       custom_scrambler_impl(int mask, int seed, int len, int frame_bits);

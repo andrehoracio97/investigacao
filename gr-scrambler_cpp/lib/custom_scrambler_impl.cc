@@ -25,6 +25,7 @@
 #include <gnuradio/io_signature.h>
 #include "custom_scrambler_impl.h"
 #include <stdlib.h>     /* srand, rand */
+#include <bitset> /*para converter*/
 
 namespace gr {
   namespace scrambler_cpp {
@@ -45,12 +46,10 @@ namespace gr {
               gr::io_signature::make(1, 1, sizeof(unsigned char))),
       d_lfsr(mask,seed,len),
       n_frame(frame_bits),
-      n_bits_scrambled(409),
+      n_bits_scrambled(600),
       track_n_bits_seed(0),
       new_seed(0),
       binary(),
-      flush(0),
-      count(8),
       added_bits(0)
     {}
 
@@ -86,101 +85,46 @@ namespace gr {
      
 
       //in[i] has the unpacked bytes, so we bo byte at byte (in our case bit - unpacked)
-        //If we still has bits to scramble, go ahead
-
-
-         /* if(n_bits_scrambled<n_frame){
-            out[0]=d_lfsr.next_bit_scramble(in[0]);
-            n_bits_scrambled=n_bits_scrambled+1;
-            ii=ii+1;
-            oo=oo+1;
-          }else{
-            out[0]=d_lfsr.next_bit_scramble(0);
-            oo=oo+1;
-          }
-      }*/
-
-
-/*
-          if(n_bits_scrambled==n_frame-1){//Se for o ultimo bit do frame - Mandar mais 8 bits
-            out[0]=d_lfsr.next_bit_scramble(in[0]);
-            n_bits_scrambled=n_bits_scrambled+1;
-            ii=ii+1;
-            oo=oo+1;
-            while (added_bits<8){
-              //printf("faz8\n");
-              out[added_bits+1]=d_lfsr.next_bit_scramble(0);
-              oo=oo+1;
-              added_bits=added_bits+1;
-            }
-          }else{
-            out[0]=d_lfsr.next_bit_scramble(in[0]);
-            n_bits_scrambled=n_bits_scrambled+1;
-            ii=ii+1;
-            oo=oo+1;
-          }
-
-
-*/
-      if(n_bits_scrambled<n_frame){//Normal behaviour - Just Scramble
+        //If we still has bits to scramble, go ahead  
+      if(n_bits_scrambled<(n_frame+8)){//Normal behaviour - Just Scramble
+        if(n_bits_scrambled<8){ //Os primeiros 8 são lixo -- só consome
+          d_lfsr.next_bit_scramble(in[0]);
+          n_bits_scrambled=n_bits_scrambled+1;
+          ii=ii+1;
+        }else if(n_bits_scrambled>=8 && n_bits_scrambled<n_frame){ //Normal- consome e produz
           out[0]=d_lfsr.next_bit_scramble(in[0]);
           n_bits_scrambled=n_bits_scrambled+1;
           ii=ii+1;
           oo=oo+1;
-
-
-        /*  if(n_bits_scrambled==n_frame-1){
-            while (added_bits<8){
-              printf("faz8\n");
-              out[added_bits+1]=d_lfsr.next_bit_scramble(0);
-              oo=oo+1;
-              added_bits=added_bits+1;
-            }
-            n_bits_scrambled=n_bits_scrambled+1; 
-        }*/
+        }else{ //ultimos 8 bits finais - Só produz
+          out[0]=d_lfsr.next_bit_scramble(0);
+          oo=oo+1;
+          n_bits_scrambled=n_bits_scrambled+1;
+        }
       }
       else{ //end of frame bits, new stuff to do
         if(track_n_bits_seed==0){  //NEW SEED - if we have left bits at 0 (we don't begin creating the new seed yet)
-          added_bits=0;
-            new_seed = rand()%255; //Betwen 0 an max value. 2147483647
-            //new_seed = 163;
-            //std::cout << new_seed;
-            //Convert SEED to binary of 32 bits
-            binary = std::bitset<32>(new_seed).to_string();
+          new_seed = rand()%255; //Betwen 0 an max value. 2147483647
+          //new_seed = 163;
+          //std::cout << new_seed;
+          binary = std::bitset<32>(new_seed).to_string(); //Convert SEED to binary of 32 bits
         }
           //Now we need to add the new 32 bits of the new seet to our stream (BIT per BIT), taking into account the space available on output buffer, we can do this by only tracking the left bits because we come here again (bacause the for cycle).
           //--if we still has bits, then we keep adding and tracking how many left bits and don't and reset n_bits_scrambled).
         if(track_n_bits_seed<32){
-            out[0]=int(binary[track_n_bits_seed]-48);
-            track_n_bits_seed=track_n_bits_seed+1;
-            //do not consume, only produce
+          out[0]=(int(binary[track_n_bits_seed])-48);
+          track_n_bits_seed=track_n_bits_seed+1;
+          //do not consume, only produce
           oo=oo+1;
-          ii=0;
-        }
-        else{
-          //--if there is no left bits we reset reset seed to lfsr and reset n_bits_scrambled
-            track_n_bits_seed=0; //Reset track
-            std::cout <<"SCRAMBLER:"<< new_seed << "\n";
-
-
-
-
-            d_lfsr.reset_to_value(new_seed); //Scramble with new seed
-            n_bits_scrambled=0; //Scramble a new packet
-
-            flush=1;
-
-            //out[0]=d_lfsr.next_bit_scramble(in[0]);
-            //n_bits_scrambled=n_bits_scrambled+1;
-            //ii=ii+1;
-            //oo=oo+1;
-
+        }else{ //FIM BLOCO SEED
+          //--if there is no left bits we reset seed to lfsr and reset n_bits_scrambled
+          //std::cout <<"SCRAMBLER:"<< new_seed << "\n";
+          d_lfsr.reset_to_value(new_seed); //Scramble with new seed
+          track_n_bits_seed=0; //Reset track
+          n_bits_scrambled=0; //Scramble a new packet
           }
-        }
-    
-      
+        }    
       consume_each (ii);
-
       // Tell runtime system how many output items we produced.
       return oo;
     }

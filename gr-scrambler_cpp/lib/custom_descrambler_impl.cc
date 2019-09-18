@@ -47,9 +47,7 @@ namespace gr {
       n_frame(frame_bits),
       n_bits_descrambled(409),
       track_n_bits_seed(0),
-      new_seed(0),
-      binary(),
-      trash(8)
+      new_seed(0)
     {}
 
     /*
@@ -80,59 +78,28 @@ namespace gr {
       int ii=0;
       int oo=0;
 
-      if(n_bits_descrambled<n_frame){
-
-        //ADDED primeiro bloco do if
-      /*  if(trash!=0){
-          d_lfsr.next_bit_descramble(in[0]);
-          n_bits_descrambled=n_bits_descrambled+1;
-          ii=ii+1;
-          trash=trash-1;
-        }
-        else{*/
+      if(n_bits_descrambled<n_frame){ //For a frame we just descrable, produce and consume
           out[0]=d_lfsr.next_bit_descramble(in[0]);
           n_bits_descrambled=n_bits_descrambled+1;
           ii=ii+1;
           oo=oo+1;
-
-       /* }*/
-      }
-      else{
-        //PICK the 32 bits NEW SEED FROM INPUT
+      }else{ //If we are not in a frame we pick the first 32 bits and set as the new seed
         if(track_n_bits_seed<32){
-          //binary=in[0]+binary;
           if(in[0]==1){
             new_seed=new_seed+pow(2.0, 31-track_n_bits_seed);
           }
-          //new_seed=163;
           track_n_bits_seed=track_n_bits_seed+1;
-
-          //Just consume, not preduce here
-          ii=ii+1;
+          ii=ii+1; //Just consume, not preduce here
         }else{
-
-          //RESET REGISTER WITH NEW SEED
-          std::cout <<"DESCRAMBLER:"<< new_seed << "\n";
-          d_lfsr.reset_to_value(new_seed);
+          //std::cout <<"DESCRAMBLER:"<< new_seed << "\n";
+          d_lfsr.reset_to_value(new_seed); //reset registers to a new seed
           new_seed=0;
           track_n_bits_seed=0;
           n_bits_descrambled=0;
-          trash=8;
-
-          //out[0]=d_lfsr.next_bit_descramble(in[0]);
-          //n_bits_descrambled=n_bits_descrambled+1;
-          //produce and consume
-          //oo=oo+1;
-          //ii=ii+1;
-
-          //====
-
-
         }
       }
       
       consume_each (ii);
-
       // Tell runtime system how many output items we produced.
       return oo;
     }

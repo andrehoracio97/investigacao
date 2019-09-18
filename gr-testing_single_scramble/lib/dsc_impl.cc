@@ -77,16 +77,16 @@ namespace gr {
       int ii=0;
       int oo=0;
 
-      if(trash!=0){
+      /*if(trash!=0){
         d_lfsr.next_bit_descramble(in[0]);
         ii=ii+1;
         trash=trash-1;
 
-      }else{
+      }else{*/
         out[0]=d_lfsr.next_bit_descramble(in[0]);
         ii++;
         oo++;        
-      }
+     /* }*/
 
 
       consume_each (ii);

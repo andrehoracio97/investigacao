@@ -10,30 +10,10 @@
 gnuradio/attributes.h
 -
 
-../include/testing_single_scramble/dsc.h
-testing_single_scramble/api.h
--
-gnuradio/block.h
--
-
 ../include/testing_single_scramble/sc.h
 testing_single_scramble/api.h
 -
 gnuradio/block.h
--
-
-/home/andre/investigacao/gr-testing_single_scramble/lib/dsc_impl.cc
-config.h
-/home/andre/investigacao/gr-testing_single_scramble/lib/config.h
-gnuradio/io_signature.h
--
-dsc_impl.h
-/home/andre/investigacao/gr-testing_single_scramble/lib/dsc_impl.h
-
-/home/andre/investigacao/gr-testing_single_scramble/lib/dsc_impl.h
-testing_single_scramble/dsc.h
--
-gnuradio/digital/lfsr.h
 -
 
 /home/andre/investigacao/gr-testing_single_scramble/lib/sc_impl.cc

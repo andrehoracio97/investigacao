@@ -79,7 +79,7 @@ namespace gr {
       int ii=0;
       int oo=0;
 
-      if (count==81230559){//Se for o ultimo mandar mais 8 bits    26696 é o ultimo bit logo 26695 é o ultimo pq do 0.
+      if (count==26695){//Se for o ultimo mandar mais 8 bits    26696 é o ultimo bit logo 26695 é o ultimo pq do 0. Transmit10-81230559
         printf("É o ultimo, manda mais 8 bits para flush.\n");
         //Ler o ultimo
         out[0]=d_lfsr.next_bit_scramble(in[0]);
@@ -91,21 +91,18 @@ namespace gr {
           oo=oo+1;
           added_bits=added_bits+1;
         }
-
-  
-
-
-
       }else{
-        out[0]=d_lfsr.next_bit_scramble(in[0]);
-        ii++;
-        oo++;
-        count++;
+        if (count<8){
+          d_lfsr.next_bit_scramble(in[0]);
+          ii++;
+          count++;
+        }else{
+          out[0]=d_lfsr.next_bit_scramble(in[0]);
+          ii++;
+          oo++;
+          count++;
+        }
       }
-      
-
-      
-
 
       consume_each (ii);
 
