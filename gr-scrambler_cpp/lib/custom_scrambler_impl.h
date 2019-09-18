@@ -36,6 +36,10 @@ namespace gr {
       int new_seed;
       std::string binary;
       int added_bits;
+      int create_block_seed;
+      int time_to_create;
+      int remaining_bits;
+      int max_n_produce;
      public:
       custom_scrambler_impl(int mask, int seed, int len, int frame_bits);
       ~custom_scrambler_impl();

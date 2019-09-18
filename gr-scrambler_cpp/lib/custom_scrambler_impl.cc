@@ -46,11 +46,15 @@ namespace gr {
               gr::io_signature::make(1, 1, sizeof(unsigned char))),
       d_lfsr(mask,seed,len),
       n_frame(frame_bits),
-      n_bits_scrambled(600),
-      track_n_bits_seed(0),
+      n_bits_scrambled(99999999),
+      track_n_bits_seed(32),
       new_seed(0),
       binary(),
-      added_bits(0)
+      added_bits(0),
+      create_block_seed(0),
+      time_to_create(1),
+      remaining_bits(frame_bits),
+      max_n_produce(0)
     {}
 
     /*
@@ -82,53 +86,44 @@ namespace gr {
       // Do <+signal processing+>
       // Tell runtime system how many input items we consumed on
       // each input stream.
-     
-
-      //in[i] has the unpacked bytes, so we bo byte at byte (in our case bit - unpacked)
-        //If we still has bits to scramble, go ahead  
-      if(n_bits_scrambled<(n_frame+8)){//Normal behaviour - Just Scramble
-        if(n_bits_scrambled<8){ //Os primeiros 8 são lixo -- só consome
-          d_lfsr.next_bit_scramble(in[0]);
-          n_bits_scrambled=n_bits_scrambled+1;
-          ii=ii+1;
-        }else if(n_bits_scrambled>=8 && n_bits_scrambled<n_frame){ //Normal- consome e produz
-          out[0]=d_lfsr.next_bit_scramble(in[0]);
-          n_bits_scrambled=n_bits_scrambled+1;
-          ii=ii+1;
-          oo=oo+1;
-        }else{ //ultimos 8 bits finais - Só produz
-          out[0]=d_lfsr.next_bit_scramble(0);
-          oo=oo+1;
-          n_bits_scrambled=n_bits_scrambled+1;
+      if(time_to_create==1){
+       
+        if(track_n_bits_seed==32){
+          new_seed = rand()%255;
+          std::cout << "NEW SEED\n";
+          //new_seed=163;
+          binary = std::bitset<32>(new_seed).to_string();
+        }
+        max_n_produce=(std::min(noutput_items,track_n_bits_seed));
+        for(int i=0; i<max_n_produce; i++){ //Normalmente track_n_bits_seed menor a 32
+          out[i]=(int(binary[32-track_n_bits_seed])-48);
+          track_n_bits_seed=track_n_bits_seed-1;
+          oo=oo+1;//do not consume, only produce
+        }
+        if(max_n_produce<=noutput_items){ //Ultima parte quando sai do ssed value.
+          track_n_bits_seed=32;
+          time_to_create=0;
+          d_lfsr.reset_to_value(new_seed);
+        }
+      }else{
+        max_n_produce=(std::min(noutput_items,remaining_bits));
+        for(int i=0; i<max_n_produce; i++){ //Para todos os 
+          out[i]=d_lfsr.next_bit_scramble(in[i]);
+          remaining_bits--;
+          ii++;
+          oo++;
+          if(remaining_bits==0){ //COLOCAR <=0 caso de algum erro
+            //CREATE SEED BLOCK
+            time_to_create=1;
+            remaining_bits=n_frame;
+          }
+          //IF remaining bits poder ser fora acho....testar
         }
       }
-      else{ //end of frame bits, new stuff to do
-        if(track_n_bits_seed==0){  //NEW SEED - if we have left bits at 0 (we don't begin creating the new seed yet)
-          new_seed = rand()%255; //Betwen 0 an max value. 2147483647
-          //new_seed = 163;
-          //std::cout << new_seed;
-          binary = std::bitset<32>(new_seed).to_string(); //Convert SEED to binary of 32 bits
-        }
-          //Now we need to add the new 32 bits of the new seet to our stream (BIT per BIT), taking into account the space available on output buffer, we can do this by only tracking the left bits because we come here again (bacause the for cycle).
-          //--if we still has bits, then we keep adding and tracking how many left bits and don't and reset n_bits_scrambled).
-        if(track_n_bits_seed<32){
-          out[0]=(int(binary[track_n_bits_seed])-48);
-          track_n_bits_seed=track_n_bits_seed+1;
-          //do not consume, only produce
-          oo=oo+1;
-        }else{ //FIM BLOCO SEED
-          //--if there is no left bits we reset seed to lfsr and reset n_bits_scrambled
-          //std::cout <<"SCRAMBLER:"<< new_seed << "\n";
-          d_lfsr.reset_to_value(new_seed); //Scramble with new seed
-          track_n_bits_seed=0; //Reset track
-          n_bits_scrambled=0; //Scramble a new packet
-          }
-        }    
       consume_each (ii);
       // Tell runtime system how many output items we produced.
       return oo;
     }
-
   } /* namespace scrambler_cpp */
 } /* namespace gr */
 

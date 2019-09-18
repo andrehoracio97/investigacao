@@ -45,9 +45,12 @@ namespace gr {
               gr::io_signature::make(1, 1, sizeof(unsigned char))),
       d_lfsr(mask, seed, len),
       n_frame(frame_bits),
-      n_bits_descrambled(409),
-      track_n_bits_seed(0),
-      new_seed(0)
+      n_bits_descrambled(99999999),
+      track_n_bits_seed(32),
+      new_seed(0),
+      remaining_bits(frame_bits),
+      max_n_produce(0),
+      time_to_get(1)
     {}
 
     /*
@@ -77,27 +80,36 @@ namespace gr {
       // Do <+signal processing+>
       int ii=0;
       int oo=0;
-
-      if(n_bits_descrambled<n_frame){ //For a frame we just descrable, produce and consume
-          out[0]=d_lfsr.next_bit_descramble(in[0]);
-          n_bits_descrambled=n_bits_descrambled+1;
-          ii=ii+1;
-          oo=oo+1;
-      }else{ //If we are not in a frame we pick the first 32 bits and set as the new seed
-        if(track_n_bits_seed<32){
-          if(in[0]==1){
-            new_seed=new_seed+pow(2.0, 31-track_n_bits_seed);
+      if(time_to_get==1){
+        max_n_produce=(std::min(noutput_items,track_n_bits_seed));
+        for(int i=0; i<max_n_produce; i++){ //Normalmente track_n_bits_seed menor a 32
+          if(in[i]==1){
+            new_seed=new_seed+pow(2.0, 32-track_n_bits_seed);
           }
-          track_n_bits_seed=track_n_bits_seed+1;
-          ii=ii+1; //Just consume, not preduce here
-        }else{
-          //std::cout <<"DESCRAMBLER:"<< new_seed << "\n";
-          d_lfsr.reset_to_value(new_seed); //reset registers to a new seed
-          new_seed=0;
-          track_n_bits_seed=0;
-          n_bits_descrambled=0;
+          track_n_bits_seed--;
+          ii++;
+        }
+        if(max_n_produce<=noutput_items){ //Ultima parte quando sai do bloco do seed
+          track_n_bits_seed=32;
+          time_to_get=0;
+          //new_seed=163;
+          d_lfsr.reset_to_value(new_seed);
+        }
+      }else{
+        max_n_produce=(std::min(noutput_items,remaining_bits));
+        for(int i=0; i<max_n_produce; i++){ //Para todos os 
+          out[i]=d_lfsr.next_bit_descramble(in[i]);
+          remaining_bits--;
+          ii++;
+          oo++;
+          if(remaining_bits==0){ //COLOCAR <=0 caso de algum erro
+            //CREATE SEED BLOCK
+            time_to_get=1;
+            remaining_bits=n_frame;
+          }
         }
       }
+
       
       consume_each (ii);
       // Tell runtime system how many output items we produced.

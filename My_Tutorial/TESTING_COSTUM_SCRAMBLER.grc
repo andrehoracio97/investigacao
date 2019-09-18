@@ -308,15 +308,15 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>file</key>
-      <value>/home/andre/Desktop/encoded.txt</value>
+      <value>/home/andre/Desktop/Trasmited/encoded.txt</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(672, 164)</value>
+      <value>(768, 124)</value>
     </param>
     <param>
       <key>_rotation</key>

@@ -178,6 +178,8 @@ class top_block(gr.top_block, Qt.QWidget):
         self.blocks_repack_bits_bb_0 = blocks.repack_bits_bb(1, 8, "", False, gr.GR_MSB_FIRST)
         self.blocks_file_source_0_0_1_0 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Desktop/Trasmited/book_edited.txt', False)
         self.blocks_file_source_0_0_1_0.set_begin_tag(pmt.PMT_NIL)
+        self.blocks_file_sink_0_0_0_2_0_0 = blocks.file_sink(gr.sizeof_char*1, '/home/andre/Desktop/Trasmited/encoded.txt', False)
+        self.blocks_file_sink_0_0_0_2_0_0.set_unbuffered(False)
         self.blocks_file_sink_0_0_0_2 = blocks.file_sink(gr.sizeof_char*1, '/home/andre/Desktop/Trasmited/depois.txt', False)
         self.blocks_file_sink_0_0_0_2.set_unbuffered(False)
         self.blocks_char_to_float_1_0_1 = blocks.char_to_float(1, 1)
@@ -197,6 +199,7 @@ class top_block(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_repack_bits_bb_1_0_0_1, 0), (self.scrambler_cpp_custom_scrambler_0, 0))
         self.connect((self.blocks_throttle_0, 0), (self.scrambler_cpp_custom_descrambler_0, 0))
         self.connect((self.scrambler_cpp_custom_descrambler_0, 0), (self.blocks_repack_bits_bb_0, 0))
+        self.connect((self.scrambler_cpp_custom_scrambler_0, 0), (self.blocks_file_sink_0_0_0_2_0_0, 0))
         self.connect((self.scrambler_cpp_custom_scrambler_0, 0), (self.blocks_throttle_0, 0))
 
     def closeEvent(self, event):
