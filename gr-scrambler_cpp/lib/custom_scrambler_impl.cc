@@ -90,8 +90,8 @@ namespace gr {
        
         if(track_n_bits_seed==32){
           new_seed = rand()%255;
-          std::cout << "NEW SEED\n";
           //new_seed=163;
+          //std::cout << "SCRAMBLER: " << new_seed <<"\n";
           binary = std::bitset<32>(new_seed).to_string();
         }
         max_n_produce=(std::min(noutput_items,track_n_bits_seed));
@@ -112,12 +112,11 @@ namespace gr {
           remaining_bits--;
           ii++;
           oo++;
-          if(remaining_bits==0){ //COLOCAR <=0 caso de algum erro
-            //CREATE SEED BLOCK
-            time_to_create=1;
-            remaining_bits=n_frame;
-          }
-          //IF remaining bits poder ser fora acho....testar
+        }
+        if(max_n_produce<=remaining_bits){ //COLOCAR <=0 caso de algum erro
+          //CREATE SEED BLOCK
+          time_to_create=1;
+          remaining_bits=n_frame;
         }
       }
       consume_each (ii);

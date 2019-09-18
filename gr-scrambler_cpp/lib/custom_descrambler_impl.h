@@ -38,6 +38,7 @@ namespace gr {
       int remaining_bits;
       int max_n_produce;
       int time_to_get;
+      int index_seed;
 
      public:
       custom_descrambler_impl(int mask, int seed, int len, int frame_bits);
