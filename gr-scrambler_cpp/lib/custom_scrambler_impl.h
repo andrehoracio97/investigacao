@@ -40,6 +40,7 @@ namespace gr {
       int time_to_create;
       int remaining_bits;
       int max_n_produce;
+      int index_seed;
      public:
       custom_scrambler_impl(int mask, int seed, int len, int frame_bits);
       ~custom_scrambler_impl();

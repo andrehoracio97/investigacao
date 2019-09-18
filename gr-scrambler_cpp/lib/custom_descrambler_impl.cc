@@ -46,12 +46,12 @@ namespace gr {
       d_lfsr(mask, seed, len),
       n_frame(frame_bits),
       n_bits_descrambled(99999999),
-      track_n_bits_seed(31),
+      track_n_bits_seed(32),
       new_seed(0),
       remaining_bits(frame_bits),
       max_n_produce(0),
       time_to_get(1),
-      index_seed(0)
+      index_seed(31)
     {}
 
     /*
@@ -83,24 +83,24 @@ namespace gr {
       int oo=0;
       if(time_to_get==1){
         max_n_produce=(std::min(noutput_items,track_n_bits_seed));
-        for(int i=max_n_produce; i>=0; i--){ //Normalmente track_n_bits_seed menor a 32
+        for(int i=0; i<max_n_produce; i++){ //Normalmente track_n_bits_seed menor a 32
           if(int(in[i])==1){
             new_seed=new_seed+pow(2.0, index_seed);
           }
-          std::cout << "BIT:" << int(in[i]) << "\n";
+          //std::cout << "BIT:" << int(in[i]) << "\n";
           track_n_bits_seed--;
-          index_seed++;
+          index_seed--;
           ii++;
         }
-        if(max_n_produce<=noutput_items){ //Ultima parte do bloco seed já foi enviada - reset valores
-          track_n_bits_seed=31;
+        if(track_n_bits_seed==0){ //Ultima parte do bloco seed já foi enviada - reset valores
+          track_n_bits_seed=32;
           time_to_get=0;
           remaining_bits=n_frame;
           //new_seed=163;
           std::cout << "DESCRAMBLER: " << new_seed <<"\n";
           d_lfsr.reset_to_value(new_seed);
           new_seed=0;
-          index_seed=0;
+          index_seed=31;
         }
       }else{
         max_n_produce=(std::min(noutput_items,remaining_bits));
@@ -110,7 +110,7 @@ namespace gr {
           ii++;
           oo++;
         }
-        if(max_n_produce<=0){ //COLOCAR <=0 caso de algum erro
+        if(remaining_bits<=0){ //TODOS OS BITS DA FRAME ENVIADOS
           //CREATE SEED BLOCK
           time_to_get=1;
           remaining_bits=n_frame;

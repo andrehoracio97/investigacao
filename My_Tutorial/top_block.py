@@ -67,8 +67,8 @@ class top_block(gr.top_block, Qt.QWidget):
         ##################################################
         # Blocks
         ##################################################
-        self.scrambler_cpp_custom_scrambler_0 = scrambler_cpp.custom_scrambler(0x8A, 0x7F, 7, 440-32)
-        self.scrambler_cpp_custom_descrambler_0 = scrambler_cpp.custom_descrambler(0x8A, 0x7F, 7, 440-32)
+        self.scrambler_cpp_custom_scrambler_0 = scrambler_cpp.custom_scrambler(0x8A, 0x7F, 7, 440-8)
+        self.scrambler_cpp_custom_descrambler_0 = scrambler_cpp.custom_descrambler(0x8A, 0x7F, 7, 440-8)
         self.qtgui_time_sink_x_0_1 = qtgui.time_sink_f(
         	100*2, #size
         	samp_rate, #samp_rate
