@@ -62,13 +62,13 @@ class top_block(gr.top_block, Qt.QWidget):
         # Variables
         ##################################################
         self.samp_rate_array_MCR = samp_rate_array_MCR = [7500000,5000000,3750000,3000000,2500000,2000000,1500000,1000000,937500,882352,833333,714285,533333,500000,421052,400000,380952,3000]
-        self.samp_rate = samp_rate = samp_rate_array_MCR[0]
+        self.samp_rate = samp_rate = samp_rate_array_MCR[2]
 
         ##################################################
         # Blocks
         ##################################################
-        self.scrambler_cpp_custom_scrambler_0 = scrambler_cpp.custom_scrambler(0x8A, 0x7F, 7, 440-8)
-        self.scrambler_cpp_custom_descrambler_0 = scrambler_cpp.custom_descrambler(0x8A, 0x7F, 7, 440-8)
+        self.scrambler_cpp_custom_scrambler_0 = scrambler_cpp.custom_scrambler(0x8A, 0x7F, 7, 440-32)
+        self.scrambler_cpp_custom_descrambler_0 = scrambler_cpp.custom_descrambler(0x8A, 0x7F, 7, 440-32)
         self.qtgui_time_sink_x_0_1 = qtgui.time_sink_f(
         	100*2, #size
         	samp_rate, #samp_rate
@@ -176,7 +176,7 @@ class top_block(gr.top_block, Qt.QWidget):
         self.blocks_throttle_0 = blocks.throttle(gr.sizeof_char*1, samp_rate,True)
         self.blocks_repack_bits_bb_1_0_0_1 = blocks.repack_bits_bb(8, 1, '', False, gr.GR_MSB_FIRST)
         self.blocks_repack_bits_bb_0 = blocks.repack_bits_bb(1, 8, "", False, gr.GR_MSB_FIRST)
-        self.blocks_file_source_0_0_1_0 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Desktop/Trasmited/book_edited.txt', False)
+        self.blocks_file_source_0_0_1_0 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Desktop/Trasmited/book.txt', False)
         self.blocks_file_source_0_0_1_0.set_begin_tag(pmt.PMT_NIL)
         self.blocks_file_sink_0_0_0_2_0_0 = blocks.file_sink(gr.sizeof_char*1, '/home/andre/Desktop/Trasmited/encoded.txt', False)
         self.blocks_file_sink_0_0_0_2_0_0.set_unbuffered(False)
@@ -212,7 +212,7 @@ class top_block(gr.top_block, Qt.QWidget):
 
     def set_samp_rate_array_MCR(self, samp_rate_array_MCR):
         self.samp_rate_array_MCR = samp_rate_array_MCR
-        self.set_samp_rate(self.samp_rate_array_MCR[0])
+        self.set_samp_rate(self.samp_rate_array_MCR[2])
 
     def get_samp_rate(self):
         return self.samp_rate

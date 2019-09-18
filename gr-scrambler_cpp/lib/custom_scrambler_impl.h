@@ -41,6 +41,9 @@ namespace gr {
       int remaining_bits;
       int max_n_produce;
       int index_seed;
+      int flag_first;
+      int flag_ultimo;
+      int track_n_bits_added;
      public:
       custom_scrambler_impl(int mask, int seed, int len, int frame_bits);
       ~custom_scrambler_impl();

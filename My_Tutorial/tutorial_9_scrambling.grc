@@ -1327,7 +1327,7 @@
     </param>
     <param>
       <key>file</key>
-      <value>/home/andre/Desktop/Trasmited/book_edited.txt</value>
+      <value>/home/andre/Desktop/Trasmited/trasmit_10_mb.txt</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -7983,12 +7983,6 @@
   <connection>
     <source_block_id>blocks_file_source_0_0_1_0</source_block_id>
     <sink_block_id>blocks_repack_bits_bb_1_0_0_1</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_file_source_0_0_1_0_0</source_block_id>
-    <sink_block_id>blocks_char_to_float_1_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

@@ -55,7 +55,10 @@ namespace gr {
       time_to_create(1),
       remaining_bits(frame_bits),
       max_n_produce(0),
-      index_seed(0)
+      index_seed(0),
+      flag_first(1),
+      flag_ultimo(0),
+      track_n_bits_added(8)
     {}
 
     /*
@@ -87,7 +90,23 @@ namespace gr {
       // Do <+signal processing+>
       // Tell runtime system how many input items we consumed on
       // each input stream.
-      if(time_to_create==1){      
+      if(flag_ultimo==1){
+        max_n_produce=(std::min(noutput_items,track_n_bits_added));
+        for(int i=0; i<max_n_produce; i++){
+          out[i]=d_lfsr.next_bit_scramble(0);
+          oo++;
+        }
+        if(max_n_produce==noutput_items){
+          flag_ultimo=1;
+          track_n_bits_added=max_n_produce;
+        }else{
+          flag_ultimo=0;
+          time_to_create=1;
+          track_n_bits_added=8;
+        }
+
+      }
+      else if(time_to_create==1){      
         if(track_n_bits_seed==32){
           new_seed = rand()%255;
           //new_seed=163;
@@ -107,33 +126,46 @@ namespace gr {
           std::cout << "SCRAMBLER new seed: " << new_seed <<"\n";
           d_lfsr.reset_to_value(new_seed);
 
-          //Aproveitar o fim do bloco do seed para consumir deitando fora o lixo
-       /*  while(added_bits<8){
-            d_lfsr.next_bit_scramble(in[max_n_produce+added_bits]);
-            ii++;
-            added_bits++;
-          }
-          added_bits=0;*/
+          flag_first=1;
         }
       }else{
-        max_n_produce=(std::min(noutput_items,remaining_bits));
-        for(int i=0; i<max_n_produce; i++){ //Para todos os 
-          out[i]=d_lfsr.next_bit_scramble(in[i]);
-          remaining_bits--;
-          ii++;
-          oo++;
-        }
-        if(remaining_bits<=0){ //TODOS OS BITS DA FRAME ENVIADOS
-          //CREATE SEED BLOCK
-          time_to_create=1;
-          remaining_bits=n_frame;
-         /* while(added_bits<8){
-            d_lfsr.next_bit_scramble(0);
-            oo++;
+        if (flag_first==1){ //Se for a primeira vez que vimos a esta frame, então dropa os primeiros 8 bits
+          added_bits=0;
+          while(added_bits<8){
+            d_lfsr.next_bit_scramble(in[added_bits]);
+            ii++;
+            remaining_bits--;
             added_bits++;
           }
-          added_bits=0;*/
+          added_bits=0;
+          flag_first=0;
+          time_to_create=0;
+        }else{
+          max_n_produce=(std::min(noutput_items,remaining_bits));
 
+          for(int i=0; i<max_n_produce; i++){ //Para todos os 
+            out[i]=d_lfsr.next_bit_scramble(in[i]);
+            remaining_bits--;
+            ii++;
+            oo++;
+          }
+          if(remaining_bits<=0){ //TODOS OS BITS DA FRAME ENVIADOS
+            //CREATE SEED BLOCK
+            /*added_bits=0;
+            while(added_bits<8){
+              out[max_n_produce+added_bits]=d_lfsr.next_bit_scramble(0);
+              oo++;
+              //remaining_bits--;
+              added_bits++;
+            }
+            added_bits=0;*/
+
+
+            //-------------
+            //time_to_create=1;
+            flag_ultimo=1;
+            remaining_bits=n_frame;
+          }
         }
       }
       consume_each (ii);
