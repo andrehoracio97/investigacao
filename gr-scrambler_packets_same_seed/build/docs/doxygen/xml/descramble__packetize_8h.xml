@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="descramble__packetize_8h" kind="file" language="C++">
+    <compoundname>descramble_packetize.h</compoundname>
+    <includes refid="api_8h" local="no">scrambler_packets_same_seed/api.h</includes>
+    <includes local="no">gnuradio/block.h</includes>
+    <includedby refid="descramble__packetize__impl_8h" local="no">descramble_packetize_impl.h</includedby>
+    <incdepgraph>
+      <node id="9">
+        <label>gnuradio/attributes.h</label>
+      </node>
+      <node id="8">
+        <label>scrambler_packets_same_seed/api.h</label>
+        <link refid="api_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>descramble_packetize.h</label>
+        <link refid="descramble__packetize_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>gnuradio/block.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="12">
+        <label>descramble_packetize_impl.h</label>
+        <link refid="descramble__packetize__impl_8h"/>
+      </node>
+      <node id="11">
+        <label>descramble_packetize.h</label>
+        <link refid="descramble__packetize_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classgr_1_1scrambler__packets__same__seed_1_1descramble__packetize" prot="public">gr::scrambler_packets_same_seed::descramble_packetize</innerclass>
+    <innernamespace refid="namespacegr">gr</innernamespace>
+    <innernamespace refid="namespacegr_1_1scrambler__packets__same__seed">gr::scrambler_packets_same_seed</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/andre/investigacao/gr-scrambler_packets_same_seed/include/scrambler_packets_same_seed/descramble_packetize.h"/>
+  </compounddef>
+</doxygen>

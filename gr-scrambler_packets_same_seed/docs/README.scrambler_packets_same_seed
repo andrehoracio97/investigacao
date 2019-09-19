@@ -1,0 +1,11 @@
+This is the scrambler_packets_same_seed-write-a-block package meant as a guide to building
+out-of-tree packages. To use the scrambler_packets_same_seed blocks, the Python namespaces
+is in 'scrambler_packets_same_seed', which is imported as:
+
+    import scrambler_packets_same_seed
+
+See the Doxygen documentation for details about the blocks available
+in this package. A quick listing of the details can be found in Python
+after importing by using:
+
+    help(scrambler_packets_same_seed)

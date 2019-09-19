@@ -86,3 +86,6 @@ Semana
 
 Semana
 16/9 ->Tentar 8psk - Ambiguidade.  Inicio escrita tutorial_9 e problema se um pacote perdido nao faz mais scramble--vi melhor o scramble -conclusao que tenho que fazer um novo eu. Reuniao professor. Modificação esquema tutorial e escrita de coarse.  E leitura total novamente do tutorial.
+17/9 -Inicio Scramble - Criação de um completo e funcional mas muito lento. 
+18/9 -Continuacao Scramble - criar pacotes e tentar remover lixo dos pacotes 
+19/9 -Conclusão Scramble concluido, tanto a alterar a seed e a enviar-la pela stream como com a seed fixa.

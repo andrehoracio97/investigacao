@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<block>
+  <name>scramble_packetize</name>
+  <key>scrambler_packets_same_seed_scramble_packetize</key>
+  <category>[scrambler_packets_same_seed]</category>
+  <import>import scrambler_packets_same_seed</import>
+  <make>scrambler_packets_same_seed.scramble_packetize($mask, $seed, $len, $frame_bit)</make>
+  <!-- Make one 'param' node for every Parameter you want settable from the GUI.
+       Sub-nodes:
+       * name
+       * key (makes the value accessible as $keyname, e.g. in the make node)
+       * type -->
+  <param>
+    <name>Polinomio</name>
+    <key>mask</key>
+    <value>0x8A</value>
+    <type>hex</type>
+  </param>
+  <param>
+    <name>Seed</name>
+    <key>seed</key>
+    <value>0x7F</value>
+    <type>hex</type>
+  </param>
+  <param>
+    <name>Lenght</name>
+    <key>len</key>
+    <value>7</value>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Frame Bits</name>
+    <key>frame_bit</key>
+    <value>440</value>
+    <type>int</type>
+  </param>
+
+
+  <!-- Make one 'sink' node per input. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <sink>
+    <name>in</name>
+    <type>byte</type>
+  </sink>
+
+  <!-- Make one 'source' node per output. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <source>
+    <name>out</name>
+    <type>byte</type>
+  </source>
+</block>

@@ -539,7 +539,27 @@ $sudo ldconfig
 \subsection{USRP - Tutorial\_9.grc}
     It's everything working perfectly when we are using random bits however if we input a file with some zeros in a row, the FG losses symbol synchronization, for example you can easily testing by inputting the \verb|videofhd.mpeg| file provided. As you can see in output the zeros are not transmitted well, so we need to somehow instead transmit all this zeros in a row, transmit it with some bits at 1 without adding significant overload to FG (by increasing the amount of transmitted bits). A solution for this is adding a scramble block and the after all the transmission undo what we did.
     
-    The scramble at this view has nothing related to encryption but aims to eliminate long sequence of same bits (called whitening sequences), reducing problems with synchronization at the receiver, it works using a LFSR (linear-feedback shift register) by 
+    
+    %------------FALTA---------------------
+    %---Explicar funcionamento LFSR
+    The scramble at this view has nothing related to encryption but aims to eliminate long sequence of same bits (called whitening sequences), consequently reducing problems with synchronization at the receiver. A Multiplicative Scrambler works using an LFSR (linear-feedback shift register), where we define a number of registers N, and a polynomial ()
+    %---Explicar que se fizer usar os nativos se perder um pedaco perde-se tudo. - É dependente -- Solucao temos que fazer por pacotes e resetar os registos.
+    
+    %----Problema Scrambler Nativo
+    We already have a native scrambler in GR that we can use we just drag and drop, however, the output bit of a LFSR is dependent of the last bits inputted, so if we lose some bits, we lose every single bit ahead. What we need to do to work around this is create a new scrambler that takes a piece of bits (a packet) and scrambles only that packet, and then reset the seed and scrambles another packet and so on, using always the same seed to initiate the registers. The descrambler is the same idea.
+    
+    Another problem that we face is that at first what we have in registers is the seed, so the first byte to output after the descrambler is only junk, and we don't output the last byte because it stays in the registers. To solve the first problem we just need to drop the first byte after we scramble, and then is the real data is transmitted. To solve the last problem we just need to flush the scrambler by inputting one more byte with 0's, so the last byte of the packet is transmitted as well.  
+    
+    %----------------------
+    Going to the code itself the idea like I said is create frames so for that we need to can reset the registers in the LFSR, if you go to installation folder of GR (if you followed my instructions should be here: \verb|/usr/local/include/gnuradio/digital| and analyse the file \verb|lfsr.h|, you see an function called \verb|reset()| where reset the registers to the given seed. We will use it.
+    
+    %---
+    
+    
+    %--TBM adicionai uma check box para simular cancelamento completo de transmissao
+    
+    
+    
     
 \subsection{Figures and Tables}
 

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="namespacegr_1_1scrambler__packets__same__seed" kind="namespace" language="C++">
+    <compoundname>gr::scrambler_packets_same_seed</compoundname>
+    <innerclass refid="classgr_1_1scrambler__packets__same__seed_1_1descramble__packetize" prot="public">gr::scrambler_packets_same_seed::descramble_packetize</innerclass>
+    <innerclass refid="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize" prot="public">gr::scrambler_packets_same_seed::scramble_packetize</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/andre/investigacao/gr-scrambler_packets_same_seed/include/scrambler_packets_same_seed/descramble_packetize.h" line="29" column="1"/>
+  </compounddef>
+</doxygen>

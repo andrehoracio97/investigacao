@@ -1431,11 +1431,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(992, 1140)</value>
+      <value>(992, 1148)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3994,6 +3994,116 @@
     </param>
   </block>
   <block>
+    <key>scrambler_cpp_custom_descrambler</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>frame_bits</key>
+      <value>440-32</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(968, 1084)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>scrambler_cpp_custom_descrambler_0</value>
+    </param>
+    <param>
+      <key>len</key>
+      <value>7</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>mask</key>
+      <value>0x8A</value>
+    </param>
+    <param>
+      <key>seed</key>
+      <value>0x7F</value>
+    </param>
+  </block>
+  <block>
+    <key>scrambler_packets_same_seed_descramble_packetize</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>frame_bit</key>
+      <value>440</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(960, 996)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>scrambler_packets_same_seed_descramble_packetize_0</value>
+    </param>
+    <param>
+      <key>len</key>
+      <value>7</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>mask</key>
+      <value>0x8A</value>
+    </param>
+    <param>
+      <key>seed</key>
+      <value>0x7F</value>
+    </param>
+  </block>
+  <block>
     <key>uhd_usrp_source</key>
     <param>
       <key>alias</key>
@@ -5599,6 +5709,30 @@
   <connection>
     <source_block_id>fec_extended_decoder_0_0_1_0_1_0</source_block_id>
     <sink_block_id>digital_descrambler_bb_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>fec_extended_decoder_0_0_1_0_1_0</source_block_id>
+    <sink_block_id>scrambler_cpp_custom_descrambler_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>fec_extended_decoder_0_0_1_0_1_0</source_block_id>
+    <sink_block_id>scrambler_packets_same_seed_descramble_packetize_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>scrambler_cpp_custom_descrambler_0</source_block_id>
+    <sink_block_id>blocks_repack_bits_bb_0_0_0_1_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>scrambler_packets_same_seed_descramble_packetize_0</source_block_id>
+    <sink_block_id>blocks_repack_bits_bb_0_0_0_1_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

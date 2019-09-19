@@ -1,0 +1,7 @@
+/*!
+ * \defgroup block GNU Radio SCRAMBLER_PACKETS_SAME_SEED C++ Signal Processing Blocks
+ * \brief All C++ blocks that can be used from the SCRAMBLER_PACKETS_SAME_SEED GNU Radio
+ *        module are listed here or in the subcategories below.
+ *
+ */
+

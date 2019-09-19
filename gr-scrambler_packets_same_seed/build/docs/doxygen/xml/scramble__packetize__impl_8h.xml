@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="scramble__packetize__impl_8h" kind="file" language="C++">
+    <compoundname>scramble_packetize_impl.h</compoundname>
+    <includes refid="scramble__packetize_8h" local="no">scrambler_packets_same_seed/scramble_packetize.h</includes>
+    <includes local="no">gnuradio/digital/lfsr.h</includes>
+    <incdepgraph>
+      <node id="33">
+        <label>gnuradio/attributes.h</label>
+      </node>
+      <node id="32">
+        <label>scrambler_packets_same_seed/api.h</label>
+        <link refid="api_8h"/>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>gnuradio/digital/lfsr.h</label>
+      </node>
+      <node id="34">
+        <label>gnuradio/block.h</label>
+      </node>
+      <node id="30">
+        <label>scramble_packetize_impl.h</label>
+        <link refid="scramble__packetize__impl_8h"/>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>scrambler_packets_same_seed/scramble_packetize.h</label>
+        <link refid="scramble__packetize_8h"/>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl" prot="public">gr::scrambler_packets_same_seed::scramble_packetize_impl</innerclass>
+    <innernamespace refid="namespacegr">gr</innernamespace>
+    <innernamespace refid="namespacegr_1_1scrambler__packets__same__seed">gr::scrambler_packets_same_seed</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h"/>
+  </compounddef>
+</doxygen>
