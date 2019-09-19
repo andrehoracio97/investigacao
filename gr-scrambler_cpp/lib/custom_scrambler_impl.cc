@@ -98,7 +98,7 @@ namespace gr {
         }
         if(max_n_produce==noutput_items){
           flag_ultimo=1;
-          track_n_bits_added=max_n_produce;
+          track_n_bits_added=track_n_bits_added-max_n_produce;
         }else{
           flag_ultimo=0;
           time_to_create=1;
@@ -123,7 +123,7 @@ namespace gr {
           track_n_bits_seed=32;
           time_to_create=0;
           index_seed=0;
-          std::cout << "SCRAMBLER new seed: " << new_seed <<"\n";
+          //std::cout << "SCRAMBLER new seed: " << new_seed <<"\n";
           d_lfsr.reset_to_value(new_seed);
 
           flag_first=1;
@@ -145,26 +145,16 @@ namespace gr {
 
           for(int i=0; i<max_n_produce; i++){ //Para todos os 
             out[i]=d_lfsr.next_bit_scramble(in[i]);
-            remaining_bits--;
+            //remaining_bits--;
             ii++;
             oo++;
           }
-          if(remaining_bits<=0){ //TODOS OS BITS DA FRAME ENVIADOS
-            //CREATE SEED BLOCK
-            /*added_bits=0;
-            while(added_bits<8){
-              out[max_n_produce+added_bits]=d_lfsr.next_bit_scramble(0);
-              oo++;
-              //remaining_bits--;
-              added_bits++;
-            }
-            added_bits=0;*/
-
-
-            //-------------
-            //time_to_create=1;
+          if(max_n_produce==remaining_bits){
             flag_ultimo=1;
             remaining_bits=n_frame;
+
+          }else{
+          	remaining_bits=remaining_bits-max_n_produce;
           }
         }
       }

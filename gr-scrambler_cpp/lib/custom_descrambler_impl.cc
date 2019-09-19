@@ -79,7 +79,7 @@ namespace gr {
       unsigned char *out = (unsigned char *) output_items[0];
 
       // Do <+signal processing+>
-      int ii=0;
+     int ii=0;
       int oo=0;
       if(time_to_get==1){
         max_n_produce=(std::min(noutput_items,track_n_bits_seed));
@@ -97,7 +97,7 @@ namespace gr {
           time_to_get=0;
           remaining_bits=n_frame;
           //new_seed=163;
-          std::cout << "DESCRAMBLER: " << new_seed <<"\n";
+          //std::cout << "DESCRAMBLER: " << new_seed <<"\n";
           d_lfsr.reset_to_value(new_seed);
           new_seed=0;
           index_seed=31;
@@ -106,18 +106,18 @@ namespace gr {
         max_n_produce=(std::min(noutput_items,remaining_bits));
         for(int i=0; i<max_n_produce; i++){ //Para todos os 
           out[i]=d_lfsr.next_bit_descramble(in[i]);
-          remaining_bits--;
+          //remaining_bits--;
           ii++;
           oo++;
         }
-        if(remaining_bits<=0){ //TODOS OS BITS DA FRAME ENVIADOS
+        if(max_n_produce==remaining_bits){ //TODOS OS BITS DA FRAME ENVIADOS
           //CREATE SEED BLOCK
           time_to_get=1;
           remaining_bits=n_frame;
+        }else{
+          remaining_bits=remaining_bits-max_n_produce;
         }
-      }
-
-      
+      }      
       consume_each (ii);
       // Tell runtime system how many output items we produced.
       return oo;
