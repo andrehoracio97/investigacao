@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="custom__scrambler__impl_8h" kind="file" language="C++">
+    <compoundname>custom_scrambler_impl.h</compoundname>
+    <includes refid="custom__scrambler_8h" local="no">scrambler_cpp/custom_scrambler.h</includes>
+    <includes local="no">gnuradio/digital/lfsr.h</includes>
+    <incdepgraph>
+      <node id="29">
+        <label>gnuradio/attributes.h</label>
+      </node>
+      <node id="31">
+        <label>gnuradio/digital/lfsr.h</label>
+      </node>
+      <node id="28">
+        <label>scrambler_cpp/api.h</label>
+        <link refid="api_8h"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>scrambler_cpp/custom_scrambler.h</label>
+        <link refid="custom__scrambler_8h"/>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>gnuradio/block.h</label>
+      </node>
+      <node id="26">
+        <label>custom_scrambler_impl.h</label>
+        <link refid="custom__scrambler__impl_8h"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl" prot="public">gr::scrambler_cpp::custom_scrambler_impl</innerclass>
+    <innernamespace refid="namespacegr">gr</innernamespace>
+    <innernamespace refid="namespacegr_1_1scrambler__cpp">gr::scrambler_cpp</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/it/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,249 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl" kind="class" language="C++" prot="public">
+    <compoundname>gr::scrambler_packets_same_seed::scramble_packetize_impl</compoundname>
+    <basecompoundref refid="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize" prot="public" virt="non-virtual">gr::scrambler_packets_same_seed::scramble_packetize</basecompoundref>
+    <includes refid="scramble__packetize__impl_8h" local="no">scramble_packetize_impl.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1a118fbd3cde3a38a2d294f73f17d87f90" prot="private" static="no" mutable="no">
+        <type>digital::lfsr</type>
+        <definition>digital::lfsr gr::scrambler_packets_same_seed::scramble_packetize_impl::d_lfsr</definition>
+        <argsstring></argsstring>
+        <name>d_lfsr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/it/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" line="32" column="1" bodyfile="/home/it/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1a51e527fd8948a12ae5f73cd90d9709af" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int gr::scrambler_packets_same_seed::scramble_packetize_impl::n_frame</definition>
+        <argsstring></argsstring>
+        <name>n_frame</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/it/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" line="33" column="1" bodyfile="/home/it/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1abe0cda4316fa36c1a2cf98c113df743e" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int gr::scrambler_packets_same_seed::scramble_packetize_impl::flag_first</definition>
+        <argsstring></argsstring>
+        <name>flag_first</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/it/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" line="34" column="1" bodyfile="/home/it/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1a146012b048c084b9c9a7101c3c8181ff" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int gr::scrambler_packets_same_seed::scramble_packetize_impl::remaining_bits</definition>
+        <argsstring></argsstring>
+        <name>remaining_bits</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/it/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" line="35" column="1" bodyfile="/home/it/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1a6f5ff04916482222ee34816c8118f9eb" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int gr::scrambler_packets_same_seed::scramble_packetize_impl::max_n_produce</definition>
+        <argsstring></argsstring>
+        <name>max_n_produce</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/it/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" line="36" column="1" bodyfile="/home/it/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1ae88c74209d6bc279c6f987d4a6ddceb0" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int gr::scrambler_packets_same_seed::scramble_packetize_impl::flag_last</definition>
+        <argsstring></argsstring>
+        <name>flag_last</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/it/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" line="37" column="1" bodyfile="/home/it/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1ab91a09eb4b5c4bbf9225bca19d96ad5f" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int gr::scrambler_packets_same_seed::scramble_packetize_impl::track_n_bits_added</definition>
+        <argsstring></argsstring>
+        <name>track_n_bits_added</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/it/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" line="38" column="1" bodyfile="/home/it/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1a221f8f0e6ebd007b0f92f1eb037495d6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>gr::scrambler_packets_same_seed::scramble_packetize_impl::scramble_packetize_impl</definition>
+        <argsstring>(int mask, int seed, int len, int frame_bit)</argsstring>
+        <name>scramble_packetize_impl</name>
+        <param>
+          <type>int</type>
+          <declname>mask</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>seed</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>len</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>frame_bit</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/it/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" line="42" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1acf06a70fa61d2b251cee62c34a665de6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>gr::scrambler_packets_same_seed::scramble_packetize_impl::~scramble_packetize_impl</definition>
+        <argsstring>()</argsstring>
+        <name>~scramble_packetize_impl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/it/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" line="43" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1a7679a8ec3201059919d0a14d99cd185a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void gr::scrambler_packets_same_seed::scramble_packetize_impl::forecast</definition>
+        <argsstring>(int noutput_items, gr_vector_int &amp;ninput_items_required)</argsstring>
+        <name>forecast</name>
+        <param>
+          <type>int</type>
+          <declname>noutput_items</declname>
+        </param>
+        <param>
+          <type>gr_vector_int &amp;</type>
+          <declname>ninput_items_required</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/it/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" line="46" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1a6b5370f57e7e8a8cdb3b4e4009167a44" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int gr::scrambler_packets_same_seed::scramble_packetize_impl::general_work</definition>
+        <argsstring>(int noutput_items, gr_vector_int &amp;ninput_items, gr_vector_const_void_star &amp;input_items, gr_vector_void_star &amp;output_items)</argsstring>
+        <name>general_work</name>
+        <param>
+          <type>int</type>
+          <declname>noutput_items</declname>
+        </param>
+        <param>
+          <type>gr_vector_int &amp;</type>
+          <declname>ninput_items</declname>
+        </param>
+        <param>
+          <type>gr_vector_const_void_star &amp;</type>
+          <declname>input_items</declname>
+        </param>
+        <param>
+          <type>gr_vector_void_star &amp;</type>
+          <declname>output_items</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/it/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" line="48" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="16">
+        <label>gr::scrambler_packets_same_seed::scramble_packetize_impl</label>
+        <link refid="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl"/>
+        <childnode refid="17" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>block</label>
+      </node>
+      <node id="17">
+        <label>gr::scrambler_packets_same_seed::scramble_packetize</label>
+        <link refid="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize"/>
+        <childnode refid="18" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="19">
+        <label>gr::scrambler_packets_same_seed::scramble_packetize_impl</label>
+        <link refid="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>block</label>
+      </node>
+      <node id="20">
+        <label>gr::scrambler_packets_same_seed::scramble_packetize</label>
+        <link refid="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize"/>
+        <childnode refid="21" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/it/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" line="30" column="1" bodyfile="/home/it/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" bodystart="29" bodyend="52"/>
+    <listofallmembers>
+      <member refid="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1a118fbd3cde3a38a2d294f73f17d87f90" prot="private" virt="non-virtual"><scope>gr::scrambler_packets_same_seed::scramble_packetize_impl</scope><name>d_lfsr</name></member>
+      <member refid="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1abe0cda4316fa36c1a2cf98c113df743e" prot="private" virt="non-virtual"><scope>gr::scrambler_packets_same_seed::scramble_packetize_impl</scope><name>flag_first</name></member>
+      <member refid="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1ae88c74209d6bc279c6f987d4a6ddceb0" prot="private" virt="non-virtual"><scope>gr::scrambler_packets_same_seed::scramble_packetize_impl</scope><name>flag_last</name></member>
+      <member refid="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1a7679a8ec3201059919d0a14d99cd185a" prot="public" virt="non-virtual"><scope>gr::scrambler_packets_same_seed::scramble_packetize_impl</scope><name>forecast</name></member>
+      <member refid="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1a6b5370f57e7e8a8cdb3b4e4009167a44" prot="public" virt="non-virtual"><scope>gr::scrambler_packets_same_seed::scramble_packetize_impl</scope><name>general_work</name></member>
+      <member refid="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize_1aaf16a939b167433787fa4d1d91ef2cea" prot="public" virt="non-virtual"><scope>gr::scrambler_packets_same_seed::scramble_packetize_impl</scope><name>make</name></member>
+      <member refid="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1a6f5ff04916482222ee34816c8118f9eb" prot="private" virt="non-virtual"><scope>gr::scrambler_packets_same_seed::scramble_packetize_impl</scope><name>max_n_produce</name></member>
+      <member refid="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1a51e527fd8948a12ae5f73cd90d9709af" prot="private" virt="non-virtual"><scope>gr::scrambler_packets_same_seed::scramble_packetize_impl</scope><name>n_frame</name></member>
+      <member refid="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1a146012b048c084b9c9a7101c3c8181ff" prot="private" virt="non-virtual"><scope>gr::scrambler_packets_same_seed::scramble_packetize_impl</scope><name>remaining_bits</name></member>
+      <member refid="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1a221f8f0e6ebd007b0f92f1eb037495d6" prot="public" virt="non-virtual"><scope>gr::scrambler_packets_same_seed::scramble_packetize_impl</scope><name>scramble_packetize_impl</name></member>
+      <member refid="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize_1a2b1a8e4e62d2e757add9d478f851a3fa" prot="public" virt="non-virtual"><scope>gr::scrambler_packets_same_seed::scramble_packetize_impl</scope><name>sptr</name></member>
+      <member refid="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1ab91a09eb4b5c4bbf9225bca19d96ad5f" prot="private" virt="non-virtual"><scope>gr::scrambler_packets_same_seed::scramble_packetize_impl</scope><name>track_n_bits_added</name></member>
+      <member refid="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1acf06a70fa61d2b251cee62c34a665de6" prot="public" virt="non-virtual"><scope>gr::scrambler_packets_same_seed::scramble_packetize_impl</scope><name>~scramble_packetize_impl</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

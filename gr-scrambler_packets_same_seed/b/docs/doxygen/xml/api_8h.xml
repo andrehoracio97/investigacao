@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="api_8h" kind="file" language="C++">
+    <compoundname>api.h</compoundname>
+    <includes local="no">gnuradio/attributes.h</includes>
+    <includedby refid="descramble__packetize_8h" local="no">descramble_packetize.h</includedby>
+    <includedby refid="scramble__packetize_8h" local="no">scramble_packetize.h</includedby>
+    <incdepgraph>
+      <node id="0">
+        <label>api.h</label>
+        <link refid="api_8h"/>
+        <childnode refid="1" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>gnuradio/attributes.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="4">
+        <label>descramble_packetize_impl.h</label>
+        <link refid="descramble__packetize__impl_8h"/>
+      </node>
+      <node id="2">
+        <label>api.h</label>
+        <link refid="api_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>scramble_packetize_impl.h</label>
+        <link refid="scramble__packetize__impl_8h"/>
+      </node>
+      <node id="3">
+        <label>descramble_packetize.h</label>
+        <link refid="descramble__packetize_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>scramble_packetize.h</label>
+        <link refid="scramble__packetize_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="api_8h_1a404a44e451add39a7e76586582afa7c6" prot="public" static="no">
+        <name>SCRAMBLER_PACKETS_SAME_SEED_API</name>
+        <initializer>__GR_ATTR_IMPORT</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/it/investigacao/gr-scrambler_packets_same_seed/include/scrambler_packets_same_seed/api.h" line="31" column="12" bodyfile="/home/it/investigacao/gr-scrambler_packets_same_seed/include/scrambler_packets_same_seed/api.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/it/investigacao/gr-scrambler_packets_same_seed/include/scrambler_packets_same_seed/api.h"/>
+  </compounddef>
+</doxygen>

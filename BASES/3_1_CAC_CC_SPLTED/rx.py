@@ -29,6 +29,7 @@ from gnuradio.eng_option import eng_option
 from gnuradio.filter import firdes
 from gnuradio.qtgui import Range, RangeWidget
 from optparse import OptionParser
+import scrambler_packets_same_seed
 import sip
 import sys
 import time
@@ -114,6 +115,7 @@ class rx(gr.top_block, Qt.QWidget):
         self.uhd_usrp_source_0.set_antenna('RX2', 0)
         self.uhd_usrp_source_0.set_auto_dc_offset(True, 0)
         self.uhd_usrp_source_0.set_auto_iq_balance(True, 0)
+        self.scrambler_packets_same_seed_descramble_packetize_0 = scrambler_packets_same_seed.descramble_packetize(0x8A, 0x7F, 7, 440)
         self.qtgui_time_sink_x_2_0 = qtgui.time_sink_f(
         	1024, #size
         	samp_rate, #samp_rate
@@ -419,7 +421,6 @@ class rx(gr.top_block, Qt.QWidget):
         self.digital_pfb_clock_sync_xxx_0 = digital.pfb_clock_sync_ccf(sps, 6.28/400.0, (rx_rrc_taps), nfilts, nfilts/2, 1.5, 2)
         self.digital_map_bb_0_0_0_0_0 = digital.map_bb(([-1, 1]))
         self.digital_diff_decoder_bb_0 = digital.diff_decoder_bb(4)
-        self.digital_descrambler_bb_0 = digital.descrambler_bb(0x8A, 0x7F, 7)
         self.digital_costas_loop_cc_0_0 = digital.costas_loop_cc(6.28/100.0, pld_const.arity(), False)
         self.digital_correlate_access_code_xx_ts_0_0 = digital.correlate_access_code_bb_ts(digital.packet_utils.default_access_code,
           1, 'packet_len')
@@ -455,11 +456,11 @@ class rx(gr.top_block, Qt.QWidget):
         self.connect((self.digital_correlate_access_code_xx_ts_0_0, 0), (self.blocks_keep_m_in_n_0_0_2_0, 0))
         self.connect((self.digital_costas_loop_cc_0_0, 0), (self.digital_constellation_decoder_cb_0, 0))
         self.connect((self.digital_costas_loop_cc_0_0, 0), (self.qtgui_const_sink_x_0_0_0, 0))
-        self.connect((self.digital_descrambler_bb_0, 0), (self.blocks_repack_bits_bb_0_0_0_1_0, 0))
         self.connect((self.digital_diff_decoder_bb_0, 0), (self.blocks_repack_bits_bb_0, 0))
         self.connect((self.digital_map_bb_0_0_0_0_0, 0), (self.blocks_char_to_float_0_2_0_0, 0))
         self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.digital_cma_equalizer_cc_0, 0))
-        self.connect((self.fec_extended_decoder_0_0_1_0_1_0, 0), (self.digital_descrambler_bb_0, 0))
+        self.connect((self.fec_extended_decoder_0_0_1_0_1_0, 0), (self.scrambler_packets_same_seed_descramble_packetize_0, 0))
+        self.connect((self.scrambler_packets_same_seed_descramble_packetize_0, 0), (self.blocks_repack_bits_bb_0_0_0_1_0, 0))
         self.connect((self.uhd_usrp_source_0, 0), (self.digital_pfb_clock_sync_xxx_0, 0))
         self.connect((self.uhd_usrp_source_0, 0), (self.qtgui_const_sink_x_0_0_0_1, 0))
         self.connect((self.uhd_usrp_source_0, 0), (self.qtgui_time_sink_x_1_0, 0))
