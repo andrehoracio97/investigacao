@@ -46,19 +46,14 @@ namespace gr {
               gr::io_signature::make(1, 1, sizeof(unsigned char))),
       d_lfsr(mask,seed,len),
       n_frame(frame_bits),
-      n_bits_scrambled(99999999),
       track_n_bits_seed(32),
       new_seed(0),
-      binary(),
-      added_bits(0),
-      create_block_seed(0),
       time_to_create(1),
       remaining_bits(frame_bits),
       max_n_produce(0),
-      index_seed(0),
-      flag_first(1),
-      flag_ultimo(0),
-      track_n_bits_added(8)
+      flag_last(0),
+      track_n_bits_added(8),
+      mask()
     {}
 
     /*
@@ -71,96 +66,77 @@ namespace gr {
     void
     custom_scrambler_impl::forecast (int noutput_items, gr_vector_int &ninput_items_required)
     {
-      /* <+forecast+> e.g. ninput_items_required[0] = noutput_items */
-    unsigned ninputs = ninput_items_required.size ();
-      for(unsigned i = 0; i < ninputs; i++)
-      ninput_items_required[i] = noutput_items;
-    }
+	    unsigned ninputs = ninput_items_required.size ();
+	    for(unsigned i = 0; i < ninputs; i++)
+	    	ninput_items_required[i] = noutput_items;
+	    }
 
-    int
-    custom_scrambler_impl::general_work (int noutput_items,
-                       gr_vector_int &ninput_items,
-                       gr_vector_const_void_star &input_items,
-                       gr_vector_void_star &output_items)
-    {
-      const unsigned char *in = (const unsigned char *) input_items[0];
-      unsigned char *out = (unsigned char *) output_items[0];
-      int ii=0;
-      int oo=0;
-      // Do <+signal processing+>
-      // Tell runtime system how many input items we consumed on
-      // each input stream.
-      if(flag_ultimo==1){
-        max_n_produce=(std::min(noutput_items,track_n_bits_added));
-        for(int i=0; i<max_n_produce; i++){
-          out[i]=d_lfsr.next_bit_scramble(0);
-          oo++;
-        }
-        if(max_n_produce==noutput_items){
-          flag_ultimo=1;
-          track_n_bits_added=track_n_bits_added-max_n_produce;
-        }else{
-          flag_ultimo=0;
-          time_to_create=1;
-          track_n_bits_added=8;
-        }
-
-      }
-      else if(time_to_create==1){      
-        if(track_n_bits_seed==32){
-          new_seed = rand()%255;
-          //new_seed=163;
-          binary = std::bitset<32>(new_seed).to_string();
-        }
-        max_n_produce=(std::min(noutput_items,track_n_bits_seed));
-        for(int i=0; i<max_n_produce; i++){ //Normalmente track_n_bits_seed menor a 32
-          out[i]=(int(binary[index_seed])-48);
-          track_n_bits_seed--;
-          index_seed++;
-          oo++;//do not consume, only produce
-        }
-        if(track_n_bits_seed==0){ //Ultima parte quando sai do ssed value.
-          track_n_bits_seed=32;
-          time_to_create=0;
-          index_seed=0;
-          //std::cout << "SCRAMBLER new seed: " << new_seed <<"\n";
-          d_lfsr.reset_to_value(new_seed);
-
-          flag_first=1;
-        }
-      }else{
-        if (flag_first==1){ //Se for a primeira vez que vimos a esta frame, então dropa os primeiros 8 bits
-          added_bits=0;
-          while(added_bits<8){
-            d_lfsr.next_bit_scramble(in[added_bits]);
-            ii++;
-            remaining_bits--;
-            added_bits++;
-          }
-          added_bits=0;
-          flag_first=0;
-          time_to_create=0;
-        }else{
-          max_n_produce=(std::min(noutput_items,remaining_bits));
-
-          for(int i=0; i<max_n_produce; i++){ //Para todos os 
-            out[i]=d_lfsr.next_bit_scramble(in[i]);
-            //remaining_bits--;
-            ii++;
-            oo++;
-          }
-          if(max_n_produce==remaining_bits){
-            flag_ultimo=1;
-            remaining_bits=n_frame;
-
-          }else{
-          	remaining_bits=remaining_bits-max_n_produce;
-          }
-        }
-      }
-      consume_each (ii);
-      // Tell runtime system how many output items we produced.
-      return oo;
+	    int
+	    custom_scrambler_impl::general_work (int noutput_items,
+	                       gr_vector_int &ninput_items,
+	                       gr_vector_const_void_star &input_items,
+	                       gr_vector_void_star &output_items)
+	    {
+	    const unsigned char *in = (const unsigned char *) input_items[0];
+	    unsigned char *out = (unsigned char *) output_items[0];
+	    int ii=0; //Track how many inputbits we consume
+	    int oo=0; //Track how many output bit we produces
+	    if(flag_last==1){ //It's the last bits of the frame, so we need to flush it
+	      	max_n_produce=(std::min(noutput_items,track_n_bits_added));
+	      	for(int i=0; i<max_n_produce; i++){
+	      		out[i]=d_lfsr.next_bit_scramble(0);
+	      		oo++;
+	      	}
+	      	if(max_n_produce==track_n_bits_added){ //If we sent all bits, we reset variables and we get out of last byte to create a new SEED block
+	      		flag_last=0; 
+	      		time_to_create=1; //Create a new Seed block
+	      		track_n_bits_added=8;
+	      	}else{ //If we didn't sent all bit's, then go again. 
+	      		track_n_bits_added=track_n_bits_added-max_n_produce;
+	      	}
+	    }
+	    else if(time_to_create==1){      
+	      	if(track_n_bits_seed==32){ //If the first time in Seed Block
+	      		new_seed = rand()%255;	//We generate a new seed.
+	      		mask= 1 << (32-1); //Reset mask
+	          //new_seed=163;
+	      	}
+	      	max_n_produce=(std::min(noutput_items,track_n_bits_seed));
+	        for(int i=0; i<max_n_produce; i++){ //Normalmente track_n_bits_seed menor a 32
+	        	out[i]=((mask & new_seed) != 0);
+	        	mask >>= 1;
+	        	oo++;//do not consume, only produce
+	        }
+	        if(max_n_produce==track_n_bits_seed){ //All bits sent SO: -Drop first bits and OUT of Seed Block
+	        	track_n_bits_seed=32;
+	          //std::cout << "SCRAMBLER new seed: " << new_seed <<"\n";
+	        	d_lfsr.reset_to_value(new_seed); //Set the new seed
+	        	
+	        	for(int i=0;i<8;i++){ //First bits of the frame, so it's trash -->DROP
+	        		d_lfsr.next_bit_scramble(in[i]);
+	        		ii++;
+	        		remaining_bits--;
+	        	}
+	        	time_to_create=0; //Get out of seed block 
+	        }else{
+	        	track_n_bits_seed=track_n_bits_seed-max_n_produce;
+	        }
+	    }else{ //Normal behaviour - Inside the frame
+	    	max_n_produce=(std::min(noutput_items,remaining_bits));
+	    	for(int i=0; i<max_n_produce; i++){
+	      		out[i]=d_lfsr.next_bit_scramble(in[i]);
+	      		ii++;
+	      		oo++;
+	      	}
+	      	if(max_n_produce==remaining_bits){ //If we sent all bits, go to last to flush.
+	      		flag_last=1;
+	      		remaining_bits=n_frame;
+	      	}else{
+	      	remaining_bits=remaining_bits-max_n_produce;
+	      }
+	  }
+	  consume_each (ii);
+	  return oo;
     }
   } /* namespace scrambler_cpp */
 } /* namespace gr */

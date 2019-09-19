@@ -10,32 +10,10 @@
 gnuradio/attributes.h
 -
 
-../include/scrambler_cpp/custom_descrambler.h
-scrambler_cpp/api.h
--
-gnuradio/block.h
--
-
 ../include/scrambler_cpp/custom_scrambler.h
 scrambler_cpp/api.h
 -
 gnuradio/block.h
--
-
-/home/andre/investigacao/gr-scrambler_cpp/lib/custom_descrambler_impl.cc
-config.h
-/home/andre/investigacao/gr-scrambler_cpp/lib/config.h
-gnuradio/io_signature.h
--
-custom_descrambler_impl.h
-/home/andre/investigacao/gr-scrambler_cpp/lib/custom_descrambler_impl.h
-math.h
-/home/andre/investigacao/gr-scrambler_cpp/lib/math.h
-
-/home/andre/investigacao/gr-scrambler_cpp/lib/custom_descrambler_impl.h
-scrambler_cpp/custom_descrambler.h
--
-gnuradio/digital/lfsr.h
 -
 
 /home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.cc

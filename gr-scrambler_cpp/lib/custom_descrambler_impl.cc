@@ -45,13 +45,11 @@ namespace gr {
               gr::io_signature::make(1, 1, sizeof(unsigned char))),
       d_lfsr(mask, seed, len),
       n_frame(frame_bits),
-      n_bits_descrambled(99999999),
       track_n_bits_seed(32),
       new_seed(0),
       remaining_bits(frame_bits),
       max_n_produce(0),
-      time_to_get(1),
-      index_seed(31)
+      time_to_get(1)
     {}
 
     /*
@@ -77,52 +75,42 @@ namespace gr {
     {
       const unsigned char *in = (const unsigned char *) input_items[0];
       unsigned char *out = (unsigned char *) output_items[0];
-
-      // Do <+signal processing+>
-     int ii=0;
-      int oo=0;
-      if(time_to_get==1){
+      int ii=0; //Track how many inputbits we consume
+      int oo=0; //Track how many output bit we produce
+      if(time_to_get==1){ //We are in seed block
         max_n_produce=(std::min(noutput_items,track_n_bits_seed));
-        for(int i=0; i<max_n_produce; i++){ //Normalmente track_n_bits_seed menor a 32
-          if(int(in[i])==1){
-            new_seed=new_seed+pow(2.0, index_seed);
-          }
+        for(int i=0; i<max_n_produce; i++){ 
+          new_seed=new_seed<<1;
           //std::cout << "BIT:" << int(in[i]) << "\n";
-          track_n_bits_seed--;
-          index_seed--;
+          new_seed=(new_seed|in[i]);
           ii++;
-        }
-        if(track_n_bits_seed==0){ //Ultima parte do bloco seed já foi enviada - reset valores
+        }if(max_n_produce==track_n_bits_seed){ //If all bits sent out of seed block ->SAIR
           track_n_bits_seed=32;
           time_to_get=0;
-          remaining_bits=n_frame;
           //new_seed=163;
           //std::cout << "DESCRAMBLER: " << new_seed <<"\n";
-          d_lfsr.reset_to_value(new_seed);
+          d_lfsr.reset_to_value(new_seed); //Set new seed
           new_seed=0;
-          index_seed=31;
+        }else{
+          track_n_bits_seed=track_n_bits_seed-max_n_produce;
         }
       }else{
         max_n_produce=(std::min(noutput_items,remaining_bits));
-        for(int i=0; i<max_n_produce; i++){ //Para todos os 
+        for(int i=0; i<max_n_produce; i++){
           out[i]=d_lfsr.next_bit_descramble(in[i]);
-          //remaining_bits--;
           ii++;
           oo++;
         }
-        if(max_n_produce==remaining_bits){ //TODOS OS BITS DA FRAME ENVIADOS
-          //CREATE SEED BLOCK
-          time_to_get=1;
+        if(max_n_produce==remaining_bits){ //All bits of the frame was sent - Go to seed block
+          time_to_get=1; //Go to get seed from seed block
           remaining_bits=n_frame;
         }else{
           remaining_bits=remaining_bits-max_n_produce;
         }
       }      
       consume_each (ii);
-      // Tell runtime system how many output items we produced.
       return oo;
     }
-
   } /* namespace scrambler_cpp */
 } /* namespace gr */
 

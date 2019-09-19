@@ -718,7 +718,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>samp_rate_array_MCR[3]</value>
+      <value>samp_rate_array_MCR[4]</value>
     </param>
   </block>
   <block>
@@ -1174,7 +1174,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(976, 1804)</value>
+      <value>(840, 1804)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1229,7 +1229,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(968, 1700)</value>
+      <value>(832, 1700)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1331,7 +1331,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>file</key>
@@ -1390,7 +1390,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>file</key>
@@ -1626,7 +1626,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(688, 1708)</value>
+      <value>(576, 1708)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1791,7 +1791,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(944, 296)</value>
+      <value>(1024, 296)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1903,7 +1903,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(776, 332)</value>
+      <value>(856, 332)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2488,7 +2488,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(704, 252)</value>
+      <value>(784, 252)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -4143,7 +4143,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1120, 1780)</value>
+      <value>(984, 1780)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -5206,116 +5206,6 @@
     <param>
       <key>ymin</key>
       <value>-1</value>
-    </param>
-  </block>
-  <block>
-    <key>scrambler_cpp_custom_descrambler</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>frame_bits</key>
-      <value>440-32</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(472, 1692)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>scrambler_cpp_custom_descrambler_0</value>
-    </param>
-    <param>
-      <key>len</key>
-      <value>7</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>mask</key>
-      <value>0x8A</value>
-    </param>
-    <param>
-      <key>seed</key>
-      <value>0x7F</value>
-    </param>
-  </block>
-  <block>
-    <key>scrambler_cpp_custom_scrambler</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>frame_bits</key>
-      <value>440-32</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(480, 244)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>scrambler_cpp_custom_scrambler_0</value>
-    </param>
-    <param>
-      <key>len</key>
-      <value>7</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>mask</key>
-      <value>0x8A</value>
-    </param>
-    <param>
-      <key>seed</key>
-      <value>0x7F</value>
     </param>
   </block>
   <block>
@@ -7492,7 +7382,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1096, 308)</value>
+      <value>(1176, 308)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -7735,7 +7625,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(232, 1716)</value>
+      <value>(352, 1716)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -7860,7 +7750,7 @@
   </connection>
   <connection>
     <source_block_id>blocks_repack_bits_bb_1_0_0_1</source_block_id>
-    <sink_block_id>scrambler_cpp_custom_scrambler_0</sink_block_id>
+    <sink_block_id>fec_extended_encoder_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -7967,18 +7857,6 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>scrambler_cpp_custom_descrambler_0</source_block_id>
-    <sink_block_id>blocks_repack_bits_bb_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>scrambler_cpp_custom_scrambler_0</source_block_id>
-    <sink_block_id>fec_extended_encoder_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
     <source_block_id>uhd_usrp_source_0</source_block_id>
     <sink_block_id>digital_pfb_clock_sync_xxx_0</sink_block_id>
     <source_key>0</source_key>
@@ -8022,7 +7900,7 @@
   </connection>
   <connection>
     <source_block_id>virtual_source_5</source_block_id>
-    <sink_block_id>scrambler_cpp_custom_descrambler_0</sink_block_id>
+    <sink_block_id>blocks_repack_bits_bb_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

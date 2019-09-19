@@ -30,20 +30,15 @@ namespace gr {
     {
      private:
       digital::lfsr d_lfsr;
-      int n_bits_scrambled;
       int n_frame;
       int track_n_bits_seed;
       int new_seed;
-      std::string binary;
-      int added_bits;
-      int create_block_seed;
       int time_to_create;
       int remaining_bits;
       int max_n_produce;
-      int index_seed;
-      int flag_first;
-      int flag_ultimo;
+      int flag_last;
       int track_n_bits_added;
+      uint mask;
      public:
       custom_scrambler_impl(int mask, int seed, int len, int frame_bits);
       ~custom_scrambler_impl();

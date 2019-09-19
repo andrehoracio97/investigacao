@@ -32,13 +32,11 @@ namespace gr {
      private:
       digital::lfsr d_lfsr;
       int n_frame;
-      int n_bits_descrambled;
       int track_n_bits_seed;
       int new_seed;
       int remaining_bits;
       int max_n_produce;
       int time_to_get;
-      int index_seed;
 
      public:
       custom_descrambler_impl(int mask, int seed, int len, int frame_bits);
