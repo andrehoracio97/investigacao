@@ -20,6 +20,7 @@ from optparse import OptionParser
 import insert_vec_cpp
 import pmt
 import random
+import scrambler_packets_same_seed
 import time
 
 
@@ -49,7 +50,7 @@ class tx_no_gui(gr.top_block):
         self.k = k = 7
         self.vector = vector = [int(random.random()*4) for i in range(49600)]
         self.variable_qtgui_range_0 = variable_qtgui_range_0 = 50
-        self.samp_rate = samp_rate = samp_rate_array_MCR[1]
+        self.samp_rate = samp_rate = samp_rate_array_MCR[2]
 
 
         self.pld_enc = pld_enc = map( (lambda a: fec.cc_encoder_make(440, k, rate, (polys), 0, fec.CC_TERMINATED, False)), range(0,8) );
@@ -74,6 +75,7 @@ class tx_no_gui(gr.top_block):
         self.uhd_usrp_sink_0_0.set_center_freq(frequencia_usrp, 0)
         self.uhd_usrp_sink_0_0.set_gain(variable_qtgui_range_0, 0)
         self.uhd_usrp_sink_0_0.set_antenna('TX/RX', 0)
+        self.scrambler_packets_same_seed_scramble_packetize_0 = scrambler_packets_same_seed.scramble_packetize(0x8A, 0x7F, 7, 440)
         self.pfb_arb_resampler_xxx_0 = pfb.arb_resampler_ccf(
         	  sps,
                   taps=(tx_rrc_taps),
@@ -82,7 +84,6 @@ class tx_no_gui(gr.top_block):
 
         self.insert_vec_cpp_new_vec_0 = insert_vec_cpp.new_vec((vector))
         self.fec_extended_encoder_0 = fec.extended_encoder(encoder_obj_list=pld_enc, threading='capillary', puncpat=puncpat)
-        self.digital_scrambler_bb_0 = digital.scrambler_bb(0x8A, 0x7F, 7)
         self.digital_diff_encoder_bb_0 = digital.diff_encoder_bb(4)
         self.digital_chunks_to_symbols_xx_0_0 = digital.chunks_to_symbols_bc((pld_const.points()), 1)
         self.blocks_vector_source_x_0_0_0 = blocks.vector_source_b([0], True, 1, [])
@@ -105,17 +106,17 @@ class tx_no_gui(gr.top_block):
         self.connect((self.blocks_file_source_0_0_1_0_0, 0), (self.blocks_repack_bits_bb_1_0_0_1, 0))
         self.connect((self.blocks_multiply_const_vxx_1, 0), (self.uhd_usrp_sink_0_0, 0))
         self.connect((self.blocks_repack_bits_bb_1_0_0_0, 0), (self.insert_vec_cpp_new_vec_0, 0))
-        self.connect((self.blocks_repack_bits_bb_1_0_0_1, 0), (self.digital_scrambler_bb_0, 0))
+        self.connect((self.blocks_repack_bits_bb_1_0_0_1, 0), (self.scrambler_packets_same_seed_scramble_packetize_0, 0))
         self.connect((self.blocks_stream_mux_0_0, 0), (self.blocks_stream_mux_0_1_0, 1))
         self.connect((self.blocks_stream_mux_0_1_0, 0), (self.blocks_stream_to_tagged_stream_0_0_0, 0))
         self.connect((self.blocks_stream_to_tagged_stream_0_0_0, 0), (self.blocks_repack_bits_bb_1_0_0_0, 0))
         self.connect((self.blocks_vector_source_x_0_0_0, 0), (self.blocks_stream_mux_0_0, 1))
         self.connect((self.digital_chunks_to_symbols_xx_0_0, 0), (self.pfb_arb_resampler_xxx_0, 0))
         self.connect((self.digital_diff_encoder_bb_0, 0), (self.digital_chunks_to_symbols_xx_0_0, 0))
-        self.connect((self.digital_scrambler_bb_0, 0), (self.fec_extended_encoder_0, 0))
         self.connect((self.fec_extended_encoder_0, 0), (self.blocks_stream_mux_0_0, 0))
         self.connect((self.insert_vec_cpp_new_vec_0, 0), (self.digital_diff_encoder_bb_0, 0))
         self.connect((self.pfb_arb_resampler_xxx_0, 0), (self.blocks_multiply_const_vxx_1, 0))
+        self.connect((self.scrambler_packets_same_seed_scramble_packetize_0, 0), (self.fec_extended_encoder_0, 0))
 
     def get_puncpat(self):
         return self.puncpat
@@ -163,7 +164,7 @@ class tx_no_gui(gr.top_block):
 
     def set_samp_rate_array_MCR(self, samp_rate_array_MCR):
         self.samp_rate_array_MCR = samp_rate_array_MCR
-        self.set_samp_rate(self.samp_rate_array_MCR[1])
+        self.set_samp_rate(self.samp_rate_array_MCR[2])
 
     def get_rate(self):
         return self.rate
