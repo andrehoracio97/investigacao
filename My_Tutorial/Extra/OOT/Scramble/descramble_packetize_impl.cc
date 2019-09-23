@@ -73,7 +73,7 @@ namespace gr {
     unsigned char *out = (unsigned char *) output_items[0];
     int ii=0; //Track how many input bits we consume
     int oo=0; //Track how many output bits we produce
-    max_n_produce=(std::min(noutput_items,remaining_bits)); //Check buffer to the amount of bits that we can descramble
+    max_n_produce=(std::min(noutput_items,remaining_bits)); ////Check buffer to the amount of bits that we can descramble
     for(int i=0; i<max_n_produce; i++){
       out[i]=d_lfsr.next_bit_descramble(in[i]);
       ii++;

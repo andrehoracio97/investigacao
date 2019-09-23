@@ -80,5 +80,5 @@ Problem: Using USRP, Saturation limits, U's and 0's
 Solution: Multiply block, Tweak TX/RX Gain, Improve MCR and Tweak sample rates.
 
 Tutorial_10:
-Problem: Nao dá sequancias grandes de 0's. Perde sincronismode simbolo????
-Solucao: Scramble. (Problema adiciona rnadom byte no inicio resolve-se com skip head)
+Problem: Lose synchronization when transmitting row of 0's
+Solucao: Scramble
