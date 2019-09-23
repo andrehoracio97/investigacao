@@ -75,17 +75,17 @@ namespace gr {
     {
     const unsigned char *in = (const unsigned char *) input_items[0];
     unsigned char *out = (unsigned char *) output_items[0];
-    int ii=0; //Track how many inputbits we consume
-    int oo=0; //Track how many output bit we produces
+    int ii=0; //Track how many input bits we consume
+    int oo=0; //Track how many output bit we produce
     if(flag_last==1){ //It's the last bits of the frame, so we need to flush it
         max_n_produce=(std::min(noutput_items,track_n_bits_added));
         for(int i=0; i<max_n_produce; i++){
           out[i]=d_lfsr.next_bit_scramble(0);
           oo++;
         }
-        if(max_n_produce==track_n_bits_added){ //If we sent all bits, we reset variables and we get out of last byte to create a new SEED block
+        if(max_n_produce==track_n_bits_added){ //If we sent all bits, we reset variables and we get out of last byte to create a new frame bits
           flag_last=0; 
-          flag_first=1; //Create a new Seed block
+          flag_first=1; //Go to the first bit of the next frame
           track_n_bits_added=8;
         }else{ //If we didn't sent all bit's, then go again. 
           track_n_bits_added=track_n_bits_added-max_n_produce;

@@ -71,7 +71,7 @@ Toda a semana, consegui meter a funcionar o HPD, com LDPC  no entanto so funcion
 Passo a seguir: Mais testes.
 
 Semana
-2/9 -> Chek-in e assinatura contrato
+2/9 -> Check-in e assinatura contrato
 3/9 -> Testes em vários videos, tentativa substituicao "Vector Insert" Block -LENTO
 4/9 ->Criação de "Vector Insert" em c++, muito mais rápido - não resolveu o problema mas vai ser util para o tutorial. Reunião. Testes de qual é o problema e criaçã de novo FG 4_4_NEW_FG_TESTING para testar onde está o problema, com simulação funciona com userp's não.
 5/9 ->Escrita tutorial - tutorial_1.grc
@@ -80,8 +80,8 @@ Semana
 Semana
 9/9 ->Escrita tutorial - tutorial_5.grc,tutorial_6.grc,tutorial_7.grc; Instalar Linux no 2 computador
 10/9 ->Instalation check do tutorial, OOT check do tutorial- Testes em video e criacao de varios ficheiros com 0's, 00's, 01,s 10's. Separacao para utilizacao em 2 PC's. Separacao da parte de codificação -Sem muito efeito. Criaçao Tutorial_8_LDPC e Tutorial_8_CC.  
-11/9 -> Escrita tutorial Tutorial_8_CC. Reinuao. Tests CSDS.
-12/9 Concluão tutorial_8_CC, tutorial_8_LDPC, tutotial_9 e introducao, E COARSE Frequency recover --BOM mas PESADO-->Diminui bastante bit rate. Muitos testes do 0's in row. Seguir para Scramble.
+11/9 -> Escrita tutorial Tutorial_8_CC. Reuniao. Tests CSDS.
+12/9 Conclusão tutorial_8_CC, tutorial_8_LDPC, tutotial_9 e introducao, E COARSE Frequency recover --BOM mas PESADO-->Diminui bastante bit rate. Muitos testes do 0's in row. Seguir para Scramble.
 13/9 ->Solucionado problema de 0's. Muitos Testes para ver tempos e melhor tweaks. Mais tentativas de 8psk.
 
 Semana
@@ -89,3 +89,4 @@ Semana
 17/9 -Inicio Scramble - Criação de um completo e funcional mas muito lento. 
 18/9 -Continuacao Scramble - criar pacotes e tentar remover lixo dos pacotes 
 19/9 -Conclusão Scramble concluido, tanto a alterar a seed e a enviar-la pela stream como com a seed fixa.
+20/9 -Testes e escrita tutorial_10
