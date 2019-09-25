@@ -1,0 +1,94 @@
+To install Armadillo we need: LAPACK, BLAS/OpenBLAS, ARPACK and SuperLU. 
+
+Openblas -http://www.openblas.net/
+git clone https://github.com/xianyi/OpenBLAS.git
+cd OpenBLAS
+git checkout master
+mkdir build
+cmake ../
+make
+sudo make install
+
+Openblas 
+git clone https://github.com/xianyi/OpenBLAS.git
+cd OpenBLAS
+git checkout development
+mkdir build
+cmake ../
+make
+sudo make install
+
+
+LAPACK -http://www.netlib.org/lapack/
+git clone https://github.com/Reference-LAPACK/lapack
+cd lapack
+mkdir build
+cd build
+cmake ../
+make
+sudo make install
+
+
+LAPACK RELAESE
+git clone https://github.com/Reference-LAPACK/lapack-release.git
+cd lapack-release
+mkdir build
+cd build
+cmake ../
+make
+sudo make install
+
+
+SUPERLU
+git clone https://github.com/xiaoyeli/superlu.git
+cd superlu
+mkdir build
+cd build
+CFLAGS=-fPIC CXXFLAGS=-fPIC LFLAGS=-fPIC cmake ../
+make
+sudo make install
+
+
+
+ARPACK-NG
+git clone https://github.com/opencollab/arpack-ng.git
+cd arpack-ng/
+$ sh bootstrap
+$ ./configure
+$ make
+$ make check
+$ make install
+
+Se não der por as flags
+
+
+
+
+
+Armadilho
+http://arma.sourceforge.net/download.htmla	
+
+
+git clone https://gitlab.com/conradsnicta/armadillo-code
+cd armadillo-code
+mkdir build
+cd build
+
+CFLAGS=-fPIC CXXFLAGS=-fPIC LFLAGS=-fPIC cmake .
+OR
+CFLAGS=-fPIC CXXFLAGS=-fPIC LDDLAGS=-fPIC cmake .
+
+make
+
+
+GR-adaptor
+git clone https://github.com/karel/gr-adapt.git
+cd gr-adapt
+git checkout 
+mkdir build
+cd build
+cmake ../
+make
+make test
+sudo make install
+sudo ldconfig
