@@ -498,7 +498,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>samp_rate_array_MCR[1]</value>
+      <value>samp_rate_array_MCR[8]</value>
     </param>
   </block>
   <block>
@@ -633,7 +633,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>50</value>
+      <value>70</value>
     </param>
     <param>
       <key>_enabled</key>

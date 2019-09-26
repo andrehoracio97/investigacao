@@ -97,7 +97,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -124,11 +124,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1760, 300)</value>
+      <value>(1760, 324)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -505,11 +505,11 @@
     <key>variable</key>
     <param>
       <key>comment</key>
-      <value></value>
+      <value>2</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -525,7 +525,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>samp_rate_array_MCR[1]</value>
+      <value>samp_rate_array_MCR[8]</value>
     </param>
   </block>
   <block>
@@ -536,11 +536,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1496, 300)</value>
+      <value>(1496, 324)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -563,7 +563,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -590,11 +590,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1600, 300)</value>
+      <value>(1600, 324)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -730,7 +730,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>50</value>
+      <value>47</value>
     </param>
   </block>
   <block>

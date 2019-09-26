@@ -90,3 +90,9 @@ Semana
 18/9 -Continuacao Scramble - criar pacotes e tentar remover lixo dos pacotes 
 19/9 -Conclusão Scramble concluido, tanto a alterar a seed e a enviar-la pela stream como com a seed fixa.
 20/9 -Testes e escrita tutorial_10
+
+Semana
+23/9- Tentar 8psk, Criar jamming - Sucesso,  Alguma pesquisa de self-interference cancellation - encontrei GR-adapt
+24/9- Instalação do GR-adapt
+25/9- Instalação do GR-adapt no 2 computador -  Tentativa de cancelar ruido -FAIL. Não sei se dar'a, irei criar issue no git.
+26/9- Tentar 8PSK. Encontrei outro equalizer com conhecimento da constelação, será melhor?
