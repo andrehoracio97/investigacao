@@ -151,11 +151,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1160, 636)</value>
+      <value>(1192, 636)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -255,58 +255,10 @@
     <key>variable_constellation</key>
     <param>
       <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>const_points</key>
-      <value>digital.qam_16()[0]</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>calcdist</value>
-    </param>
-    <param>
-      <key>dims</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(896, 92)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>pld_const</value>
-    </param>
-    <param>
-      <key>rot_sym</key>
-      <value>4</value>
-    </param>
-    <param>
-      <key>soft_dec_lut</key>
-      <value>'auto'</value>
-    </param>
-    <param>
-      <key>precision</key>
-      <value>8</value>
-    </param>
-    <param>
-      <key>sym_map</key>
-      <value>digital.qam_16()[1]</value>
-    </param>
-  </block>
-  <block>
-    <key>variable_constellation</key>
-    <param>
-      <key>comment</key>
-      <value></value>
+      <value>8psk- o que está implementado é este
+
+Natural:
+[1,2,3,4,5,6,7,0]</value>
     </param>
     <param>
       <key>const_points</key>
@@ -354,57 +306,6 @@
     </param>
   </block>
   <block>
-    <key>variable_constellation</key>
-    <param>
-      <key>comment</key>
-      <value>8psk=[0,4,5,1,3,7,6,2]</value>
-    </param>
-    <param>
-      <key>const_points</key>
-      <value></value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>8psk</value>
-    </param>
-    <param>
-      <key>dims</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(384, 140)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>pld_const</value>
-    </param>
-    <param>
-      <key>rot_sym</key>
-      <value>4</value>
-    </param>
-    <param>
-      <key>soft_dec_lut</key>
-      <value>'auto'</value>
-    </param>
-    <param>
-      <key>precision</key>
-      <value>8</value>
-    </param>
-    <param>
-      <key>sym_map</key>
-      <value></value>
-    </param>
-  </block>
-  <block>
     <key>variable_constellation_rect</key>
     <param>
       <key>comment</key>
@@ -420,7 +321,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(544, 12)</value>
+      <value>(424, 12)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -479,7 +380,66 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(728, 12)</value>
+      <value>(608, 12)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>pld_const</value>
+    </param>
+    <param>
+      <key>imag_sect</key>
+      <value>2</value>
+    </param>
+    <param>
+      <key>real_sect</key>
+      <value>2</value>
+    </param>
+    <param>
+      <key>rot_sym</key>
+      <value>4</value>
+    </param>
+    <param>
+      <key>soft_dec_lut</key>
+      <value>'auto'</value>
+    </param>
+    <param>
+      <key>precision</key>
+      <value>8</value>
+    </param>
+    <param>
+      <key>sym_map</key>
+      <value>[0, 1, 2, 3, 4, 5, 6, 7]</value>
+    </param>
+    <param>
+      <key>w_imag_sect</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>w_real_sect</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_constellation_rect</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>const_points</key>
+      <value>[0.9+0.3j,0.3+0.9j, -0.3+0.9j, -0.9+0.3j, -0.9-0.3j, -0.3-0.9j, 0.3-0.9j, 0.9-0.3j]</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(776, 12)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -842,11 +802,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1056, 636)</value>
+      <value>(1088, 636)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -859,69 +819,6 @@
     <param>
       <key>value</key>
       <value>len(tx_rrc_taps)/nfilts</value>
-    </param>
-  </block>
-  <block>
-    <key>variable_qtgui_range</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(928, 828)</value>
-    </param>
-    <param>
-      <key>gui_hint</key>
-      <value>0,3,1,1</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>ted_gain</value>
-    </param>
-    <param>
-      <key>label</key>
-      <value>Expected TED Gain</value>
-    </param>
-    <param>
-      <key>min_len</key>
-      <value>200</value>
-    </param>
-    <param>
-      <key>orient</key>
-      <value>Qt.Horizontal</value>
-    </param>
-    <param>
-      <key>start</key>
-      <value>0.05</value>
-    </param>
-    <param>
-      <key>step</key>
-      <value>0.01</value>
-    </param>
-    <param>
-      <key>stop</key>
-      <value>5.0</value>
-    </param>
-    <param>
-      <key>rangeType</key>
-      <value>float</value>
-    </param>
-    <param>
-      <key>widget</key>
-      <value>counter_slider</value>
     </param>
   </block>
   <block>
@@ -1118,69 +1015,6 @@
     <param>
       <key>value</key>
       <value>[int(random.random()*7) for i in range(49602)]</value>
-    </param>
-  </block>
-  <block>
-    <key>variable_qtgui_range</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>1.0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(776, 828)</value>
-    </param>
-    <param>
-      <key>gui_hint</key>
-      <value>0,4,1,1</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>zeta</value>
-    </param>
-    <param>
-      <key>label</key>
-      <value>Damping Factor</value>
-    </param>
-    <param>
-      <key>min_len</key>
-      <value>200</value>
-    </param>
-    <param>
-      <key>orient</key>
-      <value>Qt.Horizontal</value>
-    </param>
-    <param>
-      <key>start</key>
-      <value>0.1</value>
-    </param>
-    <param>
-      <key>step</key>
-      <value>0.1</value>
-    </param>
-    <param>
-      <key>stop</key>
-      <value>5.0</value>
-    </param>
-    <param>
-      <key>rangeType</key>
-      <value>float</value>
-    </param>
-    <param>
-      <key>widget</key>
-      <value>counter_slider</value>
     </param>
   </block>
   <block>
@@ -2253,7 +2087,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(824, 556)</value>
+      <value>(856, 556)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2286,61 +2120,6 @@
     <param>
       <key>symbol_table</key>
       <value>pld_const.points()</value>
-    </param>
-  </block>
-  <block>
-    <key>digital_cma_equalizer_cc</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(672, 996)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>mu</key>
-      <value>0.01</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>digital_cma_equalizer_cc_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>modulus</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>num_taps</key>
-      <value>15</value>
-    </param>
-    <param>
-      <key>sps</key>
-      <value>2</value>
     </param>
   </block>
   <block>
@@ -2406,7 +2185,7 @@
     </param>
     <param>
       <key>differential</key>
-      <value>True</value>
+      <value>False</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -2418,7 +2197,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1280, 356)</value>
+      <value>(1272, 364)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2564,58 +2343,6 @@
     </param>
   </block>
   <block>
-    <key>digital_costas_loop_cc</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value>100= 
-R Symbol / R Sample -&gt; 1 symbol 1 sample =100</value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(880, 1072)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>digital_costas_loop_cc_0_0</value>
-    </param>
-    <param>
-      <key>w</key>
-      <value>6.28/100.0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>order</key>
-      <value>pld_const.arity()</value>
-    </param>
-    <param>
-      <key>use_snr</key>
-      <value>False</value>
-    </param>
-  </block>
-  <block>
     <key>digital_descrambler_bb</key>
     <param>
       <key>alias</key>
@@ -2682,7 +2409,7 @@ R Symbol / R Sample -&gt; 1 symbol 1 sample =100</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>2</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2725,11 +2452,11 @@ R Symbol / R Sample -&gt; 1 symbol 1 sample =100</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>2</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(640, 684)</value>
+      <value>(632, 612)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2768,7 +2495,7 @@ R Symbol / R Sample -&gt; 1 symbol 1 sample =100</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>2</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2784,7 +2511,7 @@ R Symbol / R Sample -&gt; 1 symbol 1 sample =100</value>
     </param>
     <param>
       <key>map</key>
-      <value>[0,4,5,1,3,7,6,2]</value>
+      <value>pld_const.pre_diff_code()</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -2811,11 +2538,11 @@ R Symbol / R Sample -&gt; 1 symbol 1 sample =100</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>2</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(496, 1524)</value>
+      <value>(512, 1524)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2827,7 +2554,7 @@ R Symbol / R Sample -&gt; 1 symbol 1 sample =100</value>
     </param>
     <param>
       <key>map</key>
-      <value>[0,4,5,1,3,7,6,2]</value>
+      <value>pld_const.pre_diff_code()</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -3001,93 +2728,6 @@ R Symbol / R Sample -&gt; 1 symbol 1 sample =100</value>
     <param>
       <key>seed</key>
       <value>0x7F</value>
-    </param>
-  </block>
-  <block>
-    <key>digital_symbol_sync_xx</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>damping</key>
-      <value>zeta</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>ted_gain</key>
-      <value>ted_gain</value>
-    </param>
-    <param>
-      <key>nfilters</key>
-      <value>nfilts</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(336, 796)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>cc</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>digital_symbol_sync_xx_0</value>
-    </param>
-    <param>
-      <key>resamp_type</key>
-      <value>digital.IR_PFB_MF</value>
-    </param>
-    <param>
-      <key>loop_bw</key>
-      <value>6.28*0.04</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>max_dev</key>
-      <value>1.5</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>osps</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>pfb_mf_taps</key>
-      <value>rx_rrc_taps</value>
-    </param>
-    <param>
-      <key>sps</key>
-      <value>sps</value>
-    </param>
-    <param>
-      <key>constellation</key>
-      <value>pld_const.base()</value>
-    </param>
-    <param>
-      <key>ted_type</key>
-      <value>digital.TED_SIGNAL_TIMES_SLOPE_ML</value>
     </param>
   </block>
   <block>
@@ -3294,7 +2934,7 @@ R Symbol / R Sample -&gt; 1 symbol 1 sample =100</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1056, 540)</value>
+      <value>(1088, 540)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -4449,7 +4089,7 @@ R Symbol / R Sample -&gt; 1 symbol 1 sample =100</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -4796,7 +4436,7 @@ R Symbol / R Sample -&gt; 1 symbol 1 sample =100</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -10290,12 +9930,6 @@ R Symbol / R Sample -&gt; 1 symbol 1 sample =100</value>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>analog_agc2_xx_0</source_block_id>
-    <sink_block_id>digital_symbol_sync_xx_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
     <source_block_id>blocks_char_to_float_0_2_0_0</source_block_id>
     <sink_block_id>fec_extended_decoder_0_0_1_0_1_0</sink_block_id>
     <source_key>0</source_key>
@@ -10428,12 +10062,6 @@ R Symbol / R Sample -&gt; 1 symbol 1 sample =100</value>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>digital_cma_equalizer_cc_0</source_block_id>
-    <sink_block_id>digital_costas_loop_cc_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
     <source_block_id>digital_constellation_decoder_cb_0_0</source_block_id>
     <sink_block_id>virtual_sink_2</sink_block_id>
     <source_key>0</source_key>
@@ -10477,6 +10105,12 @@ R Symbol / R Sample -&gt; 1 symbol 1 sample =100</value>
   </connection>
   <connection>
     <source_block_id>digital_constellation_receiver_cb_0</source_block_id>
+    <sink_block_id>qtgui_const_sink_x_0_0_0_1_0</sink_block_id>
+    <source_key>4</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>digital_constellation_receiver_cb_0</source_block_id>
     <sink_block_id>qtgui_const_sink_x_0_0_0_1_0_1</sink_block_id>
     <source_key>4</source_key>
     <sink_key>0</sink_key>
@@ -10484,18 +10118,6 @@ R Symbol / R Sample -&gt; 1 symbol 1 sample =100</value>
   <connection>
     <source_block_id>digital_correlate_access_code_xx_ts_0_0</source_block_id>
     <sink_block_id>virtual_sink_3</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>digital_costas_loop_cc_0_0</source_block_id>
-    <sink_block_id>digital_constellation_decoder_cb_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>digital_costas_loop_cc_0_0</source_block_id>
-    <sink_block_id>qtgui_const_sink_x_0_0_0_1_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -10548,26 +10170,8 @@ R Symbol / R Sample -&gt; 1 symbol 1 sample =100</value>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>digital_pfb_clock_sync_xxx_0</source_block_id>
-    <sink_block_id>digital_costas_loop_cc_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
     <source_block_id>digital_scrambler_bb_0</source_block_id>
     <sink_block_id>fec_extended_encoder_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>digital_symbol_sync_xx_0</source_block_id>
-    <sink_block_id>digital_cma_equalizer_cc_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>digital_symbol_sync_xx_0</source_block_id>
-    <sink_block_id>qtgui_const_sink_x_0_0_0_1_0_1</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

@@ -96,3 +96,7 @@ Semana
 24/9- Instalação do GR-adapt
 25/9- Instalação do GR-adapt no 2 computador -  Tentativa de cancelar ruido -FAIL. Não sei se dar'a, irei criar issue no git.
 26/9- Tentar 8PSK. Encontrei outro equalizer com conhecimento da constelação, será melhor?
+27/9- BUG no Gnuradio do Constellation Object- Mapeamento mal feito para 8psk. Nao tive tempo de ver mais nada.
+
+Semana
+30/9- Resolvi 8psk

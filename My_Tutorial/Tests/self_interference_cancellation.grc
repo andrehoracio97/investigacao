@@ -801,7 +801,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>filtered_input</key>
@@ -813,7 +813,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(552, 404)</value>
+      <value>(592, 340)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -880,7 +880,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>filtered_input</key>
@@ -892,7 +892,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(944, 676)</value>
+      <value>(944, 876)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -951,7 +951,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1006,11 +1006,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(64, 716)</value>
+      <value>(64, 916)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1061,7 +1061,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>freq</key>
@@ -1069,7 +1069,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(8, 372)</value>
+      <value>(32, 468)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1124,7 +1124,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>freq</key>
@@ -1132,7 +1132,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(72, 596)</value>
+      <value>(72, 796)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1195,7 +1195,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(224, 412)</value>
+      <value>(40, 332)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1246,7 +1246,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1297,11 +1297,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(280, 672)</value>
+      <value>(280, 872)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1352,7 +1352,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>2</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1399,7 +1399,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1454,11 +1454,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(392, 684)</value>
+      <value>(392, 884)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1509,11 +1509,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(392, 732)</value>
+      <value>(392, 932)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1564,11 +1564,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(392, 628)</value>
+      <value>(392, 828)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1643,7 +1643,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>fftsize</key>
@@ -1947,7 +1947,7 @@ Erro</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>fftsize</key>
@@ -1955,7 +1955,7 @@ Erro</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(864, 360)</value>
+      <value>(864, 560)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -2230,7 +2230,7 @@ Erro</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2829,6 +2829,12 @@ Erro</value>
   <connection>
     <source_block_id>analog_sig_source_x_0_0</source_block_id>
     <sink_block_id>blocks_throttle_1_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>analog_sig_source_x_0_0_0</source_block_id>
+    <sink_block_id>blocks_multiply_const_vxx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
