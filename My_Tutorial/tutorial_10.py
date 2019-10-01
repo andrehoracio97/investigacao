@@ -22,12 +22,12 @@ from gnuradio import blocks
 from gnuradio import digital
 from gnuradio import eng_notation
 from gnuradio import fec
+from gnuradio import filter
 from gnuradio import gr
 from gnuradio import qtgui
 from gnuradio import uhd
 from gnuradio.eng_option import eng_option
 from gnuradio.filter import firdes
-from gnuradio.filter import pfb
 from gnuradio.qtgui import Range, RangeWidget
 from optparse import OptionParser
 import insert_vec_cpp
@@ -76,22 +76,33 @@ class tutorial_10(gr.top_block, Qt.QWidget):
         # Variables
         ##################################################
         self.sps = sps = 4
-        self.nfilts = nfilts = 32
+        self.pld_const = pld_const = digital.constellation_rect(([0.707+0.707j, -0.707+0.707j, -0.707-0.707j, 0.707-0.707j]), ([0, 1, 2, 3]), 4, 2, 2, 1, 1).base()
+        self.pld_const.gen_soft_dec_lut(8)
         self.eb = eb = 0.22
+        self.vector_sync_packed = vector_sync_packed = [0xac, 0xdd, 0xa4, 0xe2, 0xf2, 0x8c, 0x20, 0xfc]
+        self.samp_rate_array_MCR = samp_rate_array_MCR = [7500000,5000000,3750000,3000000,2500000,2000000,1500000,1000000,937500,882352,833333,714285,533333,500000,421052,400000,380952]
+        self.rxmod = rxmod = digital.generic_mod(pld_const, False, sps, True, eb, False, False)
+
+        self.rrc_taps = rrc_taps = firdes.root_raised_cosine(sps, sps, 1.0, eb, 11*sps)
+
+        self.rate = rate = 2
+        self.polys = polys = [109, 79]
+        self.nfilts = nfilts = 32
+        self.mark_delays = mark_delays = [0, 0, 34, 56, 87, 119]
+        self.k = k = 7
+        self.ac = ac = map(lambda x: int(x), list(digital.packet_utils.default_access_code))
+        self.vector = vector = ac+[int(random.random()*2) for i in range(5000)]+ac+[int(random.random()*2) for i in range(5000)]
+        self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 38
+        self.variable_qtgui_range_0 = variable_qtgui_range_0 = 50
 
         self.tx_rrc_taps = tx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts, 1.0, eb, 5*sps*nfilts)
 
-        self.taps_per_filt = taps_per_filt = len(tx_rrc_taps)/nfilts
-        self.samp_rate_array_MCR = samp_rate_array_MCR = [7500000,5000000,3750000,3000000,2500000,2000000,1500000,1000000,937500,882352,833333,714285,533333,500000,421052,400000,380952]
-        self.rate = rate = 2
-        self.polys = polys = [109, 79]
-        self.k = k = 7
-        self.vector = vector = [int(random.random()*4) for i in range(49600)]
-        self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 38
-        self.variable_qtgui_range_0 = variable_qtgui_range_0 = 50
         self.samp_rate = samp_rate = samp_rate_array_MCR[3]
 
         self.rx_rrc_taps = rx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts*sps, 1.0, eb, 11*sps*nfilts)
+
+
+        self.rx_psf_taps = rx_psf_taps = firdes.root_raised_cosine(nfilts, sps*nfilts, 1.0, eb, 11*sps*nfilts)
 
 
 
@@ -99,12 +110,11 @@ class tutorial_10(gr.top_block, Qt.QWidget):
 
 
         self.pld_dec = pld_dec = map( (lambda a: fec.cc_decoder.make(440, k, rate, (polys), 0, -1, fec.CC_TERMINATED, False)), range(0,8) );
-
-        self.pld_const = pld_const = digital.constellation_calcdist((0.92387+0.38268j, 0.38268+0.92387j,  -0.38268+0.92387j, -0.92387+0.38268j, -0.92387-0.38268j, -0.38268-0.92387j, 0.38268-0.92387j, 0.92387-0.38268j), ([0, 1, 2, 3, 4, 5, 6, 7]), 4, 1).base()
-
-        self.pld_const.gen_soft_dec_lut(8)
+        self.modulated_sync_word = modulated_sync_word = digital.modulate_vector_bc(rxmod .to_basic_block(), (vector_sync_packed), ([1]))
+        self.mark_delay = mark_delay = mark_delays[sps]
+        self.mark = mark = 57
         self.frequencia_usrp = frequencia_usrp = 484e6
-        self.filt_delay = filt_delay = 1+(taps_per_filt-1)/2
+        self.filt_delay2 = filt_delay2 = 1+(len(rrc_taps)-1)/2
         self.copy = copy = True
         self.MCR = MCR = "master_clock_rate=60e6"
 
@@ -513,37 +523,40 @@ class tutorial_10(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(2, 3):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self.pfb_arb_resampler_xxx_0 = pfb.arb_resampler_ccf(
-        	  sps,
-                  taps=(tx_rrc_taps),
-        	  flt_size=nfilts)
-        self.pfb_arb_resampler_xxx_0.declare_sample_delay(filt_delay)
-
-        self.insert_vec_cpp_new_vec_0 = insert_vec_cpp.new_vec((vector))
+        self._mark_range = Range(50, 120, 1, 57, 200)
+        self._mark_win = RangeWidget(self._mark_range, self.set_mark, 'mark', "counter_slider", float)
+        self.top_grid_layout.addWidget(self._mark_win, 0, 3, 1, 1)
+        for r in range(0, 1):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(3, 4):
+            self.top_grid_layout.setColumnStretch(c, 1)
+        self.interp_fir_filter_xxx_0 = filter.interp_fir_filter_ccc(sps, (rrc_taps))
+        self.interp_fir_filter_xxx_0.declare_sample_delay(filt_delay2)
         self.fec_extended_encoder_0 = fec.extended_encoder(encoder_obj_list=pld_enc, threading='capillary', puncpat=puncpat)
         self.fec_extended_decoder_0_0_1_0_1_0 = fec.extended_decoder(decoder_obj_list=pld_dec, threading='capillary', ann=None, puncpat=puncpat, integration_period=10000)
         self.digital_pfb_clock_sync_xxx_0 = digital.pfb_clock_sync_ccf(sps, 6.28/400.0, (rx_rrc_taps), nfilts, nfilts/2, 1.5, 2)
         self.digital_map_bb_0_0_0_0_0 = digital.map_bb(([-1, 1]))
-        self.digital_diff_encoder_bb_0 = digital.diff_encoder_bb(pld_const.arity())
-        self.digital_diff_decoder_bb_0 = digital.diff_decoder_bb(pld_const.arity())
+        self.digital_map_bb_0_0 = digital.map_bb((pld_const.pre_diff_code()))
+        self.digital_map_bb_0 = digital.map_bb((pld_const.pre_diff_code()))
+        self.digital_lms_dd_equalizer_cc_0 = digital.lms_dd_equalizer_cc(15, 0.01, 2, pld_const)
         self.digital_costas_loop_cc_0_0 = digital.costas_loop_cc(6.28/100.0, pld_const.arity(), False)
         self.digital_correlate_access_code_xx_ts_0_0 = digital.correlate_access_code_bb_ts(digital.packet_utils.default_access_code,
           1, 'packet_len')
+        self.digital_corr_est_cc_0 = digital.corr_est_cc((modulated_sync_word), sps, mark_delay, 0.99)
         self.digital_constellation_decoder_cb_0_0 = digital.constellation_decoder_cb(pld_const)
-        self.digital_cma_equalizer_cc_0 = digital.cma_equalizer_cc(15, 1, 0.01, 2)
         self.digital_chunks_to_symbols_xx_0_0 = digital.chunks_to_symbols_bc((pld_const.points()), 1)
         self.blocks_vector_source_x_0_0_0 = blocks.vector_source_b([0], True, 1, [])
         self.blocks_stream_mux_0_1_0 = blocks.stream_mux(gr.sizeof_char*1, (96, 896))
         self.blocks_stream_mux_0_0 = blocks.stream_mux(gr.sizeof_char*1, (892, 4))
         self.blocks_repack_bits_bb_1_0_0_1 = blocks.repack_bits_bb(8, 1, '', False, gr.GR_MSB_FIRST)
-        self.blocks_repack_bits_bb_0_1 = blocks.repack_bits_bb(1, pld_const.bits_per_symbol(), '', False, gr.GR_MSB_FIRST)
+        self.blocks_repack_bits_bb_0_1_0 = blocks.repack_bits_bb(1, pld_const.bits_per_symbol(), '', False, gr.GR_MSB_FIRST)
         self.blocks_repack_bits_bb_0_0 = blocks.repack_bits_bb(1, 8, '', False, gr.GR_MSB_FIRST)
         self.blocks_repack_bits_bb_0 = blocks.repack_bits_bb(pld_const.bits_per_symbol(), 1, '', False, gr.GR_MSB_FIRST)
         self.blocks_multiply_const_vxx_1 = blocks.multiply_const_vcc((0.7, ))
         self.blocks_keep_m_in_n_0_0_2_0 = blocks.keep_m_in_n(gr.sizeof_char, 892, 896, 0)
-        self.blocks_file_source_0_0_1_0_0 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Desktop/Files_To_Transmit/videofhd.mpg', False)
-        self.blocks_file_source_0_0_1_0_0.set_begin_tag(pmt.PMT_NIL)
-        self.blocks_file_sink_0_0_0_2 = blocks.file_sink(gr.sizeof_char*1, '/home/andre/Desktop/Trasmited/depois.mpeg', False)
+        self.blocks_file_source_0_0_1_0 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Desktop/Files_To_Transmit/trasmit_10_mb.txt', False)
+        self.blocks_file_source_0_0_1_0.set_begin_tag(pmt.PMT_NIL)
+        self.blocks_file_sink_0_0_0_2 = blocks.file_sink(gr.sizeof_char*1, '/home/andre/Desktop/Trasmited/depois.txt', False)
         self.blocks_file_sink_0_0_0_2.set_unbuffered(False)
         self.blocks_copy_0 = blocks.copy(gr.sizeof_gr_complex*1)
         self.blocks_copy_0.set_enabled(copy)
@@ -562,8 +575,8 @@ class tutorial_10(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_char_to_float_1_0_0, 0), (self.qtgui_time_sink_x_0_0, 0))
         self.connect((self.blocks_char_to_float_1_0_1, 0), (self.qtgui_time_sink_x_0_1, 0))
         self.connect((self.blocks_copy_0, 0), (self.blocks_multiply_const_vxx_1, 0))
-        self.connect((self.blocks_file_source_0_0_1_0_0, 0), (self.blocks_char_to_float_1_0_0, 0))
-        self.connect((self.blocks_file_source_0_0_1_0_0, 0), (self.blocks_repack_bits_bb_1_0_0_1, 0))
+        self.connect((self.blocks_file_source_0_0_1_0, 0), (self.blocks_char_to_float_1_0_0, 0))
+        self.connect((self.blocks_file_source_0_0_1_0, 0), (self.blocks_repack_bits_bb_1_0_0_1, 0))
         self.connect((self.blocks_keep_m_in_n_0_0_2_0, 0), (self.digital_map_bb_0_0_0_0_0, 0))
         self.connect((self.blocks_multiply_const_vxx_1, 0), (self.qtgui_const_sink_x_0_0_0_0, 0))
         self.connect((self.blocks_multiply_const_vxx_1, 0), (self.qtgui_time_sink_x_1, 0))
@@ -571,28 +584,28 @@ class tutorial_10(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_repack_bits_bb_0, 0), (self.digital_correlate_access_code_xx_ts_0_0, 0))
         self.connect((self.blocks_repack_bits_bb_0_0, 0), (self.blocks_char_to_float_1_0_1, 0))
         self.connect((self.blocks_repack_bits_bb_0_0, 0), (self.blocks_file_sink_0_0_0_2, 0))
-        self.connect((self.blocks_repack_bits_bb_0_1, 0), (self.insert_vec_cpp_new_vec_0, 0))
+        self.connect((self.blocks_repack_bits_bb_0_1_0, 0), (self.digital_map_bb_0, 0))
         self.connect((self.blocks_repack_bits_bb_1_0_0_1, 0), (self.scrambler_packets_same_seed_scramble_packetize_0, 0))
         self.connect((self.blocks_stream_mux_0_0, 0), (self.blocks_stream_mux_0_1_0, 1))
-        self.connect((self.blocks_stream_mux_0_1_0, 0), (self.blocks_repack_bits_bb_0_1, 0))
+        self.connect((self.blocks_stream_mux_0_1_0, 0), (self.blocks_repack_bits_bb_0_1_0, 0))
         self.connect((self.blocks_vector_source_x_0_0_0, 0), (self.blocks_stream_mux_0_0, 1))
-        self.connect((self.digital_chunks_to_symbols_xx_0_0, 0), (self.pfb_arb_resampler_xxx_0, 0))
-        self.connect((self.digital_cma_equalizer_cc_0, 0), (self.digital_costas_loop_cc_0_0, 0))
-        self.connect((self.digital_constellation_decoder_cb_0_0, 0), (self.digital_diff_decoder_bb_0, 0))
+        self.connect((self.digital_chunks_to_symbols_xx_0_0, 0), (self.interp_fir_filter_xxx_0, 0))
+        self.connect((self.digital_constellation_decoder_cb_0_0, 0), (self.digital_map_bb_0_0, 0))
+        self.connect((self.digital_corr_est_cc_0, 0), (self.digital_pfb_clock_sync_xxx_0, 0))
         self.connect((self.digital_correlate_access_code_xx_ts_0_0, 0), (self.blocks_keep_m_in_n_0_0_2_0, 0))
         self.connect((self.digital_costas_loop_cc_0_0, 0), (self.digital_constellation_decoder_cb_0_0, 0))
         self.connect((self.digital_costas_loop_cc_0_0, 0), (self.qtgui_const_sink_x_0_0_0_1_0, 0))
-        self.connect((self.digital_diff_decoder_bb_0, 0), (self.blocks_repack_bits_bb_0, 0))
-        self.connect((self.digital_diff_encoder_bb_0, 0), (self.digital_chunks_to_symbols_xx_0_0, 0))
+        self.connect((self.digital_lms_dd_equalizer_cc_0, 0), (self.digital_costas_loop_cc_0_0, 0))
+        self.connect((self.digital_map_bb_0, 0), (self.digital_chunks_to_symbols_xx_0_0, 0))
+        self.connect((self.digital_map_bb_0_0, 0), (self.blocks_repack_bits_bb_0, 0))
         self.connect((self.digital_map_bb_0_0_0_0_0, 0), (self.blocks_char_to_float_0_2_0_0, 0))
-        self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.digital_cma_equalizer_cc_0, 0))
+        self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.digital_lms_dd_equalizer_cc_0, 0))
         self.connect((self.fec_extended_decoder_0_0_1_0_1_0, 0), (self.scrambler_packets_same_seed_descramble_packetize_0, 0))
         self.connect((self.fec_extended_encoder_0, 0), (self.blocks_stream_mux_0_0, 0))
-        self.connect((self.insert_vec_cpp_new_vec_0, 0), (self.digital_diff_encoder_bb_0, 0))
-        self.connect((self.pfb_arb_resampler_xxx_0, 0), (self.blocks_copy_0, 0))
+        self.connect((self.interp_fir_filter_xxx_0, 0), (self.blocks_copy_0, 0))
         self.connect((self.scrambler_packets_same_seed_descramble_packetize_0, 0), (self.blocks_repack_bits_bb_0_0, 0))
         self.connect((self.scrambler_packets_same_seed_scramble_packetize_0, 0), (self.fec_extended_encoder_0, 0))
-        self.connect((self.uhd_usrp_source_0, 0), (self.digital_pfb_clock_sync_xxx_0, 0))
+        self.connect((self.uhd_usrp_source_0, 0), (self.digital_corr_est_cc_0, 0))
         self.connect((self.uhd_usrp_source_0, 0), (self.qtgui_const_sink_x_0_0_0_1, 0))
         self.connect((self.uhd_usrp_source_0, 0), (self.qtgui_time_sink_x_1_0, 0))
 
@@ -612,35 +625,28 @@ class tutorial_10(gr.top_block, Qt.QWidget):
 
     def set_sps(self, sps):
         self.sps = sps
-        self.pfb_arb_resampler_xxx_0.set_rate(self.sps)
+        self.set_mark_delay(self.mark_delays[self.sps])
+        self.set_rxmod(digital.generic_mod(self.pld_const, False, self.sps, True, self.eb, False, False))
 
-    def get_nfilts(self):
-        return self.nfilts
+    def get_pld_const(self):
+        return self.pld_const
 
-    def set_nfilts(self, nfilts):
-        self.nfilts = nfilts
-        self.set_taps_per_filt(len(self.tx_rrc_taps)/self.nfilts)
+    def set_pld_const(self, pld_const):
+        self.pld_const = pld_const
+        self.set_rxmod(digital.generic_mod(self.pld_const, False, self.sps, True, self.eb, False, False))
 
     def get_eb(self):
         return self.eb
 
     def set_eb(self, eb):
         self.eb = eb
+        self.set_rxmod(digital.generic_mod(self.pld_const, False, self.sps, True, self.eb, False, False))
 
-    def get_tx_rrc_taps(self):
-        return self.tx_rrc_taps
+    def get_vector_sync_packed(self):
+        return self.vector_sync_packed
 
-    def set_tx_rrc_taps(self, tx_rrc_taps):
-        self.tx_rrc_taps = tx_rrc_taps
-        self.set_taps_per_filt(len(self.tx_rrc_taps)/self.nfilts)
-        self.pfb_arb_resampler_xxx_0.set_taps((self.tx_rrc_taps))
-
-    def get_taps_per_filt(self):
-        return self.taps_per_filt
-
-    def set_taps_per_filt(self, taps_per_filt):
-        self.taps_per_filt = taps_per_filt
-        self.set_filt_delay(1+(self.taps_per_filt-1)/2)
+    def set_vector_sync_packed(self, vector_sync_packed):
+        self.vector_sync_packed = vector_sync_packed
 
     def get_samp_rate_array_MCR(self):
         return self.samp_rate_array_MCR
@@ -648,6 +654,20 @@ class tutorial_10(gr.top_block, Qt.QWidget):
     def set_samp_rate_array_MCR(self, samp_rate_array_MCR):
         self.samp_rate_array_MCR = samp_rate_array_MCR
         self.set_samp_rate(self.samp_rate_array_MCR[3])
+
+    def get_rxmod(self):
+        return self.rxmod
+
+    def set_rxmod(self, rxmod):
+        self.rxmod = rxmod
+
+    def get_rrc_taps(self):
+        return self.rrc_taps
+
+    def set_rrc_taps(self, rrc_taps):
+        self.rrc_taps = rrc_taps
+        self.set_filt_delay2(1+(len(self.rrc_taps)-1)/2)
+        self.interp_fir_filter_xxx_0.set_taps((self.rrc_taps))
 
     def get_rate(self):
         return self.rate
@@ -661,11 +681,31 @@ class tutorial_10(gr.top_block, Qt.QWidget):
     def set_polys(self, polys):
         self.polys = polys
 
+    def get_nfilts(self):
+        return self.nfilts
+
+    def set_nfilts(self, nfilts):
+        self.nfilts = nfilts
+
+    def get_mark_delays(self):
+        return self.mark_delays
+
+    def set_mark_delays(self, mark_delays):
+        self.mark_delays = mark_delays
+        self.set_mark_delay(self.mark_delays[self.sps])
+
     def get_k(self):
         return self.k
 
     def set_k(self, k):
         self.k = k
+
+    def get_ac(self):
+        return self.ac
+
+    def set_ac(self, ac):
+        self.ac = ac
+        self.set_vector(self.ac+[int(random.random()*2) for i in range(5000)]+self.ac+[int(random.random()*2) for i in range(5000)])
 
     def get_vector(self):
         return self.vector
@@ -689,6 +729,12 @@ class tutorial_10(gr.top_block, Qt.QWidget):
         self.uhd_usrp_sink_0_0.set_gain(self.variable_qtgui_range_0, 0)
 
 
+    def get_tx_rrc_taps(self):
+        return self.tx_rrc_taps
+
+    def set_tx_rrc_taps(self, tx_rrc_taps):
+        self.tx_rrc_taps = tx_rrc_taps
+
     def get_samp_rate(self):
         return self.samp_rate
 
@@ -708,6 +754,12 @@ class tutorial_10(gr.top_block, Qt.QWidget):
         self.rx_rrc_taps = rx_rrc_taps
         self.digital_pfb_clock_sync_xxx_0.update_taps((self.rx_rrc_taps))
 
+    def get_rx_psf_taps(self):
+        return self.rx_psf_taps
+
+    def set_rx_psf_taps(self, rx_psf_taps):
+        self.rx_psf_taps = rx_psf_taps
+
     def get_pld_enc(self):
         return self.pld_enc
 
@@ -720,11 +772,24 @@ class tutorial_10(gr.top_block, Qt.QWidget):
     def set_pld_dec(self, pld_dec):
         self.pld_dec = pld_dec
 
-    def get_pld_const(self):
-        return self.pld_const
+    def get_modulated_sync_word(self):
+        return self.modulated_sync_word
 
-    def set_pld_const(self, pld_const):
-        self.pld_const = pld_const
+    def set_modulated_sync_word(self, modulated_sync_word):
+        self.modulated_sync_word = modulated_sync_word
+
+    def get_mark_delay(self):
+        return self.mark_delay
+
+    def set_mark_delay(self, mark_delay):
+        self.mark_delay = mark_delay
+        self.digital_corr_est_cc_0.set_mark_delay(self.mark_delay)
+
+    def get_mark(self):
+        return self.mark
+
+    def set_mark(self, mark):
+        self.mark = mark
 
     def get_frequencia_usrp(self):
         return self.frequencia_usrp
@@ -734,11 +799,11 @@ class tutorial_10(gr.top_block, Qt.QWidget):
         self.uhd_usrp_source_0.set_center_freq(self.frequencia_usrp, 0)
         self.uhd_usrp_sink_0_0.set_center_freq(self.frequencia_usrp, 0)
 
-    def get_filt_delay(self):
-        return self.filt_delay
+    def get_filt_delay2(self):
+        return self.filt_delay2
 
-    def set_filt_delay(self, filt_delay):
-        self.filt_delay = filt_delay
+    def set_filt_delay2(self, filt_delay2):
+        self.filt_delay2 = filt_delay2
 
     def get_copy(self):
         return self.copy
