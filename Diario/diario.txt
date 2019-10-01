@@ -100,3 +100,4 @@ Semana
 
 Semana
 30/9- Resolvi 8psk, Tentei 16psk, problema que não dá costas loop e não é convencional - pontos muitos juntos. So se usar o 16QAM, problema é que não tenho o frequency/phase correction. Tentar com correlation Estimator
+1/10-Tentativa correlation estimator - Bem sucedido com 2SPS e QPSK com Gray coding. Falei com professor e vi LMS. Escrevi realtorio overview e update tutorial_1.
