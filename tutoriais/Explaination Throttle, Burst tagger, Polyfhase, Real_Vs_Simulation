@@ -66,3 +66,50 @@ OK … so, now I’ll look at you GRC FGs & see what you’ve been up to!
 
 If you add a Qt Time Sink to the line that feeds into the USRP sink and then execute the FG, you’ll see that the time values of the signal are nearly within [-1,+1], but maybe 50% of the time they are outside that bound.
 You want the values being fed to the USRP sink to be within [-1,+1] … so, you need to add a “gain” block before the USRP sink and set the gain value to maybe 0.8 … an attenuation, in order to get the values provided to the USRP to be within those expected.
+
+=========BURST tagger asked by fmago:
+
+
+fmagno 12:46 AM
+awalls: I think you're talking about the pulse shaper. I'm asking about the burst shaper which adds padding before and after a burst: https://wiki.gnuradio.org/index.php/Burst_Shaper
+Why is this padding and ramping useful? I suppose it facilitates the reception somehow. How exactly?
+
+awalls (IRC)APP 12:48 AM
+nope, Im talking about a burst of symbols, not a single symbol
+it's about not splattering energy all overy the spectrum with a sharp rise and fall
+the sharp leading and trailing edge of an unshaped burst contains lots of high frequency components.
+The shaping reduces that.
+
+fmagno 12:50 AM
+But if each symbol is already pulse shaped is the burst going to produce spectrum outside the desired band?
+
+awalls (IRC)APP 12:50 AM
+yes
+Make a simulation in Matlab or Octave and see for yourself by running an FFT on the initial part of the burst
+I usually use a Tukey window over an FSK burst
+fmagno 12:54 AM
+Interesting, that was the bit I wasn't getting. But I think I am understanding. If we draw an envelop around the burst without burst shaping there will be a sharp change at the beginning and end of the burst. It becomes visible if we zoom out
+Thanks a lot
+
+fmagno 1:09 AM
+Hmm, I may be making some wrong assumptions though. Let's consider the following scenarios:
+1. [Burst]----[Burst]----[Burst]----[Burst]
+2. [Burst][Burst][Burst][Burst]
+3. <Burst>----<Burst>----<Burst>
+Where ---- means silence and <, > are ramps.
+Does 1. and 2. produce out of band spectrum?
+And is 1. better than 2. ?
+
+awalls (IRC)APP 2:01 AM
+There's a practical matter of keying up the power amplifier too.
+but fast edges produce spectral components farther out from the center frequency than ramps.
+so 1 is the worst.  2 is bad too.  3. is preferred.
+and the PA should be keyed on shortly before the burst and keyed off shortly after the burst.
+PA's cant have keying glitch transients, so an RF switch curcuit to isolate the PA output from the antenna may also be needed.
+*can have
+It turns out building a real transmitter to meet spectral masks is a bit of a hassle. :P 
+
+@fmagno Assume those bursts are properly filtered, they should have a 'ramp up' and 'ramp down'. If they are just cut off at the beginning and at the end, I'd actually argue that both 1 and 2 are equally bad.
+
+fmagno 9:18 AM
+@jdemel from a practical stand point I think I understand the impact of keying on/off the PA without ramping up/down (situation 1.), on the other hand if I look at the spectrum of the baseband signal (situation 2.), after only pulse shaping, I can see that it is well bounded. Theoretically I don’t see why the burst shaping should be required for 2., for example.

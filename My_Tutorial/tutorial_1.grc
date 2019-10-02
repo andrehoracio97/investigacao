@@ -395,7 +395,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(952, 572)</value>
+      <value>(1048, 572)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -404,6 +404,53 @@
     <param>
       <key>id</key>
       <value>blocks_char_to_float_1_0_1</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>scale</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_char_to_float</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1048, 620)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_char_to_float_1_0_1_0</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -450,7 +497,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(952, 484)</value>
+      <value>(1064, 484)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -459,6 +506,57 @@
     <param>
       <key>id</key>
       <value>blocks_file_sink_0_0_0_2</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>byte</value>
+    </param>
+    <param>
+      <key>unbuffered</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_file_sink</key>
+    <param>
+      <key>append</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>file</key>
+      <value>/home/andre/Desktop/Trasmited/depois2.txt</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1072, 668)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_file_sink_0_0_0_2_0</value>
     </param>
     <param>
       <key>type</key>
@@ -595,6 +693,65 @@
     <key>blocks_repack_bits_bb</key>
     <param>
       <key>k</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>l</key>
+      <value>8</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>endianness</key>
+      <value>gr.GR_MSB_FIRST</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(840, 676)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_repack_bits_bb_0_0_0</value>
+    </param>
+    <param>
+      <key>len_tag_key</key>
+      <value></value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>align_output</key>
+      <value>False</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_repack_bits_bb</key>
+    <param>
+      <key>k</key>
       <value>8</value>
     </param>
     <param>
@@ -706,6 +863,45 @@
     </param>
   </block>
   <block>
+    <key>digital_binary_slicer_fb</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(584, 688)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>digital_binary_slicer_fb_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
     <key>digital_chunks_to_symbols_xx</key>
     <param>
       <key>alias</key>
@@ -808,6 +1004,49 @@
     </param>
   </block>
   <block>
+    <key>digital_constellation_soft_decoder_cf</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>constellation</key>
+      <value>pld_const</value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(360, 684)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>digital_constellation_soft_decoder_cf_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
     <key>digital_map_bb</key>
     <param>
       <key>alias</key>
@@ -879,6 +1118,49 @@
     <param>
       <key>id</key>
       <value>digital_map_bb_0_0</value>
+    </param>
+    <param>
+      <key>map</key>
+      <value>pld_const.pre_diff_code()</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>digital_map_bb</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(712, 684)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>digital_map_bb_0_0_0</value>
     </param>
     <param>
       <key>map</key>
@@ -1268,7 +1550,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(360, 548)</value>
+      <value>(360, 572)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -1990,7 +2272,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1128, 548)</value>
+      <value>(1224, 572)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -2002,7 +2284,7 @@
     </param>
     <param>
       <key>grid</key>
-      <value>True</value>
+      <value>False</value>
     </param>
     <param>
       <key>id</key>
@@ -2022,7 +2304,7 @@
     </param>
     <param>
       <key>label1</key>
-      <value></value>
+      <value>Hard decoder</value>
     </param>
     <param>
       <key>marker1</key>
@@ -2070,7 +2352,7 @@
     </param>
     <param>
       <key>label2</key>
-      <value></value>
+      <value>Soft decoder</value>
     </param>
     <param>
       <key>marker2</key>
@@ -2258,7 +2540,7 @@
     </param>
     <param>
       <key>nconnections</key>
-      <value>1</value>
+      <value>2</value>
     </param>
     <param>
       <key>size</key>
@@ -2388,6 +2670,12 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
+    <source_block_id>blocks_char_to_float_1_0_1_0</source_block_id>
+    <sink_block_id>qtgui_time_sink_x_0_1</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>1</sink_key>
+  </connection>
+  <connection>
     <source_block_id>blocks_file_source_0_0_1_0</source_block_id>
     <sink_block_id>blocks_char_to_float_1_0_0</sink_block_id>
     <source_key>0</source_key>
@@ -2412,6 +2700,18 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
+    <source_block_id>blocks_repack_bits_bb_0_0_0</source_block_id>
+    <sink_block_id>blocks_char_to_float_1_0_1_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_repack_bits_bb_0_0_0</source_block_id>
+    <sink_block_id>blocks_file_sink_0_0_0_2_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
     <source_block_id>blocks_repack_bits_bb_1_0_0_1</source_block_id>
     <sink_block_id>digital_map_bb_0</sink_block_id>
     <source_key>0</source_key>
@@ -2430,6 +2730,12 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
+    <source_block_id>digital_binary_slicer_fb_0</source_block_id>
+    <sink_block_id>digital_map_bb_0_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
     <source_block_id>digital_chunks_to_symbols_xx_0_0</source_block_id>
     <sink_block_id>blocks_throttle_0_0</sink_block_id>
     <source_key>0</source_key>
@@ -2438,6 +2744,12 @@
   <connection>
     <source_block_id>digital_constellation_decoder_cb_0_0</source_block_id>
     <sink_block_id>digital_map_bb_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>digital_constellation_soft_decoder_cf_0</source_block_id>
+    <sink_block_id>digital_binary_slicer_fb_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -2454,8 +2766,20 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
+    <source_block_id>digital_map_bb_0_0_0</source_block_id>
+    <sink_block_id>blocks_repack_bits_bb_0_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
     <source_block_id>virtual_source_0</source_block_id>
     <sink_block_id>digital_constellation_decoder_cb_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>virtual_source_0</source_block_id>
+    <sink_block_id>digital_constellation_soft_decoder_cf_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

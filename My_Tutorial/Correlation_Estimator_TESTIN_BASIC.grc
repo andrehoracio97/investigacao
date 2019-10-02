@@ -852,7 +852,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(392, 656)</value>
+      <value>(400, 656)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1176,7 +1176,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(528, 676)</value>
+      <value>(536, 684)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1227,7 +1227,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(728, 492)</value>
+      <value>(720, 500)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1443,7 +1443,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(272, 780)</value>
+      <value>(256, 780)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1608,7 +1608,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(528, 772)</value>
+      <value>(536, 772)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3185,7 +3185,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(584, 636)</value>
+      <value>(632, 620)</value>
     </param>
     <param>
       <key>gui_hint</key>

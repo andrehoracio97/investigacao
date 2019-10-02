@@ -155,7 +155,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(192, 852)</value>
+      <value>(208, 852)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -252,7 +252,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -329,33 +329,6 @@
     <key>variable</key>
     <param>
       <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(648, 812)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>header</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>[0x1, 0x0, 0x1, 0x0, 0x1, 0x1, 0x0, 0x0, 0x1, 0x1, 0x0, 0x1, 0x1, 0x1, 0x0, 0x1, 0x1, 0x0, 0x1, 0x0, 0x0, 0x1, 0x0, 0x0, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x1, 0x0, 0x1, 0x1, 0x1, 0x1, 0x0, 0x0, 0x1, 0x0, 0x1, 0x0, 0x0, 0x0, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0]</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
       <value>payload a 0 mas manda bits na mesma</value>
     </param>
     <param>
@@ -364,7 +337,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(648, 732)</value>
+      <value>(656, 708)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -431,69 +404,6 @@
     <param>
       <key>value</key>
       <value>7</value>
-    </param>
-  </block>
-  <block>
-    <key>variable_qtgui_range</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>57</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1424, 380)</value>
-    </param>
-    <param>
-      <key>gui_hint</key>
-      <value>0,3</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>mark</value>
-    </param>
-    <param>
-      <key>label</key>
-      <value>mark</value>
-    </param>
-    <param>
-      <key>min_len</key>
-      <value>200</value>
-    </param>
-    <param>
-      <key>orient</key>
-      <value>Qt.Horizontal</value>
-    </param>
-    <param>
-      <key>start</key>
-      <value>50</value>
-    </param>
-    <param>
-      <key>step</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>stop</key>
-      <value>120</value>
-    </param>
-    <param>
-      <key>rangeType</key>
-      <value>float</value>
-    </param>
-    <param>
-      <key>widget</key>
-      <value>counter_slider</value>
     </param>
   </block>
   <block>
@@ -1296,7 +1206,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1429,7 +1339,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>value</key>
-      <value>35</value>
+      <value>39</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -1573,7 +1483,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1602,7 +1512,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -3112,7 +3022,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>threshold</key>
-      <value>0.999</value>
+      <value>0.99</value>
     </param>
   </block>
   <block>
@@ -3645,7 +3555,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(568, 1020)</value>
+      <value>(576, 956)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3892,11 +3802,11 @@ Found empirically.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(936, 428)</value>
+      <value>(936, 460)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3947,11 +3857,11 @@ Found empirically.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(960, 548)</value>
+      <value>(920, 572)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -10101,12 +10011,6 @@ Found empirically.</value>
   <connection>
     <source_block_id>digital_chunks_to_symbols_xx_0_0</source_block_id>
     <sink_block_id>interp_fir_filter_xxx_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>digital_chunks_to_symbols_xx_0_0</source_block_id>
-    <sink_block_id>pfb_arb_resampler_xxx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

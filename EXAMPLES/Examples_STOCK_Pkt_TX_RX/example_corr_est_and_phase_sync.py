@@ -63,7 +63,7 @@ class example_corr_est_and_phase_sync(gr.top_block, Qt.QWidget):
         ##################################################
         # Variables
         ##################################################
-        self.sps = sps = 2
+        self.sps = sps = 4
 
         self.hdr_const = hdr_const = digital.constellation_calcdist((digital.psk_2()[0]), (digital.psk_2()[1]), 2, 1).base()
 
