@@ -113,3 +113,59 @@ It turns out building a real transmitter to meet spectral masks is a bit of a ha
 
 fmagno 9:18 AM
 @jdemel from a practical stand point I think I understand the impact of keying on/off the PA without ramping up/down (situation 1.), on the other hand if I look at the spectrum of the baseband signal (situation 2.), after only pulse shaping, I can see that it is well bounded. Theoretically I don’t see why the burst shaping should be required for 2., for example.
+
+jdemel 9:47 AM
+@fmagno if you refer to the burst shaper block, it does a few things with your signal. I just recall I tried to use it once and did not succeed in making it do what I want. Do you refer to a simulated flowgraph or do you transmit and record?
+
+fmagno 9:55 AM
+@jdemel I am looking at the signal still in the realm of the digital machine, before iq modulation, right after the pulse shaping.
+I should then look at the transmitted signal to see if my predictions comply but for now I am trying to create an expectation on what should be happening.
+So, my setup includes in the TX part these operations:
+[dig mod] > [pulse shaping] > [  x  ] > [I/Q mod]
+Would it be better to place a [burst shaper] at [  x  ]  even for situation 2. that has no silences (sharp edges) between bursts?
+(After [pulse shaping] the spectrum is very well bounded) (edited) 
+
+awalls (IRC)APP 10:10 AM
+the bottom line is you use the tools and techniques required to meet your spectral mask (with some margin) at the Tx antenna output port of your radio set. end
+if you can get by without burst shaping then you don't need to implement it
+
+awalls (IRC)APP 10:17 AM
+There's also transient overshoot in the time domain to consider, but that is often not an issue unless you also have power envelope requirement.
+
+fmagno 10:17 AM
+awalls: I understand your practical approach and I agree with you. But in this case I’m seeking some better understanding on what circumstances burst_shaper may be needed.
+For example, let’s consider I remove all the silences between bursts (situation 2.), I believe I no longer would be concerned about keying on/off my PA because it is always on. I would conclude a burst_shaper wouldn’t be needed here, unless I’m missing some other effect. (edited) 
+
+fmagno 10:23 AM
+this also raises another question that is, why do I need to split my symbols into burst, in the first place?
+awalls (IRC)APP 10:36 AM
+if your PA is always on, when you have no RF to send, your PA will be amplifying and transmitting the noise coming out of your exciter.
+not a nice thing to do for other users of that channel.
+also, if you aren't using fdm for tx/rx then you will be degrading your own receiver.
+an Rf switch between tx and rx for a shared antenna may only provide about 40 dB of isolation
+you use bursts when you need to share the channel with other transmitters, which is very common for over the air transmission
+
+jdemel 10:47 AM
+My experience with over the air transmissions is, that you can see a sine in your received signal if you only transmit 0. This might be less of an issue if you increase the distance between TX and RX but it is definitely an issue.
+@fmagno What does your IQ mod do? Is this your device that maps I and Q to cosine and sine for upconversion? To be honest, the term 'modulation' is used in so many different context in communications engineering that it leads to a lot of confusion because its meaning is based on context.
+
+fmagno 11:11 AM
+Is this your device that maps I and Q to cosine and sine for upconversion
+@jdemel This is what I mean by iq mod, exactly. (edited) 
+
+fmagno 11:19 AM
+awalls: so, let’s say I only require to transmit N symbols encoding some message, and nothing else, and I am not worried about sharing that channel with others. Would situation 2. with this little change be the best approach?
+----<[N symbols]>----
+(no splitting my message into bursts and only adding a ramp at the beggining and the end of the message)
+
+awalls (IRC)APP 11:52 AM
+then this is totally academic: no one cares about your spectrum, you don't care to share the channel, so transmit whatever signal spectrum you want.
+Your not building a lasting digital communications system at that point.
+It's just an academic toy with no real world requirements.
+
+awalls (IRC)APP 12:01 PM
+Burst shaping is a technique to satisfy real world issued of spectrum compliance on a shared medium/channel.
+It is not required given your stated scenario.
+
+fmagno 12:04 PM
+awalls: thanks, that answer is exactly what I was looking for

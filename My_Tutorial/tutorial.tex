@@ -211,7 +211,7 @@ If you have a Ubuntu and you still didn't have installed GNU Radio you can find 
         
         To finalize the TX side we send the data to an "Virtual Sink" block, that redirects the data to the "Virtual Source" block with the same ID, the only purpose of this block is making the FG more clear, elegant and readable.
         
-        Now we move to the RX part where we can use one of two decoders, an hard decoder or a soft decoder. They both receives the complex values of the signal, however the hard decoder maps into bits of the symbols already set to use, while a soft decoder maps into a probability of the bit being 0 or 1  (decision based on the LUT table in constellation object), hence, we can convert this probability into real bits (using "Binary Slicer" block or sometimes it's usefull use soft bits for example when using "Forward error correction decoder" block. 
+        Now we move to the RX part where we can use one of two decoders, an hard decoder or a soft decoder. They both receives the complex values of the signal, however the hard decoder maps into bits of the symbols already set to use, while a soft decoder maps into a probability of the bit being 0 or 1  (decision based on the LUT table in constellation object), hence, we can convert this probability into real bits (using "Binary Slicer" block or sometimes it's useful use soft bits for example when using "Forward error correction decoder" block. 
         
         We will move on with the hard decoder, so we use the "Constellation Decoder" to invert what we have done, this is, map the complex points to hard decision symbols (using the parameters of the the "Constellation Object" block), and then we use "Map" block again to map symbols into bits of real data. And then pick the 2 significant bits and pack in a byte exactly the inverse that we did before.
         
@@ -283,17 +283,9 @@ If you have a Ubuntu and you still didn't have installed GNU Radio you can find 
     But, as I have said we have done fine frequency correction so if you continuously keep increasing the "Frequency Offset" tweak you will see that at certain point (close to 0.034) the constellations starts to be a lot noisier. Now we need to take care of "Coarse frequency recover" using "FFl Band-Edge" block. This block uses a frequency lock loop that derives of an band-edge filter that covers both upper and lower bandwidths of the signal to keep it in a range determined by the roll-off factor. This factor together with the SPS positions the frequency of band-edges.
     Concluding, first we set the SPS by 4, the roll-off factor at 0.22 as previously discussed. We also need to set a number of filter taps that we will generate to apply to our signal (I have set 60) and then the loop bandwidth (I have set 6.28/400.0). If now you tweak the "Frequency Offset" beyond what "Costas loop" alone can handle you see a perfect and clean constellation. 
 
-\subsection{Modulation - Tutorial\_5.grc}
-    If you take a closer look we have an problem writing the file, sometimes writes the right bits and another times doesn't.  That's because we have phase ambiguity for some amount due to the presence of phase distortion in communication channel, we can have 2 possible orientations for BPSK (180 degrees), 4 possible orientations for QPSK (with 90 degrees), M orientations for MPSK (with 360/M degrees), in our case we have of 90 degrees in our constellation. 
-    
-    There is two solutions for this: The first one is using an already known signal to train the receiver by correlating it with the outputed signal and get the real phase.  Another solution for this is instead transmitting the direct mapping in symbols into the constellation, we will transmit the difference between symbols of the constellation using the differential encoding where a symbol depends not only of the transmitted symbol but also the previous one (\verb|y[0] = (x[0] - x[-1]) % M| where M is Modulus of code's alphabet), removing the ambiguity. The advantage of differential encoder is that there is no need to train the receiver, however, as a disadvantage, if occurs one error in the transmission can cause two symbols wrongly recovered (because the dependency of the last one).
-    In our FG we will remove the "Map" block (since it does nothing now) and we will add an "Differential Encoder" Block right before "Chunks to Symbols" block resulting in conversion the input symbol in a one dependent of the last and thereafter it's mapping in the constellation point. 
-    In RX is just do the inverse thing, right after we have the transmitted symbols we use "Differential Decoder" to get the real symbols.
-    
-    
-\subsection{Packet communications - Tutorial\_6.grc}
+\subsection{Packet communications - Tutorial\_5.grc}
     %---Header e CAC
-    Now we have successfully modulated and transmitted our signal without ambiguity, but if you take a look in the output file, it will only be junk. This is happening because it's not writing the bits in the supposed byte. Explaining better, if I send the byte "01010101" and for some motive receives 4 bits in 0's and then the right byte, this results in "0000\textbf{0101}" and "\textbf{0101}XXXX", then all the bits forward are not aligned. This is the problem that is happening here because the "Polyphase Clock Sync" block needs some time to adapt and in this time write some junk bits, so we need a manner to always receive the bytes aligned. The solution for this is packetize our data and send the packet, consequently, we will lose all that first packet but we will always get our bits aligned.
+    Now we have successfully modulated and transmitted our signal, but if you take a look in the output file, it will only be junk. This is happening because it's not writing the bits in the supposed byte. Explaining better, if I send the byte "01010101" and for some motive receives 4 bits in 0's and then the right byte, this results in "0000\textbf{0101}" and "\textbf{0101}XXXX", then all the bits forward are not aligned. This is the problem that is happening here because the "Polyphase Clock Sync" block needs some time to adapt and in this time write some junk bits, so we need a manner to always receive the bytes aligned. The solution for this is packetize our data and send the packet, consequently, we will lose all that first packet but we will always get our bits aligned.
     
     %CAC
     The first thing we need to know is how the "Correlate Access Code - Tag Stream" block works. It expect unpacked data, this means that the input only has 1 significant bit per byte. Then exams the input finding an sequence called "Access Code" of 64 bits taking into account that can be X bits different where X is the "Threshold" parameter. After find this sequence the next 16 bits is the length of the payload (that will be outputted) repeated twice (32 bits in total). Resulting in a header with 64 bits of access code, 16 bits of payload length and another 16 bits of payload length, being that the length of the payload is in bytes. Now that we have the composition of the header of the packet we need to create it.
@@ -306,7 +298,7 @@ If you have a Ubuntu and you still didn't have installed GNU Radio you can find 
     %RX
     At the RX side we just need to repack to the 2 bits/byte into 1 bit/byte to use the "Correlate Access Code - Tag Stream" block and extract the payload of the packet and finally repack to 8 bits/byte. Now if you take a look at the output file you see that the bits are aligned correctly in the byte needed.
     
-\subsection{Out-Of-Tree Modules - Tutorial\_7.grc}
+\subsection{Out-Of-Tree Modules - Tutorial\_6.grc}
     We are getting the bits aligned, but we lose the first packet so we can solve this by transmitting an vector of bits right before we transmit our real data. There is just a big problem: The GR doesn't has that implemented but has a thing called OOT (Out-Of-Tree Modules) where allow us extend GR with our own functions and blocks created in Python or in C++. Now I will teach how to create a block in GR: The first thing to do is go to an folder where you want keep the OOT blocks and run the following commands: 
 
 \begin{lstlisting}[language=bash, breaklines]
@@ -454,7 +446,7 @@ $sudo ldconfig
     
     If you prefer, instead doing manually all this code, I let you the all OOT ready to use in \verb|Extra/OOT/Insert Vector|, you can just unzip it and run \verb|/script.sh| inside \verb|build| folder. To uninstall the OOT you need to do it manually by running \verb|sudo make uninstall| in the same folder.
     
-\subsection{Forward Error Correction - CC - Tutorial\_8\_CC.grc}
+\subsection{Forward Error Correction - CC - Tutorial\_7\_CC.grc}
 %-----Intro
     In a wireless transmission, obviously, we may have transmission errors, so we need to take care of some of these errors by using some error correction. The GR offers a module called FEC (Forward Error Correction) where exists three encoding blocks: "FEC Encoder", "FEC Extended Encoder", "FEC Tagged Encoder" and "FEC Extended Tagged Encoder". They all expect bits (generally soft decisions, this is, values between -1 and 1) and produce bits (real bits, this is, 0 or 1), this means we need do work with unpacked bytes however there is only a few differences between them: the first one only inputs the data and outputs a bigger stream the data (added of redundancy), the second one it's a wrap (a heir block) of the first where is added puncture (common in this type of encoding), and properly convert the input/output data. The third one, instead using the Frame Bits defined in the encoder object block for knowing how many bits it's inputed to FEC, uses a stream already tagged and automatically increases the length of that tag, finally, the last one is similar to the third however takes care of puncture and some data conversion. All of them uses as a parameter an encoder object which determinate the type of encoding we will use, this object can the one of these encoding types:
     \begin{itemize}
@@ -488,13 +480,13 @@ $sudo ldconfig
     If you run the FG and look at the CPU processing you can see that only one thread is running slowing down our FG, so we can use multithreading by creating multiple encoder variables with same settings defined in "Parallelism" parameter of the encoder object. This value can be 1 or 2, where 1 creates a list of variables and 2 create a list of lists of variables. The length of that list is defined in "Dimension 1" parameter also there. The "FEC Encoder" block must know how to handle with these variables, for this we can set one of the two options: "Capillary" or "Ordinary" in parameter "Threading Type". The difference between them in N streams and pass each N stream to one encoder variable to process the frames in parallel and then the output of each variable is interleaved back together making a single stream. The second one is like the another however it creates a tree where each branch launches 2 more branches, thus N must be a factor of 2. This perform better than the other. With this in mind I have set to 1 in "Parallelism" and create 4 variables to the encoder and 8 variables to the decoder because the decoder it's less efficient than the encoder.
     
 
-\subsection{Forward Error Correction - LDPC - Tutorial\_8\_CC.grc}
+\subsection{Forward Error Correction - LDPC - Tutorial\_7\_CC.grc}
     I have added an example (not created by me, found here: \url{https://github.com/gnuradio/gnuradio/tree/master/gr-fec/examples}) in \verb|Extra| folder called \verb|ber_curve_gen_ldpc| where you can analyse the BER (bit error rate) curve in different LDPC types (Parity check and Gen. matrix). I advise you to run directly from console using python to avoid some problems.
 
     Like I have told there is two types of LDPC implementations, I choose to use the "LDPC Encoder Definition (via Parity Check)" and pick a matrix already given by GR. Where for each 442 bits results in 1100 bits. Here I need to give to "FEC Extended Encoder" block 442 bits of data to work, however I want send full bytes but 442 bits it's 55.25 bytes. An work around of this is simply pick 440 bits of data (55 bytes) and add 2 bits just for complete the necessary amount of bits to LDPC work. Hence in the RX side we need to add a "Keep M in N" block where we only keep the first 440 bits of data. The rest of the FG it's analogue to the CC's FG with just some changes about the values of header and the stream mux blocks.
     
 \section{GUIDED TUTORIAL - FULLY WIRELESS}
-\subsection{USRP - Tutorial\_9.grc}
+\subsection{USRP - Tutorial\_8.grc}
     Now it's time to get fully wireless, for this we will remove all the part of the channel model and add an "USRP Sink" block and an "USRP Source" block. Like I have told in tutorial\_1, note that now we can remove throttling because we will have an "clock" block that consume/produce data at an fixed sample rate. I also told that we can't have 2 "clock" blocks or we would have the "2 clock" problem, this is totally true but as this blocks are physical both parts of TX an RX will be totally independent not back-pressuring data thus not changing sample rates.
     
     To got the FG working you just need to change the parameter "Device Address" for your USRP serial which can be found running the command \verb|uhd_usrp_probe|. 
@@ -504,7 +496,54 @@ $sudo ldconfig
     Now that we are providing good values to the USRP's we need to tweak the sample rate in a form that can be the maximum possible (for higher speed) however without drop data. We may have two problems here, it can be printed U' and/or O's in our console. The U's means "Underun", which means that in TX side we are not giving samples enough quick to our USRP to send them, this can be caused for lack of processing power (note that the encoder block requires a lot of power) so what we need to do is: or we change the CPU or we slow down the sample rate of the USRP's. When we have 0's this means "Overrun", this is, in RX side we are not able to consume samples quick enough, probably because of the back-pressure caused by the decoder block. So we need to found the maximum value for the sample rate taking into account 2 things: If it prints U's or 0's, there can be only in beginning because of rampage up, this is here another reason for adding and vector previously sending our real data, so we lose data of the vector and not data of our transition data. Another thing is that we must choose an sample rate where \verb|clock rate/sample rate| must be an integer, and for better performance should be divisible by 4.
     Taking this into account I improved the MCR (Master Clock Rate) of the USRP for 60e6 and I have created an vector with sample rates that are best for performance, thus, we just need to choose the index on the vector to change the sample rate.
 
+\subsection{USRP - Tutorial\_9\_Differential\_Encoder.grc}
+    %Problema
+    If you take a look to the "RX Data" plot you can see that we have a problem writing the data, sometimes it does and other times doesn't. That's because we have phase ambiguity for some amount due to the presence of phase distortion in communication channel, we can have 2 possible orientations for BPSK (180 degrees), 4 possible orientations for QPSK (with 90 degrees), M orientations for MPSK (with 360/M degrees), in our case we have of 90 degrees in our constellation. 
+    
+    %-2solucoes. Explicar vantagens e desvantagens differential
+    There is two solutions for this: The first one is using an already known signal to train the receiver by correlating it with the outputed signal and get the real phase, this will be done in the next section. Another solution for this is instead transmitting the direct mapping in symbols into the constellation, we will transmit the difference between symbols of the constellation using the differential encoding where a symbol depends not only of the transmitted symbol but also the previous one (\verb|y[0] = (x[0] - x[-1]) % M| where M is Modulus of code's alphabet), removing the ambiguity. As everything else we have pros and cons in the use of one or another, the advantage of differential encoder is that there is no need to train the receiver, hence it's faster because we are not introducing overhead, however, as a disadvantage, if occurs one error in the transmission can cause two symbols wrongly recovered (because the dependency of the last one).
+    
+    In our FG we will remove the "Map" block, since it does nothing now (because we cant use other map than \textit{[0,1,2,3]} or we will take out the difference of symbols), and we will add an "Differential Encoder" Block right before "Chunks to Symbols" block resulting in conversion the input symbol in a one dependent of the last and thereafter it's mapping in the constellation point. 
+    In RX is just do the inverse thing, right after we decode the symbols then we apply the "Differential Decoder" to retrieve the original symbols.
+    
+\subsection{USRP - Tutorial\_9\_Correlation\_Estimator.grc}
+    %
+    As I said we always have pros and cons, about the "Correlation Estimator" the main advantage is that we can use Gray Coding, this is, we have at maximum 1 bit of difference between adjacent constellation points. In Figure \ref{fig:gray_coding.png} it's easy understandable the difference between Natural codding and Gray coding maps (note that we can use gray coding also in 8PSK). With Gary Coding if the transmitted signal is mapped in other adjacent constellation point only will transmit 1 bit of error and not the all symbol, hence more easy to the FEC correct the error. In other hand, we introduce more overhead to our FG because we need more computing power to correlate the signal with our sync word.
 
+    \begin{figure}
+        \centering
+        \includegraphics[width=\linewidth]{gray_coding.png}
+        \caption{Natural Coding Vs Gray Coding}
+        \label{fig:gray_coding.png}
+    \end{figure}
+    
+        %explicaro o bloco e as tags
+    
+    The "Sync Word" is a set of known bits both by Tx and Rx, so if the Tx sent them, the Rx is capable of identify this sequence and do something with that. The identification method used is a property called correlation where we correlate the inputed signal against this word and then creates a peak of energy that can be used for estimate several things. To this work we need a sequence with low auto-correlation in all the points except in the central one, being in this manner strong against noise (it can changes some bits). For this sync word exits already known sequences for example the "Barker Codes" (with 13 bits of maximum length), however we need a bigger sequence for higher peaks so we will use the default access code, where the result of auto-correlation it's showed in the Figure \ref{fig:correlate_ac.png}, besides that, as it's the same known word for the header of the packet we don't increase the amount of data transmitted.
+    
+     \begin{figure}
+        \centering
+        \includegraphics[width=\linewidth]{correlate_ac.png}
+        \caption{Auto Correlation}
+        \label{correlate_ac.png}
+    \end{figure}
+     
+
+    With the "Correlation Estimator" block we can do exactly what I said, so we input the signal containing the sync word and correlates with the sync work resulting in estimations. The bock outputs the exactly same input however has tags attached, like:
+    \begin{itemize}
+    \item phase\_est - Estimated of the phase offset, used by the "Costas Loop" to reset it's internal phase value and speeds up the synchronization, removing here the phase ambiguity.
+    \item time\_est - Estimated of the timing offset, used by the "Polyphase Clock Sync" to synchronization.
+    \item corr\_est - The values resulted of the correlation.
+    \item amp\_est - Estimated amplitude, it can be multiplied my this value before get in the Polyphase Clock Sync.
+    \item corr\_start - The start sample of the correlation and the correspondent value.
+    \end{itemize}
+    
+    Going to the parameters, first we need to set the "Symbols" parameter which is the "Sync word" already modulated, so we use a block called "Modulate Vector" where we input one vector and modulates it applying the filter taps parameter. The modulator we will use will be the generic with the right parameters, namely, the constellation object, "false" to differential encoder, then our SPS, then "true" for using the map of the constellation object, then the excess bandwidth we used to modulate the signal, then "false" for verbose and finally another "false" for logs, resulting in:  \texttt{(digital.generic\_mod(pld\_const, False, sps, True, eb, False, False))}. Note that this generic modulator take packed bytes, so we need to create a vector of packed bytes of the 64 bits access code, and applies already the RRC so we don't nedd to do it in the "Filter taps" parameter 
+    
+    There is tricky thing here because there exists a delay in the correlation detection algorithm (affected by the size of the sequence) then we need to adjust the place where they are actually placed on the stream, we can do this using the "Tag markinig delay" parameter which is influenced by the SPS and sequence length. This value is found empirically by tweaking the values and analysing the second output of this block.
+    
+    Finally the "Threshold" parameter is where we define how much precise we want relative to a 100\% correlation, so set values between [0-1], I have set 0.999 because it worked well, however if it's not working for you try to decrease this value. Note that you can see the correlation working in "Correlation" and "Correlation  \^\ 2" plots.
+ 
 \subsection{USRP - Tutorial\_10.grc}
     It's everything working perfectly when we are using random bits however if we input a file with some zeros in a row, the FG losses symbol synchronization, for example you can easily testing by inputting the \verb|videofhd.mpeg| file provided. As you can see in output the zeros are not transmitted well, so we need to somehow instead transmit all this zeros in a row, transmit it with some bits at 1 without adding significant overload to FG (by increasing the amount of transmitted bits). A solution for this is adding a scramble block and the after all the transmission undo what we did.
     
@@ -759,8 +798,8 @@ References are important to the reader; therefore, each citation must be complet
 
 \begin{thebibliography}{99}
 
-\bibitem{c1} G. O. Young, ÒSynthetic structure of industrial plastics (Book style with paper title and editor),Ó  in Plastics, 2nd ed. vol. 3, J. Peters, Ed.  New York: McGraw-Hill, 1964, pp. 15Ð64.
-\bibitem{c2} W.-K. Chen, Linear Networks and Systems (Book style).  Belmont, CA: Wadsworth, 1993, pp. 123Ð135.
+\bibitem{c1} G. O. Young, ÒSynthetic structure of industrial plastics (Book style with paper title and editor),Ó 	in Plastics, 2nd ed. vol. 3, J. Peters, Ed.  New York: McGraw-Hill, 1964, pp. 15Ð64.
+\bibitem{c2} W.-K. Chen, Linear Networks and Systems (Book style).	Belmont, CA: Wadsworth, 1993, pp. 123Ð135.
 \bibitem{c3} H. Poor, An Introduction to Signal Detection and Estimation.   New York: Springer-Verlag, 1985, ch. 4.
 \bibitem{c4} B. Smith, ÒAn approach to graphs of linear forms (Unpublished work style),Ó unpublished.
 \bibitem{c5} E. H. Miller, ÒA note on reflector arrays (Periodical styleÑAccepted for publication),Ó IEEE Trans. Antennas Propagat., to be publised.

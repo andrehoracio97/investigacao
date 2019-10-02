@@ -35,7 +35,7 @@ import sys
 from gnuradio import qtgui
 
 
-class tutorial_5(gr.top_block, Qt.QWidget):
+class tutorial_4(gr.top_block, Qt.QWidget):
 
     def __init__(self):
         gr.top_block.__init__(self, "Tutorial")
@@ -58,7 +58,7 @@ class tutorial_5(gr.top_block, Qt.QWidget):
         self.top_grid_layout = Qt.QGridLayout()
         self.top_layout.addLayout(self.top_grid_layout)
 
-        self.settings = Qt.QSettings("GNU Radio", "tutorial_5")
+        self.settings = Qt.QSettings("GNU Radio", "tutorial_4")
         self.restoreGeometry(self.settings.value("geometry").toByteArray())
 
 
@@ -448,7 +448,10 @@ class tutorial_5(gr.top_block, Qt.QWidget):
         self.pfb_arb_resampler_xxx_0.declare_sample_delay(filt_delay)
 
         self.digital_pfb_clock_sync_xxx_0 = digital.pfb_clock_sync_ccf(sps, 6.28/400.0, (rx_rrc_taps), nfilts, nfilts/2, 1.5, 2)
-        self.digital_costas_loop_cc_0_0 = digital.costas_loop_cc(6.28/200.0, pld_const.arity(), False)
+        self.digital_map_bb_0_0 = digital.map_bb((pld_const.pre_diff_code()))
+        self.digital_map_bb_0 = digital.map_bb((pld_const.pre_diff_code()))
+        self.digital_fll_band_edge_cc_0_0 = digital.fll_band_edge_cc(sps, eb, 20, 6.28/200.0)
+        self.digital_costas_loop_cc_0_0 = digital.costas_loop_cc(6.28/100.0, pld_const.arity(), False)
         self.digital_constellation_decoder_cb_0_0 = digital.constellation_decoder_cb(pld_const)
         self.digital_cma_equalizer_cc_0 = digital.cma_equalizer_cc(15, 1, 0.01, 2)
         self.digital_chunks_to_symbols_xx_0_0 = digital.chunks_to_symbols_bc((pld_const.points()), 1)
@@ -481,23 +484,26 @@ class tutorial_5(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_file_source_0_0_1_0, 0), (self.blocks_repack_bits_bb_1_0_0_1, 0))
         self.connect((self.blocks_repack_bits_bb_0_0, 0), (self.blocks_char_to_float_1_0_1, 0))
         self.connect((self.blocks_repack_bits_bb_0_0, 0), (self.blocks_file_sink_0_0_0_2, 0))
-        self.connect((self.blocks_repack_bits_bb_1_0_0_1, 0), (self.digital_chunks_to_symbols_xx_0_0, 0))
+        self.connect((self.blocks_repack_bits_bb_1_0_0_1, 0), (self.digital_map_bb_0, 0))
         self.connect((self.blocks_throttle_0_0, 0), (self.channels_channel_model_0, 0))
         self.connect((self.blocks_throttle_0_0, 0), (self.qtgui_const_sink_x_0_0_0_0, 0))
         self.connect((self.blocks_throttle_0_0, 0), (self.qtgui_freq_sink_x_0, 0))
-        self.connect((self.channels_channel_model_0, 0), (self.digital_pfb_clock_sync_xxx_0, 0))
+        self.connect((self.channels_channel_model_0, 0), (self.digital_fll_band_edge_cc_0_0, 0))
         self.connect((self.channels_channel_model_0, 0), (self.qtgui_const_sink_x_0_0_0_1, 0))
         self.connect((self.channels_channel_model_0, 0), (self.qtgui_freq_sink_x_1, 0))
         self.connect((self.digital_chunks_to_symbols_xx_0_0, 0), (self.pfb_arb_resampler_xxx_0, 0))
         self.connect((self.digital_cma_equalizer_cc_0, 0), (self.digital_costas_loop_cc_0_0, 0))
-        self.connect((self.digital_constellation_decoder_cb_0_0, 0), (self.blocks_repack_bits_bb_0_0, 0))
+        self.connect((self.digital_constellation_decoder_cb_0_0, 0), (self.digital_map_bb_0_0, 0))
         self.connect((self.digital_costas_loop_cc_0_0, 0), (self.digital_constellation_decoder_cb_0_0, 0))
         self.connect((self.digital_costas_loop_cc_0_0, 0), (self.qtgui_const_sink_x_0_0_0_1_0, 0))
+        self.connect((self.digital_fll_band_edge_cc_0_0, 0), (self.digital_pfb_clock_sync_xxx_0, 0))
+        self.connect((self.digital_map_bb_0, 0), (self.digital_chunks_to_symbols_xx_0_0, 0))
+        self.connect((self.digital_map_bb_0_0, 0), (self.blocks_repack_bits_bb_0_0, 0))
         self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.digital_cma_equalizer_cc_0, 0))
         self.connect((self.pfb_arb_resampler_xxx_0, 0), (self.blocks_throttle_0_0, 0))
 
     def closeEvent(self, event):
-        self.settings = Qt.QSettings("GNU Radio", "tutorial_5")
+        self.settings = Qt.QSettings("GNU Radio", "tutorial_4")
         self.settings.setValue("geometry", self.saveGeometry())
         event.accept()
 
@@ -595,7 +601,7 @@ class tutorial_5(gr.top_block, Qt.QWidget):
         self.filt_delay = filt_delay
 
 
-def main(top_block_cls=tutorial_5, options=None):
+def main(top_block_cls=tutorial_4, options=None):
 
     from distutils.version import StrictVersion
     if StrictVersion(Qt.qVersion()) >= StrictVersion("4.5.0"):

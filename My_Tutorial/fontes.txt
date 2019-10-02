@@ -24,3 +24,11 @@ https://wiki.gnuradio.org/index.php/Guided_Tutorial_GNU_Radio_in_C%2B%2B
 
 COARSE
 https://www.gnuradio.org/doc/sphinx-3.6/digital/blocks.html#gnuradio.digital.costas_loop_cc
+
+
+COrrelatoin estimator:
+https://www.gnuradio.org/doc/doxygen/page_digital.html#digital_constellation_modulator
+https://wiki.gnuradio.org/index.php/Correlation_Estimator
+https://en.wikipedia.org/wiki/Barker_code
+https://en.wikipedia.org/wiki/Autocorrelation
+https://www.gnuradio.org/doc/doxygen/classgr_1_1digital_1_1corr__est__cc.html#details

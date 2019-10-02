@@ -43,16 +43,11 @@ Solution: Add Coostas Loop and FLL Band-Edge
 	Coostas Loop
 	FLL Band-Edge
 	FLL Band-Edge
-Tutorial_5:
-Problem: Sometimes doesn't write Data - Ambiguitiy of phase
-Solution: Add Differential Encoding
 
-	Differential Encoding
-	Gray Coding
 
 
 ===============PACKET COMMUNICATIONS===============
-Tutorial_6:
+Tutorial_5:
 Problem: Bit padding
 Solution: Packetize data
 
@@ -60,25 +55,39 @@ Solution: Packetize data
 	CAC
 
 ===============OOT MODULES===============
-Tutorial_7:
+Tutorial_6:
 Problem: Beguining not decoded
 Solution: Add Insert Vector
 
 ===============FEC===============
-Tutorial_8_CC:
+Tutorial_7_CC:
 Problem: FEC
 Solution: Add FEC Encoder and Decoder
 
-Tutorial_8_LDPC:
+Tutorial_7_LDPC:
 Problem: FEC
 Solution: Add FEC Encoder and Decoder
 
 
 ===============USRP===============
-Tutorial_9:
+Tutorial_8:
 Problem: Using USRP, Saturation limits, U's and 0's
 Solution: Multiply block, Tweak TX/RX Gain, Improve MCR and Tweak sample rates.
 
+Tutorial_9_Differential_Encoding:
+Problem: Sometimes doesn't write Data - Ambiguitiy of phase
+Solution: Add Differential Encoding
+
+	Differential Encoding
+	
+Tutorial_9_Correlation_Estimator:
+Problem: Sometimes doesn't write Data - Ambiguitiy of phase
+Solution: Add Correlation Estimator
+
+	Correlation Estimator
+	Gray Coding
+
 Tutorial_10:
 Problem: Lose synchronization when transmitting row of 0's
-Solucao: Scramble
+Solution: Scramble packetized
+

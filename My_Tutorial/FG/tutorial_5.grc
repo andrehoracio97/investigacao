@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>tutorial_7</value>
+      <value>tutorial_5</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -128,7 +128,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1096, 564)</value>
+      <value>(952, 564)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -671,7 +671,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(992, 564)</value>
+      <value>(848, 564)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -790,33 +790,6 @@
     <param>
       <key>sym_rate</key>
       <value>1.0</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(496, 420)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>vector</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>[int(random.random()*4) for i in range(49600)]</value>
     </param>
   </block>
   <block>
@@ -1003,7 +976,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(792, 1316)</value>
+      <value>(784, 1316)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1117,7 +1090,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1432, 916)</value>
+      <value>(584, 1204)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1235,7 +1208,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(168, 484)</value>
+      <value>(200, 484)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1396,7 +1369,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1256, 492)</value>
+      <value>(1112, 492)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1518,7 +1491,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(776, 484)</value>
+      <value>(616, 484)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1573,7 +1546,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(536, 932)</value>
+      <value>(520, 932)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1632,7 +1605,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(976, 924)</value>
+      <value>(928, 924)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1675,7 +1648,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(536, 1196)</value>
+      <value>(792, 1196)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1726,7 +1699,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(760, 928)</value>
+      <value>(712, 928)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1758,7 +1731,7 @@
     </param>
   </block>
   <block>
-    <key>digital_diff_decoder_bb</key>
+    <key>digital_map_bb</key>
     <param>
       <key>alias</key>
       <value></value>
@@ -1777,7 +1750,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1208, 924)</value>
+      <value>(432, 492)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1785,7 +1758,11 @@
     </param>
     <param>
       <key>id</key>
-      <value>digital_diff_decoder_bb_0</value>
+      <value>digital_map_bb_0</value>
+    </param>
+    <param>
+      <key>map</key>
+      <value>pld_const.pre_diff_code()</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -1794,14 +1771,10 @@
     <param>
       <key>minoutbuf</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>modulus</key>
-      <value>pld_const.arity()</value>
     </param>
   </block>
   <block>
-    <key>digital_diff_encoder_bb</key>
+    <key>digital_map_bb</key>
     <param>
       <key>alias</key>
       <value></value>
@@ -1820,7 +1793,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(552, 492)</value>
+      <value>(424, 1212)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1828,7 +1801,11 @@
     </param>
     <param>
       <key>id</key>
-      <value>digital_diff_encoder_bb_0</value>
+      <value>digital_map_bb_0_0</value>
+    </param>
+    <param>
+      <key>map</key>
+      <value>pld_const.pre_diff_code()</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -1837,10 +1814,6 @@
     <param>
       <key>minoutbuf</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>modulus</key>
-      <value>pld_const.arity()</value>
     </param>
   </block>
   <block>
@@ -1915,80 +1888,6 @@
     </param>
   </block>
   <block>
-    <key>import</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(392, 428)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>import_0</value>
-    </param>
-    <param>
-      <key>import</key>
-      <value>import random</value>
-    </param>
-  </block>
-  <block>
-    <key>insert_vec_cpp_new_vec</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(368, 492)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>insert_vec_cpp_new_vec_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>vec</key>
-      <value>vector</value>
-    </param>
-  </block>
-  <block>
     <key>pfb_arb_resampler_xxx</key>
     <param>
       <key>alias</key>
@@ -2008,7 +1907,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(992, 468)</value>
+      <value>(848, 468)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2079,7 +1978,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1448, 508)</value>
+      <value>(1304, 508)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -2773,7 +2672,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(976, 988)</value>
+      <value>(928, 988)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -3838,7 +3737,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1448, 460)</value>
+      <value>(1304, 460)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3919,7 +3818,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1640, 924)</value>
+      <value>(1160, 924)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3946,7 +3845,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(824, 1212)</value>
+      <value>(1080, 1212)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -4054,7 +3953,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(320, 1212)</value>
+      <value>(224, 1212)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -4128,7 +4027,7 @@
   </connection>
   <connection>
     <source_block_id>blocks_repack_bits_bb_0</source_block_id>
-    <sink_block_id>virtual_sink_2</sink_block_id>
+    <sink_block_id>digital_correlate_access_code_xx_ts_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -4146,7 +4045,7 @@
   </connection>
   <connection>
     <source_block_id>blocks_repack_bits_bb_0_1</source_block_id>
-    <sink_block_id>insert_vec_cpp_new_vec_0</sink_block_id>
+    <sink_block_id>digital_map_bb_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -4194,7 +4093,7 @@
   </connection>
   <connection>
     <source_block_id>digital_constellation_decoder_cb_0_0</source_block_id>
-    <sink_block_id>digital_diff_decoder_bb_0</sink_block_id>
+    <sink_block_id>virtual_sink_2</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -4217,26 +4116,20 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>digital_diff_decoder_bb_0</source_block_id>
-    <sink_block_id>blocks_repack_bits_bb_0</sink_block_id>
+    <source_block_id>digital_map_bb_0</source_block_id>
+    <sink_block_id>digital_chunks_to_symbols_xx_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>digital_diff_encoder_bb_0</source_block_id>
-    <sink_block_id>digital_chunks_to_symbols_xx_0_0</sink_block_id>
+    <source_block_id>digital_map_bb_0_0</source_block_id>
+    <sink_block_id>blocks_repack_bits_bb_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>digital_pfb_clock_sync_xxx_0</source_block_id>
     <sink_block_id>digital_cma_equalizer_cc_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>insert_vec_cpp_new_vec_0</source_block_id>
-    <sink_block_id>digital_diff_encoder_bb_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -4272,7 +4165,7 @@
   </connection>
   <connection>
     <source_block_id>virtual_source_2</source_block_id>
-    <sink_block_id>digital_correlate_access_code_xx_ts_0_0</sink_block_id>
+    <sink_block_id>digital_map_bb_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>tutorial_11</value>
+      <value>tutorial_9_Corr</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -124,38 +124,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(0, 692)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>ac</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>map(lambda x: int(x), list(digital.packet_utils.default_access_code))</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
       <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(192, 852)</value>
+      <value>(264, 780)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -168,53 +141,6 @@
     <param>
       <key>value</key>
       <value>[0xac, 0xdd, 0xa4, 0xe2, 0xf2, 0x8c, 0x20, 0xfc]</value>
-    </param>
-  </block>
-  <block>
-    <key>variable_qtgui_check_box</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>false</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1200, 500)</value>
-    </param>
-    <param>
-      <key>gui_hint</key>
-      <value>0,4</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>copy</value>
-    </param>
-    <param>
-      <key>label</key>
-      <value></value>
-    </param>
-    <param>
-      <key>true</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>int</value>
     </param>
   </block>
   <block>
@@ -256,7 +182,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1040, 668)</value>
+      <value>(1200, 684)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -269,33 +195,6 @@
     <param>
       <key>value</key>
       <value>1+(taps_per_filt-1)/2</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1480, 1204)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>filt_delay2</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>1+(len(rrc_taps)-1)/2</value>
     </param>
   </block>
   <block>
@@ -329,33 +228,6 @@
     <key>variable</key>
     <param>
       <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(648, 812)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>header</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>[0x1, 0x0, 0x1, 0x0, 0x1, 0x1, 0x0, 0x0, 0x1, 0x1, 0x0, 0x1, 0x1, 0x1, 0x0, 0x1, 0x1, 0x0, 0x1, 0x0, 0x0, 0x1, 0x0, 0x0, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x1, 0x0, 0x1, 0x1, 0x1, 0x1, 0x0, 0x0, 0x1, 0x0, 0x1, 0x0, 0x0, 0x0, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0]</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
       <value>payload a 0 mas manda bits na mesma</value>
     </param>
     <param>
@@ -364,7 +236,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(648, 732)</value>
+      <value>(448, 660)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -391,7 +263,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(200, 412)</value>
+      <value>(56, 356)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -434,69 +306,6 @@
     </param>
   </block>
   <block>
-    <key>variable_qtgui_range</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>57</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1424, 380)</value>
-    </param>
-    <param>
-      <key>gui_hint</key>
-      <value>0,3</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>mark</value>
-    </param>
-    <param>
-      <key>label</key>
-      <value>mark</value>
-    </param>
-    <param>
-      <key>min_len</key>
-      <value>200</value>
-    </param>
-    <param>
-      <key>orient</key>
-      <value>Qt.Horizontal</value>
-    </param>
-    <param>
-      <key>start</key>
-      <value>50</value>
-    </param>
-    <param>
-      <key>step</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>stop</key>
-      <value>120</value>
-    </param>
-    <param>
-      <key>rangeType</key>
-      <value>float</value>
-    </param>
-    <param>
-      <key>widget</key>
-      <value>counter_slider</value>
-    </param>
-  </block>
-  <block>
     <key>variable</key>
     <param>
       <key>comment</key>
@@ -508,7 +317,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(8, 1004)</value>
+      <value>(80, 932)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -539,7 +348,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(8, 1060)</value>
+      <value>(80, 988)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -574,42 +383,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(8, 836)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>modulated_sync_word</value>
-    </param>
-    <param>
-      <key>mod</key>
-      <value>rxmod</value>
-    </param>
-  </block>
-  <block>
-    <key>variable_modulate_vector</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>data</key>
-      <value>vector_sync_packed</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>taps</key>
-      <value>[1]</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(8, 740)</value>
+      <value>(80, 764)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -632,7 +406,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>True</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -675,7 +449,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(200, 12)</value>
+      <value>(288, 12)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -726,7 +500,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(368, 12)</value>
+      <value>(448, 12)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -761,11 +535,11 @@ Found empirically.</value>
     </param>
     <param>
       <key>const_points</key>
-      <value>0.92387+0.38268j, 0.38268+0.92387j,  -0.38268+0.92387j, -0.92387+0.38268j, -0.92387-0.38268j, -0.38268-0.92387j, 0.38268-0.92387j, 0.92387-0.38268j</value>
+      <value>[-1-1j, -1+1j, 1+1j, 1-1j]</value>
     </param>
     <param>
       <key>type</key>
-      <value>calcdist</value>
+      <value>8psk</value>
     </param>
     <param>
       <key>dims</key>
@@ -777,7 +551,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(528, 12)</value>
+      <value>(608, 12)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -801,7 +575,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>sym_map</key>
-      <value>[0, 1, 2, 3, 4, 5, 6, 7]</value>
+      <value>[0, 1, 3, 2]</value>
     </param>
   </block>
   <block>
@@ -1059,92 +833,6 @@ Found empirically.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>alpha</key>
-      <value>eb</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1216, 1204)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>gain</key>
-      <value>sps</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>rrc_taps</value>
-    </param>
-    <param>
-      <key>ntaps</key>
-      <value>11*sps</value>
-    </param>
-    <param>
-      <key>samp_rate</key>
-      <value>sps</value>
-    </param>
-    <param>
-      <key>sym_rate</key>
-      <value>1.0</value>
-    </param>
-  </block>
-  <block>
-    <key>variable_rrc_filter_taps</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>alpha</key>
-      <value>eb</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1344, 1204)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>gain</key>
-      <value>nfilts</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>rx_psf_taps</value>
-    </param>
-    <param>
-      <key>ntaps</key>
-      <value>11*sps*nfilts</value>
-    </param>
-    <param>
-      <key>samp_rate</key>
-      <value>sps*nfilts</value>
-    </param>
-    <param>
-      <key>sym_rate</key>
-      <value>1.0</value>
-    </param>
-  </block>
-  <block>
-    <key>variable_rrc_filter_taps</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
       <value>True</value>
     </param>
     <param>
@@ -1192,7 +880,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(8, 924)</value>
+      <value>(80, 852)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1300,7 +988,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(936, 668)</value>
+      <value>(1080, 684)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1429,7 +1117,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>value</key>
-      <value>35</value>
+      <value>38</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -1488,6 +1176,33 @@ Found empirically.</value>
     <key>variable</key>
     <param>
       <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(104, 660)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>vector</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>[int(random.random()*4) for i in range(49600)]</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
       <value>[int(random.random()*7) for i in range(49600)]+</value>
     </param>
     <param>
@@ -1496,7 +1211,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(480, 748)</value>
+      <value>(280, 660)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1509,199 +1224,6 @@ Found empirically.</value>
     <param>
       <key>value</key>
       <value>header + [int(random.random()*2) for i in range(896)] +header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)] +header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)] +header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)] +header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)] +header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)] +header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]+header + [int(random.random()*2) for i in range(896)]</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value>barker64</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1368, 780)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>vector_sync_bits</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>[1,1,1,1,1,0,0,1,1,0,1,0,1,1,1,1,1,1,0,0,1,1,0,1,0,1,1,1,1,1,1,0,0,1,1,0,1,0,1,1,1,1,1,1,0,0,1,1,0,1,0,1,1,1,1,1,1,0,0,1,1,0,1,0]</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value>2x barker64</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1568, 796)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>vector_sync_bits</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>[1,1,1,1,1,0,0,1,1,0,1,0,1,1,1,1,1,1,0,0,1,1,0,1,0,1,1,1,1,1,1,0,0,1,1,0,1,0,1,1,1,1,1,1,0,0,1,1,0,1,0,1,1,1,1,1,1,0,0,1,1,0,1,0,1,1,1,1,1,0,0,1,1,0,1,0,1,1,1,1,1,1,0,0,1,1,0,1,0,1,1,1,1,1,1,0,0,1,1,0,1,0,1,1,1,1,1,1,0,0,1,1,0,1,0,1,1,1,1,1,1,0,0,1,1,0,1,0]</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value>barker64</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1168, 812)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>vector_sync_bits</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>[1,1,1,1,1,0,0,1,1,0,1,0,1,1,1,1,1,1,0,0,1,1,0,1,0,1,0,0,0,0]</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value>baker13,
-1,1,1,1,1,0,0,1,1,0,1,0,1
-2x</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1168, 884)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>vector_sync_packed</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>[249,175,205,64]</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value>barker 64 bits</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1360, 884)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>vector_sync_packed</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>[249,175,205,126,107,243,95,154]</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value>2x barker64</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1560, 868)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>vector_sync_packed</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>[249,175,205,126,107,243,95,154,249,175,205,126,107,243,95,154]</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value>baker13,
-1,1,1,1,1,0,0,1,1,0,1,0,1
-2x</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1160, 756)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>vector_sync_unpacked_2</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>[3,3,2,1,2,2,3,3,3,0,3,1,1,0,0,0]</value>
     </param>
   </block>
   <block>
@@ -1727,7 +1249,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(24, 428)</value>
+      <value>(56, 412)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1786,7 +1308,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(640, 1516)</value>
+      <value>(888, 1588)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1880,7 +1402,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(976, 1804)</value>
+      <value>(864, 1804)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1927,7 +1449,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(520, 1368)</value>
+      <value>(536, 1432)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1944,61 +1466,6 @@ Found empirically.</value>
     <param>
       <key>minoutbuf</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-  </block>
-  <block>
-    <key>blocks_copy</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>enabled</key>
-      <value>copy</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1208, 612)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_copy_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>showports</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>complex</value>
     </param>
     <param>
       <key>vlen</key>
@@ -2033,7 +1500,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(968, 1700)</value>
+      <value>(856, 1700)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2116,124 +1583,6 @@ Found empirically.</value>
     </param>
   </block>
   <block>
-    <key>blocks_file_source</key>
-    <param>
-      <key>begin_tag</key>
-      <value>pmt.PMT_NIL</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>file</key>
-      <value>/home/andre/Desktop/Files_To_Transmit/videofhd.mpg</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(24, 348)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_file_source_0_0_1_0_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>byte</value>
-    </param>
-    <param>
-      <key>repeat</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-  </block>
-  <block>
-    <key>blocks_file_source</key>
-    <param>
-      <key>begin_tag</key>
-      <value>pmt.PMT_NIL</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>file</key>
-      <value>/home/andre/Desktop/Files_To_Transmit/video_lion.mpeg</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(24, 292)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_file_source_0_0_1_0_0_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>byte</value>
-    </param>
-    <param>
-      <key>repeat</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-  </block>
-  <block>
     <key>blocks_keep_m_in_n</key>
     <param>
       <key>alias</key>
@@ -2253,7 +1602,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(368, 1500)</value>
+      <value>(616, 1572)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2308,7 +1657,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(392, 972)</value>
+      <value>(400, 1116)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2328,7 +1677,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>tagname</key>
-      <value>amp_est</value>
+      <value></value>
     </param>
     <param>
       <key>vlen</key>
@@ -2359,7 +1708,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1368, 612)</value>
+      <value>(1352, 612)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2418,7 +1767,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(632, 1412)</value>
+      <value>(856, 1484)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2477,7 +1826,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(688, 1708)</value>
+      <value>(576, 1708)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2536,7 +1885,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(440, 604)</value>
+      <value>(416, 604)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2544,7 +1893,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>id</key>
-      <value>blocks_repack_bits_bb_0_1_0</value>
+      <value>blocks_repack_bits_bb_0_1</value>
     </param>
     <param>
       <key>len_tag_key</key>
@@ -2642,7 +1991,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(944, 296)</value>
+      <value>(736, 296)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2735,116 +2084,6 @@ Found empirically.</value>
     </param>
   </block>
   <block>
-    <key>blocks_tag_debug</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>display</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(520, 1228)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_tag_debug_0</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>complex</value>
-    </param>
-    <param>
-      <key>filter</key>
-      <value>""</value>
-    </param>
-    <param>
-      <key>name</key>
-      <value>TAG DEBUG</value>
-    </param>
-    <param>
-      <key>num_inputs</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-  </block>
-  <block>
-    <key>blocks_vector_insert_x</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(216, 636)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_vector_insert_x_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>offset</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>byte</value>
-    </param>
-    <param>
-      <key>period</key>
-      <value>99200000</value>
-    </param>
-    <param>
-      <key>vector</key>
-      <value>vector_sync_bits</value>
-    </param>
-  </block>
-  <block>
     <key>blocks_vector_source_x</key>
     <param>
       <key>alias</key>
@@ -2864,7 +2103,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(776, 332)</value>
+      <value>(568, 332)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2927,7 +2166,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(712, 604)</value>
+      <value>(848, 604)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2963,61 +2202,6 @@ Found empirically.</value>
     </param>
   </block>
   <block>
-    <key>digital_cma_equalizer_cc</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(840, 972)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>mu</key>
-      <value>0.01</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>digital_cma_equalizer_cc_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>modulus</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>num_taps</key>
-      <value>15</value>
-    </param>
-    <param>
-      <key>sps</key>
-      <value>2</value>
-    </param>
-  </block>
-  <block>
     <key>digital_constellation_decoder_cb</key>
     <param>
       <key>alias</key>
@@ -3041,7 +2225,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1256, 1044)</value>
+      <value>(1216, 1180)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3080,7 +2264,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(272, 1164)</value>
+      <value>(272, 1236)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3139,7 +2323,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(816, 1404)</value>
+      <value>(1040, 1476)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3190,7 +2374,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1040, 1048)</value>
+      <value>(968, 1184)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3222,206 +2406,6 @@ Found empirically.</value>
     </param>
   </block>
   <block>
-    <key>digital_diff_decoder_bb</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>2</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(296, 1420)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>digital_diff_decoder_bb_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>modulus</key>
-      <value>pld_const.arity()</value>
-    </param>
-  </block>
-  <block>
-    <key>digital_diff_encoder_bb</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>2</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(728, 540)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>digital_diff_encoder_bb_1</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>modulus</key>
-      <value>pld_const.arity()</value>
-    </param>
-  </block>
-  <block>
-    <key>digital_fll_band_edge_cc</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>rolloff</key>
-      <value>eb</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(168, 960)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>digital_fll_band_edge_cc_0</value>
-    </param>
-    <param>
-      <key>w</key>
-      <value>0.05</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>filter_size</key>
-      <value>44</value>
-    </param>
-    <param>
-      <key>samps_per_sym</key>
-      <value>sps</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>cc</value>
-    </param>
-  </block>
-  <block>
-    <key>digital_lms_dd_equalizer_cc</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>cnst</key>
-      <value>pld_const</value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(832, 1180)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>mu</key>
-      <value>0.01</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>digital_lms_dd_equalizer_cc_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>num_taps</key>
-      <value>20</value>
-    </param>
-    <param>
-      <key>sps</key>
-      <value>2</value>
-    </param>
-  </block>
-  <block>
     <key>digital_map_bb</key>
     <param>
       <key>alias</key>
@@ -3441,7 +2425,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(600, 540)</value>
+      <value>(664, 612)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3484,7 +2468,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(488, 1420)</value>
+      <value>(688, 1492)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3527,7 +2511,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(520, 1516)</value>
+      <value>(768, 1588)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3574,7 +2558,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(568, 1092)</value>
+      <value>(568, 1196)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3622,77 +2606,6 @@ Found empirically.</value>
     </param>
   </block>
   <block>
-    <key>digital_pfb_clock_sync_xxx</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>filter_size</key>
-      <value>nfilts</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(568, 1020)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>digital_pfb_clock_sync_xxx_0_0</value>
-    </param>
-    <param>
-      <key>init_phase</key>
-      <value>nfilts/2</value>
-    </param>
-    <param>
-      <key>loop_bw</key>
-      <value>6.28/400.0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>max_dev</key>
-      <value>1.5</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>osps</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>sps</key>
-      <value>sps</value>
-    </param>
-    <param>
-      <key>taps</key>
-      <value>rx_psf_taps</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>ccf</value>
-    </param>
-  </block>
-  <block>
     <key>fec_extended_decoder</key>
     <param>
       <key>ann</key>
@@ -3720,7 +2633,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(800, 1492)</value>
+      <value>(1048, 1564)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3775,7 +2688,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(704, 252)</value>
+      <value>(496, 252)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3818,7 +2731,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(464, 700)</value>
+      <value>(8, 660)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3853,7 +2766,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(240, 588)</value>
+      <value>(240, 612)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3877,61 +2790,6 @@ Found empirically.</value>
     </param>
   </block>
   <block>
-    <key>interp_fir_filter_xxx</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(936, 428)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>interp_fir_filter_xxx_0</value>
-    </param>
-    <param>
-      <key>interp</key>
-      <value>sps</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>samp_delay</key>
-      <value>filt_delay2</value>
-    </param>
-    <param>
-      <key>taps</key>
-      <value>rrc_taps</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>ccc</value>
-    </param>
-  </block>
-  <block>
     <key>pfb_arb_resampler_xxx</key>
     <param>
       <key>alias</key>
@@ -3951,7 +2809,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(960, 548)</value>
+      <value>(1080, 588)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -4069,7 +2927,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1576, 572)</value>
+      <value>(1608, 692)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -4416,7 +3274,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(16, 1340)</value>
+      <value>(32, 1348)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -4424,7 +3282,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_rotation</key>
-      <value>0</value>
+      <value>180</value>
     </param>
     <param>
       <key>grid</key>
@@ -4763,7 +3621,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1256, 1108)</value>
+      <value>(1216, 1244)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -5485,11 +4343,11 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(712, 1332)</value>
+      <value>(720, 1396)</value>
     </param>
     <param>
       <key>gui_hint</key>
-      <value>3,2</value>
+      <value>3,3,1,2</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -5749,7 +4607,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>name</key>
-      <value>""</value>
+      <value>"Correlation ^ 2"</value>
     </param>
     <param>
       <key>nconnections</key>
@@ -5852,11 +4710,11 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(512, 1300)</value>
+      <value>(528, 1348)</value>
     </param>
     <param>
       <key>gui_hint</key>
-      <value>3,1</value>
+      <value>3,1,1,2</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -6116,7 +4974,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>name</key>
-      <value>""</value>
+      <value>"Correlation"</value>
     </param>
     <param>
       <key>nconnections</key>
@@ -6219,7 +5077,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1120, 1780)</value>
+      <value>(1008, 1780)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -6586,7 +5444,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1576, 644)</value>
+      <value>(1480, 764)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -6953,7 +5811,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(16, 1260)</value>
+      <value>(32, 1420)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -6961,7 +5819,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_rotation</key>
-      <value>0</value>
+      <value>180</value>
     </param>
     <param>
       <key>grid</key>
@@ -7282,226 +6140,6 @@ Found empirically.</value>
     <param>
       <key>ymin</key>
       <value>-1</value>
-    </param>
-  </block>
-  <block>
-    <key>scrambler_cpp_custom_descrambler</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>frame_bits</key>
-      <value>440-32</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(472, 1692)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>scrambler_cpp_custom_descrambler_0</value>
-    </param>
-    <param>
-      <key>len</key>
-      <value>7</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>mask</key>
-      <value>0x8A</value>
-    </param>
-    <param>
-      <key>seed</key>
-      <value>0x7F</value>
-    </param>
-  </block>
-  <block>
-    <key>scrambler_cpp_custom_scrambler</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>frame_bits</key>
-      <value>440-32</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(480, 244)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>scrambler_cpp_custom_scrambler_0</value>
-    </param>
-    <param>
-      <key>len</key>
-      <value>7</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>mask</key>
-      <value>0x8A</value>
-    </param>
-    <param>
-      <key>seed</key>
-      <value>0x7F</value>
-    </param>
-  </block>
-  <block>
-    <key>scrambler_packets_same_seed_descramble_packetize</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>frame_bit</key>
-      <value>440</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(464, 1788)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>scrambler_packets_same_seed_descramble_packetize_0</value>
-    </param>
-    <param>
-      <key>len</key>
-      <value>7</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>mask</key>
-      <value>0x8A</value>
-    </param>
-    <param>
-      <key>seed</key>
-      <value>0x7F</value>
-    </param>
-  </block>
-  <block>
-    <key>scrambler_packets_same_seed_scramble_packetize</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>frame_bit</key>
-      <value>440</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(472, 340)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>scrambler_packets_same_seed_scramble_packetize_0</value>
-    </param>
-    <param>
-      <key>len</key>
-      <value>7</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>mask</key>
-      <value>0x8A</value>
-    </param>
-    <param>
-      <key>seed</key>
-      <value>0x7F</value>
     </param>
   </block>
   <block>
@@ -8176,7 +6814,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1576, 420)</value>
+      <value>(1608, 540)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -9511,7 +8149,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(16, 1124)</value>
+      <value>(24, 1212)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -9678,7 +8316,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1096, 308)</value>
+      <value>(888, 308)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -9732,7 +8370,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1504, 1044)</value>
+      <value>(1472, 1180)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -9759,7 +8397,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1096, 1420)</value>
+      <value>(1328, 1492)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -9786,7 +8424,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1104, 1516)</value>
+      <value>(1352, 1588)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -9840,7 +8478,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(96, 1420)</value>
+      <value>(464, 1492)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -9867,7 +8505,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(160, 1516)</value>
+      <value>(408, 1588)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -9921,7 +8559,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(232, 1716)</value>
+      <value>(264, 1716)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -9967,12 +8605,6 @@ Found empirically.</value>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>blocks_copy_0</source_block_id>
-    <sink_block_id>blocks_multiply_const_vxx_1</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
     <source_block_id>blocks_file_source_0_0_1_0</source_block_id>
     <sink_block_id>blocks_char_to_float_1_0_0</sink_block_id>
     <source_key>0</source_key>
@@ -9980,30 +8612,6 @@ Found empirically.</value>
   </connection>
   <connection>
     <source_block_id>blocks_file_source_0_0_1_0</source_block_id>
-    <sink_block_id>blocks_repack_bits_bb_1_0_0_1</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_file_source_0_0_1_0_0</source_block_id>
-    <sink_block_id>blocks_char_to_float_1_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_file_source_0_0_1_0_0</source_block_id>
-    <sink_block_id>blocks_repack_bits_bb_1_0_0_1</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_file_source_0_0_1_0_0_0</source_block_id>
-    <sink_block_id>blocks_char_to_float_1_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_file_source_0_0_1_0_0_0</source_block_id>
     <sink_block_id>blocks_repack_bits_bb_1_0_0_1</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
@@ -10057,20 +8665,14 @@ Found empirically.</value>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>blocks_repack_bits_bb_0_1_0</source_block_id>
+    <source_block_id>blocks_repack_bits_bb_0_1</source_block_id>
     <sink_block_id>digital_map_bb_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>blocks_repack_bits_bb_1_0_0_1</source_block_id>
-    <sink_block_id>scrambler_cpp_custom_scrambler_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_repack_bits_bb_1_0_0_1</source_block_id>
-    <sink_block_id>scrambler_packets_same_seed_scramble_packetize_0</sink_block_id>
+    <sink_block_id>fec_extended_encoder_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -10087,12 +8689,6 @@ Found empirically.</value>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>blocks_vector_insert_x_0</source_block_id>
-    <sink_block_id>blocks_repack_bits_bb_0_1_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
     <source_block_id>blocks_vector_source_x_0_0_0</source_block_id>
     <sink_block_id>blocks_stream_mux_0_0</sink_block_id>
     <source_key>0</source_key>
@@ -10100,19 +8696,7 @@ Found empirically.</value>
   </connection>
   <connection>
     <source_block_id>digital_chunks_to_symbols_xx_0_0</source_block_id>
-    <sink_block_id>interp_fir_filter_xxx_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>digital_chunks_to_symbols_xx_0_0</source_block_id>
     <sink_block_id>pfb_arb_resampler_xxx_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>digital_cma_equalizer_cc_0</source_block_id>
-    <sink_block_id>digital_costas_loop_cc_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -10141,18 +8725,6 @@ Found empirically.</value>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>digital_corr_est_cc_0</source_block_id>
-    <sink_block_id>blocks_tag_debug_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>digital_corr_est_cc_0</source_block_id>
-    <sink_block_id>digital_pfb_clock_sync_xxx_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
     <source_block_id>digital_correlate_access_code_xx_ts_0_0</source_block_id>
     <sink_block_id>virtual_sink_3</sink_block_id>
     <source_key>0</source_key>
@@ -10171,32 +8743,8 @@ Found empirically.</value>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>digital_diff_decoder_bb_0</source_block_id>
-    <sink_block_id>digital_map_bb_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>digital_diff_encoder_bb_1</source_block_id>
-    <sink_block_id>digital_chunks_to_symbols_xx_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>digital_fll_band_edge_cc_0</source_block_id>
-    <sink_block_id>digital_corr_est_cc_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>digital_lms_dd_equalizer_cc_0</source_block_id>
-    <sink_block_id>digital_costas_loop_cc_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
     <source_block_id>digital_map_bb_0</source_block_id>
-    <sink_block_id>digital_diff_encoder_bb_1</sink_block_id>
+    <sink_block_id>digital_chunks_to_symbols_xx_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -10214,30 +8762,6 @@ Found empirically.</value>
   </connection>
   <connection>
     <source_block_id>digital_pfb_clock_sync_xxx_0</source_block_id>
-    <sink_block_id>digital_cma_equalizer_cc_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>digital_pfb_clock_sync_xxx_0</source_block_id>
-    <sink_block_id>digital_costas_loop_cc_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>digital_pfb_clock_sync_xxx_0</source_block_id>
-    <sink_block_id>digital_lms_dd_equalizer_cc_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>digital_pfb_clock_sync_xxx_0_0</source_block_id>
-    <sink_block_id>digital_cma_equalizer_cc_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>digital_pfb_clock_sync_xxx_0_0</source_block_id>
     <sink_block_id>digital_costas_loop_cc_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
@@ -10256,61 +8780,19 @@ Found empirically.</value>
   </connection>
   <connection>
     <source_block_id>insert_vec_cpp_new_vec_0</source_block_id>
-    <sink_block_id>blocks_repack_bits_bb_0_1_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>interp_fir_filter_xxx_0</source_block_id>
-    <sink_block_id>blocks_copy_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>interp_fir_filter_xxx_0</source_block_id>
-    <sink_block_id>pfb_arb_resampler_xxx_0</sink_block_id>
+    <sink_block_id>blocks_repack_bits_bb_0_1</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>pfb_arb_resampler_xxx_0</source_block_id>
-    <sink_block_id>blocks_copy_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>scrambler_cpp_custom_descrambler_0</source_block_id>
-    <sink_block_id>blocks_repack_bits_bb_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>scrambler_cpp_custom_scrambler_0</source_block_id>
-    <sink_block_id>fec_extended_encoder_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>scrambler_packets_same_seed_descramble_packetize_0</source_block_id>
-    <sink_block_id>blocks_repack_bits_bb_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>scrambler_packets_same_seed_scramble_packetize_0</source_block_id>
-    <sink_block_id>fec_extended_encoder_0</sink_block_id>
+    <sink_block_id>blocks_multiply_const_vxx_1</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>uhd_usrp_source_0</source_block_id>
     <sink_block_id>digital_corr_est_cc_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>uhd_usrp_source_0</source_block_id>
-    <sink_block_id>digital_fll_band_edge_cc_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -10328,19 +8810,13 @@ Found empirically.</value>
   </connection>
   <connection>
     <source_block_id>virtual_source_1</source_block_id>
-    <sink_block_id>blocks_vector_insert_x_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>virtual_source_1</source_block_id>
     <sink_block_id>insert_vec_cpp_new_vec_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>virtual_source_2</source_block_id>
-    <sink_block_id>digital_diff_decoder_bb_0</sink_block_id>
+    <sink_block_id>digital_map_bb_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -10358,13 +8834,7 @@ Found empirically.</value>
   </connection>
   <connection>
     <source_block_id>virtual_source_5</source_block_id>
-    <sink_block_id>scrambler_cpp_custom_descrambler_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>virtual_source_5</source_block_id>
-    <sink_block_id>scrambler_packets_same_seed_descramble_packetize_0</sink_block_id>
+    <sink_block_id>blocks_repack_bits_bb_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
