@@ -391,7 +391,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -471,6 +471,65 @@ Found empirically.</value>
     <param>
       <key>sym_map</key>
       <value>[0, 1, 2, 3]</value>
+    </param>
+    <param>
+      <key>w_imag_sect</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>w_real_sect</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_constellation_rect</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>const_points</key>
+      <value>[0.707+0.707j, -0.707+0.707j, -0.707-0.707j, 0.707-0.707j]</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(804, 146)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>pld_const</value>
+    </param>
+    <param>
+      <key>imag_sect</key>
+      <value>2</value>
+    </param>
+    <param>
+      <key>real_sect</key>
+      <value>2</value>
+    </param>
+    <param>
+      <key>rot_sym</key>
+      <value>4</value>
+    </param>
+    <param>
+      <key>soft_dec_lut</key>
+      <value>'auto'</value>
+    </param>
+    <param>
+      <key>precision</key>
+      <value>8</value>
+    </param>
+    <param>
+      <key>sym_map</key>
+      <value>[0, 1, 3, 2]</value>
     </param>
     <param>
       <key>w_imag_sect</key>
@@ -1129,7 +1188,7 @@ Found empirically.</value>
     </param>
     <param>
       <key>file</key>
-      <value>/home/it/Desktop/Transmited/depois.txt</value>
+      <value>/home/it/Desktop/Trasmited/depois.txt</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1549,11 +1608,11 @@ Found empirically.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>2</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(768, 340)</value>
+      <value>(764, 366)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1686,7 +1745,7 @@ Set SPS to 2 andT hresold to 0.999</value>
     </param>
     <param>
       <key>threshold</key>
-      <value>0.999</value>
+      <value>0.990</value>
     </param>
   </block>
   <block>
@@ -1847,49 +1906,6 @@ Set SPS to 2 andT hresold to 0.999</value>
     </param>
   </block>
   <block>
-    <key>digital_diff_decoder_bb</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>2</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(424, 836)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>digital_diff_decoder_bb_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>modulus</key>
-      <value>pld_const.arity()</value>
-    </param>
-  </block>
-  <block>
     <key>digital_fll_band_edge_cc</key>
     <param>
       <key>alias</key>
@@ -1913,7 +1929,7 @@ Set SPS to 2 andT hresold to 0.999</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(296, 160)</value>
+      <value>(304, 234)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2011,7 +2027,7 @@ Set SPS to 2 andT hresold to 0.999</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(608, 836)</value>
+      <value>(552, 836)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2090,7 +2106,7 @@ Set SPS to 2 andT hresold to 0.999</value>
     </param>
     <param>
       <key>osps</key>
-      <value>2</value>
+      <value>1</value>
     </param>
     <param>
       <key>sps</key>
@@ -6762,7 +6778,7 @@ Set SPS to 2 andT hresold to 0.999</value>
   </connection>
   <connection>
     <source_block_id>digital_constellation_decoder_cb_0</source_block_id>
-    <sink_block_id>digital_diff_decoder_bb_0</sink_block_id>
+    <sink_block_id>digital_map_bb_1_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -6811,12 +6827,6 @@ Set SPS to 2 andT hresold to 0.999</value>
   <connection>
     <source_block_id>digital_descrambler_bb_0</source_block_id>
     <sink_block_id>blocks_repack_bits_bb_0_0_0_1_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>digital_diff_decoder_bb_0</source_block_id>
-    <sink_block_id>digital_map_bb_1_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

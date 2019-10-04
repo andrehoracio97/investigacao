@@ -672,7 +672,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>34</value>
+      <value>36</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -1359,7 +1359,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1698,6 +1698,61 @@
     <param>
       <key>type</key>
       <value>cc</value>
+    </param>
+  </block>
+  <block>
+    <key>digital_lms_dd_equalizer_cc</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>cnst</key>
+      <value>pld_const</value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(624, 458)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>mu</key>
+      <value>0.010</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>digital_lms_dd_equalizer_cc_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>num_taps</key>
+      <value>15</value>
+    </param>
+    <param>
+      <key>sps</key>
+      <value>2</value>
     </param>
   </block>
   <block>
@@ -5821,6 +5876,12 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
+    <source_block_id>digital_lms_dd_equalizer_cc_0</source_block_id>
+    <sink_block_id>digital_costas_loop_cc_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
     <source_block_id>digital_map_bb_0_0_0_0_0</source_block_id>
     <sink_block_id>blocks_char_to_float_0_2_0_0</sink_block_id>
     <source_key>0</source_key>
@@ -5835,6 +5896,12 @@
   <connection>
     <source_block_id>digital_pfb_clock_sync_xxx_0</source_block_id>
     <sink_block_id>digital_cma_equalizer_cc_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>digital_pfb_clock_sync_xxx_0</source_block_id>
+    <sink_block_id>digital_lms_dd_equalizer_cc_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

@@ -1,5 +1,9 @@
 To install Armadillo we need: LAPACK, BLAS/OpenBLAS, ARPACK and SuperLU. 
 
+FIRST we need Dortran compiler:
+sudo apt-get install gfortran
+
+
 Openblas -http://www.openblas.net/
 git clone https://github.com/xianyi/OpenBLAS.git
 cd OpenBLAS
@@ -12,7 +16,7 @@ sudo make install
 Openblas 
 git clone https://github.com/xianyi/OpenBLAS.git
 cd OpenBLAS
-git checkout development
+git checkout develop
 mkdir build
 cmake ../
 make
@@ -51,13 +55,16 @@ sudo make install
 
 
 ARPACK-NG
+First: sudo apt-get install autoconf
+
+
 git clone https://github.com/opencollab/arpack-ng.git
 cd arpack-ng/
-$ sh bootstrap
-$ ./configure
-$ make
-$ make check
-$ make install
+sh bootstrap
+./configure
+make
+make check
+make install
 
 Se não der por as flags
 
@@ -67,18 +74,10 @@ Se não der por as flags
 
 Armadilho
 http://arma.sourceforge.net/download.htmla	
-
-
 git clone https://gitlab.com/conradsnicta/armadillo-code
 cd armadillo-code
-mkdir build
-cd build
-
-CFLAGS=-fPIC CXXFLAGS=-fPIC LFLAGS=-fPIC cmake .
-OR
-CFLAGS=-fPIC CXXFLAGS=-fPIC LDDLAGS=-fPIC cmake .
-
 make
+sudo make install
 
 
 GR-adaptor

@@ -72,9 +72,7 @@ class rx(gr.top_block, Qt.QWidget):
         # Variables
         ##################################################
         self.sps = sps = 4
-
-        self.pld_const = pld_const = digital.constellation_calcdist((0.92387+0.38268j, 0.38268+0.92387j,  -0.38268+0.92387j, -0.92387+0.38268j, -0.92387-0.38268j, -0.38268-0.92387j, 0.38268-0.92387j, 0.92387-0.38268j), ([0, 1, 2, 3, 4, 5, 6, 7]), 4, 1).base()
-
+        self.pld_const = pld_const = digital.constellation_rect(([0.707+0.707j, -0.707+0.707j, -0.707-0.707j, 0.707-0.707j]), ([0, 1, 3, 2]), 4, 2, 2, 1, 1).base()
         self.pld_const.gen_soft_dec_lut(8)
         self.eb = eb = 0.22
         self.samp_rate_array_MCR = samp_rate_array_MCR = [4500000]
@@ -532,20 +530,19 @@ class rx(gr.top_block, Qt.QWidget):
         for c in range(3, 4):
             self.top_grid_layout.setColumnStretch(c, 1)
         self.fec_extended_decoder_0_0_1_0_1_0 = fec.extended_decoder(decoder_obj_list=pld_dec, threading='capillary', ann=None, puncpat=puncpat, integration_period=10000)
-        self.digital_pfb_clock_sync_xxx_0 = digital.pfb_clock_sync_ccf(sps, 6.28/400.0, (rx_rrc_taps), nfilts, nfilts/2, 1.5, 2)
+        self.digital_pfb_clock_sync_xxx_0 = digital.pfb_clock_sync_ccf(sps, 6.28/400.0, (rx_rrc_taps), nfilts, nfilts/2, 1.5, 1)
+        self.digital_map_bb_1_0_0 = digital.map_bb((pld_const.pre_diff_code()))
         self.digital_map_bb_0_0_0_0_0 = digital.map_bb(([-1, 1]))
-        self.digital_diff_decoder_bb_0 = digital.diff_decoder_bb(pld_const.arity())
         self.digital_costas_loop_cc_0_0 = digital.costas_loop_cc(6.28/100.0, pld_const.arity(), False)
         self.digital_correlate_access_code_xx_ts_0_0 = digital.correlate_access_code_bb_ts(digital.packet_utils.default_access_code,
           1, 'packet_len')
-        self.digital_corr_est_cc_0 = digital.corr_est_cc((modulated_sync_word), sps, mark_delay, 0.999)
+        self.digital_corr_est_cc_0 = digital.corr_est_cc((modulated_sync_word), sps, mark_delay, 0.990)
         self.digital_constellation_decoder_cb_0 = digital.constellation_decoder_cb(pld_const)
-        self.digital_cma_equalizer_cc_0 = digital.cma_equalizer_cc(15, 1, 0.01, 2)
         self.blocks_repack_bits_bb_0_0_0_1_0 = blocks.repack_bits_bb(1, 8, '', False, gr.GR_MSB_FIRST)
         self.blocks_repack_bits_bb_0 = blocks.repack_bits_bb(pld_const.bits_per_symbol(), 1, '', False, gr.GR_MSB_FIRST)
         self.blocks_keep_m_in_n_0_0_2_0 = blocks.keep_m_in_n(gr.sizeof_char, 892, 896, 0)
-        self.blocks_file_sink_0_0_0_0_1 = blocks.file_sink(gr.sizeof_char*1, '/home/it/Desktop/Trasmited/depois.mpeg', False)
-        self.blocks_file_sink_0_0_0_0_1.set_unbuffered(False)
+        self.blocks_file_sink_0_0_0_0 = blocks.file_sink(gr.sizeof_char*1, '/home/it/Desktop/Trasmited/depois.txt', False)
+        self.blocks_file_sink_0_0_0_0.set_unbuffered(False)
         self.blocks_complex_to_mag_squared_0 = blocks.complex_to_mag_squared(1)
         self.blocks_char_to_float_1_0_1 = blocks.char_to_float(1, 1)
         self.blocks_char_to_float_0_2_0_0 = blocks.char_to_float(1, 1)
@@ -566,9 +563,8 @@ class rx(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_repack_bits_bb_0, 0), (self.blocks_char_to_float_0, 0))
         self.connect((self.blocks_repack_bits_bb_0, 0), (self.digital_correlate_access_code_xx_ts_0_0, 0))
         self.connect((self.blocks_repack_bits_bb_0_0_0_1_0, 0), (self.blocks_char_to_float_1_0_1, 0))
-        self.connect((self.blocks_repack_bits_bb_0_0_0_1_0, 0), (self.blocks_file_sink_0_0_0_0_1, 0))
-        self.connect((self.digital_cma_equalizer_cc_0, 0), (self.digital_costas_loop_cc_0_0, 0))
-        self.connect((self.digital_constellation_decoder_cb_0, 0), (self.digital_diff_decoder_bb_0, 0))
+        self.connect((self.blocks_repack_bits_bb_0_0_0_1_0, 0), (self.blocks_file_sink_0_0_0_0, 0))
+        self.connect((self.digital_constellation_decoder_cb_0, 0), (self.digital_map_bb_1_0_0, 0))
         self.connect((self.digital_corr_est_cc_0, 1), (self.blocks_complex_to_mag_squared_0, 0))
         self.connect((self.digital_corr_est_cc_0, 0), (self.digital_pfb_clock_sync_xxx_0, 0))
         self.connect((self.digital_corr_est_cc_0, 1), (self.qtgui_time_sink_x_0_0_1, 0))
@@ -576,9 +572,9 @@ class rx(gr.top_block, Qt.QWidget):
         self.connect((self.digital_correlate_access_code_xx_ts_0_0, 0), (self.blocks_keep_m_in_n_0_0_2_0, 0))
         self.connect((self.digital_costas_loop_cc_0_0, 0), (self.digital_constellation_decoder_cb_0, 0))
         self.connect((self.digital_costas_loop_cc_0_0, 0), (self.qtgui_const_sink_x_0_0_0, 0))
-        self.connect((self.digital_diff_decoder_bb_0, 0), (self.blocks_repack_bits_bb_0, 0))
         self.connect((self.digital_map_bb_0_0_0_0_0, 0), (self.blocks_char_to_float_0_2_0_0, 0))
-        self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.digital_cma_equalizer_cc_0, 0))
+        self.connect((self.digital_map_bb_1_0_0, 0), (self.blocks_repack_bits_bb_0, 0))
+        self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.digital_costas_loop_cc_0_0, 0))
         self.connect((self.fec_extended_decoder_0_0_1_0_1_0, 0), (self.scrambler_packets_same_seed_descramble_packetize_0, 0))
         self.connect((self.scrambler_packets_same_seed_descramble_packetize_0, 0), (self.blocks_repack_bits_bb_0_0_0_1_0, 0))
         self.connect((self.uhd_usrp_source_0, 0), (self.digital_corr_est_cc_0, 0))

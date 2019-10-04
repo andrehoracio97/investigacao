@@ -30,6 +30,7 @@ from gnuradio.eng_option import eng_option
 from gnuradio.filter import firdes
 from gnuradio.qtgui import Range, RangeWidget
 from optparse import OptionParser
+import adapt
 import scrambler_packets_same_seed
 import sip
 import sys
@@ -72,16 +73,15 @@ class rx(gr.top_block, Qt.QWidget):
         ##################################################
         # Variables
         ##################################################
-        self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 37
+        self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 51
         self.sps = sps = 4
-        self.samp_rate_array_MCR = samp_rate_array_MCR = [4500000]
+        self.samp_rate_array_MCR = samp_rate_array_MCR = [7500000,5000000,3750000,3000000,2500000,2000000,1500000,1000000,937500,882352,833333,714285,533333,500000,421052,400000,380952]
         self.rate = rate = 2
         self.polys = polys = [109, 79]
         self.nfilts = nfilts = 32
         self.k = k = 7
         self.eb = eb = 0.22
-        self.variable_qtgui_check_box_0 = variable_qtgui_check_box_0 = False
-        self.samp_rate = samp_rate = samp_rate_array_MCR[0]
+        self.samp_rate = samp_rate = samp_rate_array_MCR[8]
 
         self.rx_rrc_taps = rx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts*sps, 1.0, eb, 11*sps*nfilts)
 
@@ -92,25 +92,18 @@ class rx(gr.top_block, Qt.QWidget):
         self.pld_const.gen_soft_dec_lut(8)
         self.gain_jamming = gain_jamming = variable_qtgui_range_0_1+2
         self.frequencia_usrp = frequencia_usrp = 484e6
-        self.MCR = MCR = "master_clock_rate=18e6"
+        self.MCR = MCR = "master_clock_rate=60e6"
 
         ##################################################
         # Blocks
         ##################################################
-        self._variable_qtgui_range_0_1_range = Range(0, 73, 1, 37, 200)
+        self._variable_qtgui_range_0_1_range = Range(0, 73, 1, 51, 200)
         self._variable_qtgui_range_0_1_win = RangeWidget(self._variable_qtgui_range_0_1_range, self.set_variable_qtgui_range_0_1, 'Gain_RX', "counter_slider", float)
         self.top_grid_layout.addWidget(self._variable_qtgui_range_0_1_win, 0, 2, 1, 1)
         for r in range(0, 1):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(2, 3):
             self.top_grid_layout.setColumnStretch(c, 1)
-        _variable_qtgui_check_box_0_check_box = Qt.QCheckBox('CHECK')
-        self._variable_qtgui_check_box_0_choices = {True: True, False: False}
-        self._variable_qtgui_check_box_0_choices_inv = dict((v,k) for k,v in self._variable_qtgui_check_box_0_choices.iteritems())
-        self._variable_qtgui_check_box_0_callback = lambda i: Qt.QMetaObject.invokeMethod(_variable_qtgui_check_box_0_check_box, "setChecked", Qt.Q_ARG("bool", self._variable_qtgui_check_box_0_choices_inv[i]))
-        self._variable_qtgui_check_box_0_callback(self.variable_qtgui_check_box_0)
-        _variable_qtgui_check_box_0_check_box.stateChanged.connect(lambda i: self.set_variable_qtgui_check_box_0(self._variable_qtgui_check_box_0_choices[bool(i)]))
-        self.top_grid_layout.addWidget(_variable_qtgui_check_box_0_check_box)
         self._gain_jamming_range = Range(0, 73, 1, variable_qtgui_range_0_1+2, 200)
         self._gain_jamming_win = RangeWidget(self._gain_jamming_range, self.set_gain_jamming, 'Gain_JAMMING', "counter_slider", float)
         self.top_grid_layout.addWidget(self._gain_jamming_win, 0, 3, 1, 1)
@@ -249,10 +242,65 @@ class rx(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(1, 2):
             self.top_grid_layout.setColumnStretch(c, 1)
+        self.qtgui_time_sink_x_1_0_0 = qtgui.time_sink_c(
+        	1024, #size
+        	samp_rate, #samp_rate
+        	"RX Time", #name
+        	1 #number of inputs
+        )
+        self.qtgui_time_sink_x_1_0_0.set_update_time(0.10)
+        self.qtgui_time_sink_x_1_0_0.set_y_axis(-1, 1)
+
+        self.qtgui_time_sink_x_1_0_0.set_y_label('Amplitude', "")
+
+        self.qtgui_time_sink_x_1_0_0.enable_tags(-1, True)
+        self.qtgui_time_sink_x_1_0_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, qtgui.TRIG_SLOPE_POS, 0.0, 0, 0, "")
+        self.qtgui_time_sink_x_1_0_0.enable_autoscale(False)
+        self.qtgui_time_sink_x_1_0_0.enable_grid(False)
+        self.qtgui_time_sink_x_1_0_0.enable_axis_labels(True)
+        self.qtgui_time_sink_x_1_0_0.enable_control_panel(False)
+        self.qtgui_time_sink_x_1_0_0.enable_stem_plot(False)
+
+        if not True:
+          self.qtgui_time_sink_x_1_0_0.disable_legend()
+
+        labels = ['', '', '', '', '',
+                  '', '', '', '', '']
+        widths = [1, 1, 1, 1, 1,
+                  1, 1, 1, 1, 1]
+        colors = ["blue", "red", "green", "black", "cyan",
+                  "magenta", "yellow", "dark red", "dark green", "blue"]
+        styles = [1, 1, 1, 1, 1,
+                  1, 1, 1, 1, 1]
+        markers = [-1, -1, -1, -1, -1,
+                   -1, -1, -1, -1, -1]
+        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
+                  1.0, 1.0, 1.0, 1.0, 1.0]
+
+        for i in xrange(2):
+            if len(labels[i]) == 0:
+                if(i % 2 == 0):
+                    self.qtgui_time_sink_x_1_0_0.set_line_label(i, "Re{{Data {0}}}".format(i/2))
+                else:
+                    self.qtgui_time_sink_x_1_0_0.set_line_label(i, "Im{{Data {0}}}".format(i/2))
+            else:
+                self.qtgui_time_sink_x_1_0_0.set_line_label(i, labels[i])
+            self.qtgui_time_sink_x_1_0_0.set_line_width(i, widths[i])
+            self.qtgui_time_sink_x_1_0_0.set_line_color(i, colors[i])
+            self.qtgui_time_sink_x_1_0_0.set_line_style(i, styles[i])
+            self.qtgui_time_sink_x_1_0_0.set_line_marker(i, markers[i])
+            self.qtgui_time_sink_x_1_0_0.set_line_alpha(i, alphas[i])
+
+        self._qtgui_time_sink_x_1_0_0_win = sip.wrapinstance(self.qtgui_time_sink_x_1_0_0.pyqwidget(), Qt.QWidget)
+        self.top_grid_layout.addWidget(self._qtgui_time_sink_x_1_0_0_win, 3, 2, 1, 1)
+        for r in range(3, 4):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(2, 3):
+            self.top_grid_layout.setColumnStretch(c, 1)
         self.qtgui_time_sink_x_1_0 = qtgui.time_sink_c(
         	1024, #size
         	samp_rate, #samp_rate
-        	"RX USRP", #name
+        	"RX Time", #name
         	1 #number of inputs
         )
         self.qtgui_time_sink_x_1_0.set_update_time(0.10)
@@ -502,30 +550,33 @@ class rx(gr.top_block, Qt.QWidget):
         self.digital_cma_equalizer_cc_0 = digital.cma_equalizer_cc(15, 1, 0.01, 2)
         self.blocks_repack_bits_bb_0_0_0_1_0 = blocks.repack_bits_bb(1, 8, '', False, gr.GR_MSB_FIRST)
         self.blocks_repack_bits_bb_0 = blocks.repack_bits_bb(2, 1, '', False, gr.GR_MSB_FIRST)
+        self.blocks_multiply_const_vxx_0 = blocks.multiply_const_vcc((0.6, ))
         self.blocks_keep_m_in_n_0_0_2_0 = blocks.keep_m_in_n(gr.sizeof_char, 892, 896, 0)
         self.blocks_file_sink_0_0_0_0 = blocks.file_sink(gr.sizeof_char*1, '/home/it/Desktop/Trasmited/depois.txt', False)
         self.blocks_file_sink_0_0_0_0.set_unbuffered(False)
-        self.blocks_copy_0 = blocks.copy(gr.sizeof_gr_complex*1)
-        self.blocks_copy_0.set_enabled(variable_qtgui_check_box_0)
         self.blocks_char_to_float_1_0_1 = blocks.char_to_float(1, 1)
         self.blocks_char_to_float_0_2_0_0 = blocks.char_to_float(1, 1)
         self.blocks_char_to_float_0_0 = blocks.char_to_float(1, 1)
         self.blocks_char_to_float_0 = blocks.char_to_float(1, 1)
         self.analog_fastnoise_source_x_0 = analog.fastnoise_source_c(analog.GR_GAUSSIAN, 1, 0, 8192)
+        self.adapt_lms_filter_xx_0 = adapt.lms_filter_cc(False, nfilts, 0.010, 0, sps, True, False, False)
 
 
 
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.analog_fastnoise_source_x_0, 0), (self.blocks_copy_0, 0))
+        self.connect((self.adapt_lms_filter_xx_0, 0), (self.digital_pfb_clock_sync_xxx_0, 0))
+        self.connect((self.analog_fastnoise_source_x_0, 0), (self.blocks_multiply_const_vxx_0, 0))
         self.connect((self.blocks_char_to_float_0, 0), (self.qtgui_time_sink_x_2, 0))
         self.connect((self.blocks_char_to_float_0_0, 0), (self.qtgui_time_sink_x_2_0, 0))
         self.connect((self.blocks_char_to_float_0_2_0_0, 0), (self.fec_extended_decoder_0_0_1_0_1_0, 0))
         self.connect((self.blocks_char_to_float_1_0_1, 0), (self.qtgui_time_sink_x_0_1, 0))
-        self.connect((self.blocks_copy_0, 0), (self.qtgui_const_sink_x_0_0_0_0, 0))
-        self.connect((self.blocks_copy_0, 0), (self.uhd_usrp_sink_0, 0))
         self.connect((self.blocks_keep_m_in_n_0_0_2_0, 0), (self.digital_map_bb_0_0_0_0_0, 0))
+        self.connect((self.blocks_multiply_const_vxx_0, 0), (self.adapt_lms_filter_xx_0, 0))
+        self.connect((self.blocks_multiply_const_vxx_0, 0), (self.qtgui_const_sink_x_0_0_0_0, 0))
+        self.connect((self.blocks_multiply_const_vxx_0, 0), (self.qtgui_time_sink_x_1_0_0, 0))
+        self.connect((self.blocks_multiply_const_vxx_0, 0), (self.uhd_usrp_sink_0, 0))
         self.connect((self.blocks_repack_bits_bb_0, 0), (self.blocks_char_to_float_0, 0))
         self.connect((self.blocks_repack_bits_bb_0, 0), (self.digital_correlate_access_code_xx_ts_0_0, 0))
         self.connect((self.blocks_repack_bits_bb_0_0_0_1_0, 0), (self.blocks_char_to_float_1_0_1, 0))
@@ -541,7 +592,7 @@ class rx(gr.top_block, Qt.QWidget):
         self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.digital_cma_equalizer_cc_0, 0))
         self.connect((self.fec_extended_decoder_0_0_1_0_1_0, 0), (self.scrambler_packets_same_seed_descramble_packetize_0, 0))
         self.connect((self.scrambler_packets_same_seed_descramble_packetize_0, 0), (self.blocks_repack_bits_bb_0_0_0_1_0, 0))
-        self.connect((self.uhd_usrp_source_0, 0), (self.digital_pfb_clock_sync_xxx_0, 0))
+        self.connect((self.uhd_usrp_source_0, 0), (self.adapt_lms_filter_xx_0, 1))
         self.connect((self.uhd_usrp_source_0, 0), (self.qtgui_const_sink_x_0_0_0_1, 0))
         self.connect((self.uhd_usrp_source_0, 0), (self.qtgui_time_sink_x_1_0, 0))
 
@@ -576,7 +627,7 @@ class rx(gr.top_block, Qt.QWidget):
 
     def set_samp_rate_array_MCR(self, samp_rate_array_MCR):
         self.samp_rate_array_MCR = samp_rate_array_MCR
-        self.set_samp_rate(self.samp_rate_array_MCR[0])
+        self.set_samp_rate(self.samp_rate_array_MCR[8])
 
     def get_rate(self):
         return self.rate
@@ -608,14 +659,6 @@ class rx(gr.top_block, Qt.QWidget):
     def set_eb(self, eb):
         self.eb = eb
 
-    def get_variable_qtgui_check_box_0(self):
-        return self.variable_qtgui_check_box_0
-
-    def set_variable_qtgui_check_box_0(self, variable_qtgui_check_box_0):
-        self.variable_qtgui_check_box_0 = variable_qtgui_check_box_0
-        self._variable_qtgui_check_box_0_callback(self.variable_qtgui_check_box_0)
-        self.blocks_copy_0.set_enabled(self.variable_qtgui_check_box_0)
-
     def get_samp_rate(self):
         return self.samp_rate
 
@@ -625,6 +668,7 @@ class rx(gr.top_block, Qt.QWidget):
         self.uhd_usrp_sink_0.set_samp_rate(self.samp_rate)
         self.qtgui_time_sink_x_2_0.set_samp_rate(self.samp_rate)
         self.qtgui_time_sink_x_2.set_samp_rate(self.samp_rate)
+        self.qtgui_time_sink_x_1_0_0.set_samp_rate(self.samp_rate)
         self.qtgui_time_sink_x_1_0.set_samp_rate(self.samp_rate)
         self.qtgui_time_sink_x_0_1.set_samp_rate(self.samp_rate)
 
