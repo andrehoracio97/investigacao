@@ -76,7 +76,9 @@ class pam_sync(gr.top_block, Qt.QWidget):
         self.interpratio = interpratio = 1
         self.freq_offset = freq_offset = 0
         self.freq_bw = freq_bw = 0
-        self.const = const = digital.qpsk_constellation()
+
+        self.const = const = digital.constellation_16qam().base()
+
 
         ##################################################
         # Blocks
@@ -85,13 +87,6 @@ class pam_sync(gr.top_block, Qt.QWidget):
         self._time_bw_win = RangeWidget(self._time_bw_range, self.set_time_bw, 'Timing Loop BW', "counter_slider", float)
         self.top_grid_layout.addWidget(self._time_bw_win, 5, 2, 1, 1)
         for r in range(5, 6):
-            self.top_grid_layout.setRowStretch(r, 1)
-        for c in range(2, 3):
-            self.top_grid_layout.setColumnStretch(c, 1)
-        self._phase_bw_range = Range(0, .1, .001, 0, 200)
-        self._phase_bw_win = RangeWidget(self._phase_bw_range, self.set_phase_bw, 'Costas Loop (Phase) Bandwidth', "counter_slider", float)
-        self.top_grid_layout.addWidget(self._phase_bw_win, 7, 2, 1, 1)
-        for r in range(7, 8):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(2, 3):
             self.top_grid_layout.setColumnStretch(c, 1)
@@ -327,6 +322,13 @@ class pam_sync(gr.top_block, Qt.QWidget):
 
         self._qtgui_freq_sink_x_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0.pyqwidget(), Qt.QWidget)
         self.notebook_grid_layout_0.addWidget(self._qtgui_freq_sink_x_0_win)
+        self._phase_bw_range = Range(0, .1, .001, 0, 200)
+        self._phase_bw_win = RangeWidget(self._phase_bw_range, self.set_phase_bw, 'Costas Loop (Phase) Bandwidth', "counter_slider", float)
+        self.top_grid_layout.addWidget(self._phase_bw_win, 7, 2, 1, 1)
+        for r in range(7, 8):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(2, 3):
+            self.top_grid_layout.setColumnStretch(c, 1)
         self.pfb_arb_resampler_xxx_0 = pfb.arb_resampler_ccf(
         	  spb,
                   taps=(firdes.root_raised_cosine(nfilts, 1.0, 1.0/nfilts, rolloff, int(11*spb*nfilts))),
@@ -335,7 +337,6 @@ class pam_sync(gr.top_block, Qt.QWidget):
 
         self.digital_pfb_clock_sync_xxx_0 = digital.pfb_clock_sync_ccf(spb, time_bw, (rrctaps), nfilts, 16, 1.5, 1)
         self.digital_fll_band_edge_cc_0 = digital.fll_band_edge_cc(spb, rolloff, 44, freq_bw)
-        self.digital_costas_loop_cc_0 = digital.costas_loop_cc(phase_bw, const.arity(), False)
         self.digital_chunks_to_symbols_xx = digital.chunks_to_symbols_bc((const.points()), 1)
         self.channels_channel_model_0 = channels.channel_model(
         	noise_voltage=noise_amp,
@@ -361,10 +362,9 @@ class pam_sync(gr.top_block, Qt.QWidget):
         self.connect((self.channels_channel_model_0, 0), (self.qtgui_freq_sink_x_1, 0))
         self.connect((self.channels_channel_model_0, 0), (self.qtgui_time_sink_x_0_0, 0))
         self.connect((self.digital_chunks_to_symbols_xx, 0), (self.pfb_arb_resampler_xxx_0, 0))
-        self.connect((self.digital_costas_loop_cc_0, 0), (self.qtgui_time_sink_x_0, 0))
         self.connect((self.digital_fll_band_edge_cc_0, 0), (self.digital_pfb_clock_sync_xxx_0, 0))
         self.connect((self.digital_fll_band_edge_cc_0, 0), (self.qtgui_freq_sink_x_0, 0))
-        self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.digital_costas_loop_cc_0, 0))
+        self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.qtgui_time_sink_x_0, 0))
         self.connect((self.pfb_arb_resampler_xxx_0, 0), (self.blocks_multiply_const_vxx_0, 0))
 
     def closeEvent(self, event):
@@ -434,7 +434,6 @@ class pam_sync(gr.top_block, Qt.QWidget):
 
     def set_phase_bw(self, phase_bw):
         self.phase_bw = phase_bw
-        self.digital_costas_loop_cc_0.set_loop_bandwidth(self.phase_bw)
 
     def get_noise_amp(self):
         return self.noise_amp
