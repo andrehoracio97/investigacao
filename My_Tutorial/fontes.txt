@@ -7,13 +7,30 @@ https://www.wirelessinnovation.org/assets/documents/SoftwareDefinedRadio.pdf
 
 
 _______---
-https://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/20120008631.pdf
 
 https://wiki.gnuradio.org/index.php/Guided_Tutorial_PSK_Demodulation
 
 https://www.gnuradio.org/doc/doxygen/page_packet_comms.html
 
 
+PQ RRC:
+Livro SDR Engennirres Pag 95
+https://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/20120008631.pdf
+https://en.wikipedia.org/wiki/Nyquist_ISI_criterion
+https://en.wikipedia.org/wiki/Root-raised-cosine_filter
+https://en.wikipedia.org/wiki/Matched_filter
+https://en.wikipedia.org/wiki/Raised-cosine_filter#Roll-off_factor
+
+Interpolating FIR Filter:https://wiki.gnuradio.org/index.php/Interpolating_FIR_Filter
+Polyphase Arbitrary Resampler:https://wiki.gnuradio.org/index.php/Polyphase_Arbitrary_Resampler
+RRC Filter Taps: https://wiki.gnuradio.org/index.php/RRC_Filter_Taps
+Root Raised Cosine Filter: https://wiki.gnuradio.org/index.php/Root_Raised_Cosine_Filter
+
+
+Polyphase Clock Sync: https://wiki.gnuradio.org/index.php/Polyphase_Clock_Sync
+https://wiki.gnuradio.org/index.php/Guided_Tutorial_PSK_Demodulation#Phase_and_Fine_Frequency_Correction
+
+Sugested 2pi/100 ou 2pi/200 http://www.trondeau.com/blog/2011/8/13/control-loop-gain-values.html
 
 
 OOT:

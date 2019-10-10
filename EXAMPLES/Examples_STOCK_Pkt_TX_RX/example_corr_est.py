@@ -97,18 +97,6 @@ class example_corr_est(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(1, 2):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self.tab0 = Qt.QTabWidget()
-        self.tab0_widget_0 = Qt.QWidget()
-        self.tab0_layout_0 = Qt.QBoxLayout(Qt.QBoxLayout.TopToBottom, self.tab0_widget_0)
-        self.tab0_grid_layout_0 = Qt.QGridLayout()
-        self.tab0_layout_0.addLayout(self.tab0_grid_layout_0)
-        self.tab0.addTab(self.tab0_widget_0, 'Corr')
-        self.tab0_widget_1 = Qt.QWidget()
-        self.tab0_layout_1 = Qt.QBoxLayout(Qt.QBoxLayout.TopToBottom, self.tab0_widget_1)
-        self.tab0_grid_layout_1 = Qt.QGridLayout()
-        self.tab0_layout_1.addLayout(self.tab0_grid_layout_1)
-        self.tab0.addTab(self.tab0_widget_1, '|Corr|^2')
-        self.top_grid_layout.addWidget(self.tab0)
         self._path_loss_range = Range(0, 140, 5, 10, 200)
         self._path_loss_win = RangeWidget(self._path_loss_range, self.set_path_loss, 'Path Loss (dB)', "counter_slider", float)
         self.top_grid_layout.addWidget(self._path_loss_win, 0, 0, 1, 1)
@@ -130,6 +118,18 @@ class example_corr_est(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(0, 1):
             self.top_grid_layout.setColumnStretch(c, 1)
+        self.tab0 = Qt.QTabWidget()
+        self.tab0_widget_0 = Qt.QWidget()
+        self.tab0_layout_0 = Qt.QBoxLayout(Qt.QBoxLayout.TopToBottom, self.tab0_widget_0)
+        self.tab0_grid_layout_0 = Qt.QGridLayout()
+        self.tab0_layout_0.addLayout(self.tab0_grid_layout_0)
+        self.tab0.addTab(self.tab0_widget_0, 'Corr')
+        self.tab0_widget_1 = Qt.QWidget()
+        self.tab0_layout_1 = Qt.QBoxLayout(Qt.QBoxLayout.TopToBottom, self.tab0_widget_1)
+        self.tab0_grid_layout_1 = Qt.QGridLayout()
+        self.tab0_layout_1.addLayout(self.tab0_grid_layout_1)
+        self.tab0.addTab(self.tab0_widget_1, '|Corr|^2')
+        self.top_grid_layout.addWidget(self.tab0)
         self.qtgui_time_sink_x_0_0_0 = qtgui.time_sink_f(
         	512, #size
         	1, #samp_rate
@@ -177,7 +177,11 @@ class example_corr_est(gr.top_block, Qt.QWidget):
             self.qtgui_time_sink_x_0_0_0.set_line_alpha(i, alphas[i])
 
         self._qtgui_time_sink_x_0_0_0_win = sip.wrapinstance(self.qtgui_time_sink_x_0_0_0.pyqwidget(), Qt.QWidget)
-        self.tab0_grid_layout_1.addWidget(self._qtgui_time_sink_x_0_0_0_win)
+        self.top_grid_layout.addWidget(self._qtgui_time_sink_x_0_0_0_win, 4, 0, 1, 2)
+        for r in range(4, 5):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(0, 2):
+            self.top_grid_layout.setColumnStretch(c, 1)
         self.qtgui_time_sink_x_0_0 = qtgui.time_sink_c(
         	512, #size
         	1, #samp_rate
@@ -228,7 +232,11 @@ class example_corr_est(gr.top_block, Qt.QWidget):
             self.qtgui_time_sink_x_0_0.set_line_alpha(i, alphas[i])
 
         self._qtgui_time_sink_x_0_0_win = sip.wrapinstance(self.qtgui_time_sink_x_0_0.pyqwidget(), Qt.QWidget)
-        self.tab0_grid_layout_0.addWidget(self._qtgui_time_sink_x_0_0_win)
+        self.top_grid_layout.addWidget(self._qtgui_time_sink_x_0_0_win, 3, 0, 1, 2)
+        for r in range(3, 4):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(0, 2):
+            self.top_grid_layout.setColumnStretch(c, 1)
         self.qtgui_time_sink_x_0 = qtgui.time_sink_c(
         	512, #size
         	1, #samp_rate

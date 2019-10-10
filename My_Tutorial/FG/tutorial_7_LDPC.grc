@@ -2473,7 +2473,7 @@
     </param>
     <param>
       <key>loop_bw</key>
-      <value>6.28/400.0</value>
+      <value>6.28/100.0</value>
     </param>
     <param>
       <key>maxoutbuf</key>

@@ -103,3 +103,6 @@ Semana
 1/10-Tentativa correlation estimator - Bem sucedido com 2SPS e QPSK com Gray coding. Falei com professor e vi LMS. Escrevi realtorio overview e update tutorial_1.
 2/10 -Reestruturação do tutorial onde passei o differnetial encoder mais para a frente, e adicionei o correlation estimator e já o escrevi. Melhorias no tutorial (de onde vem valores e metodo para descobrir). Consegui 4SPS mas muito erro e muito overhead, mas ainda sem certeza se é a melhor maneira. 
 3/10-Leitura Filtros otimos, tentativa de recuperar sinal. Tentativa de 16qam
+
+Semana
+7/10 -Leitura livros sobre RRC, escrita muito melhor do tutorial desta parte. 

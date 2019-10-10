@@ -659,11 +659,11 @@
     </param>
     <param>
       <key>first_input</key>
-      <value>False</value>
+      <value>True</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(696, 364)</value>
+      <value>(432, 180)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -947,11 +947,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(24, 164)</value>
+      <value>(24, 140)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1057,7 +1057,7 @@
     </param>
     <param>
       <key>comment</key>
-      <value></value>
+      <value>NOISE</value>
     </param>
     <param>
       <key>affinity</key>
@@ -1065,7 +1065,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>freq</key>
@@ -1073,7 +1073,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(16, 116)</value>
+      <value>(40, 188)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1128,7 +1128,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(384, 424)</value>
+      <value>(336, 432)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1179,7 +1179,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(240, 180)</value>
+      <value>(168, 364)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1317,7 +1317,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(704, 152)</value>
+      <value>(976, 152)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -1967,6 +1967,12 @@
   </connection>
   <connection>
     <source_block_id>analog_sig_source_x_1</source_block_id>
+    <sink_block_id>adapt_lms_filter_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>1</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>analog_sig_source_x_1</source_block_id>
     <sink_block_id>blocks_throttle_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
@@ -1981,7 +1987,7 @@
     <source_block_id>blocks_add_xx_0</source_block_id>
     <sink_block_id>adapt_lms_filter_xx_0</sink_block_id>
     <source_key>0</source_key>
-    <sink_key>1</sink_key>
+    <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>blocks_add_xx_0</source_block_id>
@@ -2004,12 +2010,6 @@
   <connection>
     <source_block_id>blocks_add_xx_0</source_block_id>
     <sink_block_id>qtgui_freq_sink_x_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_throttle_0</source_block_id>
-    <sink_block_id>adapt_lms_filter_xx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

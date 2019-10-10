@@ -155,20 +155,17 @@ To use the GR conjunct with USRP's then you need to have installed the UHD Drive
 
 Now we are ready to install the GR itself, so go to \url{https://www.gnuradio.org/} \textit{(27/09/2019)} to find how.
 
-If you have a Ubuntu and you still didn't have installed GNU Radio you can find a more detailed installation on Appendix A tested both in Ubuntu 16.02 and 18.02. 
+If you have a Ubuntu and you still didn't have installed GNU Radio then you can find a more detailed installation on Appendix A tested both in Ubuntu 16.02 and 18.02. 
 
 \section{OVERVIEW}
-    Our final goal here it's the possibility of transmitting some data (txt, images, even video files) between two sides. The first side is our transmitter (Tx) where we input the data and and we do things to make transmission possible, things like modulate our data and then shape the pulse, and finally convert this digital signal to analog one using proper blocks of the GR.
-    
-    In this moment we have our data in the channel (in particular, the air) thus, we need to receive the data and do some work to successfully demodulate the signal to retrieve the data. The receiver (Rx) is a lot more complicated than the Tx, to covert the analog signal come from the antenna we need a proper block for SDR, then we  need to take care a lot of aspects related to synchronization, first we need to grossly correct the frequency offset added by the channel itself, then undo the pulse shaping that we have done in Tx side, then correct the difference between clocks of the SDR's, then correct the multipath problem and finally do fine frequency correction, getting the signal ready for successfully demodulate it resulting in our transmitted data.  
-    
-    All this process (Tx and Rx) possible to visualize here: FIGURE
+    Our final goal here it's the possibility of transmitting some data (txt, images, even video files) between two USRP edges. The first side is our transmitter (Tx) where we input the data and and we do things to make transmission possible, things like modulate our data, shaping the pulses and finally convert this digital signal to analog one using proper blocks of the GR, like it's done in Figure AAA:     
     TX:
     Data->Modulation->Pulse SHpping->SDR block->antenna
     RX:
+    
+    At this moment we have our data in the channel (in particular, the air) thus, we need to receive the data and do some work to successfully demodulate the signal to retrieve the data. The receiver (Rx) is a lot more complicated than the Tx, to covert the analog signal come from the antenna we need a proper block for SDR, then we  need to take care a lot of aspects related to synchronization, first we need to grossly correct the frequency offset added by the channel itself, then undo the pulse shaping that we have done in Tx side, then correct the difference between clocks of the SDR's, then correct the multipath problem and finally do fine frequency correction, getting the signal ready for successfully demodulate it resulting in our transmitted data. This process can be visualized in figure AAA:
+    
     antena->coarse frequency correction ->pulse shapping -> clock offset correction/timing synchronization -> multipath correction -> fine frequency ->demodulator - data
-    
-    
     
     
 
@@ -217,24 +214,85 @@ If you have a Ubuntu and you still didn't have installed GNU Radio you can find 
         
         
 \subsection{Modulation - Tutorial\_2.grc}
+    %PQ PULSE SHAPPING?
+    We are using phase-shift keying, so the data is transmitted by changing the phase of the signal where without the alternating of the bitstream (0's/1's) if we take a look to the carrier to the time domain plot we see a perfect wave (Fig: \ref{fig:whyrrc}a)) and if we take a look to the frequency domain  (Fig: \ref{fig:whyrrc}d)) we can see a narrow frequency, this is very easy to transmit and the ideal scenario. However we want transmit a bitstream of information  (Fig: \ref{fig:whyrrc}b)) so we need to change the phase to transmit it, we do this by multiplying the carrier with that bitstream and then we get a signal with the phase changing  (Fig: \ref{fig:whyrrc}c)) and with infinite bandwidth   (Fig: \ref{fig:whyrrc}e)) an this bring a lot of problems:
+    \begin{itemize}
+        \item Expensive: to use a bandwidth we need to buy it to an regulation entity
+        \item Difficult to transmit, as the large bandwidth it's much difficult to transmit
+        \item Adjacent channels will be occupied by us, so the radio frequency neighbors cant use that bandwidth too, so less amount of users.
+        \item More noise to our and other channels, as we are sending some frequency to others channels and they to our channel, all of them will have more noise. 
+    \end{itemize}{}
+    
+    \begin{figure}
+        \centering
+        \includegraphics[width=\linewidth]{whyrrc.png}
+        \caption{Why pulse shapping}
+        \label{fig:whyrrc}
+    \end{figure}
+    
+    To sum things up, if we don't put a shaping filter on the signal, the waves will have a lot of energy in adjacent channels so what we have done is not enough because in real world we cant use all the bandwidth, so we need no narrow it by using a pulse shaping filter. The problem is: When we narrow the bandwidth if the channel is too narrow the symbols will be too wide and the tail of the last symbol and begin of the next symbol will interfere with the present one inducing ISI (Inter-Symbol Interference). 
+    
+    %Nyquist, RRC+RRC -> RC e Matched Filter e Sample Delay
+    Before we get to our solution we need to know that a Nyquist filter form describes a filter where when applied to an signal we get no ISI at all. In a communication system typically it's used two pulse-shaping filters, one in Tx side and another in Rx side as shown in Figure EM BAIXO. A pulse shaping filter at each side that we can use is the RRC (Root Raised Cosine) filter because it's a feasible solution and it's already implemented in GR. So in Tx side after we apply the RRC we get an signal with ISI, to get rid of it we need to apply another RRC in the Rx side, basically we convolve two RRC filters resulting in a RC (raised cosine) filter which is a form of Nyquist Filter where we maximize the SNR (Signal Noise Ratio) and minimize the ISI. What we are doing here it's called matched filter, which is obtained by correlating a known delayed signal (called the template, this is our RRC filter in Tx) with the received signal (mixed with noise) to detect the presence of that template in that signal. Note that we can not get rid of all the ISI because of the noise added by the channel, and the precision of the filters, this is, the number of filters that we want to populate in filterbank (32 is the recommended, but we can increase taking into account that will have a lot more needed power).
+    
+    FIGURE: MODULATION---> PULSE SHPAPPING hT(t) ----CHANNEL (+NOISE hN(t)) ----PULSE SHAPPING hR(t) -----DEMODULATION   -->>>>>>>> H(t)=hT(t) * hN(t) * hR(t) convulocão
+
+    %Roll off -NOS 0.22
+    Another thing to keep in mind is the roll-off factor mathematically represented as $\beta$ where 0 $\leq$ $\beta$ $\leq$ 1 and $\beta$/2T is the measure of the excess bandwidth of the filter (bandwidth that is occupied beyond Nyquist bandwidth). This parameter is basically the inclination of the wave of the frequency when rising and falling, when we set more roll-off, let's say 1, then will be easier for the receiver to decode however we will narrow less the bandwidth and that is not our objective, on the other hand, smaller roll-off will result in narrower bandwidth, however the inclination increases so attenuation in stop band is reduced being more difficult to receiver to decode.
+    I provide an FG that I have made called \verb|roll_off.grc| inside of \verb|Extra| folder where you can analyse the plot of 5 different roll-off factors. In this tutorial we will use the 0.22 value to this parameter for being the middle ground in terms of trade-off, hence, the most used for communication systems.
+    
+    %---SPS - Nos 4SPS
+    Another thing included in modulation is the interpolation which is the act of increasing the SPS (samples per symbol), so basically we can set a number of SPS that we want and more samples per symbol leads to less probability of errors, however, logically we are inducting more overhead to our transmission (we are transmitting more information). What this does is construct new points in the wave between the existing ones thereafter when we will reconstruct the signal we will be a lot more precise due to that added points. To find this parameter we have 2 criteria:  First leaving this values small as possible taking into account that is mandatory to be 2 or higher. Second we can use this value to help us match the desired bit rate taking into account the sample rate of the hardware we are using (currently none but we will use USRP's). We will use 4 for this parameter.
+    
+    %RRC FILTER TAPS - Explicacao definicao das TAPS
+    Moving to RRC filter itself, it uses taps to apply against our signal shaping it. This taps are calculated based in how many number of filters we want and how many samples we want per symbol. Theoretically has an infinite number of taps hence we can infinite attenuate the stop band, so really we can define the limit according with processing power we have. In GR we can define the taps by using the "RRC Filter Taps" object where we need to set some parameters like: 
+    \begin{itemize}
+        \item Gain
+        \item Sample Rate
+        \item Symbol Rate
+        \item Excess BW
+        \item Num Taps
+    \end{itemize}{}
+    
+    %IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    NO FIR: SAMPLE DELAY: This delay is mostly used to adjust the placement of the tags and is not currently used for any signal processing. When a tag is passed through a block with internal delay, its location should be moved based on the delay of the block.
+    
+    
+    
+    %Polyphase Arbitrary Resampler
+    Now that we have all the bases needed and the RRC filter ready to use, we can add the right blocks on our FG. Like I said, in Tx we need to apply an RRC and interpolate by 4 (SPS), so we will use "Polyphase Arbitrary Resampler" block to do it. 
+    %IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    
+    %Polyphase Clock Sync
+    Like I said, in Rx we need to apply the matched filter, we can do that by using the "Polyphase Clock Sync" block. This block not only applies the filter we want, but also decimate the signal to a desired number of output SPS and do clock synchronization like I will talk ahead. In Tx side we have interpolated our signal by 4 the SPS, thus, we set 4 in "Samples/Symbol" parameter and now we need to decimate it to 1 SPS to get our original signal, for that we need to set to 1 in "Output SPS" parameter. Now to apply the RRC there is a tricky thing we can do: Instead apply only one filter, we can create more filters, each one with a different phase, resulting in a lot of filters, so, for a given sample of the signal, one filter is the correct filter phase that will get the timing value we want. For this, in "Filter Size" parameter we set 32 filters because it's a default/recommended value here (\verb|https://wiki.gnuradio.org/index.php/Polyphase_Clock_Sync| por em referencias), however we can increase this value if we want more precision (less ISI) in our recovery, for example 64 filters but will be a lot more computationally heavy. Hence, in the same way we increase the number of filter, in "RRC Filter Taps" object we need to set the "Gain" parameter to 32 too, the "Sample Rate" it's the rate that the samples come, this is, \verb|SPS * N\Filters (number of filters)|, "Symbol Rate" to 1 (only one symbol at a time), the roll-of factor to 0.22 as discussed above, and finally the number of taps we set the window we want (11 for starting) * SPS * N\_Filters (resulting for each sample we get 32 filters, and we see 11 samples backward and forward. 
+    % SMAPLES OU SYMBOLS??????????
+    
+    INITIAL PHASE pq pode estar desfasado meia fase? 
+    
+    %IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    
+    
+    
+%============================================ANTIGO===
+
+
     What we have done is not enough because in real world we cant use all the bandwidth, so we need no narrow it, however if the channels are too narrow the symbols will be too wide and the tail of the last symbol will interfere with the present one inducing ISI (Inter-Symbol Interference). A pulse shaping filter we can use to work around is the RRC (Root Raised Cosine) filter because it's a feasible solution and it's already implemented in GR.      
     
     %--------RRC filter
-   If we don't put a shaping filter on the signal, the waves will have a lot of energy in adjacent channels. This filter uses taps to apply against our signal shaping it. This taps are calculated based in how many number of filters we want and how many samples we want per symbol. Theoretically has an infinite number of taps hence we can infinite attenuate the stop band, so really we can define the limit according with processing power we have. Remember that we have added ISI here that we will have to treat in RX side, as we will see.
+   If we don't put a shaping filter on the signal, the waves will have a lot of energy in adjacent channels. This filter uses taps to apply against our signal shaping it. This taps are calculated based in how many number of filters we want and how many samples we want per symbol. Theoretically has an infinite number of taps hence we can infinite attenuate the stop band, so really we can define the limit according with processing power we have. Remember that we have added ISI here that we will have to treat in RX side, as we will see. 
    
 
     %Roll off
-    
     Another thing to keep in mind is the roll-off factor, this is the measure of the excess bandwidth of the filter (bandwidth that is occupied beyond Nyquist bandwidth). This parameter is basically the inclination of the wave when rising and falling, when we set more roll-off, let's say 1, then will be easier for the receiver to decode however we will narrow less the bandwidth and that is not our objective, on the other hand, smaller roll-off will result in narrower bandwidth, however the inclination increases so attenuation in stop band is reduced.
     I provide an FG that I have made called \verb|roll_off.grc| inside of \verb|Extra| folder where you can analyse the plot of 5 different roll-off factors. In this tutorial we will use the 0.22 value to this parameter for being the middle ground in terms of trade-off, hence, the most used for communication systems.
-    %-filter delay.
+    %-filter delay. ???????????
     %--Decreasing the number of samples (filter delay) reduces the stop band attenuation.
     
     %---SPS
     Another thing included in modulation is the interpolation which is increase the SPS (samples per symbol), so basically we can set a number of SPS that we want and more samples per symbol leads to less probability of errors, however, logically we are inducting more overhead to our transmission (we are transmitting more information). What this does is construct new points in the wave between the existing ones thereafter when we will reconstruct the signal we will be a lot more precise. To find this parameter we have 2 criteria:  First leaving this values small as possible taking into account that is mandatory to be 2 or higher. Second we can use this value to help us match the desired bit rate taking into account the sample rate of the hardware we are using (currently none but we will use USRP's). We will use 4 for this parameter.
     
     %--------RX SIDE - chega??
-    Note that at this point we have ISI in our signal, so first we have to get rid it. When we combine 2 RRC filters together we get a RRC filter with Nyquist filter form. Knowing this property we can use another RRC filter resulting in a raised cosine pulse shaped filter with less ISI. If you observe the constellation plot "RX Treated Constellation" there is a little noisy as a result of the ISI after the 32 filters however much less noisier than "RX Constellation". 
+    Note that at this point we have ISI in our signal, so first we have to get rid it. When we combine 2 RRC filters together we get a raised coisine (RC) filter with Nyquist filter form. Knowing this property we can use another RRC filter resulting in a raised cosine pulse shaped filter with less ISI. If you observe the constellation plot "RX Treated Constellation" there is a little noisy as a result of the ISI after the 32 filters however much less noisier than "RX Constellation". 
     %--SPS 4-1
     
     Now that we have applied a RRC filter to our RX signal, in the same way that we have interpolated by 4 we need decimate to converting 4 SPS into just 1.
@@ -250,7 +308,7 @@ If you have a Ubuntu and you still didn't have installed GNU Radio you can find 
 \end{itemize}
     
     %---EXTRA-- e POLYPHASE
-    I have added in \verb|Extra| folder an example named \verb|data_timming_offset.grc| where inputs some data and simulates an offset clock, then you can see that the data has different arrival times, this is timing offset, and we need to take care of this in our main FG. Fortunately we already do it (and noise too) by using the "Polyphase Clock Sync" block. 
+    I have added in \verb|Extra| folder an example named \verb|data_timing_offset.grc| where inputs some data and simulates an offset clock, then you can see that the data has different arrival times, this is timing offset, and we need to take care of this in our main FG. Fortunately we already do it (and noise too) by using the "Polyphase Clock Sync" block and we can change how far we want the block go looking for locking the signal by changing the value in "Maximum Rate Deviation" parameter (positive and negative from 0), I have set 1.5 because it's the default however, logically, a bigger value to this parameter leads to a better recover in case of bigger timing offset with the counterpart by adding more overhead to our FG. Besides that, a parameter we can also adjust is the "Loop Bandwidth" that is used by the second order loop, I have set to 6.28/100 as suggested here: http://www.trondeau.com/blog/2011/8/13/control-loop-gain-values.html (por nas referencias)
     
     
     %O que é multipath - tratar MULTIPATH
@@ -264,7 +322,7 @@ If you have a Ubuntu and you still didn't have installed GNU Radio you can find 
         \label{fig:multipath_effect}
     \end{figure}
 
-    This obviously affects our transmission, so to take out this problem we will need an equalizer, called "CMA Equalizer". Here we define the number of taps where more taps means better final results however more overhead to the algorithm, thus, we want keep this number small but enough for correcting our channel (based on educated guess, and some experiments I have set 15). The "Gain" I have set 0.01 and the "Samples per Symbol" of the input signal I want set to "2", hence, the "Output SPS" of "Polyphase Clock Sync" block is also set to "2". If you take a look now for the constellation plot you will see a constellation a lot more converged and clean: Figure: \ref{fig:multipath_corrected}
+    This obviously affects our transmission, so to take out this problem we will need an equalizer, called "CMA Equalizer". Here we define the number of taps where more taps means better final results however more overhead to the algorithm, thus, we want keep this number small but enough for correcting our channel (the number is channel dependent) and the "Samples per Symbol" of the input signal I want set to "2", hence, the "Output SPS" of "Polyphase Clock Sync" block is also set to "2". If you take a look now for the constellation plot you will see a constellation a lot more converged and clean like in figure: \ref{fig:multipath_corrected}
 
     \begin{figure}
         \centering
@@ -281,7 +339,9 @@ If you have a Ubuntu and you still didn't have installed GNU Radio you can find 
     
     %COARSE FREQUENCY OFFSET CORRECTION
     But, as I have said we have done fine frequency correction so if you continuously keep increasing the "Frequency Offset" tweak you will see that at certain point (close to 0.034) the constellations starts to be a lot noisier. Now we need to take care of "Coarse frequency recover" using "FFl Band-Edge" block. This block uses a frequency lock loop that derives of an band-edge filter that covers both upper and lower bandwidths of the signal to keep it in a range determined by the roll-off factor. This factor together with the SPS positions the frequency of band-edges.
-    Concluding, first we set the SPS by 4, the roll-off factor at 0.22 as previously discussed. We also need to set a number of filter taps that we will generate to apply to our signal (I have set 60) and then the loop bandwidth (I have set 6.28/400.0). If now you tweak the "Frequency Offset" beyond what "Costas loop" alone can handle you see a perfect and clean constellation. 
+    Concluding, first we set the SPS by 4, the roll-off factor at 0.22 as previously discussed. We also need to set the loop bandwidth value, for this first set a temporary big filter size (for example 60), then we start by using the normal value which is set around 6.28/100, however the constellations doesn't keep a clear circle at each point, it looks more like an ellipse than a circle, so to solve this we set to 6.28/200, this value is found by changing the divisor part (this value is run-time adaptable). Finally we need to set definitely the number of filter taps that we will generate to apply to our signal, to find the best value we need to start at some low value (for example 5) and keep increasing until we keep a constellation where the points are in their place, following this method I got a value of 20.
+    
+    If now you tweak the "Frequency Offset" beyond what "Costas loop" alone can handle you see a perfect and clean constellation. 
 
 \subsection{Packet communications - Tutorial\_5.grc}
     %---Header e CAC
@@ -799,30 +859,6 @@ References are important to the reader; therefore, each citation must be complet
 \begin{thebibliography}{99}
 
 \bibitem{c1} G. O. Young, ÒSynthetic structure of industrial plastics (Book style with paper title and editor),Ó 	in Plastics, 2nd ed. vol. 3, J. Peters, Ed.  New York: McGraw-Hill, 1964, pp. 15Ð64.
-\bibitem{c2} W.-K. Chen, Linear Networks and Systems (Book style).	Belmont, CA: Wadsworth, 1993, pp. 123Ð135.
-\bibitem{c3} H. Poor, An Introduction to Signal Detection and Estimation.   New York: Springer-Verlag, 1985, ch. 4.
-\bibitem{c4} B. Smith, ÒAn approach to graphs of linear forms (Unpublished work style),Ó unpublished.
-\bibitem{c5} E. H. Miller, ÒA note on reflector arrays (Periodical styleÑAccepted for publication),Ó IEEE Trans. Antennas Propagat., to be publised.
-\bibitem{c6} J. Wang, ÒFundamentals of erbium-doped fiber amplifiers arrays (Periodical styleÑSubmitted for publication),Ó IEEE J. Quantum Electron., submitted for publication.
-\bibitem{c7} C. J. Kaufman, Rocky Mountain Research Lab., Boulder, CO, private communication, May 1995.
-\bibitem{c8} Y. Yorozu, M. Hirano, K. Oka, and Y. Tagawa, ÒElectron spectroscopy studies on magneto-optical media and plastic substrate interfaces(Translation Journals style),Ó IEEE Transl. J. Magn.Jpn., vol. 2, Aug. 1987, pp. 740Ð741 [Dig. 9th Annu. Conf. Magnetics Japan, 1982, p. 301].
-\bibitem{c9} M. Young, The Techincal Writers Handbook.  Mill Valley, CA: University Science, 1989.
-\bibitem{c10} J. U. Duncombe, ÒInfrared navigationÑPart I: An assessment of feasibility (Periodical style),Ó IEEE Trans. Electron Devices, vol. ED-11, pp. 34Ð39, Jan. 1959.
-\bibitem{c11} S. Chen, B. Mulgrew, and P. M. Grant, ÒA clustering technique for digital communications channel equalization using radial basis function networks,Ó IEEE Trans. Neural Networks, vol. 4, pp. 570Ð578, July 1993.
-\bibitem{c12} R. W. Lucky, ÒAutomatic equalization for digital communication,Ó Bell Syst. Tech. J., vol. 44, no. 4, pp. 547Ð588, Apr. 1965.
-\bibitem{c13} S. P. Bingulac, ÒOn the compatibility of adaptive controllers (Published Conference Proceedings style),Ó in Proc. 4th Annu. Allerton Conf. Circuits and Systems Theory, New York, 1994, pp. 8Ð16.
-\bibitem{c14} G. R. Faulhaber, ÒDesign of service systems with priority reservation,Ó in Conf. Rec. 1995 IEEE Int. Conf. Communications, pp. 3Ð8.
-\bibitem{c15} W. D. Doyle, ÒMagnetization reversal in films with biaxial anisotropy,Ó in 1987 Proc. INTERMAG Conf., pp. 2.2-1Ð2.2-6.
-\bibitem{c16} G. W. Juette and L. E. Zeffanella, ÒRadio noise currents n short sections on bundle conductors (Presented Conference Paper style),Ó presented at the IEEE Summer power Meeting, Dallas, TX, June 22Ð27, 1990, Paper 90 SM 690-0 PWRS.
-\bibitem{c17} J. G. Kreifeldt, ÒAn analysis of surface-detected EMG as an amplitude-modulated noise,Ó presented at the 1989 Int. Conf. Medicine and Biological Engineering, Chicago, IL.
-\bibitem{c18} J. Williams, ÒNarrow-band analyzer (Thesis or Dissertation style),Ó Ph.D. dissertation, Dept. Elect. Eng., Harvard Univ., Cambridge, MA, 1993. 
-\bibitem{c19} N. Kawasaki, ÒParametric study of thermal and chemical nonequilibrium nozzle flow,Ó M.S. thesis, Dept. Electron. Eng., Osaka Univ., Osaka, Japan, 1993.
-\bibitem{c20} J. P. Wilkinson, ÒNonlinear resonant circuit devices (Patent style),Ó U.S. Patent 3 624 12, July 16, 1990. 
-
-
-
-
-
 
 \end{thebibliography}
 
