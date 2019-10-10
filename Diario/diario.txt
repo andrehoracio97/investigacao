@@ -106,3 +106,6 @@ Semana
 
 Semana
 7/10 -Leitura livros sobre RRC, escrita muito melhor do tutorial desta parte. 
+8/10 -Tutorial e tese.
+9/10 -Tentar self-interferance e tese.
+11/10 -Reunião professor e consegui self-interferance cancellation em simulação apenas. Em USRP estão a funcionar mal. 

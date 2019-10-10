@@ -248,7 +248,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>32</value>
+      <value>64</value>
     </param>
   </block>
   <block>
@@ -1073,7 +1073,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(568, 732)</value>
+      <value>(592, 732)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1093,7 +1093,7 @@
     </param>
     <param>
       <key>num_taps</key>
-      <value>32</value>
+      <value>64</value>
     </param>
     <param>
       <key>reset</key>
@@ -1191,7 +1191,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(232, 960)</value>
+      <value>(224, 1000)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1959,66 +1959,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(136, 852)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_throttle_1</value>
-    </param>
-    <param>
-      <key>ignoretag</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>samples_per_second</key>
-      <value>samp_rate</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>complex</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-  </block>
-  <block>
-    <key>blocks_throttle</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
       <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(320, 636)</value>
+      <value>(72, 732)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2371,7 +2316,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(336, 924)</value>
+      <value>(328, 964)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2493,6 +2438,61 @@
     </param>
   </block>
   <block>
+    <key>interp_fir_filter_xxx</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(288, 684)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>interp_fir_filter_xxx_0</value>
+    </param>
+    <param>
+      <key>interp</key>
+      <value>4</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>samp_delay</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>taps</key>
+      <value>tx_rrc_taps</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>ccc</value>
+    </param>
+  </block>
+  <block>
     <key>pfb_arb_resampler_xxx</key>
     <param>
       <key>alias</key>
@@ -2575,7 +2575,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(72, 724)</value>
+      <value>(72, 836)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2611,7 +2611,7 @@
     </param>
     <param>
       <key>taps</key>
-      <value>tx_rrc_taps</value>
+      <value>rx_rrc_taps</value>
     </param>
     <param>
       <key>type</key>
@@ -3706,7 +3706,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(960, 676)</value>
+      <value>(960, 728)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -3770,7 +3770,7 @@
     </param>
     <param>
       <key>label2</key>
-      <value>after out lms</value>
+      <value>Out LMS</value>
     </param>
     <param>
       <key>width2</key>
@@ -3786,7 +3786,7 @@
     </param>
     <param>
       <key>label3</key>
-      <value></value>
+      <value>Error LMS</value>
     </param>
     <param>
       <key>width3</key>
@@ -3902,7 +3902,7 @@
     </param>
     <param>
       <key>nconnections</key>
-      <value>2</value>
+      <value>3</value>
     </param>
     <param>
       <key>showports</key>
@@ -5477,7 +5477,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(32, 988)</value>
+      <value>(40, 1028)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -5589,12 +5589,18 @@
     <source_block_id>adapt_lms_filter_xx_0</source_block_id>
     <sink_block_id>qtgui_freq_sink_x_0_0_1</sink_block_id>
     <source_key>1</source_key>
-    <sink_key>1</sink_key>
+    <sink_key>2</sink_key>
   </connection>
   <connection>
     <source_block_id>adapt_lms_filter_xx_0</source_block_id>
     <sink_block_id>qtgui_freq_sink_x_1</sink_block_id>
     <source_key>1</source_key>
+    <sink_key>1</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>adapt_lms_filter_xx_0</source_block_id>
+    <sink_block_id>qtgui_freq_sink_x_0_0_1</sink_block_id>
+    <source_key>0</source_key>
     <sink_key>1</sink_key>
   </connection>
   <connection>
@@ -5606,12 +5612,6 @@
   <connection>
     <source_block_id>analog_fastnoise_source_x_0</source_block_id>
     <sink_block_id>blocks_throttle_1_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>analog_fastnoise_source_x_0</source_block_id>
-    <sink_block_id>pfb_arb_resampler_xxx_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -5742,16 +5742,22 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>blocks_throttle_1</source_block_id>
-    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_block_id>blocks_throttle_1_0</source_block_id>
+    <sink_block_id>adapt_lms_filter_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>1</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_throttle_1_0</source_block_id>
+    <sink_block_id>interp_fir_filter_xxx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>blocks_throttle_1_0</source_block_id>
-    <sink_block_id>adapt_lms_filter_xx_0</sink_block_id>
+    <sink_block_id>pfb_arb_resampler_xxx_0_0</sink_block_id>
     <source_key>0</source_key>
-    <sink_key>1</sink_key>
+    <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>digital_chunks_to_symbols_xx_0_0</source_block_id>
@@ -5814,6 +5820,12 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
+    <source_block_id>interp_fir_filter_xxx_0</source_block_id>
+    <sink_block_id>adapt_lms_filter_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>1</sink_key>
+  </connection>
+  <connection>
     <source_block_id>pfb_arb_resampler_xxx_0</source_block_id>
     <sink_block_id>blocks_multiply_const_vxx_1</sink_block_id>
     <source_key>0</source_key>
@@ -5821,7 +5833,7 @@
   </connection>
   <connection>
     <source_block_id>pfb_arb_resampler_xxx_0_0</source_block_id>
-    <sink_block_id>blocks_throttle_1</sink_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
