@@ -160,7 +160,7 @@ class self_interference_cancellation(gr.top_block, Qt.QWidget):
         	0, #fc
         	samp_rate, #bw
         	"", #name
-        	5 #number of inputs
+        	4 #number of inputs
         )
         self.qtgui_freq_sink_x_0.set_update_time(0.10)
         self.qtgui_freq_sink_x_0.set_y_axis(-140, 10)
@@ -178,7 +178,7 @@ class self_interference_cancellation(gr.top_block, Qt.QWidget):
         if "float" == "float" or "float" == "msg_float":
           self.qtgui_freq_sink_x_0.set_plot_pos_half(not True)
 
-        labels = ['Input', 'Reference', 'Out', 'Error', 'Original',
+        labels = ['Input', 'Reference', 'Out', 'Error', '',
                   '', '', '', '', '']
         widths = [1, 1, 1, 1, 1,
                   1, 1, 1, 1, 1]
@@ -186,7 +186,7 @@ class self_interference_cancellation(gr.top_block, Qt.QWidget):
                   "magenta", "yellow", "dark red", "dark green", "dark blue"]
         alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
                   1.0, 1.0, 1.0, 1.0, 1.0]
-        for i in xrange(5):
+        for i in xrange(4):
             if len(labels[i]) == 0:
                 self.qtgui_freq_sink_x_0.set_line_label(i, "Data {0}".format(i))
             else:
@@ -222,6 +222,8 @@ class self_interference_cancellation(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(1, 3):
             self.top_grid_layout.setColumnStretch(c, 1)
+        self.fir_filter_xxx_0 = filter.fir_filter_fff(1, (1, 0.5, 0.3, 0.9))
+        self.fir_filter_xxx_0.declare_sample_delay(0)
         self.blocks_throttle_0 = blocks.throttle(gr.sizeof_float*1, samp_rate,True)
         self.blocks_add_xx_0 = blocks.add_vff(1)
         self.analog_sig_source_x_1 = analog.sig_source_f(samp_rate, analog.GR_COS_WAVE, frequency, 1, 0)
@@ -233,17 +235,17 @@ class self_interference_cancellation(gr.top_block, Qt.QWidget):
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.adapt_lms_filter_xx_0, 1), (self.qtgui_freq_sink_x_0, 3))
-        self.connect((self.adapt_lms_filter_xx_0, 0), (self.qtgui_freq_sink_x_0, 2))
+        self.connect((self.adapt_lms_filter_xx_0, 1), (self.qtgui_freq_sink_x_0, 2))
+        self.connect((self.adapt_lms_filter_xx_0, 0), (self.qtgui_freq_sink_x_0, 3))
         self.connect((self.adapt_lms_filter_xx_0, 2), (self.qtgui_vector_sink_f_0, 0))
-        self.connect((self.analog_sig_source_x_0, 0), (self.blocks_add_xx_0, 1))
-        self.connect((self.analog_sig_source_x_0, 0), (self.qtgui_freq_sink_x_0, 4))
-        self.connect((self.analog_sig_source_x_1, 0), (self.adapt_lms_filter_xx_0, 1))
+        self.connect((self.analog_sig_source_x_0, 0), (self.adapt_lms_filter_xx_0, 0))
+        self.connect((self.analog_sig_source_x_0, 0), (self.fir_filter_xxx_0, 0))
+        self.connect((self.analog_sig_source_x_0, 0), (self.qtgui_freq_sink_x_0, 0))
         self.connect((self.analog_sig_source_x_1, 0), (self.blocks_throttle_0, 0))
-        self.connect((self.blocks_add_xx_0, 0), (self.adapt_lms_filter_xx_0, 0))
-        self.connect((self.blocks_add_xx_0, 0), (self.qtgui_freq_sink_x_0, 0))
+        self.connect((self.blocks_add_xx_0, 0), (self.adapt_lms_filter_xx_0, 1))
+        self.connect((self.blocks_add_xx_0, 0), (self.qtgui_freq_sink_x_0, 1))
         self.connect((self.blocks_throttle_0, 0), (self.blocks_add_xx_0, 0))
-        self.connect((self.blocks_throttle_0, 0), (self.qtgui_freq_sink_x_0, 1))
+        self.connect((self.fir_filter_xxx_0, 0), (self.blocks_add_xx_0, 1))
 
     def closeEvent(self, event):
         self.settings = Qt.QSettings("GNU Radio", "self_interference_cancellation")
