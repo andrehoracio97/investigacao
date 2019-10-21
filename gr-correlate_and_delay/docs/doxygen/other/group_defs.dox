@@ -1,0 +1,7 @@
+/*!
+ * \defgroup block GNU Radio CORRELATE_AND_DELAY C++ Signal Processing Blocks
+ * \brief All C++ blocks that can be used from the CORRELATE_AND_DELAY GNU Radio
+ *        module are listed here or in the subcategories below.
+ *
+ */
+

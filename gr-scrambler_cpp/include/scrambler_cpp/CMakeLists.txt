@@ -24,5 +24,7 @@
 install(FILES
     api.h
     custom_scrambler.h
-    custom_descrambler.h DESTINATION include/scrambler_cpp
+    custom_descrambler.h
+    additive_scrambler.h
+    additive_descrambler.h DESTINATION include/scrambler_cpp
 )

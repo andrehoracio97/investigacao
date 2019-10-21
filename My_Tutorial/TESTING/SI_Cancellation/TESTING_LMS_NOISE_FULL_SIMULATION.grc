@@ -232,7 +232,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -248,7 +248,34 @@
     </param>
     <param>
       <key>value</key>
-      <value>64</value>
+      <value>32</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value>N filtros = SPS</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(600, 980)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>nfilts_rx</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>4</value>
     </param>
   </block>
   <block>
@@ -667,6 +694,49 @@
     </param>
     <param>
       <key>_coordinate</key>
+      <value>(1184, 340)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>gain</key>
+      <value>sps</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>rrc_taps</value>
+    </param>
+    <param>
+      <key>ntaps</key>
+      <value>11*sps</value>
+    </param>
+    <param>
+      <key>samp_rate</key>
+      <value>sps</value>
+    </param>
+    <param>
+      <key>sym_rate</key>
+      <value>1.0</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_rrc_filter_taps</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>alpha</key>
+      <value>eb</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
       <value>(1080, 76)</value>
     </param>
     <param>
@@ -688,6 +758,49 @@
     <param>
       <key>samp_rate</key>
       <value>nfilts*sps</value>
+    </param>
+    <param>
+      <key>sym_rate</key>
+      <value>1.0</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_rrc_filter_taps</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>alpha</key>
+      <value>eb</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(576, 1036)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>gain</key>
+      <value>sps</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>rx_rrc_taps</value>
+    </param>
+    <param>
+      <key>ntaps</key>
+      <value>11*sps</value>
+    </param>
+    <param>
+      <key>samp_rate</key>
+      <value>sps</value>
     </param>
     <param>
       <key>sym_rate</key>
@@ -783,7 +896,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>alpha</key>
@@ -791,7 +904,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(952, 76)</value>
+      <value>(944, 76)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -807,7 +920,7 @@
     </param>
     <param>
       <key>ntaps</key>
-      <value>11*sps*nfilts</value>
+      <value>5*sps*nfilts</value>
     </param>
     <param>
       <key>samp_rate</key>
@@ -1093,7 +1206,7 @@
     </param>
     <param>
       <key>num_taps</key>
-      <value>64</value>
+      <value>32</value>
     </param>
     <param>
       <key>reset</key>
@@ -1191,7 +1304,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(224, 1000)</value>
+      <value>(216, 1024)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2312,11 +2425,11 @@
     </param>
     <param>
       <key>filter_size</key>
-      <value>nfilts</value>
+      <value>sps</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(328, 964)</value>
+      <value>(344, 988)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2324,11 +2437,11 @@
     </param>
     <param>
       <key>id</key>
-      <value>digital_pfb_clock_sync_xxx_0</value>
+      <value>digital_pfb_clock_sync_xxx_0_0_0</value>
     </param>
     <param>
       <key>init_phase</key>
-      <value>nfilts/2</value>
+      <value>sps/2</value>
     </param>
     <param>
       <key>loop_bw</key>
@@ -2457,7 +2570,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(288, 684)</value>
+      <value>(288, 644)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2493,6 +2606,116 @@
     </param>
   </block>
   <block>
+    <key>interp_fir_filter_xxx</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(968, 380)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>interp_fir_filter_xxx_0_0</value>
+    </param>
+    <param>
+      <key>interp</key>
+      <value>sps</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>samp_delay</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>taps</key>
+      <value>rrc_taps</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>ccc</value>
+    </param>
+  </block>
+  <block>
+    <key>interp_fir_filter_xxx</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(96, 924)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>interp_fir_filter_xxx_0_0_0</value>
+    </param>
+    <param>
+      <key>interp</key>
+      <value>sps</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>samp_delay</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>taps</key>
+      <value>rrc_taps</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>ccc</value>
+    </param>
+  </block>
+  <block>
     <key>pfb_arb_resampler_xxx</key>
     <param>
       <key>alias</key>
@@ -2508,7 +2731,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2571,11 +2794,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(72, 836)</value>
+      <value>(80, 836)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -5477,7 +5700,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(40, 1028)</value>
+      <value>(32, 1052)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -5617,7 +5840,7 @@
   </connection>
   <connection>
     <source_block_id>blocks_add_xx_0</source_block_id>
-    <sink_block_id>digital_pfb_clock_sync_xxx_0</sink_block_id>
+    <sink_block_id>digital_pfb_clock_sync_xxx_0_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -5755,7 +5978,19 @@
   </connection>
   <connection>
     <source_block_id>blocks_throttle_1_0</source_block_id>
+    <sink_block_id>interp_fir_filter_xxx_0_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_throttle_1_0</source_block_id>
     <sink_block_id>pfb_arb_resampler_xxx_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>digital_chunks_to_symbols_xx_0_0</source_block_id>
+    <sink_block_id>interp_fir_filter_xxx_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -5808,7 +6043,7 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>digital_pfb_clock_sync_xxx_0</source_block_id>
+    <source_block_id>digital_pfb_clock_sync_xxx_0_0_0</source_block_id>
     <sink_block_id>adapt_lms_filter_xx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
@@ -5824,6 +6059,18 @@
     <sink_block_id>adapt_lms_filter_xx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>1</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>interp_fir_filter_xxx_0_0</source_block_id>
+    <sink_block_id>blocks_multiply_const_vxx_1</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>interp_fir_filter_xxx_0_0_0</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>pfb_arb_resampler_xxx_0</source_block_id>

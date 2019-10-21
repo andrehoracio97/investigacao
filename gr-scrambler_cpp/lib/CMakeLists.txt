@@ -29,6 +29,8 @@ link_directories(${Boost_LIBRARY_DIRS})
 list(APPEND scrambler_cpp_sources
     custom_scrambler_impl.cc
     custom_descrambler_impl.cc
+    additive_scrambler_impl.cc
+    additive_descrambler_impl.cc
 )
 
 set(scrambler_cpp_sources "${scrambler_cpp_sources}" PARENT_SCOPE)

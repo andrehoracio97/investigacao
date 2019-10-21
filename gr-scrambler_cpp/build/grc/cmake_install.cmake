@@ -41,6 +41,8 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gnuradio/grc/blocks" TYPE FILE FILES
     "/home/andre/investigacao/gr-scrambler_cpp/grc/scrambler_cpp_custom_scrambler.xml"
     "/home/andre/investigacao/gr-scrambler_cpp/grc/scrambler_cpp_custom_descrambler.xml"
+    "/home/andre/investigacao/gr-scrambler_cpp/grc/scrambler_cpp_additive_scrambler.xml"
+    "/home/andre/investigacao/gr-scrambler_cpp/grc/scrambler_cpp_additive_descrambler.xml"
     )
 endif()
 

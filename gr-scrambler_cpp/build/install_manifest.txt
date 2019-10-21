@@ -2,6 +2,8 @@
 /usr/local/include/scrambler_cpp/api.h
 /usr/local/include/scrambler_cpp/custom_scrambler.h
 /usr/local/include/scrambler_cpp/custom_descrambler.h
+/usr/local/include/scrambler_cpp/additive_scrambler.h
+/usr/local/include/scrambler_cpp/additive_descrambler.h
 /usr/local/lib/libgnuradio-scrambler_cpp-1.0.0git.so.0.0.0
 /usr/local/lib/libgnuradio-scrambler_cpp-1.0.0git.so
 /usr/local/lib/libgnuradio-scrambler_cpp.so
@@ -17,6 +19,8 @@
 /usr/local/lib/python2.7/dist-packages/scrambler_cpp/__init__.pyo
 /usr/local/share/gnuradio/grc/blocks/scrambler_cpp_custom_scrambler.xml
 /usr/local/share/gnuradio/grc/blocks/scrambler_cpp_custom_descrambler.xml
+/usr/local/share/gnuradio/grc/blocks/scrambler_cpp_additive_scrambler.xml
+/usr/local/share/gnuradio/grc/blocks/scrambler_cpp_additive_descrambler.xml
 /usr/local/share/doc/gr-scrambler_cpp/xml/indexpage.xml
 /usr/local/share/doc/gr-scrambler_cpp/xml/namespacegr.xml
 /usr/local/share/doc/gr-scrambler_cpp/xml/custom__scrambler_8h.xml

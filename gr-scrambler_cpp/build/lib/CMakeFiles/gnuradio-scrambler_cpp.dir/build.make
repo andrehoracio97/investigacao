@@ -83,16 +83,46 @@ lib/CMakeFiles/gnuradio-scrambler_cpp.dir/custom_descrambler_impl.cc.s: cmake_fo
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gnuradio-scrambler_cpp.dir/custom_descrambler_impl.cc.s"
 	cd /home/andre/investigacao/gr-scrambler_cpp/build/lib && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andre/investigacao/gr-scrambler_cpp/lib/custom_descrambler_impl.cc -o CMakeFiles/gnuradio-scrambler_cpp.dir/custom_descrambler_impl.cc.s
 
+lib/CMakeFiles/gnuradio-scrambler_cpp.dir/additive_scrambler_impl.cc.o: lib/CMakeFiles/gnuradio-scrambler_cpp.dir/flags.make
+lib/CMakeFiles/gnuradio-scrambler_cpp.dir/additive_scrambler_impl.cc.o: ../lib/additive_scrambler_impl.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andre/investigacao/gr-scrambler_cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object lib/CMakeFiles/gnuradio-scrambler_cpp.dir/additive_scrambler_impl.cc.o"
+	cd /home/andre/investigacao/gr-scrambler_cpp/build/lib && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gnuradio-scrambler_cpp.dir/additive_scrambler_impl.cc.o -c /home/andre/investigacao/gr-scrambler_cpp/lib/additive_scrambler_impl.cc
+
+lib/CMakeFiles/gnuradio-scrambler_cpp.dir/additive_scrambler_impl.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gnuradio-scrambler_cpp.dir/additive_scrambler_impl.cc.i"
+	cd /home/andre/investigacao/gr-scrambler_cpp/build/lib && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andre/investigacao/gr-scrambler_cpp/lib/additive_scrambler_impl.cc > CMakeFiles/gnuradio-scrambler_cpp.dir/additive_scrambler_impl.cc.i
+
+lib/CMakeFiles/gnuradio-scrambler_cpp.dir/additive_scrambler_impl.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gnuradio-scrambler_cpp.dir/additive_scrambler_impl.cc.s"
+	cd /home/andre/investigacao/gr-scrambler_cpp/build/lib && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andre/investigacao/gr-scrambler_cpp/lib/additive_scrambler_impl.cc -o CMakeFiles/gnuradio-scrambler_cpp.dir/additive_scrambler_impl.cc.s
+
+lib/CMakeFiles/gnuradio-scrambler_cpp.dir/additive_descrambler_impl.cc.o: lib/CMakeFiles/gnuradio-scrambler_cpp.dir/flags.make
+lib/CMakeFiles/gnuradio-scrambler_cpp.dir/additive_descrambler_impl.cc.o: ../lib/additive_descrambler_impl.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andre/investigacao/gr-scrambler_cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object lib/CMakeFiles/gnuradio-scrambler_cpp.dir/additive_descrambler_impl.cc.o"
+	cd /home/andre/investigacao/gr-scrambler_cpp/build/lib && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gnuradio-scrambler_cpp.dir/additive_descrambler_impl.cc.o -c /home/andre/investigacao/gr-scrambler_cpp/lib/additive_descrambler_impl.cc
+
+lib/CMakeFiles/gnuradio-scrambler_cpp.dir/additive_descrambler_impl.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gnuradio-scrambler_cpp.dir/additive_descrambler_impl.cc.i"
+	cd /home/andre/investigacao/gr-scrambler_cpp/build/lib && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andre/investigacao/gr-scrambler_cpp/lib/additive_descrambler_impl.cc > CMakeFiles/gnuradio-scrambler_cpp.dir/additive_descrambler_impl.cc.i
+
+lib/CMakeFiles/gnuradio-scrambler_cpp.dir/additive_descrambler_impl.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gnuradio-scrambler_cpp.dir/additive_descrambler_impl.cc.s"
+	cd /home/andre/investigacao/gr-scrambler_cpp/build/lib && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andre/investigacao/gr-scrambler_cpp/lib/additive_descrambler_impl.cc -o CMakeFiles/gnuradio-scrambler_cpp.dir/additive_descrambler_impl.cc.s
+
 # Object files for target gnuradio-scrambler_cpp
 gnuradio__scrambler_cpp_OBJECTS = \
 "CMakeFiles/gnuradio-scrambler_cpp.dir/custom_scrambler_impl.cc.o" \
-"CMakeFiles/gnuradio-scrambler_cpp.dir/custom_descrambler_impl.cc.o"
+"CMakeFiles/gnuradio-scrambler_cpp.dir/custom_descrambler_impl.cc.o" \
+"CMakeFiles/gnuradio-scrambler_cpp.dir/additive_scrambler_impl.cc.o" \
+"CMakeFiles/gnuradio-scrambler_cpp.dir/additive_descrambler_impl.cc.o"
 
 # External object files for target gnuradio-scrambler_cpp
 gnuradio__scrambler_cpp_EXTERNAL_OBJECTS =
 
 lib/libgnuradio-scrambler_cpp-1.0.0git.so.0.0.0: lib/CMakeFiles/gnuradio-scrambler_cpp.dir/custom_scrambler_impl.cc.o
 lib/libgnuradio-scrambler_cpp-1.0.0git.so.0.0.0: lib/CMakeFiles/gnuradio-scrambler_cpp.dir/custom_descrambler_impl.cc.o
+lib/libgnuradio-scrambler_cpp-1.0.0git.so.0.0.0: lib/CMakeFiles/gnuradio-scrambler_cpp.dir/additive_scrambler_impl.cc.o
+lib/libgnuradio-scrambler_cpp-1.0.0git.so.0.0.0: lib/CMakeFiles/gnuradio-scrambler_cpp.dir/additive_descrambler_impl.cc.o
 lib/libgnuradio-scrambler_cpp-1.0.0git.so.0.0.0: lib/CMakeFiles/gnuradio-scrambler_cpp.dir/build.make
 lib/libgnuradio-scrambler_cpp-1.0.0git.so.0.0.0: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
 lib/libgnuradio-scrambler_cpp-1.0.0git.so.0.0.0: /usr/lib/x86_64-linux-gnu/libboost_system.so
@@ -100,7 +130,7 @@ lib/libgnuradio-scrambler_cpp-1.0.0git.so.0.0.0: /usr/local/lib/libgnuradio-runt
 lib/libgnuradio-scrambler_cpp-1.0.0git.so.0.0.0: /usr/local/lib/libgnuradio-pmt.so
 lib/libgnuradio-scrambler_cpp-1.0.0git.so.0.0.0: /usr/lib/x86_64-linux-gnu/liblog4cpp.so
 lib/libgnuradio-scrambler_cpp-1.0.0git.so.0.0.0: lib/CMakeFiles/gnuradio-scrambler_cpp.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/andre/investigacao/gr-scrambler_cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX shared library libgnuradio-scrambler_cpp-1.0.0git.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/andre/investigacao/gr-scrambler_cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX shared library libgnuradio-scrambler_cpp-1.0.0git.so"
 	cd /home/andre/investigacao/gr-scrambler_cpp/build/lib && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/gnuradio-scrambler_cpp.dir/link.txt --verbose=$(VERBOSE)
 	cd /home/andre/investigacao/gr-scrambler_cpp/build/lib && $(CMAKE_COMMAND) -E cmake_symlink_library libgnuradio-scrambler_cpp-1.0.0git.so.0.0.0 libgnuradio-scrambler_cpp-1.0.0git.so.0.0.0 libgnuradio-scrambler_cpp-1.0.0git.so
 	cd /home/andre/investigacao/gr-scrambler_cpp/build/lib && /usr/bin/cmake -E create_symlink libgnuradio-scrambler_cpp-1.0.0git.so.0.0.0 /home/andre/investigacao/gr-scrambler_cpp/build/lib/libgnuradio-scrambler_cpp.so

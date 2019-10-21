@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl" kind="class" language="C++" prot="public">
+    <compoundname>gr::correlate_and_delay::corr_and_delay_impl</compoundname>
+    <basecompoundref refid="classgr_1_1correlate__and__delay_1_1corr__and__delay" prot="public" virt="non-virtual">gr::correlate_and_delay::corr_and_delay</basecompoundref>
+    <includes refid="corr__and__delay__impl_8h" local="no">corr_and_delay_impl.h</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1ac4bb9e25cb2ccbfa4225838655d31327" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>gr::correlate_and_delay::corr_and_delay_impl::corr_and_delay_impl</definition>
+        <argsstring>(int number_bits, int interval)</argsstring>
+        <name>corr_and_delay_impl</name>
+        <param>
+          <type>int</type>
+          <declname>number_bits</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>interval</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" line="35" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1a8c34d842408dd31f97675ac0e35c0e70" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>gr::correlate_and_delay::corr_and_delay_impl::~corr_and_delay_impl</definition>
+        <argsstring>()</argsstring>
+        <name>~corr_and_delay_impl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" line="36" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1a7470f9df910bbe8b82ee2488da73f502" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void gr::correlate_and_delay::corr_and_delay_impl::forecast</definition>
+        <argsstring>(int noutput_items, gr_vector_int &amp;ninput_items_required)</argsstring>
+        <name>forecast</name>
+        <param>
+          <type>int</type>
+          <declname>noutput_items</declname>
+        </param>
+        <param>
+          <type>gr_vector_int &amp;</type>
+          <declname>ninput_items_required</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" line="39" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1a438f6a252f810c3c3d81a9b058bf4141" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int gr::correlate_and_delay::corr_and_delay_impl::general_work</definition>
+        <argsstring>(int noutput_items, gr_vector_int &amp;ninput_items, gr_vector_const_void_star &amp;input_items, gr_vector_void_star &amp;output_items)</argsstring>
+        <name>general_work</name>
+        <param>
+          <type>int</type>
+          <declname>noutput_items</declname>
+        </param>
+        <param>
+          <type>gr_vector_int &amp;</type>
+          <declname>ninput_items</declname>
+        </param>
+        <param>
+          <type>gr_vector_const_void_star &amp;</type>
+          <declname>input_items</declname>
+        </param>
+        <param>
+          <type>gr_vector_void_star &amp;</type>
+          <declname>output_items</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" line="41" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="5">
+        <label>gr::correlate_and_delay::corr_and_delay_impl</label>
+        <link refid="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>gr::correlate_and_delay::corr_and_delay</label>
+        <link refid="classgr_1_1correlate__and__delay_1_1corr__and__delay"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>gr::block</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="8">
+        <label>gr::correlate_and_delay::corr_and_delay_impl</label>
+        <link refid="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>gr::correlate_and_delay::corr_and_delay</label>
+        <link refid="classgr_1_1correlate__and__delay_1_1corr__and__delay"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>gr::block</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" line="30" column="1" bodyfile="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" bodystart="29" bodyend="45"/>
+    <listofallmembers>
+      <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1ac4bb9e25cb2ccbfa4225838655d31327" prot="public" virt="non-virtual"><scope>gr::correlate_and_delay::corr_and_delay_impl</scope><name>corr_and_delay_impl</name></member>
+      <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1a7470f9df910bbe8b82ee2488da73f502" prot="public" virt="non-virtual"><scope>gr::correlate_and_delay::corr_and_delay_impl</scope><name>forecast</name></member>
+      <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1a438f6a252f810c3c3d81a9b058bf4141" prot="public" virt="non-virtual"><scope>gr::correlate_and_delay::corr_and_delay_impl</scope><name>general_work</name></member>
+      <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay_1a45a1e79eb6f4032d4abbaf1bffecdef4" prot="public" virt="non-virtual"><scope>gr::correlate_and_delay::corr_and_delay_impl</scope><name>make</name></member>
+      <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay_1a47670b9c8cfcec3c45a79c1238c9a89a" prot="public" virt="non-virtual"><scope>gr::correlate_and_delay::corr_and_delay_impl</scope><name>sptr</name></member>
+      <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1a8c34d842408dd31f97675ac0e35c0e70" prot="public" virt="non-virtual"><scope>gr::correlate_and_delay::corr_and_delay_impl</scope><name>~corr_and_delay_impl</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

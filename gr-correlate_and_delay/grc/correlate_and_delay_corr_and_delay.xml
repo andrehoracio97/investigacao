@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<block>
+  <name>corr_and_delay</name>
+  <key>correlate_and_delay_corr_and_delay</key>
+  <category>[correlate_and_delay]</category>
+  <import>import correlate_and_delay</import>
+  <make>correlate_and_delay.corr_and_delay($number_bits, $interval, $threshold)</make>
+
+
+  <param>
+    <name>Number Bits</name>
+    <key>number_bits</key>
+    <value>100</value>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Interval</name>
+    <key>interval</key>
+    <value>0</value>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Threshold</name>
+    <key>threshold</key>
+    <value>99</value>
+    <type>int</type>
+  </param>
+
+
+  <sink>
+    <name>Noise</name>
+    <type>complex</type>
+  </sink>
+  <sink>
+    <name>SignalMix</name>
+    <type>complex</type>
+  </sink>
+
+  <source>
+    <name>NoiseDelayed</name>
+    <type>complex</type>
+  </source>
+  <source>
+    <name>SignalMix</name>
+    <type>complex</type>
+  </source>
+</block>

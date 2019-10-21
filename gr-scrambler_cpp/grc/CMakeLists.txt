@@ -20,5 +20,7 @@
 
 install(FILES
     scrambler_cpp_custom_scrambler.xml
-    scrambler_cpp_custom_descrambler.xml DESTINATION share/gnuradio/grc/blocks
+    scrambler_cpp_custom_descrambler.xml
+    scrambler_cpp_additive_scrambler.xml
+    scrambler_cpp_additive_descrambler.xml DESTINATION share/gnuradio/grc/blocks
 )
