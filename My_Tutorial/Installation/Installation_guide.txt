@@ -36,9 +36,13 @@ sudo add-apt-repository ppa:ettusresearch/uhd
 sudo apt-get update
 sudo apt-get install libuhd-dev libuhd003 uhd-host
 
-If not works install binaryes manually:
+If not works install binaryes manually, by:
 https://launchpad.net/~ettusresearch/+archive/ubuntu/uhd/+packages
 Install 3 packadges: libuhd-dev, libuhd3.14.1 and uhd-host
+
+sudo apt-get install libuhd-dev
+sudo apt-get install uhd-host
+and install the libuhd3.14.1 from source file
 
 
 cd /usr/lib/uhd/utils/

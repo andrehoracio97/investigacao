@@ -108,14 +108,14 @@ class tutorial_10(gr.top_block, Qt.QWidget):
         ##################################################
         # Blocks
         ##################################################
-        self._variable_qtgui_range_1_range = Range(0, 10000, 1, 1600, 2000)
+        self._variable_qtgui_range_1_range = Range(0, 2000000, 1, 1600, 2000)
         self._variable_qtgui_range_1_win = RangeWidget(self._variable_qtgui_range_1_range, self.set_variable_qtgui_range_1, 'Delay JAMMING', "counter_slider", int)
         self.top_grid_layout.addWidget(self._variable_qtgui_range_1_win, 0, 0, 1, 1)
         for r in range(0, 1):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(0, 1):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self._variable_qtgui_range_1_0_range = Range(0, 10000, 1, 0, 2000)
+        self._variable_qtgui_range_1_0_range = Range(0, 2000000, 1, 0, 2000)
         self._variable_qtgui_range_1_0_win = RangeWidget(self._variable_qtgui_range_1_0_range, self.set_variable_qtgui_range_1_0, 'Delay SIGNAL', "counter_slider", int)
         self.top_grid_layout.addWidget(self._variable_qtgui_range_1_0_win, 1, 0, 1, 1)
         for r in range(1, 2):

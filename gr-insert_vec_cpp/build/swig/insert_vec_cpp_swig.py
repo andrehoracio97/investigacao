@@ -129,7 +129,7 @@ class new_vec(object):
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
 
     def __init__(self, *args, **kwargs):
-        raise AttributeError("No constructor defined")
+        raise AttributeError("No constructor defined - class is abstract")
     __repr__ = _swig_repr
 
     def make(vec):
@@ -150,6 +150,11 @@ class new_vec(object):
         return _insert_vec_cpp_swig.new_vec_make(vec)
 
     make = staticmethod(make)
+
+    def set_data(self, vec):
+        """set_data(new_vec self, std::vector< unsigned char,std::allocator< unsigned char > > const & vec)"""
+        return _insert_vec_cpp_swig.new_vec_set_data(self, vec)
+
     __swig_destroy__ = _insert_vec_cpp_swig.delete_new_vec
     __del__ = lambda self: None
 new_vec_swigregister = _insert_vec_cpp_swig.new_vec_swigregister
@@ -212,6 +217,11 @@ class new_vec_sptr(object):
             vec : 
         """
         return _insert_vec_cpp_swig.new_vec_sptr_make(self, vec)
+
+
+    def set_data(self, vec):
+        """set_data(new_vec_sptr self, std::vector< unsigned char,std::allocator< unsigned char > > const & vec)"""
+        return _insert_vec_cpp_swig.new_vec_sptr_set_data(self, vec)
 
 
     def history(self):

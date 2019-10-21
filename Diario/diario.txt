@@ -105,3 +105,6 @@ Semana
 16 -Tese-conclusao fine frequency recovery, começo phase ambiguity
 17 -Tese-Conclusão phase ambiguity, conclusão coarse frequency recovery, conclusão multiplicative e additive scrambler, começo FEC.
 18 -Inicio coding correlate and delay, resisão da tese par alterar o WE/I para generico.
+
+Semana
+21 -Intall windows, ubuntu, GR, tudo... De novo. PROBLEMA QUE AGORA NAO ESTÀ A DAR. Tese-Tools

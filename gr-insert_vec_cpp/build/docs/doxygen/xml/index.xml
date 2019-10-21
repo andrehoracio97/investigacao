@@ -3,11 +3,20 @@
   <compound refid="classgr_1_1insert__vec__cpp_1_1new__vec" kind="class"><name>gr::insert_vec_cpp::new_vec</name>
     <member refid="classgr_1_1insert__vec__cpp_1_1new__vec_1a7adf86f938850c9648f271cc494d4cfa" kind="typedef"><name>sptr</name></member>
     <member refid="classgr_1_1insert__vec__cpp_1_1new__vec_1ae753a6e4f743acbc83cab2c2b437da73" kind="function"><name>make</name></member>
+    <member refid="classgr_1_1insert__vec__cpp_1_1new__vec_1ad8fcc5702d5d029253307dad869fb34f" kind="function"><name>set_data</name></member>
   </compound>
   <compound refid="classgr_1_1insert__vec__cpp_1_1new__vec__impl" kind="class"><name>gr::insert_vec_cpp::new_vec_impl</name>
+    <member refid="classgr_1_1insert__vec__cpp_1_1new__vec__impl_1aa19905356f33b8fe317d7fbd01bda626" kind="variable"><name>d_data</name></member>
+    <member refid="classgr_1_1insert__vec__cpp_1_1new__vec__impl_1a75e85d09127ab8c71c971f58e6b8e3a4" kind="variable"><name>flag</name></member>
+    <member refid="classgr_1_1insert__vec__cpp_1_1new__vec__impl_1ac078afb5690da1f472db26a203faf57c" kind="variable"><name>track_oo</name></member>
     <member refid="classgr_1_1insert__vec__cpp_1_1new__vec__impl_1aea626e7ba8f05178c1aa043d4291e14a" kind="function"><name>new_vec_impl</name></member>
     <member refid="classgr_1_1insert__vec__cpp_1_1new__vec__impl_1ab7687f9e170661af96e91418b3741012" kind="function"><name>~new_vec_impl</name></member>
     <member refid="classgr_1_1insert__vec__cpp_1_1new__vec__impl_1a91b9aa8e303f12aaa6db1526bfe81e7f" kind="function"><name>forecast</name></member>
+    <member refid="classgr_1_1insert__vec__cpp_1_1new__vec__impl_1a9c8206e6f6a45a95d48c7ebda844c1f3" kind="function"><name>set_data</name></member>
+    <member refid="classgr_1_1insert__vec__cpp_1_1new__vec__impl_1a292b8642eab99e05326c29d9ef6cbc50" kind="function"><name>get_flag</name></member>
+    <member refid="classgr_1_1insert__vec__cpp_1_1new__vec__impl_1acbf9d6965e41230d1ed4fa9610ede82a" kind="function"><name>set_flag</name></member>
+    <member refid="classgr_1_1insert__vec__cpp_1_1new__vec__impl_1aa80c63e90a3b3dd1265c070d8fcfcd33" kind="function"><name>set_track</name></member>
+    <member refid="classgr_1_1insert__vec__cpp_1_1new__vec__impl_1a5adc254e477b0aef399b8aa74456b276" kind="function"><name>get_track</name></member>
     <member refid="classgr_1_1insert__vec__cpp_1_1new__vec__impl_1a42d3c11c70b9a034898114b1eb6f17a5" kind="function"><name>general_work</name></member>
   </compound>
   <compound refid="namespacegr" kind="namespace"><name>gr</name>

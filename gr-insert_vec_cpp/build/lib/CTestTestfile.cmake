@@ -4,4 +4,4 @@
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.
-add_test(test_insert_vec_cpp "/usr/bin/sh" "/home/andre/investigacao/gr-insert_vec_cpp/build/lib/test_insert_vec_cpp_test.sh")
+add_test(test_insert_vec_cpp "/bin/sh" "/home/andre/investigacao/gr-insert_vec_cpp/build/lib/test_insert_vec_cpp_test.sh")

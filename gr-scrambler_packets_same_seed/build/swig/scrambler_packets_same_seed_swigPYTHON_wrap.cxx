@@ -1632,14 +1632,6 @@ SwigPyObject_repr(SwigPyObject *v, PyObject *args)
   return repr;  
 }
 
-/* We need a version taking two PyObject* parameters so it's a valid
- * PyCFunction to use in swigobject_methods[]. */
-SWIGRUNTIME PyObject *
-SwigPyObject_repr2(PyObject *v, PyObject *SWIGUNUSEDPARM(args))
-{
-  return SwigPyObject_repr((SwigPyObject*)v);
-}
-
 SWIGRUNTIME int
 SwigPyObject_compare(SwigPyObject *v, SwigPyObject *w)
 {
@@ -1769,7 +1761,11 @@ SwigPyObject_append(PyObject* v, PyObject* next)
 }
 
 SWIGRUNTIME PyObject* 
+#ifdef METH_NOARGS
+SwigPyObject_next(PyObject* v)
+#else
 SwigPyObject_next(PyObject* v, PyObject *SWIGUNUSEDPARM(args))
+#endif
 {
   SwigPyObject *sobj = (SwigPyObject *) v;
   if (sobj->next) {    
@@ -1803,20 +1799,6 @@ SwigPyObject_acquire(PyObject* v, PyObject *SWIGUNUSEDPARM(args))
   sobj->own = SWIG_POINTER_OWN;
   return SWIG_Py_Void();
 }
-
-#ifdef METH_NOARGS
-static PyObject*
-SwigPyObject_disown2(PyObject* v, PyObject *SWIGUNUSEDPARM(args))
-{
-  return SwigPyObject_disown(v);
-}
-
-static PyObject*
-SwigPyObject_acquire2(PyObject* v, PyObject *SWIGUNUSEDPARM(args))
-{
-  return SwigPyObject_acquire(v);
-}
-#endif
 
 SWIGINTERN PyObject*
 SwigPyObject_own(PyObject *v, PyObject *args)
@@ -1858,12 +1840,12 @@ SwigPyObject_own(PyObject *v, PyObject *args)
 #ifdef METH_O
 static PyMethodDef
 swigobject_methods[] = {
-  {(char *)"disown",  (PyCFunction)SwigPyObject_disown2, METH_NOARGS,  (char *)"releases ownership of the pointer"},
-  {(char *)"acquire", (PyCFunction)SwigPyObject_acquire2,METH_NOARGS,  (char *)"acquires ownership of the pointer"},
+  {(char *)"disown",  (PyCFunction)SwigPyObject_disown,  METH_NOARGS,  (char *)"releases ownership of the pointer"},
+  {(char *)"acquire", (PyCFunction)SwigPyObject_acquire, METH_NOARGS,  (char *)"acquires ownership of the pointer"},
   {(char *)"own",     (PyCFunction)SwigPyObject_own,     METH_VARARGS, (char *)"returns/sets ownership of the pointer"},
   {(char *)"append",  (PyCFunction)SwigPyObject_append,  METH_O,       (char *)"appends another 'this' object"},
   {(char *)"next",    (PyCFunction)SwigPyObject_next,    METH_NOARGS,  (char *)"returns the next 'this' object"},
-  {(char *)"__repr__",(PyCFunction)SwigPyObject_repr2,   METH_NOARGS,  (char *)"returns object representation"},
+  {(char *)"__repr__",(PyCFunction)SwigPyObject_repr,    METH_NOARGS,  (char *)"returns object representation"},
   {0, 0, 0, 0}  
 };
 #else
@@ -1874,7 +1856,7 @@ swigobject_methods[] = {
   {(char *)"own",     (PyCFunction)SwigPyObject_own,     METH_VARARGS,  (char *)"returns/sets ownership of the pointer"},
   {(char *)"append",  (PyCFunction)SwigPyObject_append,  METH_VARARGS,  (char *)"appends another 'this' object"},
   {(char *)"next",    (PyCFunction)SwigPyObject_next,    METH_VARARGS,  (char *)"returns the next 'this' object"},
-  {(char *)"__repr__",(PyCFunction)SwigPyObject_repr,    METH_VARARGS,  (char *)"returns object representation"},
+  {(char *)"__repr__",(PyCFunction)SwigPyObject_repr,   METH_VARARGS,  (char *)"returns object representation"},
   {0, 0, 0, 0}  
 };
 #endif
@@ -3523,14 +3505,14 @@ namespace swig {
 
   template <class Type> 
   struct traits_as<Type, value_category> {
-    static Type as(PyObject *obj) {
+    static Type as(PyObject *obj, bool throw_error) {
       Type v;
       int res = asval(obj, &v);
       if (!obj || !SWIG_IsOK(res)) {
 	if (!PyErr_Occurred()) {
 	  ::SWIG_Error(SWIG_TypeError,  swig::type_name<Type>());
 	}
-	throw std::invalid_argument("bad type");
+	if (throw_error) throw std::invalid_argument("bad type");
       }
       return v;
     }
@@ -3538,7 +3520,7 @@ namespace swig {
 
   template <class Type> 
   struct traits_as<Type, pointer_category> {
-    static Type as(PyObject *obj) {
+    static Type as(PyObject *obj, bool throw_error) {
       Type *v = 0;      
       int res = (obj ? traits_asptr<Type>::asptr(obj, &v) : SWIG_ERROR);
       if (SWIG_IsOK(res) && v) {
@@ -3550,17 +3532,21 @@ namespace swig {
 	  return *v;
 	}
       } else {
+	// Uninitialized return value, no Type() constructor required.
+	static Type *v_def = (Type*) malloc(sizeof(Type));
 	if (!PyErr_Occurred()) {
 	  SWIG_Error(SWIG_TypeError,  swig::type_name<Type>());
 	}
-	throw std::invalid_argument("bad type");
+	if (throw_error) throw std::invalid_argument("bad type");
+	memset(v_def,0,sizeof(Type));
+	return *v_def;
       }
     }
   };
 
   template <class Type> 
   struct traits_as<Type*, pointer_category> {
-    static Type* as(PyObject *obj) {
+    static Type* as(PyObject *obj, bool throw_error) {
       Type *v = 0;      
       int res = (obj ? traits_asptr<Type>::asptr(obj, &v) : SWIG_ERROR);
       if (SWIG_IsOK(res)) {
@@ -3569,14 +3555,15 @@ namespace swig {
 	if (!PyErr_Occurred()) {
 	  SWIG_Error(SWIG_TypeError,  swig::type_name<Type>());
 	}
-	throw std::invalid_argument("bad type");
+	if (throw_error) throw std::invalid_argument("bad type");
+	return 0;
       }
     }
   };
     
   template <class Type>
-  inline Type as(PyObject *obj) {
-    return traits_as<Type, typename traits<Type>::category>::as(obj);
+  inline Type as(PyObject *obj, bool te = false) {
+    return traits_as<Type, typename traits<Type>::category>::as(obj, te);
   }
 
   template <class Type> 
@@ -4143,8 +4130,8 @@ namespace swig
     {
       swig::SwigVar_PyObject item = PySequence_GetItem(_seq, _index);
       try {
-	return swig::as<T>(item);
-      } catch (const std::invalid_argument& e) {
+	return swig::as<T>(item, true);
+      } catch (std::exception& e) {
 	char msg[1024];
 	sprintf(msg, "in sequence element %d ", (int)_index);
 	if (!PyErr_Occurred()) {
@@ -11621,12 +11608,12 @@ SWIGINTERN PyObject *descramble_packetize_sptr_swigregister(PyObject *SWIGUNUSED
 }
 
 static PyMethodDef SwigMethods[] = {
-	 { "SWIG_PyInstanceMethod_New", SWIG_PyInstanceMethod_New, METH_O, NULL},
-	 { "high_res_timer_now", _wrap_high_res_timer_now, METH_VARARGS, (char *)"high_res_timer_now() -> gr::high_res_timer_type"},
-	 { "high_res_timer_now_perfmon", _wrap_high_res_timer_now_perfmon, METH_VARARGS, (char *)"high_res_timer_now_perfmon() -> gr::high_res_timer_type"},
-	 { "high_res_timer_tps", _wrap_high_res_timer_tps, METH_VARARGS, (char *)"high_res_timer_tps() -> gr::high_res_timer_type"},
-	 { "high_res_timer_epoch", _wrap_high_res_timer_epoch, METH_VARARGS, (char *)"high_res_timer_epoch() -> gr::high_res_timer_type"},
-	 { "scramble_packetize_make", (PyCFunction)_wrap_scramble_packetize_make, METH_VARARGS|METH_KEYWORDS, (char *)"\n"
+	 { (char *)"SWIG_PyInstanceMethod_New", (PyCFunction)SWIG_PyInstanceMethod_New, METH_O, NULL},
+	 { (char *)"high_res_timer_now", _wrap_high_res_timer_now, METH_VARARGS, (char *)"high_res_timer_now() -> gr::high_res_timer_type"},
+	 { (char *)"high_res_timer_now_perfmon", _wrap_high_res_timer_now_perfmon, METH_VARARGS, (char *)"high_res_timer_now_perfmon() -> gr::high_res_timer_type"},
+	 { (char *)"high_res_timer_tps", _wrap_high_res_timer_tps, METH_VARARGS, (char *)"high_res_timer_tps() -> gr::high_res_timer_type"},
+	 { (char *)"high_res_timer_epoch", _wrap_high_res_timer_epoch, METH_VARARGS, (char *)"high_res_timer_epoch() -> gr::high_res_timer_type"},
+	 { (char *)"scramble_packetize_make", (PyCFunction) _wrap_scramble_packetize_make, METH_VARARGS | METH_KEYWORDS, (char *)"\n"
 		"scramble_packetize_make(int mask, int seed, int len, int frame_bit) -> scramble_packetize_sptr\n"
 		"\n"
 		"<+description of block+>\n"
@@ -11643,15 +11630,15 @@ static PyMethodDef SwigMethods[] = {
 		"    len : \n"
 		"    frame_bit : \n"
 		""},
-	 { "delete_scramble_packetize", _wrap_delete_scramble_packetize, METH_VARARGS, (char *)"delete_scramble_packetize(scramble_packetize self)"},
-	 { "scramble_packetize_swigregister", scramble_packetize_swigregister, METH_VARARGS, NULL},
-	 { "new_scramble_packetize_sptr", _wrap_new_scramble_packetize_sptr, METH_VARARGS, (char *)"\n"
+	 { (char *)"delete_scramble_packetize", _wrap_delete_scramble_packetize, METH_VARARGS, (char *)"delete_scramble_packetize(scramble_packetize self)"},
+	 { (char *)"scramble_packetize_swigregister", scramble_packetize_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_scramble_packetize_sptr", _wrap_new_scramble_packetize_sptr, METH_VARARGS, (char *)"\n"
 		"scramble_packetize_sptr()\n"
 		"new_scramble_packetize_sptr(scramble_packetize p) -> scramble_packetize_sptr\n"
 		""},
-	 { "scramble_packetize_sptr___deref__", _wrap_scramble_packetize_sptr___deref__, METH_VARARGS, (char *)"scramble_packetize_sptr___deref__(scramble_packetize_sptr self) -> scramble_packetize"},
-	 { "delete_scramble_packetize_sptr", _wrap_delete_scramble_packetize_sptr, METH_VARARGS, (char *)"delete_scramble_packetize_sptr(scramble_packetize_sptr self)"},
-	 { "scramble_packetize_sptr_make", (PyCFunction)_wrap_scramble_packetize_sptr_make, METH_VARARGS|METH_KEYWORDS, (char *)"\n"
+	 { (char *)"scramble_packetize_sptr___deref__", _wrap_scramble_packetize_sptr___deref__, METH_VARARGS, (char *)"scramble_packetize_sptr___deref__(scramble_packetize_sptr self) -> scramble_packetize"},
+	 { (char *)"delete_scramble_packetize_sptr", _wrap_delete_scramble_packetize_sptr, METH_VARARGS, (char *)"delete_scramble_packetize_sptr(scramble_packetize_sptr self)"},
+	 { (char *)"scramble_packetize_sptr_make", (PyCFunction) _wrap_scramble_packetize_sptr_make, METH_VARARGS | METH_KEYWORDS, (char *)"\n"
 		"scramble_packetize_sptr_make(scramble_packetize_sptr self, int mask, int seed, int len, int frame_bit) -> scramble_packetize_sptr\n"
 		"\n"
 		"<+description of block+>\n"
@@ -11668,90 +11655,90 @@ static PyMethodDef SwigMethods[] = {
 		"    len : \n"
 		"    frame_bit : \n"
 		""},
-	 { "scramble_packetize_sptr_history", _wrap_scramble_packetize_sptr_history, METH_VARARGS, (char *)"scramble_packetize_sptr_history(scramble_packetize_sptr self) -> unsigned int"},
-	 { "scramble_packetize_sptr_declare_sample_delay", _wrap_scramble_packetize_sptr_declare_sample_delay, METH_VARARGS, (char *)"\n"
+	 { (char *)"scramble_packetize_sptr_history", _wrap_scramble_packetize_sptr_history, METH_VARARGS, (char *)"scramble_packetize_sptr_history(scramble_packetize_sptr self) -> unsigned int"},
+	 { (char *)"scramble_packetize_sptr_declare_sample_delay", _wrap_scramble_packetize_sptr_declare_sample_delay, METH_VARARGS, (char *)"\n"
 		"declare_sample_delay(int which, int delay)\n"
 		"scramble_packetize_sptr_declare_sample_delay(scramble_packetize_sptr self, unsigned int delay)\n"
 		""},
-	 { "scramble_packetize_sptr_sample_delay", (PyCFunction)_wrap_scramble_packetize_sptr_sample_delay, METH_VARARGS|METH_KEYWORDS, (char *)"scramble_packetize_sptr_sample_delay(scramble_packetize_sptr self, int which) -> unsigned int"},
-	 { "scramble_packetize_sptr_output_multiple", _wrap_scramble_packetize_sptr_output_multiple, METH_VARARGS, (char *)"scramble_packetize_sptr_output_multiple(scramble_packetize_sptr self) -> int"},
-	 { "scramble_packetize_sptr_relative_rate", _wrap_scramble_packetize_sptr_relative_rate, METH_VARARGS, (char *)"scramble_packetize_sptr_relative_rate(scramble_packetize_sptr self) -> double"},
-	 { "scramble_packetize_sptr_start", _wrap_scramble_packetize_sptr_start, METH_VARARGS, (char *)"scramble_packetize_sptr_start(scramble_packetize_sptr self) -> bool"},
-	 { "scramble_packetize_sptr_stop", _wrap_scramble_packetize_sptr_stop, METH_VARARGS, (char *)"scramble_packetize_sptr_stop(scramble_packetize_sptr self) -> bool"},
-	 { "scramble_packetize_sptr_nitems_read", (PyCFunction)_wrap_scramble_packetize_sptr_nitems_read, METH_VARARGS|METH_KEYWORDS, (char *)"scramble_packetize_sptr_nitems_read(scramble_packetize_sptr self, unsigned int which_input) -> uint64_t"},
-	 { "scramble_packetize_sptr_nitems_written", (PyCFunction)_wrap_scramble_packetize_sptr_nitems_written, METH_VARARGS|METH_KEYWORDS, (char *)"scramble_packetize_sptr_nitems_written(scramble_packetize_sptr self, unsigned int which_output) -> uint64_t"},
-	 { "scramble_packetize_sptr_max_noutput_items", _wrap_scramble_packetize_sptr_max_noutput_items, METH_VARARGS, (char *)"scramble_packetize_sptr_max_noutput_items(scramble_packetize_sptr self) -> int"},
-	 { "scramble_packetize_sptr_set_max_noutput_items", (PyCFunction)_wrap_scramble_packetize_sptr_set_max_noutput_items, METH_VARARGS|METH_KEYWORDS, (char *)"scramble_packetize_sptr_set_max_noutput_items(scramble_packetize_sptr self, int m)"},
-	 { "scramble_packetize_sptr_unset_max_noutput_items", _wrap_scramble_packetize_sptr_unset_max_noutput_items, METH_VARARGS, (char *)"scramble_packetize_sptr_unset_max_noutput_items(scramble_packetize_sptr self)"},
-	 { "scramble_packetize_sptr_is_set_max_noutput_items", _wrap_scramble_packetize_sptr_is_set_max_noutput_items, METH_VARARGS, (char *)"scramble_packetize_sptr_is_set_max_noutput_items(scramble_packetize_sptr self) -> bool"},
-	 { "scramble_packetize_sptr_set_min_noutput_items", (PyCFunction)_wrap_scramble_packetize_sptr_set_min_noutput_items, METH_VARARGS|METH_KEYWORDS, (char *)"scramble_packetize_sptr_set_min_noutput_items(scramble_packetize_sptr self, int m)"},
-	 { "scramble_packetize_sptr_min_noutput_items", _wrap_scramble_packetize_sptr_min_noutput_items, METH_VARARGS, (char *)"scramble_packetize_sptr_min_noutput_items(scramble_packetize_sptr self) -> int"},
-	 { "scramble_packetize_sptr_max_output_buffer", (PyCFunction)_wrap_scramble_packetize_sptr_max_output_buffer, METH_VARARGS|METH_KEYWORDS, (char *)"scramble_packetize_sptr_max_output_buffer(scramble_packetize_sptr self, int i) -> long"},
-	 { "scramble_packetize_sptr_set_max_output_buffer", _wrap_scramble_packetize_sptr_set_max_output_buffer, METH_VARARGS, (char *)"\n"
+	 { (char *)"scramble_packetize_sptr_sample_delay", (PyCFunction) _wrap_scramble_packetize_sptr_sample_delay, METH_VARARGS | METH_KEYWORDS, (char *)"scramble_packetize_sptr_sample_delay(scramble_packetize_sptr self, int which) -> unsigned int"},
+	 { (char *)"scramble_packetize_sptr_output_multiple", _wrap_scramble_packetize_sptr_output_multiple, METH_VARARGS, (char *)"scramble_packetize_sptr_output_multiple(scramble_packetize_sptr self) -> int"},
+	 { (char *)"scramble_packetize_sptr_relative_rate", _wrap_scramble_packetize_sptr_relative_rate, METH_VARARGS, (char *)"scramble_packetize_sptr_relative_rate(scramble_packetize_sptr self) -> double"},
+	 { (char *)"scramble_packetize_sptr_start", _wrap_scramble_packetize_sptr_start, METH_VARARGS, (char *)"scramble_packetize_sptr_start(scramble_packetize_sptr self) -> bool"},
+	 { (char *)"scramble_packetize_sptr_stop", _wrap_scramble_packetize_sptr_stop, METH_VARARGS, (char *)"scramble_packetize_sptr_stop(scramble_packetize_sptr self) -> bool"},
+	 { (char *)"scramble_packetize_sptr_nitems_read", (PyCFunction) _wrap_scramble_packetize_sptr_nitems_read, METH_VARARGS | METH_KEYWORDS, (char *)"scramble_packetize_sptr_nitems_read(scramble_packetize_sptr self, unsigned int which_input) -> uint64_t"},
+	 { (char *)"scramble_packetize_sptr_nitems_written", (PyCFunction) _wrap_scramble_packetize_sptr_nitems_written, METH_VARARGS | METH_KEYWORDS, (char *)"scramble_packetize_sptr_nitems_written(scramble_packetize_sptr self, unsigned int which_output) -> uint64_t"},
+	 { (char *)"scramble_packetize_sptr_max_noutput_items", _wrap_scramble_packetize_sptr_max_noutput_items, METH_VARARGS, (char *)"scramble_packetize_sptr_max_noutput_items(scramble_packetize_sptr self) -> int"},
+	 { (char *)"scramble_packetize_sptr_set_max_noutput_items", (PyCFunction) _wrap_scramble_packetize_sptr_set_max_noutput_items, METH_VARARGS | METH_KEYWORDS, (char *)"scramble_packetize_sptr_set_max_noutput_items(scramble_packetize_sptr self, int m)"},
+	 { (char *)"scramble_packetize_sptr_unset_max_noutput_items", _wrap_scramble_packetize_sptr_unset_max_noutput_items, METH_VARARGS, (char *)"scramble_packetize_sptr_unset_max_noutput_items(scramble_packetize_sptr self)"},
+	 { (char *)"scramble_packetize_sptr_is_set_max_noutput_items", _wrap_scramble_packetize_sptr_is_set_max_noutput_items, METH_VARARGS, (char *)"scramble_packetize_sptr_is_set_max_noutput_items(scramble_packetize_sptr self) -> bool"},
+	 { (char *)"scramble_packetize_sptr_set_min_noutput_items", (PyCFunction) _wrap_scramble_packetize_sptr_set_min_noutput_items, METH_VARARGS | METH_KEYWORDS, (char *)"scramble_packetize_sptr_set_min_noutput_items(scramble_packetize_sptr self, int m)"},
+	 { (char *)"scramble_packetize_sptr_min_noutput_items", _wrap_scramble_packetize_sptr_min_noutput_items, METH_VARARGS, (char *)"scramble_packetize_sptr_min_noutput_items(scramble_packetize_sptr self) -> int"},
+	 { (char *)"scramble_packetize_sptr_max_output_buffer", (PyCFunction) _wrap_scramble_packetize_sptr_max_output_buffer, METH_VARARGS | METH_KEYWORDS, (char *)"scramble_packetize_sptr_max_output_buffer(scramble_packetize_sptr self, int i) -> long"},
+	 { (char *)"scramble_packetize_sptr_set_max_output_buffer", _wrap_scramble_packetize_sptr_set_max_output_buffer, METH_VARARGS, (char *)"\n"
 		"set_max_output_buffer(long max_output_buffer)\n"
 		"scramble_packetize_sptr_set_max_output_buffer(scramble_packetize_sptr self, int port, long max_output_buffer)\n"
 		""},
-	 { "scramble_packetize_sptr_min_output_buffer", (PyCFunction)_wrap_scramble_packetize_sptr_min_output_buffer, METH_VARARGS|METH_KEYWORDS, (char *)"scramble_packetize_sptr_min_output_buffer(scramble_packetize_sptr self, int i) -> long"},
-	 { "scramble_packetize_sptr_set_min_output_buffer", _wrap_scramble_packetize_sptr_set_min_output_buffer, METH_VARARGS, (char *)"\n"
+	 { (char *)"scramble_packetize_sptr_min_output_buffer", (PyCFunction) _wrap_scramble_packetize_sptr_min_output_buffer, METH_VARARGS | METH_KEYWORDS, (char *)"scramble_packetize_sptr_min_output_buffer(scramble_packetize_sptr self, int i) -> long"},
+	 { (char *)"scramble_packetize_sptr_set_min_output_buffer", _wrap_scramble_packetize_sptr_set_min_output_buffer, METH_VARARGS, (char *)"\n"
 		"set_min_output_buffer(long min_output_buffer)\n"
 		"scramble_packetize_sptr_set_min_output_buffer(scramble_packetize_sptr self, int port, long min_output_buffer)\n"
 		""},
-	 { "scramble_packetize_sptr_pc_noutput_items", _wrap_scramble_packetize_sptr_pc_noutput_items, METH_VARARGS, (char *)"scramble_packetize_sptr_pc_noutput_items(scramble_packetize_sptr self) -> float"},
-	 { "scramble_packetize_sptr_pc_noutput_items_avg", _wrap_scramble_packetize_sptr_pc_noutput_items_avg, METH_VARARGS, (char *)"scramble_packetize_sptr_pc_noutput_items_avg(scramble_packetize_sptr self) -> float"},
-	 { "scramble_packetize_sptr_pc_noutput_items_var", _wrap_scramble_packetize_sptr_pc_noutput_items_var, METH_VARARGS, (char *)"scramble_packetize_sptr_pc_noutput_items_var(scramble_packetize_sptr self) -> float"},
-	 { "scramble_packetize_sptr_pc_nproduced", _wrap_scramble_packetize_sptr_pc_nproduced, METH_VARARGS, (char *)"scramble_packetize_sptr_pc_nproduced(scramble_packetize_sptr self) -> float"},
-	 { "scramble_packetize_sptr_pc_nproduced_avg", _wrap_scramble_packetize_sptr_pc_nproduced_avg, METH_VARARGS, (char *)"scramble_packetize_sptr_pc_nproduced_avg(scramble_packetize_sptr self) -> float"},
-	 { "scramble_packetize_sptr_pc_nproduced_var", _wrap_scramble_packetize_sptr_pc_nproduced_var, METH_VARARGS, (char *)"scramble_packetize_sptr_pc_nproduced_var(scramble_packetize_sptr self) -> float"},
-	 { "scramble_packetize_sptr_pc_input_buffers_full", _wrap_scramble_packetize_sptr_pc_input_buffers_full, METH_VARARGS, (char *)"\n"
+	 { (char *)"scramble_packetize_sptr_pc_noutput_items", _wrap_scramble_packetize_sptr_pc_noutput_items, METH_VARARGS, (char *)"scramble_packetize_sptr_pc_noutput_items(scramble_packetize_sptr self) -> float"},
+	 { (char *)"scramble_packetize_sptr_pc_noutput_items_avg", _wrap_scramble_packetize_sptr_pc_noutput_items_avg, METH_VARARGS, (char *)"scramble_packetize_sptr_pc_noutput_items_avg(scramble_packetize_sptr self) -> float"},
+	 { (char *)"scramble_packetize_sptr_pc_noutput_items_var", _wrap_scramble_packetize_sptr_pc_noutput_items_var, METH_VARARGS, (char *)"scramble_packetize_sptr_pc_noutput_items_var(scramble_packetize_sptr self) -> float"},
+	 { (char *)"scramble_packetize_sptr_pc_nproduced", _wrap_scramble_packetize_sptr_pc_nproduced, METH_VARARGS, (char *)"scramble_packetize_sptr_pc_nproduced(scramble_packetize_sptr self) -> float"},
+	 { (char *)"scramble_packetize_sptr_pc_nproduced_avg", _wrap_scramble_packetize_sptr_pc_nproduced_avg, METH_VARARGS, (char *)"scramble_packetize_sptr_pc_nproduced_avg(scramble_packetize_sptr self) -> float"},
+	 { (char *)"scramble_packetize_sptr_pc_nproduced_var", _wrap_scramble_packetize_sptr_pc_nproduced_var, METH_VARARGS, (char *)"scramble_packetize_sptr_pc_nproduced_var(scramble_packetize_sptr self) -> float"},
+	 { (char *)"scramble_packetize_sptr_pc_input_buffers_full", _wrap_scramble_packetize_sptr_pc_input_buffers_full, METH_VARARGS, (char *)"\n"
 		"pc_input_buffers_full(int which) -> float\n"
 		"scramble_packetize_sptr_pc_input_buffers_full(scramble_packetize_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "scramble_packetize_sptr_pc_input_buffers_full_avg", _wrap_scramble_packetize_sptr_pc_input_buffers_full_avg, METH_VARARGS, (char *)"\n"
+	 { (char *)"scramble_packetize_sptr_pc_input_buffers_full_avg", _wrap_scramble_packetize_sptr_pc_input_buffers_full_avg, METH_VARARGS, (char *)"\n"
 		"pc_input_buffers_full_avg(int which) -> float\n"
 		"scramble_packetize_sptr_pc_input_buffers_full_avg(scramble_packetize_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "scramble_packetize_sptr_pc_input_buffers_full_var", _wrap_scramble_packetize_sptr_pc_input_buffers_full_var, METH_VARARGS, (char *)"\n"
+	 { (char *)"scramble_packetize_sptr_pc_input_buffers_full_var", _wrap_scramble_packetize_sptr_pc_input_buffers_full_var, METH_VARARGS, (char *)"\n"
 		"pc_input_buffers_full_var(int which) -> float\n"
 		"scramble_packetize_sptr_pc_input_buffers_full_var(scramble_packetize_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "scramble_packetize_sptr_pc_output_buffers_full", _wrap_scramble_packetize_sptr_pc_output_buffers_full, METH_VARARGS, (char *)"\n"
+	 { (char *)"scramble_packetize_sptr_pc_output_buffers_full", _wrap_scramble_packetize_sptr_pc_output_buffers_full, METH_VARARGS, (char *)"\n"
 		"pc_output_buffers_full(int which) -> float\n"
 		"scramble_packetize_sptr_pc_output_buffers_full(scramble_packetize_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "scramble_packetize_sptr_pc_output_buffers_full_avg", _wrap_scramble_packetize_sptr_pc_output_buffers_full_avg, METH_VARARGS, (char *)"\n"
+	 { (char *)"scramble_packetize_sptr_pc_output_buffers_full_avg", _wrap_scramble_packetize_sptr_pc_output_buffers_full_avg, METH_VARARGS, (char *)"\n"
 		"pc_output_buffers_full_avg(int which) -> float\n"
 		"scramble_packetize_sptr_pc_output_buffers_full_avg(scramble_packetize_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "scramble_packetize_sptr_pc_output_buffers_full_var", _wrap_scramble_packetize_sptr_pc_output_buffers_full_var, METH_VARARGS, (char *)"\n"
+	 { (char *)"scramble_packetize_sptr_pc_output_buffers_full_var", _wrap_scramble_packetize_sptr_pc_output_buffers_full_var, METH_VARARGS, (char *)"\n"
 		"pc_output_buffers_full_var(int which) -> float\n"
 		"scramble_packetize_sptr_pc_output_buffers_full_var(scramble_packetize_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "scramble_packetize_sptr_pc_work_time", _wrap_scramble_packetize_sptr_pc_work_time, METH_VARARGS, (char *)"scramble_packetize_sptr_pc_work_time(scramble_packetize_sptr self) -> float"},
-	 { "scramble_packetize_sptr_pc_work_time_avg", _wrap_scramble_packetize_sptr_pc_work_time_avg, METH_VARARGS, (char *)"scramble_packetize_sptr_pc_work_time_avg(scramble_packetize_sptr self) -> float"},
-	 { "scramble_packetize_sptr_pc_work_time_var", _wrap_scramble_packetize_sptr_pc_work_time_var, METH_VARARGS, (char *)"scramble_packetize_sptr_pc_work_time_var(scramble_packetize_sptr self) -> float"},
-	 { "scramble_packetize_sptr_pc_work_time_total", _wrap_scramble_packetize_sptr_pc_work_time_total, METH_VARARGS, (char *)"scramble_packetize_sptr_pc_work_time_total(scramble_packetize_sptr self) -> float"},
-	 { "scramble_packetize_sptr_pc_throughput_avg", _wrap_scramble_packetize_sptr_pc_throughput_avg, METH_VARARGS, (char *)"scramble_packetize_sptr_pc_throughput_avg(scramble_packetize_sptr self) -> float"},
-	 { "scramble_packetize_sptr_set_processor_affinity", (PyCFunction)_wrap_scramble_packetize_sptr_set_processor_affinity, METH_VARARGS|METH_KEYWORDS, (char *)"scramble_packetize_sptr_set_processor_affinity(scramble_packetize_sptr self, std::vector< int,std::allocator< int > > const & mask)"},
-	 { "scramble_packetize_sptr_unset_processor_affinity", _wrap_scramble_packetize_sptr_unset_processor_affinity, METH_VARARGS, (char *)"scramble_packetize_sptr_unset_processor_affinity(scramble_packetize_sptr self)"},
-	 { "scramble_packetize_sptr_processor_affinity", _wrap_scramble_packetize_sptr_processor_affinity, METH_VARARGS, (char *)"scramble_packetize_sptr_processor_affinity(scramble_packetize_sptr self) -> std::vector< int,std::allocator< int > >"},
-	 { "scramble_packetize_sptr_active_thread_priority", _wrap_scramble_packetize_sptr_active_thread_priority, METH_VARARGS, (char *)"scramble_packetize_sptr_active_thread_priority(scramble_packetize_sptr self) -> int"},
-	 { "scramble_packetize_sptr_thread_priority", _wrap_scramble_packetize_sptr_thread_priority, METH_VARARGS, (char *)"scramble_packetize_sptr_thread_priority(scramble_packetize_sptr self) -> int"},
-	 { "scramble_packetize_sptr_set_thread_priority", (PyCFunction)_wrap_scramble_packetize_sptr_set_thread_priority, METH_VARARGS|METH_KEYWORDS, (char *)"scramble_packetize_sptr_set_thread_priority(scramble_packetize_sptr self, int priority) -> int"},
-	 { "scramble_packetize_sptr_name", _wrap_scramble_packetize_sptr_name, METH_VARARGS, (char *)"scramble_packetize_sptr_name(scramble_packetize_sptr self) -> std::string"},
-	 { "scramble_packetize_sptr_symbol_name", _wrap_scramble_packetize_sptr_symbol_name, METH_VARARGS, (char *)"scramble_packetize_sptr_symbol_name(scramble_packetize_sptr self) -> std::string"},
-	 { "scramble_packetize_sptr_input_signature", _wrap_scramble_packetize_sptr_input_signature, METH_VARARGS, (char *)"scramble_packetize_sptr_input_signature(scramble_packetize_sptr self) -> io_signature_sptr"},
-	 { "scramble_packetize_sptr_output_signature", _wrap_scramble_packetize_sptr_output_signature, METH_VARARGS, (char *)"scramble_packetize_sptr_output_signature(scramble_packetize_sptr self) -> io_signature_sptr"},
-	 { "scramble_packetize_sptr_unique_id", _wrap_scramble_packetize_sptr_unique_id, METH_VARARGS, (char *)"scramble_packetize_sptr_unique_id(scramble_packetize_sptr self) -> long"},
-	 { "scramble_packetize_sptr_to_basic_block", _wrap_scramble_packetize_sptr_to_basic_block, METH_VARARGS, (char *)"scramble_packetize_sptr_to_basic_block(scramble_packetize_sptr self) -> basic_block_sptr"},
-	 { "scramble_packetize_sptr_check_topology", (PyCFunction)_wrap_scramble_packetize_sptr_check_topology, METH_VARARGS|METH_KEYWORDS, (char *)"scramble_packetize_sptr_check_topology(scramble_packetize_sptr self, int ninputs, int noutputs) -> bool"},
-	 { "scramble_packetize_sptr_alias", _wrap_scramble_packetize_sptr_alias, METH_VARARGS, (char *)"scramble_packetize_sptr_alias(scramble_packetize_sptr self) -> std::string"},
-	 { "scramble_packetize_sptr_set_block_alias", (PyCFunction)_wrap_scramble_packetize_sptr_set_block_alias, METH_VARARGS|METH_KEYWORDS, (char *)"scramble_packetize_sptr_set_block_alias(scramble_packetize_sptr self, std::string name)"},
-	 { "scramble_packetize_sptr__post", (PyCFunction)_wrap_scramble_packetize_sptr__post, METH_VARARGS|METH_KEYWORDS, (char *)"scramble_packetize_sptr__post(scramble_packetize_sptr self, swig_int_ptr which_port, swig_int_ptr msg)"},
-	 { "scramble_packetize_sptr_message_ports_in", _wrap_scramble_packetize_sptr_message_ports_in, METH_VARARGS, (char *)"scramble_packetize_sptr_message_ports_in(scramble_packetize_sptr self) -> swig_int_ptr"},
-	 { "scramble_packetize_sptr_message_ports_out", _wrap_scramble_packetize_sptr_message_ports_out, METH_VARARGS, (char *)"scramble_packetize_sptr_message_ports_out(scramble_packetize_sptr self) -> swig_int_ptr"},
-	 { "scramble_packetize_sptr_message_subscribers", (PyCFunction)_wrap_scramble_packetize_sptr_message_subscribers, METH_VARARGS|METH_KEYWORDS, (char *)"scramble_packetize_sptr_message_subscribers(scramble_packetize_sptr self, swig_int_ptr which_port) -> swig_int_ptr"},
-	 { "scramble_packetize_sptr_swigregister", scramble_packetize_sptr_swigregister, METH_VARARGS, NULL},
-	 { "descramble_packetize_make", (PyCFunction)_wrap_descramble_packetize_make, METH_VARARGS|METH_KEYWORDS, (char *)"\n"
+	 { (char *)"scramble_packetize_sptr_pc_work_time", _wrap_scramble_packetize_sptr_pc_work_time, METH_VARARGS, (char *)"scramble_packetize_sptr_pc_work_time(scramble_packetize_sptr self) -> float"},
+	 { (char *)"scramble_packetize_sptr_pc_work_time_avg", _wrap_scramble_packetize_sptr_pc_work_time_avg, METH_VARARGS, (char *)"scramble_packetize_sptr_pc_work_time_avg(scramble_packetize_sptr self) -> float"},
+	 { (char *)"scramble_packetize_sptr_pc_work_time_var", _wrap_scramble_packetize_sptr_pc_work_time_var, METH_VARARGS, (char *)"scramble_packetize_sptr_pc_work_time_var(scramble_packetize_sptr self) -> float"},
+	 { (char *)"scramble_packetize_sptr_pc_work_time_total", _wrap_scramble_packetize_sptr_pc_work_time_total, METH_VARARGS, (char *)"scramble_packetize_sptr_pc_work_time_total(scramble_packetize_sptr self) -> float"},
+	 { (char *)"scramble_packetize_sptr_pc_throughput_avg", _wrap_scramble_packetize_sptr_pc_throughput_avg, METH_VARARGS, (char *)"scramble_packetize_sptr_pc_throughput_avg(scramble_packetize_sptr self) -> float"},
+	 { (char *)"scramble_packetize_sptr_set_processor_affinity", (PyCFunction) _wrap_scramble_packetize_sptr_set_processor_affinity, METH_VARARGS | METH_KEYWORDS, (char *)"scramble_packetize_sptr_set_processor_affinity(scramble_packetize_sptr self, std::vector< int,std::allocator< int > > const & mask)"},
+	 { (char *)"scramble_packetize_sptr_unset_processor_affinity", _wrap_scramble_packetize_sptr_unset_processor_affinity, METH_VARARGS, (char *)"scramble_packetize_sptr_unset_processor_affinity(scramble_packetize_sptr self)"},
+	 { (char *)"scramble_packetize_sptr_processor_affinity", _wrap_scramble_packetize_sptr_processor_affinity, METH_VARARGS, (char *)"scramble_packetize_sptr_processor_affinity(scramble_packetize_sptr self) -> std::vector< int,std::allocator< int > >"},
+	 { (char *)"scramble_packetize_sptr_active_thread_priority", _wrap_scramble_packetize_sptr_active_thread_priority, METH_VARARGS, (char *)"scramble_packetize_sptr_active_thread_priority(scramble_packetize_sptr self) -> int"},
+	 { (char *)"scramble_packetize_sptr_thread_priority", _wrap_scramble_packetize_sptr_thread_priority, METH_VARARGS, (char *)"scramble_packetize_sptr_thread_priority(scramble_packetize_sptr self) -> int"},
+	 { (char *)"scramble_packetize_sptr_set_thread_priority", (PyCFunction) _wrap_scramble_packetize_sptr_set_thread_priority, METH_VARARGS | METH_KEYWORDS, (char *)"scramble_packetize_sptr_set_thread_priority(scramble_packetize_sptr self, int priority) -> int"},
+	 { (char *)"scramble_packetize_sptr_name", _wrap_scramble_packetize_sptr_name, METH_VARARGS, (char *)"scramble_packetize_sptr_name(scramble_packetize_sptr self) -> std::string"},
+	 { (char *)"scramble_packetize_sptr_symbol_name", _wrap_scramble_packetize_sptr_symbol_name, METH_VARARGS, (char *)"scramble_packetize_sptr_symbol_name(scramble_packetize_sptr self) -> std::string"},
+	 { (char *)"scramble_packetize_sptr_input_signature", _wrap_scramble_packetize_sptr_input_signature, METH_VARARGS, (char *)"scramble_packetize_sptr_input_signature(scramble_packetize_sptr self) -> io_signature_sptr"},
+	 { (char *)"scramble_packetize_sptr_output_signature", _wrap_scramble_packetize_sptr_output_signature, METH_VARARGS, (char *)"scramble_packetize_sptr_output_signature(scramble_packetize_sptr self) -> io_signature_sptr"},
+	 { (char *)"scramble_packetize_sptr_unique_id", _wrap_scramble_packetize_sptr_unique_id, METH_VARARGS, (char *)"scramble_packetize_sptr_unique_id(scramble_packetize_sptr self) -> long"},
+	 { (char *)"scramble_packetize_sptr_to_basic_block", _wrap_scramble_packetize_sptr_to_basic_block, METH_VARARGS, (char *)"scramble_packetize_sptr_to_basic_block(scramble_packetize_sptr self) -> basic_block_sptr"},
+	 { (char *)"scramble_packetize_sptr_check_topology", (PyCFunction) _wrap_scramble_packetize_sptr_check_topology, METH_VARARGS | METH_KEYWORDS, (char *)"scramble_packetize_sptr_check_topology(scramble_packetize_sptr self, int ninputs, int noutputs) -> bool"},
+	 { (char *)"scramble_packetize_sptr_alias", _wrap_scramble_packetize_sptr_alias, METH_VARARGS, (char *)"scramble_packetize_sptr_alias(scramble_packetize_sptr self) -> std::string"},
+	 { (char *)"scramble_packetize_sptr_set_block_alias", (PyCFunction) _wrap_scramble_packetize_sptr_set_block_alias, METH_VARARGS | METH_KEYWORDS, (char *)"scramble_packetize_sptr_set_block_alias(scramble_packetize_sptr self, std::string name)"},
+	 { (char *)"scramble_packetize_sptr__post", (PyCFunction) _wrap_scramble_packetize_sptr__post, METH_VARARGS | METH_KEYWORDS, (char *)"scramble_packetize_sptr__post(scramble_packetize_sptr self, swig_int_ptr which_port, swig_int_ptr msg)"},
+	 { (char *)"scramble_packetize_sptr_message_ports_in", _wrap_scramble_packetize_sptr_message_ports_in, METH_VARARGS, (char *)"scramble_packetize_sptr_message_ports_in(scramble_packetize_sptr self) -> swig_int_ptr"},
+	 { (char *)"scramble_packetize_sptr_message_ports_out", _wrap_scramble_packetize_sptr_message_ports_out, METH_VARARGS, (char *)"scramble_packetize_sptr_message_ports_out(scramble_packetize_sptr self) -> swig_int_ptr"},
+	 { (char *)"scramble_packetize_sptr_message_subscribers", (PyCFunction) _wrap_scramble_packetize_sptr_message_subscribers, METH_VARARGS | METH_KEYWORDS, (char *)"scramble_packetize_sptr_message_subscribers(scramble_packetize_sptr self, swig_int_ptr which_port) -> swig_int_ptr"},
+	 { (char *)"scramble_packetize_sptr_swigregister", scramble_packetize_sptr_swigregister, METH_VARARGS, NULL},
+	 { (char *)"descramble_packetize_make", (PyCFunction) _wrap_descramble_packetize_make, METH_VARARGS | METH_KEYWORDS, (char *)"\n"
 		"descramble_packetize_make(int mask, int seed, int len, int frame_bit) -> descramble_packetize_sptr\n"
 		"\n"
 		"<+description of block+>\n"
@@ -11768,15 +11755,15 @@ static PyMethodDef SwigMethods[] = {
 		"    len : \n"
 		"    frame_bit : \n"
 		""},
-	 { "delete_descramble_packetize", _wrap_delete_descramble_packetize, METH_VARARGS, (char *)"delete_descramble_packetize(descramble_packetize self)"},
-	 { "descramble_packetize_swigregister", descramble_packetize_swigregister, METH_VARARGS, NULL},
-	 { "new_descramble_packetize_sptr", _wrap_new_descramble_packetize_sptr, METH_VARARGS, (char *)"\n"
+	 { (char *)"delete_descramble_packetize", _wrap_delete_descramble_packetize, METH_VARARGS, (char *)"delete_descramble_packetize(descramble_packetize self)"},
+	 { (char *)"descramble_packetize_swigregister", descramble_packetize_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_descramble_packetize_sptr", _wrap_new_descramble_packetize_sptr, METH_VARARGS, (char *)"\n"
 		"descramble_packetize_sptr()\n"
 		"new_descramble_packetize_sptr(descramble_packetize p) -> descramble_packetize_sptr\n"
 		""},
-	 { "descramble_packetize_sptr___deref__", _wrap_descramble_packetize_sptr___deref__, METH_VARARGS, (char *)"descramble_packetize_sptr___deref__(descramble_packetize_sptr self) -> descramble_packetize"},
-	 { "delete_descramble_packetize_sptr", _wrap_delete_descramble_packetize_sptr, METH_VARARGS, (char *)"delete_descramble_packetize_sptr(descramble_packetize_sptr self)"},
-	 { "descramble_packetize_sptr_make", (PyCFunction)_wrap_descramble_packetize_sptr_make, METH_VARARGS|METH_KEYWORDS, (char *)"\n"
+	 { (char *)"descramble_packetize_sptr___deref__", _wrap_descramble_packetize_sptr___deref__, METH_VARARGS, (char *)"descramble_packetize_sptr___deref__(descramble_packetize_sptr self) -> descramble_packetize"},
+	 { (char *)"delete_descramble_packetize_sptr", _wrap_delete_descramble_packetize_sptr, METH_VARARGS, (char *)"delete_descramble_packetize_sptr(descramble_packetize_sptr self)"},
+	 { (char *)"descramble_packetize_sptr_make", (PyCFunction) _wrap_descramble_packetize_sptr_make, METH_VARARGS | METH_KEYWORDS, (char *)"\n"
 		"descramble_packetize_sptr_make(descramble_packetize_sptr self, int mask, int seed, int len, int frame_bit) -> descramble_packetize_sptr\n"
 		"\n"
 		"<+description of block+>\n"
@@ -11793,89 +11780,89 @@ static PyMethodDef SwigMethods[] = {
 		"    len : \n"
 		"    frame_bit : \n"
 		""},
-	 { "descramble_packetize_sptr_history", _wrap_descramble_packetize_sptr_history, METH_VARARGS, (char *)"descramble_packetize_sptr_history(descramble_packetize_sptr self) -> unsigned int"},
-	 { "descramble_packetize_sptr_declare_sample_delay", _wrap_descramble_packetize_sptr_declare_sample_delay, METH_VARARGS, (char *)"\n"
+	 { (char *)"descramble_packetize_sptr_history", _wrap_descramble_packetize_sptr_history, METH_VARARGS, (char *)"descramble_packetize_sptr_history(descramble_packetize_sptr self) -> unsigned int"},
+	 { (char *)"descramble_packetize_sptr_declare_sample_delay", _wrap_descramble_packetize_sptr_declare_sample_delay, METH_VARARGS, (char *)"\n"
 		"declare_sample_delay(int which, int delay)\n"
 		"descramble_packetize_sptr_declare_sample_delay(descramble_packetize_sptr self, unsigned int delay)\n"
 		""},
-	 { "descramble_packetize_sptr_sample_delay", (PyCFunction)_wrap_descramble_packetize_sptr_sample_delay, METH_VARARGS|METH_KEYWORDS, (char *)"descramble_packetize_sptr_sample_delay(descramble_packetize_sptr self, int which) -> unsigned int"},
-	 { "descramble_packetize_sptr_output_multiple", _wrap_descramble_packetize_sptr_output_multiple, METH_VARARGS, (char *)"descramble_packetize_sptr_output_multiple(descramble_packetize_sptr self) -> int"},
-	 { "descramble_packetize_sptr_relative_rate", _wrap_descramble_packetize_sptr_relative_rate, METH_VARARGS, (char *)"descramble_packetize_sptr_relative_rate(descramble_packetize_sptr self) -> double"},
-	 { "descramble_packetize_sptr_start", _wrap_descramble_packetize_sptr_start, METH_VARARGS, (char *)"descramble_packetize_sptr_start(descramble_packetize_sptr self) -> bool"},
-	 { "descramble_packetize_sptr_stop", _wrap_descramble_packetize_sptr_stop, METH_VARARGS, (char *)"descramble_packetize_sptr_stop(descramble_packetize_sptr self) -> bool"},
-	 { "descramble_packetize_sptr_nitems_read", (PyCFunction)_wrap_descramble_packetize_sptr_nitems_read, METH_VARARGS|METH_KEYWORDS, (char *)"descramble_packetize_sptr_nitems_read(descramble_packetize_sptr self, unsigned int which_input) -> uint64_t"},
-	 { "descramble_packetize_sptr_nitems_written", (PyCFunction)_wrap_descramble_packetize_sptr_nitems_written, METH_VARARGS|METH_KEYWORDS, (char *)"descramble_packetize_sptr_nitems_written(descramble_packetize_sptr self, unsigned int which_output) -> uint64_t"},
-	 { "descramble_packetize_sptr_max_noutput_items", _wrap_descramble_packetize_sptr_max_noutput_items, METH_VARARGS, (char *)"descramble_packetize_sptr_max_noutput_items(descramble_packetize_sptr self) -> int"},
-	 { "descramble_packetize_sptr_set_max_noutput_items", (PyCFunction)_wrap_descramble_packetize_sptr_set_max_noutput_items, METH_VARARGS|METH_KEYWORDS, (char *)"descramble_packetize_sptr_set_max_noutput_items(descramble_packetize_sptr self, int m)"},
-	 { "descramble_packetize_sptr_unset_max_noutput_items", _wrap_descramble_packetize_sptr_unset_max_noutput_items, METH_VARARGS, (char *)"descramble_packetize_sptr_unset_max_noutput_items(descramble_packetize_sptr self)"},
-	 { "descramble_packetize_sptr_is_set_max_noutput_items", _wrap_descramble_packetize_sptr_is_set_max_noutput_items, METH_VARARGS, (char *)"descramble_packetize_sptr_is_set_max_noutput_items(descramble_packetize_sptr self) -> bool"},
-	 { "descramble_packetize_sptr_set_min_noutput_items", (PyCFunction)_wrap_descramble_packetize_sptr_set_min_noutput_items, METH_VARARGS|METH_KEYWORDS, (char *)"descramble_packetize_sptr_set_min_noutput_items(descramble_packetize_sptr self, int m)"},
-	 { "descramble_packetize_sptr_min_noutput_items", _wrap_descramble_packetize_sptr_min_noutput_items, METH_VARARGS, (char *)"descramble_packetize_sptr_min_noutput_items(descramble_packetize_sptr self) -> int"},
-	 { "descramble_packetize_sptr_max_output_buffer", (PyCFunction)_wrap_descramble_packetize_sptr_max_output_buffer, METH_VARARGS|METH_KEYWORDS, (char *)"descramble_packetize_sptr_max_output_buffer(descramble_packetize_sptr self, int i) -> long"},
-	 { "descramble_packetize_sptr_set_max_output_buffer", _wrap_descramble_packetize_sptr_set_max_output_buffer, METH_VARARGS, (char *)"\n"
+	 { (char *)"descramble_packetize_sptr_sample_delay", (PyCFunction) _wrap_descramble_packetize_sptr_sample_delay, METH_VARARGS | METH_KEYWORDS, (char *)"descramble_packetize_sptr_sample_delay(descramble_packetize_sptr self, int which) -> unsigned int"},
+	 { (char *)"descramble_packetize_sptr_output_multiple", _wrap_descramble_packetize_sptr_output_multiple, METH_VARARGS, (char *)"descramble_packetize_sptr_output_multiple(descramble_packetize_sptr self) -> int"},
+	 { (char *)"descramble_packetize_sptr_relative_rate", _wrap_descramble_packetize_sptr_relative_rate, METH_VARARGS, (char *)"descramble_packetize_sptr_relative_rate(descramble_packetize_sptr self) -> double"},
+	 { (char *)"descramble_packetize_sptr_start", _wrap_descramble_packetize_sptr_start, METH_VARARGS, (char *)"descramble_packetize_sptr_start(descramble_packetize_sptr self) -> bool"},
+	 { (char *)"descramble_packetize_sptr_stop", _wrap_descramble_packetize_sptr_stop, METH_VARARGS, (char *)"descramble_packetize_sptr_stop(descramble_packetize_sptr self) -> bool"},
+	 { (char *)"descramble_packetize_sptr_nitems_read", (PyCFunction) _wrap_descramble_packetize_sptr_nitems_read, METH_VARARGS | METH_KEYWORDS, (char *)"descramble_packetize_sptr_nitems_read(descramble_packetize_sptr self, unsigned int which_input) -> uint64_t"},
+	 { (char *)"descramble_packetize_sptr_nitems_written", (PyCFunction) _wrap_descramble_packetize_sptr_nitems_written, METH_VARARGS | METH_KEYWORDS, (char *)"descramble_packetize_sptr_nitems_written(descramble_packetize_sptr self, unsigned int which_output) -> uint64_t"},
+	 { (char *)"descramble_packetize_sptr_max_noutput_items", _wrap_descramble_packetize_sptr_max_noutput_items, METH_VARARGS, (char *)"descramble_packetize_sptr_max_noutput_items(descramble_packetize_sptr self) -> int"},
+	 { (char *)"descramble_packetize_sptr_set_max_noutput_items", (PyCFunction) _wrap_descramble_packetize_sptr_set_max_noutput_items, METH_VARARGS | METH_KEYWORDS, (char *)"descramble_packetize_sptr_set_max_noutput_items(descramble_packetize_sptr self, int m)"},
+	 { (char *)"descramble_packetize_sptr_unset_max_noutput_items", _wrap_descramble_packetize_sptr_unset_max_noutput_items, METH_VARARGS, (char *)"descramble_packetize_sptr_unset_max_noutput_items(descramble_packetize_sptr self)"},
+	 { (char *)"descramble_packetize_sptr_is_set_max_noutput_items", _wrap_descramble_packetize_sptr_is_set_max_noutput_items, METH_VARARGS, (char *)"descramble_packetize_sptr_is_set_max_noutput_items(descramble_packetize_sptr self) -> bool"},
+	 { (char *)"descramble_packetize_sptr_set_min_noutput_items", (PyCFunction) _wrap_descramble_packetize_sptr_set_min_noutput_items, METH_VARARGS | METH_KEYWORDS, (char *)"descramble_packetize_sptr_set_min_noutput_items(descramble_packetize_sptr self, int m)"},
+	 { (char *)"descramble_packetize_sptr_min_noutput_items", _wrap_descramble_packetize_sptr_min_noutput_items, METH_VARARGS, (char *)"descramble_packetize_sptr_min_noutput_items(descramble_packetize_sptr self) -> int"},
+	 { (char *)"descramble_packetize_sptr_max_output_buffer", (PyCFunction) _wrap_descramble_packetize_sptr_max_output_buffer, METH_VARARGS | METH_KEYWORDS, (char *)"descramble_packetize_sptr_max_output_buffer(descramble_packetize_sptr self, int i) -> long"},
+	 { (char *)"descramble_packetize_sptr_set_max_output_buffer", _wrap_descramble_packetize_sptr_set_max_output_buffer, METH_VARARGS, (char *)"\n"
 		"set_max_output_buffer(long max_output_buffer)\n"
 		"descramble_packetize_sptr_set_max_output_buffer(descramble_packetize_sptr self, int port, long max_output_buffer)\n"
 		""},
-	 { "descramble_packetize_sptr_min_output_buffer", (PyCFunction)_wrap_descramble_packetize_sptr_min_output_buffer, METH_VARARGS|METH_KEYWORDS, (char *)"descramble_packetize_sptr_min_output_buffer(descramble_packetize_sptr self, int i) -> long"},
-	 { "descramble_packetize_sptr_set_min_output_buffer", _wrap_descramble_packetize_sptr_set_min_output_buffer, METH_VARARGS, (char *)"\n"
+	 { (char *)"descramble_packetize_sptr_min_output_buffer", (PyCFunction) _wrap_descramble_packetize_sptr_min_output_buffer, METH_VARARGS | METH_KEYWORDS, (char *)"descramble_packetize_sptr_min_output_buffer(descramble_packetize_sptr self, int i) -> long"},
+	 { (char *)"descramble_packetize_sptr_set_min_output_buffer", _wrap_descramble_packetize_sptr_set_min_output_buffer, METH_VARARGS, (char *)"\n"
 		"set_min_output_buffer(long min_output_buffer)\n"
 		"descramble_packetize_sptr_set_min_output_buffer(descramble_packetize_sptr self, int port, long min_output_buffer)\n"
 		""},
-	 { "descramble_packetize_sptr_pc_noutput_items", _wrap_descramble_packetize_sptr_pc_noutput_items, METH_VARARGS, (char *)"descramble_packetize_sptr_pc_noutput_items(descramble_packetize_sptr self) -> float"},
-	 { "descramble_packetize_sptr_pc_noutput_items_avg", _wrap_descramble_packetize_sptr_pc_noutput_items_avg, METH_VARARGS, (char *)"descramble_packetize_sptr_pc_noutput_items_avg(descramble_packetize_sptr self) -> float"},
-	 { "descramble_packetize_sptr_pc_noutput_items_var", _wrap_descramble_packetize_sptr_pc_noutput_items_var, METH_VARARGS, (char *)"descramble_packetize_sptr_pc_noutput_items_var(descramble_packetize_sptr self) -> float"},
-	 { "descramble_packetize_sptr_pc_nproduced", _wrap_descramble_packetize_sptr_pc_nproduced, METH_VARARGS, (char *)"descramble_packetize_sptr_pc_nproduced(descramble_packetize_sptr self) -> float"},
-	 { "descramble_packetize_sptr_pc_nproduced_avg", _wrap_descramble_packetize_sptr_pc_nproduced_avg, METH_VARARGS, (char *)"descramble_packetize_sptr_pc_nproduced_avg(descramble_packetize_sptr self) -> float"},
-	 { "descramble_packetize_sptr_pc_nproduced_var", _wrap_descramble_packetize_sptr_pc_nproduced_var, METH_VARARGS, (char *)"descramble_packetize_sptr_pc_nproduced_var(descramble_packetize_sptr self) -> float"},
-	 { "descramble_packetize_sptr_pc_input_buffers_full", _wrap_descramble_packetize_sptr_pc_input_buffers_full, METH_VARARGS, (char *)"\n"
+	 { (char *)"descramble_packetize_sptr_pc_noutput_items", _wrap_descramble_packetize_sptr_pc_noutput_items, METH_VARARGS, (char *)"descramble_packetize_sptr_pc_noutput_items(descramble_packetize_sptr self) -> float"},
+	 { (char *)"descramble_packetize_sptr_pc_noutput_items_avg", _wrap_descramble_packetize_sptr_pc_noutput_items_avg, METH_VARARGS, (char *)"descramble_packetize_sptr_pc_noutput_items_avg(descramble_packetize_sptr self) -> float"},
+	 { (char *)"descramble_packetize_sptr_pc_noutput_items_var", _wrap_descramble_packetize_sptr_pc_noutput_items_var, METH_VARARGS, (char *)"descramble_packetize_sptr_pc_noutput_items_var(descramble_packetize_sptr self) -> float"},
+	 { (char *)"descramble_packetize_sptr_pc_nproduced", _wrap_descramble_packetize_sptr_pc_nproduced, METH_VARARGS, (char *)"descramble_packetize_sptr_pc_nproduced(descramble_packetize_sptr self) -> float"},
+	 { (char *)"descramble_packetize_sptr_pc_nproduced_avg", _wrap_descramble_packetize_sptr_pc_nproduced_avg, METH_VARARGS, (char *)"descramble_packetize_sptr_pc_nproduced_avg(descramble_packetize_sptr self) -> float"},
+	 { (char *)"descramble_packetize_sptr_pc_nproduced_var", _wrap_descramble_packetize_sptr_pc_nproduced_var, METH_VARARGS, (char *)"descramble_packetize_sptr_pc_nproduced_var(descramble_packetize_sptr self) -> float"},
+	 { (char *)"descramble_packetize_sptr_pc_input_buffers_full", _wrap_descramble_packetize_sptr_pc_input_buffers_full, METH_VARARGS, (char *)"\n"
 		"pc_input_buffers_full(int which) -> float\n"
 		"descramble_packetize_sptr_pc_input_buffers_full(descramble_packetize_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "descramble_packetize_sptr_pc_input_buffers_full_avg", _wrap_descramble_packetize_sptr_pc_input_buffers_full_avg, METH_VARARGS, (char *)"\n"
+	 { (char *)"descramble_packetize_sptr_pc_input_buffers_full_avg", _wrap_descramble_packetize_sptr_pc_input_buffers_full_avg, METH_VARARGS, (char *)"\n"
 		"pc_input_buffers_full_avg(int which) -> float\n"
 		"descramble_packetize_sptr_pc_input_buffers_full_avg(descramble_packetize_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "descramble_packetize_sptr_pc_input_buffers_full_var", _wrap_descramble_packetize_sptr_pc_input_buffers_full_var, METH_VARARGS, (char *)"\n"
+	 { (char *)"descramble_packetize_sptr_pc_input_buffers_full_var", _wrap_descramble_packetize_sptr_pc_input_buffers_full_var, METH_VARARGS, (char *)"\n"
 		"pc_input_buffers_full_var(int which) -> float\n"
 		"descramble_packetize_sptr_pc_input_buffers_full_var(descramble_packetize_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "descramble_packetize_sptr_pc_output_buffers_full", _wrap_descramble_packetize_sptr_pc_output_buffers_full, METH_VARARGS, (char *)"\n"
+	 { (char *)"descramble_packetize_sptr_pc_output_buffers_full", _wrap_descramble_packetize_sptr_pc_output_buffers_full, METH_VARARGS, (char *)"\n"
 		"pc_output_buffers_full(int which) -> float\n"
 		"descramble_packetize_sptr_pc_output_buffers_full(descramble_packetize_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "descramble_packetize_sptr_pc_output_buffers_full_avg", _wrap_descramble_packetize_sptr_pc_output_buffers_full_avg, METH_VARARGS, (char *)"\n"
+	 { (char *)"descramble_packetize_sptr_pc_output_buffers_full_avg", _wrap_descramble_packetize_sptr_pc_output_buffers_full_avg, METH_VARARGS, (char *)"\n"
 		"pc_output_buffers_full_avg(int which) -> float\n"
 		"descramble_packetize_sptr_pc_output_buffers_full_avg(descramble_packetize_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "descramble_packetize_sptr_pc_output_buffers_full_var", _wrap_descramble_packetize_sptr_pc_output_buffers_full_var, METH_VARARGS, (char *)"\n"
+	 { (char *)"descramble_packetize_sptr_pc_output_buffers_full_var", _wrap_descramble_packetize_sptr_pc_output_buffers_full_var, METH_VARARGS, (char *)"\n"
 		"pc_output_buffers_full_var(int which) -> float\n"
 		"descramble_packetize_sptr_pc_output_buffers_full_var(descramble_packetize_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "descramble_packetize_sptr_pc_work_time", _wrap_descramble_packetize_sptr_pc_work_time, METH_VARARGS, (char *)"descramble_packetize_sptr_pc_work_time(descramble_packetize_sptr self) -> float"},
-	 { "descramble_packetize_sptr_pc_work_time_avg", _wrap_descramble_packetize_sptr_pc_work_time_avg, METH_VARARGS, (char *)"descramble_packetize_sptr_pc_work_time_avg(descramble_packetize_sptr self) -> float"},
-	 { "descramble_packetize_sptr_pc_work_time_var", _wrap_descramble_packetize_sptr_pc_work_time_var, METH_VARARGS, (char *)"descramble_packetize_sptr_pc_work_time_var(descramble_packetize_sptr self) -> float"},
-	 { "descramble_packetize_sptr_pc_work_time_total", _wrap_descramble_packetize_sptr_pc_work_time_total, METH_VARARGS, (char *)"descramble_packetize_sptr_pc_work_time_total(descramble_packetize_sptr self) -> float"},
-	 { "descramble_packetize_sptr_pc_throughput_avg", _wrap_descramble_packetize_sptr_pc_throughput_avg, METH_VARARGS, (char *)"descramble_packetize_sptr_pc_throughput_avg(descramble_packetize_sptr self) -> float"},
-	 { "descramble_packetize_sptr_set_processor_affinity", (PyCFunction)_wrap_descramble_packetize_sptr_set_processor_affinity, METH_VARARGS|METH_KEYWORDS, (char *)"descramble_packetize_sptr_set_processor_affinity(descramble_packetize_sptr self, std::vector< int,std::allocator< int > > const & mask)"},
-	 { "descramble_packetize_sptr_unset_processor_affinity", _wrap_descramble_packetize_sptr_unset_processor_affinity, METH_VARARGS, (char *)"descramble_packetize_sptr_unset_processor_affinity(descramble_packetize_sptr self)"},
-	 { "descramble_packetize_sptr_processor_affinity", _wrap_descramble_packetize_sptr_processor_affinity, METH_VARARGS, (char *)"descramble_packetize_sptr_processor_affinity(descramble_packetize_sptr self) -> std::vector< int,std::allocator< int > >"},
-	 { "descramble_packetize_sptr_active_thread_priority", _wrap_descramble_packetize_sptr_active_thread_priority, METH_VARARGS, (char *)"descramble_packetize_sptr_active_thread_priority(descramble_packetize_sptr self) -> int"},
-	 { "descramble_packetize_sptr_thread_priority", _wrap_descramble_packetize_sptr_thread_priority, METH_VARARGS, (char *)"descramble_packetize_sptr_thread_priority(descramble_packetize_sptr self) -> int"},
-	 { "descramble_packetize_sptr_set_thread_priority", (PyCFunction)_wrap_descramble_packetize_sptr_set_thread_priority, METH_VARARGS|METH_KEYWORDS, (char *)"descramble_packetize_sptr_set_thread_priority(descramble_packetize_sptr self, int priority) -> int"},
-	 { "descramble_packetize_sptr_name", _wrap_descramble_packetize_sptr_name, METH_VARARGS, (char *)"descramble_packetize_sptr_name(descramble_packetize_sptr self) -> std::string"},
-	 { "descramble_packetize_sptr_symbol_name", _wrap_descramble_packetize_sptr_symbol_name, METH_VARARGS, (char *)"descramble_packetize_sptr_symbol_name(descramble_packetize_sptr self) -> std::string"},
-	 { "descramble_packetize_sptr_input_signature", _wrap_descramble_packetize_sptr_input_signature, METH_VARARGS, (char *)"descramble_packetize_sptr_input_signature(descramble_packetize_sptr self) -> io_signature_sptr"},
-	 { "descramble_packetize_sptr_output_signature", _wrap_descramble_packetize_sptr_output_signature, METH_VARARGS, (char *)"descramble_packetize_sptr_output_signature(descramble_packetize_sptr self) -> io_signature_sptr"},
-	 { "descramble_packetize_sptr_unique_id", _wrap_descramble_packetize_sptr_unique_id, METH_VARARGS, (char *)"descramble_packetize_sptr_unique_id(descramble_packetize_sptr self) -> long"},
-	 { "descramble_packetize_sptr_to_basic_block", _wrap_descramble_packetize_sptr_to_basic_block, METH_VARARGS, (char *)"descramble_packetize_sptr_to_basic_block(descramble_packetize_sptr self) -> basic_block_sptr"},
-	 { "descramble_packetize_sptr_check_topology", (PyCFunction)_wrap_descramble_packetize_sptr_check_topology, METH_VARARGS|METH_KEYWORDS, (char *)"descramble_packetize_sptr_check_topology(descramble_packetize_sptr self, int ninputs, int noutputs) -> bool"},
-	 { "descramble_packetize_sptr_alias", _wrap_descramble_packetize_sptr_alias, METH_VARARGS, (char *)"descramble_packetize_sptr_alias(descramble_packetize_sptr self) -> std::string"},
-	 { "descramble_packetize_sptr_set_block_alias", (PyCFunction)_wrap_descramble_packetize_sptr_set_block_alias, METH_VARARGS|METH_KEYWORDS, (char *)"descramble_packetize_sptr_set_block_alias(descramble_packetize_sptr self, std::string name)"},
-	 { "descramble_packetize_sptr__post", (PyCFunction)_wrap_descramble_packetize_sptr__post, METH_VARARGS|METH_KEYWORDS, (char *)"descramble_packetize_sptr__post(descramble_packetize_sptr self, swig_int_ptr which_port, swig_int_ptr msg)"},
-	 { "descramble_packetize_sptr_message_ports_in", _wrap_descramble_packetize_sptr_message_ports_in, METH_VARARGS, (char *)"descramble_packetize_sptr_message_ports_in(descramble_packetize_sptr self) -> swig_int_ptr"},
-	 { "descramble_packetize_sptr_message_ports_out", _wrap_descramble_packetize_sptr_message_ports_out, METH_VARARGS, (char *)"descramble_packetize_sptr_message_ports_out(descramble_packetize_sptr self) -> swig_int_ptr"},
-	 { "descramble_packetize_sptr_message_subscribers", (PyCFunction)_wrap_descramble_packetize_sptr_message_subscribers, METH_VARARGS|METH_KEYWORDS, (char *)"descramble_packetize_sptr_message_subscribers(descramble_packetize_sptr self, swig_int_ptr which_port) -> swig_int_ptr"},
-	 { "descramble_packetize_sptr_swigregister", descramble_packetize_sptr_swigregister, METH_VARARGS, NULL},
+	 { (char *)"descramble_packetize_sptr_pc_work_time", _wrap_descramble_packetize_sptr_pc_work_time, METH_VARARGS, (char *)"descramble_packetize_sptr_pc_work_time(descramble_packetize_sptr self) -> float"},
+	 { (char *)"descramble_packetize_sptr_pc_work_time_avg", _wrap_descramble_packetize_sptr_pc_work_time_avg, METH_VARARGS, (char *)"descramble_packetize_sptr_pc_work_time_avg(descramble_packetize_sptr self) -> float"},
+	 { (char *)"descramble_packetize_sptr_pc_work_time_var", _wrap_descramble_packetize_sptr_pc_work_time_var, METH_VARARGS, (char *)"descramble_packetize_sptr_pc_work_time_var(descramble_packetize_sptr self) -> float"},
+	 { (char *)"descramble_packetize_sptr_pc_work_time_total", _wrap_descramble_packetize_sptr_pc_work_time_total, METH_VARARGS, (char *)"descramble_packetize_sptr_pc_work_time_total(descramble_packetize_sptr self) -> float"},
+	 { (char *)"descramble_packetize_sptr_pc_throughput_avg", _wrap_descramble_packetize_sptr_pc_throughput_avg, METH_VARARGS, (char *)"descramble_packetize_sptr_pc_throughput_avg(descramble_packetize_sptr self) -> float"},
+	 { (char *)"descramble_packetize_sptr_set_processor_affinity", (PyCFunction) _wrap_descramble_packetize_sptr_set_processor_affinity, METH_VARARGS | METH_KEYWORDS, (char *)"descramble_packetize_sptr_set_processor_affinity(descramble_packetize_sptr self, std::vector< int,std::allocator< int > > const & mask)"},
+	 { (char *)"descramble_packetize_sptr_unset_processor_affinity", _wrap_descramble_packetize_sptr_unset_processor_affinity, METH_VARARGS, (char *)"descramble_packetize_sptr_unset_processor_affinity(descramble_packetize_sptr self)"},
+	 { (char *)"descramble_packetize_sptr_processor_affinity", _wrap_descramble_packetize_sptr_processor_affinity, METH_VARARGS, (char *)"descramble_packetize_sptr_processor_affinity(descramble_packetize_sptr self) -> std::vector< int,std::allocator< int > >"},
+	 { (char *)"descramble_packetize_sptr_active_thread_priority", _wrap_descramble_packetize_sptr_active_thread_priority, METH_VARARGS, (char *)"descramble_packetize_sptr_active_thread_priority(descramble_packetize_sptr self) -> int"},
+	 { (char *)"descramble_packetize_sptr_thread_priority", _wrap_descramble_packetize_sptr_thread_priority, METH_VARARGS, (char *)"descramble_packetize_sptr_thread_priority(descramble_packetize_sptr self) -> int"},
+	 { (char *)"descramble_packetize_sptr_set_thread_priority", (PyCFunction) _wrap_descramble_packetize_sptr_set_thread_priority, METH_VARARGS | METH_KEYWORDS, (char *)"descramble_packetize_sptr_set_thread_priority(descramble_packetize_sptr self, int priority) -> int"},
+	 { (char *)"descramble_packetize_sptr_name", _wrap_descramble_packetize_sptr_name, METH_VARARGS, (char *)"descramble_packetize_sptr_name(descramble_packetize_sptr self) -> std::string"},
+	 { (char *)"descramble_packetize_sptr_symbol_name", _wrap_descramble_packetize_sptr_symbol_name, METH_VARARGS, (char *)"descramble_packetize_sptr_symbol_name(descramble_packetize_sptr self) -> std::string"},
+	 { (char *)"descramble_packetize_sptr_input_signature", _wrap_descramble_packetize_sptr_input_signature, METH_VARARGS, (char *)"descramble_packetize_sptr_input_signature(descramble_packetize_sptr self) -> io_signature_sptr"},
+	 { (char *)"descramble_packetize_sptr_output_signature", _wrap_descramble_packetize_sptr_output_signature, METH_VARARGS, (char *)"descramble_packetize_sptr_output_signature(descramble_packetize_sptr self) -> io_signature_sptr"},
+	 { (char *)"descramble_packetize_sptr_unique_id", _wrap_descramble_packetize_sptr_unique_id, METH_VARARGS, (char *)"descramble_packetize_sptr_unique_id(descramble_packetize_sptr self) -> long"},
+	 { (char *)"descramble_packetize_sptr_to_basic_block", _wrap_descramble_packetize_sptr_to_basic_block, METH_VARARGS, (char *)"descramble_packetize_sptr_to_basic_block(descramble_packetize_sptr self) -> basic_block_sptr"},
+	 { (char *)"descramble_packetize_sptr_check_topology", (PyCFunction) _wrap_descramble_packetize_sptr_check_topology, METH_VARARGS | METH_KEYWORDS, (char *)"descramble_packetize_sptr_check_topology(descramble_packetize_sptr self, int ninputs, int noutputs) -> bool"},
+	 { (char *)"descramble_packetize_sptr_alias", _wrap_descramble_packetize_sptr_alias, METH_VARARGS, (char *)"descramble_packetize_sptr_alias(descramble_packetize_sptr self) -> std::string"},
+	 { (char *)"descramble_packetize_sptr_set_block_alias", (PyCFunction) _wrap_descramble_packetize_sptr_set_block_alias, METH_VARARGS | METH_KEYWORDS, (char *)"descramble_packetize_sptr_set_block_alias(descramble_packetize_sptr self, std::string name)"},
+	 { (char *)"descramble_packetize_sptr__post", (PyCFunction) _wrap_descramble_packetize_sptr__post, METH_VARARGS | METH_KEYWORDS, (char *)"descramble_packetize_sptr__post(descramble_packetize_sptr self, swig_int_ptr which_port, swig_int_ptr msg)"},
+	 { (char *)"descramble_packetize_sptr_message_ports_in", _wrap_descramble_packetize_sptr_message_ports_in, METH_VARARGS, (char *)"descramble_packetize_sptr_message_ports_in(descramble_packetize_sptr self) -> swig_int_ptr"},
+	 { (char *)"descramble_packetize_sptr_message_ports_out", _wrap_descramble_packetize_sptr_message_ports_out, METH_VARARGS, (char *)"descramble_packetize_sptr_message_ports_out(descramble_packetize_sptr self) -> swig_int_ptr"},
+	 { (char *)"descramble_packetize_sptr_message_subscribers", (PyCFunction) _wrap_descramble_packetize_sptr_message_subscribers, METH_VARARGS | METH_KEYWORDS, (char *)"descramble_packetize_sptr_message_subscribers(descramble_packetize_sptr self, swig_int_ptr which_port) -> swig_int_ptr"},
+	 { (char *)"descramble_packetize_sptr_swigregister", descramble_packetize_sptr_swigregister, METH_VARARGS, NULL},
 	 { NULL, NULL, 0, NULL }
 };
 
@@ -12655,9 +12642,9 @@ extern "C" {
             char *ndoc = (char*)malloc(ldoc + lptr + 10);
             if (ndoc) {
               char *buff = ndoc;
-              memcpy(buff, methods[i].ml_doc, ldoc);
+              strncpy(buff, methods[i].ml_doc, ldoc);
               buff += ldoc;
-              memcpy(buff, "swig_ptr: ", 10);
+              strncpy(buff, "swig_ptr: ", 10);
               buff += 10;
               SWIG_PackVoidPtr(buff, ptr, ty->name, lptr);
               methods[i].ml_doc = ndoc;
@@ -12719,8 +12706,8 @@ SWIG_init(void) {
     (char *)"this", &SwigPyBuiltin_ThisClosure, NULL, NULL, NULL
   };
   static SwigPyGetSet thisown_getset_closure = {
-    SwigPyObject_own,
-    SwigPyObject_own
+    (PyCFunction) SwigPyObject_own,
+    (PyCFunction) SwigPyObject_own
   };
   static PyGetSetDef thisown_getset_def = {
     (char *)"thisown", SwigPyBuiltin_GetterClosure, SwigPyBuiltin_SetterClosure, NULL, &thisown_getset_closure

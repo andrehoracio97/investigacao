@@ -3,6 +3,7 @@
   <compound refid="classgr_1_1insert__vec__cpp_1_1new__vec" kind="class"><name>gr::insert_vec_cpp::new_vec</name>
     <member refid="classgr_1_1insert__vec__cpp_1_1new__vec_1a7adf86f938850c9648f271cc494d4cfa" kind="typedef"><name>sptr</name></member>
     <member refid="classgr_1_1insert__vec__cpp_1_1new__vec_1ae753a6e4f743acbc83cab2c2b437da73" kind="function"><name>make</name></member>
+    <member refid="classgr_1_1insert__vec__cpp_1_1new__vec_1ad8fcc5702d5d029253307dad869fb34f" kind="function"><name>set_data</name></member>
   </compound>
   <compound refid="namespacegr" kind="namespace"><name>gr</name>
   </compound>

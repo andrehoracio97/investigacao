@@ -18,19 +18,6 @@
         </inbodydescription>
         <location file="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" line="32" column="1" bodyfile="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" bodystart="32" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1a92b68eb578c22e85a38a93c03f4e6daf" prot="private" static="no" mutable="no">
-        <type>int</type>
-        <definition>int gr::scrambler_cpp::custom_scrambler_impl::n_bits_scrambled</definition>
-        <argsstring></argsstring>
-        <name>n_bits_scrambled</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" line="33" column="1" bodyfile="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" bodystart="33" bodyend="-1"/>
-      </memberdef>
       <memberdef kind="variable" id="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1aa08b2f83edda0d7ba66dc8548b3d3aa8" prot="private" static="no" mutable="no">
         <type>int</type>
         <definition>int gr::scrambler_cpp::custom_scrambler_impl::n_frame</definition>
@@ -42,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" line="34" column="1" bodyfile="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" bodystart="34" bodyend="-1"/>
+        <location file="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" line="33" column="1" bodyfile="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" bodystart="33" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1aa0a3a92afe411040aa09a91594a6f658" prot="private" static="no" mutable="no">
         <type>int</type>
@@ -55,7 +42,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" line="35" column="1" bodyfile="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" bodystart="35" bodyend="-1"/>
+        <location file="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" line="34" column="1" bodyfile="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" bodystart="34" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1a93829cbb175f2b75a44ad0ad156783b8" prot="private" static="no" mutable="no">
         <type>int</type>
@@ -68,13 +55,26 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
+        <location file="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" line="35" column="1" bodyfile="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1ad1c745c349ea2da320b58ffedb41dabe" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int gr::scrambler_cpp::custom_scrambler_impl::time_to_create</definition>
+        <argsstring></argsstring>
+        <name>time_to_create</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
         <location file="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" line="36" column="1" bodyfile="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" bodystart="36" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1a8194ea0fd87bb5a4779aff40f91b3199" prot="private" static="no" mutable="no">
-        <type>std::string</type>
-        <definition>std::string gr::scrambler_cpp::custom_scrambler_impl::binary</definition>
+      <memberdef kind="variable" id="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1ae61d157658ffffbbbf94342bb1d00e02" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int gr::scrambler_cpp::custom_scrambler_impl::remaining_bits</definition>
         <argsstring></argsstring>
-        <name>binary</name>
+        <name>remaining_bits</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -82,6 +82,58 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" line="37" column="1" bodyfile="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1a689a94b50839285e4a0d6dd4f3914787" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int gr::scrambler_cpp::custom_scrambler_impl::max_n_produce</definition>
+        <argsstring></argsstring>
+        <name>max_n_produce</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" line="38" column="1" bodyfile="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1a779b12eaddc3d711d4b784c0ac3cd5cd" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int gr::scrambler_cpp::custom_scrambler_impl::flag_last</definition>
+        <argsstring></argsstring>
+        <name>flag_last</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" line="39" column="1" bodyfile="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1ac9ce781320a2384725bdf242103a1b80" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int gr::scrambler_cpp::custom_scrambler_impl::track_n_bits_added</definition>
+        <argsstring></argsstring>
+        <name>track_n_bits_added</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" line="40" column="1" bodyfile="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1a36bbafced3790b54818cfca9c9f3d1b5" prot="private" static="no" mutable="no">
+        <type>uint</type>
+        <definition>uint gr::scrambler_cpp::custom_scrambler_impl::mask</definition>
+        <argsstring></argsstring>
+        <name>mask</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" line="41" column="1" bodyfile="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" bodystart="41" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -112,7 +164,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" line="40" column="1"/>
+        <location file="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" line="43" column="1"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1a2f3b4b001fcfacb2ddee258e82b83a1e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -125,7 +177,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" line="41" column="1"/>
+        <location file="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" line="44" column="1"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1af725a6812d723f1f613e438df533a77e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -146,7 +198,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" line="44" column="1"/>
+        <location file="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" line="47" column="1"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1a43dc9003a711a16a74d5734e822347ec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -175,7 +227,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" line="46" column="1"/>
+        <location file="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" line="49" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -183,51 +235,55 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="17">
+      <node id="39">
         <label>gr::scrambler_cpp::custom_scrambler</label>
         <link refid="classgr_1_1scrambler__cpp_1_1custom__scrambler"/>
-        <childnode refid="18" relation="public-inheritance">
+        <childnode refid="40" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="16">
+      <node id="38">
         <label>gr::scrambler_cpp::custom_scrambler_impl</label>
         <link refid="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl"/>
-        <childnode refid="17" relation="public-inheritance">
+        <childnode refid="39" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="18">
+      <node id="40">
         <label>gr::block</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="20">
+      <node id="42">
         <label>gr::scrambler_cpp::custom_scrambler</label>
         <link refid="classgr_1_1scrambler__cpp_1_1custom__scrambler"/>
-        <childnode refid="21" relation="public-inheritance">
+        <childnode refid="43" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="19">
+      <node id="41">
         <label>gr::scrambler_cpp::custom_scrambler_impl</label>
         <link refid="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl"/>
-        <childnode refid="20" relation="public-inheritance">
+        <childnode refid="42" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="21">
+      <node id="43">
         <label>gr::block</label>
       </node>
     </collaborationgraph>
-    <location file="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" line="30" column="1" bodyfile="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" bodystart="29" bodyend="50"/>
+    <location file="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" line="30" column="1" bodyfile="/home/andre/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h" bodystart="29" bodyend="53"/>
     <listofallmembers>
-      <member refid="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1a8194ea0fd87bb5a4779aff40f91b3199" prot="private" virt="non-virtual"><scope>gr::scrambler_cpp::custom_scrambler_impl</scope><name>binary</name></member>
       <member refid="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1a7838084b38b70b5550d7cd3f54222953" prot="public" virt="non-virtual"><scope>gr::scrambler_cpp::custom_scrambler_impl</scope><name>custom_scrambler_impl</name></member>
       <member refid="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1a7d39665b363d21ba3e451ff9cc2f529a" prot="private" virt="non-virtual"><scope>gr::scrambler_cpp::custom_scrambler_impl</scope><name>d_lfsr</name></member>
+      <member refid="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1a779b12eaddc3d711d4b784c0ac3cd5cd" prot="private" virt="non-virtual"><scope>gr::scrambler_cpp::custom_scrambler_impl</scope><name>flag_last</name></member>
       <member refid="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1af725a6812d723f1f613e438df533a77e" prot="public" virt="non-virtual"><scope>gr::scrambler_cpp::custom_scrambler_impl</scope><name>forecast</name></member>
       <member refid="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1a43dc9003a711a16a74d5734e822347ec" prot="public" virt="non-virtual"><scope>gr::scrambler_cpp::custom_scrambler_impl</scope><name>general_work</name></member>
       <member refid="classgr_1_1scrambler__cpp_1_1custom__scrambler_1a3d3540ee73a508c61cbe90b3dcb085f6" prot="public" virt="non-virtual"><scope>gr::scrambler_cpp::custom_scrambler_impl</scope><name>make</name></member>
-      <member refid="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1a92b68eb578c22e85a38a93c03f4e6daf" prot="private" virt="non-virtual"><scope>gr::scrambler_cpp::custom_scrambler_impl</scope><name>n_bits_scrambled</name></member>
+      <member refid="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1a36bbafced3790b54818cfca9c9f3d1b5" prot="private" virt="non-virtual"><scope>gr::scrambler_cpp::custom_scrambler_impl</scope><name>mask</name></member>
+      <member refid="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1a689a94b50839285e4a0d6dd4f3914787" prot="private" virt="non-virtual"><scope>gr::scrambler_cpp::custom_scrambler_impl</scope><name>max_n_produce</name></member>
       <member refid="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1aa08b2f83edda0d7ba66dc8548b3d3aa8" prot="private" virt="non-virtual"><scope>gr::scrambler_cpp::custom_scrambler_impl</scope><name>n_frame</name></member>
       <member refid="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1a93829cbb175f2b75a44ad0ad156783b8" prot="private" virt="non-virtual"><scope>gr::scrambler_cpp::custom_scrambler_impl</scope><name>new_seed</name></member>
+      <member refid="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1ae61d157658ffffbbbf94342bb1d00e02" prot="private" virt="non-virtual"><scope>gr::scrambler_cpp::custom_scrambler_impl</scope><name>remaining_bits</name></member>
       <member refid="classgr_1_1scrambler__cpp_1_1custom__scrambler_1acb2e86850cbb24a316cdbd63e8b431f5" prot="public" virt="non-virtual"><scope>gr::scrambler_cpp::custom_scrambler_impl</scope><name>sptr</name></member>
+      <member refid="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1ad1c745c349ea2da320b58ffedb41dabe" prot="private" virt="non-virtual"><scope>gr::scrambler_cpp::custom_scrambler_impl</scope><name>time_to_create</name></member>
+      <member refid="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1ac9ce781320a2384725bdf242103a1b80" prot="private" virt="non-virtual"><scope>gr::scrambler_cpp::custom_scrambler_impl</scope><name>track_n_bits_added</name></member>
       <member refid="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1aa0a3a92afe411040aa09a91594a6f658" prot="private" virt="non-virtual"><scope>gr::scrambler_cpp::custom_scrambler_impl</scope><name>track_n_bits_seed</name></member>
       <member refid="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl_1a2f3b4b001fcfacb2ddee258e82b83a1e" prot="public" virt="non-virtual"><scope>gr::scrambler_cpp::custom_scrambler_impl</scope><name>~custom_scrambler_impl</name></member>
     </listofallmembers>

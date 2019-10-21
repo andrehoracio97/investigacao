@@ -3,33 +3,47 @@
   <compounddef id="api_8h" kind="file" language="C++">
     <compoundname>api.h</compoundname>
     <includes local="no">gnuradio/attributes.h</includes>
+    <includedby refid="additive__descrambler_8h" local="no">additive_descrambler.h</includedby>
+    <includedby refid="additive__scrambler_8h" local="no">additive_scrambler.h</includedby>
     <includedby refid="custom__descrambler_8h" local="no">custom_descrambler.h</includedby>
     <includedby refid="custom__scrambler_8h" local="no">custom_scrambler.h</includedby>
     <incdepgraph>
-      <node id="1">
+      <node id="11">
         <label>gnuradio/attributes.h</label>
       </node>
-      <node id="0">
+      <node id="10">
         <label>api.h</label>
         <link refid="api_8h"/>
-        <childnode refid="1" relation="include">
+        <childnode refid="11" relation="include">
         </childnode>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="4">
+      <node id="13">
+        <label>additive_descrambler.h</label>
+        <link refid="additive__descrambler_8h"/>
+      </node>
+      <node id="16">
         <label>custom_scrambler.h</label>
         <link refid="custom__scrambler_8h"/>
       </node>
-      <node id="2">
+      <node id="12">
         <label>api.h</label>
         <link refid="api_8h"/>
-        <childnode refid="3" relation="include">
+        <childnode refid="13" relation="include">
         </childnode>
-        <childnode refid="4" relation="include">
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
         </childnode>
       </node>
-      <node id="3">
+      <node id="14">
+        <label>additive_scrambler.h</label>
+        <link refid="additive__scrambler_8h"/>
+      </node>
+      <node id="15">
         <label>custom_descrambler.h</label>
         <link refid="custom__descrambler_8h"/>
       </node>

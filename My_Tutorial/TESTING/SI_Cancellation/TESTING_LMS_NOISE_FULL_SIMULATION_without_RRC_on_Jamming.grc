@@ -1305,7 +1305,7 @@
     </param>
     <param>
       <key>num_taps</key>
-      <value>64</value>
+      <value>32</value>
     </param>
     <param>
       <key>reset</key>

@@ -957,7 +957,21 @@ custom_descrambler_sptr.__repr__ = lambda self: "<gr_block %s (%d)>" % (self.nam
 custom_descrambler = custom_descrambler.make;
 
 class additive_scrambler(object):
-    """Proxy of C++ gr::scrambler_cpp::additive_scrambler class."""
+    """
+    <+description of block+>
+
+    Constructor Specific Documentation:
+
+    Return a shared_ptr to a new instance of scrambler_cpp::additive_scrambler.
+
+    To avoid accidental use of raw pointers, scrambler_cpp::additive_scrambler's constructor is in a private implementation class. scrambler_cpp::additive_scrambler::make is the public interface for creating new instances.
+
+    Args:
+        mask : 
+        seed : 
+        len : 
+        frame_bits : 
+    """
 
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
 
@@ -966,7 +980,23 @@ class additive_scrambler(object):
     __repr__ = _swig_repr
 
     def make(mask, seed, len, frame_bits):
-        """make(int mask, int seed, int len, int frame_bits) -> additive_scrambler_sptr"""
+        """
+        make(int mask, int seed, int len, int frame_bits) -> additive_scrambler_sptr
+
+        <+description of block+>
+
+        Constructor Specific Documentation:
+
+        Return a shared_ptr to a new instance of scrambler_cpp::additive_scrambler.
+
+        To avoid accidental use of raw pointers, scrambler_cpp::additive_scrambler's constructor is in a private implementation class. scrambler_cpp::additive_scrambler::make is the public interface for creating new instances.
+
+        Args:
+            mask : 
+            seed : 
+            len : 
+            frame_bits : 
+        """
         return _scrambler_cpp_swig.additive_scrambler_make(mask, seed, len, frame_bits)
 
     make = staticmethod(make)
@@ -976,7 +1006,23 @@ additive_scrambler_swigregister = _scrambler_cpp_swig.additive_scrambler_swigreg
 additive_scrambler_swigregister(additive_scrambler)
 
 def additive_scrambler_make(mask, seed, len, frame_bits):
-    """additive_scrambler_make(int mask, int seed, int len, int frame_bits) -> additive_scrambler_sptr"""
+    """
+    additive_scrambler_make(int mask, int seed, int len, int frame_bits) -> additive_scrambler_sptr
+
+    <+description of block+>
+
+    Constructor Specific Documentation:
+
+    Return a shared_ptr to a new instance of scrambler_cpp::additive_scrambler.
+
+    To avoid accidental use of raw pointers, scrambler_cpp::additive_scrambler's constructor is in a private implementation class. scrambler_cpp::additive_scrambler::make is the public interface for creating new instances.
+
+    Args:
+        mask : 
+        seed : 
+        len : 
+        frame_bits : 
+    """
     return _scrambler_cpp_swig.additive_scrambler_make(mask, seed, len, frame_bits)
 
 class additive_scrambler_sptr(object):
@@ -1004,7 +1050,23 @@ class additive_scrambler_sptr(object):
     __del__ = lambda self: None
 
     def make(self, mask, seed, len, frame_bits):
-        """make(additive_scrambler_sptr self, int mask, int seed, int len, int frame_bits) -> additive_scrambler_sptr"""
+        """
+        make(additive_scrambler_sptr self, int mask, int seed, int len, int frame_bits) -> additive_scrambler_sptr
+
+        <+description of block+>
+
+        Constructor Specific Documentation:
+
+        Return a shared_ptr to a new instance of scrambler_cpp::additive_scrambler.
+
+        To avoid accidental use of raw pointers, scrambler_cpp::additive_scrambler's constructor is in a private implementation class. scrambler_cpp::additive_scrambler::make is the public interface for creating new instances.
+
+        Args:
+            mask : 
+            seed : 
+            len : 
+            frame_bits : 
+        """
         return _scrambler_cpp_swig.additive_scrambler_sptr_make(self, mask, seed, len, frame_bits)
 
 
@@ -1317,7 +1379,21 @@ additive_scrambler_sptr.__repr__ = lambda self: "<gr_block %s (%d)>" % (self.nam
 additive_scrambler = additive_scrambler.make;
 
 class additive_descrambler(object):
-    """Proxy of C++ gr::scrambler_cpp::additive_descrambler class."""
+    """
+    <+description of block+>
+
+    Constructor Specific Documentation:
+
+    Return a shared_ptr to a new instance of scrambler_cpp::additive_descrambler.
+
+    To avoid accidental use of raw pointers, scrambler_cpp::additive_descrambler's constructor is in a private implementation class. scrambler_cpp::additive_descrambler::make is the public interface for creating new instances.
+
+    Args:
+        mask : 
+        seed : 
+        len : 
+        frame_bits : 
+    """
 
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
 
@@ -1326,7 +1402,23 @@ class additive_descrambler(object):
     __repr__ = _swig_repr
 
     def make(mask, seed, len, frame_bits):
-        """make(int mask, int seed, int len, int frame_bits) -> additive_descrambler_sptr"""
+        """
+        make(int mask, int seed, int len, int frame_bits) -> additive_descrambler_sptr
+
+        <+description of block+>
+
+        Constructor Specific Documentation:
+
+        Return a shared_ptr to a new instance of scrambler_cpp::additive_descrambler.
+
+        To avoid accidental use of raw pointers, scrambler_cpp::additive_descrambler's constructor is in a private implementation class. scrambler_cpp::additive_descrambler::make is the public interface for creating new instances.
+
+        Args:
+            mask : 
+            seed : 
+            len : 
+            frame_bits : 
+        """
         return _scrambler_cpp_swig.additive_descrambler_make(mask, seed, len, frame_bits)
 
     make = staticmethod(make)
@@ -1336,7 +1428,23 @@ additive_descrambler_swigregister = _scrambler_cpp_swig.additive_descrambler_swi
 additive_descrambler_swigregister(additive_descrambler)
 
 def additive_descrambler_make(mask, seed, len, frame_bits):
-    """additive_descrambler_make(int mask, int seed, int len, int frame_bits) -> additive_descrambler_sptr"""
+    """
+    additive_descrambler_make(int mask, int seed, int len, int frame_bits) -> additive_descrambler_sptr
+
+    <+description of block+>
+
+    Constructor Specific Documentation:
+
+    Return a shared_ptr to a new instance of scrambler_cpp::additive_descrambler.
+
+    To avoid accidental use of raw pointers, scrambler_cpp::additive_descrambler's constructor is in a private implementation class. scrambler_cpp::additive_descrambler::make is the public interface for creating new instances.
+
+    Args:
+        mask : 
+        seed : 
+        len : 
+        frame_bits : 
+    """
     return _scrambler_cpp_swig.additive_descrambler_make(mask, seed, len, frame_bits)
 
 class additive_descrambler_sptr(object):
@@ -1364,7 +1472,23 @@ class additive_descrambler_sptr(object):
     __del__ = lambda self: None
 
     def make(self, mask, seed, len, frame_bits):
-        """make(additive_descrambler_sptr self, int mask, int seed, int len, int frame_bits) -> additive_descrambler_sptr"""
+        """
+        make(additive_descrambler_sptr self, int mask, int seed, int len, int frame_bits) -> additive_descrambler_sptr
+
+        <+description of block+>
+
+        Constructor Specific Documentation:
+
+        Return a shared_ptr to a new instance of scrambler_cpp::additive_descrambler.
+
+        To avoid accidental use of raw pointers, scrambler_cpp::additive_descrambler's constructor is in a private implementation class. scrambler_cpp::additive_descrambler::make is the public interface for creating new instances.
+
+        Args:
+            mask : 
+            seed : 
+            len : 
+            frame_bits : 
+        """
         return _scrambler_cpp_swig.additive_descrambler_sptr_make(self, mask, seed, len, frame_bits)
 
 

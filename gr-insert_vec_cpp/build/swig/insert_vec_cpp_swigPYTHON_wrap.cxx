@@ -1632,14 +1632,6 @@ SwigPyObject_repr(SwigPyObject *v, PyObject *args)
   return repr;  
 }
 
-/* We need a version taking two PyObject* parameters so it's a valid
- * PyCFunction to use in swigobject_methods[]. */
-SWIGRUNTIME PyObject *
-SwigPyObject_repr2(PyObject *v, PyObject *SWIGUNUSEDPARM(args))
-{
-  return SwigPyObject_repr((SwigPyObject*)v);
-}
-
 SWIGRUNTIME int
 SwigPyObject_compare(SwigPyObject *v, SwigPyObject *w)
 {
@@ -1769,7 +1761,11 @@ SwigPyObject_append(PyObject* v, PyObject* next)
 }
 
 SWIGRUNTIME PyObject* 
+#ifdef METH_NOARGS
+SwigPyObject_next(PyObject* v)
+#else
 SwigPyObject_next(PyObject* v, PyObject *SWIGUNUSEDPARM(args))
+#endif
 {
   SwigPyObject *sobj = (SwigPyObject *) v;
   if (sobj->next) {    
@@ -1803,20 +1799,6 @@ SwigPyObject_acquire(PyObject* v, PyObject *SWIGUNUSEDPARM(args))
   sobj->own = SWIG_POINTER_OWN;
   return SWIG_Py_Void();
 }
-
-#ifdef METH_NOARGS
-static PyObject*
-SwigPyObject_disown2(PyObject* v, PyObject *SWIGUNUSEDPARM(args))
-{
-  return SwigPyObject_disown(v);
-}
-
-static PyObject*
-SwigPyObject_acquire2(PyObject* v, PyObject *SWIGUNUSEDPARM(args))
-{
-  return SwigPyObject_acquire(v);
-}
-#endif
 
 SWIGINTERN PyObject*
 SwigPyObject_own(PyObject *v, PyObject *args)
@@ -1858,12 +1840,12 @@ SwigPyObject_own(PyObject *v, PyObject *args)
 #ifdef METH_O
 static PyMethodDef
 swigobject_methods[] = {
-  {(char *)"disown",  (PyCFunction)SwigPyObject_disown2, METH_NOARGS,  (char *)"releases ownership of the pointer"},
-  {(char *)"acquire", (PyCFunction)SwigPyObject_acquire2,METH_NOARGS,  (char *)"acquires ownership of the pointer"},
+  {(char *)"disown",  (PyCFunction)SwigPyObject_disown,  METH_NOARGS,  (char *)"releases ownership of the pointer"},
+  {(char *)"acquire", (PyCFunction)SwigPyObject_acquire, METH_NOARGS,  (char *)"acquires ownership of the pointer"},
   {(char *)"own",     (PyCFunction)SwigPyObject_own,     METH_VARARGS, (char *)"returns/sets ownership of the pointer"},
   {(char *)"append",  (PyCFunction)SwigPyObject_append,  METH_O,       (char *)"appends another 'this' object"},
   {(char *)"next",    (PyCFunction)SwigPyObject_next,    METH_NOARGS,  (char *)"returns the next 'this' object"},
-  {(char *)"__repr__",(PyCFunction)SwigPyObject_repr2,   METH_NOARGS,  (char *)"returns object representation"},
+  {(char *)"__repr__",(PyCFunction)SwigPyObject_repr,    METH_NOARGS,  (char *)"returns object representation"},
   {0, 0, 0, 0}  
 };
 #else
@@ -1874,7 +1856,7 @@ swigobject_methods[] = {
   {(char *)"own",     (PyCFunction)SwigPyObject_own,     METH_VARARGS,  (char *)"returns/sets ownership of the pointer"},
   {(char *)"append",  (PyCFunction)SwigPyObject_append,  METH_VARARGS,  (char *)"appends another 'this' object"},
   {(char *)"next",    (PyCFunction)SwigPyObject_next,    METH_VARARGS,  (char *)"returns the next 'this' object"},
-  {(char *)"__repr__",(PyCFunction)SwigPyObject_repr,    METH_VARARGS,  (char *)"returns object representation"},
+  {(char *)"__repr__",(PyCFunction)SwigPyObject_repr,   METH_VARARGS,  (char *)"returns object representation"},
   {0, 0, 0, 0}  
 };
 #endif
@@ -3521,14 +3503,14 @@ namespace swig {
 
   template <class Type> 
   struct traits_as<Type, value_category> {
-    static Type as(PyObject *obj) {
+    static Type as(PyObject *obj, bool throw_error) {
       Type v;
       int res = asval(obj, &v);
       if (!obj || !SWIG_IsOK(res)) {
 	if (!PyErr_Occurred()) {
 	  ::SWIG_Error(SWIG_TypeError,  swig::type_name<Type>());
 	}
-	throw std::invalid_argument("bad type");
+	if (throw_error) throw std::invalid_argument("bad type");
       }
       return v;
     }
@@ -3536,7 +3518,7 @@ namespace swig {
 
   template <class Type> 
   struct traits_as<Type, pointer_category> {
-    static Type as(PyObject *obj) {
+    static Type as(PyObject *obj, bool throw_error) {
       Type *v = 0;      
       int res = (obj ? traits_asptr<Type>::asptr(obj, &v) : SWIG_ERROR);
       if (SWIG_IsOK(res) && v) {
@@ -3548,17 +3530,21 @@ namespace swig {
 	  return *v;
 	}
       } else {
+	// Uninitialized return value, no Type() constructor required.
+	static Type *v_def = (Type*) malloc(sizeof(Type));
 	if (!PyErr_Occurred()) {
 	  SWIG_Error(SWIG_TypeError,  swig::type_name<Type>());
 	}
-	throw std::invalid_argument("bad type");
+	if (throw_error) throw std::invalid_argument("bad type");
+	memset(v_def,0,sizeof(Type));
+	return *v_def;
       }
     }
   };
 
   template <class Type> 
   struct traits_as<Type*, pointer_category> {
-    static Type* as(PyObject *obj) {
+    static Type* as(PyObject *obj, bool throw_error) {
       Type *v = 0;      
       int res = (obj ? traits_asptr<Type>::asptr(obj, &v) : SWIG_ERROR);
       if (SWIG_IsOK(res)) {
@@ -3567,14 +3553,15 @@ namespace swig {
 	if (!PyErr_Occurred()) {
 	  SWIG_Error(SWIG_TypeError,  swig::type_name<Type>());
 	}
-	throw std::invalid_argument("bad type");
+	if (throw_error) throw std::invalid_argument("bad type");
+	return 0;
       }
     }
   };
     
   template <class Type>
-  inline Type as(PyObject *obj) {
-    return traits_as<Type, typename traits<Type>::category>::as(obj);
+  inline Type as(PyObject *obj, bool te = false) {
+    return traits_as<Type, typename traits<Type>::category>::as(obj, te);
   }
 
   template <class Type> 
@@ -4141,8 +4128,8 @@ namespace swig
     {
       swig::SwigVar_PyObject item = PySequence_GetItem(_seq, _index);
       try {
-	return swig::as<T>(item);
-      } catch (const std::invalid_argument& e) {
+	return swig::as<T>(item, true);
+      } catch (std::exception& e) {
 	char msg[1024];
 	sprintf(msg, "in sequence element %d ", (int)_index);
 	if (!PyErr_Occurred()) {
@@ -5265,6 +5252,57 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_new_vec_set_data(PyObject *SWIGUNUSEDPARM(self), PyObject *args, PyObject *kwargs) {
+  PyObject *resultobj = 0;
+  gr::insert_vec_cpp::new_vec *arg1 = (gr::insert_vec_cpp::new_vec *) 0 ;
+  std::vector< unsigned char,std::allocator< unsigned char > > *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  char *  kwnames[] = {
+    (char *) "self",(char *) "vec", NULL 
+  };
+  
+  if (!PyArg_ParseTupleAndKeywords(args,kwargs,(char *)"OO:new_vec_set_data",kwnames,&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_gr__insert_vec_cpp__new_vec, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_vec_set_data" "', argument " "1"" of type '" "gr::insert_vec_cpp::new_vec *""'"); 
+  }
+  arg1 = reinterpret_cast< gr::insert_vec_cpp::new_vec * >(argp1);
+  {
+    std::vector< unsigned char,std::allocator< unsigned char > > *ptr = (std::vector< unsigned char,std::allocator< unsigned char > > *)0;
+    res2 = swig::asptr(obj1, &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_vec_set_data" "', argument " "2"" of type '" "std::vector< unsigned char,std::allocator< unsigned char > > const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_vec_set_data" "', argument " "2"" of type '" "std::vector< unsigned char,std::allocator< unsigned char > > const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  {
+    try {
+      (arg1)->set_data((std::vector< unsigned char,std::allocator< unsigned char > > const &)*arg2);
+    }
+    catch(std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+    
+  }
+  resultobj = SWIG_Py_Void();
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return resultobj;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_delete_new_vec(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   gr::insert_vec_cpp::new_vec *arg1 = (gr::insert_vec_cpp::new_vec *) 0 ;
@@ -5504,6 +5542,57 @@ SWIGINTERN PyObject *_wrap_new_vec_sptr_make(PyObject *SWIGUNUSEDPARM(self), PyO
     
   }
   resultobj = SWIG_NewPointerObj((new gr::insert_vec_cpp::new_vec::sptr(static_cast< const gr::insert_vec_cpp::new_vec::sptr& >(result))), SWIGTYPE_p_boost__shared_ptrT_gr__insert_vec_cpp__new_vec_t, SWIG_POINTER_OWN |  0 );
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return resultobj;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_vec_sptr_set_data(PyObject *SWIGUNUSEDPARM(self), PyObject *args, PyObject *kwargs) {
+  PyObject *resultobj = 0;
+  boost::shared_ptr< gr::insert_vec_cpp::new_vec > *arg1 = (boost::shared_ptr< gr::insert_vec_cpp::new_vec > *) 0 ;
+  std::vector< unsigned char,std::allocator< unsigned char > > *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  char *  kwnames[] = {
+    (char *) "self",(char *) "vec", NULL 
+  };
+  
+  if (!PyArg_ParseTupleAndKeywords(args,kwargs,(char *)"OO:new_vec_sptr_set_data",kwnames,&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_boost__shared_ptrT_gr__insert_vec_cpp__new_vec_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_vec_sptr_set_data" "', argument " "1"" of type '" "boost::shared_ptr< gr::insert_vec_cpp::new_vec > *""'"); 
+  }
+  arg1 = reinterpret_cast< boost::shared_ptr< gr::insert_vec_cpp::new_vec > * >(argp1);
+  {
+    std::vector< unsigned char,std::allocator< unsigned char > > *ptr = (std::vector< unsigned char,std::allocator< unsigned char > > *)0;
+    res2 = swig::asptr(obj1, &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_vec_sptr_set_data" "', argument " "2"" of type '" "std::vector< unsigned char,std::allocator< unsigned char > > const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_vec_sptr_set_data" "', argument " "2"" of type '" "std::vector< unsigned char,std::allocator< unsigned char > > const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  {
+    try {
+      (*arg1)->set_data((std::vector< unsigned char,std::allocator< unsigned char > > const &)*arg2);
+    }
+    catch(std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+    
+  }
+  resultobj = SWIG_Py_Void();
   if (SWIG_IsNewObj(res2)) delete arg2;
   return resultobj;
 fail:
@@ -8411,12 +8500,12 @@ SWIGINTERN PyObject *new_vec_sptr_swigregister(PyObject *SWIGUNUSEDPARM(self), P
 }
 
 static PyMethodDef SwigMethods[] = {
-	 { "SWIG_PyInstanceMethod_New", SWIG_PyInstanceMethod_New, METH_O, NULL},
-	 { "high_res_timer_now", _wrap_high_res_timer_now, METH_VARARGS, (char *)"high_res_timer_now() -> gr::high_res_timer_type"},
-	 { "high_res_timer_now_perfmon", _wrap_high_res_timer_now_perfmon, METH_VARARGS, (char *)"high_res_timer_now_perfmon() -> gr::high_res_timer_type"},
-	 { "high_res_timer_tps", _wrap_high_res_timer_tps, METH_VARARGS, (char *)"high_res_timer_tps() -> gr::high_res_timer_type"},
-	 { "high_res_timer_epoch", _wrap_high_res_timer_epoch, METH_VARARGS, (char *)"high_res_timer_epoch() -> gr::high_res_timer_type"},
-	 { "new_vec_make", (PyCFunction)_wrap_new_vec_make, METH_VARARGS|METH_KEYWORDS, (char *)"\n"
+	 { (char *)"SWIG_PyInstanceMethod_New", (PyCFunction)SWIG_PyInstanceMethod_New, METH_O, NULL},
+	 { (char *)"high_res_timer_now", _wrap_high_res_timer_now, METH_VARARGS, (char *)"high_res_timer_now() -> gr::high_res_timer_type"},
+	 { (char *)"high_res_timer_now_perfmon", _wrap_high_res_timer_now_perfmon, METH_VARARGS, (char *)"high_res_timer_now_perfmon() -> gr::high_res_timer_type"},
+	 { (char *)"high_res_timer_tps", _wrap_high_res_timer_tps, METH_VARARGS, (char *)"high_res_timer_tps() -> gr::high_res_timer_type"},
+	 { (char *)"high_res_timer_epoch", _wrap_high_res_timer_epoch, METH_VARARGS, (char *)"high_res_timer_epoch() -> gr::high_res_timer_type"},
+	 { (char *)"new_vec_make", (PyCFunction) _wrap_new_vec_make, METH_VARARGS | METH_KEYWORDS, (char *)"\n"
 		"new_vec_make(std::vector< unsigned char,std::allocator< unsigned char > > const & vec) -> new_vec_sptr\n"
 		"\n"
 		"<+description of block+>\n"
@@ -8430,15 +8519,16 @@ static PyMethodDef SwigMethods[] = {
 		"Args:\n"
 		"    vec : \n"
 		""},
-	 { "delete_new_vec", _wrap_delete_new_vec, METH_VARARGS, (char *)"delete_new_vec(new_vec self)"},
-	 { "new_vec_swigregister", new_vec_swigregister, METH_VARARGS, NULL},
-	 { "new_new_vec_sptr", _wrap_new_new_vec_sptr, METH_VARARGS, (char *)"\n"
+	 { (char *)"new_vec_set_data", (PyCFunction) _wrap_new_vec_set_data, METH_VARARGS | METH_KEYWORDS, (char *)"new_vec_set_data(new_vec self, std::vector< unsigned char,std::allocator< unsigned char > > const & vec)"},
+	 { (char *)"delete_new_vec", _wrap_delete_new_vec, METH_VARARGS, (char *)"delete_new_vec(new_vec self)"},
+	 { (char *)"new_vec_swigregister", new_vec_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_new_vec_sptr", _wrap_new_new_vec_sptr, METH_VARARGS, (char *)"\n"
 		"new_vec_sptr()\n"
 		"new_new_vec_sptr(new_vec p) -> new_vec_sptr\n"
 		""},
-	 { "new_vec_sptr___deref__", _wrap_new_vec_sptr___deref__, METH_VARARGS, (char *)"new_vec_sptr___deref__(new_vec_sptr self) -> new_vec"},
-	 { "delete_new_vec_sptr", _wrap_delete_new_vec_sptr, METH_VARARGS, (char *)"delete_new_vec_sptr(new_vec_sptr self)"},
-	 { "new_vec_sptr_make", (PyCFunction)_wrap_new_vec_sptr_make, METH_VARARGS|METH_KEYWORDS, (char *)"\n"
+	 { (char *)"new_vec_sptr___deref__", _wrap_new_vec_sptr___deref__, METH_VARARGS, (char *)"new_vec_sptr___deref__(new_vec_sptr self) -> new_vec"},
+	 { (char *)"delete_new_vec_sptr", _wrap_delete_new_vec_sptr, METH_VARARGS, (char *)"delete_new_vec_sptr(new_vec_sptr self)"},
+	 { (char *)"new_vec_sptr_make", (PyCFunction) _wrap_new_vec_sptr_make, METH_VARARGS | METH_KEYWORDS, (char *)"\n"
 		"new_vec_sptr_make(new_vec_sptr self, std::vector< unsigned char,std::allocator< unsigned char > > const & vec) -> new_vec_sptr\n"
 		"\n"
 		"<+description of block+>\n"
@@ -8452,89 +8542,90 @@ static PyMethodDef SwigMethods[] = {
 		"Args:\n"
 		"    vec : \n"
 		""},
-	 { "new_vec_sptr_history", _wrap_new_vec_sptr_history, METH_VARARGS, (char *)"new_vec_sptr_history(new_vec_sptr self) -> unsigned int"},
-	 { "new_vec_sptr_declare_sample_delay", _wrap_new_vec_sptr_declare_sample_delay, METH_VARARGS, (char *)"\n"
+	 { (char *)"new_vec_sptr_set_data", (PyCFunction) _wrap_new_vec_sptr_set_data, METH_VARARGS | METH_KEYWORDS, (char *)"new_vec_sptr_set_data(new_vec_sptr self, std::vector< unsigned char,std::allocator< unsigned char > > const & vec)"},
+	 { (char *)"new_vec_sptr_history", _wrap_new_vec_sptr_history, METH_VARARGS, (char *)"new_vec_sptr_history(new_vec_sptr self) -> unsigned int"},
+	 { (char *)"new_vec_sptr_declare_sample_delay", _wrap_new_vec_sptr_declare_sample_delay, METH_VARARGS, (char *)"\n"
 		"declare_sample_delay(int which, int delay)\n"
 		"new_vec_sptr_declare_sample_delay(new_vec_sptr self, unsigned int delay)\n"
 		""},
-	 { "new_vec_sptr_sample_delay", (PyCFunction)_wrap_new_vec_sptr_sample_delay, METH_VARARGS|METH_KEYWORDS, (char *)"new_vec_sptr_sample_delay(new_vec_sptr self, int which) -> unsigned int"},
-	 { "new_vec_sptr_output_multiple", _wrap_new_vec_sptr_output_multiple, METH_VARARGS, (char *)"new_vec_sptr_output_multiple(new_vec_sptr self) -> int"},
-	 { "new_vec_sptr_relative_rate", _wrap_new_vec_sptr_relative_rate, METH_VARARGS, (char *)"new_vec_sptr_relative_rate(new_vec_sptr self) -> double"},
-	 { "new_vec_sptr_start", _wrap_new_vec_sptr_start, METH_VARARGS, (char *)"new_vec_sptr_start(new_vec_sptr self) -> bool"},
-	 { "new_vec_sptr_stop", _wrap_new_vec_sptr_stop, METH_VARARGS, (char *)"new_vec_sptr_stop(new_vec_sptr self) -> bool"},
-	 { "new_vec_sptr_nitems_read", (PyCFunction)_wrap_new_vec_sptr_nitems_read, METH_VARARGS|METH_KEYWORDS, (char *)"new_vec_sptr_nitems_read(new_vec_sptr self, unsigned int which_input) -> uint64_t"},
-	 { "new_vec_sptr_nitems_written", (PyCFunction)_wrap_new_vec_sptr_nitems_written, METH_VARARGS|METH_KEYWORDS, (char *)"new_vec_sptr_nitems_written(new_vec_sptr self, unsigned int which_output) -> uint64_t"},
-	 { "new_vec_sptr_max_noutput_items", _wrap_new_vec_sptr_max_noutput_items, METH_VARARGS, (char *)"new_vec_sptr_max_noutput_items(new_vec_sptr self) -> int"},
-	 { "new_vec_sptr_set_max_noutput_items", (PyCFunction)_wrap_new_vec_sptr_set_max_noutput_items, METH_VARARGS|METH_KEYWORDS, (char *)"new_vec_sptr_set_max_noutput_items(new_vec_sptr self, int m)"},
-	 { "new_vec_sptr_unset_max_noutput_items", _wrap_new_vec_sptr_unset_max_noutput_items, METH_VARARGS, (char *)"new_vec_sptr_unset_max_noutput_items(new_vec_sptr self)"},
-	 { "new_vec_sptr_is_set_max_noutput_items", _wrap_new_vec_sptr_is_set_max_noutput_items, METH_VARARGS, (char *)"new_vec_sptr_is_set_max_noutput_items(new_vec_sptr self) -> bool"},
-	 { "new_vec_sptr_set_min_noutput_items", (PyCFunction)_wrap_new_vec_sptr_set_min_noutput_items, METH_VARARGS|METH_KEYWORDS, (char *)"new_vec_sptr_set_min_noutput_items(new_vec_sptr self, int m)"},
-	 { "new_vec_sptr_min_noutput_items", _wrap_new_vec_sptr_min_noutput_items, METH_VARARGS, (char *)"new_vec_sptr_min_noutput_items(new_vec_sptr self) -> int"},
-	 { "new_vec_sptr_max_output_buffer", (PyCFunction)_wrap_new_vec_sptr_max_output_buffer, METH_VARARGS|METH_KEYWORDS, (char *)"new_vec_sptr_max_output_buffer(new_vec_sptr self, int i) -> long"},
-	 { "new_vec_sptr_set_max_output_buffer", _wrap_new_vec_sptr_set_max_output_buffer, METH_VARARGS, (char *)"\n"
+	 { (char *)"new_vec_sptr_sample_delay", (PyCFunction) _wrap_new_vec_sptr_sample_delay, METH_VARARGS | METH_KEYWORDS, (char *)"new_vec_sptr_sample_delay(new_vec_sptr self, int which) -> unsigned int"},
+	 { (char *)"new_vec_sptr_output_multiple", _wrap_new_vec_sptr_output_multiple, METH_VARARGS, (char *)"new_vec_sptr_output_multiple(new_vec_sptr self) -> int"},
+	 { (char *)"new_vec_sptr_relative_rate", _wrap_new_vec_sptr_relative_rate, METH_VARARGS, (char *)"new_vec_sptr_relative_rate(new_vec_sptr self) -> double"},
+	 { (char *)"new_vec_sptr_start", _wrap_new_vec_sptr_start, METH_VARARGS, (char *)"new_vec_sptr_start(new_vec_sptr self) -> bool"},
+	 { (char *)"new_vec_sptr_stop", _wrap_new_vec_sptr_stop, METH_VARARGS, (char *)"new_vec_sptr_stop(new_vec_sptr self) -> bool"},
+	 { (char *)"new_vec_sptr_nitems_read", (PyCFunction) _wrap_new_vec_sptr_nitems_read, METH_VARARGS | METH_KEYWORDS, (char *)"new_vec_sptr_nitems_read(new_vec_sptr self, unsigned int which_input) -> uint64_t"},
+	 { (char *)"new_vec_sptr_nitems_written", (PyCFunction) _wrap_new_vec_sptr_nitems_written, METH_VARARGS | METH_KEYWORDS, (char *)"new_vec_sptr_nitems_written(new_vec_sptr self, unsigned int which_output) -> uint64_t"},
+	 { (char *)"new_vec_sptr_max_noutput_items", _wrap_new_vec_sptr_max_noutput_items, METH_VARARGS, (char *)"new_vec_sptr_max_noutput_items(new_vec_sptr self) -> int"},
+	 { (char *)"new_vec_sptr_set_max_noutput_items", (PyCFunction) _wrap_new_vec_sptr_set_max_noutput_items, METH_VARARGS | METH_KEYWORDS, (char *)"new_vec_sptr_set_max_noutput_items(new_vec_sptr self, int m)"},
+	 { (char *)"new_vec_sptr_unset_max_noutput_items", _wrap_new_vec_sptr_unset_max_noutput_items, METH_VARARGS, (char *)"new_vec_sptr_unset_max_noutput_items(new_vec_sptr self)"},
+	 { (char *)"new_vec_sptr_is_set_max_noutput_items", _wrap_new_vec_sptr_is_set_max_noutput_items, METH_VARARGS, (char *)"new_vec_sptr_is_set_max_noutput_items(new_vec_sptr self) -> bool"},
+	 { (char *)"new_vec_sptr_set_min_noutput_items", (PyCFunction) _wrap_new_vec_sptr_set_min_noutput_items, METH_VARARGS | METH_KEYWORDS, (char *)"new_vec_sptr_set_min_noutput_items(new_vec_sptr self, int m)"},
+	 { (char *)"new_vec_sptr_min_noutput_items", _wrap_new_vec_sptr_min_noutput_items, METH_VARARGS, (char *)"new_vec_sptr_min_noutput_items(new_vec_sptr self) -> int"},
+	 { (char *)"new_vec_sptr_max_output_buffer", (PyCFunction) _wrap_new_vec_sptr_max_output_buffer, METH_VARARGS | METH_KEYWORDS, (char *)"new_vec_sptr_max_output_buffer(new_vec_sptr self, int i) -> long"},
+	 { (char *)"new_vec_sptr_set_max_output_buffer", _wrap_new_vec_sptr_set_max_output_buffer, METH_VARARGS, (char *)"\n"
 		"set_max_output_buffer(long max_output_buffer)\n"
 		"new_vec_sptr_set_max_output_buffer(new_vec_sptr self, int port, long max_output_buffer)\n"
 		""},
-	 { "new_vec_sptr_min_output_buffer", (PyCFunction)_wrap_new_vec_sptr_min_output_buffer, METH_VARARGS|METH_KEYWORDS, (char *)"new_vec_sptr_min_output_buffer(new_vec_sptr self, int i) -> long"},
-	 { "new_vec_sptr_set_min_output_buffer", _wrap_new_vec_sptr_set_min_output_buffer, METH_VARARGS, (char *)"\n"
+	 { (char *)"new_vec_sptr_min_output_buffer", (PyCFunction) _wrap_new_vec_sptr_min_output_buffer, METH_VARARGS | METH_KEYWORDS, (char *)"new_vec_sptr_min_output_buffer(new_vec_sptr self, int i) -> long"},
+	 { (char *)"new_vec_sptr_set_min_output_buffer", _wrap_new_vec_sptr_set_min_output_buffer, METH_VARARGS, (char *)"\n"
 		"set_min_output_buffer(long min_output_buffer)\n"
 		"new_vec_sptr_set_min_output_buffer(new_vec_sptr self, int port, long min_output_buffer)\n"
 		""},
-	 { "new_vec_sptr_pc_noutput_items", _wrap_new_vec_sptr_pc_noutput_items, METH_VARARGS, (char *)"new_vec_sptr_pc_noutput_items(new_vec_sptr self) -> float"},
-	 { "new_vec_sptr_pc_noutput_items_avg", _wrap_new_vec_sptr_pc_noutput_items_avg, METH_VARARGS, (char *)"new_vec_sptr_pc_noutput_items_avg(new_vec_sptr self) -> float"},
-	 { "new_vec_sptr_pc_noutput_items_var", _wrap_new_vec_sptr_pc_noutput_items_var, METH_VARARGS, (char *)"new_vec_sptr_pc_noutput_items_var(new_vec_sptr self) -> float"},
-	 { "new_vec_sptr_pc_nproduced", _wrap_new_vec_sptr_pc_nproduced, METH_VARARGS, (char *)"new_vec_sptr_pc_nproduced(new_vec_sptr self) -> float"},
-	 { "new_vec_sptr_pc_nproduced_avg", _wrap_new_vec_sptr_pc_nproduced_avg, METH_VARARGS, (char *)"new_vec_sptr_pc_nproduced_avg(new_vec_sptr self) -> float"},
-	 { "new_vec_sptr_pc_nproduced_var", _wrap_new_vec_sptr_pc_nproduced_var, METH_VARARGS, (char *)"new_vec_sptr_pc_nproduced_var(new_vec_sptr self) -> float"},
-	 { "new_vec_sptr_pc_input_buffers_full", _wrap_new_vec_sptr_pc_input_buffers_full, METH_VARARGS, (char *)"\n"
+	 { (char *)"new_vec_sptr_pc_noutput_items", _wrap_new_vec_sptr_pc_noutput_items, METH_VARARGS, (char *)"new_vec_sptr_pc_noutput_items(new_vec_sptr self) -> float"},
+	 { (char *)"new_vec_sptr_pc_noutput_items_avg", _wrap_new_vec_sptr_pc_noutput_items_avg, METH_VARARGS, (char *)"new_vec_sptr_pc_noutput_items_avg(new_vec_sptr self) -> float"},
+	 { (char *)"new_vec_sptr_pc_noutput_items_var", _wrap_new_vec_sptr_pc_noutput_items_var, METH_VARARGS, (char *)"new_vec_sptr_pc_noutput_items_var(new_vec_sptr self) -> float"},
+	 { (char *)"new_vec_sptr_pc_nproduced", _wrap_new_vec_sptr_pc_nproduced, METH_VARARGS, (char *)"new_vec_sptr_pc_nproduced(new_vec_sptr self) -> float"},
+	 { (char *)"new_vec_sptr_pc_nproduced_avg", _wrap_new_vec_sptr_pc_nproduced_avg, METH_VARARGS, (char *)"new_vec_sptr_pc_nproduced_avg(new_vec_sptr self) -> float"},
+	 { (char *)"new_vec_sptr_pc_nproduced_var", _wrap_new_vec_sptr_pc_nproduced_var, METH_VARARGS, (char *)"new_vec_sptr_pc_nproduced_var(new_vec_sptr self) -> float"},
+	 { (char *)"new_vec_sptr_pc_input_buffers_full", _wrap_new_vec_sptr_pc_input_buffers_full, METH_VARARGS, (char *)"\n"
 		"pc_input_buffers_full(int which) -> float\n"
 		"new_vec_sptr_pc_input_buffers_full(new_vec_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "new_vec_sptr_pc_input_buffers_full_avg", _wrap_new_vec_sptr_pc_input_buffers_full_avg, METH_VARARGS, (char *)"\n"
+	 { (char *)"new_vec_sptr_pc_input_buffers_full_avg", _wrap_new_vec_sptr_pc_input_buffers_full_avg, METH_VARARGS, (char *)"\n"
 		"pc_input_buffers_full_avg(int which) -> float\n"
 		"new_vec_sptr_pc_input_buffers_full_avg(new_vec_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "new_vec_sptr_pc_input_buffers_full_var", _wrap_new_vec_sptr_pc_input_buffers_full_var, METH_VARARGS, (char *)"\n"
+	 { (char *)"new_vec_sptr_pc_input_buffers_full_var", _wrap_new_vec_sptr_pc_input_buffers_full_var, METH_VARARGS, (char *)"\n"
 		"pc_input_buffers_full_var(int which) -> float\n"
 		"new_vec_sptr_pc_input_buffers_full_var(new_vec_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "new_vec_sptr_pc_output_buffers_full", _wrap_new_vec_sptr_pc_output_buffers_full, METH_VARARGS, (char *)"\n"
+	 { (char *)"new_vec_sptr_pc_output_buffers_full", _wrap_new_vec_sptr_pc_output_buffers_full, METH_VARARGS, (char *)"\n"
 		"pc_output_buffers_full(int which) -> float\n"
 		"new_vec_sptr_pc_output_buffers_full(new_vec_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "new_vec_sptr_pc_output_buffers_full_avg", _wrap_new_vec_sptr_pc_output_buffers_full_avg, METH_VARARGS, (char *)"\n"
+	 { (char *)"new_vec_sptr_pc_output_buffers_full_avg", _wrap_new_vec_sptr_pc_output_buffers_full_avg, METH_VARARGS, (char *)"\n"
 		"pc_output_buffers_full_avg(int which) -> float\n"
 		"new_vec_sptr_pc_output_buffers_full_avg(new_vec_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "new_vec_sptr_pc_output_buffers_full_var", _wrap_new_vec_sptr_pc_output_buffers_full_var, METH_VARARGS, (char *)"\n"
+	 { (char *)"new_vec_sptr_pc_output_buffers_full_var", _wrap_new_vec_sptr_pc_output_buffers_full_var, METH_VARARGS, (char *)"\n"
 		"pc_output_buffers_full_var(int which) -> float\n"
 		"new_vec_sptr_pc_output_buffers_full_var(new_vec_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "new_vec_sptr_pc_work_time", _wrap_new_vec_sptr_pc_work_time, METH_VARARGS, (char *)"new_vec_sptr_pc_work_time(new_vec_sptr self) -> float"},
-	 { "new_vec_sptr_pc_work_time_avg", _wrap_new_vec_sptr_pc_work_time_avg, METH_VARARGS, (char *)"new_vec_sptr_pc_work_time_avg(new_vec_sptr self) -> float"},
-	 { "new_vec_sptr_pc_work_time_var", _wrap_new_vec_sptr_pc_work_time_var, METH_VARARGS, (char *)"new_vec_sptr_pc_work_time_var(new_vec_sptr self) -> float"},
-	 { "new_vec_sptr_pc_work_time_total", _wrap_new_vec_sptr_pc_work_time_total, METH_VARARGS, (char *)"new_vec_sptr_pc_work_time_total(new_vec_sptr self) -> float"},
-	 { "new_vec_sptr_pc_throughput_avg", _wrap_new_vec_sptr_pc_throughput_avg, METH_VARARGS, (char *)"new_vec_sptr_pc_throughput_avg(new_vec_sptr self) -> float"},
-	 { "new_vec_sptr_set_processor_affinity", (PyCFunction)_wrap_new_vec_sptr_set_processor_affinity, METH_VARARGS|METH_KEYWORDS, (char *)"new_vec_sptr_set_processor_affinity(new_vec_sptr self, std::vector< int,std::allocator< int > > const & mask)"},
-	 { "new_vec_sptr_unset_processor_affinity", _wrap_new_vec_sptr_unset_processor_affinity, METH_VARARGS, (char *)"new_vec_sptr_unset_processor_affinity(new_vec_sptr self)"},
-	 { "new_vec_sptr_processor_affinity", _wrap_new_vec_sptr_processor_affinity, METH_VARARGS, (char *)"new_vec_sptr_processor_affinity(new_vec_sptr self) -> std::vector< int,std::allocator< int > >"},
-	 { "new_vec_sptr_active_thread_priority", _wrap_new_vec_sptr_active_thread_priority, METH_VARARGS, (char *)"new_vec_sptr_active_thread_priority(new_vec_sptr self) -> int"},
-	 { "new_vec_sptr_thread_priority", _wrap_new_vec_sptr_thread_priority, METH_VARARGS, (char *)"new_vec_sptr_thread_priority(new_vec_sptr self) -> int"},
-	 { "new_vec_sptr_set_thread_priority", (PyCFunction)_wrap_new_vec_sptr_set_thread_priority, METH_VARARGS|METH_KEYWORDS, (char *)"new_vec_sptr_set_thread_priority(new_vec_sptr self, int priority) -> int"},
-	 { "new_vec_sptr_name", _wrap_new_vec_sptr_name, METH_VARARGS, (char *)"new_vec_sptr_name(new_vec_sptr self) -> std::string"},
-	 { "new_vec_sptr_symbol_name", _wrap_new_vec_sptr_symbol_name, METH_VARARGS, (char *)"new_vec_sptr_symbol_name(new_vec_sptr self) -> std::string"},
-	 { "new_vec_sptr_input_signature", _wrap_new_vec_sptr_input_signature, METH_VARARGS, (char *)"new_vec_sptr_input_signature(new_vec_sptr self) -> io_signature_sptr"},
-	 { "new_vec_sptr_output_signature", _wrap_new_vec_sptr_output_signature, METH_VARARGS, (char *)"new_vec_sptr_output_signature(new_vec_sptr self) -> io_signature_sptr"},
-	 { "new_vec_sptr_unique_id", _wrap_new_vec_sptr_unique_id, METH_VARARGS, (char *)"new_vec_sptr_unique_id(new_vec_sptr self) -> long"},
-	 { "new_vec_sptr_to_basic_block", _wrap_new_vec_sptr_to_basic_block, METH_VARARGS, (char *)"new_vec_sptr_to_basic_block(new_vec_sptr self) -> basic_block_sptr"},
-	 { "new_vec_sptr_check_topology", (PyCFunction)_wrap_new_vec_sptr_check_topology, METH_VARARGS|METH_KEYWORDS, (char *)"new_vec_sptr_check_topology(new_vec_sptr self, int ninputs, int noutputs) -> bool"},
-	 { "new_vec_sptr_alias", _wrap_new_vec_sptr_alias, METH_VARARGS, (char *)"new_vec_sptr_alias(new_vec_sptr self) -> std::string"},
-	 { "new_vec_sptr_set_block_alias", (PyCFunction)_wrap_new_vec_sptr_set_block_alias, METH_VARARGS|METH_KEYWORDS, (char *)"new_vec_sptr_set_block_alias(new_vec_sptr self, std::string name)"},
-	 { "new_vec_sptr__post", (PyCFunction)_wrap_new_vec_sptr__post, METH_VARARGS|METH_KEYWORDS, (char *)"new_vec_sptr__post(new_vec_sptr self, swig_int_ptr which_port, swig_int_ptr msg)"},
-	 { "new_vec_sptr_message_ports_in", _wrap_new_vec_sptr_message_ports_in, METH_VARARGS, (char *)"new_vec_sptr_message_ports_in(new_vec_sptr self) -> swig_int_ptr"},
-	 { "new_vec_sptr_message_ports_out", _wrap_new_vec_sptr_message_ports_out, METH_VARARGS, (char *)"new_vec_sptr_message_ports_out(new_vec_sptr self) -> swig_int_ptr"},
-	 { "new_vec_sptr_message_subscribers", (PyCFunction)_wrap_new_vec_sptr_message_subscribers, METH_VARARGS|METH_KEYWORDS, (char *)"new_vec_sptr_message_subscribers(new_vec_sptr self, swig_int_ptr which_port) -> swig_int_ptr"},
-	 { "new_vec_sptr_swigregister", new_vec_sptr_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_vec_sptr_pc_work_time", _wrap_new_vec_sptr_pc_work_time, METH_VARARGS, (char *)"new_vec_sptr_pc_work_time(new_vec_sptr self) -> float"},
+	 { (char *)"new_vec_sptr_pc_work_time_avg", _wrap_new_vec_sptr_pc_work_time_avg, METH_VARARGS, (char *)"new_vec_sptr_pc_work_time_avg(new_vec_sptr self) -> float"},
+	 { (char *)"new_vec_sptr_pc_work_time_var", _wrap_new_vec_sptr_pc_work_time_var, METH_VARARGS, (char *)"new_vec_sptr_pc_work_time_var(new_vec_sptr self) -> float"},
+	 { (char *)"new_vec_sptr_pc_work_time_total", _wrap_new_vec_sptr_pc_work_time_total, METH_VARARGS, (char *)"new_vec_sptr_pc_work_time_total(new_vec_sptr self) -> float"},
+	 { (char *)"new_vec_sptr_pc_throughput_avg", _wrap_new_vec_sptr_pc_throughput_avg, METH_VARARGS, (char *)"new_vec_sptr_pc_throughput_avg(new_vec_sptr self) -> float"},
+	 { (char *)"new_vec_sptr_set_processor_affinity", (PyCFunction) _wrap_new_vec_sptr_set_processor_affinity, METH_VARARGS | METH_KEYWORDS, (char *)"new_vec_sptr_set_processor_affinity(new_vec_sptr self, std::vector< int,std::allocator< int > > const & mask)"},
+	 { (char *)"new_vec_sptr_unset_processor_affinity", _wrap_new_vec_sptr_unset_processor_affinity, METH_VARARGS, (char *)"new_vec_sptr_unset_processor_affinity(new_vec_sptr self)"},
+	 { (char *)"new_vec_sptr_processor_affinity", _wrap_new_vec_sptr_processor_affinity, METH_VARARGS, (char *)"new_vec_sptr_processor_affinity(new_vec_sptr self) -> std::vector< int,std::allocator< int > >"},
+	 { (char *)"new_vec_sptr_active_thread_priority", _wrap_new_vec_sptr_active_thread_priority, METH_VARARGS, (char *)"new_vec_sptr_active_thread_priority(new_vec_sptr self) -> int"},
+	 { (char *)"new_vec_sptr_thread_priority", _wrap_new_vec_sptr_thread_priority, METH_VARARGS, (char *)"new_vec_sptr_thread_priority(new_vec_sptr self) -> int"},
+	 { (char *)"new_vec_sptr_set_thread_priority", (PyCFunction) _wrap_new_vec_sptr_set_thread_priority, METH_VARARGS | METH_KEYWORDS, (char *)"new_vec_sptr_set_thread_priority(new_vec_sptr self, int priority) -> int"},
+	 { (char *)"new_vec_sptr_name", _wrap_new_vec_sptr_name, METH_VARARGS, (char *)"new_vec_sptr_name(new_vec_sptr self) -> std::string"},
+	 { (char *)"new_vec_sptr_symbol_name", _wrap_new_vec_sptr_symbol_name, METH_VARARGS, (char *)"new_vec_sptr_symbol_name(new_vec_sptr self) -> std::string"},
+	 { (char *)"new_vec_sptr_input_signature", _wrap_new_vec_sptr_input_signature, METH_VARARGS, (char *)"new_vec_sptr_input_signature(new_vec_sptr self) -> io_signature_sptr"},
+	 { (char *)"new_vec_sptr_output_signature", _wrap_new_vec_sptr_output_signature, METH_VARARGS, (char *)"new_vec_sptr_output_signature(new_vec_sptr self) -> io_signature_sptr"},
+	 { (char *)"new_vec_sptr_unique_id", _wrap_new_vec_sptr_unique_id, METH_VARARGS, (char *)"new_vec_sptr_unique_id(new_vec_sptr self) -> long"},
+	 { (char *)"new_vec_sptr_to_basic_block", _wrap_new_vec_sptr_to_basic_block, METH_VARARGS, (char *)"new_vec_sptr_to_basic_block(new_vec_sptr self) -> basic_block_sptr"},
+	 { (char *)"new_vec_sptr_check_topology", (PyCFunction) _wrap_new_vec_sptr_check_topology, METH_VARARGS | METH_KEYWORDS, (char *)"new_vec_sptr_check_topology(new_vec_sptr self, int ninputs, int noutputs) -> bool"},
+	 { (char *)"new_vec_sptr_alias", _wrap_new_vec_sptr_alias, METH_VARARGS, (char *)"new_vec_sptr_alias(new_vec_sptr self) -> std::string"},
+	 { (char *)"new_vec_sptr_set_block_alias", (PyCFunction) _wrap_new_vec_sptr_set_block_alias, METH_VARARGS | METH_KEYWORDS, (char *)"new_vec_sptr_set_block_alias(new_vec_sptr self, std::string name)"},
+	 { (char *)"new_vec_sptr__post", (PyCFunction) _wrap_new_vec_sptr__post, METH_VARARGS | METH_KEYWORDS, (char *)"new_vec_sptr__post(new_vec_sptr self, swig_int_ptr which_port, swig_int_ptr msg)"},
+	 { (char *)"new_vec_sptr_message_ports_in", _wrap_new_vec_sptr_message_ports_in, METH_VARARGS, (char *)"new_vec_sptr_message_ports_in(new_vec_sptr self) -> swig_int_ptr"},
+	 { (char *)"new_vec_sptr_message_ports_out", _wrap_new_vec_sptr_message_ports_out, METH_VARARGS, (char *)"new_vec_sptr_message_ports_out(new_vec_sptr self) -> swig_int_ptr"},
+	 { (char *)"new_vec_sptr_message_subscribers", (PyCFunction) _wrap_new_vec_sptr_message_subscribers, METH_VARARGS | METH_KEYWORDS, (char *)"new_vec_sptr_message_subscribers(new_vec_sptr self, swig_int_ptr which_port) -> swig_int_ptr"},
+	 { (char *)"new_vec_sptr_swigregister", new_vec_sptr_swigregister, METH_VARARGS, NULL},
 	 { NULL, NULL, 0, NULL }
 };
 
@@ -9300,9 +9391,9 @@ extern "C" {
             char *ndoc = (char*)malloc(ldoc + lptr + 10);
             if (ndoc) {
               char *buff = ndoc;
-              memcpy(buff, methods[i].ml_doc, ldoc);
+              strncpy(buff, methods[i].ml_doc, ldoc);
               buff += ldoc;
-              memcpy(buff, "swig_ptr: ", 10);
+              strncpy(buff, "swig_ptr: ", 10);
               buff += 10;
               SWIG_PackVoidPtr(buff, ptr, ty->name, lptr);
               methods[i].ml_doc = ndoc;
@@ -9364,8 +9455,8 @@ SWIG_init(void) {
     (char *)"this", &SwigPyBuiltin_ThisClosure, NULL, NULL, NULL
   };
   static SwigPyGetSet thisown_getset_closure = {
-    SwigPyObject_own,
-    SwigPyObject_own
+    (PyCFunction) SwigPyObject_own,
+    (PyCFunction) SwigPyObject_own
   };
   static PyGetSetDef thisown_getset_def = {
     (char *)"thisown", SwigPyBuiltin_GetterClosure, SwigPyBuiltin_SetterClosure, NULL, &thisown_getset_closure

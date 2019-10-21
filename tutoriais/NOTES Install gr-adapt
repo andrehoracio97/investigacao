@@ -1,6 +1,6 @@
 To install Armadillo we need: LAPACK, BLAS/OpenBLAS, ARPACK and SuperLU. 
 
-FIRST we need Dortran compiler:
+Dortran:
 sudo apt-get install gfortran
 
 
@@ -13,7 +13,11 @@ cmake ../
 make
 sudo make install
 
-Openblas 
+
+
+Openblas - DEV
+mkdir dev
+cd dev
 git clone https://github.com/xianyi/OpenBLAS.git
 cd OpenBLAS
 git checkout develop
@@ -64,26 +68,22 @@ sh bootstrap
 ./configure
 make
 make check
-make install
+sudo make install
 
 Se não der por as flags
-
-
-
-
 
 Armadilho
 http://arma.sourceforge.net/download.htmla	
 git clone https://gitlab.com/conradsnicta/armadillo-code
 cd armadillo-code
-make
+cmake .
 sudo make install
 
 
 GR-adaptor
 git clone https://github.com/karel/gr-adapt.git
 cd gr-adapt
-git checkout 
+git checkout maint-3.7
 mkdir build
 cd build
 cmake ../
@@ -91,3 +91,9 @@ make
 make test
 sudo make install
 sudo ldconfig
+
+Problems:
+
+ctest -V -R lms_filter_cc
+Gives Cycler problem:
+sudo apt install python-matplotlib

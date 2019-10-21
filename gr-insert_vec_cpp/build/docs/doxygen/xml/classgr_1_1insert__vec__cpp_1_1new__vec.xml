@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
-  <compounddef id="classgr_1_1insert__vec__cpp_1_1new__vec" kind="class" language="C++" prot="public">
+  <compounddef id="classgr_1_1insert__vec__cpp_1_1new__vec" kind="class" language="C++" prot="public" abstract="yes">
     <compoundname>gr::insert_vec_cpp::new_vec</compoundname>
     <basecompoundref prot="public" virt="virtual">block</basecompoundref>
     <derivedcompoundref refid="classgr_1_1insert__vec__cpp_1_1new__vec__impl" prot="public" virt="non-virtual">gr::insert_vec_cpp::new_vec_impl</derivedcompoundref>
@@ -39,6 +39,26 @@
         <location file="/home/andre/investigacao/gr-insert_vec_cpp/include/insert_vec_cpp/new_vec.h" line="49" column="1"/>
       </memberdef>
       </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classgr_1_1insert__vec__cpp_1_1new__vec_1ad8fcc5702d5d029253307dad869fb34f" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void gr::insert_vec_cpp::new_vec::set_data</definition>
+        <argsstring>(const std::vector&lt; unsigned char &gt; &amp;vec)=0</argsstring>
+        <name>set_data</name>
+        <reimplementedby refid="classgr_1_1insert__vec__cpp_1_1new__vec__impl_1a9c8206e6f6a45a95d48c7ebda844c1f3">set_data</reimplementedby>
+        <param>
+          <type>const std::vector&lt; unsigned char &gt; &amp;</type>
+          <declname>vec</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/gr-insert_vec_cpp/include/insert_vec_cpp/new_vec.h" line="51" column="1"/>
+      </memberdef>
+      </sectiondef>
     <briefdescription>
 <para>&lt;+description of block+&gt; </para>    </briefdescription>
     <detaileddescription>
@@ -71,9 +91,10 @@
         <label>gr::block</label>
       </node>
     </collaborationgraph>
-    <location file="/home/andre/investigacao/gr-insert_vec_cpp/include/insert_vec_cpp/new_vec.h" line="37" column="1" bodyfile="/home/andre/investigacao/gr-insert_vec_cpp/include/insert_vec_cpp/new_vec.h" bodystart="36" bodyend="50"/>
+    <location file="/home/andre/investigacao/gr-insert_vec_cpp/include/insert_vec_cpp/new_vec.h" line="37" column="1" bodyfile="/home/andre/investigacao/gr-insert_vec_cpp/include/insert_vec_cpp/new_vec.h" bodystart="36" bodyend="52"/>
     <listofallmembers>
       <member refid="classgr_1_1insert__vec__cpp_1_1new__vec_1ae753a6e4f743acbc83cab2c2b437da73" prot="public" virt="non-virtual"><scope>gr::insert_vec_cpp::new_vec</scope><name>make</name></member>
+      <member refid="classgr_1_1insert__vec__cpp_1_1new__vec_1ad8fcc5702d5d029253307dad869fb34f" prot="public" virt="pure-virtual"><scope>gr::insert_vec_cpp::new_vec</scope><name>set_data</name></member>
       <member refid="classgr_1_1insert__vec__cpp_1_1new__vec_1a7adf86f938850c9648f271cc494d4cfa" prot="public" virt="non-virtual"><scope>gr::insert_vec_cpp::new_vec</scope><name>sptr</name></member>
     </listofallmembers>
   </compounddef>

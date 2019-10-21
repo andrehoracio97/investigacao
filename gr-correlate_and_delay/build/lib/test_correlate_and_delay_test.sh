@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/bin/sh
 export VOLK_GENERIC=1
 export GR_DONT_LOAD_PREFS=1
 export srcdir=/home/andre/investigacao/gr-correlate_and_delay/lib

@@ -19,6 +19,8 @@ To avoid accidental use of raw pointers, insert_vec_cpp::new_vec's constructor i
 Args:
     vec : "
 
+
+
 %feature("docstring") gr::insert_vec_cpp::new_vec::make "<+description of block+>
 
 Constructor Specific Documentation:

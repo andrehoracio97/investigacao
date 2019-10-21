@@ -31,11 +31,11 @@
         </inbodydescription>
         <location file="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" line="33" column="1" bodyfile="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" bodystart="33" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1a3b97ab6b6a2cbc94f0579f1e9852f697" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1abe0cda4316fa36c1a2cf98c113df743e" prot="private" static="no" mutable="no">
         <type>int</type>
-        <definition>int gr::scrambler_packets_same_seed::scramble_packetize_impl::track_n_bits_seed</definition>
+        <definition>int gr::scrambler_packets_same_seed::scramble_packetize_impl::flag_first</definition>
         <argsstring></argsstring>
-        <name>track_n_bits_seed</name>
+        <name>flag_first</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -43,32 +43,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" line="34" column="1" bodyfile="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" bodystart="34" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1a494814b620bc21f738e8a8fa5c9e1d89" prot="private" static="no" mutable="no">
-        <type>int</type>
-        <definition>int gr::scrambler_packets_same_seed::scramble_packetize_impl::new_seed</definition>
-        <argsstring></argsstring>
-        <name>new_seed</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" line="35" column="1" bodyfile="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" bodystart="35" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1a3b5323b244e664f919ad23f992abc1a8" prot="private" static="no" mutable="no">
-        <type>int</type>
-        <definition>int gr::scrambler_packets_same_seed::scramble_packetize_impl::time_to_create</definition>
-        <argsstring></argsstring>
-        <name>time_to_create</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" line="36" column="1" bodyfile="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" bodystart="36" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1a146012b048c084b9c9a7101c3c8181ff" prot="private" static="no" mutable="no">
         <type>int</type>
@@ -81,7 +55,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" line="37" column="1" bodyfile="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" bodystart="37" bodyend="-1"/>
+        <location file="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" line="35" column="1" bodyfile="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" bodystart="35" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1a6f5ff04916482222ee34816c8118f9eb" prot="private" static="no" mutable="no">
         <type>int</type>
@@ -94,7 +68,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" line="38" column="1" bodyfile="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" bodystart="38" bodyend="-1"/>
+        <location file="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" line="36" column="1" bodyfile="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" bodystart="36" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1ae88c74209d6bc279c6f987d4a6ddceb0" prot="private" static="no" mutable="no">
         <type>int</type>
@@ -107,7 +81,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" line="39" column="1" bodyfile="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" bodystart="39" bodyend="-1"/>
+        <location file="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" line="37" column="1" bodyfile="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" bodystart="37" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1ab91a09eb4b5c4bbf9225bca19d96ad5f" prot="private" static="no" mutable="no">
         <type>int</type>
@@ -120,20 +94,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" line="40" column="1" bodyfile="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" bodystart="40" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1aef0cd0312f6a894e9137efe484391a59" prot="private" static="no" mutable="no">
-        <type>uint</type>
-        <definition>uint gr::scrambler_packets_same_seed::scramble_packetize_impl::mask</definition>
-        <argsstring></argsstring>
-        <name>mask</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" line="41" column="1" bodyfile="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" bodystart="41" bodyend="-1"/>
+        <location file="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" line="38" column="1" bodyfile="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" bodystart="38" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -164,7 +125,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" line="45" column="1"/>
+        <location file="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" line="42" column="1"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1acf06a70fa61d2b251cee62c34a665de6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -177,7 +138,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" line="46" column="1"/>
+        <location file="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" line="43" column="1"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1a7679a8ec3201059919d0a14d99cd185a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -198,7 +159,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" line="49" column="1"/>
+        <location file="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" line="46" column="1"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1a6b5370f57e7e8a8cdb3b4e4009167a44" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -227,7 +188,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" line="51" column="1"/>
+        <location file="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" line="48" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -268,23 +229,20 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" line="30" column="1" bodyfile="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" bodystart="29" bodyend="55"/>
+    <location file="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" line="30" column="1" bodyfile="/home/andre/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h" bodystart="29" bodyend="52"/>
     <listofallmembers>
       <member refid="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1a118fbd3cde3a38a2d294f73f17d87f90" prot="private" virt="non-virtual"><scope>gr::scrambler_packets_same_seed::scramble_packetize_impl</scope><name>d_lfsr</name></member>
+      <member refid="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1abe0cda4316fa36c1a2cf98c113df743e" prot="private" virt="non-virtual"><scope>gr::scrambler_packets_same_seed::scramble_packetize_impl</scope><name>flag_first</name></member>
       <member refid="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1ae88c74209d6bc279c6f987d4a6ddceb0" prot="private" virt="non-virtual"><scope>gr::scrambler_packets_same_seed::scramble_packetize_impl</scope><name>flag_last</name></member>
       <member refid="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1a7679a8ec3201059919d0a14d99cd185a" prot="public" virt="non-virtual"><scope>gr::scrambler_packets_same_seed::scramble_packetize_impl</scope><name>forecast</name></member>
       <member refid="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1a6b5370f57e7e8a8cdb3b4e4009167a44" prot="public" virt="non-virtual"><scope>gr::scrambler_packets_same_seed::scramble_packetize_impl</scope><name>general_work</name></member>
       <member refid="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize_1aaf16a939b167433787fa4d1d91ef2cea" prot="public" virt="non-virtual"><scope>gr::scrambler_packets_same_seed::scramble_packetize_impl</scope><name>make</name></member>
-      <member refid="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1aef0cd0312f6a894e9137efe484391a59" prot="private" virt="non-virtual"><scope>gr::scrambler_packets_same_seed::scramble_packetize_impl</scope><name>mask</name></member>
       <member refid="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1a6f5ff04916482222ee34816c8118f9eb" prot="private" virt="non-virtual"><scope>gr::scrambler_packets_same_seed::scramble_packetize_impl</scope><name>max_n_produce</name></member>
       <member refid="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1a51e527fd8948a12ae5f73cd90d9709af" prot="private" virt="non-virtual"><scope>gr::scrambler_packets_same_seed::scramble_packetize_impl</scope><name>n_frame</name></member>
-      <member refid="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1a494814b620bc21f738e8a8fa5c9e1d89" prot="private" virt="non-virtual"><scope>gr::scrambler_packets_same_seed::scramble_packetize_impl</scope><name>new_seed</name></member>
       <member refid="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1a146012b048c084b9c9a7101c3c8181ff" prot="private" virt="non-virtual"><scope>gr::scrambler_packets_same_seed::scramble_packetize_impl</scope><name>remaining_bits</name></member>
       <member refid="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1a221f8f0e6ebd007b0f92f1eb037495d6" prot="public" virt="non-virtual"><scope>gr::scrambler_packets_same_seed::scramble_packetize_impl</scope><name>scramble_packetize_impl</name></member>
       <member refid="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize_1a2b1a8e4e62d2e757add9d478f851a3fa" prot="public" virt="non-virtual"><scope>gr::scrambler_packets_same_seed::scramble_packetize_impl</scope><name>sptr</name></member>
-      <member refid="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1a3b5323b244e664f919ad23f992abc1a8" prot="private" virt="non-virtual"><scope>gr::scrambler_packets_same_seed::scramble_packetize_impl</scope><name>time_to_create</name></member>
       <member refid="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1ab91a09eb4b5c4bbf9225bca19d96ad5f" prot="private" virt="non-virtual"><scope>gr::scrambler_packets_same_seed::scramble_packetize_impl</scope><name>track_n_bits_added</name></member>
-      <member refid="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1a3b97ab6b6a2cbc94f0579f1e9852f697" prot="private" virt="non-virtual"><scope>gr::scrambler_packets_same_seed::scramble_packetize_impl</scope><name>track_n_bits_seed</name></member>
       <member refid="classgr_1_1scrambler__packets__same__seed_1_1scramble__packetize__impl_1acf06a70fa61d2b251cee62c34a665de6" prot="public" virt="non-virtual"><scope>gr::scrambler_packets_same_seed::scramble_packetize_impl</scope><name>~scramble_packetize_impl</name></member>
     </listofallmembers>
   </compounddef>

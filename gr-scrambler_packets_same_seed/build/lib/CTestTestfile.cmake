@@ -4,4 +4,4 @@
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.
-add_test(test_scrambler_packets_same_seed "/usr/bin/sh" "/home/andre/investigacao/gr-scrambler_packets_same_seed/build/lib/test_scrambler_packets_same_seed_test.sh")
+add_test(test_scrambler_packets_same_seed "/bin/sh" "/home/andre/investigacao/gr-scrambler_packets_same_seed/build/lib/test_scrambler_packets_same_seed_test.sh")

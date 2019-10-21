@@ -1200,7 +1200,7 @@
     </param>
     <param>
       <key>stop</key>
-      <value>10000</value>
+      <value>2000000</value>
     </param>
     <param>
       <key>rangeType</key>
@@ -1263,7 +1263,7 @@
     </param>
     <param>
       <key>stop</key>
-      <value>10000</value>
+      <value>2000000</value>
     </param>
     <param>
       <key>rangeType</key>
@@ -1403,7 +1403,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(416, 908)</value>
+      <value>(400, 908)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1721,7 +1721,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(248, 916)</value>
+      <value>(256, 916)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -9400,7 +9400,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(632, 572)</value>
+      <value>(640, 572)</value>
     </param>
     <param>
       <key>_rotation</key>

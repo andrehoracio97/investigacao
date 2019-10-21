@@ -1632,14 +1632,6 @@ SwigPyObject_repr(SwigPyObject *v, PyObject *args)
   return repr;  
 }
 
-/* We need a version taking two PyObject* parameters so it's a valid
- * PyCFunction to use in swigobject_methods[]. */
-SWIGRUNTIME PyObject *
-SwigPyObject_repr2(PyObject *v, PyObject *SWIGUNUSEDPARM(args))
-{
-  return SwigPyObject_repr((SwigPyObject*)v);
-}
-
 SWIGRUNTIME int
 SwigPyObject_compare(SwigPyObject *v, SwigPyObject *w)
 {
@@ -1769,7 +1761,11 @@ SwigPyObject_append(PyObject* v, PyObject* next)
 }
 
 SWIGRUNTIME PyObject* 
+#ifdef METH_NOARGS
+SwigPyObject_next(PyObject* v)
+#else
 SwigPyObject_next(PyObject* v, PyObject *SWIGUNUSEDPARM(args))
+#endif
 {
   SwigPyObject *sobj = (SwigPyObject *) v;
   if (sobj->next) {    
@@ -1803,20 +1799,6 @@ SwigPyObject_acquire(PyObject* v, PyObject *SWIGUNUSEDPARM(args))
   sobj->own = SWIG_POINTER_OWN;
   return SWIG_Py_Void();
 }
-
-#ifdef METH_NOARGS
-static PyObject*
-SwigPyObject_disown2(PyObject* v, PyObject *SWIGUNUSEDPARM(args))
-{
-  return SwigPyObject_disown(v);
-}
-
-static PyObject*
-SwigPyObject_acquire2(PyObject* v, PyObject *SWIGUNUSEDPARM(args))
-{
-  return SwigPyObject_acquire(v);
-}
-#endif
 
 SWIGINTERN PyObject*
 SwigPyObject_own(PyObject *v, PyObject *args)
@@ -1858,12 +1840,12 @@ SwigPyObject_own(PyObject *v, PyObject *args)
 #ifdef METH_O
 static PyMethodDef
 swigobject_methods[] = {
-  {(char *)"disown",  (PyCFunction)SwigPyObject_disown2, METH_NOARGS,  (char *)"releases ownership of the pointer"},
-  {(char *)"acquire", (PyCFunction)SwigPyObject_acquire2,METH_NOARGS,  (char *)"acquires ownership of the pointer"},
+  {(char *)"disown",  (PyCFunction)SwigPyObject_disown,  METH_NOARGS,  (char *)"releases ownership of the pointer"},
+  {(char *)"acquire", (PyCFunction)SwigPyObject_acquire, METH_NOARGS,  (char *)"acquires ownership of the pointer"},
   {(char *)"own",     (PyCFunction)SwigPyObject_own,     METH_VARARGS, (char *)"returns/sets ownership of the pointer"},
   {(char *)"append",  (PyCFunction)SwigPyObject_append,  METH_O,       (char *)"appends another 'this' object"},
   {(char *)"next",    (PyCFunction)SwigPyObject_next,    METH_NOARGS,  (char *)"returns the next 'this' object"},
-  {(char *)"__repr__",(PyCFunction)SwigPyObject_repr2,   METH_NOARGS,  (char *)"returns object representation"},
+  {(char *)"__repr__",(PyCFunction)SwigPyObject_repr,    METH_NOARGS,  (char *)"returns object representation"},
   {0, 0, 0, 0}  
 };
 #else
@@ -1874,7 +1856,7 @@ swigobject_methods[] = {
   {(char *)"own",     (PyCFunction)SwigPyObject_own,     METH_VARARGS,  (char *)"returns/sets ownership of the pointer"},
   {(char *)"append",  (PyCFunction)SwigPyObject_append,  METH_VARARGS,  (char *)"appends another 'this' object"},
   {(char *)"next",    (PyCFunction)SwigPyObject_next,    METH_VARARGS,  (char *)"returns the next 'this' object"},
-  {(char *)"__repr__",(PyCFunction)SwigPyObject_repr,    METH_VARARGS,  (char *)"returns object representation"},
+  {(char *)"__repr__",(PyCFunction)SwigPyObject_repr,   METH_VARARGS,  (char *)"returns object representation"},
   {0, 0, 0, 0}  
 };
 #endif
@@ -3527,14 +3509,14 @@ namespace swig {
 
   template <class Type> 
   struct traits_as<Type, value_category> {
-    static Type as(PyObject *obj) {
+    static Type as(PyObject *obj, bool throw_error) {
       Type v;
       int res = asval(obj, &v);
       if (!obj || !SWIG_IsOK(res)) {
 	if (!PyErr_Occurred()) {
 	  ::SWIG_Error(SWIG_TypeError,  swig::type_name<Type>());
 	}
-	throw std::invalid_argument("bad type");
+	if (throw_error) throw std::invalid_argument("bad type");
       }
       return v;
     }
@@ -3542,7 +3524,7 @@ namespace swig {
 
   template <class Type> 
   struct traits_as<Type, pointer_category> {
-    static Type as(PyObject *obj) {
+    static Type as(PyObject *obj, bool throw_error) {
       Type *v = 0;      
       int res = (obj ? traits_asptr<Type>::asptr(obj, &v) : SWIG_ERROR);
       if (SWIG_IsOK(res) && v) {
@@ -3554,17 +3536,21 @@ namespace swig {
 	  return *v;
 	}
       } else {
+	// Uninitialized return value, no Type() constructor required.
+	static Type *v_def = (Type*) malloc(sizeof(Type));
 	if (!PyErr_Occurred()) {
 	  SWIG_Error(SWIG_TypeError,  swig::type_name<Type>());
 	}
-	throw std::invalid_argument("bad type");
+	if (throw_error) throw std::invalid_argument("bad type");
+	memset(v_def,0,sizeof(Type));
+	return *v_def;
       }
     }
   };
 
   template <class Type> 
   struct traits_as<Type*, pointer_category> {
-    static Type* as(PyObject *obj) {
+    static Type* as(PyObject *obj, bool throw_error) {
       Type *v = 0;      
       int res = (obj ? traits_asptr<Type>::asptr(obj, &v) : SWIG_ERROR);
       if (SWIG_IsOK(res)) {
@@ -3573,14 +3559,15 @@ namespace swig {
 	if (!PyErr_Occurred()) {
 	  SWIG_Error(SWIG_TypeError,  swig::type_name<Type>());
 	}
-	throw std::invalid_argument("bad type");
+	if (throw_error) throw std::invalid_argument("bad type");
+	return 0;
       }
     }
   };
     
   template <class Type>
-  inline Type as(PyObject *obj) {
-    return traits_as<Type, typename traits<Type>::category>::as(obj);
+  inline Type as(PyObject *obj, bool te = false) {
+    return traits_as<Type, typename traits<Type>::category>::as(obj, te);
   }
 
   template <class Type> 
@@ -4147,8 +4134,8 @@ namespace swig
     {
       swig::SwigVar_PyObject item = PySequence_GetItem(_seq, _index);
       try {
-	return swig::as<T>(item);
-      } catch (const std::invalid_argument& e) {
+	return swig::as<T>(item, true);
+      } catch (std::exception& e) {
 	char msg[1024];
 	sprintf(msg, "in sequence element %d ", (int)_index);
 	if (!PyErr_Occurred()) {
@@ -18083,12 +18070,12 @@ SWIGINTERN PyObject *additive_descrambler_sptr_swigregister(PyObject *SWIGUNUSED
 }
 
 static PyMethodDef SwigMethods[] = {
-	 { "SWIG_PyInstanceMethod_New", SWIG_PyInstanceMethod_New, METH_O, NULL},
-	 { "high_res_timer_now", _wrap_high_res_timer_now, METH_VARARGS, (char *)"high_res_timer_now() -> gr::high_res_timer_type"},
-	 { "high_res_timer_now_perfmon", _wrap_high_res_timer_now_perfmon, METH_VARARGS, (char *)"high_res_timer_now_perfmon() -> gr::high_res_timer_type"},
-	 { "high_res_timer_tps", _wrap_high_res_timer_tps, METH_VARARGS, (char *)"high_res_timer_tps() -> gr::high_res_timer_type"},
-	 { "high_res_timer_epoch", _wrap_high_res_timer_epoch, METH_VARARGS, (char *)"high_res_timer_epoch() -> gr::high_res_timer_type"},
-	 { "custom_scrambler_make", (PyCFunction)_wrap_custom_scrambler_make, METH_VARARGS|METH_KEYWORDS, (char *)"\n"
+	 { (char *)"SWIG_PyInstanceMethod_New", (PyCFunction)SWIG_PyInstanceMethod_New, METH_O, NULL},
+	 { (char *)"high_res_timer_now", _wrap_high_res_timer_now, METH_VARARGS, (char *)"high_res_timer_now() -> gr::high_res_timer_type"},
+	 { (char *)"high_res_timer_now_perfmon", _wrap_high_res_timer_now_perfmon, METH_VARARGS, (char *)"high_res_timer_now_perfmon() -> gr::high_res_timer_type"},
+	 { (char *)"high_res_timer_tps", _wrap_high_res_timer_tps, METH_VARARGS, (char *)"high_res_timer_tps() -> gr::high_res_timer_type"},
+	 { (char *)"high_res_timer_epoch", _wrap_high_res_timer_epoch, METH_VARARGS, (char *)"high_res_timer_epoch() -> gr::high_res_timer_type"},
+	 { (char *)"custom_scrambler_make", (PyCFunction) _wrap_custom_scrambler_make, METH_VARARGS | METH_KEYWORDS, (char *)"\n"
 		"custom_scrambler_make(int mask, int seed, int len, int frame_bits) -> custom_scrambler_sptr\n"
 		"\n"
 		"<+description of block+>\n"
@@ -18105,15 +18092,15 @@ static PyMethodDef SwigMethods[] = {
 		"    len : \n"
 		"    frame_bits : \n"
 		""},
-	 { "delete_custom_scrambler", _wrap_delete_custom_scrambler, METH_VARARGS, (char *)"delete_custom_scrambler(custom_scrambler self)"},
-	 { "custom_scrambler_swigregister", custom_scrambler_swigregister, METH_VARARGS, NULL},
-	 { "new_custom_scrambler_sptr", _wrap_new_custom_scrambler_sptr, METH_VARARGS, (char *)"\n"
+	 { (char *)"delete_custom_scrambler", _wrap_delete_custom_scrambler, METH_VARARGS, (char *)"delete_custom_scrambler(custom_scrambler self)"},
+	 { (char *)"custom_scrambler_swigregister", custom_scrambler_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_custom_scrambler_sptr", _wrap_new_custom_scrambler_sptr, METH_VARARGS, (char *)"\n"
 		"custom_scrambler_sptr()\n"
 		"new_custom_scrambler_sptr(custom_scrambler p) -> custom_scrambler_sptr\n"
 		""},
-	 { "custom_scrambler_sptr___deref__", _wrap_custom_scrambler_sptr___deref__, METH_VARARGS, (char *)"custom_scrambler_sptr___deref__(custom_scrambler_sptr self) -> custom_scrambler"},
-	 { "delete_custom_scrambler_sptr", _wrap_delete_custom_scrambler_sptr, METH_VARARGS, (char *)"delete_custom_scrambler_sptr(custom_scrambler_sptr self)"},
-	 { "custom_scrambler_sptr_make", (PyCFunction)_wrap_custom_scrambler_sptr_make, METH_VARARGS|METH_KEYWORDS, (char *)"\n"
+	 { (char *)"custom_scrambler_sptr___deref__", _wrap_custom_scrambler_sptr___deref__, METH_VARARGS, (char *)"custom_scrambler_sptr___deref__(custom_scrambler_sptr self) -> custom_scrambler"},
+	 { (char *)"delete_custom_scrambler_sptr", _wrap_delete_custom_scrambler_sptr, METH_VARARGS, (char *)"delete_custom_scrambler_sptr(custom_scrambler_sptr self)"},
+	 { (char *)"custom_scrambler_sptr_make", (PyCFunction) _wrap_custom_scrambler_sptr_make, METH_VARARGS | METH_KEYWORDS, (char *)"\n"
 		"custom_scrambler_sptr_make(custom_scrambler_sptr self, int mask, int seed, int len, int frame_bits) -> custom_scrambler_sptr\n"
 		"\n"
 		"<+description of block+>\n"
@@ -18130,90 +18117,90 @@ static PyMethodDef SwigMethods[] = {
 		"    len : \n"
 		"    frame_bits : \n"
 		""},
-	 { "custom_scrambler_sptr_history", _wrap_custom_scrambler_sptr_history, METH_VARARGS, (char *)"custom_scrambler_sptr_history(custom_scrambler_sptr self) -> unsigned int"},
-	 { "custom_scrambler_sptr_declare_sample_delay", _wrap_custom_scrambler_sptr_declare_sample_delay, METH_VARARGS, (char *)"\n"
+	 { (char *)"custom_scrambler_sptr_history", _wrap_custom_scrambler_sptr_history, METH_VARARGS, (char *)"custom_scrambler_sptr_history(custom_scrambler_sptr self) -> unsigned int"},
+	 { (char *)"custom_scrambler_sptr_declare_sample_delay", _wrap_custom_scrambler_sptr_declare_sample_delay, METH_VARARGS, (char *)"\n"
 		"declare_sample_delay(int which, int delay)\n"
 		"custom_scrambler_sptr_declare_sample_delay(custom_scrambler_sptr self, unsigned int delay)\n"
 		""},
-	 { "custom_scrambler_sptr_sample_delay", (PyCFunction)_wrap_custom_scrambler_sptr_sample_delay, METH_VARARGS|METH_KEYWORDS, (char *)"custom_scrambler_sptr_sample_delay(custom_scrambler_sptr self, int which) -> unsigned int"},
-	 { "custom_scrambler_sptr_output_multiple", _wrap_custom_scrambler_sptr_output_multiple, METH_VARARGS, (char *)"custom_scrambler_sptr_output_multiple(custom_scrambler_sptr self) -> int"},
-	 { "custom_scrambler_sptr_relative_rate", _wrap_custom_scrambler_sptr_relative_rate, METH_VARARGS, (char *)"custom_scrambler_sptr_relative_rate(custom_scrambler_sptr self) -> double"},
-	 { "custom_scrambler_sptr_start", _wrap_custom_scrambler_sptr_start, METH_VARARGS, (char *)"custom_scrambler_sptr_start(custom_scrambler_sptr self) -> bool"},
-	 { "custom_scrambler_sptr_stop", _wrap_custom_scrambler_sptr_stop, METH_VARARGS, (char *)"custom_scrambler_sptr_stop(custom_scrambler_sptr self) -> bool"},
-	 { "custom_scrambler_sptr_nitems_read", (PyCFunction)_wrap_custom_scrambler_sptr_nitems_read, METH_VARARGS|METH_KEYWORDS, (char *)"custom_scrambler_sptr_nitems_read(custom_scrambler_sptr self, unsigned int which_input) -> uint64_t"},
-	 { "custom_scrambler_sptr_nitems_written", (PyCFunction)_wrap_custom_scrambler_sptr_nitems_written, METH_VARARGS|METH_KEYWORDS, (char *)"custom_scrambler_sptr_nitems_written(custom_scrambler_sptr self, unsigned int which_output) -> uint64_t"},
-	 { "custom_scrambler_sptr_max_noutput_items", _wrap_custom_scrambler_sptr_max_noutput_items, METH_VARARGS, (char *)"custom_scrambler_sptr_max_noutput_items(custom_scrambler_sptr self) -> int"},
-	 { "custom_scrambler_sptr_set_max_noutput_items", (PyCFunction)_wrap_custom_scrambler_sptr_set_max_noutput_items, METH_VARARGS|METH_KEYWORDS, (char *)"custom_scrambler_sptr_set_max_noutput_items(custom_scrambler_sptr self, int m)"},
-	 { "custom_scrambler_sptr_unset_max_noutput_items", _wrap_custom_scrambler_sptr_unset_max_noutput_items, METH_VARARGS, (char *)"custom_scrambler_sptr_unset_max_noutput_items(custom_scrambler_sptr self)"},
-	 { "custom_scrambler_sptr_is_set_max_noutput_items", _wrap_custom_scrambler_sptr_is_set_max_noutput_items, METH_VARARGS, (char *)"custom_scrambler_sptr_is_set_max_noutput_items(custom_scrambler_sptr self) -> bool"},
-	 { "custom_scrambler_sptr_set_min_noutput_items", (PyCFunction)_wrap_custom_scrambler_sptr_set_min_noutput_items, METH_VARARGS|METH_KEYWORDS, (char *)"custom_scrambler_sptr_set_min_noutput_items(custom_scrambler_sptr self, int m)"},
-	 { "custom_scrambler_sptr_min_noutput_items", _wrap_custom_scrambler_sptr_min_noutput_items, METH_VARARGS, (char *)"custom_scrambler_sptr_min_noutput_items(custom_scrambler_sptr self) -> int"},
-	 { "custom_scrambler_sptr_max_output_buffer", (PyCFunction)_wrap_custom_scrambler_sptr_max_output_buffer, METH_VARARGS|METH_KEYWORDS, (char *)"custom_scrambler_sptr_max_output_buffer(custom_scrambler_sptr self, int i) -> long"},
-	 { "custom_scrambler_sptr_set_max_output_buffer", _wrap_custom_scrambler_sptr_set_max_output_buffer, METH_VARARGS, (char *)"\n"
+	 { (char *)"custom_scrambler_sptr_sample_delay", (PyCFunction) _wrap_custom_scrambler_sptr_sample_delay, METH_VARARGS | METH_KEYWORDS, (char *)"custom_scrambler_sptr_sample_delay(custom_scrambler_sptr self, int which) -> unsigned int"},
+	 { (char *)"custom_scrambler_sptr_output_multiple", _wrap_custom_scrambler_sptr_output_multiple, METH_VARARGS, (char *)"custom_scrambler_sptr_output_multiple(custom_scrambler_sptr self) -> int"},
+	 { (char *)"custom_scrambler_sptr_relative_rate", _wrap_custom_scrambler_sptr_relative_rate, METH_VARARGS, (char *)"custom_scrambler_sptr_relative_rate(custom_scrambler_sptr self) -> double"},
+	 { (char *)"custom_scrambler_sptr_start", _wrap_custom_scrambler_sptr_start, METH_VARARGS, (char *)"custom_scrambler_sptr_start(custom_scrambler_sptr self) -> bool"},
+	 { (char *)"custom_scrambler_sptr_stop", _wrap_custom_scrambler_sptr_stop, METH_VARARGS, (char *)"custom_scrambler_sptr_stop(custom_scrambler_sptr self) -> bool"},
+	 { (char *)"custom_scrambler_sptr_nitems_read", (PyCFunction) _wrap_custom_scrambler_sptr_nitems_read, METH_VARARGS | METH_KEYWORDS, (char *)"custom_scrambler_sptr_nitems_read(custom_scrambler_sptr self, unsigned int which_input) -> uint64_t"},
+	 { (char *)"custom_scrambler_sptr_nitems_written", (PyCFunction) _wrap_custom_scrambler_sptr_nitems_written, METH_VARARGS | METH_KEYWORDS, (char *)"custom_scrambler_sptr_nitems_written(custom_scrambler_sptr self, unsigned int which_output) -> uint64_t"},
+	 { (char *)"custom_scrambler_sptr_max_noutput_items", _wrap_custom_scrambler_sptr_max_noutput_items, METH_VARARGS, (char *)"custom_scrambler_sptr_max_noutput_items(custom_scrambler_sptr self) -> int"},
+	 { (char *)"custom_scrambler_sptr_set_max_noutput_items", (PyCFunction) _wrap_custom_scrambler_sptr_set_max_noutput_items, METH_VARARGS | METH_KEYWORDS, (char *)"custom_scrambler_sptr_set_max_noutput_items(custom_scrambler_sptr self, int m)"},
+	 { (char *)"custom_scrambler_sptr_unset_max_noutput_items", _wrap_custom_scrambler_sptr_unset_max_noutput_items, METH_VARARGS, (char *)"custom_scrambler_sptr_unset_max_noutput_items(custom_scrambler_sptr self)"},
+	 { (char *)"custom_scrambler_sptr_is_set_max_noutput_items", _wrap_custom_scrambler_sptr_is_set_max_noutput_items, METH_VARARGS, (char *)"custom_scrambler_sptr_is_set_max_noutput_items(custom_scrambler_sptr self) -> bool"},
+	 { (char *)"custom_scrambler_sptr_set_min_noutput_items", (PyCFunction) _wrap_custom_scrambler_sptr_set_min_noutput_items, METH_VARARGS | METH_KEYWORDS, (char *)"custom_scrambler_sptr_set_min_noutput_items(custom_scrambler_sptr self, int m)"},
+	 { (char *)"custom_scrambler_sptr_min_noutput_items", _wrap_custom_scrambler_sptr_min_noutput_items, METH_VARARGS, (char *)"custom_scrambler_sptr_min_noutput_items(custom_scrambler_sptr self) -> int"},
+	 { (char *)"custom_scrambler_sptr_max_output_buffer", (PyCFunction) _wrap_custom_scrambler_sptr_max_output_buffer, METH_VARARGS | METH_KEYWORDS, (char *)"custom_scrambler_sptr_max_output_buffer(custom_scrambler_sptr self, int i) -> long"},
+	 { (char *)"custom_scrambler_sptr_set_max_output_buffer", _wrap_custom_scrambler_sptr_set_max_output_buffer, METH_VARARGS, (char *)"\n"
 		"set_max_output_buffer(long max_output_buffer)\n"
 		"custom_scrambler_sptr_set_max_output_buffer(custom_scrambler_sptr self, int port, long max_output_buffer)\n"
 		""},
-	 { "custom_scrambler_sptr_min_output_buffer", (PyCFunction)_wrap_custom_scrambler_sptr_min_output_buffer, METH_VARARGS|METH_KEYWORDS, (char *)"custom_scrambler_sptr_min_output_buffer(custom_scrambler_sptr self, int i) -> long"},
-	 { "custom_scrambler_sptr_set_min_output_buffer", _wrap_custom_scrambler_sptr_set_min_output_buffer, METH_VARARGS, (char *)"\n"
+	 { (char *)"custom_scrambler_sptr_min_output_buffer", (PyCFunction) _wrap_custom_scrambler_sptr_min_output_buffer, METH_VARARGS | METH_KEYWORDS, (char *)"custom_scrambler_sptr_min_output_buffer(custom_scrambler_sptr self, int i) -> long"},
+	 { (char *)"custom_scrambler_sptr_set_min_output_buffer", _wrap_custom_scrambler_sptr_set_min_output_buffer, METH_VARARGS, (char *)"\n"
 		"set_min_output_buffer(long min_output_buffer)\n"
 		"custom_scrambler_sptr_set_min_output_buffer(custom_scrambler_sptr self, int port, long min_output_buffer)\n"
 		""},
-	 { "custom_scrambler_sptr_pc_noutput_items", _wrap_custom_scrambler_sptr_pc_noutput_items, METH_VARARGS, (char *)"custom_scrambler_sptr_pc_noutput_items(custom_scrambler_sptr self) -> float"},
-	 { "custom_scrambler_sptr_pc_noutput_items_avg", _wrap_custom_scrambler_sptr_pc_noutput_items_avg, METH_VARARGS, (char *)"custom_scrambler_sptr_pc_noutput_items_avg(custom_scrambler_sptr self) -> float"},
-	 { "custom_scrambler_sptr_pc_noutput_items_var", _wrap_custom_scrambler_sptr_pc_noutput_items_var, METH_VARARGS, (char *)"custom_scrambler_sptr_pc_noutput_items_var(custom_scrambler_sptr self) -> float"},
-	 { "custom_scrambler_sptr_pc_nproduced", _wrap_custom_scrambler_sptr_pc_nproduced, METH_VARARGS, (char *)"custom_scrambler_sptr_pc_nproduced(custom_scrambler_sptr self) -> float"},
-	 { "custom_scrambler_sptr_pc_nproduced_avg", _wrap_custom_scrambler_sptr_pc_nproduced_avg, METH_VARARGS, (char *)"custom_scrambler_sptr_pc_nproduced_avg(custom_scrambler_sptr self) -> float"},
-	 { "custom_scrambler_sptr_pc_nproduced_var", _wrap_custom_scrambler_sptr_pc_nproduced_var, METH_VARARGS, (char *)"custom_scrambler_sptr_pc_nproduced_var(custom_scrambler_sptr self) -> float"},
-	 { "custom_scrambler_sptr_pc_input_buffers_full", _wrap_custom_scrambler_sptr_pc_input_buffers_full, METH_VARARGS, (char *)"\n"
+	 { (char *)"custom_scrambler_sptr_pc_noutput_items", _wrap_custom_scrambler_sptr_pc_noutput_items, METH_VARARGS, (char *)"custom_scrambler_sptr_pc_noutput_items(custom_scrambler_sptr self) -> float"},
+	 { (char *)"custom_scrambler_sptr_pc_noutput_items_avg", _wrap_custom_scrambler_sptr_pc_noutput_items_avg, METH_VARARGS, (char *)"custom_scrambler_sptr_pc_noutput_items_avg(custom_scrambler_sptr self) -> float"},
+	 { (char *)"custom_scrambler_sptr_pc_noutput_items_var", _wrap_custom_scrambler_sptr_pc_noutput_items_var, METH_VARARGS, (char *)"custom_scrambler_sptr_pc_noutput_items_var(custom_scrambler_sptr self) -> float"},
+	 { (char *)"custom_scrambler_sptr_pc_nproduced", _wrap_custom_scrambler_sptr_pc_nproduced, METH_VARARGS, (char *)"custom_scrambler_sptr_pc_nproduced(custom_scrambler_sptr self) -> float"},
+	 { (char *)"custom_scrambler_sptr_pc_nproduced_avg", _wrap_custom_scrambler_sptr_pc_nproduced_avg, METH_VARARGS, (char *)"custom_scrambler_sptr_pc_nproduced_avg(custom_scrambler_sptr self) -> float"},
+	 { (char *)"custom_scrambler_sptr_pc_nproduced_var", _wrap_custom_scrambler_sptr_pc_nproduced_var, METH_VARARGS, (char *)"custom_scrambler_sptr_pc_nproduced_var(custom_scrambler_sptr self) -> float"},
+	 { (char *)"custom_scrambler_sptr_pc_input_buffers_full", _wrap_custom_scrambler_sptr_pc_input_buffers_full, METH_VARARGS, (char *)"\n"
 		"pc_input_buffers_full(int which) -> float\n"
 		"custom_scrambler_sptr_pc_input_buffers_full(custom_scrambler_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "custom_scrambler_sptr_pc_input_buffers_full_avg", _wrap_custom_scrambler_sptr_pc_input_buffers_full_avg, METH_VARARGS, (char *)"\n"
+	 { (char *)"custom_scrambler_sptr_pc_input_buffers_full_avg", _wrap_custom_scrambler_sptr_pc_input_buffers_full_avg, METH_VARARGS, (char *)"\n"
 		"pc_input_buffers_full_avg(int which) -> float\n"
 		"custom_scrambler_sptr_pc_input_buffers_full_avg(custom_scrambler_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "custom_scrambler_sptr_pc_input_buffers_full_var", _wrap_custom_scrambler_sptr_pc_input_buffers_full_var, METH_VARARGS, (char *)"\n"
+	 { (char *)"custom_scrambler_sptr_pc_input_buffers_full_var", _wrap_custom_scrambler_sptr_pc_input_buffers_full_var, METH_VARARGS, (char *)"\n"
 		"pc_input_buffers_full_var(int which) -> float\n"
 		"custom_scrambler_sptr_pc_input_buffers_full_var(custom_scrambler_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "custom_scrambler_sptr_pc_output_buffers_full", _wrap_custom_scrambler_sptr_pc_output_buffers_full, METH_VARARGS, (char *)"\n"
+	 { (char *)"custom_scrambler_sptr_pc_output_buffers_full", _wrap_custom_scrambler_sptr_pc_output_buffers_full, METH_VARARGS, (char *)"\n"
 		"pc_output_buffers_full(int which) -> float\n"
 		"custom_scrambler_sptr_pc_output_buffers_full(custom_scrambler_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "custom_scrambler_sptr_pc_output_buffers_full_avg", _wrap_custom_scrambler_sptr_pc_output_buffers_full_avg, METH_VARARGS, (char *)"\n"
+	 { (char *)"custom_scrambler_sptr_pc_output_buffers_full_avg", _wrap_custom_scrambler_sptr_pc_output_buffers_full_avg, METH_VARARGS, (char *)"\n"
 		"pc_output_buffers_full_avg(int which) -> float\n"
 		"custom_scrambler_sptr_pc_output_buffers_full_avg(custom_scrambler_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "custom_scrambler_sptr_pc_output_buffers_full_var", _wrap_custom_scrambler_sptr_pc_output_buffers_full_var, METH_VARARGS, (char *)"\n"
+	 { (char *)"custom_scrambler_sptr_pc_output_buffers_full_var", _wrap_custom_scrambler_sptr_pc_output_buffers_full_var, METH_VARARGS, (char *)"\n"
 		"pc_output_buffers_full_var(int which) -> float\n"
 		"custom_scrambler_sptr_pc_output_buffers_full_var(custom_scrambler_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "custom_scrambler_sptr_pc_work_time", _wrap_custom_scrambler_sptr_pc_work_time, METH_VARARGS, (char *)"custom_scrambler_sptr_pc_work_time(custom_scrambler_sptr self) -> float"},
-	 { "custom_scrambler_sptr_pc_work_time_avg", _wrap_custom_scrambler_sptr_pc_work_time_avg, METH_VARARGS, (char *)"custom_scrambler_sptr_pc_work_time_avg(custom_scrambler_sptr self) -> float"},
-	 { "custom_scrambler_sptr_pc_work_time_var", _wrap_custom_scrambler_sptr_pc_work_time_var, METH_VARARGS, (char *)"custom_scrambler_sptr_pc_work_time_var(custom_scrambler_sptr self) -> float"},
-	 { "custom_scrambler_sptr_pc_work_time_total", _wrap_custom_scrambler_sptr_pc_work_time_total, METH_VARARGS, (char *)"custom_scrambler_sptr_pc_work_time_total(custom_scrambler_sptr self) -> float"},
-	 { "custom_scrambler_sptr_pc_throughput_avg", _wrap_custom_scrambler_sptr_pc_throughput_avg, METH_VARARGS, (char *)"custom_scrambler_sptr_pc_throughput_avg(custom_scrambler_sptr self) -> float"},
-	 { "custom_scrambler_sptr_set_processor_affinity", (PyCFunction)_wrap_custom_scrambler_sptr_set_processor_affinity, METH_VARARGS|METH_KEYWORDS, (char *)"custom_scrambler_sptr_set_processor_affinity(custom_scrambler_sptr self, std::vector< int,std::allocator< int > > const & mask)"},
-	 { "custom_scrambler_sptr_unset_processor_affinity", _wrap_custom_scrambler_sptr_unset_processor_affinity, METH_VARARGS, (char *)"custom_scrambler_sptr_unset_processor_affinity(custom_scrambler_sptr self)"},
-	 { "custom_scrambler_sptr_processor_affinity", _wrap_custom_scrambler_sptr_processor_affinity, METH_VARARGS, (char *)"custom_scrambler_sptr_processor_affinity(custom_scrambler_sptr self) -> std::vector< int,std::allocator< int > >"},
-	 { "custom_scrambler_sptr_active_thread_priority", _wrap_custom_scrambler_sptr_active_thread_priority, METH_VARARGS, (char *)"custom_scrambler_sptr_active_thread_priority(custom_scrambler_sptr self) -> int"},
-	 { "custom_scrambler_sptr_thread_priority", _wrap_custom_scrambler_sptr_thread_priority, METH_VARARGS, (char *)"custom_scrambler_sptr_thread_priority(custom_scrambler_sptr self) -> int"},
-	 { "custom_scrambler_sptr_set_thread_priority", (PyCFunction)_wrap_custom_scrambler_sptr_set_thread_priority, METH_VARARGS|METH_KEYWORDS, (char *)"custom_scrambler_sptr_set_thread_priority(custom_scrambler_sptr self, int priority) -> int"},
-	 { "custom_scrambler_sptr_name", _wrap_custom_scrambler_sptr_name, METH_VARARGS, (char *)"custom_scrambler_sptr_name(custom_scrambler_sptr self) -> std::string"},
-	 { "custom_scrambler_sptr_symbol_name", _wrap_custom_scrambler_sptr_symbol_name, METH_VARARGS, (char *)"custom_scrambler_sptr_symbol_name(custom_scrambler_sptr self) -> std::string"},
-	 { "custom_scrambler_sptr_input_signature", _wrap_custom_scrambler_sptr_input_signature, METH_VARARGS, (char *)"custom_scrambler_sptr_input_signature(custom_scrambler_sptr self) -> io_signature_sptr"},
-	 { "custom_scrambler_sptr_output_signature", _wrap_custom_scrambler_sptr_output_signature, METH_VARARGS, (char *)"custom_scrambler_sptr_output_signature(custom_scrambler_sptr self) -> io_signature_sptr"},
-	 { "custom_scrambler_sptr_unique_id", _wrap_custom_scrambler_sptr_unique_id, METH_VARARGS, (char *)"custom_scrambler_sptr_unique_id(custom_scrambler_sptr self) -> long"},
-	 { "custom_scrambler_sptr_to_basic_block", _wrap_custom_scrambler_sptr_to_basic_block, METH_VARARGS, (char *)"custom_scrambler_sptr_to_basic_block(custom_scrambler_sptr self) -> basic_block_sptr"},
-	 { "custom_scrambler_sptr_check_topology", (PyCFunction)_wrap_custom_scrambler_sptr_check_topology, METH_VARARGS|METH_KEYWORDS, (char *)"custom_scrambler_sptr_check_topology(custom_scrambler_sptr self, int ninputs, int noutputs) -> bool"},
-	 { "custom_scrambler_sptr_alias", _wrap_custom_scrambler_sptr_alias, METH_VARARGS, (char *)"custom_scrambler_sptr_alias(custom_scrambler_sptr self) -> std::string"},
-	 { "custom_scrambler_sptr_set_block_alias", (PyCFunction)_wrap_custom_scrambler_sptr_set_block_alias, METH_VARARGS|METH_KEYWORDS, (char *)"custom_scrambler_sptr_set_block_alias(custom_scrambler_sptr self, std::string name)"},
-	 { "custom_scrambler_sptr__post", (PyCFunction)_wrap_custom_scrambler_sptr__post, METH_VARARGS|METH_KEYWORDS, (char *)"custom_scrambler_sptr__post(custom_scrambler_sptr self, swig_int_ptr which_port, swig_int_ptr msg)"},
-	 { "custom_scrambler_sptr_message_ports_in", _wrap_custom_scrambler_sptr_message_ports_in, METH_VARARGS, (char *)"custom_scrambler_sptr_message_ports_in(custom_scrambler_sptr self) -> swig_int_ptr"},
-	 { "custom_scrambler_sptr_message_ports_out", _wrap_custom_scrambler_sptr_message_ports_out, METH_VARARGS, (char *)"custom_scrambler_sptr_message_ports_out(custom_scrambler_sptr self) -> swig_int_ptr"},
-	 { "custom_scrambler_sptr_message_subscribers", (PyCFunction)_wrap_custom_scrambler_sptr_message_subscribers, METH_VARARGS|METH_KEYWORDS, (char *)"custom_scrambler_sptr_message_subscribers(custom_scrambler_sptr self, swig_int_ptr which_port) -> swig_int_ptr"},
-	 { "custom_scrambler_sptr_swigregister", custom_scrambler_sptr_swigregister, METH_VARARGS, NULL},
-	 { "custom_descrambler_make", (PyCFunction)_wrap_custom_descrambler_make, METH_VARARGS|METH_KEYWORDS, (char *)"\n"
+	 { (char *)"custom_scrambler_sptr_pc_work_time", _wrap_custom_scrambler_sptr_pc_work_time, METH_VARARGS, (char *)"custom_scrambler_sptr_pc_work_time(custom_scrambler_sptr self) -> float"},
+	 { (char *)"custom_scrambler_sptr_pc_work_time_avg", _wrap_custom_scrambler_sptr_pc_work_time_avg, METH_VARARGS, (char *)"custom_scrambler_sptr_pc_work_time_avg(custom_scrambler_sptr self) -> float"},
+	 { (char *)"custom_scrambler_sptr_pc_work_time_var", _wrap_custom_scrambler_sptr_pc_work_time_var, METH_VARARGS, (char *)"custom_scrambler_sptr_pc_work_time_var(custom_scrambler_sptr self) -> float"},
+	 { (char *)"custom_scrambler_sptr_pc_work_time_total", _wrap_custom_scrambler_sptr_pc_work_time_total, METH_VARARGS, (char *)"custom_scrambler_sptr_pc_work_time_total(custom_scrambler_sptr self) -> float"},
+	 { (char *)"custom_scrambler_sptr_pc_throughput_avg", _wrap_custom_scrambler_sptr_pc_throughput_avg, METH_VARARGS, (char *)"custom_scrambler_sptr_pc_throughput_avg(custom_scrambler_sptr self) -> float"},
+	 { (char *)"custom_scrambler_sptr_set_processor_affinity", (PyCFunction) _wrap_custom_scrambler_sptr_set_processor_affinity, METH_VARARGS | METH_KEYWORDS, (char *)"custom_scrambler_sptr_set_processor_affinity(custom_scrambler_sptr self, std::vector< int,std::allocator< int > > const & mask)"},
+	 { (char *)"custom_scrambler_sptr_unset_processor_affinity", _wrap_custom_scrambler_sptr_unset_processor_affinity, METH_VARARGS, (char *)"custom_scrambler_sptr_unset_processor_affinity(custom_scrambler_sptr self)"},
+	 { (char *)"custom_scrambler_sptr_processor_affinity", _wrap_custom_scrambler_sptr_processor_affinity, METH_VARARGS, (char *)"custom_scrambler_sptr_processor_affinity(custom_scrambler_sptr self) -> std::vector< int,std::allocator< int > >"},
+	 { (char *)"custom_scrambler_sptr_active_thread_priority", _wrap_custom_scrambler_sptr_active_thread_priority, METH_VARARGS, (char *)"custom_scrambler_sptr_active_thread_priority(custom_scrambler_sptr self) -> int"},
+	 { (char *)"custom_scrambler_sptr_thread_priority", _wrap_custom_scrambler_sptr_thread_priority, METH_VARARGS, (char *)"custom_scrambler_sptr_thread_priority(custom_scrambler_sptr self) -> int"},
+	 { (char *)"custom_scrambler_sptr_set_thread_priority", (PyCFunction) _wrap_custom_scrambler_sptr_set_thread_priority, METH_VARARGS | METH_KEYWORDS, (char *)"custom_scrambler_sptr_set_thread_priority(custom_scrambler_sptr self, int priority) -> int"},
+	 { (char *)"custom_scrambler_sptr_name", _wrap_custom_scrambler_sptr_name, METH_VARARGS, (char *)"custom_scrambler_sptr_name(custom_scrambler_sptr self) -> std::string"},
+	 { (char *)"custom_scrambler_sptr_symbol_name", _wrap_custom_scrambler_sptr_symbol_name, METH_VARARGS, (char *)"custom_scrambler_sptr_symbol_name(custom_scrambler_sptr self) -> std::string"},
+	 { (char *)"custom_scrambler_sptr_input_signature", _wrap_custom_scrambler_sptr_input_signature, METH_VARARGS, (char *)"custom_scrambler_sptr_input_signature(custom_scrambler_sptr self) -> io_signature_sptr"},
+	 { (char *)"custom_scrambler_sptr_output_signature", _wrap_custom_scrambler_sptr_output_signature, METH_VARARGS, (char *)"custom_scrambler_sptr_output_signature(custom_scrambler_sptr self) -> io_signature_sptr"},
+	 { (char *)"custom_scrambler_sptr_unique_id", _wrap_custom_scrambler_sptr_unique_id, METH_VARARGS, (char *)"custom_scrambler_sptr_unique_id(custom_scrambler_sptr self) -> long"},
+	 { (char *)"custom_scrambler_sptr_to_basic_block", _wrap_custom_scrambler_sptr_to_basic_block, METH_VARARGS, (char *)"custom_scrambler_sptr_to_basic_block(custom_scrambler_sptr self) -> basic_block_sptr"},
+	 { (char *)"custom_scrambler_sptr_check_topology", (PyCFunction) _wrap_custom_scrambler_sptr_check_topology, METH_VARARGS | METH_KEYWORDS, (char *)"custom_scrambler_sptr_check_topology(custom_scrambler_sptr self, int ninputs, int noutputs) -> bool"},
+	 { (char *)"custom_scrambler_sptr_alias", _wrap_custom_scrambler_sptr_alias, METH_VARARGS, (char *)"custom_scrambler_sptr_alias(custom_scrambler_sptr self) -> std::string"},
+	 { (char *)"custom_scrambler_sptr_set_block_alias", (PyCFunction) _wrap_custom_scrambler_sptr_set_block_alias, METH_VARARGS | METH_KEYWORDS, (char *)"custom_scrambler_sptr_set_block_alias(custom_scrambler_sptr self, std::string name)"},
+	 { (char *)"custom_scrambler_sptr__post", (PyCFunction) _wrap_custom_scrambler_sptr__post, METH_VARARGS | METH_KEYWORDS, (char *)"custom_scrambler_sptr__post(custom_scrambler_sptr self, swig_int_ptr which_port, swig_int_ptr msg)"},
+	 { (char *)"custom_scrambler_sptr_message_ports_in", _wrap_custom_scrambler_sptr_message_ports_in, METH_VARARGS, (char *)"custom_scrambler_sptr_message_ports_in(custom_scrambler_sptr self) -> swig_int_ptr"},
+	 { (char *)"custom_scrambler_sptr_message_ports_out", _wrap_custom_scrambler_sptr_message_ports_out, METH_VARARGS, (char *)"custom_scrambler_sptr_message_ports_out(custom_scrambler_sptr self) -> swig_int_ptr"},
+	 { (char *)"custom_scrambler_sptr_message_subscribers", (PyCFunction) _wrap_custom_scrambler_sptr_message_subscribers, METH_VARARGS | METH_KEYWORDS, (char *)"custom_scrambler_sptr_message_subscribers(custom_scrambler_sptr self, swig_int_ptr which_port) -> swig_int_ptr"},
+	 { (char *)"custom_scrambler_sptr_swigregister", custom_scrambler_sptr_swigregister, METH_VARARGS, NULL},
+	 { (char *)"custom_descrambler_make", (PyCFunction) _wrap_custom_descrambler_make, METH_VARARGS | METH_KEYWORDS, (char *)"\n"
 		"custom_descrambler_make(int mask, int seed, int len, int frame_bits) -> custom_descrambler_sptr\n"
 		"\n"
 		"<+description of block+>\n"
@@ -18230,15 +18217,15 @@ static PyMethodDef SwigMethods[] = {
 		"    len : \n"
 		"    frame_bits : \n"
 		""},
-	 { "delete_custom_descrambler", _wrap_delete_custom_descrambler, METH_VARARGS, (char *)"delete_custom_descrambler(custom_descrambler self)"},
-	 { "custom_descrambler_swigregister", custom_descrambler_swigregister, METH_VARARGS, NULL},
-	 { "new_custom_descrambler_sptr", _wrap_new_custom_descrambler_sptr, METH_VARARGS, (char *)"\n"
+	 { (char *)"delete_custom_descrambler", _wrap_delete_custom_descrambler, METH_VARARGS, (char *)"delete_custom_descrambler(custom_descrambler self)"},
+	 { (char *)"custom_descrambler_swigregister", custom_descrambler_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_custom_descrambler_sptr", _wrap_new_custom_descrambler_sptr, METH_VARARGS, (char *)"\n"
 		"custom_descrambler_sptr()\n"
 		"new_custom_descrambler_sptr(custom_descrambler p) -> custom_descrambler_sptr\n"
 		""},
-	 { "custom_descrambler_sptr___deref__", _wrap_custom_descrambler_sptr___deref__, METH_VARARGS, (char *)"custom_descrambler_sptr___deref__(custom_descrambler_sptr self) -> custom_descrambler"},
-	 { "delete_custom_descrambler_sptr", _wrap_delete_custom_descrambler_sptr, METH_VARARGS, (char *)"delete_custom_descrambler_sptr(custom_descrambler_sptr self)"},
-	 { "custom_descrambler_sptr_make", (PyCFunction)_wrap_custom_descrambler_sptr_make, METH_VARARGS|METH_KEYWORDS, (char *)"\n"
+	 { (char *)"custom_descrambler_sptr___deref__", _wrap_custom_descrambler_sptr___deref__, METH_VARARGS, (char *)"custom_descrambler_sptr___deref__(custom_descrambler_sptr self) -> custom_descrambler"},
+	 { (char *)"delete_custom_descrambler_sptr", _wrap_delete_custom_descrambler_sptr, METH_VARARGS, (char *)"delete_custom_descrambler_sptr(custom_descrambler_sptr self)"},
+	 { (char *)"custom_descrambler_sptr_make", (PyCFunction) _wrap_custom_descrambler_sptr_make, METH_VARARGS | METH_KEYWORDS, (char *)"\n"
 		"custom_descrambler_sptr_make(custom_descrambler_sptr self, int mask, int seed, int len, int frame_bits) -> custom_descrambler_sptr\n"
 		"\n"
 		"<+description of block+>\n"
@@ -18255,275 +18242,339 @@ static PyMethodDef SwigMethods[] = {
 		"    len : \n"
 		"    frame_bits : \n"
 		""},
-	 { "custom_descrambler_sptr_history", _wrap_custom_descrambler_sptr_history, METH_VARARGS, (char *)"custom_descrambler_sptr_history(custom_descrambler_sptr self) -> unsigned int"},
-	 { "custom_descrambler_sptr_declare_sample_delay", _wrap_custom_descrambler_sptr_declare_sample_delay, METH_VARARGS, (char *)"\n"
+	 { (char *)"custom_descrambler_sptr_history", _wrap_custom_descrambler_sptr_history, METH_VARARGS, (char *)"custom_descrambler_sptr_history(custom_descrambler_sptr self) -> unsigned int"},
+	 { (char *)"custom_descrambler_sptr_declare_sample_delay", _wrap_custom_descrambler_sptr_declare_sample_delay, METH_VARARGS, (char *)"\n"
 		"declare_sample_delay(int which, int delay)\n"
 		"custom_descrambler_sptr_declare_sample_delay(custom_descrambler_sptr self, unsigned int delay)\n"
 		""},
-	 { "custom_descrambler_sptr_sample_delay", (PyCFunction)_wrap_custom_descrambler_sptr_sample_delay, METH_VARARGS|METH_KEYWORDS, (char *)"custom_descrambler_sptr_sample_delay(custom_descrambler_sptr self, int which) -> unsigned int"},
-	 { "custom_descrambler_sptr_output_multiple", _wrap_custom_descrambler_sptr_output_multiple, METH_VARARGS, (char *)"custom_descrambler_sptr_output_multiple(custom_descrambler_sptr self) -> int"},
-	 { "custom_descrambler_sptr_relative_rate", _wrap_custom_descrambler_sptr_relative_rate, METH_VARARGS, (char *)"custom_descrambler_sptr_relative_rate(custom_descrambler_sptr self) -> double"},
-	 { "custom_descrambler_sptr_start", _wrap_custom_descrambler_sptr_start, METH_VARARGS, (char *)"custom_descrambler_sptr_start(custom_descrambler_sptr self) -> bool"},
-	 { "custom_descrambler_sptr_stop", _wrap_custom_descrambler_sptr_stop, METH_VARARGS, (char *)"custom_descrambler_sptr_stop(custom_descrambler_sptr self) -> bool"},
-	 { "custom_descrambler_sptr_nitems_read", (PyCFunction)_wrap_custom_descrambler_sptr_nitems_read, METH_VARARGS|METH_KEYWORDS, (char *)"custom_descrambler_sptr_nitems_read(custom_descrambler_sptr self, unsigned int which_input) -> uint64_t"},
-	 { "custom_descrambler_sptr_nitems_written", (PyCFunction)_wrap_custom_descrambler_sptr_nitems_written, METH_VARARGS|METH_KEYWORDS, (char *)"custom_descrambler_sptr_nitems_written(custom_descrambler_sptr self, unsigned int which_output) -> uint64_t"},
-	 { "custom_descrambler_sptr_max_noutput_items", _wrap_custom_descrambler_sptr_max_noutput_items, METH_VARARGS, (char *)"custom_descrambler_sptr_max_noutput_items(custom_descrambler_sptr self) -> int"},
-	 { "custom_descrambler_sptr_set_max_noutput_items", (PyCFunction)_wrap_custom_descrambler_sptr_set_max_noutput_items, METH_VARARGS|METH_KEYWORDS, (char *)"custom_descrambler_sptr_set_max_noutput_items(custom_descrambler_sptr self, int m)"},
-	 { "custom_descrambler_sptr_unset_max_noutput_items", _wrap_custom_descrambler_sptr_unset_max_noutput_items, METH_VARARGS, (char *)"custom_descrambler_sptr_unset_max_noutput_items(custom_descrambler_sptr self)"},
-	 { "custom_descrambler_sptr_is_set_max_noutput_items", _wrap_custom_descrambler_sptr_is_set_max_noutput_items, METH_VARARGS, (char *)"custom_descrambler_sptr_is_set_max_noutput_items(custom_descrambler_sptr self) -> bool"},
-	 { "custom_descrambler_sptr_set_min_noutput_items", (PyCFunction)_wrap_custom_descrambler_sptr_set_min_noutput_items, METH_VARARGS|METH_KEYWORDS, (char *)"custom_descrambler_sptr_set_min_noutput_items(custom_descrambler_sptr self, int m)"},
-	 { "custom_descrambler_sptr_min_noutput_items", _wrap_custom_descrambler_sptr_min_noutput_items, METH_VARARGS, (char *)"custom_descrambler_sptr_min_noutput_items(custom_descrambler_sptr self) -> int"},
-	 { "custom_descrambler_sptr_max_output_buffer", (PyCFunction)_wrap_custom_descrambler_sptr_max_output_buffer, METH_VARARGS|METH_KEYWORDS, (char *)"custom_descrambler_sptr_max_output_buffer(custom_descrambler_sptr self, int i) -> long"},
-	 { "custom_descrambler_sptr_set_max_output_buffer", _wrap_custom_descrambler_sptr_set_max_output_buffer, METH_VARARGS, (char *)"\n"
+	 { (char *)"custom_descrambler_sptr_sample_delay", (PyCFunction) _wrap_custom_descrambler_sptr_sample_delay, METH_VARARGS | METH_KEYWORDS, (char *)"custom_descrambler_sptr_sample_delay(custom_descrambler_sptr self, int which) -> unsigned int"},
+	 { (char *)"custom_descrambler_sptr_output_multiple", _wrap_custom_descrambler_sptr_output_multiple, METH_VARARGS, (char *)"custom_descrambler_sptr_output_multiple(custom_descrambler_sptr self) -> int"},
+	 { (char *)"custom_descrambler_sptr_relative_rate", _wrap_custom_descrambler_sptr_relative_rate, METH_VARARGS, (char *)"custom_descrambler_sptr_relative_rate(custom_descrambler_sptr self) -> double"},
+	 { (char *)"custom_descrambler_sptr_start", _wrap_custom_descrambler_sptr_start, METH_VARARGS, (char *)"custom_descrambler_sptr_start(custom_descrambler_sptr self) -> bool"},
+	 { (char *)"custom_descrambler_sptr_stop", _wrap_custom_descrambler_sptr_stop, METH_VARARGS, (char *)"custom_descrambler_sptr_stop(custom_descrambler_sptr self) -> bool"},
+	 { (char *)"custom_descrambler_sptr_nitems_read", (PyCFunction) _wrap_custom_descrambler_sptr_nitems_read, METH_VARARGS | METH_KEYWORDS, (char *)"custom_descrambler_sptr_nitems_read(custom_descrambler_sptr self, unsigned int which_input) -> uint64_t"},
+	 { (char *)"custom_descrambler_sptr_nitems_written", (PyCFunction) _wrap_custom_descrambler_sptr_nitems_written, METH_VARARGS | METH_KEYWORDS, (char *)"custom_descrambler_sptr_nitems_written(custom_descrambler_sptr self, unsigned int which_output) -> uint64_t"},
+	 { (char *)"custom_descrambler_sptr_max_noutput_items", _wrap_custom_descrambler_sptr_max_noutput_items, METH_VARARGS, (char *)"custom_descrambler_sptr_max_noutput_items(custom_descrambler_sptr self) -> int"},
+	 { (char *)"custom_descrambler_sptr_set_max_noutput_items", (PyCFunction) _wrap_custom_descrambler_sptr_set_max_noutput_items, METH_VARARGS | METH_KEYWORDS, (char *)"custom_descrambler_sptr_set_max_noutput_items(custom_descrambler_sptr self, int m)"},
+	 { (char *)"custom_descrambler_sptr_unset_max_noutput_items", _wrap_custom_descrambler_sptr_unset_max_noutput_items, METH_VARARGS, (char *)"custom_descrambler_sptr_unset_max_noutput_items(custom_descrambler_sptr self)"},
+	 { (char *)"custom_descrambler_sptr_is_set_max_noutput_items", _wrap_custom_descrambler_sptr_is_set_max_noutput_items, METH_VARARGS, (char *)"custom_descrambler_sptr_is_set_max_noutput_items(custom_descrambler_sptr self) -> bool"},
+	 { (char *)"custom_descrambler_sptr_set_min_noutput_items", (PyCFunction) _wrap_custom_descrambler_sptr_set_min_noutput_items, METH_VARARGS | METH_KEYWORDS, (char *)"custom_descrambler_sptr_set_min_noutput_items(custom_descrambler_sptr self, int m)"},
+	 { (char *)"custom_descrambler_sptr_min_noutput_items", _wrap_custom_descrambler_sptr_min_noutput_items, METH_VARARGS, (char *)"custom_descrambler_sptr_min_noutput_items(custom_descrambler_sptr self) -> int"},
+	 { (char *)"custom_descrambler_sptr_max_output_buffer", (PyCFunction) _wrap_custom_descrambler_sptr_max_output_buffer, METH_VARARGS | METH_KEYWORDS, (char *)"custom_descrambler_sptr_max_output_buffer(custom_descrambler_sptr self, int i) -> long"},
+	 { (char *)"custom_descrambler_sptr_set_max_output_buffer", _wrap_custom_descrambler_sptr_set_max_output_buffer, METH_VARARGS, (char *)"\n"
 		"set_max_output_buffer(long max_output_buffer)\n"
 		"custom_descrambler_sptr_set_max_output_buffer(custom_descrambler_sptr self, int port, long max_output_buffer)\n"
 		""},
-	 { "custom_descrambler_sptr_min_output_buffer", (PyCFunction)_wrap_custom_descrambler_sptr_min_output_buffer, METH_VARARGS|METH_KEYWORDS, (char *)"custom_descrambler_sptr_min_output_buffer(custom_descrambler_sptr self, int i) -> long"},
-	 { "custom_descrambler_sptr_set_min_output_buffer", _wrap_custom_descrambler_sptr_set_min_output_buffer, METH_VARARGS, (char *)"\n"
+	 { (char *)"custom_descrambler_sptr_min_output_buffer", (PyCFunction) _wrap_custom_descrambler_sptr_min_output_buffer, METH_VARARGS | METH_KEYWORDS, (char *)"custom_descrambler_sptr_min_output_buffer(custom_descrambler_sptr self, int i) -> long"},
+	 { (char *)"custom_descrambler_sptr_set_min_output_buffer", _wrap_custom_descrambler_sptr_set_min_output_buffer, METH_VARARGS, (char *)"\n"
 		"set_min_output_buffer(long min_output_buffer)\n"
 		"custom_descrambler_sptr_set_min_output_buffer(custom_descrambler_sptr self, int port, long min_output_buffer)\n"
 		""},
-	 { "custom_descrambler_sptr_pc_noutput_items", _wrap_custom_descrambler_sptr_pc_noutput_items, METH_VARARGS, (char *)"custom_descrambler_sptr_pc_noutput_items(custom_descrambler_sptr self) -> float"},
-	 { "custom_descrambler_sptr_pc_noutput_items_avg", _wrap_custom_descrambler_sptr_pc_noutput_items_avg, METH_VARARGS, (char *)"custom_descrambler_sptr_pc_noutput_items_avg(custom_descrambler_sptr self) -> float"},
-	 { "custom_descrambler_sptr_pc_noutput_items_var", _wrap_custom_descrambler_sptr_pc_noutput_items_var, METH_VARARGS, (char *)"custom_descrambler_sptr_pc_noutput_items_var(custom_descrambler_sptr self) -> float"},
-	 { "custom_descrambler_sptr_pc_nproduced", _wrap_custom_descrambler_sptr_pc_nproduced, METH_VARARGS, (char *)"custom_descrambler_sptr_pc_nproduced(custom_descrambler_sptr self) -> float"},
-	 { "custom_descrambler_sptr_pc_nproduced_avg", _wrap_custom_descrambler_sptr_pc_nproduced_avg, METH_VARARGS, (char *)"custom_descrambler_sptr_pc_nproduced_avg(custom_descrambler_sptr self) -> float"},
-	 { "custom_descrambler_sptr_pc_nproduced_var", _wrap_custom_descrambler_sptr_pc_nproduced_var, METH_VARARGS, (char *)"custom_descrambler_sptr_pc_nproduced_var(custom_descrambler_sptr self) -> float"},
-	 { "custom_descrambler_sptr_pc_input_buffers_full", _wrap_custom_descrambler_sptr_pc_input_buffers_full, METH_VARARGS, (char *)"\n"
+	 { (char *)"custom_descrambler_sptr_pc_noutput_items", _wrap_custom_descrambler_sptr_pc_noutput_items, METH_VARARGS, (char *)"custom_descrambler_sptr_pc_noutput_items(custom_descrambler_sptr self) -> float"},
+	 { (char *)"custom_descrambler_sptr_pc_noutput_items_avg", _wrap_custom_descrambler_sptr_pc_noutput_items_avg, METH_VARARGS, (char *)"custom_descrambler_sptr_pc_noutput_items_avg(custom_descrambler_sptr self) -> float"},
+	 { (char *)"custom_descrambler_sptr_pc_noutput_items_var", _wrap_custom_descrambler_sptr_pc_noutput_items_var, METH_VARARGS, (char *)"custom_descrambler_sptr_pc_noutput_items_var(custom_descrambler_sptr self) -> float"},
+	 { (char *)"custom_descrambler_sptr_pc_nproduced", _wrap_custom_descrambler_sptr_pc_nproduced, METH_VARARGS, (char *)"custom_descrambler_sptr_pc_nproduced(custom_descrambler_sptr self) -> float"},
+	 { (char *)"custom_descrambler_sptr_pc_nproduced_avg", _wrap_custom_descrambler_sptr_pc_nproduced_avg, METH_VARARGS, (char *)"custom_descrambler_sptr_pc_nproduced_avg(custom_descrambler_sptr self) -> float"},
+	 { (char *)"custom_descrambler_sptr_pc_nproduced_var", _wrap_custom_descrambler_sptr_pc_nproduced_var, METH_VARARGS, (char *)"custom_descrambler_sptr_pc_nproduced_var(custom_descrambler_sptr self) -> float"},
+	 { (char *)"custom_descrambler_sptr_pc_input_buffers_full", _wrap_custom_descrambler_sptr_pc_input_buffers_full, METH_VARARGS, (char *)"\n"
 		"pc_input_buffers_full(int which) -> float\n"
 		"custom_descrambler_sptr_pc_input_buffers_full(custom_descrambler_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "custom_descrambler_sptr_pc_input_buffers_full_avg", _wrap_custom_descrambler_sptr_pc_input_buffers_full_avg, METH_VARARGS, (char *)"\n"
+	 { (char *)"custom_descrambler_sptr_pc_input_buffers_full_avg", _wrap_custom_descrambler_sptr_pc_input_buffers_full_avg, METH_VARARGS, (char *)"\n"
 		"pc_input_buffers_full_avg(int which) -> float\n"
 		"custom_descrambler_sptr_pc_input_buffers_full_avg(custom_descrambler_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "custom_descrambler_sptr_pc_input_buffers_full_var", _wrap_custom_descrambler_sptr_pc_input_buffers_full_var, METH_VARARGS, (char *)"\n"
+	 { (char *)"custom_descrambler_sptr_pc_input_buffers_full_var", _wrap_custom_descrambler_sptr_pc_input_buffers_full_var, METH_VARARGS, (char *)"\n"
 		"pc_input_buffers_full_var(int which) -> float\n"
 		"custom_descrambler_sptr_pc_input_buffers_full_var(custom_descrambler_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "custom_descrambler_sptr_pc_output_buffers_full", _wrap_custom_descrambler_sptr_pc_output_buffers_full, METH_VARARGS, (char *)"\n"
+	 { (char *)"custom_descrambler_sptr_pc_output_buffers_full", _wrap_custom_descrambler_sptr_pc_output_buffers_full, METH_VARARGS, (char *)"\n"
 		"pc_output_buffers_full(int which) -> float\n"
 		"custom_descrambler_sptr_pc_output_buffers_full(custom_descrambler_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "custom_descrambler_sptr_pc_output_buffers_full_avg", _wrap_custom_descrambler_sptr_pc_output_buffers_full_avg, METH_VARARGS, (char *)"\n"
+	 { (char *)"custom_descrambler_sptr_pc_output_buffers_full_avg", _wrap_custom_descrambler_sptr_pc_output_buffers_full_avg, METH_VARARGS, (char *)"\n"
 		"pc_output_buffers_full_avg(int which) -> float\n"
 		"custom_descrambler_sptr_pc_output_buffers_full_avg(custom_descrambler_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "custom_descrambler_sptr_pc_output_buffers_full_var", _wrap_custom_descrambler_sptr_pc_output_buffers_full_var, METH_VARARGS, (char *)"\n"
+	 { (char *)"custom_descrambler_sptr_pc_output_buffers_full_var", _wrap_custom_descrambler_sptr_pc_output_buffers_full_var, METH_VARARGS, (char *)"\n"
 		"pc_output_buffers_full_var(int which) -> float\n"
 		"custom_descrambler_sptr_pc_output_buffers_full_var(custom_descrambler_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "custom_descrambler_sptr_pc_work_time", _wrap_custom_descrambler_sptr_pc_work_time, METH_VARARGS, (char *)"custom_descrambler_sptr_pc_work_time(custom_descrambler_sptr self) -> float"},
-	 { "custom_descrambler_sptr_pc_work_time_avg", _wrap_custom_descrambler_sptr_pc_work_time_avg, METH_VARARGS, (char *)"custom_descrambler_sptr_pc_work_time_avg(custom_descrambler_sptr self) -> float"},
-	 { "custom_descrambler_sptr_pc_work_time_var", _wrap_custom_descrambler_sptr_pc_work_time_var, METH_VARARGS, (char *)"custom_descrambler_sptr_pc_work_time_var(custom_descrambler_sptr self) -> float"},
-	 { "custom_descrambler_sptr_pc_work_time_total", _wrap_custom_descrambler_sptr_pc_work_time_total, METH_VARARGS, (char *)"custom_descrambler_sptr_pc_work_time_total(custom_descrambler_sptr self) -> float"},
-	 { "custom_descrambler_sptr_pc_throughput_avg", _wrap_custom_descrambler_sptr_pc_throughput_avg, METH_VARARGS, (char *)"custom_descrambler_sptr_pc_throughput_avg(custom_descrambler_sptr self) -> float"},
-	 { "custom_descrambler_sptr_set_processor_affinity", (PyCFunction)_wrap_custom_descrambler_sptr_set_processor_affinity, METH_VARARGS|METH_KEYWORDS, (char *)"custom_descrambler_sptr_set_processor_affinity(custom_descrambler_sptr self, std::vector< int,std::allocator< int > > const & mask)"},
-	 { "custom_descrambler_sptr_unset_processor_affinity", _wrap_custom_descrambler_sptr_unset_processor_affinity, METH_VARARGS, (char *)"custom_descrambler_sptr_unset_processor_affinity(custom_descrambler_sptr self)"},
-	 { "custom_descrambler_sptr_processor_affinity", _wrap_custom_descrambler_sptr_processor_affinity, METH_VARARGS, (char *)"custom_descrambler_sptr_processor_affinity(custom_descrambler_sptr self) -> std::vector< int,std::allocator< int > >"},
-	 { "custom_descrambler_sptr_active_thread_priority", _wrap_custom_descrambler_sptr_active_thread_priority, METH_VARARGS, (char *)"custom_descrambler_sptr_active_thread_priority(custom_descrambler_sptr self) -> int"},
-	 { "custom_descrambler_sptr_thread_priority", _wrap_custom_descrambler_sptr_thread_priority, METH_VARARGS, (char *)"custom_descrambler_sptr_thread_priority(custom_descrambler_sptr self) -> int"},
-	 { "custom_descrambler_sptr_set_thread_priority", (PyCFunction)_wrap_custom_descrambler_sptr_set_thread_priority, METH_VARARGS|METH_KEYWORDS, (char *)"custom_descrambler_sptr_set_thread_priority(custom_descrambler_sptr self, int priority) -> int"},
-	 { "custom_descrambler_sptr_name", _wrap_custom_descrambler_sptr_name, METH_VARARGS, (char *)"custom_descrambler_sptr_name(custom_descrambler_sptr self) -> std::string"},
-	 { "custom_descrambler_sptr_symbol_name", _wrap_custom_descrambler_sptr_symbol_name, METH_VARARGS, (char *)"custom_descrambler_sptr_symbol_name(custom_descrambler_sptr self) -> std::string"},
-	 { "custom_descrambler_sptr_input_signature", _wrap_custom_descrambler_sptr_input_signature, METH_VARARGS, (char *)"custom_descrambler_sptr_input_signature(custom_descrambler_sptr self) -> io_signature_sptr"},
-	 { "custom_descrambler_sptr_output_signature", _wrap_custom_descrambler_sptr_output_signature, METH_VARARGS, (char *)"custom_descrambler_sptr_output_signature(custom_descrambler_sptr self) -> io_signature_sptr"},
-	 { "custom_descrambler_sptr_unique_id", _wrap_custom_descrambler_sptr_unique_id, METH_VARARGS, (char *)"custom_descrambler_sptr_unique_id(custom_descrambler_sptr self) -> long"},
-	 { "custom_descrambler_sptr_to_basic_block", _wrap_custom_descrambler_sptr_to_basic_block, METH_VARARGS, (char *)"custom_descrambler_sptr_to_basic_block(custom_descrambler_sptr self) -> basic_block_sptr"},
-	 { "custom_descrambler_sptr_check_topology", (PyCFunction)_wrap_custom_descrambler_sptr_check_topology, METH_VARARGS|METH_KEYWORDS, (char *)"custom_descrambler_sptr_check_topology(custom_descrambler_sptr self, int ninputs, int noutputs) -> bool"},
-	 { "custom_descrambler_sptr_alias", _wrap_custom_descrambler_sptr_alias, METH_VARARGS, (char *)"custom_descrambler_sptr_alias(custom_descrambler_sptr self) -> std::string"},
-	 { "custom_descrambler_sptr_set_block_alias", (PyCFunction)_wrap_custom_descrambler_sptr_set_block_alias, METH_VARARGS|METH_KEYWORDS, (char *)"custom_descrambler_sptr_set_block_alias(custom_descrambler_sptr self, std::string name)"},
-	 { "custom_descrambler_sptr__post", (PyCFunction)_wrap_custom_descrambler_sptr__post, METH_VARARGS|METH_KEYWORDS, (char *)"custom_descrambler_sptr__post(custom_descrambler_sptr self, swig_int_ptr which_port, swig_int_ptr msg)"},
-	 { "custom_descrambler_sptr_message_ports_in", _wrap_custom_descrambler_sptr_message_ports_in, METH_VARARGS, (char *)"custom_descrambler_sptr_message_ports_in(custom_descrambler_sptr self) -> swig_int_ptr"},
-	 { "custom_descrambler_sptr_message_ports_out", _wrap_custom_descrambler_sptr_message_ports_out, METH_VARARGS, (char *)"custom_descrambler_sptr_message_ports_out(custom_descrambler_sptr self) -> swig_int_ptr"},
-	 { "custom_descrambler_sptr_message_subscribers", (PyCFunction)_wrap_custom_descrambler_sptr_message_subscribers, METH_VARARGS|METH_KEYWORDS, (char *)"custom_descrambler_sptr_message_subscribers(custom_descrambler_sptr self, swig_int_ptr which_port) -> swig_int_ptr"},
-	 { "custom_descrambler_sptr_swigregister", custom_descrambler_sptr_swigregister, METH_VARARGS, NULL},
-	 { "additive_scrambler_make", (PyCFunction)_wrap_additive_scrambler_make, METH_VARARGS|METH_KEYWORDS, (char *)"additive_scrambler_make(int mask, int seed, int len, int frame_bits) -> additive_scrambler_sptr"},
-	 { "delete_additive_scrambler", _wrap_delete_additive_scrambler, METH_VARARGS, (char *)"delete_additive_scrambler(additive_scrambler self)"},
-	 { "additive_scrambler_swigregister", additive_scrambler_swigregister, METH_VARARGS, NULL},
-	 { "new_additive_scrambler_sptr", _wrap_new_additive_scrambler_sptr, METH_VARARGS, (char *)"\n"
+	 { (char *)"custom_descrambler_sptr_pc_work_time", _wrap_custom_descrambler_sptr_pc_work_time, METH_VARARGS, (char *)"custom_descrambler_sptr_pc_work_time(custom_descrambler_sptr self) -> float"},
+	 { (char *)"custom_descrambler_sptr_pc_work_time_avg", _wrap_custom_descrambler_sptr_pc_work_time_avg, METH_VARARGS, (char *)"custom_descrambler_sptr_pc_work_time_avg(custom_descrambler_sptr self) -> float"},
+	 { (char *)"custom_descrambler_sptr_pc_work_time_var", _wrap_custom_descrambler_sptr_pc_work_time_var, METH_VARARGS, (char *)"custom_descrambler_sptr_pc_work_time_var(custom_descrambler_sptr self) -> float"},
+	 { (char *)"custom_descrambler_sptr_pc_work_time_total", _wrap_custom_descrambler_sptr_pc_work_time_total, METH_VARARGS, (char *)"custom_descrambler_sptr_pc_work_time_total(custom_descrambler_sptr self) -> float"},
+	 { (char *)"custom_descrambler_sptr_pc_throughput_avg", _wrap_custom_descrambler_sptr_pc_throughput_avg, METH_VARARGS, (char *)"custom_descrambler_sptr_pc_throughput_avg(custom_descrambler_sptr self) -> float"},
+	 { (char *)"custom_descrambler_sptr_set_processor_affinity", (PyCFunction) _wrap_custom_descrambler_sptr_set_processor_affinity, METH_VARARGS | METH_KEYWORDS, (char *)"custom_descrambler_sptr_set_processor_affinity(custom_descrambler_sptr self, std::vector< int,std::allocator< int > > const & mask)"},
+	 { (char *)"custom_descrambler_sptr_unset_processor_affinity", _wrap_custom_descrambler_sptr_unset_processor_affinity, METH_VARARGS, (char *)"custom_descrambler_sptr_unset_processor_affinity(custom_descrambler_sptr self)"},
+	 { (char *)"custom_descrambler_sptr_processor_affinity", _wrap_custom_descrambler_sptr_processor_affinity, METH_VARARGS, (char *)"custom_descrambler_sptr_processor_affinity(custom_descrambler_sptr self) -> std::vector< int,std::allocator< int > >"},
+	 { (char *)"custom_descrambler_sptr_active_thread_priority", _wrap_custom_descrambler_sptr_active_thread_priority, METH_VARARGS, (char *)"custom_descrambler_sptr_active_thread_priority(custom_descrambler_sptr self) -> int"},
+	 { (char *)"custom_descrambler_sptr_thread_priority", _wrap_custom_descrambler_sptr_thread_priority, METH_VARARGS, (char *)"custom_descrambler_sptr_thread_priority(custom_descrambler_sptr self) -> int"},
+	 { (char *)"custom_descrambler_sptr_set_thread_priority", (PyCFunction) _wrap_custom_descrambler_sptr_set_thread_priority, METH_VARARGS | METH_KEYWORDS, (char *)"custom_descrambler_sptr_set_thread_priority(custom_descrambler_sptr self, int priority) -> int"},
+	 { (char *)"custom_descrambler_sptr_name", _wrap_custom_descrambler_sptr_name, METH_VARARGS, (char *)"custom_descrambler_sptr_name(custom_descrambler_sptr self) -> std::string"},
+	 { (char *)"custom_descrambler_sptr_symbol_name", _wrap_custom_descrambler_sptr_symbol_name, METH_VARARGS, (char *)"custom_descrambler_sptr_symbol_name(custom_descrambler_sptr self) -> std::string"},
+	 { (char *)"custom_descrambler_sptr_input_signature", _wrap_custom_descrambler_sptr_input_signature, METH_VARARGS, (char *)"custom_descrambler_sptr_input_signature(custom_descrambler_sptr self) -> io_signature_sptr"},
+	 { (char *)"custom_descrambler_sptr_output_signature", _wrap_custom_descrambler_sptr_output_signature, METH_VARARGS, (char *)"custom_descrambler_sptr_output_signature(custom_descrambler_sptr self) -> io_signature_sptr"},
+	 { (char *)"custom_descrambler_sptr_unique_id", _wrap_custom_descrambler_sptr_unique_id, METH_VARARGS, (char *)"custom_descrambler_sptr_unique_id(custom_descrambler_sptr self) -> long"},
+	 { (char *)"custom_descrambler_sptr_to_basic_block", _wrap_custom_descrambler_sptr_to_basic_block, METH_VARARGS, (char *)"custom_descrambler_sptr_to_basic_block(custom_descrambler_sptr self) -> basic_block_sptr"},
+	 { (char *)"custom_descrambler_sptr_check_topology", (PyCFunction) _wrap_custom_descrambler_sptr_check_topology, METH_VARARGS | METH_KEYWORDS, (char *)"custom_descrambler_sptr_check_topology(custom_descrambler_sptr self, int ninputs, int noutputs) -> bool"},
+	 { (char *)"custom_descrambler_sptr_alias", _wrap_custom_descrambler_sptr_alias, METH_VARARGS, (char *)"custom_descrambler_sptr_alias(custom_descrambler_sptr self) -> std::string"},
+	 { (char *)"custom_descrambler_sptr_set_block_alias", (PyCFunction) _wrap_custom_descrambler_sptr_set_block_alias, METH_VARARGS | METH_KEYWORDS, (char *)"custom_descrambler_sptr_set_block_alias(custom_descrambler_sptr self, std::string name)"},
+	 { (char *)"custom_descrambler_sptr__post", (PyCFunction) _wrap_custom_descrambler_sptr__post, METH_VARARGS | METH_KEYWORDS, (char *)"custom_descrambler_sptr__post(custom_descrambler_sptr self, swig_int_ptr which_port, swig_int_ptr msg)"},
+	 { (char *)"custom_descrambler_sptr_message_ports_in", _wrap_custom_descrambler_sptr_message_ports_in, METH_VARARGS, (char *)"custom_descrambler_sptr_message_ports_in(custom_descrambler_sptr self) -> swig_int_ptr"},
+	 { (char *)"custom_descrambler_sptr_message_ports_out", _wrap_custom_descrambler_sptr_message_ports_out, METH_VARARGS, (char *)"custom_descrambler_sptr_message_ports_out(custom_descrambler_sptr self) -> swig_int_ptr"},
+	 { (char *)"custom_descrambler_sptr_message_subscribers", (PyCFunction) _wrap_custom_descrambler_sptr_message_subscribers, METH_VARARGS | METH_KEYWORDS, (char *)"custom_descrambler_sptr_message_subscribers(custom_descrambler_sptr self, swig_int_ptr which_port) -> swig_int_ptr"},
+	 { (char *)"custom_descrambler_sptr_swigregister", custom_descrambler_sptr_swigregister, METH_VARARGS, NULL},
+	 { (char *)"additive_scrambler_make", (PyCFunction) _wrap_additive_scrambler_make, METH_VARARGS | METH_KEYWORDS, (char *)"\n"
+		"additive_scrambler_make(int mask, int seed, int len, int frame_bits) -> additive_scrambler_sptr\n"
+		"\n"
+		"<+description of block+>\n"
+		"\n"
+		"Constructor Specific Documentation:\n"
+		"\n"
+		"Return a shared_ptr to a new instance of scrambler_cpp::additive_scrambler.\n"
+		"\n"
+		"To avoid accidental use of raw pointers, scrambler_cpp::additive_scrambler's constructor is in a private implementation class. scrambler_cpp::additive_scrambler::make is the public interface for creating new instances.\n"
+		"\n"
+		"Args:\n"
+		"    mask : \n"
+		"    seed : \n"
+		"    len : \n"
+		"    frame_bits : \n"
+		""},
+	 { (char *)"delete_additive_scrambler", _wrap_delete_additive_scrambler, METH_VARARGS, (char *)"delete_additive_scrambler(additive_scrambler self)"},
+	 { (char *)"additive_scrambler_swigregister", additive_scrambler_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_additive_scrambler_sptr", _wrap_new_additive_scrambler_sptr, METH_VARARGS, (char *)"\n"
 		"additive_scrambler_sptr()\n"
 		"new_additive_scrambler_sptr(additive_scrambler p) -> additive_scrambler_sptr\n"
 		""},
-	 { "additive_scrambler_sptr___deref__", _wrap_additive_scrambler_sptr___deref__, METH_VARARGS, (char *)"additive_scrambler_sptr___deref__(additive_scrambler_sptr self) -> additive_scrambler"},
-	 { "delete_additive_scrambler_sptr", _wrap_delete_additive_scrambler_sptr, METH_VARARGS, (char *)"delete_additive_scrambler_sptr(additive_scrambler_sptr self)"},
-	 { "additive_scrambler_sptr_make", (PyCFunction)_wrap_additive_scrambler_sptr_make, METH_VARARGS|METH_KEYWORDS, (char *)"additive_scrambler_sptr_make(additive_scrambler_sptr self, int mask, int seed, int len, int frame_bits) -> additive_scrambler_sptr"},
-	 { "additive_scrambler_sptr_history", _wrap_additive_scrambler_sptr_history, METH_VARARGS, (char *)"additive_scrambler_sptr_history(additive_scrambler_sptr self) -> unsigned int"},
-	 { "additive_scrambler_sptr_declare_sample_delay", _wrap_additive_scrambler_sptr_declare_sample_delay, METH_VARARGS, (char *)"\n"
+	 { (char *)"additive_scrambler_sptr___deref__", _wrap_additive_scrambler_sptr___deref__, METH_VARARGS, (char *)"additive_scrambler_sptr___deref__(additive_scrambler_sptr self) -> additive_scrambler"},
+	 { (char *)"delete_additive_scrambler_sptr", _wrap_delete_additive_scrambler_sptr, METH_VARARGS, (char *)"delete_additive_scrambler_sptr(additive_scrambler_sptr self)"},
+	 { (char *)"additive_scrambler_sptr_make", (PyCFunction) _wrap_additive_scrambler_sptr_make, METH_VARARGS | METH_KEYWORDS, (char *)"\n"
+		"additive_scrambler_sptr_make(additive_scrambler_sptr self, int mask, int seed, int len, int frame_bits) -> additive_scrambler_sptr\n"
+		"\n"
+		"<+description of block+>\n"
+		"\n"
+		"Constructor Specific Documentation:\n"
+		"\n"
+		"Return a shared_ptr to a new instance of scrambler_cpp::additive_scrambler.\n"
+		"\n"
+		"To avoid accidental use of raw pointers, scrambler_cpp::additive_scrambler's constructor is in a private implementation class. scrambler_cpp::additive_scrambler::make is the public interface for creating new instances.\n"
+		"\n"
+		"Args:\n"
+		"    mask : \n"
+		"    seed : \n"
+		"    len : \n"
+		"    frame_bits : \n"
+		""},
+	 { (char *)"additive_scrambler_sptr_history", _wrap_additive_scrambler_sptr_history, METH_VARARGS, (char *)"additive_scrambler_sptr_history(additive_scrambler_sptr self) -> unsigned int"},
+	 { (char *)"additive_scrambler_sptr_declare_sample_delay", _wrap_additive_scrambler_sptr_declare_sample_delay, METH_VARARGS, (char *)"\n"
 		"declare_sample_delay(int which, int delay)\n"
 		"additive_scrambler_sptr_declare_sample_delay(additive_scrambler_sptr self, unsigned int delay)\n"
 		""},
-	 { "additive_scrambler_sptr_sample_delay", (PyCFunction)_wrap_additive_scrambler_sptr_sample_delay, METH_VARARGS|METH_KEYWORDS, (char *)"additive_scrambler_sptr_sample_delay(additive_scrambler_sptr self, int which) -> unsigned int"},
-	 { "additive_scrambler_sptr_output_multiple", _wrap_additive_scrambler_sptr_output_multiple, METH_VARARGS, (char *)"additive_scrambler_sptr_output_multiple(additive_scrambler_sptr self) -> int"},
-	 { "additive_scrambler_sptr_relative_rate", _wrap_additive_scrambler_sptr_relative_rate, METH_VARARGS, (char *)"additive_scrambler_sptr_relative_rate(additive_scrambler_sptr self) -> double"},
-	 { "additive_scrambler_sptr_start", _wrap_additive_scrambler_sptr_start, METH_VARARGS, (char *)"additive_scrambler_sptr_start(additive_scrambler_sptr self) -> bool"},
-	 { "additive_scrambler_sptr_stop", _wrap_additive_scrambler_sptr_stop, METH_VARARGS, (char *)"additive_scrambler_sptr_stop(additive_scrambler_sptr self) -> bool"},
-	 { "additive_scrambler_sptr_nitems_read", (PyCFunction)_wrap_additive_scrambler_sptr_nitems_read, METH_VARARGS|METH_KEYWORDS, (char *)"additive_scrambler_sptr_nitems_read(additive_scrambler_sptr self, unsigned int which_input) -> uint64_t"},
-	 { "additive_scrambler_sptr_nitems_written", (PyCFunction)_wrap_additive_scrambler_sptr_nitems_written, METH_VARARGS|METH_KEYWORDS, (char *)"additive_scrambler_sptr_nitems_written(additive_scrambler_sptr self, unsigned int which_output) -> uint64_t"},
-	 { "additive_scrambler_sptr_max_noutput_items", _wrap_additive_scrambler_sptr_max_noutput_items, METH_VARARGS, (char *)"additive_scrambler_sptr_max_noutput_items(additive_scrambler_sptr self) -> int"},
-	 { "additive_scrambler_sptr_set_max_noutput_items", (PyCFunction)_wrap_additive_scrambler_sptr_set_max_noutput_items, METH_VARARGS|METH_KEYWORDS, (char *)"additive_scrambler_sptr_set_max_noutput_items(additive_scrambler_sptr self, int m)"},
-	 { "additive_scrambler_sptr_unset_max_noutput_items", _wrap_additive_scrambler_sptr_unset_max_noutput_items, METH_VARARGS, (char *)"additive_scrambler_sptr_unset_max_noutput_items(additive_scrambler_sptr self)"},
-	 { "additive_scrambler_sptr_is_set_max_noutput_items", _wrap_additive_scrambler_sptr_is_set_max_noutput_items, METH_VARARGS, (char *)"additive_scrambler_sptr_is_set_max_noutput_items(additive_scrambler_sptr self) -> bool"},
-	 { "additive_scrambler_sptr_set_min_noutput_items", (PyCFunction)_wrap_additive_scrambler_sptr_set_min_noutput_items, METH_VARARGS|METH_KEYWORDS, (char *)"additive_scrambler_sptr_set_min_noutput_items(additive_scrambler_sptr self, int m)"},
-	 { "additive_scrambler_sptr_min_noutput_items", _wrap_additive_scrambler_sptr_min_noutput_items, METH_VARARGS, (char *)"additive_scrambler_sptr_min_noutput_items(additive_scrambler_sptr self) -> int"},
-	 { "additive_scrambler_sptr_max_output_buffer", (PyCFunction)_wrap_additive_scrambler_sptr_max_output_buffer, METH_VARARGS|METH_KEYWORDS, (char *)"additive_scrambler_sptr_max_output_buffer(additive_scrambler_sptr self, int i) -> long"},
-	 { "additive_scrambler_sptr_set_max_output_buffer", _wrap_additive_scrambler_sptr_set_max_output_buffer, METH_VARARGS, (char *)"\n"
+	 { (char *)"additive_scrambler_sptr_sample_delay", (PyCFunction) _wrap_additive_scrambler_sptr_sample_delay, METH_VARARGS | METH_KEYWORDS, (char *)"additive_scrambler_sptr_sample_delay(additive_scrambler_sptr self, int which) -> unsigned int"},
+	 { (char *)"additive_scrambler_sptr_output_multiple", _wrap_additive_scrambler_sptr_output_multiple, METH_VARARGS, (char *)"additive_scrambler_sptr_output_multiple(additive_scrambler_sptr self) -> int"},
+	 { (char *)"additive_scrambler_sptr_relative_rate", _wrap_additive_scrambler_sptr_relative_rate, METH_VARARGS, (char *)"additive_scrambler_sptr_relative_rate(additive_scrambler_sptr self) -> double"},
+	 { (char *)"additive_scrambler_sptr_start", _wrap_additive_scrambler_sptr_start, METH_VARARGS, (char *)"additive_scrambler_sptr_start(additive_scrambler_sptr self) -> bool"},
+	 { (char *)"additive_scrambler_sptr_stop", _wrap_additive_scrambler_sptr_stop, METH_VARARGS, (char *)"additive_scrambler_sptr_stop(additive_scrambler_sptr self) -> bool"},
+	 { (char *)"additive_scrambler_sptr_nitems_read", (PyCFunction) _wrap_additive_scrambler_sptr_nitems_read, METH_VARARGS | METH_KEYWORDS, (char *)"additive_scrambler_sptr_nitems_read(additive_scrambler_sptr self, unsigned int which_input) -> uint64_t"},
+	 { (char *)"additive_scrambler_sptr_nitems_written", (PyCFunction) _wrap_additive_scrambler_sptr_nitems_written, METH_VARARGS | METH_KEYWORDS, (char *)"additive_scrambler_sptr_nitems_written(additive_scrambler_sptr self, unsigned int which_output) -> uint64_t"},
+	 { (char *)"additive_scrambler_sptr_max_noutput_items", _wrap_additive_scrambler_sptr_max_noutput_items, METH_VARARGS, (char *)"additive_scrambler_sptr_max_noutput_items(additive_scrambler_sptr self) -> int"},
+	 { (char *)"additive_scrambler_sptr_set_max_noutput_items", (PyCFunction) _wrap_additive_scrambler_sptr_set_max_noutput_items, METH_VARARGS | METH_KEYWORDS, (char *)"additive_scrambler_sptr_set_max_noutput_items(additive_scrambler_sptr self, int m)"},
+	 { (char *)"additive_scrambler_sptr_unset_max_noutput_items", _wrap_additive_scrambler_sptr_unset_max_noutput_items, METH_VARARGS, (char *)"additive_scrambler_sptr_unset_max_noutput_items(additive_scrambler_sptr self)"},
+	 { (char *)"additive_scrambler_sptr_is_set_max_noutput_items", _wrap_additive_scrambler_sptr_is_set_max_noutput_items, METH_VARARGS, (char *)"additive_scrambler_sptr_is_set_max_noutput_items(additive_scrambler_sptr self) -> bool"},
+	 { (char *)"additive_scrambler_sptr_set_min_noutput_items", (PyCFunction) _wrap_additive_scrambler_sptr_set_min_noutput_items, METH_VARARGS | METH_KEYWORDS, (char *)"additive_scrambler_sptr_set_min_noutput_items(additive_scrambler_sptr self, int m)"},
+	 { (char *)"additive_scrambler_sptr_min_noutput_items", _wrap_additive_scrambler_sptr_min_noutput_items, METH_VARARGS, (char *)"additive_scrambler_sptr_min_noutput_items(additive_scrambler_sptr self) -> int"},
+	 { (char *)"additive_scrambler_sptr_max_output_buffer", (PyCFunction) _wrap_additive_scrambler_sptr_max_output_buffer, METH_VARARGS | METH_KEYWORDS, (char *)"additive_scrambler_sptr_max_output_buffer(additive_scrambler_sptr self, int i) -> long"},
+	 { (char *)"additive_scrambler_sptr_set_max_output_buffer", _wrap_additive_scrambler_sptr_set_max_output_buffer, METH_VARARGS, (char *)"\n"
 		"set_max_output_buffer(long max_output_buffer)\n"
 		"additive_scrambler_sptr_set_max_output_buffer(additive_scrambler_sptr self, int port, long max_output_buffer)\n"
 		""},
-	 { "additive_scrambler_sptr_min_output_buffer", (PyCFunction)_wrap_additive_scrambler_sptr_min_output_buffer, METH_VARARGS|METH_KEYWORDS, (char *)"additive_scrambler_sptr_min_output_buffer(additive_scrambler_sptr self, int i) -> long"},
-	 { "additive_scrambler_sptr_set_min_output_buffer", _wrap_additive_scrambler_sptr_set_min_output_buffer, METH_VARARGS, (char *)"\n"
+	 { (char *)"additive_scrambler_sptr_min_output_buffer", (PyCFunction) _wrap_additive_scrambler_sptr_min_output_buffer, METH_VARARGS | METH_KEYWORDS, (char *)"additive_scrambler_sptr_min_output_buffer(additive_scrambler_sptr self, int i) -> long"},
+	 { (char *)"additive_scrambler_sptr_set_min_output_buffer", _wrap_additive_scrambler_sptr_set_min_output_buffer, METH_VARARGS, (char *)"\n"
 		"set_min_output_buffer(long min_output_buffer)\n"
 		"additive_scrambler_sptr_set_min_output_buffer(additive_scrambler_sptr self, int port, long min_output_buffer)\n"
 		""},
-	 { "additive_scrambler_sptr_pc_noutput_items", _wrap_additive_scrambler_sptr_pc_noutput_items, METH_VARARGS, (char *)"additive_scrambler_sptr_pc_noutput_items(additive_scrambler_sptr self) -> float"},
-	 { "additive_scrambler_sptr_pc_noutput_items_avg", _wrap_additive_scrambler_sptr_pc_noutput_items_avg, METH_VARARGS, (char *)"additive_scrambler_sptr_pc_noutput_items_avg(additive_scrambler_sptr self) -> float"},
-	 { "additive_scrambler_sptr_pc_noutput_items_var", _wrap_additive_scrambler_sptr_pc_noutput_items_var, METH_VARARGS, (char *)"additive_scrambler_sptr_pc_noutput_items_var(additive_scrambler_sptr self) -> float"},
-	 { "additive_scrambler_sptr_pc_nproduced", _wrap_additive_scrambler_sptr_pc_nproduced, METH_VARARGS, (char *)"additive_scrambler_sptr_pc_nproduced(additive_scrambler_sptr self) -> float"},
-	 { "additive_scrambler_sptr_pc_nproduced_avg", _wrap_additive_scrambler_sptr_pc_nproduced_avg, METH_VARARGS, (char *)"additive_scrambler_sptr_pc_nproduced_avg(additive_scrambler_sptr self) -> float"},
-	 { "additive_scrambler_sptr_pc_nproduced_var", _wrap_additive_scrambler_sptr_pc_nproduced_var, METH_VARARGS, (char *)"additive_scrambler_sptr_pc_nproduced_var(additive_scrambler_sptr self) -> float"},
-	 { "additive_scrambler_sptr_pc_input_buffers_full", _wrap_additive_scrambler_sptr_pc_input_buffers_full, METH_VARARGS, (char *)"\n"
+	 { (char *)"additive_scrambler_sptr_pc_noutput_items", _wrap_additive_scrambler_sptr_pc_noutput_items, METH_VARARGS, (char *)"additive_scrambler_sptr_pc_noutput_items(additive_scrambler_sptr self) -> float"},
+	 { (char *)"additive_scrambler_sptr_pc_noutput_items_avg", _wrap_additive_scrambler_sptr_pc_noutput_items_avg, METH_VARARGS, (char *)"additive_scrambler_sptr_pc_noutput_items_avg(additive_scrambler_sptr self) -> float"},
+	 { (char *)"additive_scrambler_sptr_pc_noutput_items_var", _wrap_additive_scrambler_sptr_pc_noutput_items_var, METH_VARARGS, (char *)"additive_scrambler_sptr_pc_noutput_items_var(additive_scrambler_sptr self) -> float"},
+	 { (char *)"additive_scrambler_sptr_pc_nproduced", _wrap_additive_scrambler_sptr_pc_nproduced, METH_VARARGS, (char *)"additive_scrambler_sptr_pc_nproduced(additive_scrambler_sptr self) -> float"},
+	 { (char *)"additive_scrambler_sptr_pc_nproduced_avg", _wrap_additive_scrambler_sptr_pc_nproduced_avg, METH_VARARGS, (char *)"additive_scrambler_sptr_pc_nproduced_avg(additive_scrambler_sptr self) -> float"},
+	 { (char *)"additive_scrambler_sptr_pc_nproduced_var", _wrap_additive_scrambler_sptr_pc_nproduced_var, METH_VARARGS, (char *)"additive_scrambler_sptr_pc_nproduced_var(additive_scrambler_sptr self) -> float"},
+	 { (char *)"additive_scrambler_sptr_pc_input_buffers_full", _wrap_additive_scrambler_sptr_pc_input_buffers_full, METH_VARARGS, (char *)"\n"
 		"pc_input_buffers_full(int which) -> float\n"
 		"additive_scrambler_sptr_pc_input_buffers_full(additive_scrambler_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "additive_scrambler_sptr_pc_input_buffers_full_avg", _wrap_additive_scrambler_sptr_pc_input_buffers_full_avg, METH_VARARGS, (char *)"\n"
+	 { (char *)"additive_scrambler_sptr_pc_input_buffers_full_avg", _wrap_additive_scrambler_sptr_pc_input_buffers_full_avg, METH_VARARGS, (char *)"\n"
 		"pc_input_buffers_full_avg(int which) -> float\n"
 		"additive_scrambler_sptr_pc_input_buffers_full_avg(additive_scrambler_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "additive_scrambler_sptr_pc_input_buffers_full_var", _wrap_additive_scrambler_sptr_pc_input_buffers_full_var, METH_VARARGS, (char *)"\n"
+	 { (char *)"additive_scrambler_sptr_pc_input_buffers_full_var", _wrap_additive_scrambler_sptr_pc_input_buffers_full_var, METH_VARARGS, (char *)"\n"
 		"pc_input_buffers_full_var(int which) -> float\n"
 		"additive_scrambler_sptr_pc_input_buffers_full_var(additive_scrambler_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "additive_scrambler_sptr_pc_output_buffers_full", _wrap_additive_scrambler_sptr_pc_output_buffers_full, METH_VARARGS, (char *)"\n"
+	 { (char *)"additive_scrambler_sptr_pc_output_buffers_full", _wrap_additive_scrambler_sptr_pc_output_buffers_full, METH_VARARGS, (char *)"\n"
 		"pc_output_buffers_full(int which) -> float\n"
 		"additive_scrambler_sptr_pc_output_buffers_full(additive_scrambler_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "additive_scrambler_sptr_pc_output_buffers_full_avg", _wrap_additive_scrambler_sptr_pc_output_buffers_full_avg, METH_VARARGS, (char *)"\n"
+	 { (char *)"additive_scrambler_sptr_pc_output_buffers_full_avg", _wrap_additive_scrambler_sptr_pc_output_buffers_full_avg, METH_VARARGS, (char *)"\n"
 		"pc_output_buffers_full_avg(int which) -> float\n"
 		"additive_scrambler_sptr_pc_output_buffers_full_avg(additive_scrambler_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "additive_scrambler_sptr_pc_output_buffers_full_var", _wrap_additive_scrambler_sptr_pc_output_buffers_full_var, METH_VARARGS, (char *)"\n"
+	 { (char *)"additive_scrambler_sptr_pc_output_buffers_full_var", _wrap_additive_scrambler_sptr_pc_output_buffers_full_var, METH_VARARGS, (char *)"\n"
 		"pc_output_buffers_full_var(int which) -> float\n"
 		"additive_scrambler_sptr_pc_output_buffers_full_var(additive_scrambler_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "additive_scrambler_sptr_pc_work_time", _wrap_additive_scrambler_sptr_pc_work_time, METH_VARARGS, (char *)"additive_scrambler_sptr_pc_work_time(additive_scrambler_sptr self) -> float"},
-	 { "additive_scrambler_sptr_pc_work_time_avg", _wrap_additive_scrambler_sptr_pc_work_time_avg, METH_VARARGS, (char *)"additive_scrambler_sptr_pc_work_time_avg(additive_scrambler_sptr self) -> float"},
-	 { "additive_scrambler_sptr_pc_work_time_var", _wrap_additive_scrambler_sptr_pc_work_time_var, METH_VARARGS, (char *)"additive_scrambler_sptr_pc_work_time_var(additive_scrambler_sptr self) -> float"},
-	 { "additive_scrambler_sptr_pc_work_time_total", _wrap_additive_scrambler_sptr_pc_work_time_total, METH_VARARGS, (char *)"additive_scrambler_sptr_pc_work_time_total(additive_scrambler_sptr self) -> float"},
-	 { "additive_scrambler_sptr_pc_throughput_avg", _wrap_additive_scrambler_sptr_pc_throughput_avg, METH_VARARGS, (char *)"additive_scrambler_sptr_pc_throughput_avg(additive_scrambler_sptr self) -> float"},
-	 { "additive_scrambler_sptr_set_processor_affinity", (PyCFunction)_wrap_additive_scrambler_sptr_set_processor_affinity, METH_VARARGS|METH_KEYWORDS, (char *)"additive_scrambler_sptr_set_processor_affinity(additive_scrambler_sptr self, std::vector< int,std::allocator< int > > const & mask)"},
-	 { "additive_scrambler_sptr_unset_processor_affinity", _wrap_additive_scrambler_sptr_unset_processor_affinity, METH_VARARGS, (char *)"additive_scrambler_sptr_unset_processor_affinity(additive_scrambler_sptr self)"},
-	 { "additive_scrambler_sptr_processor_affinity", _wrap_additive_scrambler_sptr_processor_affinity, METH_VARARGS, (char *)"additive_scrambler_sptr_processor_affinity(additive_scrambler_sptr self) -> std::vector< int,std::allocator< int > >"},
-	 { "additive_scrambler_sptr_active_thread_priority", _wrap_additive_scrambler_sptr_active_thread_priority, METH_VARARGS, (char *)"additive_scrambler_sptr_active_thread_priority(additive_scrambler_sptr self) -> int"},
-	 { "additive_scrambler_sptr_thread_priority", _wrap_additive_scrambler_sptr_thread_priority, METH_VARARGS, (char *)"additive_scrambler_sptr_thread_priority(additive_scrambler_sptr self) -> int"},
-	 { "additive_scrambler_sptr_set_thread_priority", (PyCFunction)_wrap_additive_scrambler_sptr_set_thread_priority, METH_VARARGS|METH_KEYWORDS, (char *)"additive_scrambler_sptr_set_thread_priority(additive_scrambler_sptr self, int priority) -> int"},
-	 { "additive_scrambler_sptr_name", _wrap_additive_scrambler_sptr_name, METH_VARARGS, (char *)"additive_scrambler_sptr_name(additive_scrambler_sptr self) -> std::string"},
-	 { "additive_scrambler_sptr_symbol_name", _wrap_additive_scrambler_sptr_symbol_name, METH_VARARGS, (char *)"additive_scrambler_sptr_symbol_name(additive_scrambler_sptr self) -> std::string"},
-	 { "additive_scrambler_sptr_input_signature", _wrap_additive_scrambler_sptr_input_signature, METH_VARARGS, (char *)"additive_scrambler_sptr_input_signature(additive_scrambler_sptr self) -> io_signature_sptr"},
-	 { "additive_scrambler_sptr_output_signature", _wrap_additive_scrambler_sptr_output_signature, METH_VARARGS, (char *)"additive_scrambler_sptr_output_signature(additive_scrambler_sptr self) -> io_signature_sptr"},
-	 { "additive_scrambler_sptr_unique_id", _wrap_additive_scrambler_sptr_unique_id, METH_VARARGS, (char *)"additive_scrambler_sptr_unique_id(additive_scrambler_sptr self) -> long"},
-	 { "additive_scrambler_sptr_to_basic_block", _wrap_additive_scrambler_sptr_to_basic_block, METH_VARARGS, (char *)"additive_scrambler_sptr_to_basic_block(additive_scrambler_sptr self) -> basic_block_sptr"},
-	 { "additive_scrambler_sptr_check_topology", (PyCFunction)_wrap_additive_scrambler_sptr_check_topology, METH_VARARGS|METH_KEYWORDS, (char *)"additive_scrambler_sptr_check_topology(additive_scrambler_sptr self, int ninputs, int noutputs) -> bool"},
-	 { "additive_scrambler_sptr_alias", _wrap_additive_scrambler_sptr_alias, METH_VARARGS, (char *)"additive_scrambler_sptr_alias(additive_scrambler_sptr self) -> std::string"},
-	 { "additive_scrambler_sptr_set_block_alias", (PyCFunction)_wrap_additive_scrambler_sptr_set_block_alias, METH_VARARGS|METH_KEYWORDS, (char *)"additive_scrambler_sptr_set_block_alias(additive_scrambler_sptr self, std::string name)"},
-	 { "additive_scrambler_sptr__post", (PyCFunction)_wrap_additive_scrambler_sptr__post, METH_VARARGS|METH_KEYWORDS, (char *)"additive_scrambler_sptr__post(additive_scrambler_sptr self, swig_int_ptr which_port, swig_int_ptr msg)"},
-	 { "additive_scrambler_sptr_message_ports_in", _wrap_additive_scrambler_sptr_message_ports_in, METH_VARARGS, (char *)"additive_scrambler_sptr_message_ports_in(additive_scrambler_sptr self) -> swig_int_ptr"},
-	 { "additive_scrambler_sptr_message_ports_out", _wrap_additive_scrambler_sptr_message_ports_out, METH_VARARGS, (char *)"additive_scrambler_sptr_message_ports_out(additive_scrambler_sptr self) -> swig_int_ptr"},
-	 { "additive_scrambler_sptr_message_subscribers", (PyCFunction)_wrap_additive_scrambler_sptr_message_subscribers, METH_VARARGS|METH_KEYWORDS, (char *)"additive_scrambler_sptr_message_subscribers(additive_scrambler_sptr self, swig_int_ptr which_port) -> swig_int_ptr"},
-	 { "additive_scrambler_sptr_swigregister", additive_scrambler_sptr_swigregister, METH_VARARGS, NULL},
-	 { "additive_descrambler_make", (PyCFunction)_wrap_additive_descrambler_make, METH_VARARGS|METH_KEYWORDS, (char *)"additive_descrambler_make(int mask, int seed, int len, int frame_bits) -> additive_descrambler_sptr"},
-	 { "delete_additive_descrambler", _wrap_delete_additive_descrambler, METH_VARARGS, (char *)"delete_additive_descrambler(additive_descrambler self)"},
-	 { "additive_descrambler_swigregister", additive_descrambler_swigregister, METH_VARARGS, NULL},
-	 { "new_additive_descrambler_sptr", _wrap_new_additive_descrambler_sptr, METH_VARARGS, (char *)"\n"
+	 { (char *)"additive_scrambler_sptr_pc_work_time", _wrap_additive_scrambler_sptr_pc_work_time, METH_VARARGS, (char *)"additive_scrambler_sptr_pc_work_time(additive_scrambler_sptr self) -> float"},
+	 { (char *)"additive_scrambler_sptr_pc_work_time_avg", _wrap_additive_scrambler_sptr_pc_work_time_avg, METH_VARARGS, (char *)"additive_scrambler_sptr_pc_work_time_avg(additive_scrambler_sptr self) -> float"},
+	 { (char *)"additive_scrambler_sptr_pc_work_time_var", _wrap_additive_scrambler_sptr_pc_work_time_var, METH_VARARGS, (char *)"additive_scrambler_sptr_pc_work_time_var(additive_scrambler_sptr self) -> float"},
+	 { (char *)"additive_scrambler_sptr_pc_work_time_total", _wrap_additive_scrambler_sptr_pc_work_time_total, METH_VARARGS, (char *)"additive_scrambler_sptr_pc_work_time_total(additive_scrambler_sptr self) -> float"},
+	 { (char *)"additive_scrambler_sptr_pc_throughput_avg", _wrap_additive_scrambler_sptr_pc_throughput_avg, METH_VARARGS, (char *)"additive_scrambler_sptr_pc_throughput_avg(additive_scrambler_sptr self) -> float"},
+	 { (char *)"additive_scrambler_sptr_set_processor_affinity", (PyCFunction) _wrap_additive_scrambler_sptr_set_processor_affinity, METH_VARARGS | METH_KEYWORDS, (char *)"additive_scrambler_sptr_set_processor_affinity(additive_scrambler_sptr self, std::vector< int,std::allocator< int > > const & mask)"},
+	 { (char *)"additive_scrambler_sptr_unset_processor_affinity", _wrap_additive_scrambler_sptr_unset_processor_affinity, METH_VARARGS, (char *)"additive_scrambler_sptr_unset_processor_affinity(additive_scrambler_sptr self)"},
+	 { (char *)"additive_scrambler_sptr_processor_affinity", _wrap_additive_scrambler_sptr_processor_affinity, METH_VARARGS, (char *)"additive_scrambler_sptr_processor_affinity(additive_scrambler_sptr self) -> std::vector< int,std::allocator< int > >"},
+	 { (char *)"additive_scrambler_sptr_active_thread_priority", _wrap_additive_scrambler_sptr_active_thread_priority, METH_VARARGS, (char *)"additive_scrambler_sptr_active_thread_priority(additive_scrambler_sptr self) -> int"},
+	 { (char *)"additive_scrambler_sptr_thread_priority", _wrap_additive_scrambler_sptr_thread_priority, METH_VARARGS, (char *)"additive_scrambler_sptr_thread_priority(additive_scrambler_sptr self) -> int"},
+	 { (char *)"additive_scrambler_sptr_set_thread_priority", (PyCFunction) _wrap_additive_scrambler_sptr_set_thread_priority, METH_VARARGS | METH_KEYWORDS, (char *)"additive_scrambler_sptr_set_thread_priority(additive_scrambler_sptr self, int priority) -> int"},
+	 { (char *)"additive_scrambler_sptr_name", _wrap_additive_scrambler_sptr_name, METH_VARARGS, (char *)"additive_scrambler_sptr_name(additive_scrambler_sptr self) -> std::string"},
+	 { (char *)"additive_scrambler_sptr_symbol_name", _wrap_additive_scrambler_sptr_symbol_name, METH_VARARGS, (char *)"additive_scrambler_sptr_symbol_name(additive_scrambler_sptr self) -> std::string"},
+	 { (char *)"additive_scrambler_sptr_input_signature", _wrap_additive_scrambler_sptr_input_signature, METH_VARARGS, (char *)"additive_scrambler_sptr_input_signature(additive_scrambler_sptr self) -> io_signature_sptr"},
+	 { (char *)"additive_scrambler_sptr_output_signature", _wrap_additive_scrambler_sptr_output_signature, METH_VARARGS, (char *)"additive_scrambler_sptr_output_signature(additive_scrambler_sptr self) -> io_signature_sptr"},
+	 { (char *)"additive_scrambler_sptr_unique_id", _wrap_additive_scrambler_sptr_unique_id, METH_VARARGS, (char *)"additive_scrambler_sptr_unique_id(additive_scrambler_sptr self) -> long"},
+	 { (char *)"additive_scrambler_sptr_to_basic_block", _wrap_additive_scrambler_sptr_to_basic_block, METH_VARARGS, (char *)"additive_scrambler_sptr_to_basic_block(additive_scrambler_sptr self) -> basic_block_sptr"},
+	 { (char *)"additive_scrambler_sptr_check_topology", (PyCFunction) _wrap_additive_scrambler_sptr_check_topology, METH_VARARGS | METH_KEYWORDS, (char *)"additive_scrambler_sptr_check_topology(additive_scrambler_sptr self, int ninputs, int noutputs) -> bool"},
+	 { (char *)"additive_scrambler_sptr_alias", _wrap_additive_scrambler_sptr_alias, METH_VARARGS, (char *)"additive_scrambler_sptr_alias(additive_scrambler_sptr self) -> std::string"},
+	 { (char *)"additive_scrambler_sptr_set_block_alias", (PyCFunction) _wrap_additive_scrambler_sptr_set_block_alias, METH_VARARGS | METH_KEYWORDS, (char *)"additive_scrambler_sptr_set_block_alias(additive_scrambler_sptr self, std::string name)"},
+	 { (char *)"additive_scrambler_sptr__post", (PyCFunction) _wrap_additive_scrambler_sptr__post, METH_VARARGS | METH_KEYWORDS, (char *)"additive_scrambler_sptr__post(additive_scrambler_sptr self, swig_int_ptr which_port, swig_int_ptr msg)"},
+	 { (char *)"additive_scrambler_sptr_message_ports_in", _wrap_additive_scrambler_sptr_message_ports_in, METH_VARARGS, (char *)"additive_scrambler_sptr_message_ports_in(additive_scrambler_sptr self) -> swig_int_ptr"},
+	 { (char *)"additive_scrambler_sptr_message_ports_out", _wrap_additive_scrambler_sptr_message_ports_out, METH_VARARGS, (char *)"additive_scrambler_sptr_message_ports_out(additive_scrambler_sptr self) -> swig_int_ptr"},
+	 { (char *)"additive_scrambler_sptr_message_subscribers", (PyCFunction) _wrap_additive_scrambler_sptr_message_subscribers, METH_VARARGS | METH_KEYWORDS, (char *)"additive_scrambler_sptr_message_subscribers(additive_scrambler_sptr self, swig_int_ptr which_port) -> swig_int_ptr"},
+	 { (char *)"additive_scrambler_sptr_swigregister", additive_scrambler_sptr_swigregister, METH_VARARGS, NULL},
+	 { (char *)"additive_descrambler_make", (PyCFunction) _wrap_additive_descrambler_make, METH_VARARGS | METH_KEYWORDS, (char *)"\n"
+		"additive_descrambler_make(int mask, int seed, int len, int frame_bits) -> additive_descrambler_sptr\n"
+		"\n"
+		"<+description of block+>\n"
+		"\n"
+		"Constructor Specific Documentation:\n"
+		"\n"
+		"Return a shared_ptr to a new instance of scrambler_cpp::additive_descrambler.\n"
+		"\n"
+		"To avoid accidental use of raw pointers, scrambler_cpp::additive_descrambler's constructor is in a private implementation class. scrambler_cpp::additive_descrambler::make is the public interface for creating new instances.\n"
+		"\n"
+		"Args:\n"
+		"    mask : \n"
+		"    seed : \n"
+		"    len : \n"
+		"    frame_bits : \n"
+		""},
+	 { (char *)"delete_additive_descrambler", _wrap_delete_additive_descrambler, METH_VARARGS, (char *)"delete_additive_descrambler(additive_descrambler self)"},
+	 { (char *)"additive_descrambler_swigregister", additive_descrambler_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_additive_descrambler_sptr", _wrap_new_additive_descrambler_sptr, METH_VARARGS, (char *)"\n"
 		"additive_descrambler_sptr()\n"
 		"new_additive_descrambler_sptr(additive_descrambler p) -> additive_descrambler_sptr\n"
 		""},
-	 { "additive_descrambler_sptr___deref__", _wrap_additive_descrambler_sptr___deref__, METH_VARARGS, (char *)"additive_descrambler_sptr___deref__(additive_descrambler_sptr self) -> additive_descrambler"},
-	 { "delete_additive_descrambler_sptr", _wrap_delete_additive_descrambler_sptr, METH_VARARGS, (char *)"delete_additive_descrambler_sptr(additive_descrambler_sptr self)"},
-	 { "additive_descrambler_sptr_make", (PyCFunction)_wrap_additive_descrambler_sptr_make, METH_VARARGS|METH_KEYWORDS, (char *)"additive_descrambler_sptr_make(additive_descrambler_sptr self, int mask, int seed, int len, int frame_bits) -> additive_descrambler_sptr"},
-	 { "additive_descrambler_sptr_history", _wrap_additive_descrambler_sptr_history, METH_VARARGS, (char *)"additive_descrambler_sptr_history(additive_descrambler_sptr self) -> unsigned int"},
-	 { "additive_descrambler_sptr_declare_sample_delay", _wrap_additive_descrambler_sptr_declare_sample_delay, METH_VARARGS, (char *)"\n"
+	 { (char *)"additive_descrambler_sptr___deref__", _wrap_additive_descrambler_sptr___deref__, METH_VARARGS, (char *)"additive_descrambler_sptr___deref__(additive_descrambler_sptr self) -> additive_descrambler"},
+	 { (char *)"delete_additive_descrambler_sptr", _wrap_delete_additive_descrambler_sptr, METH_VARARGS, (char *)"delete_additive_descrambler_sptr(additive_descrambler_sptr self)"},
+	 { (char *)"additive_descrambler_sptr_make", (PyCFunction) _wrap_additive_descrambler_sptr_make, METH_VARARGS | METH_KEYWORDS, (char *)"\n"
+		"additive_descrambler_sptr_make(additive_descrambler_sptr self, int mask, int seed, int len, int frame_bits) -> additive_descrambler_sptr\n"
+		"\n"
+		"<+description of block+>\n"
+		"\n"
+		"Constructor Specific Documentation:\n"
+		"\n"
+		"Return a shared_ptr to a new instance of scrambler_cpp::additive_descrambler.\n"
+		"\n"
+		"To avoid accidental use of raw pointers, scrambler_cpp::additive_descrambler's constructor is in a private implementation class. scrambler_cpp::additive_descrambler::make is the public interface for creating new instances.\n"
+		"\n"
+		"Args:\n"
+		"    mask : \n"
+		"    seed : \n"
+		"    len : \n"
+		"    frame_bits : \n"
+		""},
+	 { (char *)"additive_descrambler_sptr_history", _wrap_additive_descrambler_sptr_history, METH_VARARGS, (char *)"additive_descrambler_sptr_history(additive_descrambler_sptr self) -> unsigned int"},
+	 { (char *)"additive_descrambler_sptr_declare_sample_delay", _wrap_additive_descrambler_sptr_declare_sample_delay, METH_VARARGS, (char *)"\n"
 		"declare_sample_delay(int which, int delay)\n"
 		"additive_descrambler_sptr_declare_sample_delay(additive_descrambler_sptr self, unsigned int delay)\n"
 		""},
-	 { "additive_descrambler_sptr_sample_delay", (PyCFunction)_wrap_additive_descrambler_sptr_sample_delay, METH_VARARGS|METH_KEYWORDS, (char *)"additive_descrambler_sptr_sample_delay(additive_descrambler_sptr self, int which) -> unsigned int"},
-	 { "additive_descrambler_sptr_output_multiple", _wrap_additive_descrambler_sptr_output_multiple, METH_VARARGS, (char *)"additive_descrambler_sptr_output_multiple(additive_descrambler_sptr self) -> int"},
-	 { "additive_descrambler_sptr_relative_rate", _wrap_additive_descrambler_sptr_relative_rate, METH_VARARGS, (char *)"additive_descrambler_sptr_relative_rate(additive_descrambler_sptr self) -> double"},
-	 { "additive_descrambler_sptr_start", _wrap_additive_descrambler_sptr_start, METH_VARARGS, (char *)"additive_descrambler_sptr_start(additive_descrambler_sptr self) -> bool"},
-	 { "additive_descrambler_sptr_stop", _wrap_additive_descrambler_sptr_stop, METH_VARARGS, (char *)"additive_descrambler_sptr_stop(additive_descrambler_sptr self) -> bool"},
-	 { "additive_descrambler_sptr_nitems_read", (PyCFunction)_wrap_additive_descrambler_sptr_nitems_read, METH_VARARGS|METH_KEYWORDS, (char *)"additive_descrambler_sptr_nitems_read(additive_descrambler_sptr self, unsigned int which_input) -> uint64_t"},
-	 { "additive_descrambler_sptr_nitems_written", (PyCFunction)_wrap_additive_descrambler_sptr_nitems_written, METH_VARARGS|METH_KEYWORDS, (char *)"additive_descrambler_sptr_nitems_written(additive_descrambler_sptr self, unsigned int which_output) -> uint64_t"},
-	 { "additive_descrambler_sptr_max_noutput_items", _wrap_additive_descrambler_sptr_max_noutput_items, METH_VARARGS, (char *)"additive_descrambler_sptr_max_noutput_items(additive_descrambler_sptr self) -> int"},
-	 { "additive_descrambler_sptr_set_max_noutput_items", (PyCFunction)_wrap_additive_descrambler_sptr_set_max_noutput_items, METH_VARARGS|METH_KEYWORDS, (char *)"additive_descrambler_sptr_set_max_noutput_items(additive_descrambler_sptr self, int m)"},
-	 { "additive_descrambler_sptr_unset_max_noutput_items", _wrap_additive_descrambler_sptr_unset_max_noutput_items, METH_VARARGS, (char *)"additive_descrambler_sptr_unset_max_noutput_items(additive_descrambler_sptr self)"},
-	 { "additive_descrambler_sptr_is_set_max_noutput_items", _wrap_additive_descrambler_sptr_is_set_max_noutput_items, METH_VARARGS, (char *)"additive_descrambler_sptr_is_set_max_noutput_items(additive_descrambler_sptr self) -> bool"},
-	 { "additive_descrambler_sptr_set_min_noutput_items", (PyCFunction)_wrap_additive_descrambler_sptr_set_min_noutput_items, METH_VARARGS|METH_KEYWORDS, (char *)"additive_descrambler_sptr_set_min_noutput_items(additive_descrambler_sptr self, int m)"},
-	 { "additive_descrambler_sptr_min_noutput_items", _wrap_additive_descrambler_sptr_min_noutput_items, METH_VARARGS, (char *)"additive_descrambler_sptr_min_noutput_items(additive_descrambler_sptr self) -> int"},
-	 { "additive_descrambler_sptr_max_output_buffer", (PyCFunction)_wrap_additive_descrambler_sptr_max_output_buffer, METH_VARARGS|METH_KEYWORDS, (char *)"additive_descrambler_sptr_max_output_buffer(additive_descrambler_sptr self, int i) -> long"},
-	 { "additive_descrambler_sptr_set_max_output_buffer", _wrap_additive_descrambler_sptr_set_max_output_buffer, METH_VARARGS, (char *)"\n"
+	 { (char *)"additive_descrambler_sptr_sample_delay", (PyCFunction) _wrap_additive_descrambler_sptr_sample_delay, METH_VARARGS | METH_KEYWORDS, (char *)"additive_descrambler_sptr_sample_delay(additive_descrambler_sptr self, int which) -> unsigned int"},
+	 { (char *)"additive_descrambler_sptr_output_multiple", _wrap_additive_descrambler_sptr_output_multiple, METH_VARARGS, (char *)"additive_descrambler_sptr_output_multiple(additive_descrambler_sptr self) -> int"},
+	 { (char *)"additive_descrambler_sptr_relative_rate", _wrap_additive_descrambler_sptr_relative_rate, METH_VARARGS, (char *)"additive_descrambler_sptr_relative_rate(additive_descrambler_sptr self) -> double"},
+	 { (char *)"additive_descrambler_sptr_start", _wrap_additive_descrambler_sptr_start, METH_VARARGS, (char *)"additive_descrambler_sptr_start(additive_descrambler_sptr self) -> bool"},
+	 { (char *)"additive_descrambler_sptr_stop", _wrap_additive_descrambler_sptr_stop, METH_VARARGS, (char *)"additive_descrambler_sptr_stop(additive_descrambler_sptr self) -> bool"},
+	 { (char *)"additive_descrambler_sptr_nitems_read", (PyCFunction) _wrap_additive_descrambler_sptr_nitems_read, METH_VARARGS | METH_KEYWORDS, (char *)"additive_descrambler_sptr_nitems_read(additive_descrambler_sptr self, unsigned int which_input) -> uint64_t"},
+	 { (char *)"additive_descrambler_sptr_nitems_written", (PyCFunction) _wrap_additive_descrambler_sptr_nitems_written, METH_VARARGS | METH_KEYWORDS, (char *)"additive_descrambler_sptr_nitems_written(additive_descrambler_sptr self, unsigned int which_output) -> uint64_t"},
+	 { (char *)"additive_descrambler_sptr_max_noutput_items", _wrap_additive_descrambler_sptr_max_noutput_items, METH_VARARGS, (char *)"additive_descrambler_sptr_max_noutput_items(additive_descrambler_sptr self) -> int"},
+	 { (char *)"additive_descrambler_sptr_set_max_noutput_items", (PyCFunction) _wrap_additive_descrambler_sptr_set_max_noutput_items, METH_VARARGS | METH_KEYWORDS, (char *)"additive_descrambler_sptr_set_max_noutput_items(additive_descrambler_sptr self, int m)"},
+	 { (char *)"additive_descrambler_sptr_unset_max_noutput_items", _wrap_additive_descrambler_sptr_unset_max_noutput_items, METH_VARARGS, (char *)"additive_descrambler_sptr_unset_max_noutput_items(additive_descrambler_sptr self)"},
+	 { (char *)"additive_descrambler_sptr_is_set_max_noutput_items", _wrap_additive_descrambler_sptr_is_set_max_noutput_items, METH_VARARGS, (char *)"additive_descrambler_sptr_is_set_max_noutput_items(additive_descrambler_sptr self) -> bool"},
+	 { (char *)"additive_descrambler_sptr_set_min_noutput_items", (PyCFunction) _wrap_additive_descrambler_sptr_set_min_noutput_items, METH_VARARGS | METH_KEYWORDS, (char *)"additive_descrambler_sptr_set_min_noutput_items(additive_descrambler_sptr self, int m)"},
+	 { (char *)"additive_descrambler_sptr_min_noutput_items", _wrap_additive_descrambler_sptr_min_noutput_items, METH_VARARGS, (char *)"additive_descrambler_sptr_min_noutput_items(additive_descrambler_sptr self) -> int"},
+	 { (char *)"additive_descrambler_sptr_max_output_buffer", (PyCFunction) _wrap_additive_descrambler_sptr_max_output_buffer, METH_VARARGS | METH_KEYWORDS, (char *)"additive_descrambler_sptr_max_output_buffer(additive_descrambler_sptr self, int i) -> long"},
+	 { (char *)"additive_descrambler_sptr_set_max_output_buffer", _wrap_additive_descrambler_sptr_set_max_output_buffer, METH_VARARGS, (char *)"\n"
 		"set_max_output_buffer(long max_output_buffer)\n"
 		"additive_descrambler_sptr_set_max_output_buffer(additive_descrambler_sptr self, int port, long max_output_buffer)\n"
 		""},
-	 { "additive_descrambler_sptr_min_output_buffer", (PyCFunction)_wrap_additive_descrambler_sptr_min_output_buffer, METH_VARARGS|METH_KEYWORDS, (char *)"additive_descrambler_sptr_min_output_buffer(additive_descrambler_sptr self, int i) -> long"},
-	 { "additive_descrambler_sptr_set_min_output_buffer", _wrap_additive_descrambler_sptr_set_min_output_buffer, METH_VARARGS, (char *)"\n"
+	 { (char *)"additive_descrambler_sptr_min_output_buffer", (PyCFunction) _wrap_additive_descrambler_sptr_min_output_buffer, METH_VARARGS | METH_KEYWORDS, (char *)"additive_descrambler_sptr_min_output_buffer(additive_descrambler_sptr self, int i) -> long"},
+	 { (char *)"additive_descrambler_sptr_set_min_output_buffer", _wrap_additive_descrambler_sptr_set_min_output_buffer, METH_VARARGS, (char *)"\n"
 		"set_min_output_buffer(long min_output_buffer)\n"
 		"additive_descrambler_sptr_set_min_output_buffer(additive_descrambler_sptr self, int port, long min_output_buffer)\n"
 		""},
-	 { "additive_descrambler_sptr_pc_noutput_items", _wrap_additive_descrambler_sptr_pc_noutput_items, METH_VARARGS, (char *)"additive_descrambler_sptr_pc_noutput_items(additive_descrambler_sptr self) -> float"},
-	 { "additive_descrambler_sptr_pc_noutput_items_avg", _wrap_additive_descrambler_sptr_pc_noutput_items_avg, METH_VARARGS, (char *)"additive_descrambler_sptr_pc_noutput_items_avg(additive_descrambler_sptr self) -> float"},
-	 { "additive_descrambler_sptr_pc_noutput_items_var", _wrap_additive_descrambler_sptr_pc_noutput_items_var, METH_VARARGS, (char *)"additive_descrambler_sptr_pc_noutput_items_var(additive_descrambler_sptr self) -> float"},
-	 { "additive_descrambler_sptr_pc_nproduced", _wrap_additive_descrambler_sptr_pc_nproduced, METH_VARARGS, (char *)"additive_descrambler_sptr_pc_nproduced(additive_descrambler_sptr self) -> float"},
-	 { "additive_descrambler_sptr_pc_nproduced_avg", _wrap_additive_descrambler_sptr_pc_nproduced_avg, METH_VARARGS, (char *)"additive_descrambler_sptr_pc_nproduced_avg(additive_descrambler_sptr self) -> float"},
-	 { "additive_descrambler_sptr_pc_nproduced_var", _wrap_additive_descrambler_sptr_pc_nproduced_var, METH_VARARGS, (char *)"additive_descrambler_sptr_pc_nproduced_var(additive_descrambler_sptr self) -> float"},
-	 { "additive_descrambler_sptr_pc_input_buffers_full", _wrap_additive_descrambler_sptr_pc_input_buffers_full, METH_VARARGS, (char *)"\n"
+	 { (char *)"additive_descrambler_sptr_pc_noutput_items", _wrap_additive_descrambler_sptr_pc_noutput_items, METH_VARARGS, (char *)"additive_descrambler_sptr_pc_noutput_items(additive_descrambler_sptr self) -> float"},
+	 { (char *)"additive_descrambler_sptr_pc_noutput_items_avg", _wrap_additive_descrambler_sptr_pc_noutput_items_avg, METH_VARARGS, (char *)"additive_descrambler_sptr_pc_noutput_items_avg(additive_descrambler_sptr self) -> float"},
+	 { (char *)"additive_descrambler_sptr_pc_noutput_items_var", _wrap_additive_descrambler_sptr_pc_noutput_items_var, METH_VARARGS, (char *)"additive_descrambler_sptr_pc_noutput_items_var(additive_descrambler_sptr self) -> float"},
+	 { (char *)"additive_descrambler_sptr_pc_nproduced", _wrap_additive_descrambler_sptr_pc_nproduced, METH_VARARGS, (char *)"additive_descrambler_sptr_pc_nproduced(additive_descrambler_sptr self) -> float"},
+	 { (char *)"additive_descrambler_sptr_pc_nproduced_avg", _wrap_additive_descrambler_sptr_pc_nproduced_avg, METH_VARARGS, (char *)"additive_descrambler_sptr_pc_nproduced_avg(additive_descrambler_sptr self) -> float"},
+	 { (char *)"additive_descrambler_sptr_pc_nproduced_var", _wrap_additive_descrambler_sptr_pc_nproduced_var, METH_VARARGS, (char *)"additive_descrambler_sptr_pc_nproduced_var(additive_descrambler_sptr self) -> float"},
+	 { (char *)"additive_descrambler_sptr_pc_input_buffers_full", _wrap_additive_descrambler_sptr_pc_input_buffers_full, METH_VARARGS, (char *)"\n"
 		"pc_input_buffers_full(int which) -> float\n"
 		"additive_descrambler_sptr_pc_input_buffers_full(additive_descrambler_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "additive_descrambler_sptr_pc_input_buffers_full_avg", _wrap_additive_descrambler_sptr_pc_input_buffers_full_avg, METH_VARARGS, (char *)"\n"
+	 { (char *)"additive_descrambler_sptr_pc_input_buffers_full_avg", _wrap_additive_descrambler_sptr_pc_input_buffers_full_avg, METH_VARARGS, (char *)"\n"
 		"pc_input_buffers_full_avg(int which) -> float\n"
 		"additive_descrambler_sptr_pc_input_buffers_full_avg(additive_descrambler_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "additive_descrambler_sptr_pc_input_buffers_full_var", _wrap_additive_descrambler_sptr_pc_input_buffers_full_var, METH_VARARGS, (char *)"\n"
+	 { (char *)"additive_descrambler_sptr_pc_input_buffers_full_var", _wrap_additive_descrambler_sptr_pc_input_buffers_full_var, METH_VARARGS, (char *)"\n"
 		"pc_input_buffers_full_var(int which) -> float\n"
 		"additive_descrambler_sptr_pc_input_buffers_full_var(additive_descrambler_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "additive_descrambler_sptr_pc_output_buffers_full", _wrap_additive_descrambler_sptr_pc_output_buffers_full, METH_VARARGS, (char *)"\n"
+	 { (char *)"additive_descrambler_sptr_pc_output_buffers_full", _wrap_additive_descrambler_sptr_pc_output_buffers_full, METH_VARARGS, (char *)"\n"
 		"pc_output_buffers_full(int which) -> float\n"
 		"additive_descrambler_sptr_pc_output_buffers_full(additive_descrambler_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "additive_descrambler_sptr_pc_output_buffers_full_avg", _wrap_additive_descrambler_sptr_pc_output_buffers_full_avg, METH_VARARGS, (char *)"\n"
+	 { (char *)"additive_descrambler_sptr_pc_output_buffers_full_avg", _wrap_additive_descrambler_sptr_pc_output_buffers_full_avg, METH_VARARGS, (char *)"\n"
 		"pc_output_buffers_full_avg(int which) -> float\n"
 		"additive_descrambler_sptr_pc_output_buffers_full_avg(additive_descrambler_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "additive_descrambler_sptr_pc_output_buffers_full_var", _wrap_additive_descrambler_sptr_pc_output_buffers_full_var, METH_VARARGS, (char *)"\n"
+	 { (char *)"additive_descrambler_sptr_pc_output_buffers_full_var", _wrap_additive_descrambler_sptr_pc_output_buffers_full_var, METH_VARARGS, (char *)"\n"
 		"pc_output_buffers_full_var(int which) -> float\n"
 		"additive_descrambler_sptr_pc_output_buffers_full_var(additive_descrambler_sptr self) -> pmt_vector_float\n"
 		""},
-	 { "additive_descrambler_sptr_pc_work_time", _wrap_additive_descrambler_sptr_pc_work_time, METH_VARARGS, (char *)"additive_descrambler_sptr_pc_work_time(additive_descrambler_sptr self) -> float"},
-	 { "additive_descrambler_sptr_pc_work_time_avg", _wrap_additive_descrambler_sptr_pc_work_time_avg, METH_VARARGS, (char *)"additive_descrambler_sptr_pc_work_time_avg(additive_descrambler_sptr self) -> float"},
-	 { "additive_descrambler_sptr_pc_work_time_var", _wrap_additive_descrambler_sptr_pc_work_time_var, METH_VARARGS, (char *)"additive_descrambler_sptr_pc_work_time_var(additive_descrambler_sptr self) -> float"},
-	 { "additive_descrambler_sptr_pc_work_time_total", _wrap_additive_descrambler_sptr_pc_work_time_total, METH_VARARGS, (char *)"additive_descrambler_sptr_pc_work_time_total(additive_descrambler_sptr self) -> float"},
-	 { "additive_descrambler_sptr_pc_throughput_avg", _wrap_additive_descrambler_sptr_pc_throughput_avg, METH_VARARGS, (char *)"additive_descrambler_sptr_pc_throughput_avg(additive_descrambler_sptr self) -> float"},
-	 { "additive_descrambler_sptr_set_processor_affinity", (PyCFunction)_wrap_additive_descrambler_sptr_set_processor_affinity, METH_VARARGS|METH_KEYWORDS, (char *)"additive_descrambler_sptr_set_processor_affinity(additive_descrambler_sptr self, std::vector< int,std::allocator< int > > const & mask)"},
-	 { "additive_descrambler_sptr_unset_processor_affinity", _wrap_additive_descrambler_sptr_unset_processor_affinity, METH_VARARGS, (char *)"additive_descrambler_sptr_unset_processor_affinity(additive_descrambler_sptr self)"},
-	 { "additive_descrambler_sptr_processor_affinity", _wrap_additive_descrambler_sptr_processor_affinity, METH_VARARGS, (char *)"additive_descrambler_sptr_processor_affinity(additive_descrambler_sptr self) -> std::vector< int,std::allocator< int > >"},
-	 { "additive_descrambler_sptr_active_thread_priority", _wrap_additive_descrambler_sptr_active_thread_priority, METH_VARARGS, (char *)"additive_descrambler_sptr_active_thread_priority(additive_descrambler_sptr self) -> int"},
-	 { "additive_descrambler_sptr_thread_priority", _wrap_additive_descrambler_sptr_thread_priority, METH_VARARGS, (char *)"additive_descrambler_sptr_thread_priority(additive_descrambler_sptr self) -> int"},
-	 { "additive_descrambler_sptr_set_thread_priority", (PyCFunction)_wrap_additive_descrambler_sptr_set_thread_priority, METH_VARARGS|METH_KEYWORDS, (char *)"additive_descrambler_sptr_set_thread_priority(additive_descrambler_sptr self, int priority) -> int"},
-	 { "additive_descrambler_sptr_name", _wrap_additive_descrambler_sptr_name, METH_VARARGS, (char *)"additive_descrambler_sptr_name(additive_descrambler_sptr self) -> std::string"},
-	 { "additive_descrambler_sptr_symbol_name", _wrap_additive_descrambler_sptr_symbol_name, METH_VARARGS, (char *)"additive_descrambler_sptr_symbol_name(additive_descrambler_sptr self) -> std::string"},
-	 { "additive_descrambler_sptr_input_signature", _wrap_additive_descrambler_sptr_input_signature, METH_VARARGS, (char *)"additive_descrambler_sptr_input_signature(additive_descrambler_sptr self) -> io_signature_sptr"},
-	 { "additive_descrambler_sptr_output_signature", _wrap_additive_descrambler_sptr_output_signature, METH_VARARGS, (char *)"additive_descrambler_sptr_output_signature(additive_descrambler_sptr self) -> io_signature_sptr"},
-	 { "additive_descrambler_sptr_unique_id", _wrap_additive_descrambler_sptr_unique_id, METH_VARARGS, (char *)"additive_descrambler_sptr_unique_id(additive_descrambler_sptr self) -> long"},
-	 { "additive_descrambler_sptr_to_basic_block", _wrap_additive_descrambler_sptr_to_basic_block, METH_VARARGS, (char *)"additive_descrambler_sptr_to_basic_block(additive_descrambler_sptr self) -> basic_block_sptr"},
-	 { "additive_descrambler_sptr_check_topology", (PyCFunction)_wrap_additive_descrambler_sptr_check_topology, METH_VARARGS|METH_KEYWORDS, (char *)"additive_descrambler_sptr_check_topology(additive_descrambler_sptr self, int ninputs, int noutputs) -> bool"},
-	 { "additive_descrambler_sptr_alias", _wrap_additive_descrambler_sptr_alias, METH_VARARGS, (char *)"additive_descrambler_sptr_alias(additive_descrambler_sptr self) -> std::string"},
-	 { "additive_descrambler_sptr_set_block_alias", (PyCFunction)_wrap_additive_descrambler_sptr_set_block_alias, METH_VARARGS|METH_KEYWORDS, (char *)"additive_descrambler_sptr_set_block_alias(additive_descrambler_sptr self, std::string name)"},
-	 { "additive_descrambler_sptr__post", (PyCFunction)_wrap_additive_descrambler_sptr__post, METH_VARARGS|METH_KEYWORDS, (char *)"additive_descrambler_sptr__post(additive_descrambler_sptr self, swig_int_ptr which_port, swig_int_ptr msg)"},
-	 { "additive_descrambler_sptr_message_ports_in", _wrap_additive_descrambler_sptr_message_ports_in, METH_VARARGS, (char *)"additive_descrambler_sptr_message_ports_in(additive_descrambler_sptr self) -> swig_int_ptr"},
-	 { "additive_descrambler_sptr_message_ports_out", _wrap_additive_descrambler_sptr_message_ports_out, METH_VARARGS, (char *)"additive_descrambler_sptr_message_ports_out(additive_descrambler_sptr self) -> swig_int_ptr"},
-	 { "additive_descrambler_sptr_message_subscribers", (PyCFunction)_wrap_additive_descrambler_sptr_message_subscribers, METH_VARARGS|METH_KEYWORDS, (char *)"additive_descrambler_sptr_message_subscribers(additive_descrambler_sptr self, swig_int_ptr which_port) -> swig_int_ptr"},
-	 { "additive_descrambler_sptr_swigregister", additive_descrambler_sptr_swigregister, METH_VARARGS, NULL},
+	 { (char *)"additive_descrambler_sptr_pc_work_time", _wrap_additive_descrambler_sptr_pc_work_time, METH_VARARGS, (char *)"additive_descrambler_sptr_pc_work_time(additive_descrambler_sptr self) -> float"},
+	 { (char *)"additive_descrambler_sptr_pc_work_time_avg", _wrap_additive_descrambler_sptr_pc_work_time_avg, METH_VARARGS, (char *)"additive_descrambler_sptr_pc_work_time_avg(additive_descrambler_sptr self) -> float"},
+	 { (char *)"additive_descrambler_sptr_pc_work_time_var", _wrap_additive_descrambler_sptr_pc_work_time_var, METH_VARARGS, (char *)"additive_descrambler_sptr_pc_work_time_var(additive_descrambler_sptr self) -> float"},
+	 { (char *)"additive_descrambler_sptr_pc_work_time_total", _wrap_additive_descrambler_sptr_pc_work_time_total, METH_VARARGS, (char *)"additive_descrambler_sptr_pc_work_time_total(additive_descrambler_sptr self) -> float"},
+	 { (char *)"additive_descrambler_sptr_pc_throughput_avg", _wrap_additive_descrambler_sptr_pc_throughput_avg, METH_VARARGS, (char *)"additive_descrambler_sptr_pc_throughput_avg(additive_descrambler_sptr self) -> float"},
+	 { (char *)"additive_descrambler_sptr_set_processor_affinity", (PyCFunction) _wrap_additive_descrambler_sptr_set_processor_affinity, METH_VARARGS | METH_KEYWORDS, (char *)"additive_descrambler_sptr_set_processor_affinity(additive_descrambler_sptr self, std::vector< int,std::allocator< int > > const & mask)"},
+	 { (char *)"additive_descrambler_sptr_unset_processor_affinity", _wrap_additive_descrambler_sptr_unset_processor_affinity, METH_VARARGS, (char *)"additive_descrambler_sptr_unset_processor_affinity(additive_descrambler_sptr self)"},
+	 { (char *)"additive_descrambler_sptr_processor_affinity", _wrap_additive_descrambler_sptr_processor_affinity, METH_VARARGS, (char *)"additive_descrambler_sptr_processor_affinity(additive_descrambler_sptr self) -> std::vector< int,std::allocator< int > >"},
+	 { (char *)"additive_descrambler_sptr_active_thread_priority", _wrap_additive_descrambler_sptr_active_thread_priority, METH_VARARGS, (char *)"additive_descrambler_sptr_active_thread_priority(additive_descrambler_sptr self) -> int"},
+	 { (char *)"additive_descrambler_sptr_thread_priority", _wrap_additive_descrambler_sptr_thread_priority, METH_VARARGS, (char *)"additive_descrambler_sptr_thread_priority(additive_descrambler_sptr self) -> int"},
+	 { (char *)"additive_descrambler_sptr_set_thread_priority", (PyCFunction) _wrap_additive_descrambler_sptr_set_thread_priority, METH_VARARGS | METH_KEYWORDS, (char *)"additive_descrambler_sptr_set_thread_priority(additive_descrambler_sptr self, int priority) -> int"},
+	 { (char *)"additive_descrambler_sptr_name", _wrap_additive_descrambler_sptr_name, METH_VARARGS, (char *)"additive_descrambler_sptr_name(additive_descrambler_sptr self) -> std::string"},
+	 { (char *)"additive_descrambler_sptr_symbol_name", _wrap_additive_descrambler_sptr_symbol_name, METH_VARARGS, (char *)"additive_descrambler_sptr_symbol_name(additive_descrambler_sptr self) -> std::string"},
+	 { (char *)"additive_descrambler_sptr_input_signature", _wrap_additive_descrambler_sptr_input_signature, METH_VARARGS, (char *)"additive_descrambler_sptr_input_signature(additive_descrambler_sptr self) -> io_signature_sptr"},
+	 { (char *)"additive_descrambler_sptr_output_signature", _wrap_additive_descrambler_sptr_output_signature, METH_VARARGS, (char *)"additive_descrambler_sptr_output_signature(additive_descrambler_sptr self) -> io_signature_sptr"},
+	 { (char *)"additive_descrambler_sptr_unique_id", _wrap_additive_descrambler_sptr_unique_id, METH_VARARGS, (char *)"additive_descrambler_sptr_unique_id(additive_descrambler_sptr self) -> long"},
+	 { (char *)"additive_descrambler_sptr_to_basic_block", _wrap_additive_descrambler_sptr_to_basic_block, METH_VARARGS, (char *)"additive_descrambler_sptr_to_basic_block(additive_descrambler_sptr self) -> basic_block_sptr"},
+	 { (char *)"additive_descrambler_sptr_check_topology", (PyCFunction) _wrap_additive_descrambler_sptr_check_topology, METH_VARARGS | METH_KEYWORDS, (char *)"additive_descrambler_sptr_check_topology(additive_descrambler_sptr self, int ninputs, int noutputs) -> bool"},
+	 { (char *)"additive_descrambler_sptr_alias", _wrap_additive_descrambler_sptr_alias, METH_VARARGS, (char *)"additive_descrambler_sptr_alias(additive_descrambler_sptr self) -> std::string"},
+	 { (char *)"additive_descrambler_sptr_set_block_alias", (PyCFunction) _wrap_additive_descrambler_sptr_set_block_alias, METH_VARARGS | METH_KEYWORDS, (char *)"additive_descrambler_sptr_set_block_alias(additive_descrambler_sptr self, std::string name)"},
+	 { (char *)"additive_descrambler_sptr__post", (PyCFunction) _wrap_additive_descrambler_sptr__post, METH_VARARGS | METH_KEYWORDS, (char *)"additive_descrambler_sptr__post(additive_descrambler_sptr self, swig_int_ptr which_port, swig_int_ptr msg)"},
+	 { (char *)"additive_descrambler_sptr_message_ports_in", _wrap_additive_descrambler_sptr_message_ports_in, METH_VARARGS, (char *)"additive_descrambler_sptr_message_ports_in(additive_descrambler_sptr self) -> swig_int_ptr"},
+	 { (char *)"additive_descrambler_sptr_message_ports_out", _wrap_additive_descrambler_sptr_message_ports_out, METH_VARARGS, (char *)"additive_descrambler_sptr_message_ports_out(additive_descrambler_sptr self) -> swig_int_ptr"},
+	 { (char *)"additive_descrambler_sptr_message_subscribers", (PyCFunction) _wrap_additive_descrambler_sptr_message_subscribers, METH_VARARGS | METH_KEYWORDS, (char *)"additive_descrambler_sptr_message_subscribers(additive_descrambler_sptr self, swig_int_ptr which_port) -> swig_int_ptr"},
+	 { (char *)"additive_descrambler_sptr_swigregister", additive_descrambler_sptr_swigregister, METH_VARARGS, NULL},
 	 { NULL, NULL, 0, NULL }
 };
 
@@ -19331,9 +19382,9 @@ extern "C" {
             char *ndoc = (char*)malloc(ldoc + lptr + 10);
             if (ndoc) {
               char *buff = ndoc;
-              memcpy(buff, methods[i].ml_doc, ldoc);
+              strncpy(buff, methods[i].ml_doc, ldoc);
               buff += ldoc;
-              memcpy(buff, "swig_ptr: ", 10);
+              strncpy(buff, "swig_ptr: ", 10);
               buff += 10;
               SWIG_PackVoidPtr(buff, ptr, ty->name, lptr);
               methods[i].ml_doc = ndoc;
@@ -19395,8 +19446,8 @@ SWIG_init(void) {
     (char *)"this", &SwigPyBuiltin_ThisClosure, NULL, NULL, NULL
   };
   static SwigPyGetSet thisown_getset_closure = {
-    SwigPyObject_own,
-    SwigPyObject_own
+    (PyCFunction) SwigPyObject_own,
+    (PyCFunction) SwigPyObject_own
   };
   static PyGetSetDef thisown_getset_def = {
     (char *)"thisown", SwigPyBuiltin_GetterClosure, SwigPyBuiltin_SetterClosure, NULL, &thisown_getset_closure
