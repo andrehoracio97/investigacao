@@ -1156,7 +1156,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>1600</value>
+      <value>0</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -1164,7 +1164,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1080, 756)</value>
+      <value>(0, 1140)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -1200,7 +1200,7 @@
     </param>
     <param>
       <key>stop</key>
-      <value>2000000</value>
+      <value>5000</value>
     </param>
     <param>
       <key>rangeType</key>
@@ -1227,7 +1227,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1224, 756)</value>
+      <value>(144, 1140)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -1263,7 +1263,7 @@
     </param>
     <param>
       <key>stop</key>
-      <value>2000000</value>
+      <value>5000</value>
     </param>
     <param>
       <key>rangeType</key>

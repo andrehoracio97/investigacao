@@ -118,12 +118,14 @@ lib/test-scrambler_packets_same_seed: lib/CMakeFiles/test-scrambler_packets_same
 lib/test-scrambler_packets_same_seed: lib/CMakeFiles/test-scrambler_packets_same_seed.dir/build.make
 lib/test-scrambler_packets_same_seed: /usr/local/lib/libgnuradio-runtime.so
 lib/test-scrambler_packets_same_seed: /usr/local/lib/libgnuradio-pmt.so
+lib/test-scrambler_packets_same_seed: /usr/lib/x86_64-linux-gnu/liblog4cpp.so
 lib/test-scrambler_packets_same_seed: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
 lib/test-scrambler_packets_same_seed: /usr/lib/x86_64-linux-gnu/libboost_system.so
 lib/test-scrambler_packets_same_seed: /usr/lib/x86_64-linux-gnu/libcppunit.so
 lib/test-scrambler_packets_same_seed: lib/libgnuradio-scrambler_packets_same_seed-1.0.0git.so.0.0.0
 lib/test-scrambler_packets_same_seed: /usr/local/lib/libgnuradio-runtime.so
 lib/test-scrambler_packets_same_seed: /usr/local/lib/libgnuradio-pmt.so
+lib/test-scrambler_packets_same_seed: /usr/lib/x86_64-linux-gnu/liblog4cpp.so
 lib/test-scrambler_packets_same_seed: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
 lib/test-scrambler_packets_same_seed: /usr/lib/x86_64-linux-gnu/libboost_system.so
 lib/test-scrambler_packets_same_seed: lib/CMakeFiles/test-scrambler_packets_same_seed.dir/link.txt

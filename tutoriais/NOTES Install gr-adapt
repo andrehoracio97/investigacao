@@ -3,6 +3,26 @@ To install Armadillo we need: LAPACK, BLAS/OpenBLAS, ARPACK and SuperLU.
 Dortran:
 sudo apt-get install gfortran
 
+==========LINHAS:
+sudo apt-get install gfortran
+git clone https://github.com/xianyi/OpenBLAS.git
+git checkout develop
+mkdir build
+cd build/
+cmake ../
+sudo apt update
+apt search openblas
+sudo apt install libopenblas-dev
+sudo update-alternatives --config libblas.so.3
+
+export OPENBLAS_NUM_THREADS=4
+export GOTO_NUM_THREADS=4
+export OMP_NUM_THREADS=4
+
+make
+make install ---> aqui falo do openblas
+
+==========
 
 Openblas -http://www.openblas.net/
 git clone https://github.com/xianyi/OpenBLAS.git
@@ -26,13 +46,14 @@ cmake ../
 make
 sudo make install
 
+====https://github.com/xianyi/OpenBLAS/wiki/Precompiled-installation-packages
 
 LAPACK -http://www.netlib.org/lapack/
 git clone https://github.com/Reference-LAPACK/lapack
 cd lapack
 mkdir build
 cd build
-cmake ../
+cmake ../ CFLAGS=-fPIC CXXFLAGS=-fPIC LFLAGS=-fPIC cmake ../
 make
 sudo make install
 
@@ -97,3 +118,23 @@ Problems:
 ctest -V -R lms_filter_cc
 Gives Cycler problem:
 sudo apt install python-matplotlib
+
+Problem: Not working with MUltithreading in OpenBLAS
+Solution:
+git clone https://github.com/xianyi/OpenBLAS.git
+cd OpenBLAS
+git checkout master
+export OPENBLAS_NUM_THREADS=4
+export GOTO_NUM_THREADS=4
+export OMP_NUM_THREADS=4
+make
+sudo make PREFIX=/usr/local install
+
+git clone https://github.com/xianyi/OpenBLAS.git
+cd OpenBLAS
+git checkout develp
+export OPENBLAS_NUM_THREADS=4
+export GOTO_NUM_THREADS=4
+export OMP_NUM_THREADS=4
+make
+sudo make PREFIX=/usr/local install

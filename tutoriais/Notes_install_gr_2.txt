@@ -6,7 +6,9 @@ sudo apt install cmake git g++ libboost-all-dev python-dev python-mako python-nu
 
 sudo apt install cmake
 sudo apt-get install build-essential 
- 
+
+sudo apt-get install blt curl fonts-lyx freeglut3 libcodec2-0.7 libdouble-conversion1 libgnuradio-analog3.7.11 libgnuradio-atsc3.7.11 libgnuradio-audio3.7.11 libgnuradio-blocks3.7.11 libgnuradio-channels3.7.11 libgnuradio-comedi3.7.11 libgnuradio-digital3.7.11 libgnuradio-dtv3.7.11  libgnuradio-fcd3.7.11 libgnuradio-fec3.7.11 libgnuradio-fft3.7.11  libgnuradio-filter3.7.11 libgnuradio-noaa3.7.11 ibgnuradio-pager3.7.11  libgnuradio-pmt3.7.11 libgnuradio-qtgui3.7.11 libgnuradio-runtime3.7.11  libgnuradio-trellis3.7.11 libgnuradio-uhd3.7.11 libgnuradio-video-sdl3.7.11  libgnuradio-vocoder3.7.11 libgnuradio-wavelet3.7.11 libgnuradio-wxgui3.7.11  libgnuradio-zeromq3.7.11 libjs-jquery-ui liblog4cpp5-dev liblog4cpp5v5  libportaudio2 libqt5core5a libqt5dbus5 libqt5designer5 libqt5gui5  libqt5help5 libqt5network5 libqt5opengl5 libqt5printsupport5 libqt5sql5  libqt5sql5-sqlite libqt5svg5 libqt5test5 libqt5widgets5 libqt5xml5  libqwt-qt5-6 librtlsdr0 libtcl8.6 libtk8.6 libuhd003.010.003 libvolk1-bin  libvolk1-dev libvolk1.3 libxcb-xinerama0  python-backports.functools-lru-cache python-cycler python-dateutil  python-decorator python-matplotlib python-matplotlib-data python-networkx  python-opengl python-pyparsing python-pyqt5 python-scipy python-subprocess32  python-tk python-yaml python-zmq qt5-gtk-platformtheme qttranslations5-l10n  rtl-sdr tk8.6-blt2.5 ttf-bitstream-vera uhd-host
+
  ===============================================VOLK===============================================
 2: Install VOLK
 https://github.com/gnuradio/volk

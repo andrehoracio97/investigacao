@@ -118,12 +118,14 @@ lib/test-scrambler_cpp: lib/CMakeFiles/test-scrambler_cpp.dir/qa_scrambler_cpp.c
 lib/test-scrambler_cpp: lib/CMakeFiles/test-scrambler_cpp.dir/build.make
 lib/test-scrambler_cpp: /usr/local/lib/libgnuradio-runtime.so
 lib/test-scrambler_cpp: /usr/local/lib/libgnuradio-pmt.so
+lib/test-scrambler_cpp: /usr/lib/x86_64-linux-gnu/liblog4cpp.so
 lib/test-scrambler_cpp: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
 lib/test-scrambler_cpp: /usr/lib/x86_64-linux-gnu/libboost_system.so
 lib/test-scrambler_cpp: /usr/lib/x86_64-linux-gnu/libcppunit.so
 lib/test-scrambler_cpp: lib/libgnuradio-scrambler_cpp-1.0.0git.so.0.0.0
 lib/test-scrambler_cpp: /usr/local/lib/libgnuradio-runtime.so
 lib/test-scrambler_cpp: /usr/local/lib/libgnuradio-pmt.so
+lib/test-scrambler_cpp: /usr/lib/x86_64-linux-gnu/liblog4cpp.so
 lib/test-scrambler_cpp: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
 lib/test-scrambler_cpp: /usr/lib/x86_64-linux-gnu/libboost_system.so
 lib/test-scrambler_cpp: lib/CMakeFiles/test-scrambler_cpp.dir/link.txt

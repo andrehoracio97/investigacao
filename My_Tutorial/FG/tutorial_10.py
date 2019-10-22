@@ -86,7 +86,7 @@ class tutorial_10(gr.top_block, Qt.QWidget):
         self.rate = rate = 2
         self.polys = polys = [109, 79]
         self.k = k = 7
-        self.vector = vector = [int(random.random()*4) for i in range(49600)]
+        self.vector = vector = [int(random.random()*7) for i in range(49600)]
         self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 38
         self.variable_qtgui_range_0 = variable_qtgui_range_0 = 50
         self.samp_rate = samp_rate = samp_rate_array_MCR[3]
@@ -99,7 +99,9 @@ class tutorial_10(gr.top_block, Qt.QWidget):
 
 
         self.pld_dec = pld_dec = map( (lambda a: fec.cc_decoder.make(440, k, rate, (polys), 0, -1, fec.CC_TERMINATED, False)), range(0,8) );
-        self.pld_const = pld_const = digital.constellation_rect(([0.707+0.707j, -0.707+0.707j, -0.707-0.707j, 0.707-0.707j]), ([0, 1, 2, 3]), 4, 2, 2, 1, 1).base()
+
+        self.pld_const = pld_const = digital.constellation_calcdist((0.92387+0.38268j, 0.38268+0.92387j,  -0.38268+0.92387j, -0.92387+0.38268j, -0.92387-0.38268j, -0.38268-0.92387j, 0.38268-0.92387j, 0.92387-0.38268j), ([0, 1, 2, 3, 4, 5, 6, 7]), 4, 1).base()
+
         self.pld_const.gen_soft_dec_lut(8)
         self.frequencia_usrp = frequencia_usrp = 484e6
         self.filt_delay = filt_delay = 1+(taps_per_filt-1)/2
@@ -528,7 +530,7 @@ class tutorial_10(gr.top_block, Qt.QWidget):
         self.digital_correlate_access_code_xx_ts_0_0 = digital.correlate_access_code_bb_ts(digital.packet_utils.default_access_code,
           1, 'packet_len')
         self.digital_constellation_decoder_cb_0_0 = digital.constellation_decoder_cb(pld_const)
-        self.digital_cma_equalizer_cc_0 = digital.cma_equalizer_cc(1, 1, 0.01, 2)
+        self.digital_cma_equalizer_cc_0 = digital.cma_equalizer_cc(15, 1, 0.01, 2)
         self.digital_chunks_to_symbols_xx_0_0 = digital.chunks_to_symbols_bc((pld_const.points()), 1)
         self.blocks_vector_source_x_0_0_0 = blocks.vector_source_b([0], True, 1, [])
         self.blocks_stream_mux_0_1_0 = blocks.stream_mux(gr.sizeof_char*1, (96, 896))
@@ -541,8 +543,8 @@ class tutorial_10(gr.top_block, Qt.QWidget):
         self.blocks_keep_m_in_n_0_0_2_0 = blocks.keep_m_in_n(gr.sizeof_char, 892, 896, 0)
         self.blocks_file_source_0_0_1_0 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Desktop/Files_To_Transmit/trasmit_10_mb.txt', False)
         self.blocks_file_source_0_0_1_0.set_begin_tag(pmt.PMT_NIL)
-        self.blocks_file_sink_0_0_0_2_0 = blocks.file_sink(gr.sizeof_char*1, '/home/andre/Desktop/Trasmited/depois.txt', False)
-        self.blocks_file_sink_0_0_0_2_0.set_unbuffered(False)
+        self.blocks_file_sink_0_0_0_2 = blocks.file_sink(gr.sizeof_char*1, '/home/andre/Desktop/Trasmited/depois.mpeg', False)
+        self.blocks_file_sink_0_0_0_2.set_unbuffered(False)
         self.blocks_copy_0 = blocks.copy(gr.sizeof_gr_complex*1)
         self.blocks_copy_0.set_enabled(copy)
         self.blocks_char_to_float_1_0_1 = blocks.char_to_float(1, 1)
@@ -568,7 +570,7 @@ class tutorial_10(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_multiply_const_vxx_1, 0), (self.uhd_usrp_sink_0_0, 0))
         self.connect((self.blocks_repack_bits_bb_0, 0), (self.digital_correlate_access_code_xx_ts_0_0, 0))
         self.connect((self.blocks_repack_bits_bb_0_0, 0), (self.blocks_char_to_float_1_0_1, 0))
-        self.connect((self.blocks_repack_bits_bb_0_0, 0), (self.blocks_file_sink_0_0_0_2_0, 0))
+        self.connect((self.blocks_repack_bits_bb_0_0, 0), (self.blocks_file_sink_0_0_0_2, 0))
         self.connect((self.blocks_repack_bits_bb_0_1, 0), (self.insert_vec_cpp_new_vec_0, 0))
         self.connect((self.blocks_repack_bits_bb_1_0_0_1, 0), (self.scrambler_packets_same_seed_scramble_packetize_0, 0))
         self.connect((self.blocks_stream_mux_0_0, 0), (self.blocks_stream_mux_0_1_0, 1))

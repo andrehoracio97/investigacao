@@ -232,6 +232,9 @@ GNURADIO_RUNTIME_LIBRARIES_gnuradio-pmt:FILEPATH=/usr/local/lib/libgnuradio-pmt.
 //Path to a library.
 GNURADIO_RUNTIME_LIBRARIES_gnuradio-runtime:FILEPATH=/usr/local/lib/libgnuradio-runtime.so
 
+//Path to a library.
+GNURADIO_RUNTIME_LIBRARIES_log4cpp:FILEPATH=/usr/lib/x86_64-linux-gnu/liblog4cpp.so
+
 //The directory containing a CMake configuration file for Gnuradio.
 Gnuradio_DIR:PATH=/usr/local/lib/cmake/gnuradio
 
@@ -272,7 +275,7 @@ SWIG_VERSION:STRING=3.0.12
 _insert_vec_cpp_swig_LIB_DEPENDS:STATIC=general;/usr/lib/x86_64-linux-gnu/libpython2.7.so;general;gnuradio-insert_vec_cpp;
 
 //Dependencies for the target
-gnuradio-insert_vec_cpp_LIB_DEPENDS:STATIC=general;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so;general;/usr/lib/x86_64-linux-gnu/libboost_system.so;general;/usr/local/lib/libgnuradio-runtime.so;general;/usr/local/lib/libgnuradio-pmt.so;
+gnuradio-insert_vec_cpp_LIB_DEPENDS:STATIC=general;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so;general;/usr/lib/x86_64-linux-gnu/libboost_system.so;general;/usr/local/lib/libgnuradio-runtime.so;general;/usr/local/lib/libgnuradio-pmt.so;general;/usr/lib/x86_64-linux-gnu/liblog4cpp.so;
 
 //Value Computed by CMake
 gr-insert_vec_cpp_BINARY_DIR:STATIC=/home/andre/investigacao/gr-insert_vec_cpp/build
@@ -449,7 +452,7 @@ FIND_PACKAGE_MESSAGE_DETAILS_CPPUNIT:INTERNAL=[/usr/lib/x86_64-linux-gnu/libcppu
 //Details about finding Doxygen
 FIND_PACKAGE_MESSAGE_DETAILS_Doxygen:INTERNAL=[/usr/bin/doxygen][cfound components:  doxygen missing components:  dot][v1.8.13()]
 //Details about finding GNURADIO_RUNTIME
-FIND_PACKAGE_MESSAGE_DETAILS_GNURADIO_RUNTIME:INTERNAL=[/usr/local/lib/libgnuradio-runtime.so;/usr/local/lib/libgnuradio-pmt.so][/usr/local/include][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_GNURADIO_RUNTIME:INTERNAL=[/usr/local/lib/libgnuradio-runtime.so;/usr/local/lib/libgnuradio-pmt.so;/usr/lib/x86_64-linux-gnu/liblog4cpp.so][/usr/local/include][v()]
 //Details about finding Git
 FIND_PACKAGE_MESSAGE_DETAILS_Git:INTERNAL=[/usr/bin/git][v()]
 //Details about finding PkgConfig
@@ -518,10 +521,10 @@ PC_GNURADIO_RUNTIME_CFLAGS_OTHER:INTERNAL=
 PC_GNURADIO_RUNTIME_FOUND:INTERNAL=1
 PC_GNURADIO_RUNTIME_INCLUDEDIR:INTERNAL=/usr/local/include
 PC_GNURADIO_RUNTIME_INCLUDE_DIRS:INTERNAL=/usr/local/include
-PC_GNURADIO_RUNTIME_LDFLAGS:INTERNAL=-L/usr/local/lib;-lgnuradio-runtime;-lgnuradio-pmt
+PC_GNURADIO_RUNTIME_LDFLAGS:INTERNAL=-L/usr/local/lib;-lgnuradio-runtime;-lgnuradio-pmt;-llog4cpp
 PC_GNURADIO_RUNTIME_LDFLAGS_OTHER:INTERNAL=
 PC_GNURADIO_RUNTIME_LIBDIR:INTERNAL=/usr/local/lib
-PC_GNURADIO_RUNTIME_LIBRARIES:INTERNAL=gnuradio-runtime;gnuradio-pmt
+PC_GNURADIO_RUNTIME_LIBRARIES:INTERNAL=gnuradio-runtime;gnuradio-pmt;log4cpp
 PC_GNURADIO_RUNTIME_LIBRARY_DIRS:INTERNAL=/usr/local/lib
 PC_GNURADIO_RUNTIME_LIBS:INTERNAL=
 PC_GNURADIO_RUNTIME_LIBS_L:INTERNAL=
@@ -532,10 +535,10 @@ PC_GNURADIO_RUNTIME_STATIC_CFLAGS:INTERNAL=-I/usr/local/include
 PC_GNURADIO_RUNTIME_STATIC_CFLAGS_I:INTERNAL=
 PC_GNURADIO_RUNTIME_STATIC_CFLAGS_OTHER:INTERNAL=
 PC_GNURADIO_RUNTIME_STATIC_INCLUDE_DIRS:INTERNAL=/usr/local/include
-PC_GNURADIO_RUNTIME_STATIC_LDFLAGS:INTERNAL=-L/usr/local/lib;-lgnuradio-runtime;-lgnuradio-pmt
+PC_GNURADIO_RUNTIME_STATIC_LDFLAGS:INTERNAL=-L/usr/local/lib;-lgnuradio-runtime;-lgnuradio-pmt;-llog4cpp
 PC_GNURADIO_RUNTIME_STATIC_LDFLAGS_OTHER:INTERNAL=
 PC_GNURADIO_RUNTIME_STATIC_LIBDIR:INTERNAL=
-PC_GNURADIO_RUNTIME_STATIC_LIBRARIES:INTERNAL=gnuradio-runtime;gnuradio-pmt
+PC_GNURADIO_RUNTIME_STATIC_LIBRARIES:INTERNAL=gnuradio-runtime;gnuradio-pmt;log4cpp
 PC_GNURADIO_RUNTIME_STATIC_LIBRARY_DIRS:INTERNAL=/usr/local/lib
 PC_GNURADIO_RUNTIME_STATIC_LIBS:INTERNAL=
 PC_GNURADIO_RUNTIME_STATIC_LIBS_L:INTERNAL=

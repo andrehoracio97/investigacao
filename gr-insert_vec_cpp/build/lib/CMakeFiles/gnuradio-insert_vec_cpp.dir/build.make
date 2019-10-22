@@ -94,6 +94,7 @@ lib/libgnuradio-insert_vec_cpp-1.0.0git.so.0.0.0: /usr/lib/x86_64-linux-gnu/libb
 lib/libgnuradio-insert_vec_cpp-1.0.0git.so.0.0.0: /usr/lib/x86_64-linux-gnu/libboost_system.so
 lib/libgnuradio-insert_vec_cpp-1.0.0git.so.0.0.0: /usr/local/lib/libgnuradio-runtime.so
 lib/libgnuradio-insert_vec_cpp-1.0.0git.so.0.0.0: /usr/local/lib/libgnuradio-pmt.so
+lib/libgnuradio-insert_vec_cpp-1.0.0git.so.0.0.0: /usr/lib/x86_64-linux-gnu/liblog4cpp.so
 lib/libgnuradio-insert_vec_cpp-1.0.0git.so.0.0.0: lib/CMakeFiles/gnuradio-insert_vec_cpp.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/andre/investigacao/gr-insert_vec_cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared library libgnuradio-insert_vec_cpp-1.0.0git.so"
 	cd /home/andre/investigacao/gr-insert_vec_cpp/build/lib && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/gnuradio-insert_vec_cpp.dir/link.txt --verbose=$(VERBOSE)
