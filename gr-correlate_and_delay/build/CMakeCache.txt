@@ -224,6 +224,24 @@ ENABLE_DOXYGEN:BOOL=ON
 GIT_EXECUTABLE:FILEPATH=/usr/bin/git
 
 //Path to a file.
+GNURADIO_FILTER_INCLUDE_DIRS:PATH=/usr/local/include
+
+//Path to a library.
+GNURADIO_FILTER_LIBRARIES_gnuradio-fft:FILEPATH=/usr/local/lib/libgnuradio-fft.so
+
+//Path to a library.
+GNURADIO_FILTER_LIBRARIES_gnuradio-filter:FILEPATH=/usr/local/lib/libgnuradio-filter.so
+
+//Path to a library.
+GNURADIO_FILTER_LIBRARIES_gnuradio-pmt:FILEPATH=/usr/local/lib/libgnuradio-pmt.so
+
+//Path to a library.
+GNURADIO_FILTER_LIBRARIES_gnuradio-runtime:FILEPATH=/usr/local/lib/libgnuradio-runtime.so
+
+//Path to a library.
+GNURADIO_FILTER_LIBRARIES_log4cpp:FILEPATH=/usr/lib/x86_64-linux-gnu/liblog4cpp.so
+
+//Path to a file.
 GNURADIO_RUNTIME_INCLUDE_DIRS:PATH=/usr/local/include
 
 //Path to a library.
@@ -231,6 +249,9 @@ GNURADIO_RUNTIME_LIBRARIES_gnuradio-pmt:FILEPATH=/usr/local/lib/libgnuradio-pmt.
 
 //Path to a library.
 GNURADIO_RUNTIME_LIBRARIES_gnuradio-runtime:FILEPATH=/usr/local/lib/libgnuradio-runtime.so
+
+//Path to a library.
+GNURADIO_RUNTIME_LIBRARIES_log4cpp:FILEPATH=/usr/lib/x86_64-linux-gnu/liblog4cpp.so
 
 //The directory containing a CMake configuration file for Gnuradio.
 Gnuradio_DIR:PATH=/usr/local/lib/cmake/gnuradio
@@ -272,7 +293,7 @@ SWIG_VERSION:STRING=3.0.12
 _correlate_and_delay_swig_LIB_DEPENDS:STATIC=general;/usr/lib/x86_64-linux-gnu/libpython2.7.so;general;gnuradio-correlate_and_delay;
 
 //Dependencies for the target
-gnuradio-correlate_and_delay_LIB_DEPENDS:STATIC=general;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so;general;/usr/lib/x86_64-linux-gnu/libboost_system.so;general;/usr/local/lib/libgnuradio-runtime.so;general;/usr/local/lib/libgnuradio-pmt.so;
+gnuradio-correlate_and_delay_LIB_DEPENDS:STATIC=general;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so;general;/usr/lib/x86_64-linux-gnu/libboost_system.so;general;/usr/local/lib/libgnuradio-runtime.so;general;/usr/local/lib/libgnuradio-pmt.so;general;/usr/lib/x86_64-linux-gnu/liblog4cpp.so;general;/usr/local/lib/libgnuradio-filter.so;general;/usr/local/lib/libgnuradio-fft.so;
 
 //Value Computed by CMake
 gr-correlate_and_delay_BINARY_DIR:STATIC=/home/andre/investigacao/gr-correlate_and_delay/build
@@ -448,8 +469,10 @@ DOXYGEN_EXECUTABLE-ADVANCED:INTERNAL=1
 FIND_PACKAGE_MESSAGE_DETAILS_CPPUNIT:INTERNAL=[/usr/lib/x86_64-linux-gnu/libcppunit.so;dl][/usr/include][v()]
 //Details about finding Doxygen
 FIND_PACKAGE_MESSAGE_DETAILS_Doxygen:INTERNAL=[/usr/bin/doxygen][cfound components:  doxygen missing components:  dot][v1.8.13()]
+//Details about finding GNURADIO_FILTER
+FIND_PACKAGE_MESSAGE_DETAILS_GNURADIO_FILTER:INTERNAL=[/usr/local/lib/libgnuradio-filter.so;/usr/local/lib/libgnuradio-fft.so;/usr/local/lib/libgnuradio-runtime.so;/usr/local/lib/libgnuradio-pmt.so;/usr/lib/x86_64-linux-gnu/liblog4cpp.so][/usr/local/include][v()]
 //Details about finding GNURADIO_RUNTIME
-FIND_PACKAGE_MESSAGE_DETAILS_GNURADIO_RUNTIME:INTERNAL=[/usr/local/lib/libgnuradio-runtime.so;/usr/local/lib/libgnuradio-pmt.so][/usr/local/include][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_GNURADIO_RUNTIME:INTERNAL=[/usr/local/lib/libgnuradio-runtime.so;/usr/local/lib/libgnuradio-pmt.so;/usr/lib/x86_64-linux-gnu/liblog4cpp.so][/usr/local/include][v()]
 //Details about finding Git
 FIND_PACKAGE_MESSAGE_DETAILS_Git:INTERNAL=[/usr/bin/git][v()]
 //Details about finding PkgConfig
@@ -462,6 +485,8 @@ FIND_PACKAGE_MESSAGE_DETAILS_PythonLibs:INTERNAL=[/usr/lib/x86_64-linux-gnu/libp
 FIND_PACKAGE_MESSAGE_DETAILS_SWIG:INTERNAL=[/usr/bin/swig3.0][/usr/share/swig3.0][v()]
 //ADVANCED property for variable: GIT_EXECUTABLE
 GIT_EXECUTABLE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: GNURADIO_FILTER_INCLUDE_DIRS
+GNURADIO_FILTER_INCLUDE_DIRS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: GNURADIO_RUNTIME_INCLUDE_DIRS
 GNURADIO_RUNTIME_INCLUDE_DIRS-ADVANCED:INTERNAL=1
 GR_CORRELATE_AND_DELAY_INCLUDE_DIRS:INTERNAL=/home/andre/investigacao/gr-correlate_and_delay/include
@@ -512,16 +537,50 @@ PC_CPPUNIT_cppunit_INCLUDEDIR:INTERNAL=
 PC_CPPUNIT_cppunit_LIBDIR:INTERNAL=
 PC_CPPUNIT_cppunit_PREFIX:INTERNAL=
 PC_CPPUNIT_cppunit_VERSION:INTERNAL=
+PC_GNURADIO_FILTER_CFLAGS:INTERNAL=-I/usr/local/include
+PC_GNURADIO_FILTER_CFLAGS_I:INTERNAL=
+PC_GNURADIO_FILTER_CFLAGS_OTHER:INTERNAL=
+PC_GNURADIO_FILTER_FOUND:INTERNAL=1
+PC_GNURADIO_FILTER_INCLUDEDIR:INTERNAL=/usr/local/include
+PC_GNURADIO_FILTER_INCLUDE_DIRS:INTERNAL=/usr/local/include
+PC_GNURADIO_FILTER_LDFLAGS:INTERNAL=-L/usr/local/lib;-lgnuradio-filter;-lgnuradio-fft;-lgnuradio-runtime;-lgnuradio-pmt;-llog4cpp
+PC_GNURADIO_FILTER_LDFLAGS_OTHER:INTERNAL=
+PC_GNURADIO_FILTER_LIBDIR:INTERNAL=/usr/local/lib
+PC_GNURADIO_FILTER_LIBRARIES:INTERNAL=gnuradio-filter;gnuradio-fft;gnuradio-runtime;gnuradio-pmt;log4cpp
+PC_GNURADIO_FILTER_LIBRARY_DIRS:INTERNAL=/usr/local/lib
+PC_GNURADIO_FILTER_LIBS:INTERNAL=
+PC_GNURADIO_FILTER_LIBS_L:INTERNAL=
+PC_GNURADIO_FILTER_LIBS_OTHER:INTERNAL=
+PC_GNURADIO_FILTER_LIBS_PATHS:INTERNAL=
+PC_GNURADIO_FILTER_PREFIX:INTERNAL=/usr/local
+PC_GNURADIO_FILTER_STATIC_CFLAGS:INTERNAL=-I/usr/local/include
+PC_GNURADIO_FILTER_STATIC_CFLAGS_I:INTERNAL=
+PC_GNURADIO_FILTER_STATIC_CFLAGS_OTHER:INTERNAL=
+PC_GNURADIO_FILTER_STATIC_INCLUDE_DIRS:INTERNAL=/usr/local/include
+PC_GNURADIO_FILTER_STATIC_LDFLAGS:INTERNAL=-L/usr/local/lib;-lgnuradio-filter;-lgnuradio-fft;-lgnuradio-runtime;-lgnuradio-pmt;-llog4cpp
+PC_GNURADIO_FILTER_STATIC_LDFLAGS_OTHER:INTERNAL=
+PC_GNURADIO_FILTER_STATIC_LIBDIR:INTERNAL=
+PC_GNURADIO_FILTER_STATIC_LIBRARIES:INTERNAL=gnuradio-filter;gnuradio-fft;gnuradio-runtime;gnuradio-pmt;log4cpp
+PC_GNURADIO_FILTER_STATIC_LIBRARY_DIRS:INTERNAL=/usr/local/lib
+PC_GNURADIO_FILTER_STATIC_LIBS:INTERNAL=
+PC_GNURADIO_FILTER_STATIC_LIBS_L:INTERNAL=
+PC_GNURADIO_FILTER_STATIC_LIBS_OTHER:INTERNAL=
+PC_GNURADIO_FILTER_STATIC_LIBS_PATHS:INTERNAL=
+PC_GNURADIO_FILTER_VERSION:INTERNAL=3.7.13.5
+PC_GNURADIO_FILTER_gnuradio-filter_INCLUDEDIR:INTERNAL=
+PC_GNURADIO_FILTER_gnuradio-filter_LIBDIR:INTERNAL=
+PC_GNURADIO_FILTER_gnuradio-filter_PREFIX:INTERNAL=
+PC_GNURADIO_FILTER_gnuradio-filter_VERSION:INTERNAL=
 PC_GNURADIO_RUNTIME_CFLAGS:INTERNAL=-I/usr/local/include
 PC_GNURADIO_RUNTIME_CFLAGS_I:INTERNAL=
 PC_GNURADIO_RUNTIME_CFLAGS_OTHER:INTERNAL=
 PC_GNURADIO_RUNTIME_FOUND:INTERNAL=1
 PC_GNURADIO_RUNTIME_INCLUDEDIR:INTERNAL=/usr/local/include
 PC_GNURADIO_RUNTIME_INCLUDE_DIRS:INTERNAL=/usr/local/include
-PC_GNURADIO_RUNTIME_LDFLAGS:INTERNAL=-L/usr/local/lib;-lgnuradio-runtime;-lgnuradio-pmt
+PC_GNURADIO_RUNTIME_LDFLAGS:INTERNAL=-L/usr/local/lib;-lgnuradio-runtime;-lgnuradio-pmt;-llog4cpp
 PC_GNURADIO_RUNTIME_LDFLAGS_OTHER:INTERNAL=
 PC_GNURADIO_RUNTIME_LIBDIR:INTERNAL=/usr/local/lib
-PC_GNURADIO_RUNTIME_LIBRARIES:INTERNAL=gnuradio-runtime;gnuradio-pmt
+PC_GNURADIO_RUNTIME_LIBRARIES:INTERNAL=gnuradio-runtime;gnuradio-pmt;log4cpp
 PC_GNURADIO_RUNTIME_LIBRARY_DIRS:INTERNAL=/usr/local/lib
 PC_GNURADIO_RUNTIME_LIBS:INTERNAL=
 PC_GNURADIO_RUNTIME_LIBS_L:INTERNAL=
@@ -532,10 +591,10 @@ PC_GNURADIO_RUNTIME_STATIC_CFLAGS:INTERNAL=-I/usr/local/include
 PC_GNURADIO_RUNTIME_STATIC_CFLAGS_I:INTERNAL=
 PC_GNURADIO_RUNTIME_STATIC_CFLAGS_OTHER:INTERNAL=
 PC_GNURADIO_RUNTIME_STATIC_INCLUDE_DIRS:INTERNAL=/usr/local/include
-PC_GNURADIO_RUNTIME_STATIC_LDFLAGS:INTERNAL=-L/usr/local/lib;-lgnuradio-runtime;-lgnuradio-pmt
+PC_GNURADIO_RUNTIME_STATIC_LDFLAGS:INTERNAL=-L/usr/local/lib;-lgnuradio-runtime;-lgnuradio-pmt;-llog4cpp
 PC_GNURADIO_RUNTIME_STATIC_LDFLAGS_OTHER:INTERNAL=
 PC_GNURADIO_RUNTIME_STATIC_LIBDIR:INTERNAL=
-PC_GNURADIO_RUNTIME_STATIC_LIBRARIES:INTERNAL=gnuradio-runtime;gnuradio-pmt
+PC_GNURADIO_RUNTIME_STATIC_LIBRARIES:INTERNAL=gnuradio-runtime;gnuradio-pmt;log4cpp
 PC_GNURADIO_RUNTIME_STATIC_LIBRARY_DIRS:INTERNAL=/usr/local/lib
 PC_GNURADIO_RUNTIME_STATIC_LIBS:INTERNAL=
 PC_GNURADIO_RUNTIME_STATIC_LIBS_L:INTERNAL=
@@ -581,8 +640,10 @@ _Boost_NAMESPACE_LAST:INTERNAL=boost
 //Last used Boost_USE_MULTITHREADED value.
 _Boost_USE_MULTITHREADED_LAST:INTERNAL=TRUE
 __pkg_config_arguments_PC_CPPUNIT:INTERNAL=cppunit
+__pkg_config_arguments_PC_GNURADIO_FILTER:INTERNAL=gnuradio-filter
 __pkg_config_arguments_PC_GNURADIO_RUNTIME:INTERNAL=gnuradio-runtime
 __pkg_config_checked_PC_CPPUNIT:INTERNAL=1
+__pkg_config_checked_PC_GNURADIO_FILTER:INTERNAL=1
 __pkg_config_checked_PC_GNURADIO_RUNTIME:INTERNAL=1
 prefix_result:INTERNAL=/usr/local/lib
 

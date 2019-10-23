@@ -44,4 +44,11 @@
     <name>SignalMix</name>
     <type>complex</type>
   </source>
+
+  <source>
+    <name>Correlation</name>
+    <type>complex</type>
+    <optional>1</optional>
+  </source>
+
 </block>

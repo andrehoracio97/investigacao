@@ -118,14 +118,18 @@ lib/test-correlate_and_delay: lib/CMakeFiles/test-correlate_and_delay.dir/qa_cor
 lib/test-correlate_and_delay: lib/CMakeFiles/test-correlate_and_delay.dir/build.make
 lib/test-correlate_and_delay: /usr/local/lib/libgnuradio-runtime.so
 lib/test-correlate_and_delay: /usr/local/lib/libgnuradio-pmt.so
+lib/test-correlate_and_delay: /usr/lib/x86_64-linux-gnu/liblog4cpp.so
 lib/test-correlate_and_delay: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
 lib/test-correlate_and_delay: /usr/lib/x86_64-linux-gnu/libboost_system.so
 lib/test-correlate_and_delay: /usr/lib/x86_64-linux-gnu/libcppunit.so
 lib/test-correlate_and_delay: lib/libgnuradio-correlate_and_delay-1.0.0git.so.0.0.0
 lib/test-correlate_and_delay: /usr/local/lib/libgnuradio-runtime.so
 lib/test-correlate_and_delay: /usr/local/lib/libgnuradio-pmt.so
+lib/test-correlate_and_delay: /usr/lib/x86_64-linux-gnu/liblog4cpp.so
 lib/test-correlate_and_delay: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
 lib/test-correlate_and_delay: /usr/lib/x86_64-linux-gnu/libboost_system.so
+lib/test-correlate_and_delay: /usr/local/lib/libgnuradio-filter.so
+lib/test-correlate_and_delay: /usr/local/lib/libgnuradio-fft.so
 lib/test-correlate_and_delay: lib/CMakeFiles/test-correlate_and_delay.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/andre/investigacao/gr-correlate_and_delay/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable test-correlate_and_delay"
 	cd /home/andre/investigacao/gr-correlate_and_delay/build/lib && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test-correlate_and_delay.dir/link.txt --verbose=$(VERBOSE)

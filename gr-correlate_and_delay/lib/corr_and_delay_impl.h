@@ -22,6 +22,9 @@
 #define INCLUDED_CORRELATE_AND_DELAY_CORR_AND_DELAY_IMPL_H
 
 #include <correlate_and_delay/corr_and_delay.h>
+#include <gnuradio/filter/fft_filter.h>
+
+using namespace gr::filter;
 
 namespace gr {
   namespace correlate_and_delay {
@@ -29,9 +32,18 @@ namespace gr {
     class corr_and_delay_impl : public corr_and_delay
     {
      private:
-    const std::vector<gr_complex> access_code;
+    std::vector<gr_complex> access_code;
+    std::vector<gr_complex> d_access_code;
+
     int time_to_catch;
     int lenght_access_code;
+
+    kernel::fft_filter_ccc* correlation_filter;
+
+    gr_complex* d_corr;
+    float* d_corr_mag;
+    float d_pfa; // probability of false alarm
+
 
      public:
       corr_and_delay_impl(int number_bits, int interval, int threshold);
@@ -44,6 +56,9 @@ namespace gr {
            gr_vector_int &ninput_items,
            gr_vector_const_void_star &input_items,
            gr_vector_void_star &output_items);
+
+      int correlate_it();
+      void conjugate_and_reverse(std::vector<gr_complex> access_code);
     };
 
   } // namespace correlate_and_delay

@@ -12,6 +12,14 @@ lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o
  /usr/local/include/gnuradio/block.h
  /usr/local/include/gnuradio/block_registry.h
  /usr/local/include/gnuradio/config.h
+ /usr/local/include/gnuradio/fft/api.h
+ /usr/local/include/gnuradio/fft/fft.h
+ /usr/local/include/gnuradio/fft/window.h
+ /usr/local/include/gnuradio/filter/api.h
+ /usr/local/include/gnuradio/filter/fft_filter.h
+ /usr/local/include/gnuradio/filter/fir_filter.h
+ /usr/local/include/gnuradio/filter/firdes.h
+ /usr/local/include/gnuradio/filter/pfb_arb_resampler.h
  /usr/local/include/gnuradio/gr_complex.h
  /usr/local/include/gnuradio/io_signature.h
  /usr/local/include/gnuradio/logger.h
@@ -35,3 +43,9 @@ lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o
  /usr/local/include/pmt/api.h
  /usr/local/include/pmt/pmt.h
  /usr/local/include/pmt/pmt_sugar.h
+ /usr/local/include/volk/volk.h
+ /usr/local/include/volk/volk_common.h
+ /usr/local/include/volk/volk_complex.h
+ /usr/local/include/volk/volk_config_fixed.h
+ /usr/local/include/volk/volk_malloc.h
+ /usr/local/include/volk/volk_typedefs.h

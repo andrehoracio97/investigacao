@@ -11,6 +11,14 @@ lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/l
 lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/local/include/gnuradio/block.h
 lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/local/include/gnuradio/block_registry.h
 lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/local/include/gnuradio/config.h
+lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/local/include/gnuradio/fft/api.h
+lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/local/include/gnuradio/fft/fft.h
+lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/local/include/gnuradio/fft/window.h
+lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/local/include/gnuradio/filter/api.h
+lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/local/include/gnuradio/filter/fft_filter.h
+lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/local/include/gnuradio/filter/fir_filter.h
+lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/local/include/gnuradio/filter/firdes.h
+lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/local/include/gnuradio/filter/pfb_arb_resampler.h
 lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/local/include/gnuradio/gr_complex.h
 lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/local/include/gnuradio/io_signature.h
 lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/local/include/gnuradio/logger.h
@@ -34,4 +42,10 @@ lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/l
 lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/local/include/pmt/api.h
 lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/local/include/pmt/pmt.h
 lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/local/include/pmt/pmt_sugar.h
+lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/local/include/volk/volk.h
+lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/local/include/volk/volk_common.h
+lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/local/include/volk/volk_complex.h
+lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/local/include/volk/volk_config_fixed.h
+lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/local/include/volk/volk_malloc.h
+lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/local/include/volk/volk_typedefs.h
 

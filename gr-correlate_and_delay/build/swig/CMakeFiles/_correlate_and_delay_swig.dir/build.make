@@ -104,6 +104,9 @@ swig/_correlate_and_delay_swig.so: /usr/lib/x86_64-linux-gnu/libboost_filesystem
 swig/_correlate_and_delay_swig.so: /usr/lib/x86_64-linux-gnu/libboost_system.so
 swig/_correlate_and_delay_swig.so: /usr/local/lib/libgnuradio-runtime.so
 swig/_correlate_and_delay_swig.so: /usr/local/lib/libgnuradio-pmt.so
+swig/_correlate_and_delay_swig.so: /usr/lib/x86_64-linux-gnu/liblog4cpp.so
+swig/_correlate_and_delay_swig.so: /usr/local/lib/libgnuradio-filter.so
+swig/_correlate_and_delay_swig.so: /usr/local/lib/libgnuradio-fft.so
 swig/_correlate_and_delay_swig.so: swig/CMakeFiles/_correlate_and_delay_swig.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/andre/investigacao/gr-correlate_and_delay/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX shared module _correlate_and_delay_swig.so"
 	cd /home/andre/investigacao/gr-correlate_and_delay/build/swig && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/_correlate_and_delay_swig.dir/link.txt --verbose=$(VERBOSE)

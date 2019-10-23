@@ -25,6 +25,11 @@
 #include <gnuradio/io_signature.h>
 #include "corr_and_delay_impl.h"
 
+#include <gnuradio/filter/firdes.h>
+#include <volk/volk.h>
+
+#include <gnuradio/filter/pfb_arb_resampler.h>
+
 namespace gr {
   namespace correlate_and_delay {
 
@@ -35,9 +40,6 @@ namespace gr {
         (new corr_and_delay_impl(number_bits, interval, threshold));
     }
 
-    /*
-     * The private constructor
-     */
     corr_and_delay_impl::corr_and_delay_impl(int number_bits, int interval, int threshold)
       : gr::block("corr_and_delay",
               gr::io_signature::make(2, 2, sizeof(gr_complex)),
@@ -45,7 +47,16 @@ namespace gr {
       time_to_catch(1),
       lenght_access_code(100),
       access_code()
-    {}
+    {
+    
+    const size_t nitems = 24 * 1024;
+    set_max_noutput_items(nitems);
+    d_corr = (gr_complex*)volk_malloc(sizeof(gr_complex) * nitems, volk_get_alignment());
+    d_corr_mag = (float*)volk_malloc(sizeof(float) * nitems, volk_get_alignment());
+    
+    d_pfa = -logf(1.0f - threshold);
+
+    }
 
     /*
      * Our virtual destructor.
@@ -62,6 +73,21 @@ namespace gr {
       ninput_items_required[i] = noutput_items;
     }
 
+
+    void corr_and_delay_impl::conjugate_and_reverse(std::vector<gr_complex> access_code){
+      for (size_t i = 0; i < access_code.size(); i++) {
+        access_code[i] = conj(access_code[i]);
+      }
+      std::reverse(access_code.begin(), access_code.end());
+    }
+
+
+    int corr_and_delay_impl::correlate_it(){
+
+
+      return 0;
+    }
+
     int
     corr_and_delay_impl::general_work (int noutput_items,
                        gr_vector_int &ninput_items,
@@ -74,18 +100,48 @@ namespace gr {
     const gr_complex *ii_signal = (const gr_complex*)input_items[1];
     gr_complex *oo_signal = (gr_complex *) output_items[1];
 
-    if (time_to_catch==1){
-      for (int i = 0; i < lenght_access_code; i++){
-        access_code[i]=ii_noise[i];
-        printf("access_code[%d]=%f\n",i,access_code[i]);
-      }
-      time_to_catch=0;
-    }
+    if(noutput_items>=lenght_access_code){ //I need to have 100 samples to start
+      if (time_to_catch==1){  //ii_noise has to have lenght_access_code items already
+        for (int i = access_code.size(); i < lenght_access_code; i++){
+          //access_code[i]=ii_noise[i];
+          access_code.push_back(ii_noise[i]);
+          //printf("Access_code[%d]=%f\n",i,access_code[i]);
+          //printf("%d\n",access_code.size());
+          if (i==99){ //All the access code catched
+            time_to_catch=0;
+            conjugate_and_reverse(access_code); //conjugate and reverse
+            correlation_filter = new kernel::fft_filter_ccc(1, access_code); //create correlation filter from the access code --1=decimation then the taps
+            int nsamples;
+            nsamples = correlation_filter->set_taps(access_code); //The filter function expects that the input signal is a multiple of d_nsamples in the class that's computed internally to be as fast as possible. The function set_taps will return the value of nsamples that can be used externally to check this boundary
+            set_output_multiple(nsamples); //Ensures the scheduler always passes this block the right number of samples
+          }
+        }
+      }else{ //I already have the access code so I need to correlate it against the received symbols
+        for(int i=0; i<(noutput_items-lenght_access_code+1); i++){ //Got o each "Window" in output items -> For 5 window, and 10 items, I can do 10-5+1 times. 
+          correlation_filter->filter(lenght_access_code, ii_signal+(i* sizeof(gr_complex)), d_corr); //Calculate the correlation of input with the noise. 1ºItems to produce. 2ºInpuct vector to be filtered. 3ºresult of filter opertation.  The 2º starts in the "window" that I am.
+          volk_32fc_magnitude_squared_32f(&d_corr_mag[0], d_corr, lenght_access_code); //magnitude squared of the correlation
 
+          float detection = 0;
+          for (int j = 0; j < lenght_access_code; j++) {
+            detection += d_corr_mag[j];
+          }
+          printf("DeT %f\n",detection);
+          detection /= static_cast<float>(lenght_access_code);
+          detection *= d_pfa;
+
+
+        }
+        /*if(correlate_it()==1){
+          printf("DETECTED CORRELATION\n");
+        }*/
+
+      }
+    }
 
    /*   printf("ii_noise[0]=%f\n",ii_noise[0]);
       printf("ii_noise[1]=%f\n",ii_noise[1]);
 */
+
 
     memcpy(oo_noise, ii_noise, sizeof(gr_complex)*noutput_items);
     memcpy(oo_signal, ii_signal, sizeof(gr_complex)*noutput_items);
@@ -93,7 +149,6 @@ namespace gr {
     
 
 
-      // Tell runtime system how many input items we consumed on each input stream.
       //consume_each (noutput_items);
       consume (0,noutput_items);
       consume (1,noutput_items);
