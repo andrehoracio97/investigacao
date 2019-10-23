@@ -118,14 +118,14 @@ namespace gr {
         }
       }else{ //I already have the access code so I need to correlate it against the received symbols
         for(int i=0; i<(noutput_items-lenght_access_code+1); i++){ //Got o each "Window" in output items -> For 5 window, and 10 items, I can do 10-5+1 times. 
-          correlation_filter->filter(lenght_access_code, ii_signal+(i* sizeof(gr_complex)), d_corr); //Calculate the correlation of input with the noise. 1ºItems to produce. 2ºInpuct vector to be filtered. 3ºresult of filter opertation.  The 2º starts in the "window" that I am.
+          correlation_filter->filter(lenght_access_code, &ii_signal[i], d_corr); //Calculate the correlation of input with the noise. 1ºItems to produce. 2ºInpuct vector to be filtered. 3ºresult of filter opertation.  The 2º starts in the "window" that I am.
           volk_32fc_magnitude_squared_32f(&d_corr_mag[0], d_corr, lenght_access_code); //magnitude squared of the correlation
 
           float detection = 0;
           for (int j = 0; j < lenght_access_code; j++) {
             detection += d_corr_mag[j];
           }
-          printf("DeT %f\n",detection);
+          //printf("DeT %f\n",detection);
           detection /= static_cast<float>(lenght_access_code);
           detection *= d_pfa;
 
