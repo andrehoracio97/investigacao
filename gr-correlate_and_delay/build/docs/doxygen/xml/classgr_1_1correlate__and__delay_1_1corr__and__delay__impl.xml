@@ -5,9 +5,9 @@
     <basecompoundref refid="classgr_1_1correlate__and__delay_1_1corr__and__delay" prot="public" virt="non-virtual">gr::correlate_and_delay::corr_and_delay</basecompoundref>
     <includes refid="corr__and__delay__impl_8h" local="no">corr_and_delay_impl.h</includes>
       <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1abb63037c0788288a309a804faf397e35" prot="private" static="no" mutable="no">
-        <type>const std::vector&lt; gr_complex &gt;</type>
-        <definition>const std::vector&lt;gr_complex&gt; gr::correlate_and_delay::corr_and_delay_impl::access_code</definition>
+      <memberdef kind="variable" id="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1a96a32bf55cdc23727929eb42a35319db" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; gr_complex &gt;</type>
+        <definition>std::vector&lt;gr_complex&gt; gr::correlate_and_delay::corr_and_delay_impl::access_code</definition>
         <argsstring></argsstring>
         <name>access_code</name>
         <briefdescription>
@@ -16,7 +16,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" line="32" column="1" bodyfile="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" bodystart="32" bodyend="-1"/>
+        <location file="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" line="35" column="1" bodyfile="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1a4a766cf984fdae2a593e47e680603cfd" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; gr_complex &gt;</type>
+        <definition>std::vector&lt;gr_complex&gt; gr::correlate_and_delay::corr_and_delay_impl::d_access_code</definition>
+        <argsstring></argsstring>
+        <name>d_access_code</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" line="36" column="1" bodyfile="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" bodystart="36" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1a8c37823eddeaacb375db21aa00bc8f61" prot="private" static="no" mutable="no">
         <type>int</type>
@@ -29,7 +42,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" line="33" column="1" bodyfile="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" bodystart="33" bodyend="-1"/>
+        <location file="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" line="38" column="1" bodyfile="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" bodystart="38" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1a8c04af4c1656dd4bc42608d3ef869987" prot="private" static="no" mutable="no">
         <type>int</type>
@@ -42,14 +55,66 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" line="34" column="1" bodyfile="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" bodystart="34" bodyend="-1"/>
+        <location file="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" line="39" column="1" bodyfile="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1a9c5b41ba19e4e30098a9a2f73aad43f8" prot="private" static="no" mutable="no">
+        <type>kernel::fft_filter_ccc *</type>
+        <definition>kernel::fft_filter_ccc* gr::correlate_and_delay::corr_and_delay_impl::correlation_filter</definition>
+        <argsstring></argsstring>
+        <name>correlation_filter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" line="41" column="1" bodyfile="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1aedd855813a88899b58cb4e0b4c83cc10" prot="private" static="no" mutable="no">
+        <type>gr_complex *</type>
+        <definition>gr_complex* gr::correlate_and_delay::corr_and_delay_impl::d_corr</definition>
+        <argsstring></argsstring>
+        <name>d_corr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" line="43" column="1" bodyfile="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1ac87c50e95bde54e74ab76302f7be3d8d" prot="private" static="no" mutable="no">
+        <type>float *</type>
+        <definition>float* gr::correlate_and_delay::corr_and_delay_impl::d_corr_mag</definition>
+        <argsstring></argsstring>
+        <name>d_corr_mag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" line="44" column="1" bodyfile="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1ab9c87528a9bbb59c01636c38396fee35" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float gr::correlate_and_delay::corr_and_delay_impl::d_pfa</definition>
+        <argsstring></argsstring>
+        <name>d_pfa</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" line="45" column="1" bodyfile="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" bodystart="45" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1a6e0c48270ec6981adf6fad32f1a0d7b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1a803d2589806e9571b1b8d14bdb5f99af" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>gr::correlate_and_delay::corr_and_delay_impl::corr_and_delay_impl</definition>
-        <argsstring>(int number_bits, int interval, int threshold)</argsstring>
+        <argsstring>(int number_bits, int interval, float threshold)</argsstring>
         <name>corr_and_delay_impl</name>
         <param>
           <type>int</type>
@@ -60,7 +125,7 @@
           <declname>interval</declname>
         </param>
         <param>
-          <type>int</type>
+          <type>float</type>
           <declname>threshold</declname>
         </param>
         <briefdescription>
@@ -69,7 +134,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" line="37" column="1"/>
+        <location file="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" line="49" column="1"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1a8c34d842408dd31f97675ac0e35c0e70" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -82,7 +147,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" line="38" column="1"/>
+        <location file="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" line="50" column="1"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1a7470f9df910bbe8b82ee2488da73f502" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -103,7 +168,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" line="41" column="1"/>
+        <location file="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" line="53" column="1"/>
       </memberdef>
       <memberdef kind="function" id="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1a438f6a252f810c3c3d81a9b058bf4141" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -132,7 +197,37 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" line="43" column="1"/>
+        <location file="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" line="55" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1a0744f5974bdc378ae0f2a79fb67e9082" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int gr::correlate_and_delay::corr_and_delay_impl::correlate_it</definition>
+        <argsstring>()</argsstring>
+        <name>correlate_it</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" line="60" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1a97423f36fcc71059050ac949674109f5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void gr::correlate_and_delay::corr_and_delay_impl::conjugate_and_reverse</definition>
+        <argsstring>(std::vector&lt; gr_complex &gt; access_code)</argsstring>
+        <name>conjugate_and_reverse</name>
+        <param>
+          <type>std::vector&lt; gr_complex &gt;</type>
+          <declname>access_code</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" line="61" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -173,14 +268,21 @@
         <label>gr::block</label>
       </node>
     </collaborationgraph>
-    <location file="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" line="30" column="1" bodyfile="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" bodystart="29" bodyend="47"/>
+    <location file="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" line="33" column="1" bodyfile="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h" bodystart="32" bodyend="62"/>
     <listofallmembers>
-      <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1abb63037c0788288a309a804faf397e35" prot="private" virt="non-virtual"><scope>gr::correlate_and_delay::corr_and_delay_impl</scope><name>access_code</name></member>
-      <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1a6e0c48270ec6981adf6fad32f1a0d7b7" prot="public" virt="non-virtual"><scope>gr::correlate_and_delay::corr_and_delay_impl</scope><name>corr_and_delay_impl</name></member>
+      <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1a96a32bf55cdc23727929eb42a35319db" prot="private" virt="non-virtual"><scope>gr::correlate_and_delay::corr_and_delay_impl</scope><name>access_code</name></member>
+      <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1a97423f36fcc71059050ac949674109f5" prot="public" virt="non-virtual"><scope>gr::correlate_and_delay::corr_and_delay_impl</scope><name>conjugate_and_reverse</name></member>
+      <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1a803d2589806e9571b1b8d14bdb5f99af" prot="public" virt="non-virtual"><scope>gr::correlate_and_delay::corr_and_delay_impl</scope><name>corr_and_delay_impl</name></member>
+      <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1a0744f5974bdc378ae0f2a79fb67e9082" prot="public" virt="non-virtual"><scope>gr::correlate_and_delay::corr_and_delay_impl</scope><name>correlate_it</name></member>
+      <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1a9c5b41ba19e4e30098a9a2f73aad43f8" prot="private" virt="non-virtual"><scope>gr::correlate_and_delay::corr_and_delay_impl</scope><name>correlation_filter</name></member>
+      <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1a4a766cf984fdae2a593e47e680603cfd" prot="private" virt="non-virtual"><scope>gr::correlate_and_delay::corr_and_delay_impl</scope><name>d_access_code</name></member>
+      <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1aedd855813a88899b58cb4e0b4c83cc10" prot="private" virt="non-virtual"><scope>gr::correlate_and_delay::corr_and_delay_impl</scope><name>d_corr</name></member>
+      <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1ac87c50e95bde54e74ab76302f7be3d8d" prot="private" virt="non-virtual"><scope>gr::correlate_and_delay::corr_and_delay_impl</scope><name>d_corr_mag</name></member>
+      <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1ab9c87528a9bbb59c01636c38396fee35" prot="private" virt="non-virtual"><scope>gr::correlate_and_delay::corr_and_delay_impl</scope><name>d_pfa</name></member>
       <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1a7470f9df910bbe8b82ee2488da73f502" prot="public" virt="non-virtual"><scope>gr::correlate_and_delay::corr_and_delay_impl</scope><name>forecast</name></member>
       <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1a438f6a252f810c3c3d81a9b058bf4141" prot="public" virt="non-virtual"><scope>gr::correlate_and_delay::corr_and_delay_impl</scope><name>general_work</name></member>
       <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1a8c04af4c1656dd4bc42608d3ef869987" prot="private" virt="non-virtual"><scope>gr::correlate_and_delay::corr_and_delay_impl</scope><name>lenght_access_code</name></member>
-      <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay_1aab1cfd7e88c8acefd5df96198a6984ec" prot="public" virt="non-virtual"><scope>gr::correlate_and_delay::corr_and_delay_impl</scope><name>make</name></member>
+      <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay_1a301cf8072bd441bd798da71c79eefecb" prot="public" virt="non-virtual"><scope>gr::correlate_and_delay::corr_and_delay_impl</scope><name>make</name></member>
       <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay_1a47670b9c8cfcec3c45a79c1238c9a89a" prot="public" virt="non-virtual"><scope>gr::correlate_and_delay::corr_and_delay_impl</scope><name>sptr</name></member>
       <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1a8c37823eddeaacb375db21aa00bc8f61" prot="private" virt="non-virtual"><scope>gr::correlate_and_delay::corr_and_delay_impl</scope><name>time_to_catch</name></member>
       <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1a8c34d842408dd31f97675ac0e35c0e70" prot="public" virt="non-virtual"><scope>gr::correlate_and_delay::corr_and_delay_impl</scope><name>~corr_and_delay_impl</name></member>

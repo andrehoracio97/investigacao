@@ -136,7 +136,7 @@ class corr_and_delay(object):
 
     def make(number_bits, interval, threshold):
         """
-        make(int number_bits, int interval, int threshold) -> corr_and_delay_sptr
+        make(int number_bits, int interval, float threshold) -> corr_and_delay_sptr
 
         <+description of block+>
 
@@ -161,7 +161,7 @@ corr_and_delay_swigregister(corr_and_delay)
 
 def corr_and_delay_make(number_bits, interval, threshold):
     """
-    corr_and_delay_make(int number_bits, int interval, int threshold) -> corr_and_delay_sptr
+    corr_and_delay_make(int number_bits, int interval, float threshold) -> corr_and_delay_sptr
 
     <+description of block+>
 
@@ -204,7 +204,7 @@ class corr_and_delay_sptr(object):
 
     def make(self, number_bits, interval, threshold):
         """
-        make(corr_and_delay_sptr self, int number_bits, int interval, int threshold) -> corr_and_delay_sptr
+        make(corr_and_delay_sptr self, int number_bits, int interval, float threshold) -> corr_and_delay_sptr
 
         <+description of block+>
 

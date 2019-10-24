@@ -20,10 +20,10 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="classgr_1_1correlate__and__delay_1_1corr__and__delay_1aab1cfd7e88c8acefd5df96198a6984ec" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classgr_1_1correlate__and__delay_1_1corr__and__delay_1a301cf8072bd441bd798da71c79eefecb" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classgr_1_1correlate__and__delay_1_1corr__and__delay_1a47670b9c8cfcec3c45a79c1238c9a89a" kindref="member">sptr</ref></type>
         <definition>static sptr gr::correlate_and_delay::corr_and_delay::make</definition>
-        <argsstring>(int number_bits, int interval, int threshold)</argsstring>
+        <argsstring>(int number_bits, int interval, float threshold)</argsstring>
         <name>make</name>
         <param>
           <type>int</type>
@@ -34,13 +34,13 @@
           <declname>interval</declname>
         </param>
         <param>
-          <type>int</type>
+          <type>float</type>
           <declname>threshold</declname>
         </param>
         <briefdescription>
 <para>Return a shared_ptr to a new instance of <ref refid="classgr_1_1correlate__and__delay_1_1corr__and__delay" kindref="compound">correlate_and_delay::corr_and_delay</ref>. </para>        </briefdescription>
         <detaileddescription>
-<para>To avoid accidental use of raw pointers, <ref refid="classgr_1_1correlate__and__delay_1_1corr__and__delay" kindref="compound">correlate_and_delay::corr_and_delay</ref>&apos;s constructor is in a private implementation class. <ref refid="classgr_1_1correlate__and__delay_1_1corr__and__delay_1aab1cfd7e88c8acefd5df96198a6984ec" kindref="member">correlate_and_delay::corr_and_delay::make</ref> is the public interface for creating new instances. </para>        </detaileddescription>
+<para>To avoid accidental use of raw pointers, <ref refid="classgr_1_1correlate__and__delay_1_1corr__and__delay" kindref="compound">correlate_and_delay::corr_and_delay</ref>&apos;s constructor is in a private implementation class. <ref refid="classgr_1_1correlate__and__delay_1_1corr__and__delay_1a301cf8072bd441bd798da71c79eefecb" kindref="member">correlate_and_delay::corr_and_delay::make</ref> is the public interface for creating new instances. </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
         <location file="/home/andre/investigacao/gr-correlate_and_delay/include/correlate_and_delay/corr_and_delay.h" line="49" column="1"/>
@@ -74,7 +74,7 @@
     </collaborationgraph>
     <location file="/home/andre/investigacao/gr-correlate_and_delay/include/correlate_and_delay/corr_and_delay.h" line="37" column="1" bodyfile="/home/andre/investigacao/gr-correlate_and_delay/include/correlate_and_delay/corr_and_delay.h" bodystart="36" bodyend="50"/>
     <listofallmembers>
-      <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay_1aab1cfd7e88c8acefd5df96198a6984ec" prot="public" virt="non-virtual"><scope>gr::correlate_and_delay::corr_and_delay</scope><name>make</name></member>
+      <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay_1a301cf8072bd441bd798da71c79eefecb" prot="public" virt="non-virtual"><scope>gr::correlate_and_delay::corr_and_delay</scope><name>make</name></member>
       <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay_1a47670b9c8cfcec3c45a79c1238c9a89a" prot="public" virt="non-virtual"><scope>gr::correlate_and_delay::corr_and_delay</scope><name>sptr</name></member>
     </listofallmembers>
   </compounddef>

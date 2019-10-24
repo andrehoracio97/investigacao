@@ -34,13 +34,13 @@ namespace gr {
   namespace correlate_and_delay {
 
     corr_and_delay::sptr
-    corr_and_delay::make(int number_bits, int interval, int threshold)
+    corr_and_delay::make(int number_bits, int interval, float threshold)
     {
       return gnuradio::get_initial_sptr
         (new corr_and_delay_impl(number_bits, interval, threshold));
     }
 
-    corr_and_delay_impl::corr_and_delay_impl(int number_bits, int interval, int threshold)
+    corr_and_delay_impl::corr_and_delay_impl(int number_bits, int interval, float threshold)
       : gr::block("corr_and_delay",
               gr::io_signature::make(2, 2, sizeof(gr_complex)),
               gr::io_signature::make(2, 2, sizeof(gr_complex))),
@@ -55,7 +55,7 @@ namespace gr {
     d_corr_mag = (float*)volk_malloc(sizeof(float) * nitems, volk_get_alignment());
     
     d_pfa = -logf(1.0f - threshold);
-
+    d_scale = 1.0f;
     }
 
     /*
@@ -125,16 +125,43 @@ namespace gr {
           for (int j = 0; j < lenght_access_code; j++) {
             detection += d_corr_mag[j];
           }
-          //printf("DeT %f\n",detection);
           detection /= static_cast<float>(lenght_access_code);
           detection *= d_pfa;
+          //printf("DeT %f\n",detection);
+
+          int k=0;
+          while (k<lenght_access_code){
+            // Look for the correlator output to cross the threshold.
+            // Sum power over two consecutive symbols in case we're offset
+            // in time. If off by 1/2 a symbol, the peak of any one point
+            // is much lower.
+            float corr_mag = d_corr_mag[k] + d_corr_mag[k + 1];
+            if (corr_mag <= 4 * detection) {
+                k++;
+                continue;
+            }
+
+            // Go to (just past) the current correlator output peak
+            while ((k < (lenght_access_code - 1)) && (d_corr_mag[k] < d_corr_mag[k + 1])) {
+                k++;
+            }
+            double nom = 0, den = 0;
+            nom = d_corr_mag[k - 1] + 2 * d_corr_mag[k] + 3 * d_corr_mag[k + 1];
+            den = d_corr_mag[k - 1] + d_corr_mag[k] + d_corr_mag[k + 1];
+            double center = nom / den;
+            center = (center - 2.0); // adjust for bias in center of mass calculation
+
+            uint32_t maxi;
+            volk_32fc_index_max_32u_manual(&maxi, (gr_complex*)ii_signal, lenght_access_code, "generic");
+            d_scale = 1 / std::abs(ii_signal[maxi]);
+            k=k+1;
+          }
 
 
+          /*if (detection>=threshold){
+            printf("DETECTED CORRELATION\n");
+          }*/
         }
-        /*if(correlate_it()==1){
-          printf("DETECTED CORRELATION\n");
-        }*/
-
       }
     }
 

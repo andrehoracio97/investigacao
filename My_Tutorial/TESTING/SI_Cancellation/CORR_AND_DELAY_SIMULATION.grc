@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>corrr</value>
+      <value>corr</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -2462,7 +2462,7 @@
     </param>
     <param>
       <key>threshold</key>
-      <value>99</value>
+      <value>0.9</value>
     </param>
   </block>
   <block>

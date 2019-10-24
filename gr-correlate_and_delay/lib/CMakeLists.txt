@@ -23,7 +23,7 @@
 ########################################################################
 include(GrPlatform) #define LIB_SUFFIX
 
-include_directories(${Boost_INCLUDE_DIR})
+include_directories(${Boost_INCLUDE_DIR} ${VOLK_INCLUDE_DIRS})
 link_directories(${Boost_LIBRARY_DIRS})
 
 list(APPEND correlate_and_delay_sources
@@ -37,7 +37,7 @@ if(NOT correlate_and_delay_sources)
 endif(NOT correlate_and_delay_sources)
 
 add_library(gnuradio-correlate_and_delay SHARED ${correlate_and_delay_sources})
-target_link_libraries(gnuradio-correlate_and_delay ${Boost_LIBRARIES} ${GNURADIO_ALL_LIBRARIES})
+target_link_libraries(gnuradio-correlate_and_delay ${Boost_LIBRARIES} ${GNURADIO_ALL_LIBRARIES} ${VOLK_LIBRARIES})
 set_target_properties(gnuradio-correlate_and_delay PROPERTIES DEFINE_SYMBOL "gnuradio_correlate_and_delay_EXPORTS")
 
 if(APPLE)

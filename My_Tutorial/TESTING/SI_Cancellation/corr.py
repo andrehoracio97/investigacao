@@ -40,7 +40,7 @@ import sys
 from gnuradio import qtgui
 
 
-class corrr(gr.top_block, Qt.QWidget):
+class corr(gr.top_block, Qt.QWidget):
 
     def __init__(self, puncpat='11'):
         gr.top_block.__init__(self, "Tutorial")
@@ -63,7 +63,7 @@ class corrr(gr.top_block, Qt.QWidget):
         self.top_grid_layout = Qt.QGridLayout()
         self.top_layout.addLayout(self.top_grid_layout)
 
-        self.settings = Qt.QSettings("GNU Radio", "corrr")
+        self.settings = Qt.QSettings("GNU Radio", "corr")
         self.restoreGeometry(self.settings.value("geometry").toByteArray())
 
 
@@ -564,7 +564,7 @@ class corrr(gr.top_block, Qt.QWidget):
         self.connect((self.interp_fir_filter_xxx_1, 0), (self.blocks_multiply_const_vxx_0, 0))
 
     def closeEvent(self, event):
-        self.settings = Qt.QSettings("GNU Radio", "corrr")
+        self.settings = Qt.QSettings("GNU Radio", "corr")
         self.settings.setValue("geometry", self.saveGeometry())
         event.accept()
 
@@ -726,7 +726,7 @@ def argument_parser():
     return parser
 
 
-def main(top_block_cls=corrr, options=None):
+def main(top_block_cls=corr, options=None):
     if options is None:
         options, _ = argument_parser().parse_args()
 

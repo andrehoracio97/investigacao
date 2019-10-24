@@ -22,8 +22,8 @@
   <param>
     <name>Threshold</name>
     <key>threshold</key>
-    <value>99</value>
-    <type>int</type>
+    <value>0.9</value>
+    <type>float</type>
   </param>
 
 

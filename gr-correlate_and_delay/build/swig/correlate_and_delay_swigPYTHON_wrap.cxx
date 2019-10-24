@@ -4531,6 +4531,60 @@ SWIG_AsVal_int (PyObject * obj, int *val)
 }
 
 
+/* Getting isfinite working pre C99 across multiple platforms is non-trivial. Users can provide SWIG_isfinite on older platforms. */
+#ifndef SWIG_isfinite
+/* isfinite() is a macro for C99 */
+# if defined(isfinite)
+#  define SWIG_isfinite(X) (isfinite(X))
+# elif defined __cplusplus && __cplusplus >= 201103L
+/* Use a template so that this works whether isfinite() is std::isfinite() or
+ * in the global namespace.  The reality seems to vary between compiler
+ * versions.
+ *
+ * Make sure namespace std exists to avoid compiler warnings.
+ *
+ * extern "C++" is required as this fragment can end up inside an extern "C" { } block
+ */
+namespace std { }
+extern "C++" template<typename T>
+inline int SWIG_isfinite_func(T x) {
+  using namespace std;
+  return isfinite(x);
+}
+#  define SWIG_isfinite(X) (SWIG_isfinite_func(X))
+# elif defined(_MSC_VER)
+#  define SWIG_isfinite(X) (_finite(X))
+# elif defined(__sun) && defined(__SVR4)
+#  include <ieeefp.h>
+#  define SWIG_isfinite(X) (finite(X))
+# endif
+#endif
+
+
+/* Accept infinite as a valid float value unless we are unable to check if a value is finite */
+#ifdef SWIG_isfinite
+# define SWIG_Float_Overflow_Check(X) ((X < -FLT_MAX || X > FLT_MAX) && SWIG_isfinite(X))
+#else
+# define SWIG_Float_Overflow_Check(X) ((X < -FLT_MAX || X > FLT_MAX))
+#endif
+
+
+SWIGINTERN int
+SWIG_AsVal_float (PyObject * obj, float *val)
+{
+  double v;
+  int res = SWIG_AsVal_double (obj, &v);
+  if (SWIG_IsOK(res)) {
+    if (SWIG_Float_Overflow_Check(v)) {
+      return SWIG_OverflowError;
+    } else {
+      if (val) *val = static_cast< float >(v);
+    }
+  }  
+  return res;
+}
+
+
 SWIGINTERNINLINE PyObject*
   SWIG_From_unsigned_SS_int  (unsigned int value)
 {
@@ -4636,60 +4690,6 @@ SWIGINTERNINLINE PyObject *
 SWIG_From_float  (float value)
 {    
   return SWIG_From_double  (value);
-}
-
-
-/* Getting isfinite working pre C99 across multiple platforms is non-trivial. Users can provide SWIG_isfinite on older platforms. */
-#ifndef SWIG_isfinite
-/* isfinite() is a macro for C99 */
-# if defined(isfinite)
-#  define SWIG_isfinite(X) (isfinite(X))
-# elif defined __cplusplus && __cplusplus >= 201103L
-/* Use a template so that this works whether isfinite() is std::isfinite() or
- * in the global namespace.  The reality seems to vary between compiler
- * versions.
- *
- * Make sure namespace std exists to avoid compiler warnings.
- *
- * extern "C++" is required as this fragment can end up inside an extern "C" { } block
- */
-namespace std { }
-extern "C++" template<typename T>
-inline int SWIG_isfinite_func(T x) {
-  using namespace std;
-  return isfinite(x);
-}
-#  define SWIG_isfinite(X) (SWIG_isfinite_func(X))
-# elif defined(_MSC_VER)
-#  define SWIG_isfinite(X) (_finite(X))
-# elif defined(__sun) && defined(__SVR4)
-#  include <ieeefp.h>
-#  define SWIG_isfinite(X) (finite(X))
-# endif
-#endif
-
-
-/* Accept infinite as a valid float value unless we are unable to check if a value is finite */
-#ifdef SWIG_isfinite
-# define SWIG_Float_Overflow_Check(X) ((X < -FLT_MAX || X > FLT_MAX) && SWIG_isfinite(X))
-#else
-# define SWIG_Float_Overflow_Check(X) ((X < -FLT_MAX || X > FLT_MAX))
-#endif
-
-
-SWIGINTERN int
-SWIG_AsVal_float (PyObject * obj, float *val)
-{
-  double v;
-  int res = SWIG_AsVal_double (obj, &v);
-  if (SWIG_IsOK(res)) {
-    if (SWIG_Float_Overflow_Check(v)) {
-      return SWIG_OverflowError;
-    } else {
-      if (val) *val = static_cast< float >(v);
-    }
-  }  
-  return res;
 }
 
 
@@ -5152,12 +5152,12 @@ SWIGINTERN PyObject *_wrap_corr_and_delay_make(PyObject *SWIGUNUSEDPARM(self), P
   PyObject *resultobj = 0;
   int arg1 ;
   int arg2 ;
-  int arg3 ;
+  float arg3 ;
   int val1 ;
   int ecode1 = 0 ;
   int val2 ;
   int ecode2 = 0 ;
-  int val3 ;
+  float val3 ;
   int ecode3 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
@@ -5178,11 +5178,11 @@ SWIGINTERN PyObject *_wrap_corr_and_delay_make(PyObject *SWIGUNUSEDPARM(self), P
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "corr_and_delay_make" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  ecode3 = SWIG_AsVal_int(obj2, &val3);
+  ecode3 = SWIG_AsVal_float(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "corr_and_delay_make" "', argument " "3"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "corr_and_delay_make" "', argument " "3"" of type '" "float""'");
   } 
-  arg3 = static_cast< int >(val3);
+  arg3 = static_cast< float >(val3);
   {
     try {
       result = gr::correlate_and_delay::corr_and_delay::make(arg1,arg2,arg3);
@@ -5402,14 +5402,14 @@ SWIGINTERN PyObject *_wrap_corr_and_delay_sptr_make(PyObject *SWIGUNUSEDPARM(sel
   boost::shared_ptr< gr::correlate_and_delay::corr_and_delay > *arg1 = (boost::shared_ptr< gr::correlate_and_delay::corr_and_delay > *) 0 ;
   int arg2 ;
   int arg3 ;
-  int arg4 ;
+  float arg4 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   int val2 ;
   int ecode2 = 0 ;
   int val3 ;
   int ecode3 = 0 ;
-  int val4 ;
+  float val4 ;
   int ecode4 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
@@ -5436,11 +5436,11 @@ SWIGINTERN PyObject *_wrap_corr_and_delay_sptr_make(PyObject *SWIGUNUSEDPARM(sel
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "corr_and_delay_sptr_make" "', argument " "3"" of type '" "int""'");
   } 
   arg3 = static_cast< int >(val3);
-  ecode4 = SWIG_AsVal_int(obj3, &val4);
+  ecode4 = SWIG_AsVal_float(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "corr_and_delay_sptr_make" "', argument " "4"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "corr_and_delay_sptr_make" "', argument " "4"" of type '" "float""'");
   } 
-  arg4 = static_cast< int >(val4);
+  arg4 = static_cast< float >(val4);
   {
     try {
       result = (*arg1)->make(arg2,arg3,arg4);
@@ -8365,7 +8365,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"high_res_timer_tps", _wrap_high_res_timer_tps, METH_VARARGS, (char *)"high_res_timer_tps() -> gr::high_res_timer_type"},
 	 { (char *)"high_res_timer_epoch", _wrap_high_res_timer_epoch, METH_VARARGS, (char *)"high_res_timer_epoch() -> gr::high_res_timer_type"},
 	 { (char *)"corr_and_delay_make", (PyCFunction) _wrap_corr_and_delay_make, METH_VARARGS | METH_KEYWORDS, (char *)"\n"
-		"corr_and_delay_make(int number_bits, int interval, int threshold) -> corr_and_delay_sptr\n"
+		"corr_and_delay_make(int number_bits, int interval, float threshold) -> corr_and_delay_sptr\n"
 		"\n"
 		"<+description of block+>\n"
 		"\n"
@@ -8389,7 +8389,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"corr_and_delay_sptr___deref__", _wrap_corr_and_delay_sptr___deref__, METH_VARARGS, (char *)"corr_and_delay_sptr___deref__(corr_and_delay_sptr self) -> corr_and_delay"},
 	 { (char *)"delete_corr_and_delay_sptr", _wrap_delete_corr_and_delay_sptr, METH_VARARGS, (char *)"delete_corr_and_delay_sptr(corr_and_delay_sptr self)"},
 	 { (char *)"corr_and_delay_sptr_make", (PyCFunction) _wrap_corr_and_delay_sptr_make, METH_VARARGS | METH_KEYWORDS, (char *)"\n"
-		"corr_and_delay_sptr_make(corr_and_delay_sptr self, int number_bits, int interval, int threshold) -> corr_and_delay_sptr\n"
+		"corr_and_delay_sptr_make(corr_and_delay_sptr self, int number_bits, int interval, float threshold) -> corr_and_delay_sptr\n"
 		"\n"
 		"<+description of block+>\n"
 		"\n"

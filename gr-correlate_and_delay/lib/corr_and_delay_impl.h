@@ -43,10 +43,10 @@ namespace gr {
     gr_complex* d_corr;
     float* d_corr_mag;
     float d_pfa; // probability of false alarm
-
+    float d_scale;
 
      public:
-      corr_and_delay_impl(int number_bits, int interval, int threshold);
+      corr_and_delay_impl(int number_bits, int interval, float threshold);
       ~corr_and_delay_impl();
 
       // Where all the action really happens

@@ -17,6 +17,7 @@
 /usr/local/share/gnuradio/grc/blocks/correlate_and_delay_corr_and_delay.xml
 /usr/local/share/doc/gr-correlate_and_delay/xml/indexpage.xml
 /usr/local/share/doc/gr-correlate_and_delay/xml/corr__and__delay__impl_8h.xml
+/usr/local/share/doc/gr-correlate_and_delay/xml/namespacegr_1_1filter.xml
 /usr/local/share/doc/gr-correlate_and_delay/xml/dir_97aefd0d527b934f1d99a682da8fe6a9.xml
 /usr/local/share/doc/gr-correlate_and_delay/xml/combine.xslt
 /usr/local/share/doc/gr-correlate_and_delay/xml/namespacegr.xml

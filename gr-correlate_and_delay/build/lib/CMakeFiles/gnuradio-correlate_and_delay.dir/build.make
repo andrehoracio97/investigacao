@@ -97,6 +97,7 @@ lib/libgnuradio-correlate_and_delay-1.0.0git.so.0.0.0: /usr/local/lib/libgnuradi
 lib/libgnuradio-correlate_and_delay-1.0.0git.so.0.0.0: /usr/lib/x86_64-linux-gnu/liblog4cpp.so
 lib/libgnuradio-correlate_and_delay-1.0.0git.so.0.0.0: /usr/local/lib/libgnuradio-filter.so
 lib/libgnuradio-correlate_and_delay-1.0.0git.so.0.0.0: /usr/local/lib/libgnuradio-fft.so
+lib/libgnuradio-correlate_and_delay-1.0.0git.so.0.0.0: /usr/local/lib/libvolk.so.2.0
 lib/libgnuradio-correlate_and_delay-1.0.0git.so.0.0.0: lib/CMakeFiles/gnuradio-correlate_and_delay.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/andre/investigacao/gr-correlate_and_delay/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared library libgnuradio-correlate_and_delay-1.0.0git.so"
 	cd /home/andre/investigacao/gr-correlate_and_delay/build/lib && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/gnuradio-correlate_and_delay.dir/link.txt --verbose=$(VERBOSE)
