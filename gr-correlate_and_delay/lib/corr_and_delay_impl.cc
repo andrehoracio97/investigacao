@@ -105,9 +105,8 @@ namespace gr {
         for (int i = access_code.size(); i < lenght_access_code; i++){
           //access_code[i]=ii_noise[i];
           access_code.push_back(ii_noise[i]);
-          //printf("Access_code[%d]=%f\n",i,access_code[i]);
-          //printf("%d\n",access_code.size());
           if (i==99){ //All the access code catched
+            printf("Access_code Catched");
             time_to_catch=0;
             conjugate_and_reverse(access_code); //conjugate and reverse
             correlation_filter = new kernel::fft_filter_ccc(1, access_code); //create correlation filter from the access code --1=decimation then the taps
@@ -129,12 +128,13 @@ namespace gr {
           detection *= d_pfa;
           //printf("DeT %f\n",detection);
 
+          int isps = (int)(4 + 0.5f);
           int k=0;
           while (k<lenght_access_code){
             // Look for the correlator output to cross the threshold.
-            // Sum power over two consecutive symbols in case we're offset
-            // in time. If off by 1/2 a symbol, the peak of any one point
-            // is much lower.
+        // Sum power over two consecutive symbols in case we're offset
+        // in time. If off by 1/2 a symbol, the peak of any one point
+        // is much lower.
             float corr_mag = d_corr_mag[k] + d_corr_mag[k + 1];
             if (corr_mag <= 4 * detection) {
                 k++;
@@ -154,7 +154,9 @@ namespace gr {
             uint32_t maxi;
             volk_32fc_index_max_32u_manual(&maxi, (gr_complex*)ii_signal, lenght_access_code, "generic");
             d_scale = 1 / std::abs(ii_signal[maxi]);
-            k=k+1;
+            //printf("DETECTED CORRELATION\n");
+
+            k += isps;
           }
 
 
