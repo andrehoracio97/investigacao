@@ -110,3 +110,5 @@ Semana
 21 -Intall windows, ubuntu, GR, tudo... De novo. PROBLEMA QUE AGORA NAO ESTÀ A DAR. Tese-Tools
 22-FINALMENTE CONSEGUI RESOLVER e updated das notas de instalação. Tese-Organization Gnuradio choice and Internal Working e Setup Specification
 23-Tutorial update do tuto2. Desenvolvimento corr_and_delay.
+24-Continuação Corr_and_delay, analise de correlation estimator e de correlate and sync.
+25-Tentar Corr_and_delay. Tese-Physical Security

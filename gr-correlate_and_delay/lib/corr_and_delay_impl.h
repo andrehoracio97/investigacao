@@ -44,6 +44,7 @@ namespace gr {
     float* d_corr_mag;
     float d_pfa; // probability of false alarm
     float d_scale;
+    float detection;
 
      public:
       corr_and_delay_impl(int number_bits, int interval, float threshold);

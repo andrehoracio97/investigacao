@@ -46,7 +46,8 @@ namespace gr {
               gr::io_signature::make(2, 2, sizeof(gr_complex))),
       time_to_catch(1),
       lenght_access_code(100),
-      access_code()
+      access_code(),
+      detection(0)
     {
     
     const size_t nitems = 24 * 1024;
@@ -106,13 +107,15 @@ namespace gr {
           //access_code[i]=ii_noise[i];
           access_code.push_back(ii_noise[i]);
           if (i==99){ //All the access code catched
-            printf("Access_code Catched");
+            printf("Access Code Caught\n");
             time_to_catch=0;
             conjugate_and_reverse(access_code); //conjugate and reverse
             correlation_filter = new kernel::fft_filter_ccc(1, access_code); //create correlation filter from the access code --1=decimation then the taps
             int nsamples;
             nsamples = correlation_filter->set_taps(access_code); //The filter function expects that the input signal is a multiple of d_nsamples in the class that's computed internally to be as fast as possible. The function set_taps will return the value of nsamples that can be used externally to check this boundary
             set_output_multiple(nsamples); //Ensures the scheduler always passes this block the right number of samples
+            
+            consume (0,lenght_access_code);
           }
         }
       }else{ //I already have the access code so I need to correlate it against the received symbols
@@ -120,50 +123,23 @@ namespace gr {
           correlation_filter->filter(lenght_access_code, &ii_signal[i], d_corr); //Calculate the correlation of input with the noise. 1ºItems to produce. 2ºInpuct vector to be filtered. 3ºresult of filter opertation.  The 2º starts in the "window" that I am.
           volk_32fc_magnitude_squared_32f(&d_corr_mag[0], d_corr, lenght_access_code); //magnitude squared of the correlation
 
-          float detection = 0;
+          detection = 0;
           for (int j = 0; j < lenght_access_code; j++) {
             detection += d_corr_mag[j];
           }
-          detection /= static_cast<float>(lenght_access_code);
-          detection *= d_pfa;
-          //printf("DeT %f\n",detection);
+          //detection /= static_cast<float>(lenght_access_code);
+          //detection *= d_pfa;
 
-          int isps = (int)(4 + 0.5f);
-          int k=0;
-          while (k<lenght_access_code){
-            // Look for the correlator output to cross the threshold.
-        // Sum power over two consecutive symbols in case we're offset
-        // in time. If off by 1/2 a symbol, the peak of any one point
-        // is much lower.
-            float corr_mag = d_corr_mag[k] + d_corr_mag[k + 1];
-            if (corr_mag <= 4 * detection) {
-                k++;
-                continue;
-            }
-
-            // Go to (just past) the current correlator output peak
-            while ((k < (lenght_access_code - 1)) && (d_corr_mag[k] < d_corr_mag[k + 1])) {
-                k++;
-            }
-            double nom = 0, den = 0;
-            nom = d_corr_mag[k - 1] + 2 * d_corr_mag[k] + 3 * d_corr_mag[k + 1];
-            den = d_corr_mag[k - 1] + d_corr_mag[k] + d_corr_mag[k + 1];
-            double center = nom / den;
-            center = (center - 2.0); // adjust for bias in center of mass calculation
-
-            uint32_t maxi;
-            volk_32fc_index_max_32u_manual(&maxi, (gr_complex*)ii_signal, lenght_access_code, "generic");
-            d_scale = 1 / std::abs(ii_signal[maxi]);
-            //printf("DETECTED CORRELATION\n");
-
-            k += isps;
-          }
-
-
-          /*if (detection>=threshold){
-            printf("DETECTED CORRELATION\n");
-          }*/
+          printf("DET: %f\n",detection);
+          
         }
+        printf("FINISH FOR\n");
+        consume (0,noutput_items);
+        consume (1,noutput_items);
+
+        produce(0,noutput_items);
+        produce(1,noutput_items);
+
       }
     }
 
@@ -179,13 +155,13 @@ namespace gr {
 
 
       //consume_each (noutput_items);
-      consume (0,noutput_items);
-      consume (1,noutput_items);
+      //consume (0,noutput_items);
+      //consume (1,noutput_items);
 
       // Tell runtime system how many output items we produced.
-      produce(0,noutput_items);
-      produce(1,noutput_items);
-      return 0;
+      //produce(0,noutput_items);
+      //produce(1,noutput_items);
+      //return 0;
 
     }
 
