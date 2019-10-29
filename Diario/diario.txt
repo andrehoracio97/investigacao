@@ -112,3 +112,8 @@ Semana
 23-Tutorial update do tuto2. Desenvolvimento corr_and_delay.
 24-Continuação Corr_and_delay, analise de correlation estimator e de correlate and sync.
 25-Tentar Corr_and_delay. Tese-Physical Security
+
+Semana
+28 -Tese-Reordenação em Physical Layer Security, melhorar o Modern Cryptography, Wiretap channel, e começar coding scheme - Questão de como vou fazer agora???- E em relação ao LDPC chega? ir mais a fundo?
+29 -Tese-Acabar Ldpc fazer o convolution code. Reunião. Ver o corr_and_delay.
+

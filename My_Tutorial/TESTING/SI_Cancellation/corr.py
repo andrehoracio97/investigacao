@@ -32,7 +32,6 @@ from gnuradio.qtgui import Range, RangeWidget
 from optparse import OptionParser
 import adapt
 import correlate_and_delay
-import insert_vec_cpp
 import pmt
 import random
 import sip
@@ -487,7 +486,6 @@ class corr(gr.top_block, Qt.QWidget):
         self.interp_fir_filter_xxx_1.declare_sample_delay(0)
         self.interp_fir_filter_xxx_0_0 = filter.interp_fir_filter_ccc(sps, (rrc_taps))
         self.interp_fir_filter_xxx_0_0.declare_sample_delay(0)
-        self.insert_vec_cpp_new_vec_0 = insert_vec_cpp.new_vec((vector))
         self.digital_pfb_clock_sync_xxx_0_0_0 = digital.pfb_clock_sync_ccf(sps, 6.28/100.0, (rx_rrc_taps), sps, sps/2, 1.5, 1)
         self.digital_diff_encoder_bb_0 = digital.diff_encoder_bb(pld_const.arity())
         self.digital_diff_decoder_bb_0 = digital.diff_decoder_bb(pld_const.arity())
@@ -546,7 +544,7 @@ class corr(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_repack_bits_bb_0_1, 0), (self.blocks_throttle_0, 0))
         self.connect((self.blocks_repack_bits_bb_1_0_0_1, 0), (self.blocks_stream_mux_0_1_0, 1))
         self.connect((self.blocks_stream_mux_0_1_0, 0), (self.blocks_repack_bits_bb_0_1, 0))
-        self.connect((self.blocks_throttle_0, 0), (self.insert_vec_cpp_new_vec_0, 0))
+        self.connect((self.blocks_throttle_0, 0), (self.digital_diff_encoder_bb_0, 0))
         self.connect((self.custom_corr, 0), (self.adapt_lms_filter_xx_0, 1))
         self.connect((self.custom_corr, 1), (self.adapt_lms_filter_xx_0, 0))
         self.connect((self.digital_chunks_to_symbols_xx_0_0, 0), (self.interp_fir_filter_xxx_0_0, 0))
@@ -559,7 +557,6 @@ class corr(gr.top_block, Qt.QWidget):
         self.connect((self.digital_diff_decoder_bb_0, 0), (self.blocks_repack_bits_bb_0, 0))
         self.connect((self.digital_diff_encoder_bb_0, 0), (self.digital_chunks_to_symbols_xx_0_0, 0))
         self.connect((self.digital_pfb_clock_sync_xxx_0_0_0, 0), (self.digital_costas_loop_cc_0, 0))
-        self.connect((self.insert_vec_cpp_new_vec_0, 0), (self.digital_diff_encoder_bb_0, 0))
         self.connect((self.interp_fir_filter_xxx_0_0, 0), (self.blocks_multiply_const_vxx_1, 0))
         self.connect((self.interp_fir_filter_xxx_1, 0), (self.blocks_multiply_const_vxx_0, 0))
 
