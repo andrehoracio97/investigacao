@@ -71,7 +71,7 @@ class ber_curve_gen(gr.top_block, Qt.QWidget):
 
         self.enc_rep = enc_rep = map((lambda b: map((lambda a: fec.repetition_encoder_make(framebits, 3)), range(0,1))), range(0,len(esno_0)))
 
-        self.enc_ldpc = enc_ldpc = map( (lambda b: map( ( lambda a: fec.ldpc_encoder_make('/usr/share/gnuradio/fec/ldpc/271.127.3.112')), range(0,1) ) ), range(0,len(esno_0)));
+        self.enc_ldpc = enc_ldpc = map( (lambda b: map( ( lambda a: fec.ldpc_encoder_make('/usr/local/share/gnuradio/fec/ldpc/271.127.3.112')), range(0,1) ) ), range(0,len(esno_0)));
 
         self.enc_dummy = enc_dummy = map((lambda b: map((lambda a: fec.dummy_encoder_make(framebits)), range(0,1))), range(0,len(esno_0)))
 
@@ -81,7 +81,7 @@ class ber_curve_gen(gr.top_block, Qt.QWidget):
 
         self.dec_rep = dec_rep = map( (lambda b: map( ( lambda a: fec.repetition_decoder.make(framebits, 3, 0.5)), range(0,1) ) ), range(0,len(esno_0)))
 
-        self.dec_ldpc = dec_ldpc = map( (lambda b: map( ( lambda a: fec.ldpc_decoder.make('/usr/share/gnuradio/fec/ldpc/271.127.3.112', 0.5, 50)), range(0,1) ) ), range(0,len(esno_0)));
+        self.dec_ldpc = dec_ldpc = map( (lambda b: map( ( lambda a: fec.ldpc_decoder.make('/usr/local/share/gnuradio/fec/ldpc/271.127.3.112', 0.5, 50)), range(0,1) ) ), range(0,len(esno_0)));
 
         self.dec_dummy = dec_dummy = map((lambda b: map((lambda a: fec.dummy_decoder.make(framebits)), range(0,1))), range(0,len(esno_0)))
 

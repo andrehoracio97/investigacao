@@ -207,7 +207,7 @@
     <key>variable_ldpc_decoder_def</key>
     <param>
       <key>file</key>
-      <value>/usr/share/gnuradio/fec/ldpc/271.127.3.112</value>
+      <value>/usr/local/share/gnuradio/fec/ldpc/271.127.3.112</value>
     </param>
     <param>
       <key>comment</key>
@@ -337,7 +337,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(776, 659)</value>
+      <value>(792, 660)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -482,7 +482,7 @@
     <key>variable_ldpc_encoder_def</key>
     <param>
       <key>file</key>
-      <value>/usr/share/gnuradio/fec/ldpc/271.127.3.112</value>
+      <value>/usr/local/share/gnuradio/fec/ldpc/271.127.3.112</value>
     </param>
     <param>
       <key>comment</key>
@@ -592,7 +592,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(776, 467)</value>
+      <value>(792, 468)</value>
     </param>
     <param>
       <key>_rotation</key>

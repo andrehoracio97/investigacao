@@ -109,13 +109,31 @@ namespace gr {
           if (i==99){ //All the access code catched
             printf("Access Code Caught\n");
             time_to_catch=0;
-            conjugate_and_reverse(access_code); //conjugate and reverse
+
+            //conjugate_and_reverse(access_code); //conjugate and reverse
+            //conjugate and reverse
+            for (int j = 0; j < access_code.size(); j++) { //doing the conjugate
+              access_code[j] = conj(access_code[j]);
+            }
+            std::reverse(access_code.begin(), access_code.end()); //doing the reverse
+
             correlation_filter = new kernel::fft_filter_ccc(1, access_code); //create correlation filter from the access code --1=decimation then the taps
             int nsamples;
             nsamples = correlation_filter->set_taps(access_code); //The filter function expects that the input signal is a multiple of d_nsamples in the class that's computed internally to be as fast as possible. The function set_taps will return the value of nsamples that can be used externally to check this boundary
             set_output_multiple(nsamples); //Ensures the scheduler always passes this block the right number of samples
             
-            consume (0,lenght_access_code);
+            consume (0,lenght_access_code); //consume the samples we set to correlate with
+
+            //FISRT WINDOW - BEGUC CHECK
+            /*correlation_filter->filter(lenght_access_code, &ii_signal[0], d_corr); //Calculate the correlation of input with the noise. 1ºItems to produce. 2ºInpuct vector to be filtered. 3ºresult of filter opertation.  The 2º starts in the "window" that I am.
+            volk_32fc_magnitude_squared_32f(&d_corr_mag[0], d_corr, lenght_access_code); //magnitude squared of the correlation
+            detection = 0;
+            for (int j = 0; j < lenght_access_code; j++) {
+              detection += d_corr_mag[j];
+            }
+            //detection /= static_cast<float>(lenght_access_code);
+            //detection *= d_pfa;
+            printf("DET FIRST: %f\n",detection);*/
           }
         }
       }else{ //I already have the access code so I need to correlate it against the received symbols
@@ -133,7 +151,9 @@ namespace gr {
           printf("DET: %f\n",detection);
           
         }
-        printf("FINISH FOR\n");
+        //printf("FINISH FOR\n");
+        memcpy(oo_noise, ii_noise, sizeof(gr_complex)*noutput_items);
+        memcpy(oo_signal, ii_signal, sizeof(gr_complex)*noutput_items);
         consume (0,noutput_items);
         consume (1,noutput_items);
 
@@ -148,8 +168,7 @@ namespace gr {
 */
 
 
-    memcpy(oo_noise, ii_noise, sizeof(gr_complex)*noutput_items);
-    memcpy(oo_signal, ii_signal, sizeof(gr_complex)*noutput_items);
+  
 
     
 

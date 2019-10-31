@@ -115,5 +115,5 @@ Semana
 
 Semana
 28 -Tese-Reordenação em Physical Layer Security, melhorar o Modern Cryptography, Wiretap channel, e começar coding scheme - Questão de como vou fazer agora???- E em relação ao LDPC chega? ir mais a fundo?
-29 -Tese-Acabar Ldpc fazer o convolution code. Reunião. Ver o corr_and_delay.
-
+29 -Tese-Acabar Ldpc fazer o convolution code. Reunião..
+30 -Tese, corrigir o falado na reunião. Mail para Incluir esquema. Tese melhorar o Wiretap Channel. Pesquisa de papers para começar a parte do jamming.
