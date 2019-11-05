@@ -35,7 +35,6 @@ namespace gr {
     std::vector<gr_complex> access_code;
     std::vector<gr_complex> d_access_code;
 
-    int time_to_catch;
     int lenght_access_code;
 
     kernel::fft_filter_ccc* correlation_filter;
@@ -45,6 +44,8 @@ namespace gr {
     float d_pfa; // probability of false alarm
     float d_scale;
     float detection;
+    bool have_access_code;
+    bool have_corr;
 
      public:
       corr_and_delay_impl(int number_bits, int interval, float threshold);

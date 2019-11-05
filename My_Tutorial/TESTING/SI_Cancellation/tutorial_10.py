@@ -29,6 +29,7 @@ from gnuradio import qtgui
 from gnuradio import uhd
 from gnuradio.eng_option import eng_option
 from gnuradio.filter import firdes
+from gnuradio.filter import pfb
 from gnuradio.qtgui import Range, RangeWidget
 from optparse import OptionParser
 import adapt
@@ -80,6 +81,7 @@ class tutorial_10(gr.top_block, Qt.QWidget):
         self.samp_rate_array_MCR = samp_rate_array_MCR = [7500000,5000000,3750000,3000000,2500000,2000000,1500000,1000000,937500,882352,833333,714285,533333,500000,421052,400000,380952]
         self.rate = rate = 2
         self.polys = polys = [109, 79]
+        self.nfilts = nfilts = 32
         self.k = k = 7
         self.eb = eb = 0.22
         self.vector = vector = [int(random.random()*7) for i in range(49600)]
@@ -89,9 +91,12 @@ class tutorial_10(gr.top_block, Qt.QWidget):
         self.variable_qtgui_range_0_0 = variable_qtgui_range_0_0 = 50
         self.variable_qtgui_range_0 = variable_qtgui_range_0 = 50
         self.variable_qtgui_entry_0 = variable_qtgui_entry_0 = 0.7
+
+        self.tx_rrc_taps = tx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts, 1.0, eb, 11*sps*nfilts)
+
         self.samp_rate = samp_rate = samp_rate_array_MCR[7]
 
-        self.rrc_taps = rrc_taps = firdes.root_raised_cosine(sps, sps, 1.0, eb, 11*sps)
+        self.rx_rrc_taps = rx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts*sps, 1.0, eb, 11*sps*nfilts)
 
 
 
@@ -101,7 +106,6 @@ class tutorial_10(gr.top_block, Qt.QWidget):
         self.pld_dec = pld_dec = map( (lambda a: fec.cc_decoder.make(440, k, rate, (polys), 0, -1, fec.CC_TERMINATED, False)), range(0,8) );
         self.pld_const = pld_const = digital.constellation_rect(([0.707+0.707j, -0.707+0.707j, -0.707-0.707j, 0.707-0.707j]), ([0, 1, 2, 3]), 4, 2, 2, 1, 1).base()
         self.pld_const.gen_soft_dec_lut(8)
-        self.nfilts = nfilts = 32
         self.frequencia_usrp = frequencia_usrp = 484e6
         self.MCR = MCR = "master_clock_rate=60e6"
 
@@ -637,12 +641,16 @@ class tutorial_10(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(1, 2):
             self.top_grid_layout.setColumnStretch(c, 1)
+        self.pfb_arb_resampler_xxx_0 = pfb.arb_resampler_ccc(
+        	  sps,
+                  taps=(tx_rrc_taps),
+        	  flt_size=nfilts)
+        self.pfb_arb_resampler_xxx_0.declare_sample_delay(0)
+
         self.interp_fir_filter_xxx_1 = filter.interp_fir_filter_ccc(4, ([1,0,0,0]))
         self.interp_fir_filter_xxx_1.declare_sample_delay(0)
-        self.interp_fir_filter_xxx_0 = filter.interp_fir_filter_ccc(sps, (rrc_taps))
-        self.interp_fir_filter_xxx_0.declare_sample_delay(0)
         self.insert_vec_cpp_new_vec_0 = insert_vec_cpp.new_vec((vector))
-        self.digital_pfb_clock_sync_xxx_0_0_0 = digital.pfb_clock_sync_ccf(sps, 6.28/100.0, (rrc_taps), sps, sps/2, 1.5, 1)
+        self.digital_pfb_clock_sync_xxx_0_0_0 = digital.pfb_clock_sync_ccf(sps, 6.28/100.0, (rx_rrc_taps), nfilts, nfilts/2, 1.5, 1)
         self.digital_diff_encoder_bb_0 = digital.diff_encoder_bb(pld_const.arity())
         self.digital_diff_decoder_bb_0 = digital.diff_decoder_bb(pld_const.arity())
         self.digital_costas_loop_cc_0 = digital.costas_loop_cc(6.28/100, 4, False)
@@ -693,7 +701,7 @@ class tutorial_10(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_repack_bits_bb_1_0_0_1, 0), (self.blocks_stream_mux_0_1_0, 1))
         self.connect((self.blocks_stream_mux_0_1_0, 0), (self.blocks_repack_bits_bb_0_1, 0))
         self.connect((self.delay, 0), (self.adapt_lms_filter_xx_0, 1))
-        self.connect((self.digital_chunks_to_symbols_xx_0_0, 0), (self.interp_fir_filter_xxx_0, 0))
+        self.connect((self.digital_chunks_to_symbols_xx_0_0, 0), (self.pfb_arb_resampler_xxx_0, 0))
         self.connect((self.digital_chunks_to_symbols_xx_0_0, 0), (self.qtgui_freq_sink_x_0_0_1, 0))
         self.connect((self.digital_constellation_decoder_cb_0_0, 0), (self.digital_diff_decoder_bb_0, 0))
         self.connect((self.digital_correlate_access_code_xx_ts_0_0, 0), (self.blocks_repack_bits_bb_0_0, 0))
@@ -704,8 +712,8 @@ class tutorial_10(gr.top_block, Qt.QWidget):
         self.connect((self.digital_diff_encoder_bb_0, 0), (self.digital_chunks_to_symbols_xx_0_0, 0))
         self.connect((self.digital_pfb_clock_sync_xxx_0_0_0, 0), (self.digital_costas_loop_cc_0, 0))
         self.connect((self.insert_vec_cpp_new_vec_0, 0), (self.digital_diff_encoder_bb_0, 0))
-        self.connect((self.interp_fir_filter_xxx_0, 0), (self.blocks_multiply_const_vxx_1, 0))
         self.connect((self.interp_fir_filter_xxx_1, 0), (self.blocks_multiply_const_vxx_1_0, 0))
+        self.connect((self.pfb_arb_resampler_xxx_0, 0), (self.blocks_multiply_const_vxx_1, 0))
         self.connect((self.uhd_usrp_source_0, 0), (self.blocks_delay_0_0, 0))
         self.connect((self.uhd_usrp_source_0, 0), (self.qtgui_time_sink_x_1_1, 0))
 
@@ -725,6 +733,7 @@ class tutorial_10(gr.top_block, Qt.QWidget):
 
     def set_sps(self, sps):
         self.sps = sps
+        self.pfb_arb_resampler_xxx_0.set_rate(self.sps)
 
     def get_samp_rate_array_MCR(self):
         return self.samp_rate_array_MCR
@@ -744,6 +753,12 @@ class tutorial_10(gr.top_block, Qt.QWidget):
 
     def set_polys(self, polys):
         self.polys = polys
+
+    def get_nfilts(self):
+        return self.nfilts
+
+    def set_nfilts(self, nfilts):
+        self.nfilts = nfilts
 
     def get_k(self):
         return self.k
@@ -809,6 +824,13 @@ class tutorial_10(gr.top_block, Qt.QWidget):
         Qt.QMetaObject.invokeMethod(self._variable_qtgui_entry_0_line_edit, "setText", Qt.Q_ARG("QString", eng_notation.num_to_str(self.variable_qtgui_entry_0)))
         self.blocks_multiply_const_vxx_1_0.set_k((self.variable_qtgui_entry_0, ))
 
+    def get_tx_rrc_taps(self):
+        return self.tx_rrc_taps
+
+    def set_tx_rrc_taps(self, tx_rrc_taps):
+        self.tx_rrc_taps = tx_rrc_taps
+        self.pfb_arb_resampler_xxx_0.set_taps((self.tx_rrc_taps))
+
     def get_samp_rate(self):
         return self.samp_rate
 
@@ -825,13 +847,12 @@ class tutorial_10(gr.top_block, Qt.QWidget):
         self.qtgui_freq_sink_x_0_0_1.set_frequency_range(0, self.samp_rate)
         self.qtgui_freq_sink_x_0_0.set_frequency_range(0, self.samp_rate)
 
-    def get_rrc_taps(self):
-        return self.rrc_taps
+    def get_rx_rrc_taps(self):
+        return self.rx_rrc_taps
 
-    def set_rrc_taps(self, rrc_taps):
-        self.rrc_taps = rrc_taps
-        self.interp_fir_filter_xxx_0.set_taps((self.rrc_taps))
-        self.digital_pfb_clock_sync_xxx_0_0_0.update_taps((self.rrc_taps))
+    def set_rx_rrc_taps(self, rx_rrc_taps):
+        self.rx_rrc_taps = rx_rrc_taps
+        self.digital_pfb_clock_sync_xxx_0_0_0.update_taps((self.rx_rrc_taps))
 
     def get_pld_enc(self):
         return self.pld_enc
@@ -850,12 +871,6 @@ class tutorial_10(gr.top_block, Qt.QWidget):
 
     def set_pld_const(self, pld_const):
         self.pld_const = pld_const
-
-    def get_nfilts(self):
-        return self.nfilts
-
-    def set_nfilts(self, nfilts):
-        self.nfilts = nfilts
 
     def get_frequencia_usrp(self):
         return self.frequencia_usrp

@@ -117,3 +117,9 @@ Semana
 28 -Tese-Reordenação em Physical Layer Security, melhorar o Modern Cryptography, Wiretap channel, e começar coding scheme - Questão de como vou fazer agora???- E em relação ao LDPC chega? ir mais a fundo?
 29 -Tese-Acabar Ldpc fazer o convolution code. Reunião..
 30 -Tese, corrigir o falado na reunião. Mail para Incluir esquema. Tese melhorar o Wiretap Channel. Pesquisa de papers para começar a parte do jamming.
+31- Reunião prof para ver o Codigo do corr_and_delay - Sem resultados conclusivos, no matlab funciona.
+1-Feriado Dia todos os Santos
+
+Semana Novembro
+4- Restruturação codigo corr_and_delay - Descobri que os primeiros valores são os mais altos, mas NÂO o 1 valor, não sei pq. Tese - Security Scheme, Jamming e Cooperative jamming (3tipos)
+5- Dentista. Inicion metricas-- melhor juntar com wiretap, apagar tudo e melhorar wiretap channel e juntar as metricas. Leitura de varios artigos para compor as metricas. Atualizar introdução. Reuniao Prof. para ver o corr_and_delay.

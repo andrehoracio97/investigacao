@@ -8,7 +8,7 @@
 
 
   <param>
-    <name>Number Bits</name>
+    <name>Number of Samples</name>
     <key>number_bits</key>
     <value>100</value>
     <type>int</type>
