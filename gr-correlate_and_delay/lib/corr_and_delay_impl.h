@@ -46,6 +46,7 @@ namespace gr {
     float detection;
     bool have_access_code;
     bool have_corr;
+    float d_sps;
 
      public:
       corr_and_delay_impl(int number_bits, int interval, float threshold);
