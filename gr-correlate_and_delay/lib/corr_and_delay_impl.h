@@ -60,8 +60,6 @@ namespace gr {
            gr_vector_const_void_star &input_items,
            gr_vector_void_star &output_items);
 
-      int correlate_it();
-      void conjugate_and_reverse(std::vector<gr_complex> access_code);
     };
 
   } // namespace correlate_and_delay

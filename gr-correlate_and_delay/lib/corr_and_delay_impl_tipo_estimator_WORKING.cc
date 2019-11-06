@@ -48,8 +48,8 @@ namespace gr {
       access_code(),
       detection(0),
       have_corr(false),
-      have_access_code(false),
-      d_sps(1)
+      d_sps(1),
+      have_access_code(false)
     {
     
     const size_t nitems = 24 * 1024;
@@ -60,11 +60,12 @@ namespace gr {
     d_pfa = -logf(1.0f - threshold);
     d_scale = 1.0f;
 
-    //ADDED
-   /* set_history(lenght_access_code + 1);
-    declare_sample_delay(1, 0);
-    declare_sample_delay(0, lenght_access_code);*/
+    //corr estimator
+    /*set_history(lenght_access_code + 1);
 
+    declare_sample_delay(0, 0);
+    declare_sample_delay(1, lenght_access_code);
+    declare_sample_delay(2, 0);*/
 
 
     }
@@ -85,26 +86,13 @@ namespace gr {
     }
 
 
-    void corr_and_delay_impl::conjugate_and_reverse(std::vector<gr_complex> access_code){
-      for (size_t i = 0; i < access_code.size(); i++) {
-        access_code[i] = conj(access_code[i]);
-      }
-      std::reverse(access_code.begin(), access_code.end());
-    }
-
-
-    int corr_and_delay_impl::correlate_it(){
-
-
-      return 0;
-    }
-
     int
     corr_and_delay_impl::general_work (int noutput_items,
                        gr_vector_int &ninput_items,
                        gr_vector_const_void_star &input_items,
                        gr_vector_void_star &output_items)
     {
+
       const gr_complex *ii_noise = (const gr_complex*)input_items[0];
       gr_complex *oo_noise = (gr_complex *) output_items[0];
 
@@ -112,17 +100,12 @@ namespace gr {
       gr_complex *oo_signal = (gr_complex *) output_items[1];
 
       gr_complex *corr = (gr_complex*)output_items[2];
+      /*gr_complex *corr;
+         corr=d_corr;*/
 
-      /*gr_complex* corr;
-      if (output_items.size() > 2)
-        corr = (gr_complex*)output_items[2];
-      else
-        corr = d_corr;
-*/
-
-
-      if(noutput_items>=lenght_access_code){ //Make sure we have number of samples enough to create fft filte of noise
-        if(have_access_code==false){ //If access code still not catched
+       //Make sure we have number of samples enough to create fft filte of noise
+      if(have_access_code==false){ //If access code still not catched
+        if(noutput_items>=lenght_access_code){
           for (int i = access_code.size(); i < lenght_access_code; i++){
               //access_code[i]=ii_noise[i];
               access_code.push_back(ii_noise[i]);
@@ -144,66 +127,67 @@ namespace gr {
                 nsamples = correlation_filter->set_taps(access_code); //The filter function expects that the input signal is a multiple of d_nsamples in the class that's computed internally to be as fast as possible. The function set_taps will return the value of nsamples that can be used externally to check this boundary
                 set_output_multiple(nsamples); //Ensures the scheduler always passes this block the right number of samples
 
-                //Just catch, don't produce or consume.
-                //memcpy(oo_noise, ii_noise, sizeof(gr_complex)*lenght_access_code);
-                //consume (0,lenght_access_code); //consume the samples we set to correlate with
-                //produce(0,lenght_access_code);
+                set_history(lenght_access_code+1);
+
+                /*declare_sample_delay(0, 0);
+                declare_sample_delay(1, lenght_access_code);
+                declare_sample_delay(2, 0);*/
+            
+                //only 100
+                
+                consume (0,lenght_access_code); //consume the samples we set to correlate with
+                //produce(0,lenght_access_code); //Not producing because it will be delayed
               }
-          }
-        }else{ //If we have access code
-          if(have_corr==false){ //We have access code and we need to find the correlation
-              for(int i=0; i<=(noutput_items-lenght_access_code); i++){ //Got o each "Window" in output items -> For 5 window, and 10 items, I can do 10-5+1 times. 
-              correlation_filter->filter(lenght_access_code, &ii_signal[i], d_corr); //Calculate the correlation of input with the noise. 1ºItems to produce. 2ºInpuct vector to be filtered. 3ºresult of filter opertation.  The 2º starts in the "window" that I am.
-              correlation_filter->filter(lenght_access_code, &ii_signal[i], corr); //Calculate the correlation of input with the noise. 1ºItems to produce. 2ºInpuct vector to be filtered. 3ºresult of filter opertation.  The 2º starts in the "window" that I am.
-              
-              volk_32fc_magnitude_squared_32f(&d_corr_mag[0], d_corr, lenght_access_code); //magnitude squared of the correlation
-              volk_32fc_magnitude_squared_32f(&d_corr_mag[0], corr, lenght_access_code); //magnitude squared of the correlation
-
-              detection = 0;
-              for (int j = 0; j < lenght_access_code; j++) { //Sum of all magnitude squared values
-                detection += d_corr_mag[j];
-              }
-              detection /= static_cast<float>(lenght_access_code);
-              detection *= d_pfa;
-
-              printf("DET: %f\n",detection);
-              //If found the correlation then set have_corr to true
-              /*if(detection>2500){ //this is for AUTO_CORR FG
-                printf("MAI:%f\n",detection);
-              }*/
-              /*if(detection>330){ //this is for CORR_AND_DELAY_SIMULATION FG
-                printf("MAI:%f\n",detection);
-              }*/
-            //bypass the signal
-            }
-            //Didn't find correlation, but, for now only passes to correlate the next samples
-            //NOISE
-            memcpy(oo_noise, ii_noise, sizeof(gr_complex)*noutput_items);
-            consume (0,noutput_items);
-            produce(0,noutput_items);
-
-            //SIGNAL
-            memcpy(oo_signal, ii_signal, sizeof(gr_complex)*noutput_items);
-            consume (1,noutput_items);
-            produce(1,noutput_items);
-            memcpy(corr, d_corr, sizeof(gr_complex)*noutput_items);
-            produce(2,noutput_items);
-
-          }else{ //Correlation found, so passing streams with correct delay synchronize them
           }
         }
-        //memcpy(oo_noise, ii_noise, sizeof(gr_complex)*noutput_items);
-        //memcpy(oo_signal, ii_signal, sizeof(gr_complex)*noutput_items);
-        //consume (0,noutput_items);
-        //consume (1,noutput_items);
+        return 0;
+      }else if(have_corr==false){ //If we have access code
+          unsigned int hist_len = history() - 1;
+          correlation_filter->filter(noutput_items, &ii_signal[hist_len], corr); //Calculate the correlation of input with the noise. 1ºItems to produce. 2ºInpuct vector to be filtered. 3ºresult of filter opertation.  The 2º starts in the "window" that I am.
+          volk_32fc_magnitude_squared_32f(&d_corr_mag[0], corr, noutput_items); //magnitude squared of the correlation
 
-        //produce(0,noutput_items);
-        //produce(1,noutput_items);
+          float detection = 0; 
+          for (int j = 0; j < noutput_items; j++) { //Sum of all magnitude squared values
+            detection += d_corr_mag[j];
+          }
+          detection /= static_cast<float>(noutput_items);
+          detection *= d_pfa;
 
-     /* consume (0,noutput_items);
-        consume (1,noutput_items);
-        produce(0,noutput_items);
-        produce(1,noutput_items);*/
+          printf("DET: %f\n", detection);
+
+         /*int isps = (int)(d_sps + 0.5f);
+          int i = 0;
+         
+          while (i < noutput_items) {
+            float corr_mag = d_corr_mag[i] + d_corr_mag[i + 1];
+            if (corr_mag <= 4 * detection) {
+                i++;
+                continue;
+            }
+
+            while ((i < (noutput_items - 1)) && (d_corr_mag[i] < d_corr_mag[i + 1])) {
+              i++;
+            }
+
+            uint32_t maxi;
+            volk_32fc_index_max_32u_manual(&maxi, (gr_complex*)ii_signal, noutput_items, "generic");
+            d_scale = 1 / std::abs(ii_signal[maxi]);
+            
+            i += isps;
+          }*/
+          
+          //bypass the signal
+          memcpy(oo_signal, &ii_signal[0], sizeof(gr_complex)*noutput_items);
+          //memcpy(oo_noise, ii_noise, sizeof(gr_complex)*noutput_items);
+
+          //consume(0,noutput_items);
+          consume(1,noutput_items);
+
+          produce(0,noutput_items);
+          produce(1,noutput_items);
+          produce(2,noutput_items);
+        
+      }else{ //Correlation found, so passing streams with correct delay synchronize them
       }
     }
   } /* namespace correlate_and_delay */
