@@ -103,9 +103,9 @@ namespace gr {
       /*gr_complex *corr;
          corr=d_corr;*/
 
-       //Make sure we have number of samples enough to create fft filte of noise
+
       if(have_access_code==false){ //If access code still not catched
-        if(noutput_items>=lenght_access_code){
+        if(noutput_items>=lenght_access_code){ //Make sure we have number of samples enough to create fft filte of nois
           for (int i = access_code.size(); i < lenght_access_code; i++){
               //access_code[i]=ii_noise[i];
               access_code.push_back(ii_noise[i]);
@@ -115,7 +115,6 @@ namespace gr {
                 printf("Access Code Caught\n");
                 have_access_code=true;
 
-                //conjugate_and_reverse(access_code); //conjugate and reverse
                 //conjugate and reverse
                 for (int j = 0; j < access_code.size(); j++) { //doing the conjugate
                   access_code[j] = conj(access_code[j]);
@@ -128,14 +127,8 @@ namespace gr {
                 set_output_multiple(nsamples); //Ensures the scheduler always passes this block the right number of samples
 
                 set_history(lenght_access_code+1);
-
-                /*declare_sample_delay(0, 0);
-                declare_sample_delay(1, lenght_access_code);
-                declare_sample_delay(2, 0);*/
-            
-                //only 100
                 
-                consume (0,lenght_access_code); //consume the samples we set to correlate with
+               // consume (0,lenght_access_code); //consume the samples we set to correlate with
                 //produce(0,lenght_access_code); //Not producing because it will be delayed
               }
           }
@@ -143,8 +136,8 @@ namespace gr {
         return 0;
       }else if(have_corr==false){ //If we have access code
           unsigned int hist_len = history() - 1;
-          correlation_filter->filter(noutput_items, &ii_signal[hist_len], corr); //Calculate the correlation of input with the noise. 1ºItems to produce. 2ºInpuct vector to be filtered. 3ºresult of filter opertation.  The 2º starts in the "window" that I am.
-          volk_32fc_magnitude_squared_32f(&d_corr_mag[0], corr, noutput_items); //magnitude squared of the correlation
+          correlation_filter->filter(noutput_items-hist_len, &ii_signal[hist_len-hist_len], corr); //Calculate the correlation of input with the noise. 1ºItems to produce. 2ºInpuct vector to be filtered. 3ºresult of filter opertation.  The 2º starts in the "window" that I am.
+          volk_32fc_magnitude_squared_32f(&d_corr_mag[0], corr, noutput_items-hist_len); //magnitude squared of the correlation
 
           float detection = 0; 
           for (int j = 0; j < noutput_items; j++) { //Sum of all magnitude squared values
@@ -154,7 +147,6 @@ namespace gr {
           detection *= d_pfa;
 
           printf("DET: %f\n", detection);
-
          /*int isps = (int)(d_sps + 0.5f);
           int i = 0;
          
@@ -187,7 +179,7 @@ namespace gr {
           produce(1,noutput_items);
           produce(2,noutput_items);
         
-      }else{ //Correlation found, so passing streams with correct delay synchronize them
+      }else{ //Correlation found, so passing streams with correct delay synchronizing them
       }
     }
   } /* namespace correlate_and_delay */

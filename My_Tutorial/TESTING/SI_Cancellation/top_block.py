@@ -17,6 +17,7 @@ if __name__ == '__main__':
             print "Warning: failed to XInitThreads()"
 
 from PyQt4 import Qt
+from gnuradio import analog
 from gnuradio import blocks
 from gnuradio import digital
 from gnuradio import eng_notation
@@ -61,7 +62,7 @@ class top_block(gr.top_block, Qt.QWidget):
         ##################################################
         # Variables
         ##################################################
-        self.samp_rate = samp_rate = 10000
+        self.samp_rate = samp_rate = 2000
         self.pld_const = pld_const = digital.constellation_rect(([0.707+0.707j, -0.707+0.707j, -0.707-0.707j, 0.707-0.707j]), ([0, 1, 2, 3]), 4, 2, 2, 1, 1).base()
         self.pld_const.gen_soft_dec_lut(8)
 
@@ -170,7 +171,7 @@ class top_block(gr.top_block, Qt.QWidget):
         self.qtgui_time_sink_x_0_0 = qtgui.time_sink_c(
         	1024, #size
         	samp_rate, #samp_rate
-        	"", #name
+        	"SIGNAL", #name
         	1 #number of inputs
         )
         self.qtgui_time_sink_x_0_0.set_update_time(0.10)
@@ -270,25 +271,25 @@ class top_block(gr.top_block, Qt.QWidget):
         self._qtgui_time_sink_x_0_win = sip.wrapinstance(self.qtgui_time_sink_x_0.pyqwidget(), Qt.QWidget)
         self.top_grid_layout.addWidget(self._qtgui_time_sink_x_0_win)
         self.custom_corr = correlate_and_delay.corr_and_delay(13, 0, 0.99)
-        self.blocks_vector_source_x_0_0 = blocks.vector_source_c([0], True, 1, [])
         self.blocks_vector_source_x_0 = blocks.vector_source_c([1,1,1,1,1,-1, -1, 1, 1, -1, 1, -1,1], True, 1, [])
         self.blocks_throttle_0_0 = blocks.throttle(gr.sizeof_gr_complex*1, samp_rate,True)
         self.blocks_throttle_0 = blocks.throttle(gr.sizeof_gr_complex*1, samp_rate,True)
-        self.blocks_stream_mux_0 = blocks.stream_mux(gr.sizeof_gr_complex*1, (13,1000))
+        self.blocks_stream_mux_0 = blocks.stream_mux(gr.sizeof_gr_complex*1, (13,550))
         self.blocks_complex_to_mag_squared_0_1 = blocks.complex_to_mag_squared(1)
+        self.analog_noise_source_x_0 = analog.noise_source_c(analog.GR_GAUSSIAN, 1.0, 100)
 
 
 
         ##################################################
         # Connections
         ##################################################
+        self.connect((self.analog_noise_source_x_0, 0), (self.blocks_stream_mux_0, 1))
         self.connect((self.blocks_complex_to_mag_squared_0_1, 0), (self.qtgui_time_sink_x_2_0, 0))
         self.connect((self.blocks_stream_mux_0, 0), (self.blocks_throttle_0, 0))
         self.connect((self.blocks_throttle_0, 0), (self.custom_corr, 1))
         self.connect((self.blocks_throttle_0_0, 0), (self.custom_corr, 0))
         self.connect((self.blocks_vector_source_x_0, 0), (self.blocks_stream_mux_0, 0))
         self.connect((self.blocks_vector_source_x_0, 0), (self.blocks_throttle_0_0, 0))
-        self.connect((self.blocks_vector_source_x_0_0, 0), (self.blocks_stream_mux_0, 1))
         self.connect((self.custom_corr, 2), (self.blocks_complex_to_mag_squared_0_1, 0))
         self.connect((self.custom_corr, 0), (self.qtgui_time_sink_x_0, 0))
         self.connect((self.custom_corr, 1), (self.qtgui_time_sink_x_0_0, 0))

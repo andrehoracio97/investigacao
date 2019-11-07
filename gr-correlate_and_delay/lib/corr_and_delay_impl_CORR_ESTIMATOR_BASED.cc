@@ -126,7 +126,7 @@ namespace gr {
                 nsamples = correlation_filter->set_taps(access_code); //The filter function expects that the input signal is a multiple of d_nsamples in the class that's computed internally to be as fast as possible. The function set_taps will return the value of nsamples that can be used externally to check this boundary
                 set_output_multiple(nsamples); //Ensures the scheduler always passes this block the right number of samples
 
-                //set_history(lenght_access_code+1);
+                set_history(lenght_access_code+1);
                 
                 consume (0,lenght_access_code); //consume the samples we set to correlate with
                 //produce(0,lenght_access_code); //Not producing because it will be delayed
@@ -135,7 +135,8 @@ namespace gr {
         }
         return 0;
       }else if(have_corr==false){ //If we have access code
-          correlation_filter->filter(noutput_items, &ii_signal[0], corr); //Calculate the correlation of input with the noise. 1ºItems to produce. 2ºInpuct vector to be filtered. 3ºresult of filter opertation.  The 2º starts in the "window" that I am.
+          unsigned int hist_len = history() - 1;
+          correlation_filter->filter(noutput_items, &ii_signal[hist_len], corr); //Calculate the correlation of input with the noise. 1ºItems to produce. 2ºInpuct vector to be filtered. 3ºresult of filter opertation.  The 2º starts in the "window" that I am.
           volk_32fc_magnitude_squared_32f(&d_corr_mag[0], corr, noutput_items); //magnitude squared of the correlation
 
           float detection = 0; 
