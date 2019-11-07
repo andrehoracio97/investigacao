@@ -29,6 +29,16 @@ volk/volk.h
 -
 gnuradio/filter/pfb_arb_resampler.h
 -
+gnuradio/io_signature.h
+-
+gnuradio/math.h
+-
+volk/volk.h
+-
+boost/format.hpp
+-
+boost/math/special_functions/round.hpp
+-
 
 /home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h
 correlate_and_delay/corr_and_delay.h
@@ -194,6 +204,14 @@ log4cpp/RollingFileAppender.hh
 log4cpp/OstreamAppender.hh
 -
 log4cpp/PatternLayout.hh
+-
+
+/usr/local/include/gnuradio/math.h
+gnuradio/api.h
+-
+gnuradio/gr_complex.h
+-
+cmath
 -
 
 /usr/local/include/gnuradio/messages/msg_accepter.h

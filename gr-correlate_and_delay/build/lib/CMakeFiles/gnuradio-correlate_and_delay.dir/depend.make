@@ -22,6 +22,7 @@ lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/l
 lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/local/include/gnuradio/gr_complex.h
 lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/local/include/gnuradio/io_signature.h
 lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/local/include/gnuradio/logger.h
+lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/local/include/gnuradio/math.h
 lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/local/include/gnuradio/messages/msg_accepter.h
 lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/local/include/gnuradio/messages/msg_producer.h
 lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/local/include/gnuradio/msg_accepter.h

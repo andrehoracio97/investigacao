@@ -48,6 +48,8 @@ namespace gr {
     bool have_corr;
     float d_sps;
 
+    pmt::pmt_t d_src_id;
+
      public:
       corr_and_delay_impl(int number_bits, int interval, float threshold);
       ~corr_and_delay_impl();

@@ -30,6 +30,14 @@
 
 #include <gnuradio/filter/pfb_arb_resampler.h>
 
+
+#include <gnuradio/io_signature.h>
+#include <gnuradio/math.h>
+#include <volk/volk.h>
+#include <boost/format.hpp>
+#include <boost/math/special_functions/round.hpp>
+
+
 namespace gr {
   namespace correlate_and_delay {
 
@@ -49,6 +57,7 @@ namespace gr {
       detection(0),
       have_corr(false),
       d_sps(1),
+      d_src_id(pmt::intern(alias())),
       have_access_code(false)
     {
     
@@ -59,15 +68,6 @@ namespace gr {
     
     d_pfa = -logf(1.0f - threshold);
     d_scale = 1.0f;
-
-    //corr estimator
-    /*set_history(lenght_access_code + 1);
-
-    declare_sample_delay(0, 0);
-    declare_sample_delay(1, lenght_access_code);
-    declare_sample_delay(2, 0);*/
-
-
     }
 
     /*
@@ -125,8 +125,6 @@ namespace gr {
                 int nsamples;
                 nsamples = correlation_filter->set_taps(access_code); //The filter function expects that the input signal is a multiple of d_nsamples in the class that's computed internally to be as fast as possible. The function set_taps will return the value of nsamples that can be used externally to check this boundary
                 set_output_multiple(nsamples); //Ensures the scheduler always passes this block the right number of samples
-
-                //set_history(lenght_access_code+1);
                 
                 consume (0,lenght_access_code); //consume the samples we set to correlate with
                 //produce(0,lenght_access_code); //Not producing because it will be delayed
@@ -135,6 +133,7 @@ namespace gr {
         }
         return 0;
       }else if(have_corr==false){ //If we have access code
+          printf("NEW TRY\n");
           correlation_filter->filter(noutput_items, &ii_signal[0], corr); //Calculate the correlation of input with the noise. 1ºItems to produce. 2ºInpuct vector to be filtered. 3ºresult of filter opertation.  The 2º starts in the "window" that I am.
           volk_32fc_magnitude_squared_32f(&d_corr_mag[0], corr, noutput_items); //magnitude squared of the correlation
 
@@ -146,27 +145,37 @@ namespace gr {
           detection *= d_pfa;
 
           printf("DET: %f\n", detection);
-         /*int isps = (int)(d_sps + 0.5f);
+          int isps = (int)(d_sps + 0.5f);
           int i = 0;
-         
           while (i < noutput_items) {
-            float corr_mag = d_corr_mag[i] + d_corr_mag[i + 1];
-            if (corr_mag <= 4 * detection) {
-                i++;
-                continue;
-            }
+              // Look for the correlator output to cross the threshold.
+              // Sum power over two consecutive symbols in case we're offset
+              // in time. If off by 1/2 a symbol, the peak of any one point
+              // is much lower.
+              float corr_mag = d_corr_mag[i] + d_corr_mag[i + 1];
+              if (corr_mag <= 4 * detection) {
+                  i++;
+                  continue;
+              }
 
-            while ((i < (noutput_items - 1)) && (d_corr_mag[i] < d_corr_mag[i + 1])) {
-              i++;
-            }
-
-            uint32_t maxi;
-            volk_32fc_index_max_32u_manual(&maxi, (gr_complex*)ii_signal, noutput_items, "generic");
-            d_scale = 1 / std::abs(ii_signal[maxi]);
-            
-            i += isps;
-          }*/
-          
+              // Go to (just past) the current correlator output peak
+              while ((i < (noutput_items - 1)) && (d_corr_mag[i] < d_corr_mag[i + 1])) {
+                  i++;
+              }
+            add_item_tag(1,
+                           nitems_written(1) + i,
+                           pmt::intern("correlation"),
+                           pmt::from_double(d_corr_mag[i]),
+                           d_src_id);
+            add_item_tag(2,
+                         nitems_written(1) + i,
+                         pmt::intern("correlation"),
+                         pmt::from_double(d_corr_mag[i]),
+                         d_src_id);
+              printf("CORR SAMPLE FOUND -SAMPLE %d\n",i);
+              
+              i += isps;
+          }
           //bypass the signal
           memcpy(oo_signal, &ii_signal[0], sizeof(gr_complex)*noutput_items);
           //memcpy(oo_noise, ii_noise, sizeof(gr_complex)*noutput_items);
