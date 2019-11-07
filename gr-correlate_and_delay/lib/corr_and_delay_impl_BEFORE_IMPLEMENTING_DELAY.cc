@@ -58,7 +58,6 @@ namespace gr {
       have_corr(false),
       d_sps(1),
       d_src_id(pmt::intern(alias())),
-      delay_needed(0),
       have_access_code(false)
     {
     
@@ -173,14 +172,8 @@ namespace gr {
                          pmt::intern("correlation"),
                          pmt::from_double(d_corr_mag[i]),
                          d_src_id);
+              printf("CORR SAMPLE FOUND -SAMPLE %d\n",i);
               
-
-              printf("CORR SAMPLE FOUND -SAMPLE %d\n",nitems_written(1) + i);
-             /* have_corr=true;
-              delay_needed=i;
-              break;*/
-
-
               i += isps;
           }
           //bypass the signal
@@ -194,21 +187,7 @@ namespace gr {
           produce(1,noutput_items);
           produce(2,noutput_items);
         
-      }else{ //Correlation found, so passing streams with correct delay - synchronizing them
-        printf("Delay needed=%d\n",delay_needed);
-        printf("Delay needed=%d - temp%d\n",delay_needed,(delay_needed-(lenght_access_code-1)));
-
-        
-        memcpy(oo_signal, &ii_signal[0], sizeof(gr_complex)*noutput_items);
-        memcpy(oo_noise, &ii_noise[0], sizeof(gr_complex)*noutput_items);
-
-        consume(0,noutput_items);
-        consume(1,noutput_items);
-
-        produce(0,noutput_items);
-        produce(1,noutput_items);
-        produce(2,noutput_items);
-        return 0;
+      }else{ //Correlation found, so passing streams with correct delay synchronizing them
       }
     }
   } /* namespace correlate_and_delay */

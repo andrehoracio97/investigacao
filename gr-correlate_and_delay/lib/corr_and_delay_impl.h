@@ -47,6 +47,7 @@ namespace gr {
     bool have_access_code;
     bool have_corr;
     float d_sps;
+    int delay_needed;
 
     pmt::pmt_t d_src_id;
 
