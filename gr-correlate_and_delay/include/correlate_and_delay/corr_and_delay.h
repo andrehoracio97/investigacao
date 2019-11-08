@@ -46,7 +46,7 @@ namespace gr {
        * class. correlate_and_delay::corr_and_delay::make is the public interface for
        * creating new instances.
        */
-      static sptr make(int number_bits, int interval, float threshold);
+      static sptr make(int number_bits, int interval, float threshold, float sps);
     };
 
   } // namespace correlate_and_delay

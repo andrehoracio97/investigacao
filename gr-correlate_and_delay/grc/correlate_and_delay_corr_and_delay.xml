@@ -4,7 +4,7 @@
   <key>correlate_and_delay_corr_and_delay</key>
   <category>[correlate_and_delay]</category>
   <import>import correlate_and_delay</import>
-  <make>correlate_and_delay.corr_and_delay($number_bits, $interval, $threshold)</make>
+  <make>correlate_and_delay.corr_and_delay($number_bits, $interval, $threshold, $sps)</make>
 
 
   <param>
@@ -23,6 +23,12 @@
     <name>Threshold</name>
     <key>threshold</key>
     <value>0.9</value>
+    <type>float</type>
+  </param>
+  <param>
+    <name>SPS</name>
+    <key>sps</key>
+    <value>1</value>
     <type>float</type>
   </param>
 

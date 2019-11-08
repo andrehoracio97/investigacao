@@ -33,6 +33,7 @@ from gnuradio.qtgui import Range, RangeWidget
 from optparse import OptionParser
 import adapt
 import correlate_and_delay
+import insert_vec_cpp
 import pmt
 import random
 import sip
@@ -40,7 +41,7 @@ import sys
 from gnuradio import qtgui
 
 
-class corr(gr.top_block, Qt.QWidget):
+class corr_ultimapte_testing(gr.top_block, Qt.QWidget):
 
     def __init__(self, puncpat='11'):
         gr.top_block.__init__(self, "Tutorial")
@@ -63,7 +64,7 @@ class corr(gr.top_block, Qt.QWidget):
         self.top_grid_layout = Qt.QGridLayout()
         self.top_layout.addLayout(self.top_grid_layout)
 
-        self.settings = Qt.QSettings("GNU Radio", "corr")
+        self.settings = Qt.QSettings("GNU Radio", "corr_ultimapte_testing")
         self.restoreGeometry(self.settings.value("geometry").toByteArray())
 
 
@@ -83,7 +84,7 @@ class corr(gr.top_block, Qt.QWidget):
         self.k = k = 7
         self.eb = eb = 0.22
         self.vector = vector = [int(random.random()*7) for i in range(49600)]
-        self.variable_qtgui_range_1_0 = variable_qtgui_range_1_0 = 100
+        self.variable_qtgui_range_1_0 = variable_qtgui_range_1_0 = 900
         self.variable_qtgui_range_1 = variable_qtgui_range_1 = 0
         self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 38
         self.variable_qtgui_range_0 = variable_qtgui_range_0 = 50
@@ -111,7 +112,7 @@ class corr(gr.top_block, Qt.QWidget):
         ##################################################
         # Blocks
         ##################################################
-        self._variable_qtgui_range_1_0_range = Range(0, 200, 1, 100, 200)
+        self._variable_qtgui_range_1_0_range = Range(0, 5000, 1, 900, 200)
         self._variable_qtgui_range_1_0_win = RangeWidget(self._variable_qtgui_range_1_0_range, self.set_variable_qtgui_range_1_0, 'Delay SIGNAL', "counter_slider", int)
         self.top_grid_layout.addWidget(self._variable_qtgui_range_1_0_win, 3, 1, 1, 1)
         for r in range(3, 4):
@@ -589,6 +590,7 @@ class corr(gr.top_block, Qt.QWidget):
 
         self.interp_fir_filter_xxx_0 = filter.interp_fir_filter_ccc(sps, ([1]))
         self.interp_fir_filter_xxx_0.declare_sample_delay(0)
+        self.insert_vec_cpp_new_vec_0 = insert_vec_cpp.new_vec((vector))
         self.digital_pfb_clock_sync_xxx_0_0_0 = digital.pfb_clock_sync_ccf(sps, 6.28/100.0, (rx_rrc_taps), nfilts, nfilts/2, 1.5, 1)
         self.digital_diff_encoder_bb_0 = digital.diff_encoder_bb(pld_const.arity())
         self.digital_diff_decoder_bb_0 = digital.diff_decoder_bb(pld_const.arity())
@@ -597,7 +599,7 @@ class corr(gr.top_block, Qt.QWidget):
           1, 'packet_len')
         self.digital_constellation_decoder_cb_0_0 = digital.constellation_decoder_cb(pld_const)
         self.digital_chunks_to_symbols_xx_0_0 = digital.chunks_to_symbols_bc((pld_const.points()), 1)
-        self.custom_corr = correlate_and_delay.corr_and_delay(13, 0, 0.97)
+        self.custom_corr = correlate_and_delay.corr_and_delay(13*sps, 0, 0.95, sps)
         self.blocks_vector_source_x_0 = blocks.vector_source_c([1,1,1,1,1,-1, -1, 1, 1, -1, 1, -1,1], True, 1, [])
         self.blocks_throttle_0 = blocks.throttle(gr.sizeof_char*1, samp_rate,True)
         self.blocks_stream_mux_0_1_0 = blocks.stream_mux(gr.sizeof_char*1, (96, 896))
@@ -649,7 +651,7 @@ class corr(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_repack_bits_bb_1_0_0_1, 0), (self.blocks_stream_mux_0_1_0, 1))
         self.connect((self.blocks_stream_mux_0, 0), (self.interp_fir_filter_xxx_0, 0))
         self.connect((self.blocks_stream_mux_0_1_0, 0), (self.blocks_repack_bits_bb_0_1, 0))
-        self.connect((self.blocks_throttle_0, 0), (self.digital_diff_encoder_bb_0, 0))
+        self.connect((self.blocks_throttle_0, 0), (self.insert_vec_cpp_new_vec_0, 0))
         self.connect((self.blocks_vector_source_x_0, 0), (self.blocks_stream_mux_0, 0))
         self.connect((self.custom_corr, 0), (self.adapt_lms_filter_xx_0, 1))
         self.connect((self.custom_corr, 1), (self.adapt_lms_filter_xx_0, 0))
@@ -665,12 +667,13 @@ class corr(gr.top_block, Qt.QWidget):
         self.connect((self.digital_diff_decoder_bb_0, 0), (self.blocks_repack_bits_bb_0, 0))
         self.connect((self.digital_diff_encoder_bb_0, 0), (self.digital_chunks_to_symbols_xx_0_0, 0))
         self.connect((self.digital_pfb_clock_sync_xxx_0_0_0, 0), (self.digital_costas_loop_cc_0, 0))
+        self.connect((self.insert_vec_cpp_new_vec_0, 0), (self.digital_diff_encoder_bb_0, 0))
         self.connect((self.interp_fir_filter_xxx_0, 0), (self.blocks_add_xx_0, 0))
         self.connect((self.interp_fir_filter_xxx_0, 0), (self.blocks_delay_0_0_0, 0))
         self.connect((self.pfb_arb_resampler_xxx_0, 0), (self.blocks_multiply_const_vxx_1, 0))
 
     def closeEvent(self, event):
-        self.settings = Qt.QSettings("GNU Radio", "corr")
+        self.settings = Qt.QSettings("GNU Radio", "corr_ultimapte_testing")
         self.settings.setValue("geometry", self.saveGeometry())
         event.accept()
 
@@ -829,7 +832,7 @@ def argument_parser():
     return parser
 
 
-def main(top_block_cls=corr, options=None):
+def main(top_block_cls=corr_ultimapte_testing, options=None):
     if options is None:
         options, _ = argument_parser().parse_args()
 

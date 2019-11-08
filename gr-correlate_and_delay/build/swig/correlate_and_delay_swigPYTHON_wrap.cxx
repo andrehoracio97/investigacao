@@ -5153,21 +5153,25 @@ SWIGINTERN PyObject *_wrap_corr_and_delay_make(PyObject *SWIGUNUSEDPARM(self), P
   int arg1 ;
   int arg2 ;
   float arg3 ;
+  float arg4 ;
   int val1 ;
   int ecode1 = 0 ;
   int val2 ;
   int ecode2 = 0 ;
   float val3 ;
   int ecode3 = 0 ;
+  float val4 ;
+  int ecode4 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
   char *  kwnames[] = {
-    (char *) "number_bits",(char *) "interval",(char *) "threshold", NULL 
+    (char *) "number_bits",(char *) "interval",(char *) "threshold",(char *) "sps", NULL 
   };
   gr::correlate_and_delay::corr_and_delay::sptr result;
   
-  if (!PyArg_ParseTupleAndKeywords(args,kwargs,(char *)"OOO:corr_and_delay_make",kwnames,&obj0,&obj1,&obj2)) SWIG_fail;
+  if (!PyArg_ParseTupleAndKeywords(args,kwargs,(char *)"OOOO:corr_and_delay_make",kwnames,&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
   ecode1 = SWIG_AsVal_int(obj0, &val1);
   if (!SWIG_IsOK(ecode1)) {
     SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "corr_and_delay_make" "', argument " "1"" of type '" "int""'");
@@ -5183,9 +5187,14 @@ SWIGINTERN PyObject *_wrap_corr_and_delay_make(PyObject *SWIGUNUSEDPARM(self), P
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "corr_and_delay_make" "', argument " "3"" of type '" "float""'");
   } 
   arg3 = static_cast< float >(val3);
+  ecode4 = SWIG_AsVal_float(obj3, &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "corr_and_delay_make" "', argument " "4"" of type '" "float""'");
+  } 
+  arg4 = static_cast< float >(val4);
   {
     try {
-      result = gr::correlate_and_delay::corr_and_delay::make(arg1,arg2,arg3);
+      result = gr::correlate_and_delay::corr_and_delay::make(arg1,arg2,arg3,arg4);
     }
     catch(std::exception &e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
@@ -5403,6 +5412,7 @@ SWIGINTERN PyObject *_wrap_corr_and_delay_sptr_make(PyObject *SWIGUNUSEDPARM(sel
   int arg2 ;
   int arg3 ;
   float arg4 ;
+  float arg5 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   int val2 ;
@@ -5411,16 +5421,19 @@ SWIGINTERN PyObject *_wrap_corr_and_delay_sptr_make(PyObject *SWIGUNUSEDPARM(sel
   int ecode3 = 0 ;
   float val4 ;
   int ecode4 = 0 ;
+  float val5 ;
+  int ecode5 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
   PyObject * obj3 = 0 ;
+  PyObject * obj4 = 0 ;
   char *  kwnames[] = {
-    (char *) "self",(char *) "number_bits",(char *) "interval",(char *) "threshold", NULL 
+    (char *) "self",(char *) "number_bits",(char *) "interval",(char *) "threshold",(char *) "sps", NULL 
   };
   gr::correlate_and_delay::corr_and_delay::sptr result;
   
-  if (!PyArg_ParseTupleAndKeywords(args,kwargs,(char *)"OOOO:corr_and_delay_sptr_make",kwnames,&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
+  if (!PyArg_ParseTupleAndKeywords(args,kwargs,(char *)"OOOOO:corr_and_delay_sptr_make",kwnames,&obj0,&obj1,&obj2,&obj3,&obj4)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_boost__shared_ptrT_gr__correlate_and_delay__corr_and_delay_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "corr_and_delay_sptr_make" "', argument " "1"" of type '" "boost::shared_ptr< gr::correlate_and_delay::corr_and_delay > *""'"); 
@@ -5441,9 +5454,14 @@ SWIGINTERN PyObject *_wrap_corr_and_delay_sptr_make(PyObject *SWIGUNUSEDPARM(sel
     SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "corr_and_delay_sptr_make" "', argument " "4"" of type '" "float""'");
   } 
   arg4 = static_cast< float >(val4);
+  ecode5 = SWIG_AsVal_float(obj4, &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "corr_and_delay_sptr_make" "', argument " "5"" of type '" "float""'");
+  } 
+  arg5 = static_cast< float >(val5);
   {
     try {
-      result = (*arg1)->make(arg2,arg3,arg4);
+      result = (*arg1)->make(arg2,arg3,arg4,arg5);
     }
     catch(std::exception &e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
@@ -8365,7 +8383,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"high_res_timer_tps", _wrap_high_res_timer_tps, METH_VARARGS, (char *)"high_res_timer_tps() -> gr::high_res_timer_type"},
 	 { (char *)"high_res_timer_epoch", _wrap_high_res_timer_epoch, METH_VARARGS, (char *)"high_res_timer_epoch() -> gr::high_res_timer_type"},
 	 { (char *)"corr_and_delay_make", (PyCFunction) _wrap_corr_and_delay_make, METH_VARARGS | METH_KEYWORDS, (char *)"\n"
-		"corr_and_delay_make(int number_bits, int interval, float threshold) -> corr_and_delay_sptr\n"
+		"corr_and_delay_make(int number_bits, int interval, float threshold, float sps) -> corr_and_delay_sptr\n"
 		"\n"
 		"<+description of block+>\n"
 		"\n"
@@ -8379,6 +8397,7 @@ static PyMethodDef SwigMethods[] = {
 		"    number_bits : \n"
 		"    interval : \n"
 		"    threshold : \n"
+		"    sps : \n"
 		""},
 	 { (char *)"delete_corr_and_delay", _wrap_delete_corr_and_delay, METH_VARARGS, (char *)"delete_corr_and_delay(corr_and_delay self)"},
 	 { (char *)"corr_and_delay_swigregister", corr_and_delay_swigregister, METH_VARARGS, NULL},
@@ -8389,7 +8408,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"corr_and_delay_sptr___deref__", _wrap_corr_and_delay_sptr___deref__, METH_VARARGS, (char *)"corr_and_delay_sptr___deref__(corr_and_delay_sptr self) -> corr_and_delay"},
 	 { (char *)"delete_corr_and_delay_sptr", _wrap_delete_corr_and_delay_sptr, METH_VARARGS, (char *)"delete_corr_and_delay_sptr(corr_and_delay_sptr self)"},
 	 { (char *)"corr_and_delay_sptr_make", (PyCFunction) _wrap_corr_and_delay_sptr_make, METH_VARARGS | METH_KEYWORDS, (char *)"\n"
-		"corr_and_delay_sptr_make(corr_and_delay_sptr self, int number_bits, int interval, float threshold) -> corr_and_delay_sptr\n"
+		"corr_and_delay_sptr_make(corr_and_delay_sptr self, int number_bits, int interval, float threshold, float sps) -> corr_and_delay_sptr\n"
 		"\n"
 		"<+description of block+>\n"
 		"\n"
@@ -8403,6 +8422,7 @@ static PyMethodDef SwigMethods[] = {
 		"    number_bits : \n"
 		"    interval : \n"
 		"    threshold : \n"
+		"    sps : \n"
 		""},
 	 { (char *)"corr_and_delay_sptr_history", _wrap_corr_and_delay_sptr_history, METH_VARARGS, (char *)"corr_and_delay_sptr_history(corr_and_delay_sptr self) -> unsigned int"},
 	 { (char *)"corr_and_delay_sptr_declare_sample_delay", _wrap_corr_and_delay_sptr_declare_sample_delay, METH_VARARGS, (char *)"\n"

@@ -2,7 +2,7 @@
 <doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.13">
   <compound refid="classgr_1_1correlate__and__delay_1_1corr__and__delay" kind="class"><name>gr::correlate_and_delay::corr_and_delay</name>
     <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay_1a47670b9c8cfcec3c45a79c1238c9a89a" kind="typedef"><name>sptr</name></member>
-    <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay_1a301cf8072bd441bd798da71c79eefecb" kind="function"><name>make</name></member>
+    <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay_1acc9d86c5c93e067076769fa2b9f74501" kind="function"><name>make</name></member>
   </compound>
   <compound refid="namespacegr" kind="namespace"><name>gr</name>
   </compound>

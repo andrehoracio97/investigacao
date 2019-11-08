@@ -19,7 +19,8 @@ To avoid accidental use of raw pointers, correlate_and_delay::corr_and_delay's c
 Args:
     number_bits : 
     interval : 
-    threshold : "
+    threshold : 
+    sps : "
 
 %feature("docstring") gr::correlate_and_delay::corr_and_delay::make "<+description of block+>
 
@@ -32,4 +33,5 @@ To avoid accidental use of raw pointers, correlate_and_delay::corr_and_delay's c
 Args:
     number_bits : 
     interval : 
-    threshold : "
+    threshold : 
+    sps : "

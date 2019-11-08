@@ -119,7 +119,11 @@ class top_block(gr.top_block, Qt.QWidget):
             self.qtgui_time_sink_x_2_0_0.set_line_alpha(i, alphas[i])
 
         self._qtgui_time_sink_x_2_0_0_win = sip.wrapinstance(self.qtgui_time_sink_x_2_0_0.pyqwidget(), Qt.QWidget)
-        self.top_grid_layout.addWidget(self._qtgui_time_sink_x_2_0_0_win)
+        self.top_grid_layout.addWidget(self._qtgui_time_sink_x_2_0_0_win, 4, 0, 1, 1)
+        for r in range(4, 5):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(0, 1):
+            self.top_grid_layout.setColumnStretch(c, 1)
         self.qtgui_time_sink_x_2_0 = qtgui.time_sink_f(
         	1024, #size
         	samp_rate, #samp_rate
@@ -167,7 +171,11 @@ class top_block(gr.top_block, Qt.QWidget):
             self.qtgui_time_sink_x_2_0.set_line_alpha(i, alphas[i])
 
         self._qtgui_time_sink_x_2_0_win = sip.wrapinstance(self.qtgui_time_sink_x_2_0.pyqwidget(), Qt.QWidget)
-        self.top_grid_layout.addWidget(self._qtgui_time_sink_x_2_0_win)
+        self.top_grid_layout.addWidget(self._qtgui_time_sink_x_2_0_win, 3, 0, 1, 1)
+        for r in range(3, 4):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(0, 1):
+            self.top_grid_layout.setColumnStretch(c, 1)
         self.qtgui_time_sink_x_0_0 = qtgui.time_sink_c(
         	1024, #size
         	samp_rate, #samp_rate
@@ -218,7 +226,11 @@ class top_block(gr.top_block, Qt.QWidget):
             self.qtgui_time_sink_x_0_0.set_line_alpha(i, alphas[i])
 
         self._qtgui_time_sink_x_0_0_win = sip.wrapinstance(self.qtgui_time_sink_x_0_0.pyqwidget(), Qt.QWidget)
-        self.top_grid_layout.addWidget(self._qtgui_time_sink_x_0_0_win)
+        self.top_grid_layout.addWidget(self._qtgui_time_sink_x_0_0_win, 2, 0, 1, 1)
+        for r in range(2, 3):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(0, 1):
+            self.top_grid_layout.setColumnStretch(c, 1)
         self.qtgui_time_sink_x_0 = qtgui.time_sink_c(
         	1024, #size
         	samp_rate, #samp_rate
@@ -269,12 +281,17 @@ class top_block(gr.top_block, Qt.QWidget):
             self.qtgui_time_sink_x_0.set_line_alpha(i, alphas[i])
 
         self._qtgui_time_sink_x_0_win = sip.wrapinstance(self.qtgui_time_sink_x_0.pyqwidget(), Qt.QWidget)
-        self.top_grid_layout.addWidget(self._qtgui_time_sink_x_0_win)
+        self.top_grid_layout.addWidget(self._qtgui_time_sink_x_0_win, 1, 0, 1, 1)
+        for r in range(1, 2):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(0, 1):
+            self.top_grid_layout.setColumnStretch(c, 1)
         self.custom_corr = correlate_and_delay.corr_and_delay(13, 0, 0.95)
         self.blocks_vector_source_x_0 = blocks.vector_source_c([1,1,1,1,1,-1, -1, 1, 1, -1, 1, -1,1], True, 1, [])
         self.blocks_throttle_0_0 = blocks.throttle(gr.sizeof_gr_complex*1, samp_rate,True)
         self.blocks_throttle_0 = blocks.throttle(gr.sizeof_gr_complex*1, samp_rate,True)
         self.blocks_stream_mux_0 = blocks.stream_mux(gr.sizeof_gr_complex*1, (13,550))
+        self.blocks_delay_0 = blocks.delay(gr.sizeof_gr_complex*1, 100)
         self.blocks_complex_to_mag_squared_0_1 = blocks.complex_to_mag_squared(1)
         self.analog_noise_source_x_0 = analog.noise_source_c(analog.GR_GAUSSIAN, 1.0, 100)
 
@@ -285,8 +302,9 @@ class top_block(gr.top_block, Qt.QWidget):
         ##################################################
         self.connect((self.analog_noise_source_x_0, 0), (self.blocks_stream_mux_0, 1))
         self.connect((self.blocks_complex_to_mag_squared_0_1, 0), (self.qtgui_time_sink_x_2_0, 0))
+        self.connect((self.blocks_delay_0, 0), (self.custom_corr, 1))
         self.connect((self.blocks_stream_mux_0, 0), (self.blocks_throttle_0, 0))
-        self.connect((self.blocks_throttle_0, 0), (self.custom_corr, 1))
+        self.connect((self.blocks_throttle_0, 0), (self.blocks_delay_0, 0))
         self.connect((self.blocks_throttle_0_0, 0), (self.custom_corr, 0))
         self.connect((self.blocks_vector_source_x_0, 0), (self.blocks_stream_mux_0, 0))
         self.connect((self.blocks_vector_source_x_0, 0), (self.blocks_throttle_0_0, 0))

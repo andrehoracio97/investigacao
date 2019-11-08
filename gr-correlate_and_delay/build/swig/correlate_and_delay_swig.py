@@ -126,6 +126,7 @@ class corr_and_delay(object):
         number_bits : 
         interval : 
         threshold : 
+        sps : 
     """
 
     thisown = _swig_property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc='The membership flag')
@@ -134,9 +135,9 @@ class corr_and_delay(object):
         raise AttributeError("No constructor defined")
     __repr__ = _swig_repr
 
-    def make(number_bits, interval, threshold):
+    def make(number_bits, interval, threshold, sps):
         """
-        make(int number_bits, int interval, float threshold) -> corr_and_delay_sptr
+        make(int number_bits, int interval, float threshold, float sps) -> corr_and_delay_sptr
 
         <+description of block+>
 
@@ -150,8 +151,9 @@ class corr_and_delay(object):
             number_bits : 
             interval : 
             threshold : 
+            sps : 
         """
-        return _correlate_and_delay_swig.corr_and_delay_make(number_bits, interval, threshold)
+        return _correlate_and_delay_swig.corr_and_delay_make(number_bits, interval, threshold, sps)
 
     make = staticmethod(make)
     __swig_destroy__ = _correlate_and_delay_swig.delete_corr_and_delay
@@ -159,9 +161,9 @@ class corr_and_delay(object):
 corr_and_delay_swigregister = _correlate_and_delay_swig.corr_and_delay_swigregister
 corr_and_delay_swigregister(corr_and_delay)
 
-def corr_and_delay_make(number_bits, interval, threshold):
+def corr_and_delay_make(number_bits, interval, threshold, sps):
     """
-    corr_and_delay_make(int number_bits, int interval, float threshold) -> corr_and_delay_sptr
+    corr_and_delay_make(int number_bits, int interval, float threshold, float sps) -> corr_and_delay_sptr
 
     <+description of block+>
 
@@ -175,8 +177,9 @@ def corr_and_delay_make(number_bits, interval, threshold):
         number_bits : 
         interval : 
         threshold : 
+        sps : 
     """
-    return _correlate_and_delay_swig.corr_and_delay_make(number_bits, interval, threshold)
+    return _correlate_and_delay_swig.corr_and_delay_make(number_bits, interval, threshold, sps)
 
 class corr_and_delay_sptr(object):
     """Proxy of C++ boost::shared_ptr<(gr::correlate_and_delay::corr_and_delay)> class."""
@@ -202,9 +205,9 @@ class corr_and_delay_sptr(object):
     __swig_destroy__ = _correlate_and_delay_swig.delete_corr_and_delay_sptr
     __del__ = lambda self: None
 
-    def make(self, number_bits, interval, threshold):
+    def make(self, number_bits, interval, threshold, sps):
         """
-        make(corr_and_delay_sptr self, int number_bits, int interval, float threshold) -> corr_and_delay_sptr
+        make(corr_and_delay_sptr self, int number_bits, int interval, float threshold, float sps) -> corr_and_delay_sptr
 
         <+description of block+>
 
@@ -218,8 +221,9 @@ class corr_and_delay_sptr(object):
             number_bits : 
             interval : 
             threshold : 
+            sps : 
         """
-        return _correlate_and_delay_swig.corr_and_delay_sptr_make(self, number_bits, interval, threshold)
+        return _correlate_and_delay_swig.corr_and_delay_sptr_make(self, number_bits, interval, threshold, sps)
 
 
     def history(self):

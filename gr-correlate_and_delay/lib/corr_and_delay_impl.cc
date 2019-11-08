@@ -42,13 +42,13 @@ namespace gr {
   namespace correlate_and_delay {
 
     corr_and_delay::sptr
-    corr_and_delay::make(int number_bits, int interval, float threshold)
+    corr_and_delay::make(int number_bits, int interval, float threshold, float sps)
     {
       return gnuradio::get_initial_sptr
-        (new corr_and_delay_impl(number_bits, interval, threshold));
+        (new corr_and_delay_impl(number_bits, interval, threshold, sps));
     }
 
-    corr_and_delay_impl::corr_and_delay_impl(int number_bits, int interval, float threshold)
+    corr_and_delay_impl::corr_and_delay_impl(int number_bits, int interval, float threshold, float sps)
       : gr::block("corr_and_delay",
               gr::io_signature::make(2, 2, sizeof(gr_complex)),
               gr::io_signature::make(2, 3, sizeof(gr_complex))),
@@ -56,9 +56,10 @@ namespace gr {
       access_code(),
       detection(0),
       have_corr(false),
-      d_sps(1),
+      d_sps(sps),
       d_src_id(pmt::intern(alias())),
       delay_needed(0),
+      count(0),
       have_access_code(false)
     {
     
@@ -149,20 +150,20 @@ namespace gr {
           int isps = (int)(d_sps + 0.5f);
           int i = 0;
           while (i < noutput_items) {
-              // Look for the correlator output to cross the threshold.
-              // Sum power over two consecutive symbols in case we're offset
-              // in time. If off by 1/2 a symbol, the peak of any one point
-              // is much lower.
-              float corr_mag = d_corr_mag[i] + d_corr_mag[i + 1];
-              if (corr_mag <= 4 * detection) {
-                  i++;
-                  continue;
-              }
+            // Look for the correlator output to cross the threshold.
+            // Sum power over two consecutive symbols in case we're offset
+            // in time. If off by 1/2 a symbol, the peak of any one point
+            // is much lower.
+            float corr_mag = d_corr_mag[i] + d_corr_mag[i + 1];
+            if (corr_mag <= 4 * detection) {
+                i++;
+                continue;
+            }
 
-              // Go to (just past) the current correlator output peak
-              while ((i < (noutput_items - 1)) && (d_corr_mag[i] < d_corr_mag[i + 1])) {
-                  i++;
-              }
+            // Go to (just past) the current correlator output peak
+            while ((i < (noutput_items - 1)) && (d_corr_mag[i] < d_corr_mag[i + 1])) {
+                i++;
+            }
             add_item_tag(1,
                            nitems_written(1) + i,
                            pmt::intern("correlation"),
@@ -174,29 +175,51 @@ namespace gr {
                          pmt::from_double(d_corr_mag[i]),
                          d_src_id);
               
+            printf("CORR SAMPLE FOUND -SAMPLE %d\n",nitems_written(1) + i);
 
-              printf("CORR SAMPLE FOUND -SAMPLE %d\n",nitems_written(1) + i);
-             /* have_corr=true;
-              delay_needed=i;
-              break;*/
+            have_corr=true;
+            delay_needed=i;
+            printf("delay_needed:%d\n",delay_needed);
+
+            printf("Will DELAY %d in NOISE\n",delay_needed);
+            break;
 
 
-              i += isps;
+            i += isps;
           }
-          //bypass the signal
-          memcpy(oo_signal, &ii_signal[0], sizeof(gr_complex)*noutput_items);
-          //memcpy(oo_noise, ii_noise, sizeof(gr_complex)*noutput_items);
 
-          //consume(0,noutput_items);
-          consume(1,noutput_items);
+          if(have_corr==true){//if occur correlation than delay the noise to sync them
+            printf("FOUNF CORR, SO DELAY NOISE\n");
+            for (int o = 0; o < delay_needed; ++o){
+              oo_noise[o]=0;
+            }
+            produce(0,delay_needed);
+            //no signal
+            memcpy(oo_signal, &ii_signal[0], sizeof(gr_complex)*delay_needed);
+            consume(1,delay_needed);
+            produce(1,delay_needed);
 
-          produce(0,noutput_items);
-          produce(1,noutput_items);
-          produce(2,noutput_items);
-        
-      }else{ //Correlation found, so passing streams with correct delay - synchronizing them
-        printf("Delay needed=%d\n",delay_needed);
-        printf("Delay needed=%d - temp%d\n",delay_needed,(delay_needed-(lenght_access_code-1)));
+            //no corr
+            produce(2,(delay_needed-(lenght_access_code-1)));
+
+          }else{//if not encontered correlation try again.
+            //In signal
+            memcpy(oo_signal, &ii_signal[0], sizeof(gr_complex)*noutput_items);
+            consume(1,noutput_items);
+            produce(1,noutput_items);
+            //In noise
+            for (int o = 0; o < noutput_items; ++o){
+              oo_noise[o]=0;
+            }
+            produce(0,noutput_items);
+            produce(2,noutput_items);
+          }
+          return 0;
+      }else{ //Correlation found, just pass the streams
+        /*printf("Delay needed=%d\n",delay_needed);
+        printf("Delay needed=%d - temp%d\n",delay_needed,(delay_needed-(lenght_access_code-1)));*/
+        printf("IN CORR==TRUE, count: %d\n", count);//JUST FOR TESTING I WILL TAKE OUT THIS AFTER
+        count++;
 
         
         memcpy(oo_signal, &ii_signal[0], sizeof(gr_complex)*noutput_items);
@@ -207,6 +230,10 @@ namespace gr {
 
         produce(0,noutput_items);
         produce(1,noutput_items);
+
+        for (int o = 0; o < noutput_items; ++o){
+              corr[o]=0;
+        }
         produce(2,noutput_items);
         return 0;
       }

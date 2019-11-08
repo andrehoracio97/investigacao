@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>corr</value>
+      <value>corr_ultimapte_testing</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -858,7 +858,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>1</value>
+      <value>4</value>
     </param>
   </block>
   <block>
@@ -1046,7 +1046,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1776, 388)</value>
+      <value>(32, 1228)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -1101,7 +1101,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>100</value>
+      <value>900</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -1109,7 +1109,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1928, 388)</value>
+      <value>(184, 1228)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -1145,7 +1145,7 @@
     </param>
     <param>
       <key>stop</key>
-      <value>200</value>
+      <value>5000</value>
     </param>
     <param>
       <key>rangeType</key>
@@ -1591,7 +1591,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(216, 876)</value>
+      <value>(240, 828)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1968,7 +1968,7 @@
     </param>
     <param>
       <key>const</key>
-      <value>0.7</value>
+      <value>0.3</value>
     </param>
     <param>
       <key>affinity</key>
@@ -1976,7 +1976,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>2</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2489,7 +2489,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(288, 992)</value>
+      <value>(280, 992)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2513,7 +2513,11 @@
     </param>
     <param>
       <key>number_bits</key>
-      <value>13</value>
+      <value>13*sps</value>
+    </param>
+    <param>
+      <key>sps</key>
+      <value>sps</value>
     </param>
     <param>
       <key>threshold</key>
@@ -2932,7 +2936,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2975,7 +2979,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>2</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -7297,12 +7301,6 @@
   <connection>
     <source_block_id>blocks_stream_mux_0_1_0</source_block_id>
     <sink_block_id>virtual_sink_1</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_throttle_0</source_block_id>
-    <sink_block_id>digital_diff_encoder_bb_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
