@@ -79,7 +79,7 @@ class tutorial_10(gr.top_block, Qt.QWidget):
         # Variables
         ##################################################
         self.sps = sps = 4
-        self.samp_rate_array_MCR = samp_rate_array_MCR = [7500000,5000000,3750000,3000000,2500000,2000000,1500000,1000000,937500,882352,833333,714285,533333,500000,421052,400000,380952]
+        self.samp_rate_array_MCR = samp_rate_array_MCR = [7500000,5000000,3750000,3000000,2500000,2000000,1500000,1000000,937500,882352,833333,714285,533333,500000,421052,400000,380952,1000]
         self.rate = rate = 2
         self.polys = polys = [109, 79]
         self.nfilts = nfilts = 32
@@ -95,7 +95,7 @@ class tutorial_10(gr.top_block, Qt.QWidget):
 
         self.tx_rrc_taps = tx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts, 1.0, eb, 11*sps*nfilts)
 
-        self.samp_rate = samp_rate = samp_rate_array_MCR[7]
+        self.samp_rate = samp_rate = samp_rate_array_MCR[17]
 
         self.rx_rrc_taps = rx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts*sps, 1.0, eb, 11*sps*nfilts)
 
@@ -241,7 +241,11 @@ class tutorial_10(gr.top_block, Qt.QWidget):
             self.qtgui_time_sink_x_2_0_1.set_line_alpha(i, alphas[i])
 
         self._qtgui_time_sink_x_2_0_1_win = sip.wrapinstance(self.qtgui_time_sink_x_2_0_1.pyqwidget(), Qt.QWidget)
-        self.top_grid_layout.addWidget(self._qtgui_time_sink_x_2_0_1_win)
+        self.top_grid_layout.addWidget(self._qtgui_time_sink_x_2_0_1_win, 7, 1, 1, 1)
+        for r in range(7, 8):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(1, 2):
+            self.top_grid_layout.setColumnStretch(c, 1)
         self.qtgui_time_sink_x_2_0_0_1 = qtgui.time_sink_c(
         	1024, #size
         	samp_rate, #samp_rate
@@ -292,7 +296,11 @@ class tutorial_10(gr.top_block, Qt.QWidget):
             self.qtgui_time_sink_x_2_0_0_1.set_line_alpha(i, alphas[i])
 
         self._qtgui_time_sink_x_2_0_0_1_win = sip.wrapinstance(self.qtgui_time_sink_x_2_0_0_1.pyqwidget(), Qt.QWidget)
-        self.top_grid_layout.addWidget(self._qtgui_time_sink_x_2_0_0_1_win)
+        self.top_grid_layout.addWidget(self._qtgui_time_sink_x_2_0_0_1_win, 6, 0, 1, 1)
+        for r in range(6, 7):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(0, 1):
+            self.top_grid_layout.setColumnStretch(c, 1)
         self.qtgui_time_sink_x_1_1 = qtgui.time_sink_c(
         	1024, #size
         	samp_rate, #samp_rate
@@ -758,10 +766,10 @@ class tutorial_10(gr.top_block, Qt.QWidget):
           1, 'packet_len')
         self.digital_constellation_decoder_cb_0_0 = digital.constellation_decoder_cb(pld_const)
         self.digital_chunks_to_symbols_xx_0_0 = digital.chunks_to_symbols_bc((pld_const.points()), 1)
-        self.custom_corr = correlate_and_delay.corr_and_delay(13*sps, 0, 0.95, sps)
-        self.blocks_vector_source_x_0 = blocks.vector_source_c([1,1,1,1,1,-1, -1, 1, 1, -1, 1, -1,1], True, 1, [])
+        self.custom_corr = correlate_and_delay.corr_and_delay(130*sps, 0, 0.99, sps)
+        self.blocks_vector_source_x_0_1 = blocks.vector_source_c([1,1,1,1,1,-1, -1, 1, 1, -1, 1, -1,1,1,1,1,1,1,-1, -1, 1, 1, -1, 1, -1,1,1,1,1,1,1,-1, -1, 1, 1, -1, 1, -1,1,1,1,1,1,1,-1, -1, 1, 1, -1, 1, -1,1,1,1,1,1,1,-1, -1, 1, 1, -1, 1, -1,1,1,1,1,1,1,-1, -1, 1, 1, -1, 1, -1,1,1,1,1,1,1,-1, -1, 1, 1, -1, 1, -1,1,1,1,1,1,1,-1, -1, 1, 1, -1, 1, -1,1,1,1,1,1,1,-1, -1, 1, 1, -1, 1, -1,1,1,1,1,1,1,-1, -1, 1, 1, -1, 1, -1,1], True, 1, [])
         self.blocks_stream_mux_0_1_0 = blocks.stream_mux(gr.sizeof_char*1, (96, 896))
-        self.blocks_stream_mux_0 = blocks.stream_mux(gr.sizeof_gr_complex*1, (13,100000000))
+        self.blocks_stream_mux_0 = blocks.stream_mux(gr.sizeof_gr_complex*1, (130,100000000))
         self.blocks_repack_bits_bb_1_0_0_1 = blocks.repack_bits_bb(8, 1, '', False, gr.GR_MSB_FIRST)
         self.blocks_repack_bits_bb_0_1 = blocks.repack_bits_bb(1, pld_const.bits_per_symbol(), '', False, gr.GR_MSB_FIRST)
         self.blocks_repack_bits_bb_0_0 = blocks.repack_bits_bb(1, 8, '', False, gr.GR_MSB_FIRST)
@@ -776,7 +784,7 @@ class tutorial_10(gr.top_block, Qt.QWidget):
         self.blocks_complex_to_mag_squared_0_1_0 = blocks.complex_to_mag_squared(1)
         self.blocks_char_to_float_1_0_1 = blocks.char_to_float(1, 1)
         self.analog_noise_source_x_0_0 = analog.noise_source_c(analog.GR_GAUSSIAN, 1, 0)
-        self.adapt_lms_filter_xx_0 = adapt.lms_filter_cc(True, 64, 0.001, 0, 1, True, False, False)
+        self.adapt_lms_filter_xx_0 = adapt.lms_filter_cc(True, 32, 0.01, 0, 1, True, False, False)
         self.acode_1104 = blocks.vector_source_b([0x1, 0x0, 0x1, 0x0, 0x1, 0x1, 0x0, 0x0, 0x1, 0x1, 0x0, 0x1, 0x1, 0x1, 0x0, 0x1, 0x1, 0x0, 0x1, 0x0, 0x0, 0x1, 0x0, 0x0, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x1, 0x0, 0x1, 0x1, 0x1, 0x1, 0x0, 0x0, 0x1, 0x0, 0x1, 0x0, 0x0, 0x0, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0], True, 1, [])
 
 
@@ -806,7 +814,7 @@ class tutorial_10(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_repack_bits_bb_1_0_0_1, 0), (self.blocks_stream_mux_0_1_0, 1))
         self.connect((self.blocks_stream_mux_0, 0), (self.interp_fir_filter_xxx_1, 0))
         self.connect((self.blocks_stream_mux_0_1_0, 0), (self.blocks_repack_bits_bb_0_1, 0))
-        self.connect((self.blocks_vector_source_x_0, 0), (self.blocks_stream_mux_0, 0))
+        self.connect((self.blocks_vector_source_x_0_1, 0), (self.blocks_stream_mux_0, 0))
         self.connect((self.custom_corr, 0), (self.adapt_lms_filter_xx_0, 1))
         self.connect((self.custom_corr, 1), (self.adapt_lms_filter_xx_0, 0))
         self.connect((self.custom_corr, 2), (self.blocks_complex_to_mag_squared_0_1_0, 0))
@@ -851,7 +859,7 @@ class tutorial_10(gr.top_block, Qt.QWidget):
 
     def set_samp_rate_array_MCR(self, samp_rate_array_MCR):
         self.samp_rate_array_MCR = samp_rate_array_MCR
-        self.set_samp_rate(self.samp_rate_array_MCR[7])
+        self.set_samp_rate(self.samp_rate_array_MCR[17])
 
     def get_rate(self):
         return self.rate

@@ -96,9 +96,6 @@ class corr_ultimapte_testing(gr.top_block, Qt.QWidget):
         self.rx_rrc_taps = rx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts*sps, 1.0, eb, 11*sps*nfilts)
 
 
-        self.rrc_taps = rrc_taps = firdes.root_raised_cosine(sps, sps, 1.0, eb, 11*sps)
-
-
 
         self.pld_enc = pld_enc = map( (lambda a: fec.cc_encoder_make(440, k, rate, (polys), 0, fec.CC_TERMINATED, False)), range(0,4) );
 
@@ -786,12 +783,6 @@ class corr_ultimapte_testing(gr.top_block, Qt.QWidget):
     def set_rx_rrc_taps(self, rx_rrc_taps):
         self.rx_rrc_taps = rx_rrc_taps
         self.digital_pfb_clock_sync_xxx_0_0_0.update_taps((self.rx_rrc_taps))
-
-    def get_rrc_taps(self):
-        return self.rrc_taps
-
-    def set_rrc_taps(self, rrc_taps):
-        self.rrc_taps = rrc_taps
 
     def get_pld_enc(self):
         return self.pld_enc

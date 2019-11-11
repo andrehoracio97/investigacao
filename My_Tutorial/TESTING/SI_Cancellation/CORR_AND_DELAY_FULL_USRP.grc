@@ -691,7 +691,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>samp_rate_array_MCR[7]</value>
+      <value>samp_rate_array_MCR[17]</value>
     </param>
   </block>
   <block>
@@ -718,7 +718,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>[7500000,5000000,3750000,3000000,2500000,2000000,1500000,1000000,937500,882352,833333,714285,533333,500000,421052,400000,380952]</value>
+      <value>[7500000,5000000,3750000,3000000,2500000,2000000,1500000,1000000,937500,882352,833333,714285,533333,500000,421052,400000,380952,1000]</value>
     </param>
   </block>
   <block>
@@ -807,7 +807,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1784, 132)</value>
+      <value>(1776, 132)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -1294,7 +1294,7 @@
     </param>
     <param>
       <key>num_taps</key>
-      <value>64</value>
+      <value>32</value>
     </param>
     <param>
       <key>reset</key>
@@ -1310,7 +1310,7 @@
     </param>
     <param>
       <key>mu</key>
-      <value>0.001</value>
+      <value>0.01</value>
     </param>
   </block>
   <block>
@@ -2107,7 +2107,7 @@
     </param>
     <param>
       <key>lengths</key>
-      <value>13,100000000</value>
+      <value>130,100000000</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -2203,7 +2203,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2244,6 +2244,65 @@
     <param>
       <key>vector</key>
       <value>[1,1,1,1,1,-1, -1, 1, 1, -1, 1, -1,1]</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_vector_source_x</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(168, 548)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_vector_source_x_0_1</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>repeat</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>tags</key>
+      <value>[]</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>vector</key>
+      <value>[1,1,1,1,1,-1, -1, 1, 1, -1, 1, -1,1,1,1,1,1,1,-1, -1, 1, 1, -1, 1, -1,1,1,1,1,1,1,-1, -1, 1, 1, -1, 1, -1,1,1,1,1,1,1,-1, -1, 1, 1, -1, 1, -1,1,1,1,1,1,1,-1, -1, 1, 1, -1, 1, -1,1,1,1,1,1,1,-1, -1, 1, 1, -1, 1, -1,1,1,1,1,1,1,-1, -1, 1, 1, -1, 1, -1,1,1,1,1,1,1,-1, -1, 1, 1, -1, 1, -1,1,1,1,1,1,1,-1, -1, 1, 1, -1, 1, -1,1,1,1,1,1,1,-1, -1, 1, 1, -1, 1, -1,1]</value>
     </param>
   </block>
   <block>
@@ -2290,7 +2349,7 @@
     </param>
     <param>
       <key>number_bits</key>
-      <value>13*sps</value>
+      <value>130*sps</value>
     </param>
     <param>
       <key>sps</key>
@@ -2298,7 +2357,7 @@
     </param>
     <param>
       <key>threshold</key>
-      <value>0.95</value>
+      <value>0.99</value>
     </param>
   </block>
   <block>
@@ -6059,7 +6118,7 @@
     </param>
     <param>
       <key>gui_hint</key>
-      <value></value>
+      <value>6,0</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -6426,7 +6485,7 @@
     </param>
     <param>
       <key>gui_hint</key>
-      <value></value>
+      <value>7,1</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -10073,6 +10132,12 @@
   </connection>
   <connection>
     <source_block_id>blocks_vector_source_x_0</source_block_id>
+    <sink_block_id>blocks_stream_mux_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_vector_source_x_0_1</source_block_id>
     <sink_block_id>blocks_stream_mux_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>

@@ -640,49 +640,6 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1280, 332)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>gain</key>
-      <value>sps</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>rrc_taps</value>
-    </param>
-    <param>
-      <key>ntaps</key>
-      <value>11*sps</value>
-    </param>
-    <param>
-      <key>samp_rate</key>
-      <value>sps</value>
-    </param>
-    <param>
-      <key>sym_rate</key>
-      <value>1.0</value>
-    </param>
-  </block>
-  <block>
-    <key>variable_rrc_filter_taps</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>alpha</key>
-      <value>eb</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
       <value>(1080, 76)</value>
     </param>
     <param>
@@ -2942,61 +2899,6 @@
     <param>
       <key>taps</key>
       <value>[1]</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>ccc</value>
-    </param>
-  </block>
-  <block>
-    <key>interp_fir_filter_xxx</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1056, 396)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>interp_fir_filter_xxx_0_0</value>
-    </param>
-    <param>
-      <key>interp</key>
-      <value>sps</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>samp_delay</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>taps</key>
-      <value>rrc_taps</value>
     </param>
     <param>
       <key>type</key>
@@ -6967,12 +6869,6 @@
   </connection>
   <connection>
     <source_block_id>digital_chunks_to_symbols_xx_0_0</source_block_id>
-    <sink_block_id>interp_fir_filter_xxx_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>digital_chunks_to_symbols_xx_0_0</source_block_id>
     <sink_block_id>pfb_arb_resampler_xxx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
@@ -7046,12 +6942,6 @@
   <connection>
     <source_block_id>interp_fir_filter_xxx_0</source_block_id>
     <sink_block_id>blocks_multiply_const_vxx_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>interp_fir_filter_xxx_0_0</source_block_id>
-    <sink_block_id>blocks_multiply_const_vxx_1</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
