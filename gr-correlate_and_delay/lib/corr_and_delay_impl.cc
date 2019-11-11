@@ -185,7 +185,7 @@ namespace gr {
               printf("Will DELAY %d in NOISE\n",delay_needed);
               print_once=true;
             }
-            
+
             break;
 
 
@@ -211,7 +211,7 @@ namespace gr {
             memcpy(oo_signal, &ii_signal[0], sizeof(gr_complex)*noutput_items);
             consume(1,noutput_items);
             produce(1,noutput_items);
-            //In noise
+            //In noise output only 0's
             for (int o = 0; o < noutput_items; ++o){
               oo_noise[o]=0;
             }
