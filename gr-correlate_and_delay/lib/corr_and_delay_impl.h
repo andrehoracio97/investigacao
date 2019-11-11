@@ -48,7 +48,7 @@ namespace gr {
     bool have_corr;
     float d_sps;
     int delay_needed;
-    int count;
+    bool print_once;
 
     pmt::pmt_t d_src_id;
 

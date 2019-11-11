@@ -95,7 +95,7 @@ class tutorial_10(gr.top_block, Qt.QWidget):
 
         self.tx_rrc_taps = tx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts, 1.0, eb, 11*sps*nfilts)
 
-        self.samp_rate = samp_rate = samp_rate_array_MCR[17]
+        self.samp_rate = samp_rate = samp_rate_array_MCR[15]
 
         self.rx_rrc_taps = rx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts*sps, 1.0, eb, 11*sps*nfilts)
 
@@ -766,10 +766,8 @@ class tutorial_10(gr.top_block, Qt.QWidget):
           1, 'packet_len')
         self.digital_constellation_decoder_cb_0_0 = digital.constellation_decoder_cb(pld_const)
         self.digital_chunks_to_symbols_xx_0_0 = digital.chunks_to_symbols_bc((pld_const.points()), 1)
-        self.custom_corr = correlate_and_delay.corr_and_delay(130*sps, 0, 0.99, sps)
-        self.blocks_vector_source_x_0_1 = blocks.vector_source_c([1,1,1,1,1,-1, -1, 1, 1, -1, 1, -1,1,1,1,1,1,1,-1, -1, 1, 1, -1, 1, -1,1,1,1,1,1,1,-1, -1, 1, 1, -1, 1, -1,1,1,1,1,1,1,-1, -1, 1, 1, -1, 1, -1,1,1,1,1,1,1,-1, -1, 1, 1, -1, 1, -1,1,1,1,1,1,1,-1, -1, 1, 1, -1, 1, -1,1,1,1,1,1,1,-1, -1, 1, 1, -1, 1, -1,1,1,1,1,1,1,-1, -1, 1, 1, -1, 1, -1,1,1,1,1,1,1,-1, -1, 1, 1, -1, 1, -1,1,1,1,1,1,1,-1, -1, 1, 1, -1, 1, -1,1], True, 1, [])
+        self.custom_corr = correlate_and_delay.corr_and_delay(200*sps, 0, 0.99, sps)
         self.blocks_stream_mux_0_1_0 = blocks.stream_mux(gr.sizeof_char*1, (96, 896))
-        self.blocks_stream_mux_0 = blocks.stream_mux(gr.sizeof_gr_complex*1, (130,100000000))
         self.blocks_repack_bits_bb_1_0_0_1 = blocks.repack_bits_bb(8, 1, '', False, gr.GR_MSB_FIRST)
         self.blocks_repack_bits_bb_0_1 = blocks.repack_bits_bb(1, pld_const.bits_per_symbol(), '', False, gr.GR_MSB_FIRST)
         self.blocks_repack_bits_bb_0_0 = blocks.repack_bits_bb(1, 8, '', False, gr.GR_MSB_FIRST)
@@ -795,7 +793,7 @@ class tutorial_10(gr.top_block, Qt.QWidget):
         self.connect((self.acode_1104, 0), (self.blocks_stream_mux_0_1_0, 0))
         self.connect((self.adapt_lms_filter_xx_0, 1), (self.digital_pfb_clock_sync_xxx_0_0_0, 0))
         self.connect((self.adapt_lms_filter_xx_0, 0), (self.qtgui_freq_sink_x_2, 0))
-        self.connect((self.analog_noise_source_x_0_0, 0), (self.blocks_stream_mux_0, 1))
+        self.connect((self.analog_noise_source_x_0_0, 0), (self.interp_fir_filter_xxx_1, 0))
         self.connect((self.blocks_char_to_float_1_0_1, 0), (self.qtgui_time_sink_x_0_1, 0))
         self.connect((self.blocks_complex_to_mag_squared_0_1_0, 0), (self.qtgui_time_sink_x_2_0_1, 0))
         self.connect((self.blocks_delay_0_0, 0), (self.custom_corr, 1))
@@ -812,9 +810,7 @@ class tutorial_10(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_repack_bits_bb_0_0, 0), (self.blocks_file_sink_0_0_0_2, 0))
         self.connect((self.blocks_repack_bits_bb_0_1, 0), (self.insert_vec_cpp_new_vec_0, 0))
         self.connect((self.blocks_repack_bits_bb_1_0_0_1, 0), (self.blocks_stream_mux_0_1_0, 1))
-        self.connect((self.blocks_stream_mux_0, 0), (self.interp_fir_filter_xxx_1, 0))
         self.connect((self.blocks_stream_mux_0_1_0, 0), (self.blocks_repack_bits_bb_0_1, 0))
-        self.connect((self.blocks_vector_source_x_0_1, 0), (self.blocks_stream_mux_0, 0))
         self.connect((self.custom_corr, 0), (self.adapt_lms_filter_xx_0, 1))
         self.connect((self.custom_corr, 1), (self.adapt_lms_filter_xx_0, 0))
         self.connect((self.custom_corr, 2), (self.blocks_complex_to_mag_squared_0_1_0, 0))
@@ -859,7 +855,7 @@ class tutorial_10(gr.top_block, Qt.QWidget):
 
     def set_samp_rate_array_MCR(self, samp_rate_array_MCR):
         self.samp_rate_array_MCR = samp_rate_array_MCR
-        self.set_samp_rate(self.samp_rate_array_MCR[17])
+        self.set_samp_rate(self.samp_rate_array_MCR[15])
 
     def get_rate(self):
         return self.rate

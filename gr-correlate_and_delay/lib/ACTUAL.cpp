@@ -59,7 +59,7 @@ namespace gr {
       d_sps(sps),
       d_src_id(pmt::intern(alias())),
       delay_needed(0),
-      print_once(false),
+      count(0),
       have_access_code(false)
     {
     
@@ -176,16 +176,15 @@ namespace gr {
                          d_src_id);
               
             printf("CORR SAMPLE FOUND -SAMPLE %d\n",nitems_written(1) + i);
-            printf("CORR SAMPLE FOUND -SAMPLE %d\n",nitems_written(2) + i);
 
             have_corr=true;
             delay_needed=i;
+            if(count ==0){
+              printf("delay_needed:%d\n",delay_needed);
 
-            if(print_once==false){
-              printf("Will DELAY %d in NOISE\n",delay_needed);
-              print_once=true;
+            printf("Will DELAY %d in NOISE\n",delay_needed);
+            count ++;
             }
-            
             break;
 
 
@@ -193,7 +192,7 @@ namespace gr {
           }
 
           if(have_corr==true){//if occur correlation than delay the noise to sync them
-            printf("FOUNF CORR, SO DELAY NOISE with %d\n",delay_needed);
+            printf("FOUNF CORR, SO DELAY NOISE\n");
             for (int o = 0; o < delay_needed; ++o){
               oo_noise[o]=0;
             }
