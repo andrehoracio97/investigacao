@@ -133,7 +133,6 @@ namespace gr {
                 nsamples = correlation_filter->set_taps(access_code); //The filter function expects that the input signal is a multiple of d_nsamples in the class that's computed internally to be as fast as possible. The function set_taps will return the value of nsamples that can be used externally to check this boundary
                 set_output_multiple(nsamples); //Ensures the scheduler always passes this block the right number of samples
                 
-                set_history(lenght_access_code+1);
                 consume (0,lenght_access_code); //consume the samples we set to correlate with
                 //produce(0,lenght_access_code); //Not producing because it will be delayed
               }
@@ -142,8 +141,7 @@ namespace gr {
         return 0;
       }else if(have_corr==false){ //If we have access code
           //printf("NEW TRY\n");
-          unsigned int hist_len = history() - 1;
-          correlation_filter->filter(noutput_items, &ii_signal[hist_len], corr); //Calculate the correlation of input with the noise. 1ºItems to produce. 2ºInpuct vector to be filtered. 3ºresult of filter opertation.  The 2º starts in the "window" that I am.
+          correlation_filter->filter(noutput_items, &ii_signal[0], corr); //Calculate the correlation of input with the noise. 1ºItems to produce. 2ºInpuct vector to be filtered. 3ºresult of filter opertation.  The 2º starts in the "window" that I am.
           volk_32fc_magnitude_squared_32f(&d_corr_mag[0], corr, noutput_items); //magnitude squared of the correlation
 
           float detection = 0; 
@@ -186,46 +184,41 @@ namespace gr {
             //printf("CORR SAMPLE FOUND -SAMPLE %d\n",nitems_written(2) + i);
 
             have_corr=true;
-
-            delay_needed=i;
+            corr_in_sample=i;
+            delay_needed=nitems_written(1) + i;
             if(print_once==false){
-              //printf("Will DELAY %d in NOISE\n",nitems_written(1) + i);
-              printf("DELAY in this STREAM in sample: %d\n",delay_needed);
+              printf("Will DELAY %d in NOISE\n",nitems_written(1) + i);
               print_once=true;
             }
+
             break;
+
             i += isps;
           }
 
-          if(have_corr==true){//if occur correlation than sync: -save all noise, and starting from i producet the beguining of the noise       
+          if(have_corr==true){//if occur correlation than sync: -         
             delay_needed=i;
+            if(print_once==false){
+              printf("Will DELAY %d in NOISE\n",nitems_written(1)+);
+              print_once=true;
+
 
             printf("FOUNF CORR, SO DELAY NOISE with %d\n",delay_needed);
-
-            for (int o = 0; o < delay_needed; o++){
-              fifo.push_back(ii_noise[o]);
+            for (int o = 0; o < delay_needed; ++o){
               oo_noise[o]=0;
             }
-            for (int i = delay_needed; i <noutput_items ; i++){
-              fifo.push_back(ii_noise[i]);
-              oo_noise[i]=fifo.front();
-              fifo.pop_front();
-            }
-
-            consume(0,noutput_items);
-            produce(0,noutput_items);
-
+            produce(0,delay_needed);
             //no signal
-            memcpy(oo_signal, &ii_signal[0], sizeof(gr_complex)*noutput_items);
-            consume(1,noutput_items);
-            produce(1,noutput_items);
+            memcpy(oo_signal, &ii_signal[0], sizeof(gr_complex)*delay_needed);
+            consume(1,delay_needed);
+            produce(1,delay_needed);
 
             //no corr
-            produce(2,noutput_items);
+            produce(2,(delay_needed-(lenght_access_code-1)));
 
           }else{//if not encontered correlation store the noise and try again.
             //In noise we store and consume and produce
-            for (int o = 0; o < noutput_items; o++){
+            for (int o = 0; o < noutput_items; ++o){
               fifo.push_back(ii_noise[o]);
             }
             memcpy(oo_noise, &ii_noise[0], sizeof(gr_complex)*noutput_items);
@@ -241,41 +234,20 @@ namespace gr {
           }
           return 0;
       }else{ //Correlation found, just pass the streams
-        for (int i = 0; i < noutput_items; i++){
-          fifo.push_back(ii_noise[i]);
-        }
+        /*printf("Delay needed=%d\n",delay_needed);
+        printf("Delay needed=%d - temp%d\n",delay_needed,(delay_needed-(lenght_access_code-1)));*/
+        //printf("IN CORR==TRUE, count: %d\n", count);//JUST FOR TESTING I WILL TAKE OUT THIS AFTER
+        //count++;
 
-        for (int i = 0; i < noutput_items; i++){
-          oo_noise[i]=fifo.front();
-          fifo.pop_front();
-        }
-        consume(0,noutput_items);
-        produce(0,noutput_items);
-
-
+        
         memcpy(oo_signal, &ii_signal[0], sizeof(gr_complex)*noutput_items);
+        memcpy(oo_noise, &ii_noise[0], sizeof(gr_complex)*noutput_items);
+
+        consume(0,noutput_items);
         consume(1,noutput_items);
+
+        produce(0,noutput_items);
         produce(1,noutput_items);
-
-
-
-
-       /* int max_n_produce=std::min(noutput_items,fifo.size());
-        for (int i = 0; i < max_n_produce; ++i){
-          oo_noise[i]=fifo.pop_front();
-          fifo.push_back(ii_noise[i]);
-        }
-        for (int i = max_n_produce; i < noutput_items; ++i)
-        {
-          oo_noise[i]=ii_noise[i];
-        }
-        //if(max_n_produce==fifo.size()){ //If we empty the fifo queue
-        //memcpy(oo_noise, &ii_noise[0], sizeof(gr_complex)*noutput_items);
-*/
-
-        //memcpy(oo_noise, &ii_noise[0], sizeof(gr_complex)*noutput_items);
-
-
 
         for (int o = 0; o < noutput_items; ++o){
               corr[o]=0;

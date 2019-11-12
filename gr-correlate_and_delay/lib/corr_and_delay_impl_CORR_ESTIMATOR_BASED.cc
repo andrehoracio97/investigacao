@@ -34,13 +34,13 @@ namespace gr {
   namespace correlate_and_delay {
 
     corr_and_delay::sptr
-    corr_and_delay::make(int number_bits, int interval, float threshold)
+    corr_and_delay::make(int number_bits, int interval, float threshold, float sps)
     {
       return gnuradio::get_initial_sptr
-        (new corr_and_delay_impl(number_bits, interval, threshold));
+        (new corr_and_delay_impl(number_bits, interval, threshold, sps));
     }
 
-    corr_and_delay_impl::corr_and_delay_impl(int number_bits, int interval, float threshold)
+    corr_and_delay_impl::corr_and_delay_impl(int number_bits, int interval, float threshold, float sps)
       : gr::block("corr_and_delay",
               gr::io_signature::make(2, 2, sizeof(gr_complex)),
               gr::io_signature::make(2, 3, sizeof(gr_complex))),

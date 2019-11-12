@@ -39,11 +39,19 @@ boost/format.hpp
 -
 boost/math/special_functions/round.hpp
 -
+iostream
+-
+deque
+-
 
 /home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h
 correlate_and_delay/corr_and_delay.h
 -
 gnuradio/filter/fft_filter.h
+-
+iostream
+-
+deque
 -
 
 /usr/local/include/gnuradio/api.h

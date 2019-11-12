@@ -122,7 +122,7 @@ Semana
 
 Semana -Inicio de Novembro
 4- Restruturação codigo corr_and_delay - Descobri que os primeiros valores são os mais altos, mas NÂO o 1 valor, não sei pq. Tese - Security Scheme, Jamming e Cooperative jamming (3tipos)
-5- Dentista. Inicion metricas-- melhor juntar com wiretap, apagar tudo e melhorar wiretap channel e juntar as metricas. Leitura de varios artigos para compor as metricas. Atualizar introdução. Reuniao Prof. para ver o corr_and_delay.
+5- Dentista. Inicion metricas-- melhor juntar com wiretap, apagar tudo e melhorar wiretap channel e juntar as metricas. Leitura de varios artigos para compor as metricas. Atualizar introdução. Reuniao Prof. para ver o corr_and_delay (ideia de coding spreading)
 6- Corr_and_delay- Consegui criar os picos da correlação mas ainda não detetei onde ocorrem no codigo.
 7- Corr_and_delay-Finalmente percebi como funciona o filter do gnuradio, percebi assim pq nao podia ser como eu estava a fazer "window" a "window".  Melhorei a correlação, e detetei no codigo a sample onde ocorre a coorelação.
 8- Corr_and_delay-Tentar fazer delay do ruido para sync os 2 inputs.

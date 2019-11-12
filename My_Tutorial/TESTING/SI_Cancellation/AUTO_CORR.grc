@@ -172,7 +172,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>2000</value>
+      <value>10000</value>
     </param>
   </block>
   <block>
@@ -333,7 +333,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -682,7 +682,7 @@
     </param>
     <param>
       <key>delay</key>
-      <value>0</value>
+      <value>900</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -690,7 +690,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(504, 524)</value>
+      <value>(536, 524)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -796,7 +796,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(296, 536)</value>
+      <value>(272, 536)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -808,7 +808,7 @@
     </param>
     <param>
       <key>lengths</key>
-      <value>13,550</value>
+      <value>13,5000</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -851,7 +851,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(328, 476)</value>
+      <value>(408, 444)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -906,7 +906,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(312, 428)</value>
+      <value>(408, 396)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1067,7 +1067,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1221,7 +1221,7 @@
     </param>
     <param>
       <key>threshold</key>
-      <value>0.95</value>
+      <value>0.99</value>
     </param>
   </block>
   <block>

@@ -23,6 +23,9 @@
 
 #include <correlate_and_delay/corr_and_delay.h>
 #include <gnuradio/filter/fft_filter.h>
+#include <iostream>
+#include <deque>
+
 
 using namespace gr::filter;
 
@@ -48,8 +51,12 @@ namespace gr {
     bool have_corr;
     float d_sps;
     int delay_needed;
+    int corr_in_sample;
+    
     bool print_once;
 
+    std::deque<gr_complex> fifo;
+    
     pmt::pmt_t d_src_id;
 
      public:
