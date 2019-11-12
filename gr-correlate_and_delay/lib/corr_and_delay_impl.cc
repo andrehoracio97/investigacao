@@ -112,11 +112,8 @@ namespace gr {
       if(have_access_code==false){ //If access code still not catched
         if(noutput_items>=lenght_access_code){ //Make sure we have number of samples enough to create fft filte of nois
           for (int i = access_code.size(); i < lenght_access_code; i++){
-              //access_code[i]=ii_noise[i];
               access_code.push_back(ii_noise[i]);
               fifo.push_back(ii_noise[i]);
-              //fifo.push(ii_noise[i]);
-
 
               if (i==(lenght_access_code-1)){ //All the access code catched
                 printf("Access Code Caught\n");
@@ -134,6 +131,7 @@ namespace gr {
                 set_output_multiple(nsamples); //Ensures the scheduler always passes this block the right number of samples
                 
                 set_history(lenght_access_code+1);
+                
                 consume (0,lenght_access_code); //consume the samples we set to correlate with
                 //produce(0,lenght_access_code); //Not producing because it will be delayed
               }
@@ -141,7 +139,6 @@ namespace gr {
         }
         return 0;
       }else if(have_corr==false){ //If we have access code
-          //printf("NEW TRY\n");
           unsigned int hist_len = history() - 1;
           correlation_filter->filter(noutput_items, &ii_signal[hist_len], corr); //Calculate the correlation of input with the noise. 1ºItems to produce. 2ºInpuct vector to be filtered. 3ºresult of filter opertation.  The 2º starts in the "window" that I am.
           volk_32fc_magnitude_squared_32f(&d_corr_mag[0], corr, noutput_items); //magnitude squared of the correlation
@@ -183,22 +180,16 @@ namespace gr {
                          d_src_id);
               
             printf("CORR SAMPLE FOUND -SAMPLE %d\n",nitems_written(1) + i);
-            //printf("CORR SAMPLE FOUND -SAMPLE %d\n",nitems_written(2) + i);
 
             have_corr=true;
-
             delay_needed=i;
-            if(print_once==false){
-              //printf("Will DELAY %d in NOISE\n",nitems_written(1) + i);
-              printf("DELAY in this STREAM in sample: %d\n",delay_needed);
-              print_once=true;
-            }
+            printf("DELAY in this STREAM in sample: %d\n",delay_needed);
             break;
             i += isps;
           }
 
           if(have_corr==true){//if occur correlation than sync: -save all noise, and starting from i producet the beguining of the noise       
-            delay_needed=i;
+            //delay_needed=i;
 
             printf("FOUNF CORR, SO DELAY NOISE with %d\n",delay_needed);
 
@@ -215,12 +206,12 @@ namespace gr {
             consume(0,noutput_items);
             produce(0,noutput_items);
 
-            //no signal
+            //in signal
             memcpy(oo_signal, &ii_signal[0], sizeof(gr_complex)*noutput_items);
             consume(1,noutput_items);
             produce(1,noutput_items);
 
-            //no corr
+            //in corr
             produce(2,noutput_items);
 
           }else{//if not encontered correlation store the noise and try again.
@@ -239,7 +230,7 @@ namespace gr {
 
             produce(2,noutput_items);
           }
-          return 0;
+        return 0;
       }else{ //Correlation found, just pass the streams
         for (int i = 0; i < noutput_items; i++){
           fifo.push_back(ii_noise[i]);
@@ -256,26 +247,6 @@ namespace gr {
         memcpy(oo_signal, &ii_signal[0], sizeof(gr_complex)*noutput_items);
         consume(1,noutput_items);
         produce(1,noutput_items);
-
-
-
-
-       /* int max_n_produce=std::min(noutput_items,fifo.size());
-        for (int i = 0; i < max_n_produce; ++i){
-          oo_noise[i]=fifo.pop_front();
-          fifo.push_back(ii_noise[i]);
-        }
-        for (int i = max_n_produce; i < noutput_items; ++i)
-        {
-          oo_noise[i]=ii_noise[i];
-        }
-        //if(max_n_produce==fifo.size()){ //If we empty the fifo queue
-        //memcpy(oo_noise, &ii_noise[0], sizeof(gr_complex)*noutput_items);
-*/
-
-        //memcpy(oo_noise, &ii_noise[0], sizeof(gr_complex)*noutput_items);
-
-
 
         for (int o = 0; o < noutput_items; ++o){
               corr[o]=0;

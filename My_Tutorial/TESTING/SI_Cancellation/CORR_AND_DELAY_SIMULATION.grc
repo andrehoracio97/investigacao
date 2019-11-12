@@ -1067,7 +1067,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>[int(random.random()*7) for i in range(49600)]</value>
+      <value>[int(random.random()*4) for i in range(49600)]</value>
     </param>
   </block>
   <block>
@@ -2400,7 +2400,7 @@
     </param>
     <param>
       <key>number_bits</key>
-      <value>200*sps</value>
+      <value>100*sps</value>
     </param>
     <param>
       <key>sps</key>
@@ -2827,7 +2827,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(480, 532)</value>
+      <value>(488, 492)</value>
     </param>
     <param>
       <key>_rotation</key>

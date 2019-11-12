@@ -85,7 +85,7 @@ class tutorial_10(gr.top_block, Qt.QWidget):
         self.nfilts = nfilts = 32
         self.k = k = 7
         self.eb = eb = 0.22
-        self.vector = vector = [int(0) for i in range(49600)]
+        self.vector = vector = [int(random.random()*4) for i in range(49600)]
         self.variable_qtgui_range_1_0 = variable_qtgui_range_1_0 = 0
         self.variable_qtgui_range_1 = variable_qtgui_range_1 = 0
         self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 38

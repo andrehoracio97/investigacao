@@ -51,8 +51,7 @@ namespace gr {
     bool have_corr;
     float d_sps;
     int delay_needed;
-    int corr_in_sample;
-    
+
     bool print_once;
 
     std::deque<gr_complex> fifo;
