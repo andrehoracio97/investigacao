@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="dir_0c67c79d4b5e4cd30c1b1dfbf123d539" kind="dir">
+    <compoundname>correlate_and_delay</compoundname>
+    <innerfile refid="api_8h">api.h</innerfile>
+    <innerfile refid="corr__and__delay_8h">corr_and_delay.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/it/investigacao/gr-correlate_and_delay/include/correlate_and_delay/"/>
+  </compounddef>
+</doxygen>

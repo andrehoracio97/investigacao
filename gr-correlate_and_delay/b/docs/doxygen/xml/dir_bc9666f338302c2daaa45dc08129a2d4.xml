@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="dir_bc9666f338302c2daaa45dc08129a2d4" kind="dir">
+    <compoundname>old</compoundname>
+    <innerfile refid="old_2corr__and__delay__impl_8h">old/corr_and_delay_impl.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/it/investigacao/gr-correlate_and_delay/lib/old/"/>
+  </compounddef>
+</doxygen>

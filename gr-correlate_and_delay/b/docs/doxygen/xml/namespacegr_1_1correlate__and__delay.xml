@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="namespacegr_1_1correlate__and__delay" kind="namespace" language="C++">
+    <compoundname>gr::correlate_and_delay</compoundname>
+    <innerclass refid="classgr_1_1correlate__and__delay_1_1corr__and__delay" prot="public">gr::correlate_and_delay::corr_and_delay</innerclass>
+    <innerclass refid="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl" prot="public">gr::correlate_and_delay::corr_and_delay_impl</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/it/investigacao/gr-correlate_and_delay/include/correlate_and_delay/corr_and_delay.h" line="29" column="1"/>
+  </compounddef>
+</doxygen>
