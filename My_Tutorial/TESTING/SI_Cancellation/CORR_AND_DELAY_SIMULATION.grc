@@ -2400,7 +2400,7 @@
     </param>
     <param>
       <key>number_bits</key>
-      <value>100*sps</value>
+      <value>200*sps</value>
     </param>
     <param>
       <key>sps</key>

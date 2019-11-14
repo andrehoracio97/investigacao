@@ -41,7 +41,6 @@
 #include <deque>
 
 
-
 namespace gr {
   namespace correlate_and_delay {
 
@@ -192,54 +191,17 @@ namespace gr {
           if(have_corr==true){//if occur correlation than sync: -save all noise, and starting from i producet the beguining of the noise       
             //delay_needed=i;
 
-            printf("FOUNF CORR, SO DELAY NOISE with %d\n",delay_needed);  
+            printf("FOUNF CORR, SO DELAY NOISE with %d\n",delay_needed);
 
-
-
-          /*  for (int o = 0; o < delay_needed; o++){
+            for (int o = 0; o < delay_needed; o++){
               fifo.push_back(ii_noise[o]);
               oo_noise[o]=0;
             }
-
             for (int i = delay_needed; i <noutput_items ; i++){
               fifo.push_back(ii_noise[i]);
               oo_noise[i]=fifo.front();
               fifo.pop_front();
-            }*/
-            
-            for (int o = 0; o < noutput_items; o++){
-              fifo.push_back(ii_noise[o]);
             }
-
-            for (int o = 0; o < delay_needed; o++){
-              oo_noise[o]=0;
-            }
-
-            //HERE I have the FIFO VECTOR complete, so iniciate the CURCULAR BUFFER.
-            printf("AAAA %d\n",fifo.size());
-            d_writer = gr::make_buffer(2*fifo.size(), sizeof(gr_complex)); //create writter pointer
-            d_reader = gr::buffer_add_reader(d_writer, 0); //create reader pointer
-
-            //Write everithing from fifo to buffer
-            gr_complex* a = (gr_complex*)d_writer->write_pointer(); 
-            memcpy(a,&fifo[0],fifo.size()*sizeof(gr_complex));
-            d_writer->update_write_pointer(fifo.size()); //update writter pointer
-
-            //First take out from the buffer to increase the space available
-            memcpy(&oo_noise[delay_needed],d_reader->read_pointer(),(noutput_items-delay_needed) * sizeof(gr_complex));
-            d_reader->update_read_pointer((noutput_items-delay_needed));
-            
-            //Then write back to the buffer to store the incoming noise
-           /* gr_complex* p = (gr_complex*)d_writer->write_pointer(); 
-            memcpy(p,&ii_noise[delay_needed],(noutput_items-delay_needed)*sizeof(gr_complex));
-            d_writer->update_write_pointer(noutput_items-delay_needed); //update writter pointer
-
-*/
-
-
-
-
-
 
             consume(0,noutput_items);
             produce(0,noutput_items);
@@ -254,11 +216,9 @@ namespace gr {
 
           }else{//if not encontered correlation store the noise and try again.
             //In noise we store and consume and produce
-
-            for (int o = 0; o < noutput_items; o++){  //AFTER CHANGE TO RESIZE AND MEMCPY
+            for (int o = 0; o < noutput_items; o++){
               fifo.push_back(ii_noise[o]);
             }
-
             memcpy(oo_noise, &ii_noise[0], sizeof(gr_complex)*noutput_items);
             consume(0,noutput_items);
             produce(0,noutput_items);
@@ -272,40 +232,66 @@ namespace gr {
           }
         return 0;
       }else{ //Correlation found, just pass the streams
-        /*for (int i = 0; i < noutput_items; i++){
-          fifo.push_back(ii_noise[i]);
+
+        if (fifo.size()==0){ //Se está vazia just bypass
+          //printf("BYPASS ONLY\n");
+          memcpy(oo_noise, &ii_noise[0], sizeof(gr_complex)*noutput_items);
+          consume(0,noutput_items);
+          produce(0,noutput_items);
+
+          memcpy(oo_signal, &ii_signal[0], sizeof(gr_complex)*noutput_items);
+          consume(1,noutput_items);
+          produce(1,noutput_items);
+
+          for (int o = 0; o < noutput_items; ++o){
+            corr[o]=0;
+          }
+          produce(2,noutput_items);
+        }else{//Se estiver valores no array: FLUSH
+          //printf("FIFO WITH VALUES\n");
+          if(fifo.size()>noutput_items){//I will consume only half, but produce what I can
+            //printf("FIFO BIGGER\n");
+            int consume_half=noutput_items/2;
+            for (int i = 0; i < consume_half; i++){
+              fifo.push_back(ii_noise[i]);
+            } 
+            for (int i = 0; i < noutput_items; i++){
+              oo_noise[i]=fifo.front();
+              fifo.pop_front();
+            }
+            consume(0,consume_half);
+            produce(0,noutput_items);
+
+            memcpy(oo_signal, &ii_signal[0], sizeof(gr_complex)*noutput_items);
+            consume(1,noutput_items);
+            produce(1,noutput_items);
+
+            for (int o = 0; o < noutput_items; ++o){
+                  corr[o]=0;
+            }
+            produce(2,noutput_items);
+          }else{//consume fifo.size(), and produce the same.
+            //printf("FIFO SMALLER\n");
+
+            int produce_all=fifo.size();
+            for (int i = 0; i < produce_all; i++){
+              oo_noise[i]=fifo.front();
+              fifo.pop_front();
+            }
+
+            consume(0,0);
+            produce(0,produce_all);
+
+            memcpy(oo_signal, &ii_signal[0], sizeof(gr_complex)*produce_all);
+            consume(1,produce_all);
+            produce(1,produce_all);
+
+            for (int o = 0; o < produce_all; ++o){
+                  corr[o]=0;
+            }
+            produce(2,produce_all);
+          }
         }
-
-        for (int i = 0; i < noutput_items; i++){
-          oo_noise[i]=fifo.front();
-          fifo.pop_front();
-        }*/
-
-
-        //Then WRITE on the free space
-        gr_complex* p = (gr_complex*)d_writer->write_pointer(); 
-        memcpy(p,&ii_noise[0],(noutput_items)*sizeof(gr_complex));
-        d_writer->update_write_pointer(noutput_items); //update writter pointer
-        
-        //First READ to free space
-        memcpy(&oo_noise[0],d_reader->read_pointer(),noutput_items * sizeof(gr_complex));
-        d_reader->update_read_pointer(noutput_items);
-
-
-
-
-        consume(0,noutput_items);
-        produce(0,noutput_items);
-
-
-        memcpy(oo_signal, &ii_signal[0], sizeof(gr_complex)*noutput_items);
-        consume(1,noutput_items);
-        produce(1,noutput_items);
-
-        for (int o = 0; o < noutput_items; ++o){
-              corr[o]=0;
-        }
-        produce(2,noutput_items);
         return 0;
       }
     }

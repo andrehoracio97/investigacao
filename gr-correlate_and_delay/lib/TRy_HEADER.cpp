@@ -25,11 +25,10 @@
 #include <gnuradio/filter/fft_filter.h>
 #include <iostream>
 #include <deque>
-#include <gnuradio/buffer.h>
 
 
 using namespace gr::filter;
-typedef gr_complex sample_t;
+
 namespace gr {
   namespace correlate_and_delay {
 
@@ -57,10 +56,7 @@ namespace gr {
 
     //std::deque<gr_complex> fifo;
     std::vector<gr_complex> fifo;
-    //gr_complex* last_sample_fifo;
-    
-    gr::buffer_sptr d_writer; // buffer used between work and callback
-    gr::buffer_reader_sptr d_reader;
+    gr_complex* last_sample_fifo;
 
 
 
@@ -78,6 +74,7 @@ namespace gr {
            gr_vector_int &ninput_items,
            gr_vector_const_void_star &input_items,
            gr_vector_void_star &output_items);
+
     };
 
   } // namespace correlate_and_delay

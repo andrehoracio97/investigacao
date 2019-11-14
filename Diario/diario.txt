@@ -128,5 +128,6 @@ Semana -Inicio de Novembro
 8- Corr_and_delay-Tentar fazer delay do ruido para sync os 2 inputs.
 
 Semana
-11-Corr_and_delay- Muitos testes, melhor valores de threshold, e num de samples. Talvez o delay tambem esteja mal--Não sei- ás vezes dá outras vezes não. Criação FG de ultimate testing com transmissao com CC, scrambler, e self-jamming cancellation, tanto em simulacao como em USRP's.
-
+11- Corr_and_delay- Muitos testes, melhor valores de threshold, e num de samples. Talvez o delay tambem esteja mal--Não sei- ás vezes dá outras vezes não. Criação FG de ultimate testing com transmissao com CC, scrambler, e self-jamming cancellation, tanto em simulacao como em USRP's.
+12- Corr_and_delay- Feito com queue e com push_back() and pop(). Começar a tentar com buffer circular. Reunião.
+13- Corr_and_delay- 

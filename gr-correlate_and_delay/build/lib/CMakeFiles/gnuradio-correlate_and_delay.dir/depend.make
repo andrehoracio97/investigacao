@@ -10,6 +10,7 @@ lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/l
 lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/local/include/gnuradio/basic_block.h
 lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/local/include/gnuradio/block.h
 lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/local/include/gnuradio/block_registry.h
+lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/local/include/gnuradio/buffer.h
 lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/local/include/gnuradio/config.h
 lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/local/include/gnuradio/fft/api.h
 lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o: /usr/local/include/gnuradio/fft/fft.h
