@@ -1274,7 +1274,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(696, 924)</value>
+      <value>(680, 892)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1310,7 +1310,86 @@
     </param>
     <param>
       <key>mu</key>
-      <value>0.001</value>
+      <value>0.0001</value>
+    </param>
+  </block>
+  <block>
+    <key>adapt_nlms_filter_xx</key>
+    <param>
+      <key>adapt</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>bypass</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>decimation</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>filtered_input</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>first_input</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(680, 1044)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>adapt_nlms_filter_xx_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>num_taps</key>
+      <value>32</value>
+    </param>
+    <param>
+      <key>reset</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>skip</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>cc</value>
+    </param>
+    <param>
+      <key>mu</key>
+      <value>0.0001</value>
     </param>
   </block>
   <block>
@@ -1435,7 +1514,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(472, 1368)</value>
+      <value>(424, 1512)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2207,7 +2286,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(448, 1176)</value>
+      <value>(400, 1320)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -5996,7 +6075,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(696, 1236)</value>
+      <value>(648, 1380)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -6363,7 +6442,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(648, 1340)</value>
+      <value>(600, 1484)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -9887,6 +9966,18 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
+    <source_block_id>adapt_nlms_filter_xx_0</source_block_id>
+    <sink_block_id>digital_pfb_clock_sync_xxx_0_0_0</sink_block_id>
+    <source_key>1</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>adapt_nlms_filter_xx_0</source_block_id>
+    <sink_block_id>qtgui_freq_sink_x_2</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
     <source_block_id>analog_noise_source_x_0_0</source_block_id>
     <sink_block_id>blocks_stream_mux_0</sink_block_id>
     <source_key>0</source_key>
@@ -10044,7 +10135,19 @@
   </connection>
   <connection>
     <source_block_id>custom_corr</source_block_id>
+    <sink_block_id>adapt_nlms_filter_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>1</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>custom_corr</source_block_id>
     <sink_block_id>adapt_lms_filter_xx_0</sink_block_id>
+    <source_key>1</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>custom_corr</source_block_id>
+    <sink_block_id>adapt_nlms_filter_xx_0</sink_block_id>
     <source_key>1</source_key>
     <sink_key>0</sink_key>
   </connection>

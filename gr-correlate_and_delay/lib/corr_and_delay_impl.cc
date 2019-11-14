@@ -112,7 +112,8 @@ namespace gr {
 
       if(have_access_code==false){ //If access code still not catched
         if(noutput_items>=lenght_access_code){ //Make sure we have number of samples enough to create fft filte of nois
-          for (int i = access_code.size(); i < lenght_access_code; i++){
+          //BEFORE
+          /*for (int i = access_code.size(); i < lenght_access_code; i++){
               access_code.push_back(ii_noise[i]);
               fifo.push_back(ii_noise[i]);
 
@@ -136,7 +137,31 @@ namespace gr {
                 consume (0,lenght_access_code); //consume the samples we set to correlate with
                 //produce(0,lenght_access_code); //Not producing because it will be delayed
               }
+          }*/
+          //NOW
+          access_code.resize(lenght_access_code);
+          memcpy(&access_code[0],&ii_noise[0],lenght_access_code*sizeof(gr_complex));
+          
+          fifo.resize(lenght_access_code);
+          memcpy(&fifo[0],&ii_noise[0],lenght_access_code*sizeof(gr_complex));
+
+          for (int j = 0; j < access_code.size(); j++) { //doing the conjugate
+            access_code[j] = conj(access_code[j]);
           }
+          std::reverse(access_code.begin(), access_code.end()); //doing the reverse
+          
+          correlation_filter = new kernel::fft_filter_ccc(1, access_code); //create correlation filter from the access code --1=decimation then the taps
+          
+          int nsamples;
+          nsamples = correlation_filter->set_taps(access_code); //The filter function expects that the input signal is a multiple of d_nsamples in the class that's computed internally to be as fast as possible. The function set_taps will return the value of nsamples that can be used externally to check this boundary
+          set_output_multiple(nsamples); //Ensures the scheduler always passes this block the right number of samples
+          
+          set_history(lenght_access_code+1);
+
+          printf("Access Code Caught\n");
+          have_access_code=true;
+
+          consume (0,lenght_access_code); //consume the samples we set to correlate with - TO TAKE OUT THIS CONSUME I NEED TO NOT INTRODUCE THE ACESSCODE ON FIFO.
         }
         return 0;
       }else if(have_corr==false){ //If we have access code
@@ -195,7 +220,7 @@ namespace gr {
             printf("FOUNF CORR, SO DELAY NOISE with %d\n",delay_needed);  
 
 
-
+            //BEFORE
           /*  for (int o = 0; o < delay_needed; o++){
               fifo.push_back(ii_noise[o]);
               oo_noise[o]=0;
@@ -206,18 +231,25 @@ namespace gr {
               oo_noise[i]=fifo.front();
               fifo.pop_front();
             }*/
-            
-            for (int o = 0; o < noutput_items; o++){
-              fifo.push_back(ii_noise[o]);
-            }
 
-            for (int o = 0; o < delay_needed; o++){
+
+
+            //NOW
+            /*for (int o = 0; o < noutput_items; o++){
+              fifo.push_back(ii_noise[o]);
+            }*/
+            int tam_temp=fifo.size();
+            fifo.resize(fifo.size()+noutput_items);
+            memcpy(&fifo[tam_temp],&ii_noise[0],noutput_items*sizeof(gr_complex));
+
+
+            /*for (int o = 0; o < delay_needed; o++){
               oo_noise[o]=0;
-            }
+            }*/
+            memset(&oo_noise[0],0,delay_needed*sizeof(gr_complex));
 
             //HERE I have the FIFO VECTOR complete, so iniciate the CURCULAR BUFFER.
-            printf("AAAA %d\n",fifo.size());
-            d_writer = gr::make_buffer(2*fifo.size(), sizeof(gr_complex)); //create writter pointer
+            d_writer = gr::make_buffer(3*fifo.size(), sizeof(gr_complex)); //create writter pointer 3 just to make sure, but 2 is maybe enough
             d_reader = gr::buffer_add_reader(d_writer, 0); //create reader pointer
 
             //Write everithing from fifo to buffer
@@ -229,18 +261,7 @@ namespace gr {
             memcpy(&oo_noise[delay_needed],d_reader->read_pointer(),(noutput_items-delay_needed) * sizeof(gr_complex));
             d_reader->update_read_pointer((noutput_items-delay_needed));
             
-            //Then write back to the buffer to store the incoming noise
-           /* gr_complex* p = (gr_complex*)d_writer->write_pointer(); 
-            memcpy(p,&ii_noise[delay_needed],(noutput_items-delay_needed)*sizeof(gr_complex));
-            d_writer->update_write_pointer(noutput_items-delay_needed); //update writter pointer
-
-*/
-
-
-
-
-
-
+            //in noise
             consume(0,noutput_items);
             produce(0,noutput_items);
 
@@ -255,10 +276,14 @@ namespace gr {
           }else{//if not encontered correlation store the noise and try again.
             //In noise we store and consume and produce
 
-            for (int o = 0; o < noutput_items; o++){  //AFTER CHANGE TO RESIZE AND MEMCPY
+            /*for (int o = 0; o < noutput_items; o++){  //AFTER CHANGE TO RESIZE AND MEMCPY
               fifo.push_back(ii_noise[o]);
-            }
+            }*/
+            int tam_temp=fifo.size();
+            fifo.resize(fifo.size()+noutput_items);
+            memcpy(&fifo[tam_temp],&ii_noise[0],noutput_items*sizeof(gr_complex));
 
+            //In noise
             memcpy(oo_noise, &ii_noise[0], sizeof(gr_complex)*noutput_items);
             consume(0,noutput_items);
             produce(0,noutput_items);
@@ -268,6 +293,7 @@ namespace gr {
             consume(1,noutput_items);
             produce(1,noutput_items);
 
+            //in corr
             produce(2,noutput_items);
           }
         return 0;
@@ -282,14 +308,16 @@ namespace gr {
         }*/
 
 
-        //Then WRITE on the free space
+        //WRITE on the free space
         gr_complex* p = (gr_complex*)d_writer->write_pointer(); 
         memcpy(p,&ii_noise[0],(noutput_items)*sizeof(gr_complex));
         d_writer->update_write_pointer(noutput_items); //update writter pointer
         
-        //First READ to free space
+        //READ to free space
         memcpy(&oo_noise[0],d_reader->read_pointer(),noutput_items * sizeof(gr_complex));
         d_reader->update_read_pointer(noutput_items);
+
+
 
 
 

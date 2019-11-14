@@ -109,17 +109,17 @@ class corr_ultimapte_testing(gr.top_block, Qt.QWidget):
         ##################################################
         # Blocks
         ##################################################
-        self._variable_qtgui_range_1_0_range = Range(0, 5000, 1, 900, 200)
-        self._variable_qtgui_range_1_0_win = RangeWidget(self._variable_qtgui_range_1_0_range, self.set_variable_qtgui_range_1_0, 'Delay SIGNAL', "counter_slider", int)
-        self.top_grid_layout.addWidget(self._variable_qtgui_range_1_0_win, 3, 1, 1, 1)
-        for r in range(3, 4):
-            self.top_grid_layout.setRowStretch(r, 1)
-        for c in range(1, 2):
-            self.top_grid_layout.setColumnStretch(c, 1)
         self._variable_qtgui_range_1_range = Range(0, 5000, 1, 0, 200)
         self._variable_qtgui_range_1_win = RangeWidget(self._variable_qtgui_range_1_range, self.set_variable_qtgui_range_1, 'Delay JAMMING', "counter_slider", int)
         self.top_grid_layout.addWidget(self._variable_qtgui_range_1_win, 2, 1, 1, 1)
         for r in range(2, 3):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(1, 2):
+            self.top_grid_layout.setColumnStretch(c, 1)
+        self._variable_qtgui_range_1_0_range = Range(0, 5000, 1, 900, 200)
+        self._variable_qtgui_range_1_0_win = RangeWidget(self._variable_qtgui_range_1_0_range, self.set_variable_qtgui_range_1_0, 'Delay SIGNAL', "counter_slider", int)
+        self.top_grid_layout.addWidget(self._variable_qtgui_range_1_0_win, 3, 1, 1, 1)
+        for r in range(3, 4):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(1, 2):
             self.top_grid_layout.setColumnStretch(c, 1)
@@ -610,7 +610,7 @@ class corr_ultimapte_testing(gr.top_block, Qt.QWidget):
         self.blocks_file_sink_0_0_0_2 = blocks.file_sink(gr.sizeof_char*1, '/home/andre/Desktop/Trasmited/depois.txt', False)
         self.blocks_file_sink_0_0_0_2.set_unbuffered(False)
         self.blocks_delay_0_0_0 = blocks.delay(gr.sizeof_gr_complex*1, variable_qtgui_range_1)
-        self.blocks_delay_0_0 = blocks.delay(gr.sizeof_gr_complex*1, variable_qtgui_range_1_0)
+        self.blocks_delay_0_0 = blocks.delay(gr.sizeof_gr_complex*1, 900)
         self.blocks_complex_to_mag_squared_0_1_0 = blocks.complex_to_mag_squared(1)
         self.blocks_char_to_float_1_0_1 = blocks.char_to_float(1, 1)
         self.blocks_char_to_float_1_0_0 = blocks.char_to_float(1, 1)
@@ -733,7 +733,6 @@ class corr_ultimapte_testing(gr.top_block, Qt.QWidget):
 
     def set_variable_qtgui_range_1_0(self, variable_qtgui_range_1_0):
         self.variable_qtgui_range_1_0 = variable_qtgui_range_1_0
-        self.blocks_delay_0_0.set_dly(self.variable_qtgui_range_1_0)
 
     def get_variable_qtgui_range_1(self):
         return self.variable_qtgui_range_1
