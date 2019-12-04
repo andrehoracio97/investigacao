@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 ##################################################
 # GNU Radio Python Flow Graph
-# Title: Rx
+# Title: Rx Eve
 # Author: andresilva
 # GNU Radio version: 3.7.13.5
 ##################################################
@@ -36,12 +36,12 @@ import time
 from gnuradio import qtgui
 
 
-class rx(gr.top_block, Qt.QWidget):
+class rx_eve(gr.top_block, Qt.QWidget):
 
     def __init__(self, puncpat='11'):
-        gr.top_block.__init__(self, "Rx")
+        gr.top_block.__init__(self, "Rx Eve")
         Qt.QWidget.__init__(self)
-        self.setWindowTitle("Rx")
+        self.setWindowTitle("Rx Eve")
         qtgui.util.check_set_qss()
         try:
             self.setWindowIcon(Qt.QIcon.fromTheme('gnuradio-grc'))
@@ -59,7 +59,7 @@ class rx(gr.top_block, Qt.QWidget):
         self.top_grid_layout = Qt.QGridLayout()
         self.top_layout.addLayout(self.top_grid_layout)
 
-        self.settings = Qt.QSettings("GNU Radio", "rx")
+        self.settings = Qt.QSettings("GNU Radio", "rx_eve")
         self.restoreGeometry(self.settings.value("geometry").toByteArray())
 
 
@@ -102,7 +102,7 @@ class rx(gr.top_block, Qt.QWidget):
         for c in range(2, 3):
             self.top_grid_layout.setColumnStretch(c, 1)
         self.uhd_usrp_source_0 = uhd.usrp_source(
-        	",".join(("serial=F5EAC0", MCR)),
+        	",".join(("serial=F5EAB8", MCR)),
         	uhd.stream_args(
         		cpu_format="fc32",
         		channels=range(1),
@@ -429,7 +429,7 @@ class rx(gr.top_block, Qt.QWidget):
         self.blocks_repack_bits_bb_0_0_0_1_0 = blocks.repack_bits_bb(1, 8, '', False, gr.GR_MSB_FIRST)
         self.blocks_repack_bits_bb_0 = blocks.repack_bits_bb(pld_const.bits_per_symbol(), 1, '', False, gr.GR_MSB_FIRST)
         self.blocks_keep_m_in_n_0_0_2_0 = blocks.keep_m_in_n(gr.sizeof_char, 892, 896, 0)
-        self.blocks_file_sink_0_0_0_0 = blocks.file_sink(gr.sizeof_char*1, '/home/it/Desktop/Trasmited/depois.txt', False)
+        self.blocks_file_sink_0_0_0_0 = blocks.file_sink(gr.sizeof_char*1, '/home/andre/Desktop/Trasmited/depois2.txt', False)
         self.blocks_file_sink_0_0_0_0.set_unbuffered(False)
         self.blocks_char_to_float_1_0_1 = blocks.char_to_float(1, 1)
         self.blocks_char_to_float_0_2_0_0 = blocks.char_to_float(1, 1)
@@ -466,7 +466,7 @@ class rx(gr.top_block, Qt.QWidget):
         self.connect((self.uhd_usrp_source_0, 0), (self.qtgui_time_sink_x_1_0, 0))
 
     def closeEvent(self, event):
-        self.settings = Qt.QSettings("GNU Radio", "rx")
+        self.settings = Qt.QSettings("GNU Radio", "rx_eve")
         self.settings.setValue("geometry", self.saveGeometry())
         event.accept()
 
@@ -579,7 +579,7 @@ def argument_parser():
     return parser
 
 
-def main(top_block_cls=rx, options=None):
+def main(top_block_cls=rx_eve, options=None):
     if options is None:
         options, _ = argument_parser().parse_args()
 

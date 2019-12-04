@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>rx</value>
+      <value>rx_eve</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -672,7 +672,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>36</value>
+      <value>44</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -1155,7 +1155,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(800, 828)</value>
+      <value>(704, 828)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1788,49 +1788,6 @@
     <param>
       <key>map</key>
       <value>[-1, 1]</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>digital_map_bb</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>2</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(640, 836)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>digital_map_bb_1_0_0</value>
-    </param>
-    <param>
-      <key>map</key>
-      <value>pld_const.pre_diff_code()</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -5865,7 +5822,7 @@
   </connection>
   <connection>
     <source_block_id>digital_diff_decoder_bb_0</source_block_id>
-    <sink_block_id>digital_map_bb_1_0_0</sink_block_id>
+    <sink_block_id>blocks_repack_bits_bb_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -5884,12 +5841,6 @@
   <connection>
     <source_block_id>digital_map_bb_0_0_0_0_0</source_block_id>
     <sink_block_id>blocks_char_to_float_0_2_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>digital_map_bb_1_0_0</source_block_id>
-    <sink_block_id>blocks_repack_bits_bb_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
