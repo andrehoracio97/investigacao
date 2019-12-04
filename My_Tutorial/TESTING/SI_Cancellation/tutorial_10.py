@@ -89,8 +89,8 @@ class tutorial_10(gr.top_block, Qt.QWidget):
         self.variable_qtgui_range_1_0 = variable_qtgui_range_1_0 = 0
         self.variable_qtgui_range_1 = variable_qtgui_range_1 = 0
         self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 38
-        self.variable_qtgui_range_0_0 = variable_qtgui_range_0_0 = 49
-        self.variable_qtgui_range_0 = variable_qtgui_range_0 = 50
+        self.variable_qtgui_range_0_0 = variable_qtgui_range_0_0 = 39
+        self.variable_qtgui_range_0 = variable_qtgui_range_0 = 39
         self.variable_qtgui_entry_0 = variable_qtgui_entry_0 = 0.7
 
         self.tx_rrc_taps = tx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts, 1.0, eb, 11*sps*nfilts)
@@ -120,14 +120,14 @@ class tutorial_10(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(3, 4):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self._variable_qtgui_range_0_0_range = Range(0, 90, 1, 49, 200)
+        self._variable_qtgui_range_0_0_range = Range(0, 90, 1, 39, 200)
         self._variable_qtgui_range_0_0_win = RangeWidget(self._variable_qtgui_range_0_0_range, self.set_variable_qtgui_range_0_0, 'Gain_Jamming', "counter_slider", float)
         self.top_grid_layout.addWidget(self._variable_qtgui_range_0_0_win, 0, 2, 1, 1)
         for r in range(0, 1):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(2, 3):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self._variable_qtgui_range_0_range = Range(0, 90, 1, 50, 200)
+        self._variable_qtgui_range_0_range = Range(0, 90, 1, 39, 200)
         self._variable_qtgui_range_0_win = RangeWidget(self._variable_qtgui_range_0_range, self.set_variable_qtgui_range_0, 'Gain_TX', "counter_slider", float)
         self.top_grid_layout.addWidget(self._variable_qtgui_range_0_win, 0, 1, 1, 1)
         for r in range(0, 1):
@@ -166,7 +166,7 @@ class tutorial_10(gr.top_block, Qt.QWidget):
         self.uhd_usrp_source_0.set_time_now(uhd.time_spec(time.time()), uhd.ALL_MBOARDS)
         self.uhd_usrp_source_0.set_center_freq(frequencia_usrp, 0)
         self.uhd_usrp_source_0.set_gain(variable_qtgui_range_0_1, 0)
-        self.uhd_usrp_source_0.set_antenna('RX2', 0)
+        self.uhd_usrp_source_0.set_antenna('TX/RX', 0)
         self.uhd_usrp_source_0.set_auto_dc_offset(True, 0)
         self.uhd_usrp_source_0.set_auto_iq_balance(True, 0)
         self.uhd_usrp_sink_0_0 = uhd.usrp_sink(
@@ -188,6 +188,7 @@ class tutorial_10(gr.top_block, Qt.QWidget):
         		channels=range(1),
         	),
         )
+        self.uhd_usrp_sink_0.set_subdev_spec('A:B', 0)
         self.uhd_usrp_sink_0.set_samp_rate(samp_rate)
         self.uhd_usrp_sink_0.set_time_now(uhd.time_spec(time.time()), uhd.ALL_MBOARDS)
         self.uhd_usrp_sink_0.set_center_freq(frequencia_usrp, 0)
@@ -754,7 +755,7 @@ class tutorial_10(gr.top_block, Qt.QWidget):
         	  flt_size=nfilts)
         self.pfb_arb_resampler_xxx_0.declare_sample_delay(0)
 
-        self.interp_fir_filter_xxx_1 = filter.interp_fir_filter_ccc(4, ([1,0,0,0]))
+        self.interp_fir_filter_xxx_1 = filter.interp_fir_filter_ccc(4, ([1,1,1,1]))
         self.interp_fir_filter_xxx_1.declare_sample_delay(0)
         self.insert_vec_cpp_new_vec_0 = insert_vec_cpp.new_vec((vector))
         self.digital_pfb_clock_sync_xxx_0_0_0 = digital.pfb_clock_sync_ccf(sps, 6.28/100.0, (rx_rrc_taps), nfilts, nfilts/2, 1.5, 1)

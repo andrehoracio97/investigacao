@@ -72,19 +72,17 @@ class rx_eve(gr.top_block, Qt.QWidget):
         ##################################################
         self.sps = sps = 4
         self.samp_rate_array_MCR = samp_rate_array_MCR = [7500000,5000000,3750000,3000000,2500000,2000000,1500000,1000000,937500,882352,833333,714285,533333,500000,421052,400000,380952]
-        self.rate = rate = 2
-        self.polys = polys = [109, 79]
         self.nfilts = nfilts = 32
-        self.k = k = 7
         self.eb = eb = 0.22
-        self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 53
+        self.H_dec = H_dec = fec.ldpc_H_matrix('/usr/local/share/gnuradio/fec/ldpc/n_1100_k_0442_gap_24.alist', 24)
+        self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 44
         self.samp_rate = samp_rate = samp_rate_array_MCR[15]
 
         self.rx_rrc_taps = rx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts*sps, 1.0, eb, 11*sps*nfilts)
 
 
 
-        self.pld_dec = pld_dec = map( (lambda a: fec.cc_decoder.make(440, k, rate, (polys), 0, -1, fec.CC_TERMINATED, False)), range(0,8) );
+        self.pld_dec = pld_dec = map((lambda a: fec.ldpc_bit_flip_decoder.make(H_dec.get_base_sptr(), 50)), range(0,8))
         self.pld_const = pld_const = digital.constellation_rect(([0.707+0.707j, -0.707+0.707j, -0.707-0.707j, 0.707-0.707j]), ([0, 1, 2, 3]), 4, 2, 2, 1, 1).base()
         self.pld_const.gen_soft_dec_lut(8)
         self.frequencia_usrp = frequencia_usrp = 484e6
@@ -93,7 +91,7 @@ class rx_eve(gr.top_block, Qt.QWidget):
         ##################################################
         # Blocks
         ##################################################
-        self._variable_qtgui_range_0_1_range = Range(0, 73, 1, 53, 200)
+        self._variable_qtgui_range_0_1_range = Range(0, 73, 1, 44, 200)
         self._variable_qtgui_range_0_1_win = RangeWidget(self._variable_qtgui_range_0_1_range, self.set_variable_qtgui_range_0_1, 'Gain_RX', "counter_slider", float)
         self.top_grid_layout.addWidget(self._variable_qtgui_range_0_1_win, 0, 2, 1, 1)
         for r in range(0, 1):
@@ -363,22 +361,23 @@ class rx_eve(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(1, 2):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self.fec_extended_decoder_0_0_1_0_1_0 = fec.extended_decoder(decoder_obj_list=pld_dec, threading='capillary', ann=None, puncpat=puncpat, integration_period=10000)
-        self.digital_pfb_clock_sync_xxx_0 = digital.pfb_clock_sync_ccf(sps, 6.28/400.0, (rx_rrc_taps), nfilts, nfilts/2, 1.5, 2)
-        self.digital_map_bb_0_0_0_0_0 = digital.map_bb(([-1, 1]))
+        self.fec_extended_decoder_0_0_1_0_1_0_0 = fec.extended_decoder(decoder_obj_list=pld_dec, threading='capillary', ann=None, puncpat=puncpat, integration_period=10000)
+        self.digital_pfb_clock_sync_xxx_0 = digital.pfb_clock_sync_ccf(sps, 6.28/100.0, (rx_rrc_taps), nfilts, nfilts/2, 1.5, 2)
+        self.digital_map_bb_0_0_0_0_0_0 = digital.map_bb(([-1, 1]))
         self.digital_diff_decoder_bb_0 = digital.diff_decoder_bb(pld_const.arity())
         self.digital_costas_loop_cc_0_0 = digital.costas_loop_cc(6.28/100.0, pld_const.arity(), False)
         self.digital_correlate_access_code_xx_ts_0_0 = digital.correlate_access_code_bb_ts(digital.packet_utils.default_access_code,
-          1, 'packet_len')
+          2, 'packet_len')
         self.digital_constellation_decoder_cb_0 = digital.constellation_decoder_cb(pld_const)
-        self.digital_cma_equalizer_cc_0 = digital.cma_equalizer_cc(30, 1, 0.001, 2)
+        self.digital_cma_equalizer_cc_0 = digital.cma_equalizer_cc(45, 1, 0.001, 2)
         self.blocks_repack_bits_bb_0_0_0_1_0 = blocks.repack_bits_bb(1, 8, '', False, gr.GR_MSB_FIRST)
         self.blocks_repack_bits_bb_0 = blocks.repack_bits_bb(pld_const.bits_per_symbol(), 1, '', False, gr.GR_MSB_FIRST)
-        self.blocks_keep_m_in_n_0_0_2_0 = blocks.keep_m_in_n(gr.sizeof_char, 892, 896, 0)
+        self.blocks_keep_m_in_n_0_1_1_0 = blocks.keep_m_in_n(gr.sizeof_char, 440, 442, 0)
+        self.blocks_keep_m_in_n_0_0_2_0_0 = blocks.keep_m_in_n(gr.sizeof_char, 1100, 1104, 0)
         self.blocks_file_sink_0_0_0_0 = blocks.file_sink(gr.sizeof_char*1, '/home/andre/Desktop/Trasmited/depois2.txt', False)
         self.blocks_file_sink_0_0_0_0.set_unbuffered(False)
         self.blocks_char_to_float_1_0_1 = blocks.char_to_float(1, 1)
-        self.blocks_char_to_float_0_2_0_0 = blocks.char_to_float(1, 1)
+        self.blocks_char_to_float_0_2_0_0_0 = blocks.char_to_float(1, 1)
         self.blocks_char_to_float_0_0 = blocks.char_to_float(1, 1)
 
 
@@ -387,22 +386,23 @@ class rx_eve(gr.top_block, Qt.QWidget):
         # Connections
         ##################################################
         self.connect((self.blocks_char_to_float_0_0, 0), (self.qtgui_time_sink_x_2_0, 0))
-        self.connect((self.blocks_char_to_float_0_2_0_0, 0), (self.fec_extended_decoder_0_0_1_0_1_0, 0))
+        self.connect((self.blocks_char_to_float_0_2_0_0_0, 0), (self.fec_extended_decoder_0_0_1_0_1_0_0, 0))
         self.connect((self.blocks_char_to_float_1_0_1, 0), (self.qtgui_time_sink_x_0_1, 0))
-        self.connect((self.blocks_keep_m_in_n_0_0_2_0, 0), (self.digital_map_bb_0_0_0_0_0, 0))
+        self.connect((self.blocks_keep_m_in_n_0_0_2_0_0, 0), (self.digital_map_bb_0_0_0_0_0_0, 0))
+        self.connect((self.blocks_keep_m_in_n_0_1_1_0, 0), (self.blocks_repack_bits_bb_0_0_0_1_0, 0))
         self.connect((self.blocks_repack_bits_bb_0, 0), (self.digital_correlate_access_code_xx_ts_0_0, 0))
         self.connect((self.blocks_repack_bits_bb_0_0_0_1_0, 0), (self.blocks_char_to_float_1_0_1, 0))
         self.connect((self.blocks_repack_bits_bb_0_0_0_1_0, 0), (self.blocks_file_sink_0_0_0_0, 0))
         self.connect((self.digital_cma_equalizer_cc_0, 0), (self.digital_costas_loop_cc_0_0, 0))
         self.connect((self.digital_constellation_decoder_cb_0, 0), (self.digital_diff_decoder_bb_0, 0))
         self.connect((self.digital_correlate_access_code_xx_ts_0_0, 0), (self.blocks_char_to_float_0_0, 0))
-        self.connect((self.digital_correlate_access_code_xx_ts_0_0, 0), (self.blocks_keep_m_in_n_0_0_2_0, 0))
+        self.connect((self.digital_correlate_access_code_xx_ts_0_0, 0), (self.blocks_keep_m_in_n_0_0_2_0_0, 0))
         self.connect((self.digital_costas_loop_cc_0_0, 0), (self.digital_constellation_decoder_cb_0, 0))
         self.connect((self.digital_costas_loop_cc_0_0, 0), (self.qtgui_const_sink_x_0_0_0, 0))
         self.connect((self.digital_diff_decoder_bb_0, 0), (self.blocks_repack_bits_bb_0, 0))
-        self.connect((self.digital_map_bb_0_0_0_0_0, 0), (self.blocks_char_to_float_0_2_0_0, 0))
+        self.connect((self.digital_map_bb_0_0_0_0_0_0, 0), (self.blocks_char_to_float_0_2_0_0_0, 0))
         self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.digital_cma_equalizer_cc_0, 0))
-        self.connect((self.fec_extended_decoder_0_0_1_0_1_0, 0), (self.blocks_repack_bits_bb_0_0_0_1_0, 0))
+        self.connect((self.fec_extended_decoder_0_0_1_0_1_0_0, 0), (self.blocks_keep_m_in_n_0_1_1_0, 0))
         self.connect((self.uhd_usrp_source_0_0, 0), (self.digital_pfb_clock_sync_xxx_0, 0))
         self.connect((self.uhd_usrp_source_0_0, 0), (self.qtgui_const_sink_x_0_0_0_1, 0))
         self.connect((self.uhd_usrp_source_0_0, 0), (self.qtgui_time_sink_x_1_0, 0))
@@ -431,35 +431,23 @@ class rx_eve(gr.top_block, Qt.QWidget):
         self.samp_rate_array_MCR = samp_rate_array_MCR
         self.set_samp_rate(self.samp_rate_array_MCR[15])
 
-    def get_rate(self):
-        return self.rate
-
-    def set_rate(self, rate):
-        self.rate = rate
-
-    def get_polys(self):
-        return self.polys
-
-    def set_polys(self, polys):
-        self.polys = polys
-
     def get_nfilts(self):
         return self.nfilts
 
     def set_nfilts(self, nfilts):
         self.nfilts = nfilts
 
-    def get_k(self):
-        return self.k
-
-    def set_k(self, k):
-        self.k = k
-
     def get_eb(self):
         return self.eb
 
     def set_eb(self, eb):
         self.eb = eb
+
+    def get_H_dec(self):
+        return self.H_dec
+
+    def set_H_dec(self, H_dec):
+        self.H_dec = H_dec
 
     def get_variable_qtgui_range_0_1(self):
         return self.variable_qtgui_range_0_1
