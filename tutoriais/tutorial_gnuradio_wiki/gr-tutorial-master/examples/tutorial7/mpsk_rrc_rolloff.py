@@ -61,7 +61,7 @@ class mpsk_rrc_rolloff(gr.top_block, Qt.QWidget):
         ##################################################
         # Variables
         ##################################################
-        self.sps = sps = 4
+        self.sps = sps = 1
         self.samp_rate = samp_rate = 32000
         self.qpsk_const = qpsk_const = digital.constellation_rect(([-1-1j, -1+1j, 1+1j, 1-1j]), ([0, 1, 3, 2]), 4, 2, 2, 1, 1).base()
         self.excess_bw = excess_bw = 0.35

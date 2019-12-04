@@ -1,43 +1,55 @@
-Plano
-
-Transmissão img entre 2 USRP
-	Transmissão GMSK simples txt entre 2 USRP
-	Transmissão GMSK simples entre 2 USRP
-	Criação Jamming no Rx
-	Transmissão PSK mod entre 2 USRP
-	Substituicao PSK mod decrecated pela Constellation Mod em um canal model (QPSK)
-	Addição de recuperação: clock/timing recover; multipath; fase e frequencia pelo channel model
-	Substituição do channel model pelas USRP
-	Redução tempo de adaptação da USRP
-
-	Adição de preambulo para envio de imagem sem erros no header XXXXX-não necessário--> envio de video ao inicio corrige isso.
-	Eliminação do Packet encoder -- Pelos foruns dropa bits(traz consequencias para depois com o LDPC) -->tentativa falhada
-	Divisão codigo em 2 partes para execução da EVE tambem. 1TX para 2 RX.
-
-Integração Jamming no Rx
-	Criação Jamming no Rx
-	Cancelar a interferencia do Jamming no RX
-	Recuperar com sucesso o que foi enviado pelo Tx e a Eve não consegue.
-
-
-Criação Coding Scheme
-	Random Key generator:
-		Interleaver/Scrambler e Deinterleaver/Descrambler
-		MUX???? ----Concatenacao no final???------------------------------------------
-
-	Adição LDPC encoder/decoder
-	Puncturing????---------------------------------------------------------------------
-	BARKER CODE COM MUX AQUI PARA QUE????----------------------------------------------
-
-	AGC??????--------------------------------------------------------------------------
-
-
-
 METRICAS
 
+1 Introduction
+	1.1 Enquadramento
+	1.2 Objectives . . .
+	1.3 Contributions .
+	1.4 Organization .
 
+2 Background
+	2.1 Software Defined Radio . . . . . . . . . . . . . .
+		2.1.1 Available Tools . . . . . . . . . . . . . . .
+		2.1.2 GNU Radio Choice and Internal Working
+		2.1.3 Setup Specification . . . . . . . . . . . . .
+	2.2 Basic Communication Concepts . . . . . . . . . .
+	2.3 Modulation and Pulse Shaping . . . . . . . . . .
+	2.4 Signal Synchronization . . . . . . . . . . . . . . .
+		2.4.1 Clock/Timing Offset Synchronization . . .
+		2.4.2 Carrier Synchronization . . . . . . . . . .
+			Frequency Offset Synchronization . . . . .
+			Coarse Frequency Correction . . . . . . .
+			Fine Frequency Correction . . . . . . . . .
+			Phase ambiguity . . . . . . . . . . . . . .
+		2.4.3 Multipath Problem . . . . . . . . . . . . .
+	2.5 Forward Error Correction Codes . . . . . . . . .
+		2.5.1 Repetition Code . . . . . . . . . . . . . .
+		2.5.2 Low-Density Parity-Check Code . . . . .
+		2.5.3 Convolutional code . . . . . . . . . . . . .
+	2.6 Scrambling . . . . . . . . . . . . . . . . . . . . .
+		2.6.1 Multiplicative Scrambler . . . . . . . . . .
+		2.6.2 Additive Scrambler . . . . . . . . . . . . . .
 
+3 Physical Layer Security
+3.1 Modern Cryptography . . . . . . . . . .
+3.2 Wiretap Channel and Security Metrics .
+3.3 SCS-HK Security Scheme . . . . . . . .
+3.4 Jamming . . . . . . . . . . . . . . . . .
+	3.4.1 Cooperative Jamming . . . . . .
+	3.4.2 Self-Jamming and its cancellation
+		Full-Duplex and Self-Interference
+		Self-Interference Cancellation . .
+		Least Mean Square Algorithm . .
 
+4 Implementation
+	SCH-HK Implementation??
+
+	
+
+Problemas maiores:
+-Probelma de os bytes estar desfasados -> Packetize data
+-Fase de adaptação do Costas Loop e do Polyphase -> Insert Vector before stream ::::CODIGO
+-Ambiguidade de fase -> Differential Encoding
+-Transmitting 0's -> Aditive/Multiplicative Scramble ::::CODIGO
 
 
 

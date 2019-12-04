@@ -76,7 +76,6 @@ class rx_eve(gr.top_block, Qt.QWidget):
         self.eb = eb = 0.22
         self.H_dec = H_dec = fec.ldpc_H_matrix('/usr/local/share/gnuradio/fec/ldpc/n_1100_k_0442_gap_24.alist', 24)
         self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 36
-        self.variable_qtgui_range_0_0 = variable_qtgui_range_0_0 = 49
         self.samp_rate = samp_rate = samp_rate_array_MCR[13]
 
         self.rx_rrc_taps = rx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts*sps, 1.0, eb, 11*sps*nfilts)
@@ -102,15 +101,8 @@ class rx_eve(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(2, 3):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self._variable_qtgui_range_0_0_range = Range(0, 90, 1, 49, 200)
-        self._variable_qtgui_range_0_0_win = RangeWidget(self._variable_qtgui_range_0_0_range, self.set_variable_qtgui_range_0_0, 'Gain_Jamming', "counter_slider", float)
-        self.top_grid_layout.addWidget(self._variable_qtgui_range_0_0_win, 0, 3, 1, 1)
-        for r in range(0, 1):
-            self.top_grid_layout.setRowStretch(r, 1)
-        for c in range(3, 4):
-            self.top_grid_layout.setColumnStretch(c, 1)
         self.uhd_usrp_source_0_0 = uhd.usrp_source(
-        	",".join(("serial=F5EAC0", MCR)),
+        	",".join(("serial=F5EAB8", MCR)),
         	uhd.stream_args(
         		cpu_format="fc32",
         		channels=range(1),
@@ -332,7 +324,7 @@ class rx_eve(gr.top_block, Qt.QWidget):
         self.blocks_repack_bits_bb_0 = blocks.repack_bits_bb(pld_const.bits_per_symbol(), 1, '', False, gr.GR_MSB_FIRST)
         self.blocks_keep_m_in_n_0_1_1_0 = blocks.keep_m_in_n(gr.sizeof_char, 440, 442, 0)
         self.blocks_keep_m_in_n_0_0_2_0_0 = blocks.keep_m_in_n(gr.sizeof_char, 1100, 1104, 0)
-        self.blocks_file_sink_0_0_0_0_1 = blocks.file_sink(gr.sizeof_char*1, '/home/it/Desktop/Trasmited/depois.mpeg', False)
+        self.blocks_file_sink_0_0_0_0_1 = blocks.file_sink(gr.sizeof_char*1, '/home/andre/Desktop/Trasmited/jamm.txt', False)
         self.blocks_file_sink_0_0_0_0_1.set_unbuffered(False)
         self.blocks_char_to_float_1_0_1 = blocks.char_to_float(1, 1)
         self.blocks_char_to_float_0_2_0_0_0 = blocks.char_to_float(1, 1)
@@ -410,12 +402,6 @@ class rx_eve(gr.top_block, Qt.QWidget):
         self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1
         self.uhd_usrp_source_0_0.set_gain(self.variable_qtgui_range_0_1, 0)
 
-
-    def get_variable_qtgui_range_0_0(self):
-        return self.variable_qtgui_range_0_0
-
-    def set_variable_qtgui_range_0_0(self, variable_qtgui_range_0_0):
-        self.variable_qtgui_range_0_0 = variable_qtgui_range_0_0
 
     def get_samp_rate(self):
         return self.samp_rate

@@ -130,4 +130,24 @@ Semana -Inicio de Novembro
 Semana
 11- Corr_and_delay- Muitos testes, melhor valores de threshold, e num de samples. Talvez o delay tambem esteja mal--Não sei- ás vezes dá outras vezes não. Criação FG de ultimate testing com transmissao com CC, scrambler, e self-jamming cancellation, tanto em simulacao como em USRP's.
 12- Corr_and_delay- Feito com queue e com push_back() and pop(). Começar a tentar com buffer circular. Reunião.
-13- Corr_and_delay- 
+13- Corr_and_delay- Consegui Buffer circular 
+14- Corr_and_delay- Tentei converter complexos para floats, supostamente tem mais throughput. 
+15- Tese- Começar a escrever Self-Jamming.
+
+Semana
+18- Tese- Vantagens/Desvantagesn FD, SI cancellation e tipos
+19- Tese- Self-Interference Cancellation
+20- Tese- LMS -Não concluido. Começar imagens e reler.
+21- Tese- Imagens e reler.
+22- Tese- Imagens e reler.
+
+Semana
+25- Tese-Melhorar bastante o LDPC e mais imagens e melhoria de algumas. Conclusão das imagens da parte das comunicações.
+26- Tese-Continuar Imagens e Leitura. Reunião.
+27- Tese-Restruturação da parte do Physical Layer Security. Continuação das imagens e reler.
+28- Tese-Acabei Leitura e Imagens. Dia de Anos.
+29- Tese-Começar a ver como organizar inplementação.
+Semana
+2- Tese-Escrever Implementação. Reunião skype.
+3- Tese-Terminei a parte da implementação + revisão + imagens.
+3- 

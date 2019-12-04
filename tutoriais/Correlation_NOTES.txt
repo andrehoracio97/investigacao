@@ -1,0 +1,86 @@
+NOTAS FAZER CORR AND DELAY
+
+1) in top-level CMakeLists.txt:
+set(GR_REQUIRED_COMPONENTS RUNTIME) -> set(GR_REQUIRED_COMPONENTS RUNTIME FILTER) (edited) 
+you need gr::filter for this to work; this is how you add it into the mix. just a simple change & cmake handles the rest.
+
+
+2) in corr_and_delay_impl.cc
+the method corr_and_delay_impl::conjugate_and_reverse is set to return std::vector<gr_complex>, but it doesn’t return anything & doesn’t have to because it sets the d_access_code class variable from the input argument.
+so I’d change the prototype & method to be void corr_and_delay_impl::conjugate_and_reverse ...
+in both the _impl.cc and _impl.h files
+
+3)diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 95a991c..584e25d 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -136,6 +136,8 @@ endif(APPLE)
+ find_package(CppUnit)
+ find_package(Doxygen)
+ 
++find_package(Volk REQUIRED)
++
+ # Search for GNU Radio and its components and versions. Add any
+ # components required to the list of GR_REQUIRED_COMPONENTS (in all
+ # caps such as FILTER or FFT) and change the version to the minimum
+diff --git a/lib/CMakeLists.txt b/lib/CMakeLists.txt
+index 5698220..9321c34 100644
+--- a/lib/CMakeLists.txt
++++ b/lib/CMakeLists.txt
+@@ -23,7 +23,7 @@
+ ########################################################################
+ include(GrPlatform) #define LIB_SUFFIX
+ 
+-include_directories(${Boost_INCLUDE_DIR})
++include_directories(${Boost_INCLUDE_DIR} ${VOLK_INCLUDE_DIRS})
+ link_directories(${Boost_LIBRARY_DIRS})
+ 
+ list(APPEND correlate_and_delay_sources
+@@ -37,7 +37,7 @@ if(NOT correlate_and_delay_sources)
+ endif(NOT correlate_and_delay_sources)
+ 
+ add_library(gnuradio-correlate_and_delay SHARED ${correlate_and_delay_sources})
+-target_link_libraries(gnuradio-correlate_and_delay ${Boost_LIBRARIES} ${GNURADIO_ALL_LIBRARIES})
++target_link_libraries(gnuradio-correlate_and_delay ${Boost_LIBRARIES} ${GNURADIO_ALL_LIBRARIES} ${VOLK_LIBRARIES})
+ set_target_properties(gnuradio-correlate_and_delay PROPERTIES DEFINE_SYMBOL "gnuradio_correlate_and_delay_EXPORTS")
+ 
+ if(APPLE)
+
+
+
+ 4)
+
+
+ OK so let’s think about this from an algorithm / math perspective:
+
+Let’s call the samples to correlate against D[], with indices 1:100
+Let’s call the interference N[], which will with enough summation be Gaussian noise of some sort (as is what happens with any probably distribution when summed enough, IIRC)
+Let’s call the incoming samples to be processed S[]
+S[d+1:100] = D + N for some delay d
+and what we’re trying to find is d
+we’re given D and a correlation threshold at or above which we declare ‘d’ to be found
+so we start with d == 0, and do the correlation. If the result doesn’t meet the threshold then we increment d & do this again.
+what you’re getting to is: what does “do the correlation” mean / do?
+the basic math is as you note: let E=reverse_and_conjugate(D)
+let’s call the overall sent signal C = D[]:more (edited) 
+where C is the appending of D with more samples
+S = C + N
+which for the correct ‘d’, is the above S = D + N
+now if we do a dot product of E with S[d], let’s call this T[d] = E.*S[d] = E.*C + E.*N
+for any C != D : E.*C ~ 0
+E.*N ~ 0 also, all of the time, assuming that D and N are uncorrelated statistically
+for the correct ‘d’, we have T[d] = E.*D + ~0
+now each element of E will the conjugate of the same element in D
+thus we’re taking the mag squared of each element, and summing all elements
+so we pre-compute V=E.*D to get the peak value, which we use to normalize the correlation
+[or equivalently, V= sum(|D|^2) ]
+now we do A = T / V … A will be in [0,1]
+we compare A versus the threshold. If A >= threshold then we declare victory & note the delay.
+If A < threshold, then we loop to the next value of ‘d’ & try again
+doing all of these dot products is very expensive in terms of multiply-adds, so instead we use the FFT to do the heavy work
+instead of doing .* over and over, we do [something like]  IFFT(FFT(E) * FFT (S)) , which has something like sqrt of the number of multiply-adds compared with full dot products
+anyway, that’s the higher level conceptual math & logic
+too much? make any sense? need more math?!
+
+
+
