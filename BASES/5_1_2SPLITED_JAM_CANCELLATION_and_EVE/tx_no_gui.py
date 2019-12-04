@@ -75,7 +75,7 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
         # Variables
         ##################################################
         self.sps = sps = 4
-        self.samp_rate_array_MCR = samp_rate_array_MCR = [4500000]
+        self.samp_rate_array_MCR = samp_rate_array_MCR = [7500000,5000000,3750000,3000000,2500000,2000000,1500000,1000000,937500,882352,833333,714285,533333,500000,421052,400000,380952]
         self.rate = rate = 2
         self.polys = polys = [109, 79]
         self.nfilts = nfilts = 32
@@ -86,14 +86,14 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
 
         self.tx_rrc_taps = tx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts, 1.0, eb, 11*sps*nfilts)
 
-        self.samp_rate = samp_rate = samp_rate_array_MCR[0]
+        self.samp_rate = samp_rate = samp_rate_array_MCR[7]
 
 
         self.pld_enc = pld_enc = map( (lambda a: fec.cc_encoder_make(440, k, rate, (polys), 0, fec.CC_TERMINATED, False)), range(0,8) );
         self.pld_const = pld_const = digital.constellation_rect(([0.707+0.707j, -0.707+0.707j, -0.707-0.707j, 0.707-0.707j]), ([0, 1, 2, 3]), 4, 2, 2, 1, 1).base()
         self.pld_const.gen_soft_dec_lut(8)
         self.frequencia_usrp = frequencia_usrp = 484e6
-        self.MCR = MCR = "master_clock_rate=18e6"
+        self.MCR = MCR = "master_clock_rate=60e6"
 
         ##################################################
         # Blocks
@@ -338,7 +338,7 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
 
     def set_samp_rate_array_MCR(self, samp_rate_array_MCR):
         self.samp_rate_array_MCR = samp_rate_array_MCR
-        self.set_samp_rate(self.samp_rate_array_MCR[0])
+        self.set_samp_rate(self.samp_rate_array_MCR[7])
 
     def get_rate(self):
         return self.rate
