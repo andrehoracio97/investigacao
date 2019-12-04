@@ -82,8 +82,8 @@ class rx(gr.top_block, Qt.QWidget):
         self.k = k = 7
         self.eb = eb = 0.22
         self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 36
-        self.variable_qtgui_range_0_0 = variable_qtgui_range_0_0 = 49
-        self.samp_rate = samp_rate = samp_rate_array_MCR[7]
+        self.variable_qtgui_range_0_0 = variable_qtgui_range_0_0 = 50
+        self.samp_rate = samp_rate = samp_rate_array_MCR[15]
 
         self.rx_rrc_taps = rx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts*sps, 1.0, eb, 11*sps*nfilts)
 
@@ -105,7 +105,7 @@ class rx(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(2, 3):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self._variable_qtgui_range_0_0_range = Range(0, 90, 1, 49, 200)
+        self._variable_qtgui_range_0_0_range = Range(0, 90, 1, 50, 200)
         self._variable_qtgui_range_0_0_win = RangeWidget(self._variable_qtgui_range_0_0_range, self.set_variable_qtgui_range_0_0, 'Gain_Jamming', "counter_slider", float)
         self.top_grid_layout.addWidget(self._variable_qtgui_range_0_0_win, 0, 3, 1, 1)
         for r in range(0, 1):
@@ -123,7 +123,7 @@ class rx(gr.top_block, Qt.QWidget):
         self.uhd_usrp_source_0_0.set_time_now(uhd.time_spec(time.time()), uhd.ALL_MBOARDS)
         self.uhd_usrp_source_0_0.set_center_freq(frequencia_usrp, 0)
         self.uhd_usrp_source_0_0.set_gain(variable_qtgui_range_0_1, 0)
-        self.uhd_usrp_source_0_0.set_antenna('RX2', 0)
+        self.uhd_usrp_source_0_0.set_antenna('TX/RX', 0)
         self.uhd_usrp_source_0_0.set_auto_dc_offset(True, 0)
         self.uhd_usrp_source_0_0.set_auto_iq_balance(True, 0)
         self.uhd_usrp_sink_0 = uhd.usrp_sink(
@@ -133,6 +133,7 @@ class rx(gr.top_block, Qt.QWidget):
         		channels=range(1),
         	),
         )
+        self.uhd_usrp_sink_0.set_subdev_spec('A:B', 0)
         self.uhd_usrp_sink_0.set_samp_rate(samp_rate)
         self.uhd_usrp_sink_0.set_time_now(uhd.time_spec(time.time()), uhd.ALL_MBOARDS)
         self.uhd_usrp_sink_0.set_center_freq(frequencia_usrp, 0)
@@ -452,6 +453,7 @@ class rx(gr.top_block, Qt.QWidget):
         self.digital_correlate_access_code_xx_ts_0_0 = digital.correlate_access_code_bb_ts(digital.packet_utils.default_access_code,
           1, 'packet_len')
         self.digital_constellation_decoder_cb_0 = digital.constellation_decoder_cb(pld_const)
+        self.digital_cma_equalizer_cc_0 = digital.cma_equalizer_cc(30, 1, 0.001, 2)
         self.custom_corr = correlate_and_delay.corr_and_delay(200*sps, 0, 0.99, sps)
         self.blocks_repack_bits_bb_0_0_0_1_0 = blocks.repack_bits_bb(1, 8, '', False, gr.GR_MSB_FIRST)
         self.blocks_repack_bits_bb_0 = blocks.repack_bits_bb(pld_const.bits_per_symbol(), 1, '', False, gr.GR_MSB_FIRST)
@@ -488,6 +490,7 @@ class rx(gr.top_block, Qt.QWidget):
         self.connect((self.custom_corr, 0), (self.adapt_lms_filter_xx_0, 1))
         self.connect((self.custom_corr, 1), (self.adapt_lms_filter_xx_0, 0))
         self.connect((self.custom_corr, 2), (self.blocks_null_sink_1, 0))
+        self.connect((self.digital_cma_equalizer_cc_0, 0), (self.digital_costas_loop_cc_0_0, 0))
         self.connect((self.digital_constellation_decoder_cb_0, 0), (self.digital_diff_decoder_bb_0, 0))
         self.connect((self.digital_correlate_access_code_xx_ts_0_0, 0), (self.blocks_char_to_float_0_0, 0))
         self.connect((self.digital_correlate_access_code_xx_ts_0_0, 0), (self.blocks_keep_m_in_n_0_0_2_0, 0))
@@ -495,7 +498,7 @@ class rx(gr.top_block, Qt.QWidget):
         self.connect((self.digital_costas_loop_cc_0_0, 0), (self.qtgui_const_sink_x_0_0_0, 0))
         self.connect((self.digital_diff_decoder_bb_0, 0), (self.blocks_repack_bits_bb_0, 0))
         self.connect((self.digital_map_bb_0_0_0_0_0, 0), (self.blocks_char_to_float_0_2_0_0, 0))
-        self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.digital_costas_loop_cc_0_0, 0))
+        self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.digital_cma_equalizer_cc_0, 0))
         self.connect((self.fec_extended_decoder_0_0_1_0_1_0, 0), (self.blocks_repack_bits_bb_0_0_0_1_0, 0))
         self.connect((self.interp_fir_filter_xxx_1, 0), (self.blocks_multiply_const_vxx_1_0, 0))
         self.connect((self.uhd_usrp_source_0_0, 0), (self.custom_corr, 1))
@@ -524,7 +527,7 @@ class rx(gr.top_block, Qt.QWidget):
 
     def set_samp_rate_array_MCR(self, samp_rate_array_MCR):
         self.samp_rate_array_MCR = samp_rate_array_MCR
-        self.set_samp_rate(self.samp_rate_array_MCR[7])
+        self.set_samp_rate(self.samp_rate_array_MCR[15])
 
     def get_rate(self):
         return self.rate
