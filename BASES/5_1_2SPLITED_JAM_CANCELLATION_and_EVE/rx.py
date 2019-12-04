@@ -445,7 +445,7 @@ class rx(gr.top_block, Qt.QWidget):
         self.interp_fir_filter_xxx_1 = filter.interp_fir_filter_ccc(4, ([1,0,0,0]))
         self.interp_fir_filter_xxx_1.declare_sample_delay(0)
         self.fec_extended_decoder_0_0_1_0_1_0 = fec.extended_decoder(decoder_obj_list=pld_dec, threading='capillary', ann=None, puncpat=puncpat, integration_period=10000)
-        self.digital_pfb_clock_sync_xxx_0 = digital.pfb_clock_sync_ccf(sps, 6.28/400.0, (rx_rrc_taps), nfilts, nfilts/2, 1.5, 1)
+        self.digital_pfb_clock_sync_xxx_0 = digital.pfb_clock_sync_ccf(sps, 6.28/400.0, (rx_rrc_taps), nfilts, nfilts/2, 1.5, 2)
         self.digital_map_bb_0_0_0_0_0 = digital.map_bb(([-1, 1]))
         self.digital_diff_decoder_bb_0 = digital.diff_decoder_bb(pld_const.arity())
         self.digital_costas_loop_cc_0_0 = digital.costas_loop_cc(6.28/100.0, pld_const.arity(), False)
