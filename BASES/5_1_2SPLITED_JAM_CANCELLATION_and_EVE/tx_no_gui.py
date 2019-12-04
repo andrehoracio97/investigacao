@@ -86,7 +86,7 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
 
         self.tx_rrc_taps = tx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts, 1.0, eb, 11*sps*nfilts)
 
-        self.samp_rate = samp_rate = samp_rate_array_MCR[7]
+        self.samp_rate = samp_rate = samp_rate_array_MCR[15]
 
 
         self.pld_enc = pld_enc = map( (lambda a: fec.cc_encoder_make(440, k, rate, (polys), 0, fec.CC_TERMINATED, False)), range(0,8) );
@@ -338,7 +338,7 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
 
     def set_samp_rate_array_MCR(self, samp_rate_array_MCR):
         self.samp_rate_array_MCR = samp_rate_array_MCR
-        self.set_samp_rate(self.samp_rate_array_MCR[7])
+        self.set_samp_rate(self.samp_rate_array_MCR[15])
 
     def get_rate(self):
         return self.rate

@@ -97,7 +97,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -124,7 +124,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -537,7 +537,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -553,7 +553,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>samp_rate_array_MCR[2]</value>
+      <value>samp_rate_array_MCR[15]</value>
     </param>
   </block>
   <block>
@@ -564,7 +564,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -591,7 +591,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -618,7 +618,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -4255,7 +4255,7 @@
     </param>
     <param>
       <key>ant0</key>
-      <value>RX2</value>
+      <value>TX/RX</value>
     </param>
     <param>
       <key>bw0</key>
@@ -5419,7 +5419,7 @@
     </param>
     <param>
       <key>dev_addr</key>
-      <value>"serial=F5EAB8"</value>
+      <value>"serial=F5EB09"</value>
     </param>
     <param>
       <key>dev_args</key>
@@ -5579,7 +5579,7 @@
     </param>
     <param>
       <key>sync</key>
-      <value>pc_clock</value>
+      <value>sync</value>
     </param>
     <param>
       <key>otw</key>
