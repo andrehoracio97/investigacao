@@ -345,7 +345,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -388,7 +388,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1524,61 +1524,6 @@
     </param>
   </block>
   <block>
-    <key>blocks_stream_to_tagged_stream</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>2</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(560, 476)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_stream_to_tagged_stream_0_0_0</value>
-    </param>
-    <param>
-      <key>len_tag_key</key>
-      <value>"packet_len"</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>packet_len</key>
-      <value>992</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>byte</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-  </block>
-  <block>
     <key>blocks_vector_source_x</key>
     <param>
       <key>alias</key>
@@ -1737,49 +1682,6 @@
     <param>
       <key>modulus</key>
       <value>pld_const.arity()</value>
-    </param>
-  </block>
-  <block>
-    <key>digital_map_bb</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>2</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(552, 620)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>digital_map_bb_1_0</value>
-    </param>
-    <param>
-      <key>map</key>
-      <value>pld_const.pre_diff_code()</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
     </param>
   </block>
   <block>
@@ -4354,12 +4256,6 @@
   </connection>
   <connection>
     <source_block_id>blocks_stream_mux_0_1_0</source_block_id>
-    <sink_block_id>blocks_stream_to_tagged_stream_0_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_stream_to_tagged_stream_0_0_0</source_block_id>
     <sink_block_id>blocks_repack_bits_bb_1_0_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
@@ -4383,12 +4279,6 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>digital_map_bb_1_0</source_block_id>
-    <sink_block_id>digital_diff_encoder_bb_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
     <source_block_id>digital_scrambler_bb_0</source_block_id>
     <sink_block_id>fec_extended_encoder_0</sink_block_id>
     <source_key>0</source_key>
@@ -4402,7 +4292,7 @@
   </connection>
   <connection>
     <source_block_id>insert_vec_cpp_new_vec_0</source_block_id>
-    <sink_block_id>digital_map_bb_1_0</sink_block_id>
+    <sink_block_id>digital_diff_encoder_bb_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
