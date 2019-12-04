@@ -79,7 +79,7 @@ class rx(gr.top_block, Qt.QWidget):
         self.nfilts = nfilts = 32
         self.eb = eb = 0.22
         self.H_dec = H_dec = fec.ldpc_H_matrix('/usr/local/share/gnuradio/fec/ldpc/n_1100_k_0442_gap_24.alist', 24)
-        self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 30
+        self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 26
         self.variable_qtgui_range_0_0 = variable_qtgui_range_0_0 = 50
         self.variable_qtgui_check_box_0 = variable_qtgui_check_box_0 = True
         self.samp_rate = samp_rate = samp_rate_array_MCR[15]
@@ -97,7 +97,7 @@ class rx(gr.top_block, Qt.QWidget):
         ##################################################
         # Blocks
         ##################################################
-        self._variable_qtgui_range_0_1_range = Range(0, 73, 1, 30, 200)
+        self._variable_qtgui_range_0_1_range = Range(0, 73, 1, 26, 200)
         self._variable_qtgui_range_0_1_win = RangeWidget(self._variable_qtgui_range_0_1_range, self.set_variable_qtgui_range_0_1, 'Gain_RX', "counter_slider", float)
         self.top_grid_layout.addWidget(self._variable_qtgui_range_0_1_win, 0, 2, 1, 1)
         for r in range(0, 1):
@@ -456,7 +456,7 @@ class rx(gr.top_block, Qt.QWidget):
         self.interp_fir_filter_xxx_1 = filter.interp_fir_filter_ccc(4, ([1,0,0,0]))
         self.interp_fir_filter_xxx_1.declare_sample_delay(0)
         self.fec_extended_decoder_0_0_1_0_1_0_0 = fec.extended_decoder(decoder_obj_list=pld_dec, threading='capillary', ann=None, puncpat=puncpat, integration_period=10000)
-        self.digital_pfb_clock_sync_xxx_0 = digital.pfb_clock_sync_ccf(sps, 6.28/400.0, (rx_rrc_taps), nfilts, nfilts/2, 1.5, 2)
+        self.digital_pfb_clock_sync_xxx_0 = digital.pfb_clock_sync_ccf(sps, 6.28/100.0, (rx_rrc_taps), nfilts, nfilts/2, 1.5, 2)
         self.digital_map_bb_0_0_0_0_0_0 = digital.map_bb(([-1, 1]))
         self.digital_diff_decoder_bb_0 = digital.diff_decoder_bb(pld_const.arity())
         self.digital_costas_loop_cc_0_0 = digital.costas_loop_cc(6.28/100.0, pld_const.arity(), False)
@@ -479,8 +479,8 @@ class rx(gr.top_block, Qt.QWidget):
         self.blocks_char_to_float_1_0_1 = blocks.char_to_float(1, 1)
         self.blocks_char_to_float_0_2_0_0_0 = blocks.char_to_float(1, 1)
         self.blocks_char_to_float_0_0 = blocks.char_to_float(1, 1)
-        self.analog_noise_source_x_0_0 = analog.noise_source_c(analog.GR_GAUSSIAN, 1, 0)
-        self.adapt_lms_filter_xx_0 = adapt.lms_filter_cc(True, 32, 0.0001, 0, 1, True, False, False)
+        self.analog_noise_source_x_0_0 = analog.noise_source_c(analog.GR_GAUSSIAN, 1, -5)
+        self.adapt_lms_filter_xx_0 = adapt.lms_filter_cc(True, 32, 0.001, 0, 1, True, False, False)
 
 
 
