@@ -151,3 +151,4 @@ Semana
 2- Tese-Escrever Implementação. Reunião skype.
 3- Tese-Terminei a parte da implementação + revisão + imagens.
 3- Criar codigo Alice, Bob, Eve com Jamming e Cancelação em CC. Criar codigo em LDPC. Expriencia USRP.
+4-Mais Testes na USRP. ADD scrabmeler. Antena Tx á frende da Rx no Bob será que melhora???
