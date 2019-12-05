@@ -707,7 +707,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(64, 276)</value>
+      <value>(1304, 532)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -1197,7 +1197,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>file</key>
@@ -1205,7 +1205,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(0, 284)</value>
+      <value>(0, 364)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1257,6 +1257,65 @@
     <param>
       <key>_enabled</key>
       <value>0</value>
+    </param>
+    <param>
+      <key>file</key>
+      <value>/home/andre/Desktop/Files_To_Transmit/wall.jpg</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(0, 292)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_file_source_0_0_1_0_0_0_0_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>byte</value>
+    </param>
+    <param>
+      <key>repeat</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_file_source</key>
+    <param>
+      <key>begin_tag</key>
+      <value>pmt.PMT_NIL</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
     </param>
     <param>
       <key>file</key>
@@ -3536,7 +3595,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>frame_bits</key>
@@ -3544,7 +3603,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(408, 228)</value>
+      <value>(448, 348)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3591,7 +3650,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>frame_bit</key>
@@ -3599,7 +3658,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(408, 340)</value>
+      <value>(448, 236)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -4646,6 +4705,12 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
+    <source_block_id>blocks_file_source_0_0_1_0_0_0_0_0</source_block_id>
+    <sink_block_id>blocks_repack_bits_bb_1_0_0_1</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
     <source_block_id>blocks_file_source_0_0_1_0_1</source_block_id>
     <sink_block_id>blocks_char_to_float_1_0_0</sink_block_id>
     <source_key>0</source_key>
@@ -4750,6 +4815,12 @@
   <connection>
     <source_block_id>rx_mod_payload</source_block_id>
     <sink_block_id>pfb_arb_resampler_xxx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>scrambler_cpp_custom_scrambler_0</source_block_id>
+    <sink_block_id>blocks_stream_mux_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
