@@ -81,7 +81,7 @@ class rx(gr.top_block, Qt.QWidget):
         self.nfilts = nfilts = 32
         self.k = k = 7
         self.eb = eb = 0.22
-        self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 36
+        self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 27
         self.variable_qtgui_range_0_0 = variable_qtgui_range_0_0 = 50
         self.samp_rate = samp_rate = samp_rate_array_MCR[15]
 
@@ -98,7 +98,7 @@ class rx(gr.top_block, Qt.QWidget):
         ##################################################
         # Blocks
         ##################################################
-        self._variable_qtgui_range_0_1_range = Range(0, 73, 1, 36, 200)
+        self._variable_qtgui_range_0_1_range = Range(0, 73, 1, 27, 200)
         self._variable_qtgui_range_0_1_win = RangeWidget(self._variable_qtgui_range_0_1_range, self.set_variable_qtgui_range_0_1, 'Gain_RX', "counter_slider", float)
         self.top_grid_layout.addWidget(self._variable_qtgui_range_0_1_win, 0, 2, 1, 1)
         for r in range(0, 1):

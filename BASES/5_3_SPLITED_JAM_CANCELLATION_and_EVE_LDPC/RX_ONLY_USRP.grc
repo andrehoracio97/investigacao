@@ -649,7 +649,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>43</value>
+      <value>52</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -712,7 +712,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>31</value>
+      <value>29</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -964,7 +964,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1207,11 +1207,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>file</key>
-      <value>/home/it/Desktop/Trasmited/depois.txt</value>
+      <value>/home/it/Desktop/Trasmited/depois.mpeg</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1309,15 +1309,15 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>file</key>
-      <value>/home/it/Desktop/Trasmited/depois.mpeg</value>
+      <value>/home/it/Desktop/Trasmited/depois.jpg</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1588, 1142)</value>
+      <value>(1440, 1434)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1898,7 +1898,7 @@
     </param>
     <param>
       <key>mu</key>
-      <value>0.001</value>
+      <value>0.01</value>
     </param>
     <param>
       <key>id</key>
@@ -1941,11 +1941,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>2</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1260, 522)</value>
+      <value>(1224, 546)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2075,7 +2075,7 @@
     </param>
     <param>
       <key>threshold</key>
-      <value>2</value>
+      <value>3</value>
     </param>
   </block>
   <block>
@@ -2098,7 +2098,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1432, 464)</value>
+      <value>(1516, 460)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2255,7 +2255,7 @@
     </param>
     <param>
       <key>mu</key>
-      <value>0.010</value>
+      <value>0.01</value>
     </param>
     <param>
       <key>id</key>
@@ -2377,7 +2377,7 @@
     </param>
     <param>
       <key>osps</key>
-      <value>2</value>
+      <value>1</value>
     </param>
     <param>
       <key>sps</key>
@@ -2581,11 +2581,11 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1664, 444)</value>
+      <value>(1796, 450)</value>
     </param>
     <param>
       <key>gui_hint</key>
-      <value>2,1</value>
+      <value>2,2</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2932,7 +2932,7 @@
     </param>
     <param>
       <key>gui_hint</key>
-      <value>1,3</value>
+      <value>2,1</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3885,7 +3885,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>fftsize</key>
@@ -3897,7 +3897,7 @@
     </param>
     <param>
       <key>gui_hint</key>
-      <value>20,20</value>
+      <value>1,2</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -4850,7 +4850,7 @@
     </param>
     <param>
       <key>gui_hint</key>
-      <value>1,2</value>
+      <value>1,3</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -5576,11 +5576,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(256, 242)</value>
+      <value>(448, 454)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -6677,7 +6677,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -10057,7 +10057,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1664, 524)</value>
+      <value>(1792, 516)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -10285,12 +10285,6 @@
   <connection>
     <source_block_id>blocks_skiphead_0</source_block_id>
     <sink_block_id>blocks_file_sink_0_0_0_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_skiphead_0_0</source_block_id>
-    <sink_block_id>blocks_file_sink_0_0_0_0_1</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
