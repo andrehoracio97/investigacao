@@ -55,12 +55,14 @@ namespace gr {
 
     bool print_once;
 
-    std::deque<gr_complex> fifo;
-    //std::vector<gr_complex> fifo;
+    //std::deque<gr_complex> fifo;
+    std::vector<gr_complex> fifo;
     //gr_complex* last_sample_fifo;
     
+
     gr::buffer_sptr d_writer; // buffer used between work and callback
     gr::buffer_reader_sptr d_reader;
+
 
 
 
