@@ -602,7 +602,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>47</value>
+      <value>42</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -1344,7 +1344,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>2</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1725,7 +1725,7 @@
     </param>
     <param>
       <key>osps</key>
-      <value>2</value>
+      <value>1</value>
     </param>
     <param>
       <key>sps</key>
