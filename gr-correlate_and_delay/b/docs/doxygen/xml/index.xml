@@ -19,10 +19,11 @@
     <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1ac0231d9afea5679c4b0d2ff555825714" kind="variable"><name>d_sps</name></member>
     <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1a127d0e8a6c067720becb811891b7346d" kind="variable"><name>delay_needed</name></member>
     <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1a2d84b399ac3ef96299d284f5fdd93d4e" kind="variable"><name>print_once</name></member>
-    <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1af82026b48f9ce02072e7fd0f752c62ce" kind="variable"><name>fifo</name></member>
+    <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1a0d05ff884d168c449b29f234b59bfece" kind="variable"><name>fifo</name></member>
     <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1a2dd5f0260ba67b8777cb065b3fb271ad" kind="variable"><name>d_writer</name></member>
     <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1a7dabfb1d4364cbf05198179a14a61360" kind="variable"><name>d_reader</name></member>
     <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1acbef99b28ea6a68fe1b6b76a3b6ce5d0" kind="variable"><name>d_src_id</name></member>
+    <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1aff34ef06eae701239dea0bd76adde739" kind="variable"><name>fifo</name></member>
     <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1acc2fad5c1ead3ea534e66c059145e39b" kind="function"><name>corr_and_delay_impl</name></member>
     <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1a8c34d842408dd31f97675ac0e35c0e70" kind="function"><name>~corr_and_delay_impl</name></member>
     <member refid="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl_1a7470f9df910bbe8b82ee2488da73f502" kind="function"><name>forecast</name></member>
