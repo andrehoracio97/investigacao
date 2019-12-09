@@ -881,7 +881,7 @@
     </param>
     <param>
       <key>ntaps</key>
-      <value>5*sps*nfilts</value>
+      <value>11*sps*nfilts</value>
     </param>
     <param>
       <key>samp_rate</key>

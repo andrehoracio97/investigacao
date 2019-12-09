@@ -33,6 +33,7 @@ from optparse import OptionParser
 import insert_vec_cpp
 import pmt
 import random
+import scrambler_cpp
 import sip
 import sys
 import time
@@ -76,23 +77,22 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
         ##################################################
         self.sps = sps = 4
         self.samp_rate_array_MCR = samp_rate_array_MCR = [7500000,5000000,3750000,3000000,2500000,2000000,1500000,1000000,937500,882352,833333,714285,533333,500000,421052,400000,380952]
+        self.rate = rate = 2
+        self.polys = polys = [109, 79]
         self.nfilts = nfilts = 32
+        self.k = k = 7
         self.eb = eb = 0.22
-        self.H = H = fec.ldpc_H_matrix('/usr/local/share/gnuradio/fec/ldpc/n_1100_k_0442_gap_24.alist', 24)
         self.vector = vector = [int(random.random()*4) for i in range(49600)]
         self.variable_qtgui_range_0_0 = variable_qtgui_range_0_0 = 50
 
         self.tx_rrc_taps = tx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts, 1.0, eb, 11*sps*nfilts)
 
-        self.samp_rate = samp_rate = samp_rate_array_MCR[2]
-        self.rate = rate = 2
-        self.polys = polys = [109, 79]
+        self.samp_rate = samp_rate = samp_rate_array_MCR[3]
 
 
-        self.pld_enc = pld_enc = map((lambda a: fec.ldpc_par_mtrx_encoder_make_H(H)), range(0,8))
+        self.pld_enc = pld_enc = map( (lambda a: fec.cc_encoder_make(440, k, rate, (polys), 0, fec.CC_TERMINATED, False)), range(0,8) );
         self.pld_const = pld_const = digital.constellation_rect(([0.707+0.707j, -0.707+0.707j, -0.707-0.707j, 0.707-0.707j]), ([0, 1, 2, 3]), 4, 2, 2, 1, 1).base()
         self.pld_const.gen_soft_dec_lut(8)
-        self.k = k = 7
         self.frequencia_usrp = frequencia_usrp = 484e6
         self.MCR = MCR = "master_clock_rate=60e6"
 
@@ -118,6 +118,7 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
         self.uhd_usrp_sink_0_0.set_center_freq(frequencia_usrp, 0)
         self.uhd_usrp_sink_0_0.set_gain(variable_qtgui_range_0_0, 0)
         self.uhd_usrp_sink_0_0.set_antenna('TX/RX', 0)
+        self.scrambler_cpp_custom_scrambler_0 = scrambler_cpp.custom_scrambler(0x8A, 0x7F, 7, 440-32)
         self.qtgui_time_sink_x_1 = qtgui.time_sink_c(
         	1024, #size
         	samp_rate, #samp_rate
@@ -281,44 +282,41 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
         self.digital_diff_encoder_bb_0 = digital.diff_encoder_bb(pld_const.arity())
         self.digital_chunks_to_symbols_xx_0_0 = digital.chunks_to_symbols_bc((pld_const.points()), 1)
         self.blocks_vector_source_x_0_0_0 = blocks.vector_source_b([0], True, 1, [])
-        self.blocks_vector_source_x_0_0 = blocks.vector_source_b([0], True, 1, [])
-        self.blocks_stream_mux_0_1_0_0 = blocks.stream_mux(gr.sizeof_char*1, (96, 1104))
-        self.blocks_stream_mux_0_0_0 = blocks.stream_mux(gr.sizeof_char*1, (1100, 4))
-        self.blocks_stream_mux_0_0 = blocks.stream_mux(gr.sizeof_char*1, (440, 2))
+        self.blocks_stream_mux_0_1_0 = blocks.stream_mux(gr.sizeof_char*1, (96, 896))
+        self.blocks_stream_mux_0_0 = blocks.stream_mux(gr.sizeof_char*1, (892, 4))
         self.blocks_repack_bits_bb_1_0_0_1 = blocks.repack_bits_bb(8, 1, '', False, gr.GR_MSB_FIRST)
-        self.blocks_repack_bits_bb_1_0_0_0_0 = blocks.repack_bits_bb(1, pld_const.bits_per_symbol(), '', False, gr.GR_MSB_FIRST)
+        self.blocks_repack_bits_bb_1_0_0_0 = blocks.repack_bits_bb(1, pld_const.bits_per_symbol(), '', False, gr.GR_MSB_FIRST)
         self.blocks_multiply_const_vxx_1 = blocks.multiply_const_vcc((0.7, ))
-        self.blocks_file_source_0_0_1_0 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Desktop/Files_To_Transmit/trasmit_10_mb.txt', False)
-        self.blocks_file_source_0_0_1_0.set_begin_tag(pmt.PMT_NIL)
+        self.blocks_file_source_0_0_1_0_1 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Desktop/Files_To_Transmit/book.txt', False)
+        self.blocks_file_source_0_0_1_0_1.set_begin_tag(pmt.PMT_NIL)
         self.blocks_delay_0 = blocks.delay(gr.sizeof_gr_complex*1, 500000)
         self.blocks_char_to_float_1_0_0 = blocks.char_to_float(1, 1)
-        self.acode_1104_0 = blocks.vector_source_b([0x1, 0x0, 0x1, 0x0, 0x1, 0x1, 0x0, 0x0, 0x1, 0x1, 0x0, 0x1, 0x1, 0x1, 0x0, 0x1, 0x1, 0x0, 0x1, 0x0, 0x0, 0x1, 0x0, 0x0, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x1, 0x0, 0x1, 0x1, 0x1, 0x1, 0x0, 0x0, 0x1, 0x0, 0x1, 0x0, 0x0, 0x0, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0, 0x1, 0x0, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0, 0x1, 0x0, 0x1, 0x0], True, 1, [])
+        self.acode_1104 = blocks.vector_source_b([0x1, 0x0, 0x1, 0x0, 0x1, 0x1, 0x0, 0x0, 0x1, 0x1, 0x0, 0x1, 0x1, 0x1, 0x0, 0x1, 0x1, 0x0, 0x1, 0x0, 0x0, 0x1, 0x0, 0x0, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x1, 0x0, 0x1, 0x1, 0x1, 0x1, 0x0, 0x0, 0x1, 0x0, 0x1, 0x0, 0x0, 0x0, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0], True, 1, [])
 
 
 
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.acode_1104_0, 0), (self.blocks_stream_mux_0_1_0_0, 0))
+        self.connect((self.acode_1104, 0), (self.blocks_stream_mux_0_1_0, 0))
         self.connect((self.blocks_char_to_float_1_0_0, 0), (self.qtgui_time_sink_x_0_0, 0))
         self.connect((self.blocks_delay_0, 0), (self.qtgui_const_sink_x_0_0_0_0, 0))
         self.connect((self.blocks_delay_0, 0), (self.qtgui_time_sink_x_1, 0))
         self.connect((self.blocks_delay_0, 0), (self.uhd_usrp_sink_0_0, 0))
-        self.connect((self.blocks_file_source_0_0_1_0, 0), (self.blocks_char_to_float_1_0_0, 0))
-        self.connect((self.blocks_file_source_0_0_1_0, 0), (self.blocks_repack_bits_bb_1_0_0_1, 0))
+        self.connect((self.blocks_file_source_0_0_1_0_1, 0), (self.blocks_char_to_float_1_0_0, 0))
+        self.connect((self.blocks_file_source_0_0_1_0_1, 0), (self.blocks_repack_bits_bb_1_0_0_1, 0))
         self.connect((self.blocks_multiply_const_vxx_1, 0), (self.blocks_delay_0, 0))
-        self.connect((self.blocks_repack_bits_bb_1_0_0_0_0, 0), (self.insert_vec_cpp_new_vec_0, 0))
-        self.connect((self.blocks_repack_bits_bb_1_0_0_1, 0), (self.blocks_stream_mux_0_0, 0))
-        self.connect((self.blocks_stream_mux_0_0, 0), (self.fec_extended_encoder_0, 0))
-        self.connect((self.blocks_stream_mux_0_0_0, 0), (self.blocks_stream_mux_0_1_0_0, 1))
-        self.connect((self.blocks_stream_mux_0_1_0_0, 0), (self.blocks_repack_bits_bb_1_0_0_0_0, 0))
-        self.connect((self.blocks_vector_source_x_0_0, 0), (self.blocks_stream_mux_0_0, 1))
-        self.connect((self.blocks_vector_source_x_0_0_0, 0), (self.blocks_stream_mux_0_0_0, 1))
+        self.connect((self.blocks_repack_bits_bb_1_0_0_0, 0), (self.insert_vec_cpp_new_vec_0, 0))
+        self.connect((self.blocks_repack_bits_bb_1_0_0_1, 0), (self.scrambler_cpp_custom_scrambler_0, 0))
+        self.connect((self.blocks_stream_mux_0_0, 0), (self.blocks_stream_mux_0_1_0, 1))
+        self.connect((self.blocks_stream_mux_0_1_0, 0), (self.blocks_repack_bits_bb_1_0_0_0, 0))
+        self.connect((self.blocks_vector_source_x_0_0_0, 0), (self.blocks_stream_mux_0_0, 1))
         self.connect((self.digital_chunks_to_symbols_xx_0_0, 0), (self.pfb_arb_resampler_xxx_0, 0))
         self.connect((self.digital_diff_encoder_bb_0, 0), (self.digital_chunks_to_symbols_xx_0_0, 0))
-        self.connect((self.fec_extended_encoder_0, 0), (self.blocks_stream_mux_0_0_0, 0))
+        self.connect((self.fec_extended_encoder_0, 0), (self.blocks_stream_mux_0_0, 0))
         self.connect((self.insert_vec_cpp_new_vec_0, 0), (self.digital_diff_encoder_bb_0, 0))
         self.connect((self.pfb_arb_resampler_xxx_0, 0), (self.blocks_multiply_const_vxx_1, 0))
+        self.connect((self.scrambler_cpp_custom_scrambler_0, 0), (self.fec_extended_encoder_0, 0))
 
     def closeEvent(self, event):
         self.settings = Qt.QSettings("GNU Radio", "tx_no_gui")
@@ -343,7 +341,19 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
 
     def set_samp_rate_array_MCR(self, samp_rate_array_MCR):
         self.samp_rate_array_MCR = samp_rate_array_MCR
-        self.set_samp_rate(self.samp_rate_array_MCR[2])
+        self.set_samp_rate(self.samp_rate_array_MCR[3])
+
+    def get_rate(self):
+        return self.rate
+
+    def set_rate(self, rate):
+        self.rate = rate
+
+    def get_polys(self):
+        return self.polys
+
+    def set_polys(self, polys):
+        self.polys = polys
 
     def get_nfilts(self):
         return self.nfilts
@@ -351,17 +361,17 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
     def set_nfilts(self, nfilts):
         self.nfilts = nfilts
 
+    def get_k(self):
+        return self.k
+
+    def set_k(self, k):
+        self.k = k
+
     def get_eb(self):
         return self.eb
 
     def set_eb(self, eb):
         self.eb = eb
-
-    def get_H(self):
-        return self.H
-
-    def set_H(self, H):
-        self.H = H
 
     def get_vector(self):
         return self.vector
@@ -393,18 +403,6 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
         self.qtgui_time_sink_x_1.set_samp_rate(self.samp_rate)
         self.qtgui_time_sink_x_0_0.set_samp_rate(self.samp_rate)
 
-    def get_rate(self):
-        return self.rate
-
-    def set_rate(self, rate):
-        self.rate = rate
-
-    def get_polys(self):
-        return self.polys
-
-    def set_polys(self, polys):
-        self.polys = polys
-
     def get_pld_enc(self):
         return self.pld_enc
 
@@ -416,12 +414,6 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
 
     def set_pld_const(self, pld_const):
         self.pld_const = pld_const
-
-    def get_k(self):
-        return self.k
-
-    def set_k(self, k):
-        self.k = k
 
     def get_frequencia_usrp(self):
         return self.frequencia_usrp
