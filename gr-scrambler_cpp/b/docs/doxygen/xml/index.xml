@@ -1,5 +1,42 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.13">
+  <compound refid="classgr_1_1scrambler__cpp_1_1additive__descrambler" kind="class"><name>gr::scrambler_cpp::additive_descrambler</name>
+    <member refid="classgr_1_1scrambler__cpp_1_1additive__descrambler_1a78746813489be0b384723c6b27ca0407" kind="typedef"><name>sptr</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1additive__descrambler_1ad8e20a254a9d8ae6cc8386a74c768789" kind="function"><name>make</name></member>
+  </compound>
+  <compound refid="classgr_1_1scrambler__cpp_1_1additive__descrambler__impl" kind="class"><name>gr::scrambler_cpp::additive_descrambler_impl</name>
+    <member refid="classgr_1_1scrambler__cpp_1_1additive__descrambler__impl_1a74fb645f9c8eada6c068d07da948d256" kind="variable"><name>d_lfsr</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1additive__descrambler__impl_1a4cdfe669f0b6243b8162cb8d5f340ff8" kind="variable"><name>n_frame</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1additive__descrambler__impl_1a86ee8d8688cd00e5d1407db70757a241" kind="variable"><name>track_n_bits_seed</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1additive__descrambler__impl_1ab3cca5b771d220a82114c10389a3bca1" kind="variable"><name>new_seed</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1additive__descrambler__impl_1a8a3411e676832b69c109571b43565001" kind="variable"><name>remaining_bits</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1additive__descrambler__impl_1afc63c81805f9a820a09c7af2b24cc71c" kind="variable"><name>max_n_produce</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1additive__descrambler__impl_1af20e76078007a9ef8631d04bd1b8d352" kind="variable"><name>time_to_get</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1additive__descrambler__impl_1a6231c98eb600ce5e5b96d8622ab067bc" kind="function"><name>additive_descrambler_impl</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1additive__descrambler__impl_1a8985dc489f082c02b546ca01bdb91858" kind="function"><name>~additive_descrambler_impl</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1additive__descrambler__impl_1ab9dda68235d1df4f3d42a1b0a498b836" kind="function"><name>forecast</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1additive__descrambler__impl_1a5aefe8e59e98d3a7b4bf81a6698aa474" kind="function"><name>general_work</name></member>
+  </compound>
+  <compound refid="classgr_1_1scrambler__cpp_1_1additive__scrambler" kind="class"><name>gr::scrambler_cpp::additive_scrambler</name>
+    <member refid="classgr_1_1scrambler__cpp_1_1additive__scrambler_1a66de3c083f80a7e8c88b38767fe8d806" kind="typedef"><name>sptr</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1additive__scrambler_1a03f1846eae526dcb5ec7271b50e6f14e" kind="function"><name>make</name></member>
+  </compound>
+  <compound refid="classgr_1_1scrambler__cpp_1_1additive__scrambler__impl" kind="class"><name>gr::scrambler_cpp::additive_scrambler_impl</name>
+    <member refid="classgr_1_1scrambler__cpp_1_1additive__scrambler__impl_1a828da5ec393d72ef5d3952b6c421a46e" kind="variable"><name>d_lfsr</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1additive__scrambler__impl_1aa2edfd3670e3a60a996fa45f16387992" kind="variable"><name>n_frame</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1additive__scrambler__impl_1a547c3df9170eda6d1210430cb4361eba" kind="variable"><name>track_n_bits_seed</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1additive__scrambler__impl_1a3333a0571bf0494579d652125b748cfc" kind="variable"><name>new_seed</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1additive__scrambler__impl_1ae640ceab3715705b6a8acea73ba0db69" kind="variable"><name>time_to_create</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1additive__scrambler__impl_1a4a04c9b4c591046c21866dded918a85f" kind="variable"><name>remaining_bits</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1additive__scrambler__impl_1a1f003ff99b47e82253faac07db076832" kind="variable"><name>max_n_produce</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1additive__scrambler__impl_1a1d4d86c8a6c46a7fbb8db0b41f5c029d" kind="variable"><name>flag_last</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1additive__scrambler__impl_1a1ce86666a5e52d3ae346a78793f4b121" kind="variable"><name>track_n_bits_added</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1additive__scrambler__impl_1ab5392da41dbfb8bede195282ed74c9f3" kind="variable"><name>mask</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1additive__scrambler__impl_1abae6bf28f4091f93232f1f22b4faa043" kind="function"><name>additive_scrambler_impl</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1additive__scrambler__impl_1ae554ee4e7d9100492cc51d126b03f7c6" kind="function"><name>~additive_scrambler_impl</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1additive__scrambler__impl_1a307de067353ac50d4300388d1b42b2b1" kind="function"><name>forecast</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1additive__scrambler__impl_1adef3b77c568ac755cc04e7f668ee49d0" kind="function"><name>general_work</name></member>
+  </compound>
   <compound refid="classgr_1_1scrambler__cpp_1_1custom__descrambler" kind="class"><name>gr::scrambler_cpp::custom_descrambler</name>
     <member refid="classgr_1_1scrambler__cpp_1_1custom__descrambler_1ab683206796d601ab03c4fc78befca6e8" kind="typedef"><name>sptr</name></member>
     <member refid="classgr_1_1scrambler__cpp_1_1custom__descrambler_1a8a9a24cf69396ee08f33ce0b03914424" kind="function"><name>make</name></member>
@@ -42,6 +79,14 @@
   <compound refid="namespacegr_1_1scrambler__cpp" kind="namespace"><name>gr::scrambler_cpp</name>
   </compound>
   <compound refid="namespacestd" kind="namespace"><name>std</name>
+  </compound>
+  <compound refid="additive__descrambler_8h" kind="file"><name>additive_descrambler.h</name>
+  </compound>
+  <compound refid="additive__descrambler__impl_8h" kind="file"><name>additive_descrambler_impl.h</name>
+  </compound>
+  <compound refid="additive__scrambler_8h" kind="file"><name>additive_scrambler.h</name>
+  </compound>
+  <compound refid="additive__scrambler__impl_8h" kind="file"><name>additive_scrambler_impl.h</name>
   </compound>
   <compound refid="api_8h" kind="file"><name>api.h</name>
     <member refid="api_8h_1a75f5bfb8209fedbd5cb30431f5955a5f" kind="define"><name>SCRAMBLER_CPP_API</name></member>

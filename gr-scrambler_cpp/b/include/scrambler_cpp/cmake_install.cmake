@@ -42,6 +42,8 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
     "/home/it/investigacao/gr-scrambler_cpp/include/scrambler_cpp/api.h"
     "/home/it/investigacao/gr-scrambler_cpp/include/scrambler_cpp/custom_scrambler.h"
     "/home/it/investigacao/gr-scrambler_cpp/include/scrambler_cpp/custom_descrambler.h"
+    "/home/it/investigacao/gr-scrambler_cpp/include/scrambler_cpp/additive_scrambler.h"
+    "/home/it/investigacao/gr-scrambler_cpp/include/scrambler_cpp/additive_descrambler.h"
     )
 endif()
 

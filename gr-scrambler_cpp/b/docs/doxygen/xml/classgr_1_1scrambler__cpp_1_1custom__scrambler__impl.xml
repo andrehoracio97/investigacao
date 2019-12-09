@@ -235,36 +235,36 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="17">
+      <node id="39">
         <label>gr::scrambler_cpp::custom_scrambler</label>
         <link refid="classgr_1_1scrambler__cpp_1_1custom__scrambler"/>
-        <childnode refid="18" relation="public-inheritance">
+        <childnode refid="40" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="16">
+      <node id="38">
         <label>gr::scrambler_cpp::custom_scrambler_impl</label>
         <link refid="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl"/>
-        <childnode refid="17" relation="public-inheritance">
+        <childnode refid="39" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="18">
+      <node id="40">
         <label>gr::block</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="20">
+      <node id="42">
         <label>gr::scrambler_cpp::custom_scrambler</label>
         <link refid="classgr_1_1scrambler__cpp_1_1custom__scrambler"/>
-        <childnode refid="21" relation="public-inheritance">
+        <childnode refid="43" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="19">
+      <node id="41">
         <label>gr::scrambler_cpp::custom_scrambler_impl</label>
         <link refid="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl"/>
-        <childnode refid="20" relation="public-inheritance">
+        <childnode refid="42" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="21">
+      <node id="43">
         <label>gr::block</label>
       </node>
     </collaborationgraph>

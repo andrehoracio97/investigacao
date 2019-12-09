@@ -196,36 +196,36 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="7">
+      <node id="29">
         <label>block</label>
       </node>
-      <node id="5">
+      <node id="27">
         <label>gr::scrambler_cpp::custom_descrambler_impl</label>
         <link refid="classgr_1_1scrambler__cpp_1_1custom__descrambler__impl"/>
-        <childnode refid="6" relation="public-inheritance">
+        <childnode refid="28" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="6">
+      <node id="28">
         <label>gr::scrambler_cpp::custom_descrambler</label>
         <link refid="classgr_1_1scrambler__cpp_1_1custom__descrambler"/>
-        <childnode refid="7" relation="public-inheritance">
+        <childnode refid="29" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="10">
+      <node id="32">
         <label>block</label>
       </node>
-      <node id="8">
+      <node id="30">
         <label>gr::scrambler_cpp::custom_descrambler_impl</label>
         <link refid="classgr_1_1scrambler__cpp_1_1custom__descrambler__impl"/>
-        <childnode refid="9" relation="public-inheritance">
+        <childnode refid="31" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="9">
+      <node id="31">
         <label>gr::scrambler_cpp::custom_descrambler</label>
         <link refid="classgr_1_1scrambler__cpp_1_1custom__descrambler"/>
-        <childnode refid="10" relation="public-inheritance">
+        <childnode refid="32" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

@@ -55,24 +55,24 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="4">
+      <node id="12">
         <label>gr::scrambler_cpp::custom_scrambler</label>
         <link refid="classgr_1_1scrambler__cpp_1_1custom__scrambler"/>
-        <childnode refid="5" relation="public-inheritance">
+        <childnode refid="13" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="5">
+      <node id="13">
         <label>gr::block</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="6">
+      <node id="14">
         <label>gr::scrambler_cpp::custom_scrambler</label>
         <link refid="classgr_1_1scrambler__cpp_1_1custom__scrambler"/>
-        <childnode refid="7" relation="public-inheritance">
+        <childnode refid="15" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="7">
+      <node id="15">
         <label>gr::block</label>
       </node>
     </collaborationgraph>

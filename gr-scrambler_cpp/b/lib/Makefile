@@ -197,6 +197,60 @@ test-scrambler_cpp/fast:
 	cd /home/it/investigacao/gr-scrambler_cpp/b && $(MAKE) -f lib/CMakeFiles/test-scrambler_cpp.dir/build.make lib/CMakeFiles/test-scrambler_cpp.dir/build
 .PHONY : test-scrambler_cpp/fast
 
+additive_descrambler_impl.o: additive_descrambler_impl.cc.o
+
+.PHONY : additive_descrambler_impl.o
+
+# target to build an object file
+additive_descrambler_impl.cc.o:
+	cd /home/it/investigacao/gr-scrambler_cpp/b && $(MAKE) -f lib/CMakeFiles/gnuradio-scrambler_cpp.dir/build.make lib/CMakeFiles/gnuradio-scrambler_cpp.dir/additive_descrambler_impl.cc.o
+.PHONY : additive_descrambler_impl.cc.o
+
+additive_descrambler_impl.i: additive_descrambler_impl.cc.i
+
+.PHONY : additive_descrambler_impl.i
+
+# target to preprocess a source file
+additive_descrambler_impl.cc.i:
+	cd /home/it/investigacao/gr-scrambler_cpp/b && $(MAKE) -f lib/CMakeFiles/gnuradio-scrambler_cpp.dir/build.make lib/CMakeFiles/gnuradio-scrambler_cpp.dir/additive_descrambler_impl.cc.i
+.PHONY : additive_descrambler_impl.cc.i
+
+additive_descrambler_impl.s: additive_descrambler_impl.cc.s
+
+.PHONY : additive_descrambler_impl.s
+
+# target to generate assembly for a file
+additive_descrambler_impl.cc.s:
+	cd /home/it/investigacao/gr-scrambler_cpp/b && $(MAKE) -f lib/CMakeFiles/gnuradio-scrambler_cpp.dir/build.make lib/CMakeFiles/gnuradio-scrambler_cpp.dir/additive_descrambler_impl.cc.s
+.PHONY : additive_descrambler_impl.cc.s
+
+additive_scrambler_impl.o: additive_scrambler_impl.cc.o
+
+.PHONY : additive_scrambler_impl.o
+
+# target to build an object file
+additive_scrambler_impl.cc.o:
+	cd /home/it/investigacao/gr-scrambler_cpp/b && $(MAKE) -f lib/CMakeFiles/gnuradio-scrambler_cpp.dir/build.make lib/CMakeFiles/gnuradio-scrambler_cpp.dir/additive_scrambler_impl.cc.o
+.PHONY : additive_scrambler_impl.cc.o
+
+additive_scrambler_impl.i: additive_scrambler_impl.cc.i
+
+.PHONY : additive_scrambler_impl.i
+
+# target to preprocess a source file
+additive_scrambler_impl.cc.i:
+	cd /home/it/investigacao/gr-scrambler_cpp/b && $(MAKE) -f lib/CMakeFiles/gnuradio-scrambler_cpp.dir/build.make lib/CMakeFiles/gnuradio-scrambler_cpp.dir/additive_scrambler_impl.cc.i
+.PHONY : additive_scrambler_impl.cc.i
+
+additive_scrambler_impl.s: additive_scrambler_impl.cc.s
+
+.PHONY : additive_scrambler_impl.s
+
+# target to generate assembly for a file
+additive_scrambler_impl.cc.s:
+	cd /home/it/investigacao/gr-scrambler_cpp/b && $(MAKE) -f lib/CMakeFiles/gnuradio-scrambler_cpp.dir/build.make lib/CMakeFiles/gnuradio-scrambler_cpp.dir/additive_scrambler_impl.cc.s
+.PHONY : additive_scrambler_impl.cc.s
+
 custom_descrambler_impl.o: custom_descrambler_impl.cc.o
 
 .PHONY : custom_descrambler_impl.o
@@ -320,6 +374,12 @@ help:
 	@echo "... test-scrambler_cpp"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... additive_descrambler_impl.o"
+	@echo "... additive_descrambler_impl.i"
+	@echo "... additive_descrambler_impl.s"
+	@echo "... additive_scrambler_impl.o"
+	@echo "... additive_scrambler_impl.i"
+	@echo "... additive_scrambler_impl.s"
 	@echo "... custom_descrambler_impl.o"
 	@echo "... custom_descrambler_impl.i"
 	@echo "... custom_descrambler_impl.s"

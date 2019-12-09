@@ -56,30 +56,30 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1">
+      <node id="23">
         <label>block</label>
       </node>
-      <node id="2">
+      <node id="24">
         <label>gr::scrambler_cpp::custom_descrambler_impl</label>
         <link refid="classgr_1_1scrambler__cpp_1_1custom__descrambler__impl"/>
-        <childnode refid="0" relation="public-inheritance">
+        <childnode refid="22" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="0">
+      <node id="22">
         <label>gr::scrambler_cpp::custom_descrambler</label>
         <link refid="classgr_1_1scrambler__cpp_1_1custom__descrambler"/>
-        <childnode refid="1" relation="public-inheritance">
+        <childnode refid="23" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="4">
+      <node id="26">
         <label>block</label>
       </node>
-      <node id="3">
+      <node id="25">
         <label>gr::scrambler_cpp::custom_descrambler</label>
         <link refid="classgr_1_1scrambler__cpp_1_1custom__descrambler"/>
-        <childnode refid="4" relation="public-inheritance">
+        <childnode refid="26" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
