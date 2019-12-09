@@ -87,7 +87,7 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
 
         self.tx_rrc_taps = tx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts, 1.0, eb, 11*sps*nfilts)
 
-        self.samp_rate = samp_rate = samp_rate_array_MCR[3]
+        self.samp_rate = samp_rate = samp_rate_array_MCR[15]
 
 
         self.pld_enc = pld_enc = map( (lambda a: fec.cc_encoder_make(440, k, rate, (polys), 0, fec.CC_TERMINATED, False)), range(0,8) );
@@ -118,7 +118,7 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
         self.uhd_usrp_sink_0_0.set_center_freq(frequencia_usrp, 0)
         self.uhd_usrp_sink_0_0.set_gain(variable_qtgui_range_0_0, 0)
         self.uhd_usrp_sink_0_0.set_antenna('TX/RX', 0)
-        self.scrambler_cpp_custom_scrambler_0 = scrambler_cpp.custom_scrambler(0x8A, 0x7F, 7, 440-32)
+        self.scrambler_cpp_additive_scrambler_0 = scrambler_cpp.additive_scrambler(0x8A, 0x7F, 7, 440-32)
         self.qtgui_time_sink_x_1 = qtgui.time_sink_c(
         	1024, #size
         	samp_rate, #samp_rate
@@ -307,7 +307,7 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_file_source_0_0_1_0_1, 0), (self.blocks_repack_bits_bb_1_0_0_1, 0))
         self.connect((self.blocks_multiply_const_vxx_1, 0), (self.blocks_delay_0, 0))
         self.connect((self.blocks_repack_bits_bb_1_0_0_0, 0), (self.insert_vec_cpp_new_vec_0, 0))
-        self.connect((self.blocks_repack_bits_bb_1_0_0_1, 0), (self.scrambler_cpp_custom_scrambler_0, 0))
+        self.connect((self.blocks_repack_bits_bb_1_0_0_1, 0), (self.scrambler_cpp_additive_scrambler_0, 0))
         self.connect((self.blocks_stream_mux_0_0, 0), (self.blocks_stream_mux_0_1_0, 1))
         self.connect((self.blocks_stream_mux_0_1_0, 0), (self.blocks_repack_bits_bb_1_0_0_0, 0))
         self.connect((self.blocks_vector_source_x_0_0_0, 0), (self.blocks_stream_mux_0_0, 1))
@@ -316,7 +316,7 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
         self.connect((self.fec_extended_encoder_0, 0), (self.blocks_stream_mux_0_0, 0))
         self.connect((self.insert_vec_cpp_new_vec_0, 0), (self.digital_diff_encoder_bb_0, 0))
         self.connect((self.pfb_arb_resampler_xxx_0, 0), (self.blocks_multiply_const_vxx_1, 0))
-        self.connect((self.scrambler_cpp_custom_scrambler_0, 0), (self.fec_extended_encoder_0, 0))
+        self.connect((self.scrambler_cpp_additive_scrambler_0, 0), (self.fec_extended_encoder_0, 0))
 
     def closeEvent(self, event):
         self.settings = Qt.QSettings("GNU Radio", "tx_no_gui")
@@ -341,7 +341,7 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
 
     def set_samp_rate_array_MCR(self, samp_rate_array_MCR):
         self.samp_rate_array_MCR = samp_rate_array_MCR
-        self.set_samp_rate(self.samp_rate_array_MCR[3])
+        self.set_samp_rate(self.samp_rate_array_MCR[15])
 
     def get_rate(self):
         return self.rate

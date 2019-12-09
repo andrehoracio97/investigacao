@@ -553,7 +553,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>samp_rate_array_MCR[3]</value>
+      <value>samp_rate_array_MCR[15]</value>
     </param>
   </block>
   <block>
@@ -672,7 +672,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>38</value>
+      <value>47</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -1214,7 +1214,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1192, 1428)</value>
+      <value>(1288, 1428)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1359,7 +1359,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>2</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1465,7 +1465,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(992, 1100)</value>
+      <value>(976, 1092)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1493,7 +1493,7 @@
     </param>
     <param>
       <key>threshold</key>
-      <value>1</value>
+      <value>4</value>
     </param>
   </block>
   <block>
@@ -1740,7 +1740,7 @@
     </param>
     <param>
       <key>osps</key>
-      <value>2</value>
+      <value>1</value>
     </param>
     <param>
       <key>sps</key>
@@ -1783,7 +1783,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(712, 1412)</value>
+      <value>(704, 1412)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -4039,7 +4039,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>frame_bits</key>
@@ -4047,7 +4047,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(960, 1404)</value>
+      <value>(1008, 1404)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -4094,7 +4094,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>frame_bits</key>
