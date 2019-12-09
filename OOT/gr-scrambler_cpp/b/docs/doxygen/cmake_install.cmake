@@ -1,4 +1,4 @@
-# Install script for directory: /home/it/investigacao/gr-scrambler_cpp/docs/doxygen
+# Install script for directory: /home/it/investigacao/OOT/gr-scrambler_cpp/docs/doxygen
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,8 +39,8 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/doc/gr-scrambler_cpp" TYPE DIRECTORY FILES
-    "/home/it/investigacao/gr-scrambler_cpp/b/docs/doxygen/xml"
-    "/home/it/investigacao/gr-scrambler_cpp/b/docs/doxygen/html"
+    "/home/it/investigacao/OOT/gr-scrambler_cpp/b/docs/doxygen/xml"
+    "/home/it/investigacao/OOT/gr-scrambler_cpp/b/docs/doxygen/html"
     )
 endif()
 

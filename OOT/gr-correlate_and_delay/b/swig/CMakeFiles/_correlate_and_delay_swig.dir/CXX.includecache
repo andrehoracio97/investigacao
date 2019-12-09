@@ -16,7 +16,7 @@ correlate_and_delay/api.h
 gnuradio/block.h
 -
 
-/home/it/investigacao/gr-correlate_and_delay/b/swig/correlate_and_delay_swigPYTHON_wrap.cxx
+/home/it/investigacao/OOT/gr-correlate_and_delay/b/swig/correlate_and_delay_swigPYTHON_wrap.cxx
 Python.h
 -
 Python.h
@@ -28,7 +28,7 @@ stdexcept
 string
 -
 gnuradio_swig_bug_workaround.h
-/home/it/investigacao/gr-correlate_and_delay/b/swig/gnuradio_swig_bug_workaround.h
+/home/it/investigacao/OOT/gr-correlate_and_delay/b/swig/gnuradio_swig_bug_workaround.h
 cstddef
 -
 typeinfo
@@ -64,7 +64,7 @@ gnuradio/high_res_timer.h
 limits.h
 -
 correlate_and_delay/corr_and_delay.h
-/home/it/investigacao/gr-correlate_and_delay/b/swig/correlate_and_delay/corr_and_delay.h
+/home/it/investigacao/OOT/gr-correlate_and_delay/b/swig/correlate_and_delay/corr_and_delay.h
 float.h
 -
 math.h

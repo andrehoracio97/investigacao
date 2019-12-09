@@ -1,4 +1,4 @@
-# Install script for directory: /home/it/investigacao/gr-scrambler_packets_same_seed/swig
+# Install script for directory: /home/it/investigacao/OOT/gr-scrambler_packets_same_seed/swig
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,12 +44,12 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages/scrambler_packets_same_seed/_scrambler_packets_same_seed_swig.so"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages/scrambler_packets_same_seed" TYPE MODULE FILES "/home/it/investigacao/gr-scrambler_packets_same_seed/b/swig/_scrambler_packets_same_seed_swig.so")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages/scrambler_packets_same_seed" TYPE MODULE FILES "/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/swig/_scrambler_packets_same_seed_swig.so")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages/scrambler_packets_same_seed/_scrambler_packets_same_seed_swig.so" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages/scrambler_packets_same_seed/_scrambler_packets_same_seed_swig.so")
     file(RPATH_CHANGE
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages/scrambler_packets_same_seed/_scrambler_packets_same_seed_swig.so"
-         OLD_RPATH "/home/it/investigacao/gr-scrambler_packets_same_seed/b/lib:/usr/local/lib:"
+         OLD_RPATH "/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/lib:/usr/local/lib:"
          NEW_RPATH "")
     if(CMAKE_INSTALL_DO_STRIP)
       execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages/scrambler_packets_same_seed/_scrambler_packets_same_seed_swig.so")
@@ -58,20 +58,20 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages/scrambler_packets_same_seed" TYPE FILE FILES "/home/it/investigacao/gr-scrambler_packets_same_seed/b/swig/scrambler_packets_same_seed_swig.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages/scrambler_packets_same_seed" TYPE FILE FILES "/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/swig/scrambler_packets_same_seed_swig.py")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages/scrambler_packets_same_seed" TYPE FILE FILES
-    "/home/it/investigacao/gr-scrambler_packets_same_seed/b/swig/scrambler_packets_same_seed_swig.pyc"
-    "/home/it/investigacao/gr-scrambler_packets_same_seed/b/swig/scrambler_packets_same_seed_swig.pyo"
+    "/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/swig/scrambler_packets_same_seed_swig.pyc"
+    "/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/swig/scrambler_packets_same_seed_swig.pyo"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/scrambler_packets_same_seed/scrambler_packets_same_seed/swig" TYPE FILE FILES
-    "/home/it/investigacao/gr-scrambler_packets_same_seed/swig/scrambler_packets_same_seed_swig.i"
-    "/home/it/investigacao/gr-scrambler_packets_same_seed/b/swig/scrambler_packets_same_seed_swig_doc.i"
+    "/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/swig/scrambler_packets_same_seed_swig.i"
+    "/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/swig/scrambler_packets_same_seed_swig_doc.i"
     )
 endif()
 

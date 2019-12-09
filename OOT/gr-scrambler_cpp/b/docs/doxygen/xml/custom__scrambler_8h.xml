@@ -9,11 +9,8 @@
       <node id="52">
         <label>gnuradio/attributes.h</label>
       </node>
-      <node id="51">
-        <label>scrambler_cpp/api.h</label>
-        <link refid="api_8h"/>
-        <childnode refid="52" relation="include">
-        </childnode>
+      <node id="53">
+        <label>gnuradio/block.h</label>
       </node>
       <node id="50">
         <label>custom_scrambler.h</label>
@@ -23,8 +20,11 @@
         <childnode refid="53" relation="include">
         </childnode>
       </node>
-      <node id="53">
-        <label>gnuradio/block.h</label>
+      <node id="51">
+        <label>scrambler_cpp/api.h</label>
+        <link refid="api_8h"/>
+        <childnode refid="52" relation="include">
+        </childnode>
       </node>
     </incdepgraph>
     <invincdepgraph>
@@ -46,6 +46,6 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/it/investigacao/gr-scrambler_cpp/include/scrambler_cpp/custom_scrambler.h"/>
+    <location file="/home/it/investigacao/OOT/gr-scrambler_cpp/include/scrambler_cpp/custom_scrambler.h"/>
   </compounddef>
 </doxygen>

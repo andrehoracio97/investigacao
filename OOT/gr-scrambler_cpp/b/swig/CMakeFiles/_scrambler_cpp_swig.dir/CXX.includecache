@@ -34,7 +34,7 @@ scrambler_cpp/api.h
 gnuradio/block.h
 -
 
-/home/it/investigacao/gr-scrambler_cpp/b/swig/scrambler_cpp_swigPYTHON_wrap.cxx
+/home/it/investigacao/OOT/gr-scrambler_cpp/b/swig/scrambler_cpp_swigPYTHON_wrap.cxx
 Python.h
 -
 Python.h
@@ -46,7 +46,7 @@ stdexcept
 string
 -
 gnuradio_swig_bug_workaround.h
-/home/it/investigacao/gr-scrambler_cpp/b/swig/gnuradio_swig_bug_workaround.h
+/home/it/investigacao/OOT/gr-scrambler_cpp/b/swig/gnuradio_swig_bug_workaround.h
 cstddef
 -
 typeinfo
@@ -82,13 +82,13 @@ gnuradio/high_res_timer.h
 limits.h
 -
 scrambler_cpp/custom_scrambler.h
-/home/it/investigacao/gr-scrambler_cpp/b/swig/scrambler_cpp/custom_scrambler.h
+/home/it/investigacao/OOT/gr-scrambler_cpp/b/swig/scrambler_cpp/custom_scrambler.h
 scrambler_cpp/custom_descrambler.h
-/home/it/investigacao/gr-scrambler_cpp/b/swig/scrambler_cpp/custom_descrambler.h
+/home/it/investigacao/OOT/gr-scrambler_cpp/b/swig/scrambler_cpp/custom_descrambler.h
 scrambler_cpp/additive_scrambler.h
-/home/it/investigacao/gr-scrambler_cpp/b/swig/scrambler_cpp/additive_scrambler.h
+/home/it/investigacao/OOT/gr-scrambler_cpp/b/swig/scrambler_cpp/additive_scrambler.h
 scrambler_cpp/additive_descrambler.h
-/home/it/investigacao/gr-scrambler_cpp/b/swig/scrambler_cpp/additive_descrambler.h
+/home/it/investigacao/OOT/gr-scrambler_cpp/b/swig/scrambler_cpp/additive_descrambler.h
 float.h
 -
 math.h

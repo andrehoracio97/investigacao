@@ -6,5 +6,5 @@ CXX_FLAGS = -O3 -DNDEBUG   -fvisibility=hidden
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/it/investigacao/gr-correlate_and_delay/lib -I/home/it/investigacao/gr-correlate_and_delay/include -I/home/it/investigacao/gr-correlate_and_delay/b/lib -I/home/it/investigacao/gr-correlate_and_delay/b/include -isystem /usr/local/include 
+CXX_INCLUDES = -I/home/it/investigacao/OOT/gr-correlate_and_delay/lib -I/home/it/investigacao/OOT/gr-correlate_and_delay/include -I/home/it/investigacao/OOT/gr-correlate_and_delay/b/lib -I/home/it/investigacao/OOT/gr-correlate_and_delay/b/include -isystem /usr/local/include 
 

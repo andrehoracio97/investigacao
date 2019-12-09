@@ -1,4 +1,4 @@
-# Install script for directory: /home/it/investigacao/gr-scrambler_cpp/apps
+# Install script for directory: /home/it/investigacao/OOT/gr-scrambler_cpp/apps
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

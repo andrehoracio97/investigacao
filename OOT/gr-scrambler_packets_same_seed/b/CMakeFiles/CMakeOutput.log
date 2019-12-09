@@ -1,4 +1,4 @@
-The system is: Linux - 5.0.0-27-generic - x86_64
+The system is: Linux - 5.0.0-36-generic - x86_64
 Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
 Compiler: /usr/bin/c++ 
 Build flags: 
@@ -10,7 +10,7 @@ The output was:
 
 Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
 
-The CXX compiler identification is GNU, found in "/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/3.10.2/CompilerIdCXX/a.out"
+The CXX compiler identification is GNU, found in "/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/3.10.2/CompilerIdCXX/a.out"
 
 Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
 Compiler: /usr/bin/cc 
@@ -23,33 +23,33 @@ The output was:
 
 Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
 
-The C compiler identification is GNU, found in "/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/3.10.2/CompilerIdC/a.out"
+The C compiler identification is GNU, found in "/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/3.10.2/CompilerIdC/a.out"
 
 Determining if the CXX compiler works passed with the following output:
-Change Dir: /home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp
+Change Dir: /home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_50cdf/fast"
-/usr/bin/make -f CMakeFiles/cmTC_50cdf.dir/build.make CMakeFiles/cmTC_50cdf.dir/build
-make[1]: Entering directory '/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_50cdf.dir/testCXXCompiler.cxx.o
-/usr/bin/c++     -o CMakeFiles/cmTC_50cdf.dir/testCXXCompiler.cxx.o -c /home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
-Linking CXX executable cmTC_50cdf
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_50cdf.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_50cdf.dir/testCXXCompiler.cxx.o  -o cmTC_50cdf 
-make[1]: Leaving directory '/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_fd79d/fast"
+/usr/bin/make -f CMakeFiles/cmTC_fd79d.dir/build.make CMakeFiles/cmTC_fd79d.dir/build
+make[1]: Entering directory '/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_fd79d.dir/testCXXCompiler.cxx.o
+/usr/bin/c++     -o CMakeFiles/cmTC_fd79d.dir/testCXXCompiler.cxx.o -c /home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTC_fd79d
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fd79d.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_fd79d.dir/testCXXCompiler.cxx.o  -o cmTC_fd79d 
+make[1]: Leaving directory '/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
 
 
 Detecting CXX compiler ABI info compiled with the following output:
-Change Dir: /home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp
+Change Dir: /home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_cd576/fast"
-/usr/bin/make -f CMakeFiles/cmTC_cd576.dir/build.make CMakeFiles/cmTC_cd576.dir/build
-make[1]: Entering directory '/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_cd576.dir/CMakeCXXCompilerABI.cpp.o
-/usr/bin/c++     -o CMakeFiles/cmTC_cd576.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.10/Modules/CMakeCXXCompilerABI.cpp
-Linking CXX executable cmTC_cd576
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_cd576.dir/link.txt --verbose=1
-/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_cd576.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_cd576 
+Run Build Command:"/usr/bin/make" "cmTC_842ff/fast"
+/usr/bin/make -f CMakeFiles/cmTC_842ff.dir/build.make CMakeFiles/cmTC_842ff.dir/build
+make[1]: Entering directory '/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_842ff.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/c++     -o CMakeFiles/cmTC_842ff.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.10/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTC_842ff
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_842ff.dir/link.txt --verbose=1
+/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_842ff.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_842ff 
 Using built-in specs.
 COLLECT_GCC=/usr/bin/c++
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper
@@ -61,24 +61,24 @@ Thread model: posix
 gcc version 7.4.0 (Ubuntu 7.4.0-1ubuntu1~18.04.1) 
 COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_cd576' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
- /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccY1V3To.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_cd576 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_cd576.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o
-COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_cd576' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
-make[1]: Leaving directory '/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_842ff' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccssOgIJ.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_842ff /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_842ff.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_842ff' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+make[1]: Leaving directory '/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
 
 
 Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: /home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp]
+  ignore line: [Change Dir: /home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_cd576/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_cd576.dir/build.make CMakeFiles/cmTC_cd576.dir/build]
-  ignore line: [make[1]: Entering directory '/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp']
-  ignore line: [Building CXX object CMakeFiles/cmTC_cd576.dir/CMakeCXXCompilerABI.cpp.o]
-  ignore line: [/usr/bin/c++     -o CMakeFiles/cmTC_cd576.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.10/Modules/CMakeCXXCompilerABI.cpp]
-  ignore line: [Linking CXX executable cmTC_cd576]
-  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_cd576.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_cd576.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_cd576 ]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_842ff/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_842ff.dir/build.make CMakeFiles/cmTC_842ff.dir/build]
+  ignore line: [make[1]: Entering directory '/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp']
+  ignore line: [Building CXX object CMakeFiles/cmTC_842ff.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/bin/c++     -o CMakeFiles/cmTC_842ff.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.10/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTC_842ff]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_842ff.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_842ff.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_842ff ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/c++]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper]
@@ -90,13 +90,13 @@ Parsed CXX implicit link information from above output:
   ignore line: [gcc version 7.4.0 (Ubuntu 7.4.0-1ubuntu1~18.04.1) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_cd576' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccY1V3To.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_cd576 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_cd576.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_842ff' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccssOgIJ.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_842ff /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_842ff.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o]
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/ccY1V3To.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccssOgIJ.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -116,7 +116,7 @@ Parsed CXX implicit link information from above output:
     arg [-znow] ==> ignore
     arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_cd576] ==> ignore
+    arg [cmTC_842ff] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o] ==> ignore
@@ -128,7 +128,7 @@ Parsed CXX implicit link information from above output:
     arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
     arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
     arg [-L/usr/lib/gcc/x86_64-linux-gnu/7/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../..]
-    arg [CMakeFiles/cmTC_cd576.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [CMakeFiles/cmTC_842ff.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
     arg [-lstdc++] ==> lib [stdc++]
     arg [-lm] ==> lib [m]
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -154,17 +154,17 @@ Parsed CXX implicit link information from above output:
 
 
 Detecting CXX [-std=c++1z] compiler features compiled with the following output:
-Change Dir: /home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp
+Change Dir: /home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_2dedd/fast"
-/usr/bin/make -f CMakeFiles/cmTC_2dedd.dir/build.make CMakeFiles/cmTC_2dedd.dir/build
-make[1]: Entering directory '/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_2dedd.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++1z -o CMakeFiles/cmTC_2dedd.dir/feature_tests.cxx.o -c /home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_2dedd
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2dedd.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_2dedd.dir/feature_tests.cxx.o  -o cmTC_2dedd 
-make[1]: Leaving directory '/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_962e0/fast"
+/usr/bin/make -f CMakeFiles/cmTC_962e0.dir/build.make CMakeFiles/cmTC_962e0.dir/build
+make[1]: Entering directory '/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_962e0.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++1z -o CMakeFiles/cmTC_962e0.dir/feature_tests.cxx.o -c /home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_962e0
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_962e0.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_962e0.dir/feature_tests.cxx.o  -o cmTC_962e0 
+make[1]: Leaving directory '/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
 
 
     Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers
@@ -227,17 +227,17 @@ make[1]: Leaving directory '/home/it/investigacao/gr-scrambler_packets_same_seed
 
 
 Detecting CXX [-std=c++14] compiler features compiled with the following output:
-Change Dir: /home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp
+Change Dir: /home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_ed163/fast"
-/usr/bin/make -f CMakeFiles/cmTC_ed163.dir/build.make CMakeFiles/cmTC_ed163.dir/build
-make[1]: Entering directory '/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_ed163.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++14 -o CMakeFiles/cmTC_ed163.dir/feature_tests.cxx.o -c /home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_ed163
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ed163.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_ed163.dir/feature_tests.cxx.o  -o cmTC_ed163 
-make[1]: Leaving directory '/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_c18ac/fast"
+/usr/bin/make -f CMakeFiles/cmTC_c18ac.dir/build.make CMakeFiles/cmTC_c18ac.dir/build
+make[1]: Entering directory '/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_c18ac.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++14 -o CMakeFiles/cmTC_c18ac.dir/feature_tests.cxx.o -c /home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_c18ac
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c18ac.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_c18ac.dir/feature_tests.cxx.o  -o cmTC_c18ac 
+make[1]: Leaving directory '/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
 
 
     Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers
@@ -300,17 +300,17 @@ make[1]: Leaving directory '/home/it/investigacao/gr-scrambler_packets_same_seed
 
 
 Detecting CXX [-std=c++11] compiler features compiled with the following output:
-Change Dir: /home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp
+Change Dir: /home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_0a470/fast"
-/usr/bin/make -f CMakeFiles/cmTC_0a470.dir/build.make CMakeFiles/cmTC_0a470.dir/build
-make[1]: Entering directory '/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_0a470.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++11 -o CMakeFiles/cmTC_0a470.dir/feature_tests.cxx.o -c /home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_0a470
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0a470.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_0a470.dir/feature_tests.cxx.o  -o cmTC_0a470 
-make[1]: Leaving directory '/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_16f9a/fast"
+/usr/bin/make -f CMakeFiles/cmTC_16f9a.dir/build.make CMakeFiles/cmTC_16f9a.dir/build
+make[1]: Entering directory '/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_16f9a.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++11 -o CMakeFiles/cmTC_16f9a.dir/feature_tests.cxx.o -c /home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_16f9a
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_16f9a.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_16f9a.dir/feature_tests.cxx.o  -o cmTC_16f9a 
+make[1]: Leaving directory '/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
 
 
     Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
@@ -373,17 +373,17 @@ make[1]: Leaving directory '/home/it/investigacao/gr-scrambler_packets_same_seed
 
 
 Detecting CXX [-std=c++98] compiler features compiled with the following output:
-Change Dir: /home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp
+Change Dir: /home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_64ab0/fast"
-/usr/bin/make -f CMakeFiles/cmTC_64ab0.dir/build.make CMakeFiles/cmTC_64ab0.dir/build
-make[1]: Entering directory '/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_64ab0.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++98 -o CMakeFiles/cmTC_64ab0.dir/feature_tests.cxx.o -c /home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_64ab0
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_64ab0.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_64ab0.dir/feature_tests.cxx.o  -o cmTC_64ab0 
-make[1]: Leaving directory '/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_7fc9f/fast"
+/usr/bin/make -f CMakeFiles/cmTC_7fc9f.dir/build.make CMakeFiles/cmTC_7fc9f.dir/build
+make[1]: Entering directory '/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_7fc9f.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++98 -o CMakeFiles/cmTC_7fc9f.dir/feature_tests.cxx.o -c /home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_7fc9f
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7fc9f.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_7fc9f.dir/feature_tests.cxx.o  -o cmTC_7fc9f 
+make[1]: Leaving directory '/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
 
 
     Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
@@ -444,30 +444,30 @@ make[1]: Leaving directory '/home/it/investigacao/gr-scrambler_packets_same_seed
     Feature record: CXX_FEATURE:0cxx_variadic_macros
     Feature record: CXX_FEATURE:0cxx_variadic_templates
 Determining if the C compiler works passed with the following output:
-Change Dir: /home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp
+Change Dir: /home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_cef89/fast"
-/usr/bin/make -f CMakeFiles/cmTC_cef89.dir/build.make CMakeFiles/cmTC_cef89.dir/build
-make[1]: Entering directory '/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_cef89.dir/testCCompiler.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_cef89.dir/testCCompiler.c.o   -c /home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp/testCCompiler.c
-Linking C executable cmTC_cef89
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_cef89.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_cef89.dir/testCCompiler.c.o  -o cmTC_cef89 
-make[1]: Leaving directory '/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_b9c97/fast"
+/usr/bin/make -f CMakeFiles/cmTC_b9c97.dir/build.make CMakeFiles/cmTC_b9c97.dir/build
+make[1]: Entering directory '/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_b9c97.dir/testCCompiler.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_b9c97.dir/testCCompiler.c.o   -c /home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_b9c97
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b9c97.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_b9c97.dir/testCCompiler.c.o  -o cmTC_b9c97 
+make[1]: Leaving directory '/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
 
 
 Detecting C compiler ABI info compiled with the following output:
-Change Dir: /home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp
+Change Dir: /home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_4029c/fast"
-/usr/bin/make -f CMakeFiles/cmTC_4029c.dir/build.make CMakeFiles/cmTC_4029c.dir/build
-make[1]: Entering directory '/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_4029c.dir/CMakeCCompilerABI.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_4029c.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.10/Modules/CMakeCCompilerABI.c
-Linking C executable cmTC_4029c
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4029c.dir/link.txt --verbose=1
-/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_4029c.dir/CMakeCCompilerABI.c.o  -o cmTC_4029c 
+Run Build Command:"/usr/bin/make" "cmTC_33ae1/fast"
+/usr/bin/make -f CMakeFiles/cmTC_33ae1.dir/build.make CMakeFiles/cmTC_33ae1.dir/build
+make[1]: Entering directory '/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_33ae1.dir/CMakeCCompilerABI.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_33ae1.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.10/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_33ae1
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_33ae1.dir/link.txt --verbose=1
+/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_33ae1.dir/CMakeCCompilerABI.c.o  -o cmTC_33ae1 
 Using built-in specs.
 COLLECT_GCC=/usr/bin/cc
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper
@@ -479,24 +479,24 @@ Thread model: posix
 gcc version 7.4.0 (Ubuntu 7.4.0-1ubuntu1~18.04.1) 
 COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_4029c' '-mtune=generic' '-march=x86-64'
- /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/cch0FKCO.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_4029c /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_4029c.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o
-COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_4029c' '-mtune=generic' '-march=x86-64'
-make[1]: Leaving directory '/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_33ae1' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccZgPJPE.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_33ae1 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_33ae1.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_33ae1' '-mtune=generic' '-march=x86-64'
+make[1]: Leaving directory '/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
 
 
 Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: /home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp]
+  ignore line: [Change Dir: /home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_4029c/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_4029c.dir/build.make CMakeFiles/cmTC_4029c.dir/build]
-  ignore line: [make[1]: Entering directory '/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp']
-  ignore line: [Building C object CMakeFiles/cmTC_4029c.dir/CMakeCCompilerABI.c.o]
-  ignore line: [/usr/bin/cc    -o CMakeFiles/cmTC_4029c.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.10/Modules/CMakeCCompilerABI.c]
-  ignore line: [Linking C executable cmTC_4029c]
-  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4029c.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_4029c.dir/CMakeCCompilerABI.c.o  -o cmTC_4029c ]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_33ae1/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_33ae1.dir/build.make CMakeFiles/cmTC_33ae1.dir/build]
+  ignore line: [make[1]: Entering directory '/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp']
+  ignore line: [Building C object CMakeFiles/cmTC_33ae1.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/cc    -o CMakeFiles/cmTC_33ae1.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.10/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTC_33ae1]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_33ae1.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_33ae1.dir/CMakeCCompilerABI.c.o  -o cmTC_33ae1 ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/cc]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper]
@@ -508,13 +508,13 @@ Parsed C implicit link information from above output:
   ignore line: [gcc version 7.4.0 (Ubuntu 7.4.0-1ubuntu1~18.04.1) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_4029c' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/cch0FKCO.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_4029c /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_4029c.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_33ae1' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccZgPJPE.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_33ae1 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_33ae1.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o]
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/cch0FKCO.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccZgPJPE.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -534,7 +534,7 @@ Parsed C implicit link information from above output:
     arg [-znow] ==> ignore
     arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_4029c] ==> ignore
+    arg [cmTC_33ae1] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o] ==> ignore
@@ -546,7 +546,7 @@ Parsed C implicit link information from above output:
     arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
     arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
     arg [-L/usr/lib/gcc/x86_64-linux-gnu/7/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../..]
-    arg [CMakeFiles/cmTC_4029c.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [CMakeFiles/cmTC_33ae1.dir/CMakeCCompilerABI.c.o] ==> ignore
     arg [-lgcc] ==> lib [gcc]
     arg [--push-state] ==> ignore
     arg [--as-needed] ==> ignore
@@ -576,17 +576,17 @@ Parsed C implicit link information from above output:
 
 
 Detecting C [-std=c11] compiler features compiled with the following output:
-Change Dir: /home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp
+Change Dir: /home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_f826a/fast"
-/usr/bin/make -f CMakeFiles/cmTC_f826a.dir/build.make CMakeFiles/cmTC_f826a.dir/build
-make[1]: Entering directory '/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_f826a.dir/feature_tests.c.o
-/usr/bin/cc   -std=c11 -o CMakeFiles/cmTC_f826a.dir/feature_tests.c.o   -c /home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/feature_tests.c
-Linking C executable cmTC_f826a
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f826a.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_f826a.dir/feature_tests.c.o  -o cmTC_f826a 
-make[1]: Leaving directory '/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_8a105/fast"
+/usr/bin/make -f CMakeFiles/cmTC_8a105.dir/build.make CMakeFiles/cmTC_8a105.dir/build
+make[1]: Entering directory '/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_8a105.dir/feature_tests.c.o
+/usr/bin/cc   -std=c11 -o CMakeFiles/cmTC_8a105.dir/feature_tests.c.o   -c /home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/feature_tests.c
+Linking C executable cmTC_8a105
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8a105.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_8a105.dir/feature_tests.c.o  -o cmTC_8a105 
+make[1]: Leaving directory '/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -596,17 +596,17 @@ make[1]: Leaving directory '/home/it/investigacao/gr-scrambler_packets_same_seed
 
 
 Detecting C [-std=c99] compiler features compiled with the following output:
-Change Dir: /home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp
+Change Dir: /home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_9d135/fast"
-/usr/bin/make -f CMakeFiles/cmTC_9d135.dir/build.make CMakeFiles/cmTC_9d135.dir/build
-make[1]: Entering directory '/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_9d135.dir/feature_tests.c.o
-/usr/bin/cc   -std=c99 -o CMakeFiles/cmTC_9d135.dir/feature_tests.c.o   -c /home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/feature_tests.c
-Linking C executable cmTC_9d135
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9d135.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_9d135.dir/feature_tests.c.o  -o cmTC_9d135 
-make[1]: Leaving directory '/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_d2eb3/fast"
+/usr/bin/make -f CMakeFiles/cmTC_d2eb3.dir/build.make CMakeFiles/cmTC_d2eb3.dir/build
+make[1]: Entering directory '/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_d2eb3.dir/feature_tests.c.o
+/usr/bin/cc   -std=c99 -o CMakeFiles/cmTC_d2eb3.dir/feature_tests.c.o   -c /home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/feature_tests.c
+Linking C executable cmTC_d2eb3
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d2eb3.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_d2eb3.dir/feature_tests.c.o  -o cmTC_d2eb3 
+make[1]: Leaving directory '/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -616,17 +616,17 @@ make[1]: Leaving directory '/home/it/investigacao/gr-scrambler_packets_same_seed
 
 
 Detecting C [-std=c90] compiler features compiled with the following output:
-Change Dir: /home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp
+Change Dir: /home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_21b5d/fast"
-/usr/bin/make -f CMakeFiles/cmTC_21b5d.dir/build.make CMakeFiles/cmTC_21b5d.dir/build
-make[1]: Entering directory '/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_21b5d.dir/feature_tests.c.o
-/usr/bin/cc   -std=c90 -o CMakeFiles/cmTC_21b5d.dir/feature_tests.c.o   -c /home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/feature_tests.c
-Linking C executable cmTC_21b5d
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_21b5d.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_21b5d.dir/feature_tests.c.o  -o cmTC_21b5d 
-make[1]: Leaving directory '/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_63b14/fast"
+/usr/bin/make -f CMakeFiles/cmTC_63b14.dir/build.make CMakeFiles/cmTC_63b14.dir/build
+make[1]: Entering directory '/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_63b14.dir/feature_tests.c.o
+/usr/bin/cc   -std=c90 -o CMakeFiles/cmTC_63b14.dir/feature_tests.c.o   -c /home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/feature_tests.c
+Linking C executable cmTC_63b14
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_63b14.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_63b14.dir/feature_tests.c.o  -o cmTC_63b14 
+make[1]: Leaving directory '/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -634,87 +634,87 @@ make[1]: Leaving directory '/home/it/investigacao/gr-scrambler_packets_same_seed
     Feature record: C_FEATURE:0c_static_assert
     Feature record: C_FEATURE:0c_variadic_macros
 Determining if the include file sys/types.h exists passed with the following output:
-Change Dir: /home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp
+Change Dir: /home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_74566/fast"
-/usr/bin/make -f CMakeFiles/cmTC_74566.dir/build.make CMakeFiles/cmTC_74566.dir/build
-make[1]: Entering directory '/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_74566.dir/CheckIncludeFile.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_74566.dir/CheckIncludeFile.c.o   -c /home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp/CheckIncludeFile.c
-Linking C executable cmTC_74566
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_74566.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_74566.dir/CheckIncludeFile.c.o  -o cmTC_74566 
-make[1]: Leaving directory '/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_b0a8f/fast"
+/usr/bin/make -f CMakeFiles/cmTC_b0a8f.dir/build.make CMakeFiles/cmTC_b0a8f.dir/build
+make[1]: Entering directory '/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_b0a8f.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_b0a8f.dir/CheckIncludeFile.c.o   -c /home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_b0a8f
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b0a8f.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_b0a8f.dir/CheckIncludeFile.c.o  -o cmTC_b0a8f 
+make[1]: Leaving directory '/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
 
 
 Determining if the include file stdint.h exists passed with the following output:
-Change Dir: /home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp
+Change Dir: /home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_7c107/fast"
-/usr/bin/make -f CMakeFiles/cmTC_7c107.dir/build.make CMakeFiles/cmTC_7c107.dir/build
-make[1]: Entering directory '/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_7c107.dir/CheckIncludeFile.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_7c107.dir/CheckIncludeFile.c.o   -c /home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp/CheckIncludeFile.c
-Linking C executable cmTC_7c107
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7c107.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_7c107.dir/CheckIncludeFile.c.o  -o cmTC_7c107 
-make[1]: Leaving directory '/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_86c21/fast"
+/usr/bin/make -f CMakeFiles/cmTC_86c21.dir/build.make CMakeFiles/cmTC_86c21.dir/build
+make[1]: Entering directory '/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_86c21.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_86c21.dir/CheckIncludeFile.c.o   -c /home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_86c21
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_86c21.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_86c21.dir/CheckIncludeFile.c.o  -o cmTC_86c21 
+make[1]: Leaving directory '/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
 
 
 Determining if the include file stddef.h exists passed with the following output:
-Change Dir: /home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp
+Change Dir: /home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_03a83/fast"
-/usr/bin/make -f CMakeFiles/cmTC_03a83.dir/build.make CMakeFiles/cmTC_03a83.dir/build
-make[1]: Entering directory '/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_03a83.dir/CheckIncludeFile.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_03a83.dir/CheckIncludeFile.c.o   -c /home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp/CheckIncludeFile.c
-Linking C executable cmTC_03a83
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_03a83.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_03a83.dir/CheckIncludeFile.c.o  -o cmTC_03a83 
-make[1]: Leaving directory '/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_88d3a/fast"
+/usr/bin/make -f CMakeFiles/cmTC_88d3a.dir/build.make CMakeFiles/cmTC_88d3a.dir/build
+make[1]: Entering directory '/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_88d3a.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_88d3a.dir/CheckIncludeFile.c.o   -c /home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_88d3a
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_88d3a.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_88d3a.dir/CheckIncludeFile.c.o  -o cmTC_88d3a 
+make[1]: Leaving directory '/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
 
 
 Determining size of size_t passed with the following output:
-Change Dir: /home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp
+Change Dir: /home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_59955/fast"
-/usr/bin/make -f CMakeFiles/cmTC_59955.dir/build.make CMakeFiles/cmTC_59955.dir/build
-make[1]: Entering directory '/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_59955.dir/SIZEOF_SIZE_T.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_59955.dir/SIZEOF_SIZE_T.c.o   -c /home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CheckTypeSize/SIZEOF_SIZE_T.c
-Linking C executable cmTC_59955
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_59955.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_59955.dir/SIZEOF_SIZE_T.c.o  -o cmTC_59955 
-make[1]: Leaving directory '/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_dfb8e/fast"
+/usr/bin/make -f CMakeFiles/cmTC_dfb8e.dir/build.make CMakeFiles/cmTC_dfb8e.dir/build
+make[1]: Entering directory '/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_dfb8e.dir/SIZEOF_SIZE_T.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_dfb8e.dir/SIZEOF_SIZE_T.c.o   -c /home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CheckTypeSize/SIZEOF_SIZE_T.c
+Linking C executable cmTC_dfb8e
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_dfb8e.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_dfb8e.dir/SIZEOF_SIZE_T.c.o  -o cmTC_dfb8e 
+make[1]: Leaving directory '/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
 
 
 Determining size of unsigned int passed with the following output:
-Change Dir: /home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp
+Change Dir: /home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_db548/fast"
-/usr/bin/make -f CMakeFiles/cmTC_db548.dir/build.make CMakeFiles/cmTC_db548.dir/build
-make[1]: Entering directory '/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_db548.dir/SIZEOF_UINT.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_db548.dir/SIZEOF_UINT.c.o   -c /home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CheckTypeSize/SIZEOF_UINT.c
-Linking C executable cmTC_db548
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_db548.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_db548.dir/SIZEOF_UINT.c.o  -o cmTC_db548 
-make[1]: Leaving directory '/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_22f40/fast"
+/usr/bin/make -f CMakeFiles/cmTC_22f40.dir/build.make CMakeFiles/cmTC_22f40.dir/build
+make[1]: Entering directory '/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_22f40.dir/SIZEOF_UINT.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_22f40.dir/SIZEOF_UINT.c.o   -c /home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CheckTypeSize/SIZEOF_UINT.c
+Linking C executable cmTC_22f40
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_22f40.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_22f40.dir/SIZEOF_UINT.c.o  -o cmTC_22f40 
+make[1]: Leaving directory '/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
 
 
 Performing C++ SOURCE FILE Test HAVE_WNO_UNUSED_BUT_SET_VARIABLE succeeded with the following output:
-Change Dir: /home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp
+Change Dir: /home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_bc8b9/fast"
-/usr/bin/make -f CMakeFiles/cmTC_bc8b9.dir/build.make CMakeFiles/cmTC_bc8b9.dir/build
-make[1]: Entering directory '/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_bc8b9.dir/src.cxx.o
-/usr/bin/c++    -DHAVE_WNO_UNUSED_BUT_SET_VARIABLE   -Wno-unused-but-set-variable -o CMakeFiles/cmTC_bc8b9.dir/src.cxx.o -c /home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp/src.cxx
-Linking CXX executable cmTC_bc8b9
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bc8b9.dir/link.txt --verbose=1
-/usr/bin/c++   -DHAVE_WNO_UNUSED_BUT_SET_VARIABLE    -rdynamic CMakeFiles/cmTC_bc8b9.dir/src.cxx.o  -o cmTC_bc8b9 
-make[1]: Leaving directory '/home/it/investigacao/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_22360/fast"
+/usr/bin/make -f CMakeFiles/cmTC_22360.dir/build.make CMakeFiles/cmTC_22360.dir/build
+make[1]: Entering directory '/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_22360.dir/src.cxx.o
+/usr/bin/c++    -DHAVE_WNO_UNUSED_BUT_SET_VARIABLE   -Wno-unused-but-set-variable -o CMakeFiles/cmTC_22360.dir/src.cxx.o -c /home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_22360
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_22360.dir/link.txt --verbose=1
+/usr/bin/c++   -DHAVE_WNO_UNUSED_BUT_SET_VARIABLE    -rdynamic CMakeFiles/cmTC_22360.dir/src.cxx.o  -o cmTC_22360 
+make[1]: Leaving directory '/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/CMakeFiles/CMakeTmp'
 
 Source file was:
 int main() { return 0; }

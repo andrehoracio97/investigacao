@@ -6,5 +6,5 @@ CXX_FLAGS = -O3 -DNDEBUG -fPIC   -fvisibility=hidden
 
 CXX_DEFINES = -Dgnuradio_scrambler_packets_same_seed_EXPORTS
 
-CXX_INCLUDES = -I/home/it/investigacao/gr-scrambler_packets_same_seed/lib -I/home/it/investigacao/gr-scrambler_packets_same_seed/include -I/home/it/investigacao/gr-scrambler_packets_same_seed/b/lib -I/home/it/investigacao/gr-scrambler_packets_same_seed/b/include -I/usr/local/include 
+CXX_INCLUDES = -I/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/lib -I/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/include -I/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/lib -I/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/include -I/usr/local/include 
 

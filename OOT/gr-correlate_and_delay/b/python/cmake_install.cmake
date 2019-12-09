@@ -1,4 +1,4 @@
-# Install script for directory: /home/it/investigacao/gr-correlate_and_delay/python
+# Install script for directory: /home/it/investigacao/OOT/gr-correlate_and_delay/python
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -38,13 +38,13 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages/correlate_and_delay" TYPE FILE FILES "/home/it/investigacao/gr-correlate_and_delay/python/__init__.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages/correlate_and_delay" TYPE FILE FILES "/home/it/investigacao/OOT/gr-correlate_and_delay/python/__init__.py")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages/correlate_and_delay" TYPE FILE FILES
-    "/home/it/investigacao/gr-correlate_and_delay/b/python/__init__.pyc"
-    "/home/it/investigacao/gr-correlate_and_delay/b/python/__init__.pyo"
+    "/home/it/investigacao/OOT/gr-correlate_and_delay/b/python/__init__.pyc"
+    "/home/it/investigacao/OOT/gr-correlate_and_delay/b/python/__init__.pyo"
     )
 endif()
 

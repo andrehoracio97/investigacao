@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="namespacegr_1_1insert__vec__cpp" kind="namespace" language="C++">
+    <compoundname>gr::insert_vec_cpp</compoundname>
+    <innerclass refid="classgr_1_1insert__vec__cpp_1_1new__vec" prot="public">gr::insert_vec_cpp::new_vec</innerclass>
+    <innerclass refid="classgr_1_1insert__vec__cpp_1_1new__vec__impl" prot="public">gr::insert_vec_cpp::new_vec_impl</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/it/investigacao/OOT/gr-insert_vec_cpp/include/insert_vec_cpp/new_vec.h" line="29" column="1"/>
+  </compounddef>
+</doxygen>

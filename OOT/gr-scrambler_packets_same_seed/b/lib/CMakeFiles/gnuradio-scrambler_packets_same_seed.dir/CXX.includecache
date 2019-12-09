@@ -22,29 +22,29 @@ scrambler_packets_same_seed/api.h
 gnuradio/block.h
 -
 
-/home/it/investigacao/gr-scrambler_packets_same_seed/lib/descramble_packetize_impl.cc
+/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/lib/descramble_packetize_impl.cc
 config.h
-/home/it/investigacao/gr-scrambler_packets_same_seed/lib/config.h
+/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/lib/config.h
 gnuradio/io_signature.h
 -
 descramble_packetize_impl.h
-/home/it/investigacao/gr-scrambler_packets_same_seed/lib/descramble_packetize_impl.h
+/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/lib/descramble_packetize_impl.h
 
-/home/it/investigacao/gr-scrambler_packets_same_seed/lib/descramble_packetize_impl.h
+/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/lib/descramble_packetize_impl.h
 scrambler_packets_same_seed/descramble_packetize.h
 -
 gnuradio/digital/lfsr.h
 -
 
-/home/it/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.cc
+/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.cc
 config.h
-/home/it/investigacao/gr-scrambler_packets_same_seed/lib/config.h
+/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/lib/config.h
 gnuradio/io_signature.h
 -
 scramble_packetize_impl.h
-/home/it/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h
+/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h
 
-/home/it/investigacao/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h
+/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/lib/scramble_packetize_impl.h
 scrambler_packets_same_seed/scramble_packetize.h
 -
 gnuradio/digital/lfsr.h

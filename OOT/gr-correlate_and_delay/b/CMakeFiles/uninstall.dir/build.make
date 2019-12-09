@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/it/investigacao/gr-correlate_and_delay
+CMAKE_SOURCE_DIR = /home/it/investigacao/OOT/gr-correlate_and_delay
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/it/investigacao/gr-correlate_and_delay/b
+CMAKE_BINARY_DIR = /home/it/investigacao/OOT/gr-correlate_and_delay/b
 
 # Utility rule file for uninstall.
 
@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/it/investigacao/gr-correlate_and_delay/b
 include CMakeFiles/uninstall.dir/progress.make
 
 CMakeFiles/uninstall:
-	/usr/bin/cmake -P /home/it/investigacao/gr-correlate_and_delay/b/cmake_uninstall.cmake
+	/usr/bin/cmake -P /home/it/investigacao/OOT/gr-correlate_and_delay/b/cmake_uninstall.cmake
 
 uninstall: CMakeFiles/uninstall
 uninstall: CMakeFiles/uninstall.dir/build.make
@@ -71,6 +71,6 @@ CMakeFiles/uninstall.dir/clean:
 .PHONY : CMakeFiles/uninstall.dir/clean
 
 CMakeFiles/uninstall.dir/depend:
-	cd /home/it/investigacao/gr-correlate_and_delay/b && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/it/investigacao/gr-correlate_and_delay /home/it/investigacao/gr-correlate_and_delay /home/it/investigacao/gr-correlate_and_delay/b /home/it/investigacao/gr-correlate_and_delay/b /home/it/investigacao/gr-correlate_and_delay/b/CMakeFiles/uninstall.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/it/investigacao/OOT/gr-correlate_and_delay/b && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/it/investigacao/OOT/gr-correlate_and_delay /home/it/investigacao/OOT/gr-correlate_and_delay /home/it/investigacao/OOT/gr-correlate_and_delay/b /home/it/investigacao/OOT/gr-correlate_and_delay/b /home/it/investigacao/OOT/gr-correlate_and_delay/b/CMakeFiles/uninstall.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/uninstall.dir/depend
 

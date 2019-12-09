@@ -1,4 +1,4 @@
-# Install script for directory: /home/it/investigacao/gr-correlate_and_delay
+# Install script for directory: /home/it/investigacao/OOT/gr-correlate_and_delay
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -38,18 +38,18 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/correlate_and_delay" TYPE FILE FILES "/home/it/investigacao/gr-correlate_and_delay/cmake/Modules/correlate_and_delayConfig.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/correlate_and_delay" TYPE FILE FILES "/home/it/investigacao/OOT/gr-correlate_and_delay/cmake/Modules/correlate_and_delayConfig.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/it/investigacao/gr-correlate_and_delay/b/include/correlate_and_delay/cmake_install.cmake")
-  include("/home/it/investigacao/gr-correlate_and_delay/b/lib/cmake_install.cmake")
-  include("/home/it/investigacao/gr-correlate_and_delay/b/swig/cmake_install.cmake")
-  include("/home/it/investigacao/gr-correlate_and_delay/b/python/cmake_install.cmake")
-  include("/home/it/investigacao/gr-correlate_and_delay/b/grc/cmake_install.cmake")
-  include("/home/it/investigacao/gr-correlate_and_delay/b/apps/cmake_install.cmake")
-  include("/home/it/investigacao/gr-correlate_and_delay/b/docs/cmake_install.cmake")
+  include("/home/it/investigacao/OOT/gr-correlate_and_delay/b/include/correlate_and_delay/cmake_install.cmake")
+  include("/home/it/investigacao/OOT/gr-correlate_and_delay/b/lib/cmake_install.cmake")
+  include("/home/it/investigacao/OOT/gr-correlate_and_delay/b/swig/cmake_install.cmake")
+  include("/home/it/investigacao/OOT/gr-correlate_and_delay/b/python/cmake_install.cmake")
+  include("/home/it/investigacao/OOT/gr-correlate_and_delay/b/grc/cmake_install.cmake")
+  include("/home/it/investigacao/OOT/gr-correlate_and_delay/b/apps/cmake_install.cmake")
+  include("/home/it/investigacao/OOT/gr-correlate_and_delay/b/docs/cmake_install.cmake")
 
 endif()
 
@@ -61,5 +61,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/it/investigacao/gr-correlate_and_delay/b/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/it/investigacao/OOT/gr-correlate_and_delay/b/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

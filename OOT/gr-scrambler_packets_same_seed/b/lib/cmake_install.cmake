@@ -1,4 +1,4 @@
-# Install script for directory: /home/it/investigacao/gr-scrambler_packets_same_seed/lib
+# Install script for directory: /home/it/investigacao/OOT/gr-scrambler_packets_same_seed/lib
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,8 +50,8 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xscrambler_packets_same_seed_runtime
     endif()
   endforeach()
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES
-    "/home/it/investigacao/gr-scrambler_packets_same_seed/b/lib/libgnuradio-scrambler_packets_same_seed-1.0.0git.so.0.0.0"
-    "/home/it/investigacao/gr-scrambler_packets_same_seed/b/lib/libgnuradio-scrambler_packets_same_seed-1.0.0git.so"
+    "/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/lib/libgnuradio-scrambler_packets_same_seed-1.0.0git.so.0.0.0"
+    "/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/lib/libgnuradio-scrambler_packets_same_seed-1.0.0git.so"
     )
   foreach(file
       "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libgnuradio-scrambler_packets_same_seed-1.0.0git.so.0.0.0"
@@ -72,8 +72,8 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xscrambler_packets_same_seed_runtimex" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE FILE FILES
-    "/home/it/investigacao/gr-scrambler_packets_same_seed/b/lib/libgnuradio-scrambler_packets_same_seed.so"
-    "/home/it/investigacao/gr-scrambler_packets_same_seed/b/lib/libgnuradio-scrambler_packets_same_seed-1.0.0git.so.0"
+    "/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/lib/libgnuradio-scrambler_packets_same_seed.so"
+    "/home/it/investigacao/OOT/gr-scrambler_packets_same_seed/b/lib/libgnuradio-scrambler_packets_same_seed-1.0.0git.so.0"
     )
 endif()
 

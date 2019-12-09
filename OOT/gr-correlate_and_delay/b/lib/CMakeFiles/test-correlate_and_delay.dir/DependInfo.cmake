@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/it/investigacao/gr-correlate_and_delay/lib/qa_correlate_and_delay.cc" "/home/it/investigacao/gr-correlate_and_delay/b/lib/CMakeFiles/test-correlate_and_delay.dir/qa_correlate_and_delay.cc.o"
-  "/home/it/investigacao/gr-correlate_and_delay/lib/test_correlate_and_delay.cc" "/home/it/investigacao/gr-correlate_and_delay/b/lib/CMakeFiles/test-correlate_and_delay.dir/test_correlate_and_delay.cc.o"
+  "/home/it/investigacao/OOT/gr-correlate_and_delay/lib/qa_correlate_and_delay.cc" "/home/it/investigacao/OOT/gr-correlate_and_delay/b/lib/CMakeFiles/test-correlate_and_delay.dir/qa_correlate_and_delay.cc.o"
+  "/home/it/investigacao/OOT/gr-correlate_and_delay/lib/test_correlate_and_delay.cc" "/home/it/investigacao/OOT/gr-correlate_and_delay/b/lib/CMakeFiles/test-correlate_and_delay.dir/test_correlate_and_delay.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -20,7 +20,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/it/investigacao/gr-correlate_and_delay/b/lib/CMakeFiles/gnuradio-correlate_and_delay.dir/DependInfo.cmake"
+  "/home/it/investigacao/OOT/gr-correlate_and_delay/b/lib/CMakeFiles/gnuradio-correlate_and_delay.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

@@ -11,11 +11,8 @@
       <node id="61">
         <label>gnuradio/digital/lfsr.h</label>
       </node>
-      <node id="58">
-        <label>scrambler_cpp/api.h</label>
-        <link refid="api_8h"/>
-        <childnode refid="59" relation="include">
-        </childnode>
+      <node id="60">
+        <label>gnuradio/block.h</label>
       </node>
       <node id="57">
         <label>scrambler_cpp/custom_scrambler.h</label>
@@ -25,15 +22,18 @@
         <childnode refid="60" relation="include">
         </childnode>
       </node>
-      <node id="60">
-        <label>gnuradio/block.h</label>
-      </node>
       <node id="56">
         <label>custom_scrambler_impl.h</label>
         <link refid="custom__scrambler__impl_8h"/>
         <childnode refid="57" relation="include">
         </childnode>
         <childnode refid="61" relation="include">
+        </childnode>
+      </node>
+      <node id="58">
+        <label>scrambler_cpp/api.h</label>
+        <link refid="api_8h"/>
+        <childnode refid="59" relation="include">
         </childnode>
       </node>
     </incdepgraph>
@@ -44,6 +44,6 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/it/investigacao/gr-scrambler_cpp/lib/custom_scrambler_impl.h"/>
+    <location file="/home/it/investigacao/OOT/gr-scrambler_cpp/lib/custom_scrambler_impl.h"/>
   </compounddef>
 </doxygen>

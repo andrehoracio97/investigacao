@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/it/investigacao/gr-scrambler_cpp/lib/qa_scrambler_cpp.cc" "/home/it/investigacao/gr-scrambler_cpp/b/lib/CMakeFiles/test-scrambler_cpp.dir/qa_scrambler_cpp.cc.o"
-  "/home/it/investigacao/gr-scrambler_cpp/lib/test_scrambler_cpp.cc" "/home/it/investigacao/gr-scrambler_cpp/b/lib/CMakeFiles/test-scrambler_cpp.dir/test_scrambler_cpp.cc.o"
+  "/home/it/investigacao/OOT/gr-scrambler_cpp/lib/qa_scrambler_cpp.cc" "/home/it/investigacao/OOT/gr-scrambler_cpp/b/lib/CMakeFiles/test-scrambler_cpp.dir/qa_scrambler_cpp.cc.o"
+  "/home/it/investigacao/OOT/gr-scrambler_cpp/lib/test_scrambler_cpp.cc" "/home/it/investigacao/OOT/gr-scrambler_cpp/b/lib/CMakeFiles/test-scrambler_cpp.dir/test_scrambler_cpp.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -20,7 +20,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/it/investigacao/gr-scrambler_cpp/b/lib/CMakeFiles/gnuradio-scrambler_cpp.dir/DependInfo.cmake"
+  "/home/it/investigacao/OOT/gr-scrambler_cpp/b/lib/CMakeFiles/gnuradio-scrambler_cpp.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

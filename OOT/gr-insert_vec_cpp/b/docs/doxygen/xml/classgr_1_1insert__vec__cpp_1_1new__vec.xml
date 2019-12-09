@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classgr_1_1insert__vec__cpp_1_1new__vec" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>gr::insert_vec_cpp::new_vec</compoundname>
+    <basecompoundref prot="public" virt="virtual">block</basecompoundref>
+    <derivedcompoundref refid="classgr_1_1insert__vec__cpp_1_1new__vec__impl" prot="public" virt="non-virtual">gr::insert_vec_cpp::new_vec_impl</derivedcompoundref>
+    <includes refid="new__vec_8h" local="no">new_vec.h</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classgr_1_1insert__vec__cpp_1_1new__vec_1a7adf86f938850c9648f271cc494d4cfa" prot="public" static="no">
+        <type>boost::shared_ptr&lt; <ref refid="classgr_1_1insert__vec__cpp_1_1new__vec" kindref="compound">new_vec</ref> &gt;</type>
+        <definition>typedef boost::shared_ptr&lt;new_vec&gt; gr::insert_vec_cpp::new_vec::sptr</definition>
+        <argsstring></argsstring>
+        <name>sptr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/it/investigacao/OOT/gr-insert_vec_cpp/include/insert_vec_cpp/new_vec.h" line="39" column="1" bodyfile="/home/it/investigacao/OOT/gr-insert_vec_cpp/include/insert_vec_cpp/new_vec.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classgr_1_1insert__vec__cpp_1_1new__vec_1ae753a6e4f743acbc83cab2c2b437da73" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classgr_1_1insert__vec__cpp_1_1new__vec_1a7adf86f938850c9648f271cc494d4cfa" kindref="member">sptr</ref></type>
+        <definition>static sptr gr::insert_vec_cpp::new_vec::make</definition>
+        <argsstring>(const std::vector&lt; unsigned char &gt; &amp;vec)</argsstring>
+        <name>make</name>
+        <param>
+          <type>const std::vector&lt; unsigned char &gt; &amp;</type>
+          <declname>vec</declname>
+        </param>
+        <briefdescription>
+<para>Return a shared_ptr to a new instance of <ref refid="classgr_1_1insert__vec__cpp_1_1new__vec" kindref="compound">insert_vec_cpp::new_vec</ref>. </para>        </briefdescription>
+        <detaileddescription>
+<para>To avoid accidental use of raw pointers, <ref refid="classgr_1_1insert__vec__cpp_1_1new__vec" kindref="compound">insert_vec_cpp::new_vec</ref>&apos;s constructor is in a private implementation class. <ref refid="classgr_1_1insert__vec__cpp_1_1new__vec_1ae753a6e4f743acbc83cab2c2b437da73" kindref="member">insert_vec_cpp::new_vec::make</ref> is the public interface for creating new instances. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/it/investigacao/OOT/gr-insert_vec_cpp/include/insert_vec_cpp/new_vec.h" line="49" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classgr_1_1insert__vec__cpp_1_1new__vec_1ad8fcc5702d5d029253307dad869fb34f" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void gr::insert_vec_cpp::new_vec::set_data</definition>
+        <argsstring>(const std::vector&lt; unsigned char &gt; &amp;vec)=0</argsstring>
+        <name>set_data</name>
+        <reimplementedby refid="classgr_1_1insert__vec__cpp_1_1new__vec__impl_1a9c8206e6f6a45a95d48c7ebda844c1f3">set_data</reimplementedby>
+        <param>
+          <type>const std::vector&lt; unsigned char &gt; &amp;</type>
+          <declname>vec</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/it/investigacao/OOT/gr-insert_vec_cpp/include/insert_vec_cpp/new_vec.h" line="51" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>&lt;+description of block+&gt; </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>gr::insert_vec_cpp::new_vec_impl</label>
+        <link refid="classgr_1_1insert__vec__cpp_1_1new__vec__impl"/>
+        <childnode refid="0" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="0">
+        <label>gr::insert_vec_cpp::new_vec</label>
+        <link refid="classgr_1_1insert__vec__cpp_1_1new__vec"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>gr::block</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>gr::insert_vec_cpp::new_vec</label>
+        <link refid="classgr_1_1insert__vec__cpp_1_1new__vec"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>gr::block</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/it/investigacao/OOT/gr-insert_vec_cpp/include/insert_vec_cpp/new_vec.h" line="37" column="1" bodyfile="/home/it/investigacao/OOT/gr-insert_vec_cpp/include/insert_vec_cpp/new_vec.h" bodystart="36" bodyend="52"/>
+    <listofallmembers>
+      <member refid="classgr_1_1insert__vec__cpp_1_1new__vec_1ae753a6e4f743acbc83cab2c2b437da73" prot="public" virt="non-virtual"><scope>gr::insert_vec_cpp::new_vec</scope><name>make</name></member>
+      <member refid="classgr_1_1insert__vec__cpp_1_1new__vec_1ad8fcc5702d5d029253307dad869fb34f" prot="public" virt="pure-virtual"><scope>gr::insert_vec_cpp::new_vec</scope><name>set_data</name></member>
+      <member refid="classgr_1_1insert__vec__cpp_1_1new__vec_1a7adf86f938850c9648f271cc494d4cfa" prot="public" virt="non-virtual"><scope>gr::insert_vec_cpp::new_vec</scope><name>sptr</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

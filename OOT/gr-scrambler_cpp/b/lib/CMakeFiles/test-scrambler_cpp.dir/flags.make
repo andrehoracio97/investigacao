@@ -6,5 +6,5 @@ CXX_FLAGS = -O3 -DNDEBUG   -fvisibility=hidden
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/it/investigacao/gr-scrambler_cpp/lib -I/home/it/investigacao/gr-scrambler_cpp/include -I/home/it/investigacao/gr-scrambler_cpp/b/lib -I/home/it/investigacao/gr-scrambler_cpp/b/include -I/usr/local/include 
+CXX_INCLUDES = -I/home/it/investigacao/OOT/gr-scrambler_cpp/lib -I/home/it/investigacao/OOT/gr-scrambler_cpp/include -I/home/it/investigacao/OOT/gr-scrambler_cpp/b/lib -I/home/it/investigacao/OOT/gr-scrambler_cpp/b/include -I/usr/local/include 
 

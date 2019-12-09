@@ -1,4 +1,4 @@
-# Install script for directory: /home/it/investigacao/gr-correlate_and_delay/grc
+# Install script for directory: /home/it/investigacao/OOT/gr-correlate_and_delay/grc
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -38,6 +38,6 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gnuradio/grc/blocks" TYPE FILE FILES "/home/it/investigacao/gr-correlate_and_delay/grc/correlate_and_delay_corr_and_delay.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gnuradio/grc/blocks" TYPE FILE FILES "/home/it/investigacao/OOT/gr-correlate_and_delay/grc/correlate_and_delay_corr_and_delay.xml")
 endif()
 

@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/it/investigacao/gr-correlate_and_delay/b/swig/correlate_and_delay_swigPYTHON_wrap.cxx" "/home/it/investigacao/gr-correlate_and_delay/b/swig/CMakeFiles/_correlate_and_delay_swig.dir/correlate_and_delay_swigPYTHON_wrap.cxx.o"
+  "/home/it/investigacao/OOT/gr-correlate_and_delay/b/swig/correlate_and_delay_swigPYTHON_wrap.cxx" "/home/it/investigacao/OOT/gr-correlate_and_delay/b/swig/CMakeFiles/_correlate_and_delay_swig.dir/correlate_and_delay_swigPYTHON_wrap.cxx.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -23,7 +23,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/it/investigacao/gr-correlate_and_delay/b/lib/CMakeFiles/gnuradio-correlate_and_delay.dir/DependInfo.cmake"
+  "/home/it/investigacao/OOT/gr-correlate_and_delay/b/lib/CMakeFiles/gnuradio-correlate_and_delay.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

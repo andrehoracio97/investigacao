@@ -1,4 +1,4 @@
-# Install script for directory: /home/it/investigacao/gr-correlate_and_delay/apps
+# Install script for directory: /home/it/investigacao/OOT/gr-correlate_and_delay/apps
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
