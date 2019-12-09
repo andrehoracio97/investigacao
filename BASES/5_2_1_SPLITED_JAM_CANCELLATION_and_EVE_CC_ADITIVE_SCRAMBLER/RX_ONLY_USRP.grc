@@ -672,7 +672,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>50</value>
+      <value>52</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -735,7 +735,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>27</value>
+      <value>30</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -866,7 +866,7 @@
     </param>
     <param>
       <key>mu</key>
-      <value>0.001</value>
+      <value>0.0001</value>
     </param>
   </block>
   <block>
@@ -921,7 +921,7 @@
     </param>
     <param>
       <key>seed</key>
-      <value>0</value>
+      <value>-5</value>
     </param>
   </block>
   <block>
@@ -944,7 +944,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1008, 1204)</value>
+      <value>(972, 1044)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1183,7 +1183,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1584, 1356)</value>
+      <value>(1580, 1422)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1375,7 +1375,7 @@
     </param>
     <param>
       <key>const</key>
-      <value>0.7</value>
+      <value>0.5</value>
     </param>
     <param>
       <key>affinity</key>
@@ -1540,7 +1540,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(712, 1108)</value>
+      <value>(692, 1108)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1811,7 +1811,7 @@
     </param>
     <param>
       <key>mu</key>
-      <value>0.001</value>
+      <value>0.01</value>
     </param>
     <param>
       <key>id</key>
@@ -1831,7 +1831,7 @@
     </param>
     <param>
       <key>num_taps</key>
-      <value>30</value>
+      <value>15</value>
     </param>
     <param>
       <key>sps</key>
@@ -1905,7 +1905,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1168, 1100)</value>
+      <value>(928, 1098)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1933,7 +1933,7 @@
     </param>
     <param>
       <key>threshold</key>
-      <value>4</value>
+      <value>2</value>
     </param>
   </block>
   <block>
@@ -2007,7 +2007,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(992, 1148)</value>
+      <value>(992, 1166)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -5873,7 +5873,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1144, 1180)</value>
+      <value>(1116, 1018)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -6240,7 +6240,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1488, 1164)</value>
+      <value>(1516, 1182)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -7329,7 +7329,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(968, 940)</value>
+      <value>(964, 1418)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -7384,7 +7384,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(968, 1084)</value>
+      <value>(968, 1346)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -7439,7 +7439,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(960, 996)</value>
+      <value>(964, 1254)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -9844,7 +9844,7 @@
   </connection>
   <connection>
     <source_block_id>blocks_repack_bits_bb_0</source_block_id>
-    <sink_block_id>scrambler_cpp_additive_descrambler_0</sink_block_id>
+    <sink_block_id>digital_correlate_access_code_xx_ts_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -9994,13 +9994,13 @@
   </connection>
   <connection>
     <source_block_id>fec_extended_decoder_0_0_1_0_1_0</source_block_id>
-    <sink_block_id>blocks_repack_bits_bb_0_0_0_1_0</sink_block_id>
+    <sink_block_id>digital_descrambler_bb_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>fec_extended_decoder_0_0_1_0_1_0</source_block_id>
-    <sink_block_id>digital_descrambler_bb_0</sink_block_id>
+    <sink_block_id>scrambler_cpp_additive_descrambler_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -10024,7 +10024,7 @@
   </connection>
   <connection>
     <source_block_id>scrambler_cpp_additive_descrambler_0</source_block_id>
-    <sink_block_id>digital_correlate_access_code_xx_ts_0_0</sink_block_id>
+    <sink_block_id>blocks_repack_bits_bb_0_0_0_1_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
