@@ -1890,11 +1890,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>2</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1224, 546)</value>
+      <value>(1236, 546)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2275,7 +2275,7 @@
     </param>
     <param>
       <key>osps</key>
-      <value>2</value>
+      <value>1</value>
     </param>
     <param>
       <key>sps</key>
