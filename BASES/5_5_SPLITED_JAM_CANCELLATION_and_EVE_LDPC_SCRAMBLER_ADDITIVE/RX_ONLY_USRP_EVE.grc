@@ -602,7 +602,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>42</value>
+      <value>52</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -1195,7 +1195,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>2</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1329,7 +1329,7 @@
     </param>
     <param>
       <key>threshold</key>
-      <value>2</value>
+      <value>4</value>
     </param>
   </block>
   <block>
@@ -1525,7 +1525,7 @@
     </param>
     <param>
       <key>osps</key>
-      <value>1</value>
+      <value>2</value>
     </param>
     <param>
       <key>sps</key>
@@ -3461,11 +3461,11 @@
     </param>
     <param>
       <key>frame_bits</key>
-      <value>440</value>
+      <value>440-32</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1072, 1380)</value>
+      <value>(1088, 1404)</value>
     </param>
     <param>
       <key>_rotation</key>
