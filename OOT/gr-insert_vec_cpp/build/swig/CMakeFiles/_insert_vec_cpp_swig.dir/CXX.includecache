@@ -16,7 +16,7 @@ insert_vec_cpp/api.h
 gnuradio/block.h
 -
 
-/home/andre/investigacao/gr-insert_vec_cpp/build/swig/insert_vec_cpp_swigPYTHON_wrap.cxx
+/home/andre/investigacao/OOT/gr-insert_vec_cpp/build/swig/insert_vec_cpp_swigPYTHON_wrap.cxx
 Python.h
 -
 Python.h
@@ -28,7 +28,7 @@ stdexcept
 string
 -
 gnuradio_swig_bug_workaround.h
-/home/andre/investigacao/gr-insert_vec_cpp/build/swig/gnuradio_swig_bug_workaround.h
+/home/andre/investigacao/OOT/gr-insert_vec_cpp/build/swig/gnuradio_swig_bug_workaround.h
 cstddef
 -
 typeinfo
@@ -64,7 +64,7 @@ gnuradio/high_res_timer.h
 limits.h
 -
 insert_vec_cpp/new_vec.h
-/home/andre/investigacao/gr-insert_vec_cpp/build/swig/insert_vec_cpp/new_vec.h
+/home/andre/investigacao/OOT/gr-insert_vec_cpp/build/swig/insert_vec_cpp/new_vec.h
 float.h
 -
 math.h

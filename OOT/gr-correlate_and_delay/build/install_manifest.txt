@@ -24,6 +24,7 @@
 /usr/local/share/doc/gr-correlate_and_delay/xml/main__page_8dox.xml
 /usr/local/share/doc/gr-correlate_and_delay/xml/compound.xsd
 /usr/local/share/doc/gr-correlate_and_delay/xml/index.xsd
+/usr/local/share/doc/gr-correlate_and_delay/xml/dir_bc9666f338302c2daaa45dc08129a2d4.xml
 /usr/local/share/doc/gr-correlate_and_delay/xml/api_8h.xml
 /usr/local/share/doc/gr-correlate_and_delay/xml/dir_d44c64559bbebec7f509842c48db8b23.xml
 /usr/local/share/doc/gr-correlate_and_delay/xml/index.xml
@@ -33,6 +34,7 @@
 /usr/local/share/doc/gr-correlate_and_delay/xml/corr__and__delay_8h.xml
 /usr/local/share/doc/gr-correlate_and_delay/xml/classgr_1_1correlate__and__delay_1_1corr__and__delay__impl.xml
 /usr/local/share/doc/gr-correlate_and_delay/xml/namespacegr_1_1correlate__and__delay.xml
+/usr/local/share/doc/gr-correlate_and_delay/xml/old_2corr__and__delay__impl_8h.xml
 /usr/local/share/doc/gr-correlate_and_delay/xml/group__defs_8dox.xml
 /usr/local/share/doc/gr-correlate_and_delay/xml/namespacestd.xml
 /usr/local/share/doc/gr-correlate_and_delay/html/dir_d44c64559bbebec7f509842c48db8b23.html
@@ -68,7 +70,9 @@
 /usr/local/share/doc/gr-correlate_and_delay/html/api_8h.html
 /usr/local/share/doc/gr-correlate_and_delay/html/classes.html
 /usr/local/share/doc/gr-correlate_and_delay/html/corr__and__delay__impl_8h_source.html
+/usr/local/share/doc/gr-correlate_and_delay/html/dir_bc9666f338302c2daaa45dc08129a2d4.html
 /usr/local/share/doc/gr-correlate_and_delay/html/corr__and__delay_8h_source.html
+/usr/local/share/doc/gr-correlate_and_delay/html/globals_type.html
 /usr/local/share/doc/gr-correlate_and_delay/html/globals.html
 /usr/local/share/doc/gr-correlate_and_delay/html/classgr_1_1correlate__and__delay_1_1corr__and__delay__impl.js
 /usr/local/share/doc/gr-correlate_and_delay/html/annotated_dup.js
@@ -81,10 +85,12 @@
 /usr/local/share/doc/gr-correlate_and_delay/html/doc.png
 /usr/local/share/doc/gr-correlate_and_delay/html/classgr_1_1correlate__and__delay_1_1corr__and__delay.html
 /usr/local/share/doc/gr-correlate_and_delay/html/dynsections.js
+/usr/local/share/doc/gr-correlate_and_delay/html/old_2corr__and__delay__impl_8h_source.html
 /usr/local/share/doc/gr-correlate_and_delay/html/resize.js
 /usr/local/share/doc/gr-correlate_and_delay/html/nav_g.png
 /usr/local/share/doc/gr-correlate_and_delay/html/group__defs_8dox.html
 /usr/local/share/doc/gr-correlate_and_delay/html/group__block.html
+/usr/local/share/doc/gr-correlate_and_delay/html/corr__and__delay__impl_8h.js
 /usr/local/share/doc/gr-correlate_and_delay/html/folderclosed.png
 /usr/local/share/doc/gr-correlate_and_delay/html/tab_s.png
 /usr/local/share/doc/gr-correlate_and_delay/html/tab_b.png
@@ -101,4 +107,5 @@
 /usr/local/share/doc/gr-correlate_and_delay/html/classgr_1_1correlate__and__delay_1_1corr__and__delay__impl.html
 /usr/local/share/doc/gr-correlate_and_delay/html/main__page_8dox.html
 /usr/local/share/doc/gr-correlate_and_delay/html/tabs.css
+/usr/local/share/doc/gr-correlate_and_delay/html/old_2corr__and__delay__impl_8h.html
 /usr/local/share/doc/gr-correlate_and_delay/html/namespacegr_1_1correlate__and__delay.js

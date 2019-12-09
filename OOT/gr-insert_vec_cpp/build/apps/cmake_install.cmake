@@ -1,4 +1,4 @@
-# Install script for directory: /home/andre/investigacao/gr-insert_vec_cpp/apps
+# Install script for directory: /home/andre/investigacao/OOT/gr-insert_vec_cpp/apps
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

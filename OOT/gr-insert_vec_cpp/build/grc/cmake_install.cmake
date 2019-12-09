@@ -1,4 +1,4 @@
-# Install script for directory: /home/andre/investigacao/gr-insert_vec_cpp/grc
+# Install script for directory: /home/andre/investigacao/OOT/gr-insert_vec_cpp/grc
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -38,6 +38,6 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gnuradio/grc/blocks" TYPE FILE FILES "/home/andre/investigacao/gr-insert_vec_cpp/grc/insert_vec_cpp_new_vec.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gnuradio/grc/blocks" TYPE FILE FILES "/home/andre/investigacao/OOT/gr-insert_vec_cpp/grc/insert_vec_cpp_new_vec.xml")
 endif()
 

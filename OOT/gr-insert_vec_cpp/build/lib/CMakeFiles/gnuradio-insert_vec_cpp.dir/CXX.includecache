@@ -16,15 +16,15 @@ insert_vec_cpp/api.h
 gnuradio/block.h
 -
 
-/home/andre/investigacao/gr-insert_vec_cpp/lib/new_vec_impl.cc
+/home/andre/investigacao/OOT/gr-insert_vec_cpp/lib/new_vec_impl.cc
 config.h
-/home/andre/investigacao/gr-insert_vec_cpp/lib/config.h
+/home/andre/investigacao/OOT/gr-insert_vec_cpp/lib/config.h
 gnuradio/io_signature.h
 -
 new_vec_impl.h
-/home/andre/investigacao/gr-insert_vec_cpp/lib/new_vec_impl.h
+/home/andre/investigacao/OOT/gr-insert_vec_cpp/lib/new_vec_impl.h
 
-/home/andre/investigacao/gr-insert_vec_cpp/lib/new_vec_impl.h
+/home/andre/investigacao/OOT/gr-insert_vec_cpp/lib/new_vec_impl.h
 insert_vec_cpp/new_vec.h
 -
 

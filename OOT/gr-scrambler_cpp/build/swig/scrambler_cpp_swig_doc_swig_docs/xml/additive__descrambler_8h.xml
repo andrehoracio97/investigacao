@@ -5,6 +5,15 @@
     <includes refid="api_8h" local="no">scrambler_cpp/api.h</includes>
     <includes local="no">gnuradio/block.h</includes>
     <incdepgraph>
+      <node id="2">
+        <label>gnuradio/attributes.h</label>
+      </node>
+      <node id="1">
+        <label>scrambler_cpp/api.h</label>
+        <link refid="api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
       <node id="0">
         <label>additive_descrambler.h</label>
         <link refid="additive__descrambler_8h"/>
@@ -13,17 +22,8 @@
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="2">
-        <label>gnuradio/attributes.h</label>
-      </node>
       <node id="3">
         <label>gnuradio/block.h</label>
-      </node>
-      <node id="1">
-        <label>scrambler_cpp/api.h</label>
-        <link refid="api_8h"/>
-        <childnode refid="2" relation="include">
-        </childnode>
       </node>
     </incdepgraph>
     <innerclass refid="classgr_1_1scrambler__cpp_1_1additive__descrambler" prot="public">gr::scrambler_cpp::additive_descrambler</innerclass>
@@ -78,6 +78,6 @@
 <codeline lineno="55"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>INCLUDED_SCRAMBLER_CPP_ADDITIVE_DESCRAMBLER_H<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="56"><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/andre/investigacao/gr-scrambler_cpp/include/scrambler_cpp/additive_descrambler.h"/>
+    <location file="/home/andre/investigacao/OOT/gr-scrambler_cpp/include/scrambler_cpp/additive_descrambler.h"/>
   </compounddef>
 </doxygen>

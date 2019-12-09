@@ -1,4 +1,4 @@
-# Install script for directory: /home/andre/investigacao/gr-correlate_and_delay/lib
+# Install script for directory: /home/andre/investigacao/OOT/gr-correlate_and_delay/lib
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,8 +50,8 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xcorrelate_and_delay_runtimex" OR NO
     endif()
   endforeach()
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES
-    "/home/andre/investigacao/gr-correlate_and_delay/build/lib/libgnuradio-correlate_and_delay-1.0.0git.so.0.0.0"
-    "/home/andre/investigacao/gr-correlate_and_delay/build/lib/libgnuradio-correlate_and_delay-1.0.0git.so"
+    "/home/andre/investigacao/OOT/gr-correlate_and_delay/build/lib/libgnuradio-correlate_and_delay-1.0.0git.so.0.0.0"
+    "/home/andre/investigacao/OOT/gr-correlate_and_delay/build/lib/libgnuradio-correlate_and_delay-1.0.0git.so"
     )
   foreach(file
       "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libgnuradio-correlate_and_delay-1.0.0git.so.0.0.0"
@@ -72,8 +72,8 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xcorrelate_and_delay_runtimex" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE FILE FILES
-    "/home/andre/investigacao/gr-correlate_and_delay/build/lib/libgnuradio-correlate_and_delay.so"
-    "/home/andre/investigacao/gr-correlate_and_delay/build/lib/libgnuradio-correlate_and_delay-1.0.0git.so.0"
+    "/home/andre/investigacao/OOT/gr-correlate_and_delay/build/lib/libgnuradio-correlate_and_delay.so"
+    "/home/andre/investigacao/OOT/gr-correlate_and_delay/build/lib/libgnuradio-correlate_and_delay-1.0.0git.so.0"
     )
 endif()
 

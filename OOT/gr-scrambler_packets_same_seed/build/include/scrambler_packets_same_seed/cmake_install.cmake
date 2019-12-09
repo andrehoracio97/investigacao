@@ -1,4 +1,4 @@
-# Install script for directory: /home/andre/investigacao/gr-scrambler_packets_same_seed/include/scrambler_packets_same_seed
+# Install script for directory: /home/andre/investigacao/OOT/gr-scrambler_packets_same_seed/include/scrambler_packets_same_seed
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,9 +39,9 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/scrambler_packets_same_seed" TYPE FILE FILES
-    "/home/andre/investigacao/gr-scrambler_packets_same_seed/include/scrambler_packets_same_seed/api.h"
-    "/home/andre/investigacao/gr-scrambler_packets_same_seed/include/scrambler_packets_same_seed/scramble_packetize.h"
-    "/home/andre/investigacao/gr-scrambler_packets_same_seed/include/scrambler_packets_same_seed/descramble_packetize.h"
+    "/home/andre/investigacao/OOT/gr-scrambler_packets_same_seed/include/scrambler_packets_same_seed/api.h"
+    "/home/andre/investigacao/OOT/gr-scrambler_packets_same_seed/include/scrambler_packets_same_seed/scramble_packetize.h"
+    "/home/andre/investigacao/OOT/gr-scrambler_packets_same_seed/include/scrambler_packets_same_seed/descramble_packetize.h"
     )
 endif()
 

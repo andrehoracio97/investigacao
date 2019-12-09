@@ -1,4 +1,4 @@
-# Install script for directory: /home/andre/investigacao/gr-scrambler_packets_same_seed/docs/doxygen
+# Install script for directory: /home/andre/investigacao/OOT/gr-scrambler_packets_same_seed/docs/doxygen
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,8 +39,8 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/doc/gr-scrambler_packets_same_seed" TYPE DIRECTORY FILES
-    "/home/andre/investigacao/gr-scrambler_packets_same_seed/build/docs/doxygen/xml"
-    "/home/andre/investigacao/gr-scrambler_packets_same_seed/build/docs/doxygen/html"
+    "/home/andre/investigacao/OOT/gr-scrambler_packets_same_seed/build/docs/doxygen/xml"
+    "/home/andre/investigacao/OOT/gr-scrambler_packets_same_seed/build/docs/doxygen/html"
     )
 endif()
 

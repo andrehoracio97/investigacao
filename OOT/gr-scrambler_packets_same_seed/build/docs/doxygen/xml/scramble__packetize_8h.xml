@@ -9,14 +9,14 @@
       <node id="26">
         <label>gnuradio/attributes.h</label>
       </node>
+      <node id="27">
+        <label>gnuradio/block.h</label>
+      </node>
       <node id="25">
         <label>scrambler_packets_same_seed/api.h</label>
         <link refid="api_8h"/>
         <childnode refid="26" relation="include">
         </childnode>
-      </node>
-      <node id="27">
-        <label>gnuradio/block.h</label>
       </node>
       <node id="24">
         <label>scramble_packetize.h</label>
@@ -46,6 +46,6 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/andre/investigacao/gr-scrambler_packets_same_seed/include/scrambler_packets_same_seed/scramble_packetize.h"/>
+    <location file="/home/andre/investigacao/OOT/gr-scrambler_packets_same_seed/include/scrambler_packets_same_seed/scramble_packetize.h"/>
   </compounddef>
 </doxygen>

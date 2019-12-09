@@ -6,7 +6,7 @@ CXX_FLAGS = -O3 -DNDEBUG -fPIC   -fvisibility=hidden
 
 CXX_DEFINES = -D_scrambler_packets_same_seed_swig_EXPORTS
 
-CXX_INCLUDES = -I/home/andre/investigacao/gr-scrambler_packets_same_seed/lib -I/home/andre/investigacao/gr-scrambler_packets_same_seed/include -I/home/andre/investigacao/gr-scrambler_packets_same_seed/build/lib -I/home/andre/investigacao/gr-scrambler_packets_same_seed/build/include -I/usr/local/include -I/home/andre/investigacao/gr-scrambler_packets_same_seed/build/swig -I/home/andre/investigacao/gr-scrambler_packets_same_seed/swig -I/usr/local/include/gnuradio/swig -I/usr/include/python2.7 
+CXX_INCLUDES = -I/home/andre/investigacao/OOT/gr-scrambler_packets_same_seed/lib -I/home/andre/investigacao/OOT/gr-scrambler_packets_same_seed/include -I/home/andre/investigacao/OOT/gr-scrambler_packets_same_seed/build/lib -I/home/andre/investigacao/OOT/gr-scrambler_packets_same_seed/build/include -I/usr/local/include -I/home/andre/investigacao/OOT/gr-scrambler_packets_same_seed/build/swig -I/home/andre/investigacao/OOT/gr-scrambler_packets_same_seed/swig -I/usr/local/include/gnuradio/swig -I/usr/include/python2.7 
 
 # Custom flags: swig/CMakeFiles/_scrambler_packets_same_seed_swig.dir/scrambler_packets_same_seed_swigPYTHON_wrap.cxx.o_FLAGS = -Wno-unused-but-set-variable
 

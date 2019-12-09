@@ -4,47 +4,80 @@
     <compoundname>corr_and_delay_impl.h</compoundname>
     <includes refid="corr__and__delay_8h" local="no">correlate_and_delay/corr_and_delay.h</includes>
     <includes local="no">gnuradio/filter/fft_filter.h</includes>
+    <includes local="no">iostream</includes>
+    <includes local="no">deque</includes>
+    <includes local="no">gnuradio/buffer.h</includes>
     <incdepgraph>
       <node id="14">
+        <label>correlate_and_delay/corr_and_delay.h</label>
+        <link refid="corr__and__delay_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>gnuradio/buffer.h</label>
+      </node>
+      <node id="16">
         <label>gnuradio/attributes.h</label>
       </node>
-      <node id="11">
-        <label>corr_and_delay_impl.h</label>
-        <link refid="corr__and__delay__impl_8h"/>
-        <childnode refid="12" relation="include">
-        </childnode>
+      <node id="15">
+        <label>correlate_and_delay/api.h</label>
+        <link refid="api_8h"/>
         <childnode refid="16" relation="include">
         </childnode>
       </node>
       <node id="13">
-        <label>correlate_and_delay/api.h</label>
-        <link refid="api_8h"/>
+        <label>corr_and_delay_impl.h</label>
+        <link refid="corr__and__delay__impl_8h"/>
         <childnode refid="14" relation="include">
         </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
       </node>
-      <node id="15">
+      <node id="17">
         <label>gnuradio/block.h</label>
       </node>
-      <node id="16">
+      <node id="18">
         <label>gnuradio/filter/fft_filter.h</label>
       </node>
-      <node id="12">
-        <label>correlate_and_delay/corr_and_delay.h</label>
-        <link refid="corr__and__delay_8h"/>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
+      <node id="19">
+        <label>iostream</label>
+      </node>
+      <node id="20">
+        <label>deque</label>
       </node>
     </incdepgraph>
     <innerclass refid="classgr_1_1correlate__and__delay_1_1corr__and__delay__impl" prot="public">gr::correlate_and_delay::corr_and_delay_impl</innerclass>
     <innernamespace refid="namespacegr">gr</innernamespace>
     <innernamespace refid="namespacegr_1_1correlate__and__delay">gr::correlate_and_delay</innernamespace>
     <innernamespace refid="namespacegr_1_1filter">gr::filter</innernamespace>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="corr__and__delay__impl_8h_1a3cf8f7067f7783fe3a52e3090e10dffa" prot="public" static="no">
+        <type>gr_complex</type>
+        <definition>typedef gr_complex sample_t</definition>
+        <argsstring></argsstring>
+        <name>sample_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-correlate_and_delay/lib/corr_and_delay_impl.h" line="32" column="1" bodyfile="/home/andre/investigacao/OOT/gr-correlate_and_delay/lib/corr_and_delay_impl.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h"/>
+    <location file="/home/andre/investigacao/OOT/gr-correlate_and_delay/lib/corr_and_delay_impl.h"/>
   </compounddef>
 </doxygen>

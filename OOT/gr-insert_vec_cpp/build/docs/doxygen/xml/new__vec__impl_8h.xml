@@ -4,6 +4,20 @@
     <compoundname>new_vec_impl.h</compoundname>
     <includes refid="new__vec_8h" local="no">insert_vec_cpp/new_vec.h</includes>
     <incdepgraph>
+      <node id="18">
+        <label>gnuradio/attributes.h</label>
+      </node>
+      <node id="19">
+        <label>gnuradio/block.h</label>
+      </node>
+      <node id="16">
+        <label>insert_vec_cpp/new_vec.h</label>
+        <link refid="new__vec_8h"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
       <node id="15">
         <label>new_vec_impl.h</label>
         <link refid="new__vec__impl_8h"/>
@@ -16,20 +30,6 @@
         <childnode refid="18" relation="include">
         </childnode>
       </node>
-      <node id="18">
-        <label>gnuradio/attributes.h</label>
-      </node>
-      <node id="16">
-        <label>insert_vec_cpp/new_vec.h</label>
-        <link refid="new__vec_8h"/>
-        <childnode refid="17" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-      </node>
-      <node id="19">
-        <label>gnuradio/block.h</label>
-      </node>
     </incdepgraph>
     <innerclass refid="classgr_1_1insert__vec__cpp_1_1new__vec__impl" prot="public">gr::insert_vec_cpp::new_vec_impl</innerclass>
     <innernamespace refid="namespacegr">gr</innernamespace>
@@ -38,6 +38,6 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/andre/investigacao/gr-insert_vec_cpp/lib/new_vec_impl.h"/>
+    <location file="/home/andre/investigacao/OOT/gr-insert_vec_cpp/lib/new_vec_impl.h"/>
   </compounddef>
 </doxygen>

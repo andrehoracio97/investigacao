@@ -4,8 +4,8 @@
 lib/CMakeFiles/gnuradio-insert_vec_cpp.dir/new_vec_impl.cc.o
  ../include/insert_vec_cpp/api.h
  ../include/insert_vec_cpp/new_vec.h
- /home/andre/investigacao/gr-insert_vec_cpp/lib/new_vec_impl.cc
- /home/andre/investigacao/gr-insert_vec_cpp/lib/new_vec_impl.h
+ /home/andre/investigacao/OOT/gr-insert_vec_cpp/lib/new_vec_impl.cc
+ /home/andre/investigacao/OOT/gr-insert_vec_cpp/lib/new_vec_impl.h
  /usr/local/include/gnuradio/api.h
  /usr/local/include/gnuradio/attributes.h
  /usr/local/include/gnuradio/basic_block.h

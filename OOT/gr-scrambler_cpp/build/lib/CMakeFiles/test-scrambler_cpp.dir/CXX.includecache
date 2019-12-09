@@ -6,19 +6,19 @@
 
 #IncludeRegexTransform: 
 
-/home/andre/investigacao/gr-scrambler_cpp/lib/qa_scrambler_cpp.cc
+/home/andre/investigacao/OOT/gr-scrambler_cpp/lib/qa_scrambler_cpp.cc
 qa_scrambler_cpp.h
-/home/andre/investigacao/gr-scrambler_cpp/lib/qa_scrambler_cpp.h
+/home/andre/investigacao/OOT/gr-scrambler_cpp/lib/qa_scrambler_cpp.h
 
-/home/andre/investigacao/gr-scrambler_cpp/lib/qa_scrambler_cpp.h
+/home/andre/investigacao/OOT/gr-scrambler_cpp/lib/qa_scrambler_cpp.h
 gnuradio/attributes.h
 -
 cppunit/TestSuite.h
 -
 
-/home/andre/investigacao/gr-scrambler_cpp/lib/test_scrambler_cpp.cc
+/home/andre/investigacao/OOT/gr-scrambler_cpp/lib/test_scrambler_cpp.cc
 config.h
-/home/andre/investigacao/gr-scrambler_cpp/lib/config.h
+/home/andre/investigacao/OOT/gr-scrambler_cpp/lib/config.h
 cppunit/TextTestRunner.h
 -
 cppunit/XmlOutputter.h
@@ -26,7 +26,7 @@ cppunit/XmlOutputter.h
 gnuradio/unittests.h
 -
 qa_scrambler_cpp.h
-/home/andre/investigacao/gr-scrambler_cpp/lib/qa_scrambler_cpp.h
+/home/andre/investigacao/OOT/gr-scrambler_cpp/lib/qa_scrambler_cpp.h
 iostream
 -
 fstream

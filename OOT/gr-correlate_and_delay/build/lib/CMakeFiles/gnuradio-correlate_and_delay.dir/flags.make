@@ -6,5 +6,5 @@ CXX_FLAGS = -O3 -DNDEBUG -fPIC   -fvisibility=hidden
 
 CXX_DEFINES = -Dgnuradio_correlate_and_delay_EXPORTS
 
-CXX_INCLUDES = -I/home/andre/investigacao/gr-correlate_and_delay/lib -I/home/andre/investigacao/gr-correlate_and_delay/include -I/home/andre/investigacao/gr-correlate_and_delay/build/lib -I/home/andre/investigacao/gr-correlate_and_delay/build/include -isystem /usr/local/include 
+CXX_INCLUDES = -I/home/andre/investigacao/OOT/gr-correlate_and_delay/lib -I/home/andre/investigacao/OOT/gr-correlate_and_delay/include -I/home/andre/investigacao/OOT/gr-correlate_and_delay/build/lib -I/home/andre/investigacao/OOT/gr-correlate_and_delay/build/include -isystem /usr/local/include 
 

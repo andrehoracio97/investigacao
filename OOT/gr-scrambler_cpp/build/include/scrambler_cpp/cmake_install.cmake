@@ -1,4 +1,4 @@
-# Install script for directory: /home/andre/investigacao/gr-scrambler_cpp/include/scrambler_cpp
+# Install script for directory: /home/andre/investigacao/OOT/gr-scrambler_cpp/include/scrambler_cpp
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,11 +39,11 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/scrambler_cpp" TYPE FILE FILES
-    "/home/andre/investigacao/gr-scrambler_cpp/include/scrambler_cpp/api.h"
-    "/home/andre/investigacao/gr-scrambler_cpp/include/scrambler_cpp/custom_scrambler.h"
-    "/home/andre/investigacao/gr-scrambler_cpp/include/scrambler_cpp/custom_descrambler.h"
-    "/home/andre/investigacao/gr-scrambler_cpp/include/scrambler_cpp/additive_scrambler.h"
-    "/home/andre/investigacao/gr-scrambler_cpp/include/scrambler_cpp/additive_descrambler.h"
+    "/home/andre/investigacao/OOT/gr-scrambler_cpp/include/scrambler_cpp/api.h"
+    "/home/andre/investigacao/OOT/gr-scrambler_cpp/include/scrambler_cpp/custom_scrambler.h"
+    "/home/andre/investigacao/OOT/gr-scrambler_cpp/include/scrambler_cpp/custom_descrambler.h"
+    "/home/andre/investigacao/OOT/gr-scrambler_cpp/include/scrambler_cpp/additive_scrambler.h"
+    "/home/andre/investigacao/OOT/gr-scrambler_cpp/include/scrambler_cpp/additive_descrambler.h"
     )
 endif()
 

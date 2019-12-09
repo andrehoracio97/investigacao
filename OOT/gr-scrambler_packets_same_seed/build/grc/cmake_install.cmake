@@ -1,4 +1,4 @@
-# Install script for directory: /home/andre/investigacao/gr-scrambler_packets_same_seed/grc
+# Install script for directory: /home/andre/investigacao/OOT/gr-scrambler_packets_same_seed/grc
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,8 +39,8 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gnuradio/grc/blocks" TYPE FILE FILES
-    "/home/andre/investigacao/gr-scrambler_packets_same_seed/grc/scrambler_packets_same_seed_scramble_packetize.xml"
-    "/home/andre/investigacao/gr-scrambler_packets_same_seed/grc/scrambler_packets_same_seed_descramble_packetize.xml"
+    "/home/andre/investigacao/OOT/gr-scrambler_packets_same_seed/grc/scrambler_packets_same_seed_scramble_packetize.xml"
+    "/home/andre/investigacao/OOT/gr-scrambler_packets_same_seed/grc/scrambler_packets_same_seed_descramble_packetize.xml"
     )
 endif()
 

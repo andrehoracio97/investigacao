@@ -9,6 +9,15 @@
       <node id="52">
         <label>gnuradio/attributes.h</label>
       </node>
+      <node id="51">
+        <label>scrambler_cpp/api.h</label>
+        <link refid="api_8h"/>
+        <childnode refid="52" relation="include">
+        </childnode>
+      </node>
+      <node id="53">
+        <label>gnuradio/block.h</label>
+      </node>
       <node id="50">
         <label>custom_scrambler.h</label>
         <link refid="custom__scrambler_8h"/>
@@ -17,26 +26,17 @@
         <childnode refid="53" relation="include">
         </childnode>
       </node>
-      <node id="53">
-        <label>gnuradio/block.h</label>
-      </node>
-      <node id="51">
-        <label>scrambler_cpp/api.h</label>
-        <link refid="api_8h"/>
-        <childnode refid="52" relation="include">
-        </childnode>
-      </node>
     </incdepgraph>
     <invincdepgraph>
+      <node id="55">
+        <label>custom_scrambler_impl.h</label>
+        <link refid="custom__scrambler__impl_8h"/>
+      </node>
       <node id="54">
         <label>custom_scrambler.h</label>
         <link refid="custom__scrambler_8h"/>
         <childnode refid="55" relation="include">
         </childnode>
-      </node>
-      <node id="55">
-        <label>custom_scrambler_impl.h</label>
-        <link refid="custom__scrambler__impl_8h"/>
       </node>
     </invincdepgraph>
     <innerclass refid="classgr_1_1scrambler__cpp_1_1custom__scrambler" prot="public">gr::scrambler_cpp::custom_scrambler</innerclass>
@@ -46,6 +46,6 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/andre/investigacao/gr-scrambler_cpp/include/scrambler_cpp/custom_scrambler.h"/>
+    <location file="/home/andre/investigacao/OOT/gr-scrambler_cpp/include/scrambler_cpp/custom_scrambler.h"/>
   </compounddef>
 </doxygen>

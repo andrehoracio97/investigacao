@@ -1,4 +1,4 @@
-# Install script for directory: /home/andre/investigacao/gr-correlate_and_delay/swig
+# Install script for directory: /home/andre/investigacao/OOT/gr-correlate_and_delay/swig
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,12 +44,12 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages/correlate_and_delay/_correlate_and_delay_swig.so"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages/correlate_and_delay" TYPE MODULE FILES "/home/andre/investigacao/gr-correlate_and_delay/build/swig/_correlate_and_delay_swig.so")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages/correlate_and_delay" TYPE MODULE FILES "/home/andre/investigacao/OOT/gr-correlate_and_delay/build/swig/_correlate_and_delay_swig.so")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages/correlate_and_delay/_correlate_and_delay_swig.so" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages/correlate_and_delay/_correlate_and_delay_swig.so")
     file(RPATH_CHANGE
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages/correlate_and_delay/_correlate_and_delay_swig.so"
-         OLD_RPATH "/home/andre/investigacao/gr-correlate_and_delay/build/lib:/usr/local/lib:"
+         OLD_RPATH "/home/andre/investigacao/OOT/gr-correlate_and_delay/build/lib:/usr/local/lib:"
          NEW_RPATH "")
     if(CMAKE_INSTALL_DO_STRIP)
       execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages/correlate_and_delay/_correlate_and_delay_swig.so")
@@ -58,20 +58,20 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages/correlate_and_delay" TYPE FILE FILES "/home/andre/investigacao/gr-correlate_and_delay/build/swig/correlate_and_delay_swig.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages/correlate_and_delay" TYPE FILE FILES "/home/andre/investigacao/OOT/gr-correlate_and_delay/build/swig/correlate_and_delay_swig.py")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages/correlate_and_delay" TYPE FILE FILES
-    "/home/andre/investigacao/gr-correlate_and_delay/build/swig/correlate_and_delay_swig.pyc"
-    "/home/andre/investigacao/gr-correlate_and_delay/build/swig/correlate_and_delay_swig.pyo"
+    "/home/andre/investigacao/OOT/gr-correlate_and_delay/build/swig/correlate_and_delay_swig.pyc"
+    "/home/andre/investigacao/OOT/gr-correlate_and_delay/build/swig/correlate_and_delay_swig.pyo"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/correlate_and_delay/correlate_and_delay/swig" TYPE FILE FILES
-    "/home/andre/investigacao/gr-correlate_and_delay/swig/correlate_and_delay_swig.i"
-    "/home/andre/investigacao/gr-correlate_and_delay/build/swig/correlate_and_delay_swig_doc.i"
+    "/home/andre/investigacao/OOT/gr-correlate_and_delay/swig/correlate_and_delay_swig.i"
+    "/home/andre/investigacao/OOT/gr-correlate_and_delay/build/swig/correlate_and_delay_swig_doc.i"
     )
 endif()
 

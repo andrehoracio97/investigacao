@@ -4,8 +4,8 @@
 lib/CMakeFiles/gnuradio-correlate_and_delay.dir/corr_and_delay_impl.cc.o
  ../include/correlate_and_delay/api.h
  ../include/correlate_and_delay/corr_and_delay.h
- /home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.cc
- /home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h
+ /home/andre/investigacao/OOT/gr-correlate_and_delay/lib/corr_and_delay_impl.cc
+ /home/andre/investigacao/OOT/gr-correlate_and_delay/lib/corr_and_delay_impl.h
  /usr/local/include/gnuradio/api.h
  /usr/local/include/gnuradio/attributes.h
  /usr/local/include/gnuradio/basic_block.h

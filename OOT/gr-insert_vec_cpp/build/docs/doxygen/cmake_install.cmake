@@ -1,4 +1,4 @@
-# Install script for directory: /home/andre/investigacao/gr-insert_vec_cpp/docs/doxygen
+# Install script for directory: /home/andre/investigacao/OOT/gr-insert_vec_cpp/docs/doxygen
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,8 +39,8 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/doc/gr-insert_vec_cpp" TYPE DIRECTORY FILES
-    "/home/andre/investigacao/gr-insert_vec_cpp/build/docs/doxygen/xml"
-    "/home/andre/investigacao/gr-insert_vec_cpp/build/docs/doxygen/html"
+    "/home/andre/investigacao/OOT/gr-insert_vec_cpp/build/docs/doxygen/xml"
+    "/home/andre/investigacao/OOT/gr-insert_vec_cpp/build/docs/doxygen/html"
     )
 endif()
 

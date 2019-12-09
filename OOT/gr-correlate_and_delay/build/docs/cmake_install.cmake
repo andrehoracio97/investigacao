@@ -1,4 +1,4 @@
-# Install script for directory: /home/andre/investigacao/gr-correlate_and_delay/docs
+# Install script for directory: /home/andre/investigacao/OOT/gr-correlate_and_delay/docs
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/andre/investigacao/gr-correlate_and_delay/build/docs/doxygen/cmake_install.cmake")
+  include("/home/andre/investigacao/OOT/gr-correlate_and_delay/build/docs/doxygen/cmake_install.cmake")
 
 endif()
 

@@ -9,14 +9,14 @@
       <node id="39">
         <label>gnuradio/attributes.h</label>
       </node>
-      <node id="40">
-        <label>gnuradio/block.h</label>
-      </node>
       <node id="38">
         <label>scrambler_cpp/api.h</label>
         <link refid="api_8h"/>
         <childnode refid="39" relation="include">
         </childnode>
+      </node>
+      <node id="40">
+        <label>gnuradio/block.h</label>
       </node>
       <node id="37">
         <label>custom_descrambler.h</label>
@@ -46,6 +46,6 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/andre/investigacao/gr-scrambler_cpp/include/scrambler_cpp/custom_descrambler.h"/>
+    <location file="/home/andre/investigacao/OOT/gr-scrambler_cpp/include/scrambler_cpp/custom_descrambler.h"/>
   </compounddef>
 </doxygen>

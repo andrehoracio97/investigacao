@@ -5,8 +5,25 @@
     <includes refid="additive__scrambler_8h" local="no">scrambler_cpp/additive_scrambler.h</includes>
     <includes local="no">gnuradio/digital/lfsr.h</includes>
     <incdepgraph>
+      <node id="20">
+        <label>scrambler_cpp/additive_scrambler.h</label>
+        <link refid="additive__scrambler_8h"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
       <node id="22">
         <label>gnuradio/attributes.h</label>
+      </node>
+      <node id="24">
+        <label>gnuradio/digital/lfsr.h</label>
+      </node>
+      <node id="21">
+        <label>scrambler_cpp/api.h</label>
+        <link refid="api_8h"/>
+        <childnode refid="22" relation="include">
+        </childnode>
       </node>
       <node id="19">
         <label>additive_scrambler_impl.h</label>
@@ -16,25 +33,8 @@
         <childnode refid="24" relation="include">
         </childnode>
       </node>
-      <node id="24">
-        <label>gnuradio/digital/lfsr.h</label>
-      </node>
       <node id="23">
         <label>gnuradio/block.h</label>
-      </node>
-      <node id="21">
-        <label>scrambler_cpp/api.h</label>
-        <link refid="api_8h"/>
-        <childnode refid="22" relation="include">
-        </childnode>
-      </node>
-      <node id="20">
-        <label>scrambler_cpp/additive_scrambler.h</label>
-        <link refid="additive__scrambler_8h"/>
-        <childnode refid="21" relation="include">
-        </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
       </node>
     </incdepgraph>
     <innerclass refid="classgr_1_1scrambler__cpp_1_1additive__scrambler__impl" prot="public">gr::scrambler_cpp::additive_scrambler_impl</innerclass>
@@ -44,6 +44,6 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/andre/investigacao/gr-scrambler_cpp/lib/additive_scrambler_impl.h"/>
+    <location file="/home/andre/investigacao/OOT/gr-scrambler_cpp/lib/additive_scrambler_impl.h"/>
   </compounddef>
 </doxygen>

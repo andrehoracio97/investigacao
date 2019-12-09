@@ -22,7 +22,7 @@ scrambler_packets_same_seed/api.h
 gnuradio/block.h
 -
 
-/home/andre/investigacao/gr-scrambler_packets_same_seed/build/swig/scrambler_packets_same_seed_swigPYTHON_wrap.cxx
+/home/andre/investigacao/OOT/gr-scrambler_packets_same_seed/build/swig/scrambler_packets_same_seed_swigPYTHON_wrap.cxx
 Python.h
 -
 Python.h
@@ -34,7 +34,7 @@ stdexcept
 string
 -
 gnuradio_swig_bug_workaround.h
-/home/andre/investigacao/gr-scrambler_packets_same_seed/build/swig/gnuradio_swig_bug_workaround.h
+/home/andre/investigacao/OOT/gr-scrambler_packets_same_seed/build/swig/gnuradio_swig_bug_workaround.h
 cstddef
 -
 typeinfo
@@ -70,9 +70,9 @@ gnuradio/high_res_timer.h
 limits.h
 -
 scrambler_packets_same_seed/scramble_packetize.h
-/home/andre/investigacao/gr-scrambler_packets_same_seed/build/swig/scrambler_packets_same_seed/scramble_packetize.h
+/home/andre/investigacao/OOT/gr-scrambler_packets_same_seed/build/swig/scrambler_packets_same_seed/scramble_packetize.h
 scrambler_packets_same_seed/descramble_packetize.h
-/home/andre/investigacao/gr-scrambler_packets_same_seed/build/swig/scrambler_packets_same_seed/descramble_packetize.h
+/home/andre/investigacao/OOT/gr-scrambler_packets_same_seed/build/swig/scrambler_packets_same_seed/descramble_packetize.h
 float.h
 -
 math.h

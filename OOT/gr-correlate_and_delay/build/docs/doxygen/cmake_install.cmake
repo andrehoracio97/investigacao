@@ -1,4 +1,4 @@
-# Install script for directory: /home/andre/investigacao/gr-correlate_and_delay/docs/doxygen
+# Install script for directory: /home/andre/investigacao/OOT/gr-correlate_and_delay/docs/doxygen
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,8 +39,8 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/doc/gr-correlate_and_delay" TYPE DIRECTORY FILES
-    "/home/andre/investigacao/gr-correlate_and_delay/build/docs/doxygen/xml"
-    "/home/andre/investigacao/gr-correlate_and_delay/build/docs/doxygen/html"
+    "/home/andre/investigacao/OOT/gr-correlate_and_delay/build/docs/doxygen/xml"
+    "/home/andre/investigacao/OOT/gr-correlate_and_delay/build/docs/doxygen/html"
     )
 endif()
 

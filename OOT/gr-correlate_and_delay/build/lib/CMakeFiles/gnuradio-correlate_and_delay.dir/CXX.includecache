@@ -16,13 +16,13 @@ correlate_and_delay/api.h
 gnuradio/block.h
 -
 
-/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.cc
+/home/andre/investigacao/OOT/gr-correlate_and_delay/lib/corr_and_delay_impl.cc
 config.h
-/home/andre/investigacao/gr-correlate_and_delay/lib/config.h
+/home/andre/investigacao/OOT/gr-correlate_and_delay/lib/config.h
 gnuradio/io_signature.h
 -
 corr_and_delay_impl.h
-/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h
+/home/andre/investigacao/OOT/gr-correlate_and_delay/lib/corr_and_delay_impl.h
 gnuradio/filter/firdes.h
 -
 volk/volk.h
@@ -44,7 +44,7 @@ iostream
 deque
 -
 
-/home/andre/investigacao/gr-correlate_and_delay/lib/corr_and_delay_impl.h
+/home/andre/investigacao/OOT/gr-correlate_and_delay/lib/corr_and_delay_impl.h
 correlate_and_delay/corr_and_delay.h
 -
 gnuradio/filter/fft_filter.h

@@ -1,4 +1,4 @@
-# Install script for directory: /home/andre/investigacao/gr-insert_vec_cpp/include/insert_vec_cpp
+# Install script for directory: /home/andre/investigacao/OOT/gr-insert_vec_cpp/include/insert_vec_cpp
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,8 +39,8 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/insert_vec_cpp" TYPE FILE FILES
-    "/home/andre/investigacao/gr-insert_vec_cpp/include/insert_vec_cpp/api.h"
-    "/home/andre/investigacao/gr-insert_vec_cpp/include/insert_vec_cpp/new_vec.h"
+    "/home/andre/investigacao/OOT/gr-insert_vec_cpp/include/insert_vec_cpp/api.h"
+    "/home/andre/investigacao/OOT/gr-insert_vec_cpp/include/insert_vec_cpp/new_vec.h"
     )
 endif()
 

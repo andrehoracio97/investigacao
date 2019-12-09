@@ -9,6 +9,9 @@
       <node id="9">
         <label>gnuradio/attributes.h</label>
       </node>
+      <node id="10">
+        <label>gnuradio/block.h</label>
+      </node>
       <node id="8">
         <label>scrambler_packets_same_seed/api.h</label>
         <link refid="api_8h"/>
@@ -22,9 +25,6 @@
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
-      </node>
-      <node id="10">
-        <label>gnuradio/block.h</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
@@ -46,6 +46,6 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/andre/investigacao/gr-scrambler_packets_same_seed/include/scrambler_packets_same_seed/descramble_packetize.h"/>
+    <location file="/home/andre/investigacao/OOT/gr-scrambler_packets_same_seed/include/scrambler_packets_same_seed/descramble_packetize.h"/>
   </compounddef>
 </doxygen>

@@ -1,4 +1,4 @@
-# Install script for directory: /home/andre/investigacao/gr-scrambler_packets_same_seed/apps
+# Install script for directory: /home/andre/investigacao/OOT/gr-scrambler_packets_same_seed/apps
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

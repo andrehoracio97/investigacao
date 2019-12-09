@@ -1,4 +1,4 @@
-# Install script for directory: /home/andre/investigacao/gr-scrambler_cpp
+# Install script for directory: /home/andre/investigacao/OOT/gr-scrambler_cpp
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -38,18 +38,18 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/scrambler_cpp" TYPE FILE FILES "/home/andre/investigacao/gr-scrambler_cpp/cmake/Modules/scrambler_cppConfig.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/scrambler_cpp" TYPE FILE FILES "/home/andre/investigacao/OOT/gr-scrambler_cpp/cmake/Modules/scrambler_cppConfig.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/andre/investigacao/gr-scrambler_cpp/build/include/scrambler_cpp/cmake_install.cmake")
-  include("/home/andre/investigacao/gr-scrambler_cpp/build/lib/cmake_install.cmake")
-  include("/home/andre/investigacao/gr-scrambler_cpp/build/swig/cmake_install.cmake")
-  include("/home/andre/investigacao/gr-scrambler_cpp/build/python/cmake_install.cmake")
-  include("/home/andre/investigacao/gr-scrambler_cpp/build/grc/cmake_install.cmake")
-  include("/home/andre/investigacao/gr-scrambler_cpp/build/apps/cmake_install.cmake")
-  include("/home/andre/investigacao/gr-scrambler_cpp/build/docs/cmake_install.cmake")
+  include("/home/andre/investigacao/OOT/gr-scrambler_cpp/build/include/scrambler_cpp/cmake_install.cmake")
+  include("/home/andre/investigacao/OOT/gr-scrambler_cpp/build/lib/cmake_install.cmake")
+  include("/home/andre/investigacao/OOT/gr-scrambler_cpp/build/swig/cmake_install.cmake")
+  include("/home/andre/investigacao/OOT/gr-scrambler_cpp/build/python/cmake_install.cmake")
+  include("/home/andre/investigacao/OOT/gr-scrambler_cpp/build/grc/cmake_install.cmake")
+  include("/home/andre/investigacao/OOT/gr-scrambler_cpp/build/apps/cmake_install.cmake")
+  include("/home/andre/investigacao/OOT/gr-scrambler_cpp/build/docs/cmake_install.cmake")
 
 endif()
 
@@ -61,5 +61,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/andre/investigacao/gr-scrambler_cpp/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/andre/investigacao/OOT/gr-scrambler_cpp/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -8,6 +8,9 @@
       <node id="7">
         <label>gnuradio/attributes.h</label>
       </node>
+      <node id="8">
+        <label>gnuradio/block.h</label>
+      </node>
       <node id="6">
         <label>scrambler_packets_same_seed/api.h</label>
         <link refid="api_8h"/>
@@ -21,9 +24,6 @@
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
-      </node>
-      <node id="8">
-        <label>gnuradio/block.h</label>
       </node>
     </incdepgraph>
     <innerclass refid="classgr_1_1scrambler__packets__same__seed_1_1descramble__packetize" prot="public">gr::scrambler_packets_same_seed::descramble_packetize</innerclass>
@@ -78,6 +78,6 @@
 <codeline lineno="55"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>INCLUDED_SCRAMBLER_PACKETS_SAME_SEED_DESCRAMBLE_PACKETIZE_H<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="56"><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/andre/investigacao/gr-scrambler_packets_same_seed/include/scrambler_packets_same_seed/descramble_packetize.h"/>
+    <location file="/home/andre/investigacao/OOT/gr-scrambler_packets_same_seed/include/scrambler_packets_same_seed/descramble_packetize.h"/>
   </compounddef>
 </doxygen>

@@ -5,6 +5,14 @@
     <includes refid="api_8h" local="no">correlate_and_delay/api.h</includes>
     <includes local="no">gnuradio/block.h</includes>
     <incdepgraph>
+      <node id="4">
+        <label>corr_and_delay.h</label>
+        <link refid="corr__and__delay_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
       <node id="6">
         <label>gnuradio/attributes.h</label>
       </node>
@@ -16,14 +24,6 @@
       </node>
       <node id="7">
         <label>gnuradio/block.h</label>
-      </node>
-      <node id="4">
-        <label>corr_and_delay.h</label>
-        <link refid="corr__and__delay_8h"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
       </node>
     </incdepgraph>
     <innerclass refid="classgr_1_1correlate__and__delay_1_1corr__and__delay" prot="public">gr::correlate_and_delay::corr_and_delay</innerclass>
@@ -78,6 +78,6 @@
 <codeline lineno="55"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>INCLUDED_CORRELATE_AND_DELAY_CORR_AND_DELAY_H<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="56"><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/andre/investigacao/gr-correlate_and_delay/include/correlate_and_delay/corr_and_delay.h"/>
+    <location file="/home/andre/investigacao/OOT/gr-correlate_and_delay/include/correlate_and_delay/corr_and_delay.h"/>
   </compounddef>
 </doxygen>

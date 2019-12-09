@@ -1,4 +1,4 @@
-# Install script for directory: /home/andre/investigacao/gr-correlate_and_delay/include/correlate_and_delay
+# Install script for directory: /home/andre/investigacao/OOT/gr-correlate_and_delay/include/correlate_and_delay
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,8 +39,8 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/correlate_and_delay" TYPE FILE FILES
-    "/home/andre/investigacao/gr-correlate_and_delay/include/correlate_and_delay/api.h"
-    "/home/andre/investigacao/gr-correlate_and_delay/include/correlate_and_delay/corr_and_delay.h"
+    "/home/andre/investigacao/OOT/gr-correlate_and_delay/include/correlate_and_delay/api.h"
+    "/home/andre/investigacao/OOT/gr-correlate_and_delay/include/correlate_and_delay/corr_and_delay.h"
     )
 endif()
 
