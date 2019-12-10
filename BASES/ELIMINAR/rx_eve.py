@@ -77,7 +77,7 @@ class rx_eve(gr.top_block, Qt.QWidget):
         self.eb = eb = 0.22
         self.H_dec = H_dec = fec.ldpc_H_matrix('/usr/local/share/gnuradio/fec/ldpc/n_1100_k_0442_gap_24.alist', 24)
         self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 42
-        self.samp_rate = samp_rate = samp_rate_array_MCR[15]
+        self.samp_rate = samp_rate = samp_rate_array_MCR[11]
 
         self.rx_rrc_taps = rx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts*sps, 1.0, eb, 11*sps*nfilts)
 
@@ -375,7 +375,7 @@ class rx_eve(gr.top_block, Qt.QWidget):
         self.blocks_repack_bits_bb_0 = blocks.repack_bits_bb(pld_const.bits_per_symbol(), 1, '', False, gr.GR_MSB_FIRST)
         self.blocks_keep_m_in_n_0_1_1_0 = blocks.keep_m_in_n(gr.sizeof_char, 440, 442, 0)
         self.blocks_keep_m_in_n_0_0_2_0_0 = blocks.keep_m_in_n(gr.sizeof_char, 1100, 1104, 0)
-        self.blocks_file_sink_0_0_0_0 = blocks.file_sink(gr.sizeof_char*1, '/home/andre/Desktop/Trasmited/depois2.txt', False)
+        self.blocks_file_sink_0_0_0_0 = blocks.file_sink(gr.sizeof_char*1, '/home/it/Desktop/Trasmited/depois2.txt', False)
         self.blocks_file_sink_0_0_0_0.set_unbuffered(False)
         self.blocks_char_to_float_1_0_1 = blocks.char_to_float(1, 1)
         self.blocks_char_to_float_0_2_0_0_0 = blocks.char_to_float(1, 1)
@@ -430,7 +430,7 @@ class rx_eve(gr.top_block, Qt.QWidget):
 
     def set_samp_rate_array_MCR(self, samp_rate_array_MCR):
         self.samp_rate_array_MCR = samp_rate_array_MCR
-        self.set_samp_rate(self.samp_rate_array_MCR[15])
+        self.set_samp_rate(self.samp_rate_array_MCR[11])
 
     def get_nfilts(self):
         return self.nfilts
