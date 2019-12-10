@@ -510,7 +510,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>samp_rate_array_MCR[15]</value>
+      <value>samp_rate_array_MCR[13]</value>
     </param>
   </block>
   <block>
@@ -1319,7 +1319,7 @@
     </param>
     <param>
       <key>file</key>
-      <value>/home/andre/Desktop/Files_To_Transmit/book.txt</value>
+      <value>/home/it/Desktop/Files_To_Transmit/trasmit_10_mb.txt</value>
     </param>
     <param>
       <key>_coordinate</key>

@@ -483,7 +483,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>samp_rate_array_MCR[15]</value>
+      <value>samp_rate_array_MCR[10]</value>
     </param>
   </block>
   <block>
@@ -822,7 +822,7 @@
     </param>
     <param>
       <key>file</key>
-      <value>/home/andre/Desktop/Trasmited/depois2.txt</value>
+      <value>/home/it/Desktop/Trasmited/depois2.txt</value>
     </param>
     <param>
       <key>_coordinate</key>
