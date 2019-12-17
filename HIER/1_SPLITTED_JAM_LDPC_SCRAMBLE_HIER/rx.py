@@ -22,11 +22,10 @@ import sys
 sys.path.append(os.environ.get('GRC_HIER_PATH', os.path.expanduser('~/.grc_gnuradio')))
 
 from PyQt4 import Qt
+from bob_hier import bob_hier  # grc-generated hier_block
 from gnuradio import analog
 from gnuradio import blocks
-from gnuradio import digital
 from gnuradio import eng_notation
-from gnuradio import fec
 from gnuradio import filter
 from gnuradio import gr
 from gnuradio import qtgui
@@ -35,7 +34,6 @@ from gnuradio.eng_option import eng_option
 from gnuradio.filter import firdes
 from gnuradio.qtgui import Range, RangeWidget
 from optparse import OptionParser
-from rx import rx  # grc-generated hier_block
 import adapt
 import correlate_and_delay
 import sip
@@ -45,7 +43,7 @@ from gnuradio import qtgui
 
 class rx(gr.top_block, Qt.QWidget):
 
-    def __init__(self, puncpat='11'):
+    def __init__(self):
         gr.top_block.__init__(self, "Rx")
         Qt.QWidget.__init__(self)
         self.setWindowTitle("Rx")
@@ -71,30 +69,14 @@ class rx(gr.top_block, Qt.QWidget):
 
 
         ##################################################
-        # Parameters
-        ##################################################
-        self.puncpat = puncpat
-
-        ##################################################
         # Variables
         ##################################################
-        self.sps = sps = 4
         self.samp_rate_array_MCR = samp_rate_array_MCR = [7500000,5000000,3750000,3000000,2500000,2000000,1500000,1000000,937500,882352,833333,714285,533333,500000,421052,400000,380952]
-        self.nfilts = nfilts = 32
-        self.eb = eb = 0.22
-        self.H_dec = H_dec = fec.ldpc_H_matrix('/usr/local/share/gnuradio/fec/ldpc/n_1100_k_0442_gap_24.alist', 24)
         self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 30
         self.variable_qtgui_range_0_0 = variable_qtgui_range_0_0 = 52
         self.variable_qtgui_check_box_0 = variable_qtgui_check_box_0 = True
+        self.sps = sps = 4
         self.samp_rate = samp_rate = samp_rate_array_MCR[15]
-
-        self.rx_rrc_taps = rx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts*sps, 1.0, eb, 11*sps*nfilts)
-
-
-
-        self.pld_dec = pld_dec = map((lambda a: fec.ldpc_bit_flip_decoder.make(H_dec.get_base_sptr(), 100)), range(0,8))
-        self.pld_const = pld_const = digital.constellation_rect(([0.707+0.707j, -0.707+0.707j, -0.707-0.707j, 0.707-0.707j]), ([0, 1, 2, 3]), 4, 2, 2, 1, 1).base()
-        self.pld_const.gen_soft_dec_lut(8)
         self.frequencia_usrp = frequencia_usrp = 484e6
         self.MCR = MCR = "master_clock_rate=60e6"
 
@@ -153,11 +135,6 @@ class rx(gr.top_block, Qt.QWidget):
         self.uhd_usrp_sink_0.set_center_freq(frequencia_usrp, 0)
         self.uhd_usrp_sink_0.set_gain(variable_qtgui_range_0_0, 0)
         self.uhd_usrp_sink_0.set_antenna('TX/RX', 0)
-        self.rx_0 = rx(
-            puncpat='11',
-            samp_rate=samp_rate,
-        )
-        self.top_grid_layout.addWidget(self.rx_0)
         self.qtgui_time_sink_x_1_0_0 = qtgui.time_sink_c(
         	1024, #size
         	samp_rate, #samp_rate
@@ -415,6 +392,9 @@ class rx(gr.top_block, Qt.QWidget):
         self.interp_fir_filter_xxx_1 = filter.interp_fir_filter_ccc(4, ([1,0,0,0]))
         self.interp_fir_filter_xxx_1.declare_sample_delay(0)
         self.custom_corr = correlate_and_delay.corr_and_delay(200*sps, 0, 0.99, sps)
+        self.bob_hier = bob_hier(
+            samp_rate=samp_rate,
+        )
         self.blocks_null_sink_1 = blocks.null_sink(gr.sizeof_gr_complex*1)
         self.blocks_null_sink_0 = blocks.null_sink(gr.sizeof_gr_complex*1)
         self.blocks_multiply_const_vxx_1_0 = blocks.multiply_const_vcc((0.5, ))
@@ -432,7 +412,7 @@ class rx(gr.top_block, Qt.QWidget):
         # Connections
         ##################################################
         self.connect((self.adapt_lms_filter_xx_0, 0), (self.blocks_null_sink_0, 0))
-        self.connect((self.adapt_lms_filter_xx_0, 1), (self.rx_0, 0))
+        self.connect((self.adapt_lms_filter_xx_0, 1), (self.bob_hier, 0))
         self.connect((self.analog_noise_source_x_0_0, 0), (self.interp_fir_filter_xxx_1, 0))
         self.connect((self.blocks_char_to_float_1_0_1, 0), (self.qtgui_time_sink_x_0_1, 0))
         self.connect((self.blocks_copy_0, 0), (self.uhd_usrp_sink_0, 0))
@@ -440,12 +420,12 @@ class rx(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_multiply_const_vxx_1_0, 0), (self.custom_corr, 0))
         self.connect((self.blocks_multiply_const_vxx_1_0, 0), (self.qtgui_freq_sink_x_1, 0))
         self.connect((self.blocks_multiply_const_vxx_1_0, 0), (self.qtgui_time_sink_x_1_0_0, 0))
+        self.connect((self.bob_hier, 0), (self.blocks_char_to_float_1_0_1, 0))
+        self.connect((self.bob_hier, 0), (self.blocks_file_sink_0_0_0_0_2, 0))
         self.connect((self.custom_corr, 0), (self.adapt_lms_filter_xx_0, 1))
         self.connect((self.custom_corr, 1), (self.adapt_lms_filter_xx_0, 0))
         self.connect((self.custom_corr, 2), (self.blocks_null_sink_1, 0))
         self.connect((self.interp_fir_filter_xxx_1, 0), (self.blocks_multiply_const_vxx_1_0, 0))
-        self.connect((self.rx_0, 0), (self.blocks_char_to_float_1_0_1, 0))
-        self.connect((self.rx_0, 0), (self.blocks_file_sink_0_0_0_0_2, 0))
         self.connect((self.uhd_usrp_source_0_0, 0), (self.custom_corr, 1))
         self.connect((self.uhd_usrp_source_0_0, 0), (self.qtgui_const_sink_x_0_0_0_1, 0))
         self.connect((self.uhd_usrp_source_0_0, 0), (self.qtgui_time_sink_x_1_0, 0))
@@ -455,42 +435,12 @@ class rx(gr.top_block, Qt.QWidget):
         self.settings.setValue("geometry", self.saveGeometry())
         event.accept()
 
-    def get_puncpat(self):
-        return self.puncpat
-
-    def set_puncpat(self, puncpat):
-        self.puncpat = puncpat
-
-    def get_sps(self):
-        return self.sps
-
-    def set_sps(self, sps):
-        self.sps = sps
-
     def get_samp_rate_array_MCR(self):
         return self.samp_rate_array_MCR
 
     def set_samp_rate_array_MCR(self, samp_rate_array_MCR):
         self.samp_rate_array_MCR = samp_rate_array_MCR
         self.set_samp_rate(self.samp_rate_array_MCR[15])
-
-    def get_nfilts(self):
-        return self.nfilts
-
-    def set_nfilts(self, nfilts):
-        self.nfilts = nfilts
-
-    def get_eb(self):
-        return self.eb
-
-    def set_eb(self, eb):
-        self.eb = eb
-
-    def get_H_dec(self):
-        return self.H_dec
-
-    def set_H_dec(self, H_dec):
-        self.H_dec = H_dec
 
     def get_variable_qtgui_range_0_1(self):
         return self.variable_qtgui_range_0_1
@@ -516,6 +466,12 @@ class rx(gr.top_block, Qt.QWidget):
         self._variable_qtgui_check_box_0_callback(self.variable_qtgui_check_box_0)
         self.blocks_copy_0.set_enabled(self.variable_qtgui_check_box_0)
 
+    def get_sps(self):
+        return self.sps
+
+    def set_sps(self, sps):
+        self.sps = sps
+
     def get_samp_rate(self):
         return self.samp_rate
 
@@ -523,29 +479,11 @@ class rx(gr.top_block, Qt.QWidget):
         self.samp_rate = samp_rate
         self.uhd_usrp_source_0_0.set_samp_rate(self.samp_rate)
         self.uhd_usrp_sink_0.set_samp_rate(self.samp_rate)
-        self.rx_0.set_samp_rate(self.samp_rate)
         self.qtgui_time_sink_x_1_0_0.set_samp_rate(self.samp_rate)
         self.qtgui_time_sink_x_1_0.set_samp_rate(self.samp_rate)
         self.qtgui_time_sink_x_0_1.set_samp_rate(self.samp_rate)
         self.qtgui_freq_sink_x_1.set_frequency_range(0, self.samp_rate)
-
-    def get_rx_rrc_taps(self):
-        return self.rx_rrc_taps
-
-    def set_rx_rrc_taps(self, rx_rrc_taps):
-        self.rx_rrc_taps = rx_rrc_taps
-
-    def get_pld_dec(self):
-        return self.pld_dec
-
-    def set_pld_dec(self, pld_dec):
-        self.pld_dec = pld_dec
-
-    def get_pld_const(self):
-        return self.pld_const
-
-    def set_pld_const(self, pld_const):
-        self.pld_const = pld_const
+        self.bob_hier.set_samp_rate(self.samp_rate)
 
     def get_frequencia_usrp(self):
         return self.frequencia_usrp
@@ -562,17 +500,7 @@ class rx(gr.top_block, Qt.QWidget):
         self.MCR = MCR
 
 
-def argument_parser():
-    parser = OptionParser(usage="%prog: [options]", option_class=eng_option)
-    parser.add_option(
-        "", "--puncpat", dest="puncpat", type="string", default='11',
-        help="Set puncpat [default=%default]")
-    return parser
-
-
 def main(top_block_cls=rx, options=None):
-    if options is None:
-        options, _ = argument_parser().parse_args()
 
     from distutils.version import StrictVersion
     if StrictVersion(Qt.qVersion()) >= StrictVersion("4.5.0"):
@@ -580,7 +508,7 @@ def main(top_block_cls=rx, options=None):
         Qt.QApplication.setGraphicsSystem(style)
     qapp = Qt.QApplication(sys.argv)
 
-    tb = top_block_cls(puncpat=options.puncpat)
+    tb = top_block_cls()
     tb.start()
     tb.show()
 
