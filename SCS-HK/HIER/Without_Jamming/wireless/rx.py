@@ -82,7 +82,11 @@ class rx(gr.top_block, Qt.QWidget):
         self.k = k = 7
         self.eb = eb = 0.22
         self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 36
+<<<<<<< HEAD
         self.samp_rate = samp_rate = samp_rate_array_MCR[15]
+=======
+        self.samp_rate = samp_rate = samp_rate_array_MCR[2]
+>>>>>>> e2feb857706630949e633f2ef8d7a3a17ab9deed
 
         self.rx_rrc_taps = rx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts*sps, 1.0, eb, 11*sps*nfilts)
 
@@ -216,9 +220,15 @@ class rx(gr.top_block, Qt.QWidget):
         for c in range(2, 3):
             self.top_grid_layout.setColumnStretch(c, 1)
         self.bob_hier_0 = bob_hier(
+<<<<<<< HEAD
             samp_rate=samp_rate,
         )
         self.blocks_file_sink_0_0_0_0_1 = blocks.file_sink(gr.sizeof_char*1, '/home/it/Desktop/Trasmited/depois.txt', False)
+=======
+            samp_rate=0,
+        )
+        self.blocks_file_sink_0_0_0_0_1 = blocks.file_sink(gr.sizeof_char*1, '/home/andre/Desktop/Trasmited/depois.txt', False)
+>>>>>>> e2feb857706630949e633f2ef8d7a3a17ab9deed
         self.blocks_file_sink_0_0_0_0_1.set_unbuffered(False)
         self.blocks_char_to_float_1_0_1 = blocks.char_to_float(1, 1)
 
@@ -255,7 +265,11 @@ class rx(gr.top_block, Qt.QWidget):
 
     def set_samp_rate_array_MCR(self, samp_rate_array_MCR):
         self.samp_rate_array_MCR = samp_rate_array_MCR
+<<<<<<< HEAD
         self.set_samp_rate(self.samp_rate_array_MCR[15])
+=======
+        self.set_samp_rate(self.samp_rate_array_MCR[2])
+>>>>>>> e2feb857706630949e633f2ef8d7a3a17ab9deed
 
     def get_rate(self):
         return self.rate
@@ -302,7 +316,10 @@ class rx(gr.top_block, Qt.QWidget):
         self.samp_rate = samp_rate
         self.uhd_usrp_source_0.set_samp_rate(self.samp_rate)
         self.qtgui_time_sink_x_0_1.set_samp_rate(self.samp_rate)
+<<<<<<< HEAD
         self.bob_hier_0.set_samp_rate(self.samp_rate)
+=======
+>>>>>>> e2feb857706630949e633f2ef8d7a3a17ab9deed
 
     def get_rx_rrc_taps(self):
         return self.rx_rrc_taps
