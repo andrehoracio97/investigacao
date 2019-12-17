@@ -283,7 +283,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1368, 156)</value>
+      <value>(1352, 140)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -451,7 +451,7 @@
     </param>
     <param>
       <key>dim1</key>
-      <value>8</value>
+      <value>4</value>
     </param>
     <param>
       <key>dim2</key>
@@ -467,7 +467,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1144, 4)</value>
+      <value>(1128, 12)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -510,7 +510,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1368, 100)</value>
+      <value>(1352, 84)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -537,7 +537,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1432, 156)</value>
+      <value>(1416, 140)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -855,7 +855,10 @@
     </param>
     <param>
       <key>comment</key>
-      <value></value>
+      <value>64 bits of Access Code +
+16 bits of Lenght of the Payload (112 bytes) + 
+16 bits of Lenght of the Payload (112 bytes) + 
+96 bits of Header</value>
     </param>
     <param>
       <key>affinity</key>
@@ -867,7 +870,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(80, 420)</value>
+      <value>(48, 396)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1500,7 +1503,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(568, 460)</value>
+      <value>(552, 468)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1649,7 +1652,9 @@
     </param>
     <param>
       <key>comment</key>
-      <value></value>
+      <value>96 bits of Header + 1104
+ (138
+ bytes) of payload</value>
     </param>
     <param>
       <key>affinity</key>
@@ -1661,7 +1666,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(344, 456)</value>
+      <value>(368, 464)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1669,11 +1674,11 @@
     </param>
     <param>
       <key>id</key>
-      <value>blocks_stream_mux_0_1_0_0</value>
+      <value>blocks_stream_mux_0_1_0</value>
     </param>
     <param>
       <key>lengths</key>
-      <value>96, 1104</value>
+      <value>96, 896</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -3542,7 +3547,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>1</value>
     </param>
     <param>
       <key>frame_bits</key>
@@ -4553,7 +4558,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(824, 468)</value>
+      <value>(776, 476)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -4624,7 +4629,7 @@
   </block>
   <connection>
     <source_block_id>acode_1104</source_block_id>
-    <sink_block_id>blocks_stream_mux_0_1_0_0</sink_block_id>
+    <sink_block_id>blocks_stream_mux_0_1_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -4761,7 +4766,7 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>blocks_stream_mux_0_1_0_0</source_block_id>
+    <source_block_id>blocks_stream_mux_0_1_0</source_block_id>
     <sink_block_id>blocks_repack_bits_bb_1_0_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
@@ -4821,6 +4826,12 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
+    <source_block_id>scrambler_packets_same_seed_scramble_packetize_0</source_block_id>
+    <sink_block_id>fec_extended_encoder_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
     <source_block_id>virtual_source_0_0</source_block_id>
     <sink_block_id>insert_vec_cpp_new_vec_0</sink_block_id>
     <source_key>0</source_key>
@@ -4828,7 +4839,7 @@
   </connection>
   <connection>
     <source_block_id>virtual_source_4</source_block_id>
-    <sink_block_id>blocks_stream_mux_0_1_0_0</sink_block_id>
+    <sink_block_id>blocks_stream_mux_0_1_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>1</sink_key>
   </connection>

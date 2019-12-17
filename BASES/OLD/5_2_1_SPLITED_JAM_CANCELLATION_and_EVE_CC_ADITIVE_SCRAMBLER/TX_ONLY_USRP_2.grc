@@ -855,7 +855,10 @@
     </param>
     <param>
       <key>comment</key>
-      <value>AC+pld_bits_112+pld_bits_112</value>
+      <value>64 bits of Access Code +
+16 bits of Lenght of the Payload (112 bytes) + 
+16 bits of Lenght of the Payload (112 bytes) + 
+96 bits of Header</value>
     </param>
     <param>
       <key>affinity</key>
@@ -1590,7 +1593,9 @@
     </param>
     <param>
       <key>comment</key>
-      <value></value>
+      <value>96 bits of Header + 1104
+ (138
+ bytes) of payload</value>
     </param>
     <param>
       <key>affinity</key>
@@ -1602,7 +1607,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(408, 472)</value>
+      <value>(472, 472)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -4296,11 +4301,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>True</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(144, 532)</value>
+      <value>(168, 540)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -4308,7 +4313,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>virtual_source_0_1</value>
+      <value>virtual_source_4</value>
     </param>
     <param>
       <key>stream_id</key>
@@ -4532,7 +4537,7 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>virtual_source_0_1</source_block_id>
+    <source_block_id>virtual_source_4</source_block_id>
     <sink_block_id>blocks_stream_mux_0_1_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>1</sink_key>
