@@ -471,7 +471,7 @@ class rx(gr.top_block, Qt.QWidget):
         self.blocks_keep_m_in_n_0_0_2_0_0 = blocks.keep_m_in_n(gr.sizeof_char, 1100, 1104, 0)
         self.blocks_file_sink_0_0_0_0_2 = blocks.file_sink(gr.sizeof_char*1, '/home/it/Desktop/Trasmited/depois.txt', False)
         self.blocks_file_sink_0_0_0_0_2.set_unbuffered(False)
-        self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_char*1, '/home/it/Desktop/rx_ber.txt', False)
+        self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_char*1, '/home/it/Desktop/rx_ber2.txt', False)
         self.blocks_file_sink_0.set_unbuffered(False)
         self.blocks_copy_0 = blocks.copy(gr.sizeof_gr_complex*1)
         self.blocks_copy_0.set_enabled(variable_qtgui_check_box_0)
