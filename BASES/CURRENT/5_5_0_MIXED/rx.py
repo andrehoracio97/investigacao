@@ -76,14 +76,14 @@ class rx(gr.top_block, Qt.QWidget):
         # Variables
         ##################################################
         self.sps = sps = 4
-        self.samp_rate_array_MCR = samp_rate_array_MCR = [7500000,5000000,3750000,3000000,2500000,2000000,1500000,1000000,937500,882352,833333,714285,533333,500000,421052,400000,380952]
+        self.samp_rate_array_MCR = samp_rate_array_MCR = [7500000,5000000,3750000,3000000,2500000,2000000,1500000,1000000,937500,882352,833333,714285,533333,500000,421052,400000,380952,200000]
         self.nfilts = nfilts = 32
         self.eb = eb = 0.22
         self.H_dec = H_dec = fec.ldpc_H_matrix('/usr/local/share/gnuradio/fec/ldpc/n_1100_k_0442_gap_24.alist', 24)
-        self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 30
-        self.variable_qtgui_range_0_0 = variable_qtgui_range_0_0 = 52
+        self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 38
+        self.variable_qtgui_range_0_0 = variable_qtgui_range_0_0 = 30
         self.variable_qtgui_check_box_0 = variable_qtgui_check_box_0 = True
-        self.samp_rate = samp_rate = samp_rate_array_MCR[15]
+        self.samp_rate = samp_rate = samp_rate_array_MCR[17]
 
         self.rx_rrc_taps = rx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts*sps, 1.0, eb, 11*sps*nfilts)
 
@@ -98,14 +98,14 @@ class rx(gr.top_block, Qt.QWidget):
         ##################################################
         # Blocks
         ##################################################
-        self._variable_qtgui_range_0_1_range = Range(0, 73, 1, 30, 200)
+        self._variable_qtgui_range_0_1_range = Range(0, 73, 1, 38, 200)
         self._variable_qtgui_range_0_1_win = RangeWidget(self._variable_qtgui_range_0_1_range, self.set_variable_qtgui_range_0_1, 'Gain_RX', "counter_slider", float)
         self.top_grid_layout.addWidget(self._variable_qtgui_range_0_1_win, 0, 2, 1, 1)
         for r in range(0, 1):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(2, 3):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self._variable_qtgui_range_0_0_range = Range(0, 90, 1, 52, 200)
+        self._variable_qtgui_range_0_0_range = Range(0, 90, 1, 30, 200)
         self._variable_qtgui_range_0_0_win = RangeWidget(self._variable_qtgui_range_0_0_range, self.set_variable_qtgui_range_0_0, 'Gain_Jamming', "counter_slider", float)
         self.top_grid_layout.addWidget(self._variable_qtgui_range_0_0_win, 0, 3, 1, 1)
         for r in range(0, 1):
@@ -453,26 +453,26 @@ class rx(gr.top_block, Qt.QWidget):
         self.interp_fir_filter_xxx_1 = filter.interp_fir_filter_ccc(4, ([1,0,0,0]))
         self.interp_fir_filter_xxx_1.declare_sample_delay(0)
         self.fec_extended_decoder_0_0_1_0_1_0_0 = fec.extended_decoder(decoder_obj_list=pld_dec, threading='capillary', ann=None, puncpat=puncpat, integration_period=10000)
-        self.digital_pfb_clock_sync_xxx_0 = digital.pfb_clock_sync_ccf(sps, 6.28/100.0, (rx_rrc_taps), nfilts, nfilts/2, 1.5, 1)
+        self.digital_pfb_clock_sync_xxx_0 = digital.pfb_clock_sync_ccf(sps, 6.28/100.0, (rx_rrc_taps), nfilts, nfilts/2, 1.5, 2)
         self.digital_map_bb_0_0_0_0_0_0 = digital.map_bb(([-1, 1]))
         self.digital_diff_decoder_bb_0 = digital.diff_decoder_bb(pld_const.arity())
         self.digital_costas_loop_cc_0_0 = digital.costas_loop_cc(6.28/100.0, pld_const.arity(), False)
         self.digital_correlate_access_code_xx_ts_0_0 = digital.correlate_access_code_bb_ts(digital.packet_utils.default_access_code,
           4, 'packet_len')
         self.digital_constellation_decoder_cb_0 = digital.constellation_decoder_cb(pld_const)
+        self.digital_cma_equalizer_cc_0_0 = digital.cma_equalizer_cc(15, 1, 0.01, 2)
         self.custom_corr = correlate_and_delay.corr_and_delay(200*sps, 0, 0.99, sps)
         self.blocks_repack_bits_bb_0_0_0_1_0 = blocks.repack_bits_bb(1, 8, '', False, gr.GR_MSB_FIRST)
-        self.blocks_repack_bits_bb_0_0 = blocks.repack_bits_bb(pld_const.bits_per_symbol(), 8, '', False, gr.GR_MSB_FIRST)
         self.blocks_repack_bits_bb_0 = blocks.repack_bits_bb(pld_const.bits_per_symbol(), 1, '', False, gr.GR_MSB_FIRST)
         self.blocks_null_sink_1 = blocks.null_sink(gr.sizeof_gr_complex*1)
         self.blocks_null_sink_0 = blocks.null_sink(gr.sizeof_gr_complex*1)
         self.blocks_multiply_const_vxx_1_0 = blocks.multiply_const_vcc((0.5, ))
         self.blocks_keep_m_in_n_0_1_1_0 = blocks.keep_m_in_n(gr.sizeof_char, 440, 442, 0)
         self.blocks_keep_m_in_n_0_0_2_0_0 = blocks.keep_m_in_n(gr.sizeof_char, 1100, 1104, 0)
+        self.blocks_file_sink_0_0_0_0_2_0 = blocks.file_sink(gr.sizeof_gr_complex*1, '/home/it/Desktop/Trasmited/11/BOB.txt', False)
+        self.blocks_file_sink_0_0_0_0_2_0.set_unbuffered(False)
         self.blocks_file_sink_0_0_0_0_2 = blocks.file_sink(gr.sizeof_char*1, '/home/it/Desktop/Trasmited/depois.txt', False)
         self.blocks_file_sink_0_0_0_0_2.set_unbuffered(False)
-        self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_char*1, 'rx_ber.txt', False)
-        self.blocks_file_sink_0.set_unbuffered(False)
         self.blocks_copy_0 = blocks.copy(gr.sizeof_gr_complex*1)
         self.blocks_copy_0.set_enabled(variable_qtgui_check_box_0)
         self.blocks_char_to_float_1_0_1 = blocks.char_to_float(1, 1)
@@ -498,20 +498,20 @@ class rx(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_multiply_const_vxx_1_0, 0), (self.qtgui_freq_sink_x_1, 0))
         self.connect((self.blocks_multiply_const_vxx_1_0, 0), (self.qtgui_time_sink_x_1_0_0, 0))
         self.connect((self.blocks_repack_bits_bb_0, 0), (self.digital_correlate_access_code_xx_ts_0_0, 0))
-        self.connect((self.blocks_repack_bits_bb_0_0, 0), (self.blocks_file_sink_0, 0))
         self.connect((self.blocks_repack_bits_bb_0_0_0_1_0, 0), (self.blocks_char_to_float_1_0_1, 0))
         self.connect((self.blocks_repack_bits_bb_0_0_0_1_0, 0), (self.blocks_file_sink_0_0_0_0_2, 0))
         self.connect((self.custom_corr, 0), (self.adapt_lms_filter_xx_0, 1))
         self.connect((self.custom_corr, 1), (self.adapt_lms_filter_xx_0, 0))
         self.connect((self.custom_corr, 2), (self.blocks_null_sink_1, 0))
+        self.connect((self.digital_cma_equalizer_cc_0_0, 0), (self.digital_costas_loop_cc_0_0, 0))
         self.connect((self.digital_constellation_decoder_cb_0, 0), (self.digital_diff_decoder_bb_0, 0))
         self.connect((self.digital_correlate_access_code_xx_ts_0_0, 0), (self.blocks_keep_m_in_n_0_0_2_0_0, 0))
+        self.connect((self.digital_costas_loop_cc_0_0, 0), (self.blocks_file_sink_0_0_0_0_2_0, 0))
         self.connect((self.digital_costas_loop_cc_0_0, 0), (self.digital_constellation_decoder_cb_0, 0))
         self.connect((self.digital_costas_loop_cc_0_0, 0), (self.qtgui_const_sink_x_0_0_0, 0))
         self.connect((self.digital_diff_decoder_bb_0, 0), (self.blocks_repack_bits_bb_0, 0))
-        self.connect((self.digital_diff_decoder_bb_0, 0), (self.blocks_repack_bits_bb_0_0, 0))
         self.connect((self.digital_map_bb_0_0_0_0_0_0, 0), (self.blocks_char_to_float_0_2_0_0_0, 0))
-        self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.digital_costas_loop_cc_0_0, 0))
+        self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.digital_cma_equalizer_cc_0_0, 0))
         self.connect((self.fec_extended_decoder_0_0_1_0_1_0_0, 0), (self.blocks_keep_m_in_n_0_1_1_0, 0))
         self.connect((self.interp_fir_filter_xxx_1, 0), (self.blocks_multiply_const_vxx_1_0, 0))
         self.connect((self.scrambler_cpp_additive_descrambler_0, 0), (self.blocks_repack_bits_bb_0_0_0_1_0, 0))
@@ -541,7 +541,7 @@ class rx(gr.top_block, Qt.QWidget):
 
     def set_samp_rate_array_MCR(self, samp_rate_array_MCR):
         self.samp_rate_array_MCR = samp_rate_array_MCR
-        self.set_samp_rate(self.samp_rate_array_MCR[15])
+        self.set_samp_rate(self.samp_rate_array_MCR[17])
 
     def get_nfilts(self):
         return self.nfilts
