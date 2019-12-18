@@ -1211,11 +1211,11 @@
     </param>
     <param>
       <key>file</key>
-      <value></value>
+      <value>/home/it/Desktop/rx_ber.txt</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(756, 986)</value>
+      <value>(844, 982)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1678,7 +1678,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(712, 1108)</value>
+      <value>(784, 1108)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1709,7 +1709,7 @@
     <key>blocks_repack_bits_bb</key>
     <param>
       <key>k</key>
-      <value>pld_const.bits_per_symbol()</value>
+      <value>2</value>
     </param>
     <param>
       <key>l</key>
@@ -1737,7 +1737,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(584, 992)</value>
+      <value>(656, 988)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2134,7 +2134,7 @@
     </param>
     <param>
       <key>threshold</key>
-      <value>4</value>
+      <value>1</value>
     </param>
   </block>
   <block>
@@ -2208,7 +2208,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(456, 1116)</value>
+      <value>(424, 1116)</value>
     </param>
     <param>
       <key>_rotation</key>
