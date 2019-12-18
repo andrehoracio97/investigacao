@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <block>
-  <name>corr_and_delay</name>
+  <name>Synchronization</name>
   <key>correlate_and_delay_corr_and_delay</key>
   <category>[correlate_and_delay]</category>
   <import>import correlate_and_delay</import>
