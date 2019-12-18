@@ -158,3 +158,9 @@ Semana
 9 -Add additive scrambler em ldpc. Add additive scrambler em cc. Testes.
 10-Try LMS with FLOAT. Reunião prof Joao.
 11-Melhorar aspetos do estado da arte na Tese.
+12-Melhorar aspetos do estado da arte na Tese.
+
+Semana
+16-Melhorar aspetos do estado da arte na Tese e Comecar a escrever REC
+17-Continuar REC, imagem, reunião.
+18-Continuar REC.
