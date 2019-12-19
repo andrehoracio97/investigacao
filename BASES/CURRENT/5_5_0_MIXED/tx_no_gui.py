@@ -86,9 +86,9 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
         self.H_dec = H_dec = fec.ldpc_H_matrix('/usr/local/share/gnuradio/fec/ldpc/n_1100_k_0442_gap_24.alist', 24)
         self.H = H = fec.ldpc_H_matrix('/usr/local/share/gnuradio/fec/ldpc/n_1100_k_0442_gap_24.alist', 24)
         self.vector = vector = [int(random.random()*4) for i in range(49600)]
-        self.variable_qtgui_range_0_1_0 = variable_qtgui_range_0_1_0 = 52
-        self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 34
-        self.variable_qtgui_range_0_0_0 = variable_qtgui_range_0_0_0 = 42
+        self.variable_qtgui_range_0_1_0 = variable_qtgui_range_0_1_0 = 50
+        self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 32
+        self.variable_qtgui_range_0_0_0 = variable_qtgui_range_0_0_0 = 48
         self.variable_qtgui_range_0_0 = variable_qtgui_range_0_0 = 43
 
         self.tx_rrc_taps = tx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts, 1.0, eb, 11*sps*nfilts)
@@ -111,21 +111,21 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
         ##################################################
         # Blocks
         ##################################################
-        self._variable_qtgui_range_0_1_0_range = Range(0, 73, 1, 52, 200)
+        self._variable_qtgui_range_0_1_0_range = Range(0, 73, 1, 50, 200)
         self._variable_qtgui_range_0_1_0_win = RangeWidget(self._variable_qtgui_range_0_1_0_range, self.set_variable_qtgui_range_0_1_0, 'Gain_RX_EVE', "counter_slider", float)
         self.top_grid_layout.addWidget(self._variable_qtgui_range_0_1_0_win, 0, 1, 1, 1)
         for r in range(0, 1):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(1, 2):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self._variable_qtgui_range_0_1_range = Range(0, 73, 1, 34, 200)
+        self._variable_qtgui_range_0_1_range = Range(0, 73, 1, 32, 200)
         self._variable_qtgui_range_0_1_win = RangeWidget(self._variable_qtgui_range_0_1_range, self.set_variable_qtgui_range_0_1, 'Gain_RX', "counter_slider", float)
         self.top_grid_layout.addWidget(self._variable_qtgui_range_0_1_win, 0, 3, 1, 1)
         for r in range(0, 1):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(3, 4):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self._variable_qtgui_range_0_0_0_range = Range(0, 90, 1, 42, 200)
+        self._variable_qtgui_range_0_0_0_range = Range(0, 90, 1, 48, 200)
         self._variable_qtgui_range_0_0_0_win = RangeWidget(self._variable_qtgui_range_0_0_0_range, self.set_variable_qtgui_range_0_0_0, 'Gain_Jamming', "counter_slider", float)
         self.top_grid_layout.addWidget(self._variable_qtgui_range_0_0_0_win, 0, 4, 1, 1)
         for r in range(0, 1):
@@ -827,15 +827,15 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
         self.blocks_keep_m_in_n_0_0_2_0_0 = blocks.keep_m_in_n(gr.sizeof_char, 1100, 1104, 0)
         self.blocks_file_source_0_0_1_0_1 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Desktop/Files_To_Transmit/book.txt', False)
         self.blocks_file_source_0_0_1_0_1.set_begin_tag(pmt.PMT_NIL)
-        self.blocks_file_sink_1 = blocks.file_sink(gr.sizeof_gr_complex*1, '/home/andre/investigacao/BASES/CURRENT/5_5_0_MIXED/1/ALICE.txt', False)
+        self.blocks_file_sink_1 = blocks.file_sink(gr.sizeof_gr_complex*1, '/home/andre/Desktop/MET_QUINTA/0/ALICE.txt', False)
         self.blocks_file_sink_1.set_unbuffered(False)
         self.blocks_file_sink_0_0_0_0_0 = blocks.file_sink(gr.sizeof_char*1, '/home/andre/Desktop/Trasmited/depois_eve.txt', False)
         self.blocks_file_sink_0_0_0_0_0.set_unbuffered(False)
         self.blocks_file_sink_0_0_0_0 = blocks.file_sink(gr.sizeof_char*1, '/home/andre/Desktop/Trasmited/depois3.txt', False)
         self.blocks_file_sink_0_0_0_0.set_unbuffered(False)
-        self.blocks_file_sink_0_0 = blocks.file_sink(gr.sizeof_gr_complex*1, '/home/andre/investigacao/BASES/CURRENT/5_5_0_MIXED/1/EVE.txt', False)
+        self.blocks_file_sink_0_0 = blocks.file_sink(gr.sizeof_gr_complex*1, '/home/andre/Desktop/MET_QUINTA/0/EVE.txt', False)
         self.blocks_file_sink_0_0.set_unbuffered(False)
-        self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_gr_complex*1, '/home/andre/investigacao/BASES/CURRENT/5_5_0_MIXED/1/BOB.txt', False)
+        self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_gr_complex*1, '/home/andre/Desktop/MET_QUINTA/0/BOB.txt', False)
         self.blocks_file_sink_0.set_unbuffered(False)
         self.blocks_delay_0 = blocks.delay(gr.sizeof_gr_complex*1, 500000)
         self.blocks_char_to_float_1_0_1_0 = blocks.char_to_float(1, 1)
