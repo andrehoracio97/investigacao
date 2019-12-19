@@ -86,9 +86,9 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
         self.H_dec = H_dec = fec.ldpc_H_matrix('/usr/local/share/gnuradio/fec/ldpc/n_1100_k_0442_gap_24.alist', 24)
         self.H = H = fec.ldpc_H_matrix('/usr/local/share/gnuradio/fec/ldpc/n_1100_k_0442_gap_24.alist', 24)
         self.vector = vector = [int(random.random()*4) for i in range(49600)]
-        self.variable_qtgui_range_0_1_0 = variable_qtgui_range_0_1_0 = 50
-        self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 32
-        self.variable_qtgui_range_0_0_0 = variable_qtgui_range_0_0_0 = 48
+        self.variable_qtgui_range_0_1_0 = variable_qtgui_range_0_1_0 = 46
+        self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 28
+        self.variable_qtgui_range_0_0_0 = variable_qtgui_range_0_0_0 = 52
         self.variable_qtgui_range_0_0 = variable_qtgui_range_0_0 = 43
 
         self.tx_rrc_taps = tx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts, 1.0, eb, 11*sps*nfilts)
@@ -111,21 +111,21 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
         ##################################################
         # Blocks
         ##################################################
-        self._variable_qtgui_range_0_1_0_range = Range(0, 73, 1, 50, 200)
+        self._variable_qtgui_range_0_1_0_range = Range(0, 73, 1, 46, 200)
         self._variable_qtgui_range_0_1_0_win = RangeWidget(self._variable_qtgui_range_0_1_0_range, self.set_variable_qtgui_range_0_1_0, 'Gain_RX_EVE', "counter_slider", float)
         self.top_grid_layout.addWidget(self._variable_qtgui_range_0_1_0_win, 0, 1, 1, 1)
         for r in range(0, 1):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(1, 2):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self._variable_qtgui_range_0_1_range = Range(0, 73, 1, 32, 200)
+        self._variable_qtgui_range_0_1_range = Range(0, 73, 1, 28, 200)
         self._variable_qtgui_range_0_1_win = RangeWidget(self._variable_qtgui_range_0_1_range, self.set_variable_qtgui_range_0_1, 'Gain_RX', "counter_slider", float)
         self.top_grid_layout.addWidget(self._variable_qtgui_range_0_1_win, 0, 3, 1, 1)
         for r in range(0, 1):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(3, 4):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self._variable_qtgui_range_0_0_0_range = Range(0, 90, 1, 48, 200)
+        self._variable_qtgui_range_0_0_0_range = Range(0, 90, 1, 52, 200)
         self._variable_qtgui_range_0_0_0_win = RangeWidget(self._variable_qtgui_range_0_0_0_range, self.set_variable_qtgui_range_0_0_0, 'Gain_Jamming', "counter_slider", float)
         self.top_grid_layout.addWidget(self._variable_qtgui_range_0_0_0_win, 0, 4, 1, 1)
         for r in range(0, 1):
