@@ -1,2 +1,35 @@
 AUTHOR: andrehoracio97
 
+Titulo Estágio
+Physical-layer Security with Interference Generation by the Receiver
+
+Local do Estágio
+DEI-FCTUC
+
+Enquadramento
+Physical-layer security sparked an interest on the generation of interference for secrecy purposes, by using otherwise silent devices to cause interference/jam adversary eavesdroppers that aim to overhear confidential communication.
+We developed a combined coding and jamming scheme, whose basic idea lies in generating a short random key that is used to interleave/scramble information at the source, Alice. This key is then encoded with the message and removed from communication to the legitimate receiver Bob, during a period of advantageous communication over the eavesdropper Eve (e.g. due to more interference from a jammer device. Bob receives a better quality version of the interleaving/scrambling key, therefore having the needed advantage for secure communication against Eve.
+
+Objetivo
+The goal of this thesis is to perform a prototype implementation and evaluation of our physical-layer security scheme in a real-world test-bed of software-defined radios (SDR). In particular, the implementation will focus on using the legitimate receiver Bob as a source of interference against the adversary Eve. By causing interference to Eve and removing as much of self-interference as possible from itself, Bob will create the necessary advantage over Eve to achieve secure communication without having to resort to third-party jammers.
+
+Plano de Trabalhos - Semestre 1
+1) State-of-the art study on physical-layer security, in particular:
+- coding for secrecy
+- jamming for secrecy schemes
+2) State-of-the art study on full-duplex / self-interference cancellation
+3) Study of frameworks for software-defined radio implementation
+4) Intermediate report
+
+Plano de Trabalhos - Semestre 2
+1) SDR implementation of coding for secrecy schemes
+2) SDR implementation of jamming for secrecy and self-interference cancellation schemes
+3) Definition of proper metrics and security evaluation of the system
+4) Writing of scientific article and dissertation
+
+Condições
+The student will have access to a set of SDR boards for the implementation of the proposed schemes.
+Orientador
+
+João Vilela, Marco Gomes
+jpvilela@dei.uc.pt
