@@ -1,6 +1,6 @@
 ID-DIA
 
-1ºSemana
+1ºSemana Julho
 1/7 -> Reunião e instalação de programas (Gnuradio e UHD)
 01-2/7 -> Criação flowgraphs Rx e Tx para ficheiro de Texto e Img. Adicionado Jamming no RX. Tudo com GMSK.
 3/7 -> Tentativa QPSK ou BPSK (Falhado) e inicio resumo papers. Tutoriais Youtube 1 e 2.
@@ -44,6 +44,7 @@ Ou comecar OFDM.
 1/8
 2/8
 
+Inicio de Agosto
 Toda a semana, consegui meter a funcionar o HPD, com LDPC  no entanto so funciona no OSX e não linux, muito tempo perdido a achar que nao estava a funcionar de todo. Reinstalei novamente o linux, gnuradio pelo Github e não pelo packet manager, instalei novamente todas as dependecias, etc. Tentei resolver o erro de não dar bem no linux e não consegui. - Pasta 08
 
 6ºSemana - Pasta 09
@@ -59,7 +60,7 @@ Toda a semana, consegui meter a funcionar o HPD, com LDPC  no entanto so funcion
 
 Passo a seguir: Mais testes.
 
-Semana
+Semana -Inicio de Setembro
 2/9 -> Check-in e assinatura contrato
 3/9 -> Testes em vários videos, tentativa substituicao "Vector Insert" Block -LENTO
 4/9 ->Criação de "Vector Insert" em c++, muito mais rápido - não resolveu o problema mas vai ser util para o tutorial. Reunião. Testes de qual é o problema e criaçã de novo FG 4_4_NEW_FG_TESTING para testar onde está o problema, com simulação funciona com userp's não.
@@ -87,13 +88,13 @@ Semana
 26/9- Tentar 8PSK. Encontrei outro equalizer com conhecimento da constelação, será melhor?
 27/9- BUG no Gnuradio do Constellation Object- Mapeamento mal feito para 8psk. Nao tive tempo de ver mais nada.
 
-Semana
+Semana -Inicio de Outubro
 30/9- Resolvi 8psk, Tentei 16psk, problema que não dá costas loop e não é convencional - pontos muitos juntos. So se usar o 16QAM, problema é que não tenho o frequency/phase correction. Tentar com correlation Estimator
 1/10-Tentativa correlation estimator - Bem sucedido com 2SPS e QPSK com Gray coding. Falei com professor e vi LMS. Escrevi realtorio overview e update tutorial_1.
 2/10 -Reestruturação do tutorial onde passei o differnetial encoder mais para a frente, e adicionei o correlation estimator e já o escrevi. Melhorias no tutorial (de onde vem valores e metodo para descobrir). Consegui 4SPS mas muito erro e muito overhead, mas ainda sem certeza se é a melhor maneira. 
 3/10-Leitura Filtros otimos, tentativa de recuperar sinal. Tentativa de 16qam
 
-Semana
+Semana 
 7/10 -Leitura livros sobre RRC, escrita muito melhor do tutorial desta parte. 
 8/10 -Tutorial e tese.
 9/10 -Tentar self-interferance e tese.
@@ -147,12 +148,12 @@ Semana
 27- Tese-Restruturação da parte do Physical Layer Security. Continuação das imagens e reler.
 28- Tese-Acabei Leitura e Imagens. Dia de Anos.
 29- Tese-Começar a ver como organizar inplementação.
-Semana
+
+Semana -Inicio de Dezembro 
 2- Tese-Escrever Implementação. Reunião skype.
 3- Tese-Terminei a parte da implementação + revisão + imagens.
 3- Criar codigo Alice, Bob, Eve com Jamming e Cancelação em CC. Criar codigo em LDPC. Expriencia USRP.
 4-Mais Testes na USRP. ADD scrabmeler. Antena Tx á frende da Rx no Bob será que melhora???
-
 
 Semana
 9 -Add additive scrambler em ldpc. Add additive scrambler em cc. Testes.
@@ -164,3 +165,8 @@ Semana
 16-Melhorar aspetos do estado da arte na Tese e Comecar a escrever REC
 17-Continuar REC, imagem, reunião.
 18-Continuar REC.
+
+ANO
+Janeiro
+6 - Tese- Fazer enquadramento, Objectives, Melhorar contribuições, Melhorar organização, Conclusion, Future Work. 
+7 - Tese- Abstract, Keywords, Draw.io de 2 esquemas SCS adaptados do paper, Leitura de LMS...nao está feito ainda. Conclusão REC paper. Testes de puncturing. 
