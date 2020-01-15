@@ -46,7 +46,7 @@ from gnuradio import qtgui
 
 class tx_no_gui_all(gr.top_block, Qt.QWidget):
 
-    def __init__(self, puncpat='11', puncpat2=1073741823, puncpat2_size=32):
+    def __init__(self, puncpat='11'):
         gr.top_block.__init__(self, "Tx No Gui All")
         Qt.QWidget.__init__(self)
         self.setWindowTitle("Tx No Gui All")
@@ -75,8 +75,6 @@ class tx_no_gui_all(gr.top_block, Qt.QWidget):
         # Parameters
         ##################################################
         self.puncpat = puncpat
-        self.puncpat2 = puncpat2
-        self.puncpat2_size = puncpat2_size
 
         ##################################################
         # Variables
@@ -833,11 +831,9 @@ class tx_no_gui_all(gr.top_block, Qt.QWidget):
         self.interp_fir_filter_xxx_1 = filter.interp_fir_filter_ccc(4, ([1,0,0,0]))
         self.interp_fir_filter_xxx_1.declare_sample_delay(0)
         self.insert_vec_cpp_new_vec_0 = insert_vec_cpp.new_vec((vector))
-        self.fec_puncture_xx_0 = fec.puncture_bb(puncpat2_size, puncpat2, 0)
         self.fec_extended_encoder_0 = fec.extended_encoder(encoder_obj_list=pld_enc, threading='capillary', puncpat=puncpat)
         self.fec_extended_decoder_0_0_1_0_1_0_0_0 = fec.extended_decoder(decoder_obj_list=pld_dec, threading='capillary', ann=None, puncpat=puncpat, integration_period=10000)
         self.fec_extended_decoder_0_0_1_0_1_0_0 = fec.extended_decoder(decoder_obj_list=pld_dec, threading='capillary', ann=None, puncpat=puncpat, integration_period=10000)
-        self.fec_depuncture_bb_0 = fec.depuncture_bb(puncpat2_size, puncpat2, 0, 127)
         self.digital_pfb_clock_sync_xxx_0_0 = digital.pfb_clock_sync_ccf(sps, 6.28/100.0, (rx_rrc_taps), nfilts, nfilts/2, 1.5, 2)
         self.digital_pfb_clock_sync_xxx_0 = digital.pfb_clock_sync_ccf(sps, 6.28/100.0, (rx_rrc_taps), nfilts, nfilts/2, 1.5, 2)
         self.digital_map_bb_0_0_0_0_0_0_0 = digital.map_bb(([-1, 1]))
@@ -908,7 +904,7 @@ class tx_no_gui_all(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_delay_0, 0), (self.qtgui_freq_sink_x_0, 0))
         self.connect((self.blocks_delay_0, 0), (self.uhd_usrp_sink_0_0, 0))
         self.connect((self.blocks_file_source_0_0_1_0_1, 0), (self.blocks_repack_bits_bb_1_0_0_1, 0))
-        self.connect((self.blocks_keep_m_in_n_0_0_2_0_0, 0), (self.fec_depuncture_bb_0, 0))
+        self.connect((self.blocks_keep_m_in_n_0_0_2_0_0, 0), (self.digital_map_bb_0_0_0_0_0_0, 0))
         self.connect((self.blocks_keep_m_in_n_0_0_2_0_0_0, 0), (self.digital_map_bb_0_0_0_0_0_0_0, 0))
         self.connect((self.blocks_keep_m_in_n_0_1_1_0, 0), (self.scrambler_cpp_additive_descrambler_0, 0))
         self.connect((self.blocks_keep_m_in_n_0_1_1_0_0, 0), (self.scrambler_cpp_additive_descrambler_0_0, 0))
@@ -926,7 +922,7 @@ class tx_no_gui_all(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_repack_bits_bb_1_0_0_0, 0), (self.insert_vec_cpp_new_vec_0, 0))
         self.connect((self.blocks_repack_bits_bb_1_0_0_1, 0), (self.scrambler_cpp_additive_scrambler_0, 0))
         self.connect((self.blocks_stream_mux_0_0, 0), (self.fec_extended_encoder_0, 0))
-        self.connect((self.blocks_stream_mux_0_0_0, 0), (self.fec_puncture_xx_0, 0))
+        self.connect((self.blocks_stream_mux_0_0_0, 0), (self.blocks_stream_mux_0_1_0_0, 1))
         self.connect((self.blocks_stream_mux_0_1_0_0, 0), (self.blocks_repack_bits_bb_1_0_0_0, 0))
         self.connect((self.blocks_vector_source_x_0_0, 0), (self.blocks_stream_mux_0_0, 1))
         self.connect((self.blocks_vector_source_x_0_0_0, 0), (self.blocks_stream_mux_0_0_0, 1))
@@ -953,11 +949,9 @@ class tx_no_gui_all(gr.top_block, Qt.QWidget):
         self.connect((self.digital_map_bb_0_0_0_0_0_0_0, 0), (self.blocks_char_to_float_0_2_0_0_0_0, 0))
         self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.digital_cma_equalizer_cc_0_0, 0))
         self.connect((self.digital_pfb_clock_sync_xxx_0_0, 0), (self.digital_cma_equalizer_cc_0, 0))
-        self.connect((self.fec_depuncture_bb_0, 0), (self.digital_map_bb_0_0_0_0_0_0, 0))
         self.connect((self.fec_extended_decoder_0_0_1_0_1_0_0, 0), (self.blocks_keep_m_in_n_0_1_1_0, 0))
         self.connect((self.fec_extended_decoder_0_0_1_0_1_0_0_0, 0), (self.blocks_keep_m_in_n_0_1_1_0_0, 0))
         self.connect((self.fec_extended_encoder_0, 0), (self.blocks_stream_mux_0_0_0, 0))
-        self.connect((self.fec_puncture_xx_0, 0), (self.blocks_stream_mux_0_1_0_0, 1))
         self.connect((self.insert_vec_cpp_new_vec_0, 0), (self.digital_diff_encoder_bb_0, 0))
         self.connect((self.interp_fir_filter_xxx_1, 0), (self.blocks_multiply_const_vxx_1_0, 0))
         self.connect((self.pfb_arb_resampler_xxx_0, 0), (self.blocks_multiply_const_vxx_1, 0))
@@ -980,18 +974,6 @@ class tx_no_gui_all(gr.top_block, Qt.QWidget):
 
     def set_puncpat(self, puncpat):
         self.puncpat = puncpat
-
-    def get_puncpat2(self):
-        return self.puncpat2
-
-    def set_puncpat2(self, puncpat2):
-        self.puncpat2 = puncpat2
-
-    def get_puncpat2_size(self):
-        return self.puncpat2_size
-
-    def set_puncpat2_size(self, puncpat2_size):
-        self.puncpat2_size = puncpat2_size
 
     def get_sps(self):
         return self.sps
@@ -1142,12 +1124,6 @@ def argument_parser():
     parser.add_option(
         "", "--puncpat", dest="puncpat", type="string", default='11',
         help="Set puncpat [default=%default]")
-    parser.add_option(
-        "", "--puncpat2", dest="puncpat2", type="intx", default=1073741823,
-        help="Set puncpat2 [default=%default]")
-    parser.add_option(
-        "", "--puncpat2-size", dest="puncpat2_size", type="intx", default=32,
-        help="Set puncpat2_size [default=%default]")
     return parser
 
 
@@ -1161,7 +1137,7 @@ def main(top_block_cls=tx_no_gui_all, options=None):
         Qt.QApplication.setGraphicsSystem(style)
     qapp = Qt.QApplication(sys.argv)
 
-    tb = top_block_cls(puncpat=options.puncpat, puncpat2=options.puncpat2, puncpat2_size=options.puncpat2_size)
+    tb = top_block_cls(puncpat=options.puncpat)
     tb.start()
     tb.show()
 
