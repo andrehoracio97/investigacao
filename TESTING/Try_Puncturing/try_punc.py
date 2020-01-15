@@ -26,7 +26,6 @@ from gnuradio import gr
 from gnuradio import qtgui
 from gnuradio.eng_option import eng_option
 from gnuradio.filter import firdes
-from gnuradio.filter import pfb
 from optparse import OptionParser
 import pmt
 import sip
@@ -36,7 +35,7 @@ from gnuradio import qtgui
 
 class try_punc(gr.top_block, Qt.QWidget):
 
-    def __init__(self, puncpat='110'):
+    def __init__(self, puncpat='11', puncpat2=2, puncpat2_size=2):
         gr.top_block.__init__(self, "Try Punc")
         Qt.QWidget.__init__(self)
         self.setWindowTitle("Try Punc")
@@ -65,6 +64,8 @@ class try_punc(gr.top_block, Qt.QWidget):
         # Parameters
         ##################################################
         self.puncpat = puncpat
+        self.puncpat2 = puncpat2
+        self.puncpat2_size = puncpat2_size
 
         ##################################################
         # Variables
@@ -146,260 +147,51 @@ class try_punc(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(4, 5):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self.qtgui_freq_sink_x_0_0 = qtgui.freq_sink_c(
-        	1024, #size
-        	firdes.WIN_BLACKMAN_hARRIS, #wintype
-        	0, #fc
-        	samp_rate, #bw
-        	"Bob Tx Treated Frequency", #name
-        	1 #number of inputs
-        )
-        self.qtgui_freq_sink_x_0_0.set_update_time(0.10)
-        self.qtgui_freq_sink_x_0_0.set_y_axis(-140, 10)
-        self.qtgui_freq_sink_x_0_0.set_y_label('Relative Gain', 'dB')
-        self.qtgui_freq_sink_x_0_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, 0.0, 0, "")
-        self.qtgui_freq_sink_x_0_0.enable_autoscale(False)
-        self.qtgui_freq_sink_x_0_0.enable_grid(False)
-        self.qtgui_freq_sink_x_0_0.set_fft_average(1.0)
-        self.qtgui_freq_sink_x_0_0.enable_axis_labels(True)
-        self.qtgui_freq_sink_x_0_0.enable_control_panel(False)
-
-        if not True:
-          self.qtgui_freq_sink_x_0_0.disable_legend()
-
-        if "complex" == "float" or "complex" == "msg_float":
-          self.qtgui_freq_sink_x_0_0.set_plot_pos_half(not True)
-
-        labels = ['', '', '', '', '',
-                  '', '', '', '', '']
-        widths = [1, 1, 1, 1, 1,
-                  1, 1, 1, 1, 1]
-        colors = ["blue", "red", "green", "black", "cyan",
-                  "magenta", "yellow", "dark red", "dark green", "dark blue"]
-        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
-                  1.0, 1.0, 1.0, 1.0, 1.0]
-        for i in xrange(1):
-            if len(labels[i]) == 0:
-                self.qtgui_freq_sink_x_0_0.set_line_label(i, "Data {0}".format(i))
-            else:
-                self.qtgui_freq_sink_x_0_0.set_line_label(i, labels[i])
-            self.qtgui_freq_sink_x_0_0.set_line_width(i, widths[i])
-            self.qtgui_freq_sink_x_0_0.set_line_color(i, colors[i])
-            self.qtgui_freq_sink_x_0_0.set_line_alpha(i, alphas[i])
-
-        self._qtgui_freq_sink_x_0_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0_0.pyqwidget(), Qt.QWidget)
-        self.top_grid_layout.addWidget(self._qtgui_freq_sink_x_0_0_win, 2, 3, 1, 1)
-        for r in range(2, 3):
-            self.top_grid_layout.setRowStretch(r, 1)
-        for c in range(3, 4):
-            self.top_grid_layout.setColumnStretch(c, 1)
-        self.qtgui_freq_sink_x_0 = qtgui.freq_sink_c(
-        	1024, #size
-        	firdes.WIN_BLACKMAN_hARRIS, #wintype
-        	0, #fc
-        	samp_rate, #bw
-        	"Alice Tx Frequency", #name
-        	1 #number of inputs
-        )
-        self.qtgui_freq_sink_x_0.set_update_time(0.10)
-        self.qtgui_freq_sink_x_0.set_y_axis(-140, 10)
-        self.qtgui_freq_sink_x_0.set_y_label('Relative Gain', 'dB')
-        self.qtgui_freq_sink_x_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, 0.0, 0, "")
-        self.qtgui_freq_sink_x_0.enable_autoscale(False)
-        self.qtgui_freq_sink_x_0.enable_grid(False)
-        self.qtgui_freq_sink_x_0.set_fft_average(1.0)
-        self.qtgui_freq_sink_x_0.enable_axis_labels(True)
-        self.qtgui_freq_sink_x_0.enable_control_panel(False)
-
-        if not True:
-          self.qtgui_freq_sink_x_0.disable_legend()
-
-        if "complex" == "float" or "complex" == "msg_float":
-          self.qtgui_freq_sink_x_0.set_plot_pos_half(not True)
-
-        labels = ['', '', '', '', '',
-                  '', '', '', '', '']
-        widths = [1, 1, 1, 1, 1,
-                  1, 1, 1, 1, 1]
-        colors = ["blue", "red", "green", "black", "cyan",
-                  "magenta", "yellow", "dark red", "dark green", "dark blue"]
-        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
-                  1.0, 1.0, 1.0, 1.0, 1.0]
-        for i in xrange(1):
-            if len(labels[i]) == 0:
-                self.qtgui_freq_sink_x_0.set_line_label(i, "Data {0}".format(i))
-            else:
-                self.qtgui_freq_sink_x_0.set_line_label(i, labels[i])
-            self.qtgui_freq_sink_x_0.set_line_width(i, widths[i])
-            self.qtgui_freq_sink_x_0.set_line_color(i, colors[i])
-            self.qtgui_freq_sink_x_0.set_line_alpha(i, alphas[i])
-
-        self._qtgui_freq_sink_x_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0.pyqwidget(), Qt.QWidget)
-        self.top_grid_layout.addWidget(self._qtgui_freq_sink_x_0_win, 1, 3, 1, 1)
-        for r in range(1, 2):
-            self.top_grid_layout.setRowStretch(r, 1)
-        for c in range(3, 4):
-            self.top_grid_layout.setColumnStretch(c, 1)
-        self.qtgui_const_sink_x_0_0_0_0 = qtgui.const_sink_c(
-        	1024, #size
-        	"Alice TX Constellation", #name
-        	1 #number of inputs
-        )
-        self.qtgui_const_sink_x_0_0_0_0.set_update_time(0.10)
-        self.qtgui_const_sink_x_0_0_0_0.set_y_axis(-2, 2)
-        self.qtgui_const_sink_x_0_0_0_0.set_x_axis(-2, 2)
-        self.qtgui_const_sink_x_0_0_0_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, qtgui.TRIG_SLOPE_POS, 0.0, 0, "")
-        self.qtgui_const_sink_x_0_0_0_0.enable_autoscale(False)
-        self.qtgui_const_sink_x_0_0_0_0.enable_grid(False)
-        self.qtgui_const_sink_x_0_0_0_0.enable_axis_labels(True)
-
-        if not True:
-          self.qtgui_const_sink_x_0_0_0_0.disable_legend()
-
-        labels = ['', '', '', '', '',
-                  '', '', '', '', '']
-        widths = [1, 1, 1, 1, 1,
-                  1, 1, 1, 1, 1]
-        colors = ["blue", "red", "red", "red", "red",
-                  "red", "red", "red", "red", "red"]
-        styles = [0, 0, 0, 0, 0,
-                  0, 0, 0, 0, 0]
-        markers = [0, 0, 0, 0, 0,
-                   0, 0, 0, 0, 0]
-        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
-                  1.0, 1.0, 1.0, 1.0, 1.0]
-        for i in xrange(1):
-            if len(labels[i]) == 0:
-                self.qtgui_const_sink_x_0_0_0_0.set_line_label(i, "Data {0}".format(i))
-            else:
-                self.qtgui_const_sink_x_0_0_0_0.set_line_label(i, labels[i])
-            self.qtgui_const_sink_x_0_0_0_0.set_line_width(i, widths[i])
-            self.qtgui_const_sink_x_0_0_0_0.set_line_color(i, colors[i])
-            self.qtgui_const_sink_x_0_0_0_0.set_line_style(i, styles[i])
-            self.qtgui_const_sink_x_0_0_0_0.set_line_marker(i, markers[i])
-            self.qtgui_const_sink_x_0_0_0_0.set_line_alpha(i, alphas[i])
-
-        self._qtgui_const_sink_x_0_0_0_0_win = sip.wrapinstance(self.qtgui_const_sink_x_0_0_0_0.pyqwidget(), Qt.QWidget)
-        self.top_grid_layout.addWidget(self._qtgui_const_sink_x_0_0_0_0_win, 1, 2, 1, 1)
-        for r in range(1, 2):
-            self.top_grid_layout.setRowStretch(r, 1)
-        for c in range(2, 3):
-            self.top_grid_layout.setColumnStretch(c, 1)
-        self.qtgui_const_sink_x_0_0_0 = qtgui.const_sink_c(
-        	1024, #size
-        	"Bob RX Treated Constellation", #name
-        	1 #number of inputs
-        )
-        self.qtgui_const_sink_x_0_0_0.set_update_time(0.10)
-        self.qtgui_const_sink_x_0_0_0.set_y_axis(-2, 2)
-        self.qtgui_const_sink_x_0_0_0.set_x_axis(-2, 2)
-        self.qtgui_const_sink_x_0_0_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, qtgui.TRIG_SLOPE_POS, 0.0, 0, "")
-        self.qtgui_const_sink_x_0_0_0.enable_autoscale(False)
-        self.qtgui_const_sink_x_0_0_0.enable_grid(False)
-        self.qtgui_const_sink_x_0_0_0.enable_axis_labels(True)
-
-        if not True:
-          self.qtgui_const_sink_x_0_0_0.disable_legend()
-
-        labels = ['', '', '', '', '',
-                  '', '', '', '', '']
-        widths = [1, 1, 1, 1, 1,
-                  1, 1, 1, 1, 1]
-        colors = ["blue", "red", "red", "red", "red",
-                  "red", "red", "red", "red", "red"]
-        styles = [0, 0, 0, 0, 0,
-                  0, 0, 0, 0, 0]
-        markers = [0, 0, 0, 0, 0,
-                   0, 0, 0, 0, 0]
-        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
-                  1.0, 1.0, 1.0, 1.0, 1.0]
-        for i in xrange(1):
-            if len(labels[i]) == 0:
-                self.qtgui_const_sink_x_0_0_0.set_line_label(i, "Data {0}".format(i))
-            else:
-                self.qtgui_const_sink_x_0_0_0.set_line_label(i, labels[i])
-            self.qtgui_const_sink_x_0_0_0.set_line_width(i, widths[i])
-            self.qtgui_const_sink_x_0_0_0.set_line_color(i, colors[i])
-            self.qtgui_const_sink_x_0_0_0.set_line_style(i, styles[i])
-            self.qtgui_const_sink_x_0_0_0.set_line_marker(i, markers[i])
-            self.qtgui_const_sink_x_0_0_0.set_line_alpha(i, alphas[i])
-
-        self._qtgui_const_sink_x_0_0_0_win = sip.wrapinstance(self.qtgui_const_sink_x_0_0_0.pyqwidget(), Qt.QWidget)
-        self.top_grid_layout.addWidget(self._qtgui_const_sink_x_0_0_0_win, 2, 2, 1, 1)
-        for r in range(2, 3):
-            self.top_grid_layout.setRowStretch(r, 1)
-        for c in range(2, 3):
-            self.top_grid_layout.setColumnStretch(c, 1)
-        self.pfb_arb_resampler_xxx_0 = pfb.arb_resampler_ccf(
-        	  sps,
-                  taps=(tx_rrc_taps),
-        	  flt_size=nfilts)
-        self.pfb_arb_resampler_xxx_0.declare_sample_delay(0)
-
+        self.fec_puncture_xx_0 = fec.puncture_bb(puncpat2_size, puncpat2, 0)
         self.fec_extended_encoder = fec.extended_encoder(encoder_obj_list=pld_enc, threading='capillary', puncpat=puncpat)
         self.fec_extended_decoder = fec.extended_decoder(decoder_obj_list=pld_dec, threading='capillary', ann=None, puncpat=puncpat, integration_period=10000)
-        self.digital_pfb_clock_sync_xxx_0 = digital.pfb_clock_sync_ccf(sps, 6.28/100.0, (rx_rrc_taps), nfilts, nfilts/2, 1.5, 2)
-        self.digital_map_bb_0_0_0_0_0_0 = digital.map_bb(([-1, 1]))
-        self.digital_diff_encoder_bb_0 = digital.diff_encoder_bb(pld_const.arity())
-        self.digital_diff_decoder_bb_0 = digital.diff_decoder_bb(pld_const.arity())
-        self.digital_costas_loop_cc_0_0 = digital.costas_loop_cc(6.28/100.0, pld_const.arity(), False)
-        self.digital_correlate_access_code_xx_ts_0_0 = digital.correlate_access_code_bb_ts(digital.packet_utils.default_access_code,
-          4, 'packet_len')
-        self.digital_constellation_decoder_cb_0 = digital.constellation_decoder_cb(pld_const)
-        self.digital_cma_equalizer_cc_0_0 = digital.cma_equalizer_cc(15, 1, 0.01, 2)
-        self.digital_chunks_to_symbols_xx_0_0 = digital.chunks_to_symbols_bc((pld_const.points()), 1)
-        self.blocks_vector_source_x_0_0_0 = blocks.vector_source_b([0], True, 1, [])
-        self.blocks_throttle_0 = blocks.throttle(gr.sizeof_gr_complex*1, samp_rate,True)
-        self.blocks_stream_mux_0_1_0_0 = blocks.stream_mux(gr.sizeof_char*1, (96, 1104))
-        self.blocks_stream_mux_0_0_0 = blocks.stream_mux(gr.sizeof_char*1, (1100, 4))
+        self.fec_depuncture_bb_0 = fec.depuncture_bb(puncpat2_size, puncpat2, 0, 127)
+        self.digital_map_bb_0 = digital.map_bb((-1,1))
+        self.blocks_repack_bits_bb_1_1 = blocks.repack_bits_bb(1, 8, "", False, gr.GR_MSB_FIRST)
         self.blocks_repack_bits_bb_1_0_0_1 = blocks.repack_bits_bb(8, 1, '', False, gr.GR_MSB_FIRST)
-        self.blocks_repack_bits_bb_1_0_0_0 = blocks.repack_bits_bb(1, pld_const.bits_per_symbol(), '', False, gr.GR_MSB_FIRST)
+        self.blocks_repack_bits_bb_1_0 = blocks.repack_bits_bb(1, 8, "", False, gr.GR_MSB_FIRST)
+        self.blocks_repack_bits_bb_1 = blocks.repack_bits_bb(1, 8, "", False, gr.GR_MSB_FIRST)
         self.blocks_repack_bits_bb_0_0_0_1_0 = blocks.repack_bits_bb(1, 8, '', False, gr.GR_MSB_FIRST)
-        self.blocks_repack_bits_bb_0 = blocks.repack_bits_bb(pld_const.bits_per_symbol(), 1, '', False, gr.GR_MSB_FIRST)
-        self.blocks_keep_m_in_n_0_0_2_0_0 = blocks.keep_m_in_n(gr.sizeof_char, 1100, 1104, 0)
         self.blocks_file_source_0_0_1_0_1 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Desktop/Files_To_Transmit/book.txt', False)
         self.blocks_file_source_0_0_1_0_1.set_begin_tag(pmt.PMT_NIL)
         self.blocks_file_sink_0_0_0_0 = blocks.file_sink(gr.sizeof_char*1, '/home/andre/Desktop/Trasmited/depois.txt', False)
         self.blocks_file_sink_0_0_0_0.set_unbuffered(False)
+        self.blocks_file_sink_0_0_0 = blocks.file_sink(gr.sizeof_char*1, '/home/andre/Desktop/Trasmited/depunt.txt', False)
+        self.blocks_file_sink_0_0_0.set_unbuffered(False)
+        self.blocks_file_sink_0_0 = blocks.file_sink(gr.sizeof_char*1, '/home/andre/Desktop/Trasmited/after_code_com_punc.txt', False)
+        self.blocks_file_sink_0_0.set_unbuffered(False)
+        self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_char*1, '/home/andre/Desktop/Trasmited/after_code_sem_punc.txt', False)
+        self.blocks_file_sink_0.set_unbuffered(False)
         self.blocks_char_to_float_1_0_1 = blocks.char_to_float(1, 1)
         self.blocks_char_to_float_0_2_0_0_0 = blocks.char_to_float(1, 1)
-        self.acode_1104_0 = blocks.vector_source_b([0x1, 0x0, 0x1, 0x0, 0x1, 0x1, 0x0, 0x0, 0x1, 0x1, 0x0, 0x1, 0x1, 0x1, 0x0, 0x1, 0x1, 0x0, 0x1, 0x0, 0x0, 0x1, 0x0, 0x0, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x1, 0x0, 0x1, 0x1, 0x1, 0x1, 0x0, 0x0, 0x1, 0x0, 0x1, 0x0, 0x0, 0x0, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0, 0x1, 0x0, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0, 0x1, 0x0, 0x1, 0x0], True, 1, [])
 
 
 
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.acode_1104_0, 0), (self.blocks_stream_mux_0_1_0_0, 0))
         self.connect((self.blocks_char_to_float_0_2_0_0_0, 0), (self.fec_extended_decoder, 0))
         self.connect((self.blocks_char_to_float_1_0_1, 0), (self.qtgui_time_sink_x_0_1, 0))
         self.connect((self.blocks_file_source_0_0_1_0_1, 0), (self.blocks_repack_bits_bb_1_0_0_1, 0))
-        self.connect((self.blocks_keep_m_in_n_0_0_2_0_0, 0), (self.digital_map_bb_0_0_0_0_0_0, 0))
-        self.connect((self.blocks_repack_bits_bb_0, 0), (self.digital_correlate_access_code_xx_ts_0_0, 0))
         self.connect((self.blocks_repack_bits_bb_0_0_0_1_0, 0), (self.blocks_char_to_float_1_0_1, 0))
         self.connect((self.blocks_repack_bits_bb_0_0_0_1_0, 0), (self.blocks_file_sink_0_0_0_0, 0))
-        self.connect((self.blocks_repack_bits_bb_1_0_0_0, 0), (self.digital_diff_encoder_bb_0, 0))
+        self.connect((self.blocks_repack_bits_bb_1, 0), (self.blocks_file_sink_0_0, 0))
+        self.connect((self.blocks_repack_bits_bb_1_0, 0), (self.blocks_file_sink_0_0_0, 0))
         self.connect((self.blocks_repack_bits_bb_1_0_0_1, 0), (self.fec_extended_encoder, 0))
-        self.connect((self.blocks_stream_mux_0_0_0, 0), (self.blocks_stream_mux_0_1_0_0, 1))
-        self.connect((self.blocks_stream_mux_0_1_0_0, 0), (self.blocks_repack_bits_bb_1_0_0_0, 0))
-        self.connect((self.blocks_throttle_0, 0), (self.digital_pfb_clock_sync_xxx_0, 0))
-        self.connect((self.blocks_vector_source_x_0_0_0, 0), (self.blocks_stream_mux_0_0_0, 1))
-        self.connect((self.digital_chunks_to_symbols_xx_0_0, 0), (self.pfb_arb_resampler_xxx_0, 0))
-        self.connect((self.digital_cma_equalizer_cc_0_0, 0), (self.digital_costas_loop_cc_0_0, 0))
-        self.connect((self.digital_constellation_decoder_cb_0, 0), (self.digital_diff_decoder_bb_0, 0))
-        self.connect((self.digital_correlate_access_code_xx_ts_0_0, 0), (self.blocks_keep_m_in_n_0_0_2_0_0, 0))
-        self.connect((self.digital_costas_loop_cc_0_0, 0), (self.digital_constellation_decoder_cb_0, 0))
-        self.connect((self.digital_costas_loop_cc_0_0, 0), (self.qtgui_const_sink_x_0_0_0, 0))
-        self.connect((self.digital_costas_loop_cc_0_0, 0), (self.qtgui_freq_sink_x_0_0, 0))
-        self.connect((self.digital_diff_decoder_bb_0, 0), (self.blocks_repack_bits_bb_0, 0))
-        self.connect((self.digital_diff_encoder_bb_0, 0), (self.digital_chunks_to_symbols_xx_0_0, 0))
-        self.connect((self.digital_map_bb_0_0_0_0_0_0, 0), (self.blocks_char_to_float_0_2_0_0_0, 0))
-        self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.digital_cma_equalizer_cc_0_0, 0))
+        self.connect((self.blocks_repack_bits_bb_1_1, 0), (self.blocks_file_sink_0, 0))
+        self.connect((self.digital_map_bb_0, 0), (self.blocks_char_to_float_0_2_0_0_0, 0))
+        self.connect((self.fec_depuncture_bb_0, 0), (self.blocks_repack_bits_bb_1_0, 0))
+        self.connect((self.fec_depuncture_bb_0, 0), (self.digital_map_bb_0, 0))
         self.connect((self.fec_extended_decoder, 0), (self.blocks_repack_bits_bb_0_0_0_1_0, 0))
-        self.connect((self.fec_extended_encoder, 0), (self.blocks_stream_mux_0_0_0, 0))
-        self.connect((self.pfb_arb_resampler_xxx_0, 0), (self.blocks_throttle_0, 0))
-        self.connect((self.pfb_arb_resampler_xxx_0, 0), (self.qtgui_const_sink_x_0_0_0_0, 0))
-        self.connect((self.pfb_arb_resampler_xxx_0, 0), (self.qtgui_freq_sink_x_0, 0))
+        self.connect((self.fec_extended_encoder, 0), (self.blocks_repack_bits_bb_1_1, 0))
+        self.connect((self.fec_extended_encoder, 0), (self.fec_puncture_xx_0, 0))
+        self.connect((self.fec_puncture_xx_0, 0), (self.blocks_repack_bits_bb_1, 0))
+        self.connect((self.fec_puncture_xx_0, 0), (self.fec_depuncture_bb_0, 0))
 
     def closeEvent(self, event):
         self.settings = Qt.QSettings("GNU Radio", "try_punc")
@@ -412,12 +204,23 @@ class try_punc(gr.top_block, Qt.QWidget):
     def set_puncpat(self, puncpat):
         self.puncpat = puncpat
 
+    def get_puncpat2(self):
+        return self.puncpat2
+
+    def set_puncpat2(self, puncpat2):
+        self.puncpat2 = puncpat2
+
+    def get_puncpat2_size(self):
+        return self.puncpat2_size
+
+    def set_puncpat2_size(self, puncpat2_size):
+        self.puncpat2_size = puncpat2_size
+
     def get_sps(self):
         return self.sps
 
     def set_sps(self, sps):
         self.sps = sps
-        self.pfb_arb_resampler_xxx_0.set_rate(self.sps)
 
     def get_samp_rate_array_MCR(self):
         return self.samp_rate_array_MCR
@@ -455,7 +258,6 @@ class try_punc(gr.top_block, Qt.QWidget):
 
     def set_tx_rrc_taps(self, tx_rrc_taps):
         self.tx_rrc_taps = tx_rrc_taps
-        self.pfb_arb_resampler_xxx_0.set_taps((self.tx_rrc_taps))
 
     def get_samp_rate(self):
         return self.samp_rate
@@ -463,16 +265,12 @@ class try_punc(gr.top_block, Qt.QWidget):
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
         self.qtgui_time_sink_x_0_1.set_samp_rate(self.samp_rate)
-        self.qtgui_freq_sink_x_0_0.set_frequency_range(0, self.samp_rate)
-        self.qtgui_freq_sink_x_0.set_frequency_range(0, self.samp_rate)
-        self.blocks_throttle_0.set_sample_rate(self.samp_rate)
 
     def get_rx_rrc_taps(self):
         return self.rx_rrc_taps
 
     def set_rx_rrc_taps(self, rx_rrc_taps):
         self.rx_rrc_taps = rx_rrc_taps
-        self.digital_pfb_clock_sync_xxx_0.update_taps((self.rx_rrc_taps))
 
     def get_pld_enc(self):
         return self.pld_enc
@@ -496,8 +294,14 @@ class try_punc(gr.top_block, Qt.QWidget):
 def argument_parser():
     parser = OptionParser(usage="%prog: [options]", option_class=eng_option)
     parser.add_option(
-        "", "--puncpat", dest="puncpat", type="string", default='110',
+        "", "--puncpat", dest="puncpat", type="string", default='11',
         help="Set puncpat [default=%default]")
+    parser.add_option(
+        "", "--puncpat2", dest="puncpat2", type="intx", default=2,
+        help="Set puncpat2 [default=%default]")
+    parser.add_option(
+        "", "--puncpat2-size", dest="puncpat2_size", type="intx", default=2,
+        help="Set puncpat2_size [default=%default]")
     return parser
 
 
@@ -511,7 +315,7 @@ def main(top_block_cls=try_punc, options=None):
         Qt.QApplication.setGraphicsSystem(style)
     qapp = Qt.QApplication(sys.argv)
 
-    tb = top_block_cls(puncpat=options.puncpat)
+    tb = top_block_cls(puncpat=options.puncpat, puncpat2=options.puncpat2, puncpat2_size=options.puncpat2_size)
     tb.start()
     tb.show()
 

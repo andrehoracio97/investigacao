@@ -170,3 +170,10 @@ ANO
 Janeiro
 6 - Tese- Fazer enquadramento, Objectives, Melhorar contribuições, Melhorar organização, Conclusion, Future Work. 
 7 - Tese- Abstract, Keywords, Draw.io de 2 esquemas SCS adaptados do paper, Leitura de LMS...nao está feito ainda. Conclusão REC paper. Testes de puncturing. 
+8 - Testes em Puncturing. Tese-LMS finalmente.
+9 - Fazer paper Seminarios de Acompanhamento.
+
+13 - Tese-Revisão do feed do prof Joao
+14 - Tese-Revisão do feed do prof Joao
+15 - Tese-Overview on Chapter 2 and Gantt diagrams. Tirar resultados para a Tese.
+16 - 

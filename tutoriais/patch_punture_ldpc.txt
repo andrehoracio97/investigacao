@@ -1,0 +1,39 @@
+1)
+go to:
+
+/usr/local/lib/python2.7/dist-packages/gnuradio/fec/
+
+2) find:
+extended_decoder.py
+
+3)
+
+
+--- a/gr-fec/python/fec/extended_decoder.py
++++ b/gr-fec/python/fec/extended_decoder.py
+@@ -115,6 +115,14 @@ class extended_decoder(gr.hier_block2):
+            fec.get_decoder_input_conversion(decoder_obj_list[0]) == "packed_bits":
+             self.blocks.append(blocks.float_to_uchar());
+ 
++        ##if no conversion yet and annihilator and/or puncturing
++        ##(which are both "bb"), need to convert to uchar & back
++        need_conversion = False
++        if((len(self.blocks) == 0) and \
++            (self.ann or self.puncpat != '11')):
++            need_conversion = True
++            self.blocks.append(blocks.float_to_uchar());
++
+         const_index = 0; #index that corresponds to mod order for specinvert purposes
+ 
+         if not self.flush:
+@@ -140,6 +148,10 @@ class extended_decoder(gr.hier_block2):
+         if self.puncpat != '11':
+             self.blocks.append(fec.depuncture_bb(len(puncpat), read_bitlist(puncpat), 0))
+ 
++        ##need to convert back to float?
++        if need_conversion:
++            self.blocks.append(blocks.uchar_to_float());
++
+         if fec.get_decoder_input_conversion(decoder_obj_list[0]) == "packed_bits":
+             self.blocks.append(blocks.uchar_to_float())
+             self.blocks.append(blocks.add_const_ff(-128.0))
