@@ -872,11 +872,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>file</key>
-      <value>/home/andre/Desktop/Files_To_Transmit/trasmit_10_mb.txt</value>
+      <value>/home/it/Desktop/Files_To_Transmit/trasmit_10_mb.txt</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -990,11 +990,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>file</key>
-      <value>/home/andre/Desktop/Files_To_Transmit/video_lion.mpeg</value>
+      <value>/home/it/Desktop/Files_To_Transmit/video_lion.mpeg</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -3765,7 +3765,7 @@
     </param>
     <param>
       <key>sync</key>
-      <value>pc_clock</value>
+      <value>sync</value>
     </param>
     <param>
       <key>len_tag_name</key>
