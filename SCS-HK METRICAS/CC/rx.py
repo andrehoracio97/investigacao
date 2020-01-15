@@ -78,7 +78,7 @@ class rx(gr.top_block, Qt.QWidget):
         self.nfilts = nfilts = 32
         self.k = k = 7
         self.eb = eb = 0.22
-        self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 33
+        self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 32
         self.samp_rate = samp_rate = samp_rate_array_MCR[0]
 
         self.rx_rrc_taps = rx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts*sps, 1.0, eb, 11*sps*nfilts)
@@ -94,7 +94,7 @@ class rx(gr.top_block, Qt.QWidget):
         ##################################################
         # Blocks
         ##################################################
-        self._variable_qtgui_range_0_1_range = Range(0, 73, 1, 33, 200)
+        self._variable_qtgui_range_0_1_range = Range(0, 73, 1, 32, 200)
         self._variable_qtgui_range_0_1_win = RangeWidget(self._variable_qtgui_range_0_1_range, self.set_variable_qtgui_range_0_1, 'Gain_RX', "counter_slider", float)
         self.top_grid_layout.addWidget(self._variable_qtgui_range_0_1_win, 0, 2, 1, 1)
         for r in range(0, 1):
@@ -433,6 +433,8 @@ class rx(gr.top_block, Qt.QWidget):
         self.blocks_file_sink_0_0_0_0_0.set_unbuffered(False)
         self.blocks_file_sink_0_0_0_0 = blocks.file_sink(gr.sizeof_char*1, '/home/andre/Desktop/Trasmited/depois.txt', False)
         self.blocks_file_sink_0_0_0_0.set_unbuffered(False)
+        self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_gr_complex*1, '/home/andre/Desktop/METRICS_FOR_THESIS/12/bob.txt', False)
+        self.blocks_file_sink_0.set_unbuffered(False)
         self.blocks_char_to_float_1_0_1 = blocks.char_to_float(1, 1)
         self.blocks_char_to_float_0_2_0_0 = blocks.char_to_float(1, 1)
         self.blocks_char_to_float_0_0 = blocks.char_to_float(1, 1)
@@ -457,6 +459,7 @@ class rx(gr.top_block, Qt.QWidget):
         self.connect((self.digital_constellation_decoder_cb_0, 0), (self.digital_diff_decoder_bb_0, 0))
         self.connect((self.digital_correlate_access_code_xx_ts_0_0, 0), (self.blocks_char_to_float_0_0, 0))
         self.connect((self.digital_correlate_access_code_xx_ts_0_0, 0), (self.blocks_keep_m_in_n_0_0_2_0, 0))
+        self.connect((self.digital_costas_loop_cc_0_0, 0), (self.blocks_file_sink_0, 0))
         self.connect((self.digital_costas_loop_cc_0_0, 0), (self.digital_constellation_decoder_cb_0, 0))
         self.connect((self.digital_costas_loop_cc_0_0, 0), (self.qtgui_const_sink_x_0_0_0, 0))
         self.connect((self.digital_diff_decoder_bb_0, 0), (self.blocks_repack_bits_bb_0, 0))
