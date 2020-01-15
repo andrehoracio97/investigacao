@@ -672,7 +672,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>36</value>
+      <value>33</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -952,6 +952,57 @@
     <param>
       <key>id</key>
       <value>blocks_file_sink_0_0_0_0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>byte</value>
+    </param>
+    <param>
+      <key>unbuffered</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_file_sink</key>
+    <param>
+      <key>append</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>file</key>
+      <value>/home/andre/Desktop/Trasmited/depois.mpeg</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1400, 1220)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_file_sink_0_0_0_0_0</value>
     </param>
     <param>
       <key>type</key>
@@ -5269,7 +5320,7 @@
     </param>
     <param>
       <key>sync</key>
-      <value>pc_clock</value>
+      <value>sync</value>
     </param>
     <param>
       <key>otw</key>
@@ -5435,6 +5486,12 @@
   <connection>
     <source_block_id>blocks_repack_bits_bb_0_0_0_1_0</source_block_id>
     <sink_block_id>blocks_file_sink_0_0_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_repack_bits_bb_0_0_0_1_0</source_block_id>
+    <sink_block_id>blocks_file_sink_0_0_0_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
