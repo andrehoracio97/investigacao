@@ -510,7 +510,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>samp_rate_array_MCR[15]</value>
+      <value>samp_rate_array_MCR[17]</value>
     </param>
   </block>
   <block>
