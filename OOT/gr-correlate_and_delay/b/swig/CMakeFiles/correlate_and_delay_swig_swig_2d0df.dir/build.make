@@ -71,7 +71,6 @@ swig/correlate_and_delay_swig_swig_2d0df.cpp: /usr/local/include/gnuradio/swig/s
 swig/correlate_and_delay_swig_swig_2d0df.cpp: /usr/local/include/gnuradio/swig/gr_types.i
 swig/correlate_and_delay_swig_swig_2d0df.cpp: /usr/local/include/gnuradio/swig/basic_block.i
 swig/correlate_and_delay_swig_swig_2d0df.cpp: /usr/local/include/gnuradio/swig/gr_ctrlport.i
-swig/correlate_and_delay_swig_swig_2d0df.cpp: swig/correlate_and_delay_swig_doc.i
 swig/correlate_and_delay_swig_swig_2d0df.cpp: /usr/local/include/gnuradio/swig/io_signature.i
 swig/correlate_and_delay_swig_swig_2d0df.cpp: /usr/local/include/gnuradio/swig/top_block.i
 swig/correlate_and_delay_swig_swig_2d0df.cpp: /usr/local/include/gnuradio/swig/gr_extras.i
@@ -92,23 +91,14 @@ swig/correlate_and_delay_swig_swig_2d0df.cpp: /usr/local/include/gnuradio/swig/p
 swig/correlate_and_delay_swig_swig_2d0df.cpp: swig/correlate_and_delay_swig.tag
 	cd /home/it/investigacao/OOT/gr-correlate_and_delay/b/swig && /usr/bin/cmake -E copy /home/it/investigacao/OOT/gr-correlate_and_delay/b/swig/correlate_and_delay_swig_swig_2d0df.cpp.in /home/it/investigacao/OOT/gr-correlate_and_delay/b/swig/correlate_and_delay_swig_swig_2d0df.cpp
 
-swig/correlate_and_delay_swig_doc.i: swig/correlate_and_delay_swig_doc_swig_docs/xml/index.xml
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/it/investigacao/OOT/gr-correlate_and_delay/b/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating python docstrings for correlate_and_delay_swig_doc"
-	cd /home/it/investigacao/OOT/gr-correlate_and_delay/docs/doxygen && /usr/bin/python2 -B /home/it/investigacao/OOT/gr-correlate_and_delay/docs/doxygen/swig_doc.py /home/it/investigacao/OOT/gr-correlate_and_delay/b/swig/correlate_and_delay_swig_doc_swig_docs/xml /home/it/investigacao/OOT/gr-correlate_and_delay/b/swig/correlate_and_delay_swig_doc.i
-
 swig/correlate_and_delay_swig.tag: swig/_correlate_and_delay_swig_swig_tag
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/it/investigacao/OOT/gr-correlate_and_delay/b/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating correlate_and_delay_swig.tag"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/it/investigacao/OOT/gr-correlate_and_delay/b/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating correlate_and_delay_swig.tag"
 	cd /home/it/investigacao/OOT/gr-correlate_and_delay/b/swig && ./_correlate_and_delay_swig_swig_tag
 	cd /home/it/investigacao/OOT/gr-correlate_and_delay/b/swig && /usr/bin/cmake -E touch /home/it/investigacao/OOT/gr-correlate_and_delay/b/swig/correlate_and_delay_swig.tag
 
-swig/correlate_and_delay_swig_doc_swig_docs/xml/index.xml: swig/_correlate_and_delay_swig_doc_tag
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/it/investigacao/OOT/gr-correlate_and_delay/b/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating doxygen xml for correlate_and_delay_swig_doc docs"
-	cd /home/it/investigacao/OOT/gr-correlate_and_delay/b/swig && ./_correlate_and_delay_swig_doc_tag
-	cd /home/it/investigacao/OOT/gr-correlate_and_delay/b/swig && /usr/bin/doxygen /home/it/investigacao/OOT/gr-correlate_and_delay/b/swig/correlate_and_delay_swig_doc_swig_docs/Doxyfile
-
 swig/CMakeFiles/correlate_and_delay_swig_swig_2d0df.dir/correlate_and_delay_swig_swig_2d0df.cpp.o: swig/CMakeFiles/correlate_and_delay_swig_swig_2d0df.dir/flags.make
 swig/CMakeFiles/correlate_and_delay_swig_swig_2d0df.dir/correlate_and_delay_swig_swig_2d0df.cpp.o: swig/correlate_and_delay_swig_swig_2d0df.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/it/investigacao/OOT/gr-correlate_and_delay/b/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object swig/CMakeFiles/correlate_and_delay_swig_swig_2d0df.dir/correlate_and_delay_swig_swig_2d0df.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/it/investigacao/OOT/gr-correlate_and_delay/b/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object swig/CMakeFiles/correlate_and_delay_swig_swig_2d0df.dir/correlate_and_delay_swig_swig_2d0df.cpp.o"
 	cd /home/it/investigacao/OOT/gr-correlate_and_delay/b/swig && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/correlate_and_delay_swig_swig_2d0df.dir/correlate_and_delay_swig_swig_2d0df.cpp.o -c /home/it/investigacao/OOT/gr-correlate_and_delay/b/swig/correlate_and_delay_swig_swig_2d0df.cpp
 
 swig/CMakeFiles/correlate_and_delay_swig_swig_2d0df.dir/correlate_and_delay_swig_swig_2d0df.cpp.i: cmake_force
@@ -140,7 +130,7 @@ correlate_and_delay_swig_swig_2d0df_EXTERNAL_OBJECTS =
 swig/correlate_and_delay_swig_swig_2d0df: swig/CMakeFiles/correlate_and_delay_swig_swig_2d0df.dir/correlate_and_delay_swig_swig_2d0df.cpp.o
 swig/correlate_and_delay_swig_swig_2d0df: swig/CMakeFiles/correlate_and_delay_swig_swig_2d0df.dir/build.make
 swig/correlate_and_delay_swig_swig_2d0df: swig/CMakeFiles/correlate_and_delay_swig_swig_2d0df.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/it/investigacao/OOT/gr-correlate_and_delay/b/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable correlate_and_delay_swig_swig_2d0df"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/it/investigacao/OOT/gr-correlate_and_delay/b/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable correlate_and_delay_swig_swig_2d0df"
 	cd /home/it/investigacao/OOT/gr-correlate_and_delay/b/swig && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/correlate_and_delay_swig_swig_2d0df.dir/link.txt --verbose=$(VERBOSE)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Swig source"
 	cd /home/it/investigacao/OOT/gr-correlate_and_delay/b/swig && /usr/bin/cmake -E make_directory /home/it/investigacao/OOT/gr-correlate_and_delay/b/swig
@@ -160,9 +150,7 @@ swig/CMakeFiles/correlate_and_delay_swig_swig_2d0df.dir/clean:
 .PHONY : swig/CMakeFiles/correlate_and_delay_swig_swig_2d0df.dir/clean
 
 swig/CMakeFiles/correlate_and_delay_swig_swig_2d0df.dir/depend: swig/correlate_and_delay_swig_swig_2d0df.cpp
-swig/CMakeFiles/correlate_and_delay_swig_swig_2d0df.dir/depend: swig/correlate_and_delay_swig_doc.i
 swig/CMakeFiles/correlate_and_delay_swig_swig_2d0df.dir/depend: swig/correlate_and_delay_swig.tag
-swig/CMakeFiles/correlate_and_delay_swig_swig_2d0df.dir/depend: swig/correlate_and_delay_swig_doc_swig_docs/xml/index.xml
 	cd /home/it/investigacao/OOT/gr-correlate_and_delay/b && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/it/investigacao/OOT/gr-correlate_and_delay /home/it/investigacao/OOT/gr-correlate_and_delay/swig /home/it/investigacao/OOT/gr-correlate_and_delay/b /home/it/investigacao/OOT/gr-correlate_and_delay/b/swig /home/it/investigacao/OOT/gr-correlate_and_delay/b/swig/CMakeFiles/correlate_and_delay_swig_swig_2d0df.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : swig/CMakeFiles/correlate_and_delay_swig_swig_2d0df.dir/depend
 

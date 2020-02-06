@@ -452,7 +452,7 @@
     </param>
     <param>
       <key>samp_rate</key>
-      <value>nfilts*sps</value>
+      <value>nfilts*2</value>
     </param>
     <param>
       <key>sym_rate</key>
@@ -483,7 +483,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>samp_rate_array_MCR[15]</value>
+      <value>samp_rate_array_MCR[11]</value>
     </param>
   </block>
   <block>
@@ -791,7 +791,7 @@
     </param>
     <param>
       <key>decimation</key>
-      <value>1</value>
+      <value>2</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -827,7 +827,7 @@
     </param>
     <param>
       <key>num_taps</key>
-      <value>32</value>
+      <value>64</value>
     </param>
     <param>
       <key>reset</key>
@@ -1839,7 +1839,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1232, 470)</value>
+      <value>(1252, 462)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1890,11 +1890,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1236, 546)</value>
+      <value>(1252, 546)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2047,7 +2047,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1516, 460)</value>
+      <value>(1520, 476)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2141,11 +2141,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1228, 346)</value>
+      <value>(1240, 354)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2279,7 +2279,7 @@
     </param>
     <param>
       <key>sps</key>
-      <value>sps</value>
+      <value>2</value>
     </param>
     <param>
       <key>taps</key>
