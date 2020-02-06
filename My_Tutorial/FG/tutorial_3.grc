@@ -609,7 +609,7 @@
     <key>variable</key>
     <param>
       <key>comment</key>
-      <value>Almost none TAPS</value>
+      <value>Almost NO TAPS</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -644,7 +644,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(336, 820)</value>
+      <value>(328, 860)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -781,7 +781,7 @@
     </param>
     <param>
       <key>ntaps</key>
-      <value>5*sps*nfilts</value>
+      <value>11*sps*nfilts</value>
     </param>
     <param>
       <key>samp_rate</key>
@@ -1547,6 +1547,68 @@
     </param>
   </block>
   <block>
+    <key>note</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(352, 684)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>note_0</value>
+    </param>
+    <param>
+      <key>note</key>
+      <value>Almost NO Taps</value>
+    </param>
+  </block>
+  <block>
+    <key>note</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(368, 820)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>note_1</value>
+    </param>
+    <param>
+      <key>note</key>
+      <value>With Taps</value>
+    </param>
+  </block>
+  <block>
     <key>pfb_arb_resampler_xxx</key>
     <param>
       <key>alias</key>
@@ -1984,7 +2046,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(264, 1100)</value>
+      <value>(264, 1116)</value>
     </param>
     <param>
       <key>gui_hint</key>
