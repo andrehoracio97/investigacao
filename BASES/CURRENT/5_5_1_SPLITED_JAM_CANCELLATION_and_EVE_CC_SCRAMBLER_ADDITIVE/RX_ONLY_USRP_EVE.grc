@@ -128,7 +128,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1336, 308)</value>
+      <value>(1352, 324)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -568,7 +568,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1048, 308)</value>
+      <value>(1064, 324)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -622,7 +622,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1160, 308)</value>
+      <value>(1176, 324)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1210,7 +1210,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>2</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1540,7 +1540,7 @@
     </param>
     <param>
       <key>osps</key>
-      <value>1</value>
+      <value>2</value>
     </param>
     <param>
       <key>sps</key>

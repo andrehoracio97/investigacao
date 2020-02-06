@@ -79,7 +79,7 @@ class rx_eve(gr.top_block, Qt.QWidget):
         self.k = k = 7
         self.eb = eb = 0.22
         self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 52
-        self.samp_rate = samp_rate = samp_rate_array_MCR[15]
+        self.samp_rate = samp_rate = samp_rate_array_MCR[8]
 
         self.rx_rrc_taps = rx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts*sps, 1.0, eb, 11*sps*nfilts)
 
@@ -430,7 +430,7 @@ class rx_eve(gr.top_block, Qt.QWidget):
 
     def set_samp_rate_array_MCR(self, samp_rate_array_MCR):
         self.samp_rate_array_MCR = samp_rate_array_MCR
-        self.set_samp_rate(self.samp_rate_array_MCR[15])
+        self.set_samp_rate(self.samp_rate_array_MCR[8])
 
     def get_rate(self):
         return self.rate
