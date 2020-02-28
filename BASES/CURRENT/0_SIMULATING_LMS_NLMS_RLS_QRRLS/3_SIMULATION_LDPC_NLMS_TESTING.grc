@@ -609,7 +609,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>samp_rate_array_MCR[15]</value>
+      <value>100000000</value>
     </param>
   </block>
   <block>
@@ -925,85 +925,6 @@
     </param>
   </block>
   <block>
-    <key>adapt_lms_filter_xx</key>
-    <param>
-      <key>adapt</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>bypass</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>decimation</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>filtered_input</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>first_input</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(376, 1364)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>adapt_lms_filter_xx_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>num_taps</key>
-      <value>32</value>
-    </param>
-    <param>
-      <key>reset</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>skip</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>cc</value>
-    </param>
-    <param>
-      <key>mu</key>
-      <value>0.0001</value>
-    </param>
-  </block>
-  <block>
     <key>adapt_nlms_filter_xx</key>
     <param>
       <key>adapt</key>
@@ -1031,7 +952,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>filtered_input</key>
@@ -1080,81 +1001,6 @@
     <param>
       <key>mu</key>
       <value>0.0001</value>
-    </param>
-  </block>
-  <block>
-    <key>adapt_rls_filter_xx</key>
-    <param>
-      <key>adapt</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>decimation</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>first_input</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(376, 1028)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>adapt_rls_filter_xx_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>num_taps</key>
-      <value>32</value>
-    </param>
-    <param>
-      <key>reset</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>skip</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>cc</value>
-    </param>
-    <param>
-      <key>delta</key>
-      <value>gui_delta</value>
-    </param>
-    <param>
-      <key>lambda</key>
-      <value>gui_lambda</value>
     </param>
   </block>
   <block>
@@ -1436,7 +1282,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(40, 236)</value>
+      <value>(24, 252)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1538,7 +1384,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1888,7 +1734,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(240, 244)</value>
+      <value>(224, 260)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1931,7 +1777,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2153,7 +1999,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2746,7 +2592,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(616, 1956)</value>
+      <value>(616, 1964)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -6359,7 +6205,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>frame_bits</key>
@@ -6414,7 +6260,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>frame_bits</key>
@@ -6492,7 +6338,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1248, 284)</value>
+      <value>(1312, 284)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -6654,7 +6500,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(32, 1980)</value>
+      <value>(32, 2004)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -6730,30 +6576,6 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>adapt_lms_filter_xx_0</source_block_id>
-    <sink_block_id>digital_pfb_clock_sync_xxx_0</sink_block_id>
-    <source_key>1</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>adapt_lms_filter_xx_0</source_block_id>
-    <sink_block_id>qtgui_freq_sink_x_0_0_1_0</sink_block_id>
-    <source_key>1</source_key>
-    <sink_key>1</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>adapt_lms_filter_xx_0</source_block_id>
-    <sink_block_id>qtgui_freq_sink_x_1_0</sink_block_id>
-    <source_key>1</source_key>
-    <sink_key>1</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>adapt_lms_filter_xx_0</source_block_id>
-    <sink_block_id>qtgui_freq_sink_x_1_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
     <source_block_id>adapt_nlms_filter_xx_0</source_block_id>
     <sink_block_id>digital_pfb_clock_sync_xxx_0</sink_block_id>
     <source_key>1</source_key>
@@ -6773,30 +6595,6 @@
   </connection>
   <connection>
     <source_block_id>adapt_nlms_filter_xx_0</source_block_id>
-    <sink_block_id>qtgui_freq_sink_x_1_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>adapt_rls_filter_xx_0</source_block_id>
-    <sink_block_id>digital_pfb_clock_sync_xxx_0</sink_block_id>
-    <source_key>1</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>adapt_rls_filter_xx_0</source_block_id>
-    <sink_block_id>qtgui_freq_sink_x_0_0_1_0</sink_block_id>
-    <source_key>1</source_key>
-    <sink_key>1</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>adapt_rls_filter_xx_0</source_block_id>
-    <sink_block_id>qtgui_freq_sink_x_1_0</sink_block_id>
-    <source_key>1</source_key>
-    <sink_key>1</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>adapt_rls_filter_xx_0</source_block_id>
     <sink_block_id>qtgui_freq_sink_x_1_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
@@ -6809,19 +6607,7 @@
   </connection>
   <connection>
     <source_block_id>blocks_add_xx_0</source_block_id>
-    <sink_block_id>adapt_lms_filter_xx_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_add_xx_0</source_block_id>
     <sink_block_id>adapt_nlms_filter_xx_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_add_xx_0</source_block_id>
-    <sink_block_id>adapt_rls_filter_xx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -6893,19 +6679,7 @@
   </connection>
   <connection>
     <source_block_id>blocks_multiply_const_vxx_1_0</source_block_id>
-    <sink_block_id>adapt_lms_filter_xx_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>1</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_multiply_const_vxx_1_0</source_block_id>
     <sink_block_id>adapt_nlms_filter_xx_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>1</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_multiply_const_vxx_1_0</source_block_id>
-    <sink_block_id>adapt_rls_filter_xx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>1</sink_key>
   </connection>
@@ -6942,12 +6716,6 @@
   <connection>
     <source_block_id>blocks_repack_bits_bb_1_0_0_0_0</source_block_id>
     <sink_block_id>virtual_sink_1_0_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_repack_bits_bb_1_0_0_1</source_block_id>
-    <sink_block_id>fec_extended_encoder_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -7068,12 +6836,6 @@
   <connection>
     <source_block_id>fec_extended_decoder_0_0_1_0_1_0_0</source_block_id>
     <sink_block_id>blocks_keep_m_in_n_0_1_1_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>fec_extended_decoder_0_0_1_0_1_0_0</source_block_id>
-    <sink_block_id>blocks_repack_bits_bb_0_0_0_1_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

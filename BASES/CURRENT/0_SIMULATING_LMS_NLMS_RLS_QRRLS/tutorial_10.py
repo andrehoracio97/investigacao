@@ -35,6 +35,7 @@ import adapt
 import insert_vec_cpp
 import pmt
 import random
+import scrambler_cpp
 import sip
 import sys
 from gnuradio import qtgui
@@ -76,7 +77,6 @@ class tutorial_10(gr.top_block, Qt.QWidget):
         # Variables
         ##################################################
         self.sps = sps = 4
-        self.samp_rate_array_MCR = samp_rate_array_MCR = [7500000,5000000,3750000,3000000,2500000,2000000,1500000,1000000,937500,882352,833333,714285,533333,500000,421052,400000,380952]
         self.nfilts = nfilts = 32
         self.eb = eb = 0.22
         self.H_dec = H_dec = fec.ldpc_H_matrix('/usr/local/share/gnuradio/fec/ldpc/n_1100_k_0442_gap_24.alist', 24)
@@ -85,7 +85,8 @@ class tutorial_10(gr.top_block, Qt.QWidget):
 
         self.tx_rrc_taps = tx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts, 1.0, eb, 11*sps*nfilts)
 
-        self.samp_rate = samp_rate = samp_rate_array_MCR[15]
+        self.samp_rate_array_MCR = samp_rate_array_MCR = [7500000,5000000,3750000,3000000,2500000,2000000,1500000,1000000,937500,882352,833333,714285,533333,500000,421052,400000,380952]
+        self.samp_rate = samp_rate = 100000000
 
         self.rx_rrc_taps = rx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts*sps, 1.0, eb, 11*sps*nfilts)
 
@@ -117,6 +118,8 @@ class tutorial_10(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(1, 3):
             self.top_grid_layout.setColumnStretch(c, 1)
+        self.scrambler_cpp_additive_scrambler_0 = scrambler_cpp.additive_scrambler(0x8A, 0x7F, 7, 440-32)
+        self.scrambler_cpp_additive_descrambler_0 = scrambler_cpp.additive_descrambler(0x8A, 0x7F, 7, 440-32)
         self.qtgui_time_sink_x_0_1 = qtgui.time_sink_f(
         	100*2, #size
         	samp_rate, #samp_rate
@@ -563,15 +566,18 @@ class tutorial_10(gr.top_block, Qt.QWidget):
         self.digital_cma_equalizer_cc_0_0 = digital.cma_equalizer_cc(15, 1, 0.01, 2)
         self.digital_chunks_to_symbols_xx_0_0_0 = digital.chunks_to_symbols_bc((pld_const.points()), 1)
         self.blocks_vector_source_x_0_0_0 = blocks.vector_source_b([0], True, 1, [])
+        self.blocks_vector_source_x_0_0 = blocks.vector_source_b([0], True, 1, [])
         self.blocks_throttle_1 = blocks.throttle(gr.sizeof_gr_complex*1, samp_rate,True)
         self.blocks_stream_mux_0_1_0_0_0 = blocks.stream_mux(gr.sizeof_char*1, (96, 1104))
         self.blocks_stream_mux_0_0_0 = blocks.stream_mux(gr.sizeof_char*1, (1100, 4))
+        self.blocks_stream_mux_0_0 = blocks.stream_mux(gr.sizeof_char*1, (440, 2))
         self.blocks_repack_bits_bb_1_0_0_1 = blocks.repack_bits_bb(8, 1, '', False, gr.GR_MSB_FIRST)
         self.blocks_repack_bits_bb_1_0_0_0_0 = blocks.repack_bits_bb(1, pld_const.bits_per_symbol(), '', False, gr.GR_MSB_FIRST)
         self.blocks_repack_bits_bb_0_0_0_1_0 = blocks.repack_bits_bb(1, 8, '', False, gr.GR_MSB_FIRST)
         self.blocks_repack_bits_bb_0 = blocks.repack_bits_bb(pld_const.bits_per_symbol(), 1, '', False, gr.GR_MSB_FIRST)
         self.blocks_multiply_const_vxx_1_0 = blocks.multiply_const_vcc((0.5, ))
         self.blocks_multiply_const_vxx_1 = blocks.multiply_const_vcc((0.7, ))
+        self.blocks_keep_m_in_n_0_1_1_0 = blocks.keep_m_in_n(gr.sizeof_char, 440, 442, 0)
         self.blocks_keep_m_in_n_0_0_2_0_0 = blocks.keep_m_in_n(gr.sizeof_char, 1100, 1104, 0)
         self.blocks_file_source_0_0_1_0 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Desktop/Files_To_Transmit/trasmit_10_mb.txt', False)
         self.blocks_file_source_0_0_1_0.set_begin_tag(pmt.PMT_NIL)
@@ -581,7 +587,7 @@ class tutorial_10(gr.top_block, Qt.QWidget):
         self.blocks_char_to_float_0_2_0_0_0 = blocks.char_to_float(1, 1)
         self.blocks_add_xx_0 = blocks.add_vcc(1)
         self.analog_noise_source_x_0_0 = analog.noise_source_c(analog.GR_GAUSSIAN, 1, -5)
-        self.adapt_rls_filter_xx_0 = adapt.rls_filter_cc(True, 32, gui_delta, gui_lambda, 0, 1, True, False)
+        self.adapt_qrd_rls_filter_xx_0 = adapt.qrd_rls_filter_cc(32, gui_delta, gui_lambda, 0, 1, True, False)
         self.acode_1104_0_0 = blocks.vector_source_b([0x1, 0x0, 0x1, 0x0, 0x1, 0x1, 0x0, 0x0, 0x1, 0x1, 0x0, 0x1, 0x1, 0x1, 0x0, 0x1, 0x1, 0x0, 0x1, 0x0, 0x0, 0x1, 0x0, 0x0, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x1, 0x0, 0x1, 0x1, 0x1, 0x1, 0x0, 0x0, 0x1, 0x0, 0x1, 0x0, 0x0, 0x0, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0, 0x1, 0x0, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0, 0x1, 0x0, 0x1, 0x0], True, 1, [])
 
 
@@ -590,32 +596,35 @@ class tutorial_10(gr.top_block, Qt.QWidget):
         # Connections
         ##################################################
         self.connect((self.acode_1104_0_0, 0), (self.blocks_stream_mux_0_1_0_0_0, 0))
-        self.connect((self.adapt_rls_filter_xx_0, 1), (self.digital_pfb_clock_sync_xxx_0, 0))
-        self.connect((self.adapt_rls_filter_xx_0, 1), (self.qtgui_freq_sink_x_0_0_1_0, 1))
-        self.connect((self.adapt_rls_filter_xx_0, 1), (self.qtgui_freq_sink_x_1_0, 1))
-        self.connect((self.adapt_rls_filter_xx_0, 0), (self.qtgui_freq_sink_x_1_0, 0))
+        self.connect((self.adapt_qrd_rls_filter_xx_0, 1), (self.digital_pfb_clock_sync_xxx_0, 0))
+        self.connect((self.adapt_qrd_rls_filter_xx_0, 1), (self.qtgui_freq_sink_x_0_0_1_0, 1))
+        self.connect((self.adapt_qrd_rls_filter_xx_0, 1), (self.qtgui_freq_sink_x_1_0, 1))
+        self.connect((self.adapt_qrd_rls_filter_xx_0, 0), (self.qtgui_freq_sink_x_1_0, 0))
         self.connect((self.analog_noise_source_x_0_0, 0), (self.interp_fir_filter_xxx_1_0, 0))
-        self.connect((self.blocks_add_xx_0, 0), (self.adapt_rls_filter_xx_0, 0))
+        self.connect((self.blocks_add_xx_0, 0), (self.adapt_qrd_rls_filter_xx_0, 0))
         self.connect((self.blocks_add_xx_0, 0), (self.qtgui_freq_sink_x_0_0_0, 0))
         self.connect((self.blocks_add_xx_0, 0), (self.qtgui_freq_sink_x_1_0, 2))
         self.connect((self.blocks_char_to_float_0_2_0_0_0, 0), (self.fec_extended_decoder_0_0_1_0_1_0_0, 0))
         self.connect((self.blocks_char_to_float_1_0_1, 0), (self.qtgui_time_sink_x_0_1, 0))
         self.connect((self.blocks_file_source_0_0_1_0, 0), (self.blocks_repack_bits_bb_1_0_0_1, 0))
         self.connect((self.blocks_keep_m_in_n_0_0_2_0_0, 0), (self.digital_map_bb_0_0_0_0_0_0, 0))
+        self.connect((self.blocks_keep_m_in_n_0_1_1_0, 0), (self.scrambler_cpp_additive_descrambler_0, 0))
         self.connect((self.blocks_multiply_const_vxx_1, 0), (self.blocks_add_xx_0, 1))
         self.connect((self.blocks_multiply_const_vxx_1, 0), (self.qtgui_const_sink_x_0_0_0_0, 0))
         self.connect((self.blocks_multiply_const_vxx_1, 0), (self.qtgui_freq_sink_x_0, 0))
-        self.connect((self.blocks_multiply_const_vxx_1_0, 0), (self.adapt_rls_filter_xx_0, 1))
+        self.connect((self.blocks_multiply_const_vxx_1_0, 0), (self.adapt_qrd_rls_filter_xx_0, 1))
         self.connect((self.blocks_multiply_const_vxx_1_0, 0), (self.blocks_add_xx_0, 0))
         self.connect((self.blocks_multiply_const_vxx_1_0, 0), (self.qtgui_freq_sink_x_0_0, 0))
         self.connect((self.blocks_repack_bits_bb_0, 0), (self.digital_correlate_access_code_xx_ts_0_0, 0))
         self.connect((self.blocks_repack_bits_bb_0_0_0_1_0, 0), (self.blocks_char_to_float_1_0_1, 0))
         self.connect((self.blocks_repack_bits_bb_0_0_0_1_0, 0), (self.blocks_file_sink_0_0_0_2, 0))
         self.connect((self.blocks_repack_bits_bb_1_0_0_0_0, 0), (self.insert_vec_cpp_new_vec_0_0, 0))
-        self.connect((self.blocks_repack_bits_bb_1_0_0_1, 0), (self.fec_extended_encoder_0, 0))
+        self.connect((self.blocks_repack_bits_bb_1_0_0_1, 0), (self.scrambler_cpp_additive_scrambler_0, 0))
+        self.connect((self.blocks_stream_mux_0_0, 0), (self.fec_extended_encoder_0, 0))
         self.connect((self.blocks_stream_mux_0_0_0, 0), (self.blocks_stream_mux_0_1_0_0_0, 1))
         self.connect((self.blocks_stream_mux_0_1_0_0_0, 0), (self.blocks_repack_bits_bb_1_0_0_0_0, 0))
         self.connect((self.blocks_throttle_1, 0), (self.blocks_multiply_const_vxx_1, 0))
+        self.connect((self.blocks_vector_source_x_0_0, 0), (self.blocks_stream_mux_0_0, 1))
         self.connect((self.blocks_vector_source_x_0_0_0, 0), (self.blocks_stream_mux_0_0_0, 1))
         self.connect((self.digital_chunks_to_symbols_xx_0_0_0, 0), (self.pfb_arb_resampler_xxx_0_0, 0))
         self.connect((self.digital_chunks_to_symbols_xx_0_0_0, 0), (self.qtgui_freq_sink_x_0_0_1_0_0, 0))
@@ -629,12 +638,14 @@ class tutorial_10(gr.top_block, Qt.QWidget):
         self.connect((self.digital_diff_encoder_bb_0_0, 0), (self.digital_chunks_to_symbols_xx_0_0_0, 0))
         self.connect((self.digital_map_bb_0_0_0_0_0_0, 0), (self.blocks_char_to_float_0_2_0_0_0, 0))
         self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.digital_cma_equalizer_cc_0_0, 0))
-        self.connect((self.fec_extended_decoder_0_0_1_0_1_0_0, 0), (self.blocks_repack_bits_bb_0_0_0_1_0, 0))
+        self.connect((self.fec_extended_decoder_0_0_1_0_1_0_0, 0), (self.blocks_keep_m_in_n_0_1_1_0, 0))
         self.connect((self.fec_extended_encoder_0, 0), (self.blocks_stream_mux_0_0_0, 0))
         self.connect((self.insert_vec_cpp_new_vec_0_0, 0), (self.digital_diff_encoder_bb_0_0, 0))
         self.connect((self.interp_fir_filter_xxx_1_0, 0), (self.blocks_multiply_const_vxx_1_0, 0))
         self.connect((self.pfb_arb_resampler_xxx_0_0, 0), (self.blocks_throttle_1, 0))
         self.connect((self.pfb_arb_resampler_xxx_0_0, 0), (self.qtgui_freq_sink_x_0_0_1_0, 0))
+        self.connect((self.scrambler_cpp_additive_descrambler_0, 0), (self.blocks_repack_bits_bb_0_0_0_1_0, 0))
+        self.connect((self.scrambler_cpp_additive_scrambler_0, 0), (self.blocks_stream_mux_0_0, 0))
 
     def closeEvent(self, event):
         self.settings = Qt.QSettings("GNU Radio", "tutorial_10")
@@ -653,13 +664,6 @@ class tutorial_10(gr.top_block, Qt.QWidget):
     def set_sps(self, sps):
         self.sps = sps
         self.pfb_arb_resampler_xxx_0_0.set_rate(self.sps)
-
-    def get_samp_rate_array_MCR(self):
-        return self.samp_rate_array_MCR
-
-    def set_samp_rate_array_MCR(self, samp_rate_array_MCR):
-        self.samp_rate_array_MCR = samp_rate_array_MCR
-        self.set_samp_rate(self.samp_rate_array_MCR[15])
 
     def get_nfilts(self):
         return self.nfilts
@@ -697,6 +701,12 @@ class tutorial_10(gr.top_block, Qt.QWidget):
     def set_tx_rrc_taps(self, tx_rrc_taps):
         self.tx_rrc_taps = tx_rrc_taps
         self.pfb_arb_resampler_xxx_0_0.set_taps((self.tx_rrc_taps))
+
+    def get_samp_rate_array_MCR(self):
+        return self.samp_rate_array_MCR
+
+    def set_samp_rate_array_MCR(self, samp_rate_array_MCR):
+        self.samp_rate_array_MCR = samp_rate_array_MCR
 
     def get_samp_rate(self):
         return self.samp_rate
@@ -742,14 +752,14 @@ class tutorial_10(gr.top_block, Qt.QWidget):
 
     def set_gui_lambda(self, gui_lambda):
         self.gui_lambda = gui_lambda
-        self.adapt_rls_filter_xx_0.set_lambda(self.gui_lambda)
+        self.adapt_qrd_rls_filter_xx_0.set_lambda(self.gui_lambda)
 
     def get_gui_delta(self):
         return self.gui_delta
 
     def set_gui_delta(self, gui_delta):
         self.gui_delta = gui_delta
-        self.adapt_rls_filter_xx_0.set_delta(self.gui_delta)
+        self.adapt_qrd_rls_filter_xx_0.set_delta(self.gui_delta)
 
 
 def argument_parser():
