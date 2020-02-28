@@ -76,13 +76,13 @@ class rx(gr.top_block, Qt.QWidget):
         # Variables
         ##################################################
         self.sps = sps = 4
-        self.samp_rate_array_MCR = samp_rate_array_MCR = [7500000,5000000,3750000,3000000,2500000,2000000,1500000,1000000,937500,882352,833333,714285,533333,500000,421052,400000,380952,200000,100000,50000]
+        self.samp_rate_array_MCR = samp_rate_array_MCR = [7500000,5000000,3750000,3000000,2500000,2000000,1500000,1000000,937500,882352,833333,714285,533333,500000,421052,400000,380952,200000]
         self.nfilts = nfilts = 32
         self.eb = eb = 0.22
         self.H_dec = H_dec = fec.ldpc_H_matrix('/usr/local/share/gnuradio/fec/ldpc/n_1100_k_0442_gap_24.alist', 24)
         self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 30
         self.variable_qtgui_range_0_0 = variable_qtgui_range_0_0 = 52
-        self.samp_rate = samp_rate = samp_rate_array_MCR[19]
+        self.samp_rate = samp_rate = samp_rate_array_MCR[15]
 
         self.rx_rrc_taps = rx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts*sps, 1.0, eb, 11*sps*nfilts)
 
@@ -91,8 +91,6 @@ class rx(gr.top_block, Qt.QWidget):
         self.pld_dec = pld_dec = map((lambda a: fec.ldpc_bit_flip_decoder.make(H_dec.get_base_sptr(), 100)), range(0,8))
         self.pld_const = pld_const = digital.constellation_rect(([0.707+0.707j, -0.707+0.707j, -0.707-0.707j, 0.707-0.707j]), ([0, 1, 2, 3]), 4, 2, 2, 1, 1).base()
         self.pld_const.gen_soft_dec_lut(8)
-        self.gui_lambda = gui_lambda = 1
-        self.gui_delta = gui_delta = 1
         self.frequencia_usrp = frequencia_usrp = 484e6
         self.MCR = MCR = "master_clock_rate=60e6"
 
@@ -112,20 +110,6 @@ class rx(gr.top_block, Qt.QWidget):
         for r in range(0, 1):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(2, 3):
-            self.top_grid_layout.setColumnStretch(c, 1)
-        self._gui_lambda_range = Range(0.01, 1, 0.01, 1, 100)
-        self._gui_lambda_win = RangeWidget(self._gui_lambda_range, self.set_gui_lambda, 'Lambda', "counter_slider", float)
-        self.top_grid_layout.addWidget(self._gui_lambda_win, 0, 4, 1, 1)
-        for r in range(0, 1):
-            self.top_grid_layout.setRowStretch(r, 1)
-        for c in range(4, 5):
-            self.top_grid_layout.setColumnStretch(c, 1)
-        self._gui_delta_range = Range(0, 300, 1, 1, 300)
-        self._gui_delta_win = RangeWidget(self._gui_delta_range, self.set_gui_delta, 'Delta', "counter_slider", float)
-        self.top_grid_layout.addWidget(self._gui_delta_win, 0, 3, 1, 1)
-        for r in range(0, 1):
-            self.top_grid_layout.setRowStretch(r, 1)
-        for c in range(3, 4):
             self.top_grid_layout.setColumnStretch(c, 1)
         self.uhd_usrp_source_0_0 = uhd.usrp_source(
         	",".join(("serial=F5EAC0", MCR)),
@@ -478,15 +462,15 @@ class rx(gr.top_block, Qt.QWidget):
         self.blocks_char_to_float_1_0_1 = blocks.char_to_float(1, 1)
         self.blocks_char_to_float_0_2_0_0_0 = blocks.char_to_float(1, 1)
         self.analog_noise_source_x_0_0 = analog.noise_source_c(analog.GR_GAUSSIAN, 1, -5)
-        self.adapt_qrd_rls_filter_xx_0 = adapt.qrd_rls_filter_cc(32, gui_delta, gui_lambda, 3, 1, True, False)
+        self.adapt_lms_filter_xx_0 = adapt.lms_filter_cc(True, 32, 0.0001, 0, 1, True, False, False)
 
 
 
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.adapt_qrd_rls_filter_xx_0, 0), (self.blocks_null_sink_0, 0))
-        self.connect((self.adapt_qrd_rls_filter_xx_0, 1), (self.digital_pfb_clock_sync_xxx_0, 0))
+        self.connect((self.adapt_lms_filter_xx_0, 0), (self.blocks_null_sink_0, 0))
+        self.connect((self.adapt_lms_filter_xx_0, 1), (self.digital_pfb_clock_sync_xxx_0, 0))
         self.connect((self.analog_noise_source_x_0_0, 0), (self.interp_fir_filter_xxx_1, 0))
         self.connect((self.blocks_char_to_float_0_2_0_0_0, 0), (self.fec_extended_decoder_0_0_1_0_1_0_0, 0))
         self.connect((self.blocks_char_to_float_1_0_1, 0), (self.qtgui_time_sink_x_0_1, 0))
@@ -499,8 +483,8 @@ class rx(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_repack_bits_bb_0, 0), (self.digital_correlate_access_code_xx_ts_0_0, 0))
         self.connect((self.blocks_repack_bits_bb_0_0_0_1_0, 0), (self.blocks_char_to_float_1_0_1, 0))
         self.connect((self.blocks_repack_bits_bb_0_0_0_1_0, 0), (self.blocks_file_sink_0_0_0_0_2, 0))
-        self.connect((self.custom_corr, 0), (self.adapt_qrd_rls_filter_xx_0, 1))
-        self.connect((self.custom_corr, 1), (self.adapt_qrd_rls_filter_xx_0, 0))
+        self.connect((self.custom_corr, 0), (self.adapt_lms_filter_xx_0, 1))
+        self.connect((self.custom_corr, 1), (self.adapt_lms_filter_xx_0, 0))
         self.connect((self.custom_corr, 2), (self.blocks_null_sink_1, 0))
         self.connect((self.digital_cma_equalizer_cc_0_0, 0), (self.digital_costas_loop_cc_0_0, 0))
         self.connect((self.digital_constellation_decoder_cb_0, 0), (self.digital_diff_decoder_bb_0, 0))
@@ -539,7 +523,7 @@ class rx(gr.top_block, Qt.QWidget):
 
     def set_samp_rate_array_MCR(self, samp_rate_array_MCR):
         self.samp_rate_array_MCR = samp_rate_array_MCR
-        self.set_samp_rate(self.samp_rate_array_MCR[19])
+        self.set_samp_rate(self.samp_rate_array_MCR[15])
 
     def get_nfilts(self):
         return self.nfilts
@@ -605,20 +589,6 @@ class rx(gr.top_block, Qt.QWidget):
 
     def set_pld_const(self, pld_const):
         self.pld_const = pld_const
-
-    def get_gui_lambda(self):
-        return self.gui_lambda
-
-    def set_gui_lambda(self, gui_lambda):
-        self.gui_lambda = gui_lambda
-        self.adapt_qrd_rls_filter_xx_0.set_lambda(self.gui_lambda)
-
-    def get_gui_delta(self):
-        return self.gui_delta
-
-    def set_gui_delta(self, gui_delta):
-        self.gui_delta = gui_delta
-        self.adapt_qrd_rls_filter_xx_0.set_delta(self.gui_delta)
 
     def get_frequencia_usrp(self):
         return self.frequencia_usrp
