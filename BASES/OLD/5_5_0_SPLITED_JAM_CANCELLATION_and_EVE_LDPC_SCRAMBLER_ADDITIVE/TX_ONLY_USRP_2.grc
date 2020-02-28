@@ -564,7 +564,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>[7500000,5000000,3750000,3000000,2500000,2000000,1500000,1000000,937500,882352,833333,714285,533333,500000,421052,400000,380952]</value>
+      <value>[7500000,5000000,3750000,3000000,2500000,2000000,1500000,1000000,937500,882352,833333,714285,533333,500000,421052,400000,380952,200000]</value>
     </param>
   </block>
   <block>
@@ -1138,7 +1138,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>file</key>
@@ -1315,11 +1315,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>file</key>
-      <value>/home/andre/Desktop/Files_To_Transmit/book.txt</value>
+      <value>/home/andre/Desktop/Files_To_Transmit/FILES/trasmit_1_mb.txt</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -3595,7 +3595,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>1</value>
     </param>
     <param>
       <key>frame_bits</key>
