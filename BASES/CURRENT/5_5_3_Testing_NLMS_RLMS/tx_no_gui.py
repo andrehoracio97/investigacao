@@ -79,6 +79,7 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
         self.samp_rate_array_MCR = samp_rate_array_MCR = [7500000,5000000,3750000,3000000,2500000,2000000,1500000,1000000,937500,882352,833333,714285,533333,500000,421052,400000,380952,200000]
         self.nfilts = nfilts = 32
         self.eb = eb = 0.22
+        self.H = H = fec.ldpc_H_matrix('/usr/local/share/gnuradio/fec/ldpc/n_1100_k_0442_gap_24.alist', 24)
         self.vector = vector = [int(random.random()*4) for i in range(49600)]
         self.variable_qtgui_range_0_0 = variable_qtgui_range_0_0 = 43
 
@@ -87,7 +88,7 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
         self.samp_rate = samp_rate = samp_rate_array_MCR[15]
 
 
-        self.pld_enc = pld_enc = map( (lambda a: fec.ldpc_encoder_make('/usr/local/share/gnuradio/fec/ldpc/n_1100_k_0442_gap_24.alist')), range(0,4) );
+        self.pld_enc = pld_enc = map((lambda a: fec.ldpc_par_mtrx_encoder_make_H(H)), range(0,4))
         self.pld_const = pld_const = digital.constellation_rect(([0.707+0.707j, -0.707+0.707j, -0.707-0.707j, 0.707-0.707j]), ([0, 1, 2, 3]), 4, 2, 2, 1, 1).base()
         self.pld_const.gen_soft_dec_lut(8)
         self.frequencia_usrp = frequencia_usrp = 484e6
@@ -111,7 +112,7 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
         	),
         )
         self.uhd_usrp_sink_0_0.set_samp_rate(samp_rate)
-        self.uhd_usrp_sink_0_0.set_time_unknown_pps(uhd.time_spec())
+        self.uhd_usrp_sink_0_0.set_time_now(uhd.time_spec(time.time()), uhd.ALL_MBOARDS)
         self.uhd_usrp_sink_0_0.set_center_freq(frequencia_usrp, 0)
         self.uhd_usrp_sink_0_0.set_gain(variable_qtgui_range_0_0, 0)
         self.uhd_usrp_sink_0_0.set_antenna('TX/RX', 0)
@@ -271,6 +272,7 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
 
         self.insert_vec_cpp_new_vec_0 = insert_vec_cpp.new_vec((vector))
         self.fec_extended_encoder_0 = fec.extended_encoder(encoder_obj_list=pld_enc, threading='capillary', puncpat=puncpat)
+        self.digital_diff_encoder_bb_0 = digital.diff_encoder_bb(pld_const.arity())
         self.digital_chunks_to_symbols_xx_0_0 = digital.chunks_to_symbols_bc((pld_const.points()), 1)
         self.blocks_vector_source_x_0_0_0 = blocks.vector_source_b([0], True, 1, [])
         self.blocks_vector_source_x_0_0 = blocks.vector_source_b([0], True, 1, [])
@@ -305,8 +307,9 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_vector_source_x_0_0, 0), (self.blocks_stream_mux_0_0, 1))
         self.connect((self.blocks_vector_source_x_0_0_0, 0), (self.blocks_stream_mux_0_0_0, 1))
         self.connect((self.digital_chunks_to_symbols_xx_0_0, 0), (self.pfb_arb_resampler_xxx_0, 0))
+        self.connect((self.digital_diff_encoder_bb_0, 0), (self.digital_chunks_to_symbols_xx_0_0, 0))
         self.connect((self.fec_extended_encoder_0, 0), (self.blocks_stream_mux_0_0_0, 0))
-        self.connect((self.insert_vec_cpp_new_vec_0, 0), (self.digital_chunks_to_symbols_xx_0_0, 0))
+        self.connect((self.insert_vec_cpp_new_vec_0, 0), (self.digital_diff_encoder_bb_0, 0))
         self.connect((self.pfb_arb_resampler_xxx_0, 0), (self.blocks_multiply_const_vxx_1, 0))
         self.connect((self.scrambler_cpp_additive_scrambler_0, 0), (self.blocks_stream_mux_0_0, 0))
 
@@ -346,6 +349,12 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
 
     def set_eb(self, eb):
         self.eb = eb
+
+    def get_H(self):
+        return self.H
+
+    def set_H(self, H):
+        self.H = H
 
     def get_vector(self):
         return self.vector
