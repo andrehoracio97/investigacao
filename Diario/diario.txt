@@ -216,4 +216,11 @@ Semana
 Semana
 26- Continuação Leitura artigos FD SI Cancellation e criação Resumo PC
 27- Continuação Leitura artigos FD SI Cancellation e criação Resumo PC
-28- Reunião PROF
+28- Reunião PROF - Inicio Estudo outros algoritmos - NLMS, RLS, QRRLS
+
+
+Semana Março
+2- Reunião. Implementação RLS. Metricas de Packet Loss Rate do LMS e RLS. 
+
+
+
