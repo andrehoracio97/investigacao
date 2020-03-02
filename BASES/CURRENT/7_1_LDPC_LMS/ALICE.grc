@@ -494,7 +494,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -510,7 +510,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>samp_rate_array_MCR[18]</value>
+      <value>samp_rate_array_MCR[13]</value>
     </param>
   </block>
   <block>
@@ -538,6 +538,33 @@
     <param>
       <key>value</key>
       <value>samp_rate_array_MCR[0]</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1496, 164)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>samp_rate</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>samp_rate_array_MCR[15]</value>
     </param>
   </block>
   <block>
