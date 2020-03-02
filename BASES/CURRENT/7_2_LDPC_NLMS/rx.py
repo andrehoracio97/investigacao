@@ -471,8 +471,6 @@ class rx(gr.top_block, Qt.QWidget):
         self.blocks_keep_m_in_n_0_0_2_0_0 = blocks.keep_m_in_n(gr.sizeof_char, 1100, 1104, 0)
         self.blocks_file_sink_0_0_0_0_2 = blocks.file_sink(gr.sizeof_char*1, '/home/it/Desktop/Trasmited/depois.txt', False)
         self.blocks_file_sink_0_0_0_0_2.set_unbuffered(False)
-        self.blocks_copy_0 = blocks.copy(gr.sizeof_gr_complex*1)
-        self.blocks_copy_0.set_enabled(variable_qtgui_check_box_0)
         self.blocks_char_to_float_1_0_1 = blocks.char_to_float(1, 1)
         self.blocks_char_to_float_0_2_0_0_0 = blocks.char_to_float(1, 1)
         self.analog_noise_source_x_0_0 = analog.noise_source_c(analog.GR_GAUSSIAN, 1, -5)
@@ -488,13 +486,12 @@ class rx(gr.top_block, Qt.QWidget):
         self.connect((self.analog_noise_source_x_0_0, 0), (self.interp_fir_filter_xxx_1, 0))
         self.connect((self.blocks_char_to_float_0_2_0_0_0, 0), (self.fec_extended_decoder_0_0_1_0_1_0_0, 0))
         self.connect((self.blocks_char_to_float_1_0_1, 0), (self.qtgui_time_sink_x_0_1, 0))
-        self.connect((self.blocks_copy_0, 0), (self.uhd_usrp_sink_0, 0))
         self.connect((self.blocks_keep_m_in_n_0_0_2_0_0, 0), (self.digital_map_bb_0_0_0_0_0_0, 0))
         self.connect((self.blocks_keep_m_in_n_0_1_1_0, 0), (self.scrambler_cpp_additive_descrambler_0, 0))
-        self.connect((self.blocks_multiply_const_vxx_1_0, 0), (self.blocks_copy_0, 0))
         self.connect((self.blocks_multiply_const_vxx_1_0, 0), (self.custom_corr, 0))
         self.connect((self.blocks_multiply_const_vxx_1_0, 0), (self.qtgui_freq_sink_x_1, 0))
         self.connect((self.blocks_multiply_const_vxx_1_0, 0), (self.qtgui_time_sink_x_1_0_0, 0))
+        self.connect((self.blocks_multiply_const_vxx_1_0, 0), (self.uhd_usrp_sink_0, 0))
         self.connect((self.blocks_repack_bits_bb_0, 0), (self.digital_correlate_access_code_xx_ts_0_0, 0))
         self.connect((self.blocks_repack_bits_bb_0_0_0_1_0, 0), (self.blocks_char_to_float_1_0_1, 0))
         self.connect((self.blocks_repack_bits_bb_0_0_0_1_0, 0), (self.blocks_file_sink_0_0_0_0_2, 0))
@@ -580,7 +577,6 @@ class rx(gr.top_block, Qt.QWidget):
     def set_variable_qtgui_check_box_0(self, variable_qtgui_check_box_0):
         self.variable_qtgui_check_box_0 = variable_qtgui_check_box_0
         self._variable_qtgui_check_box_0_callback(self.variable_qtgui_check_box_0)
-        self.blocks_copy_0.set_enabled(self.variable_qtgui_check_box_0)
 
     def get_samp_rate(self):
         return self.samp_rate

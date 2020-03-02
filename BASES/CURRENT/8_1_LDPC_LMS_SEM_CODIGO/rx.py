@@ -81,7 +81,7 @@ class rx(gr.top_block, Qt.QWidget):
         self.H_dec = H_dec = fec.ldpc_H_matrix('/usr/local/share/gnuradio/fec/ldpc/n_1100_k_0442_gap_24.alist', 24)
         self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 30
         self.variable_qtgui_range_0_0 = variable_qtgui_range_0_0 = 52
-        self.samp_rate = samp_rate = samp_rate_array_MCR[15]
+        self.samp_rate = samp_rate = samp_rate_array_MCR[9]
 
         self.rx_rrc_taps = rx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts*sps, 1.0, eb, 11*sps*nfilts)
 
@@ -510,7 +510,7 @@ class rx(gr.top_block, Qt.QWidget):
 
     def set_samp_rate_array_MCR(self, samp_rate_array_MCR):
         self.samp_rate_array_MCR = samp_rate_array_MCR
-        self.set_samp_rate(self.samp_rate_array_MCR[15])
+        self.set_samp_rate(self.samp_rate_array_MCR[9])
 
     def get_nfilts(self):
         return self.nfilts

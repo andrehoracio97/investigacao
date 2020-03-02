@@ -478,7 +478,7 @@ class rx(gr.top_block, Qt.QWidget):
         self.blocks_char_to_float_1_0_1 = blocks.char_to_float(1, 1)
         self.blocks_char_to_float_0_2_0_0_0 = blocks.char_to_float(1, 1)
         self.analog_noise_source_x_0_0 = analog.noise_source_c(analog.GR_GAUSSIAN, 1, -5)
-        self.adapt_qrd_rls_filter_xx_0 = adapt.qrd_rls_filter_cc(32, gui_delta, gui_lambda, 3, 1, True, False)
+        self.adapt_qrd_rls_filter_xx_0 = adapt.qrd_rls_filter_cc(32, gui_delta, gui_lambda, 1, 1, True, False)
 
 
 
