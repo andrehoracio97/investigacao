@@ -460,7 +460,7 @@ class rx(gr.top_block, Qt.QWidget):
         self.digital_diff_decoder_bb_0 = digital.diff_decoder_bb(pld_const.arity())
         self.digital_costas_loop_cc_0_0 = digital.costas_loop_cc(6.28/100.0, pld_const.arity(), False)
         self.digital_correlate_access_code_xx_ts_0_0 = digital.correlate_access_code_bb_ts(digital.packet_utils.default_access_code,
-          2, 'packet_len')
+          1, 'packet_len')
         self.digital_constellation_decoder_cb_0 = digital.constellation_decoder_cb(pld_const)
         self.digital_cma_equalizer_cc_0_0 = digital.cma_equalizer_cc(15, 1, 0.01, 2)
         self.custom_corr = correlate_and_delay.corr_and_delay(200*sps, 0, 0.9995, sps)
