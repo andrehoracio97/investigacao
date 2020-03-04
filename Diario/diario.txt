@@ -221,6 +221,6 @@ Semana
 
 Semana Março
 2- Reunião. Implementação RLS. Metricas de Packet Loss Rate do LMS e RLS. 
-
+3- Criação Script Python ver metricas. Extração de algumas metricas. entre o RLS, LMS, RLS, QRRLS. Conclusão: Perca de pacotes pq do access code sem codigo corretor de erros. Investigação de codigos corretores para header.
 
 
