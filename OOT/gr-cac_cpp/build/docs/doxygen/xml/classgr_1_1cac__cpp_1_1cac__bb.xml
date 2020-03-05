@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classgr_1_1cac__cpp_1_1cac__bb" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>gr::cac_cpp::cac_bb</compoundname>
+    <basecompoundref prot="public" virt="virtual">block</basecompoundref>
+    <derivedcompoundref refid="classgr_1_1cac__cpp_1_1cac__bb__impl" prot="public" virt="non-virtual">gr::cac_cpp::cac_bb_impl</derivedcompoundref>
+    <includes refid="cac__bb_8h" local="no">cac_bb.h</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classgr_1_1cac__cpp_1_1cac__bb_1abd8c2355c6c893da18e9009e7b3e860c" prot="public" static="no">
+        <type>boost::shared_ptr&lt; <ref refid="classgr_1_1cac__cpp_1_1cac__bb" kindref="compound">cac_bb</ref> &gt;</type>
+        <definition>typedef boost::shared_ptr&lt;cac_bb&gt; gr::cac_cpp::cac_bb::sptr</definition>
+        <argsstring></argsstring>
+        <name>sptr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-cac_cpp/include/cac_cpp/cac_bb.h" line="39" column="1" bodyfile="/home/andre/investigacao/OOT/gr-cac_cpp/include/cac_cpp/cac_bb.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classgr_1_1cac__cpp_1_1cac__bb_1a8beaf4d2b9ac63ae269eecfb3e95e483" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classgr_1_1cac__cpp_1_1cac__bb_1abd8c2355c6c893da18e9009e7b3e860c" kindref="member">sptr</ref></type>
+        <definition>static sptr gr::cac_cpp::cac_bb::make</definition>
+        <argsstring>(const std::string &amp;access_code, int threshold)</argsstring>
+        <name>make</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>access_code</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>threshold</declname>
+        </param>
+        <briefdescription>
+<para>Return a shared_ptr to a new instance of <ref refid="classgr_1_1cac__cpp_1_1cac__bb" kindref="compound">cac_cpp::cac_bb</ref>. </para>        </briefdescription>
+        <detaileddescription>
+<para>To avoid accidental use of raw pointers, <ref refid="classgr_1_1cac__cpp_1_1cac__bb" kindref="compound">cac_cpp::cac_bb</ref>&apos;s constructor is in a private implementation class. <ref refid="classgr_1_1cac__cpp_1_1cac__bb_1a8beaf4d2b9ac63ae269eecfb3e95e483" kindref="member">cac_cpp::cac_bb::make</ref> is the public interface for creating new instances. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-cac_cpp/include/cac_cpp/cac_bb.h" line="49" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classgr_1_1cac__cpp_1_1cac__bb_1a515c7878704ea8116b16c90f2205c490" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool gr::cac_cpp::cac_bb::set_access_code</definition>
+        <argsstring>(const std::string &amp;access_code)=0</argsstring>
+        <name>set_access_code</name>
+        <reimplementedby refid="classgr_1_1cac__cpp_1_1cac__bb__impl_1a77e367ad7366fd04ecd14ff7ba2d2a9a">set_access_code</reimplementedby>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>access_code</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-cac_cpp/include/cac_cpp/cac_bb.h" line="50" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1cac__cpp_1_1cac__bb_1aa1227550e58fe04c97f0b26bc07fb965" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>unsigned long long</type>
+        <definition>virtual unsigned long long gr::cac_cpp::cac_bb::access_code</definition>
+        <argsstring>() const =0</argsstring>
+        <name>access_code</name>
+        <reimplementedby refid="classgr_1_1cac__cpp_1_1cac__bb__impl_1aecb081b71522c34271c22c719a49cbc4">access_code</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-cac_cpp/include/cac_cpp/cac_bb.h" line="51" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>&lt;+description of block+&gt; </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>gr::cac_cpp::cac_bb_impl</label>
+        <link refid="classgr_1_1cac__cpp_1_1cac__bb__impl"/>
+        <childnode refid="0" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="0">
+        <label>gr::cac_cpp::cac_bb</label>
+        <link refid="classgr_1_1cac__cpp_1_1cac__bb"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>gr::block</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>gr::cac_cpp::cac_bb</label>
+        <link refid="classgr_1_1cac__cpp_1_1cac__bb"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>gr::block</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/andre/investigacao/OOT/gr-cac_cpp/include/cac_cpp/cac_bb.h" line="37" column="1" bodyfile="/home/andre/investigacao/OOT/gr-cac_cpp/include/cac_cpp/cac_bb.h" bodystart="36" bodyend="52"/>
+    <listofallmembers>
+      <member refid="classgr_1_1cac__cpp_1_1cac__bb_1aa1227550e58fe04c97f0b26bc07fb965" prot="public" virt="pure-virtual"><scope>gr::cac_cpp::cac_bb</scope><name>access_code</name></member>
+      <member refid="classgr_1_1cac__cpp_1_1cac__bb_1a8beaf4d2b9ac63ae269eecfb3e95e483" prot="public" virt="non-virtual"><scope>gr::cac_cpp::cac_bb</scope><name>make</name></member>
+      <member refid="classgr_1_1cac__cpp_1_1cac__bb_1a515c7878704ea8116b16c90f2205c490" prot="public" virt="pure-virtual"><scope>gr::cac_cpp::cac_bb</scope><name>set_access_code</name></member>
+      <member refid="classgr_1_1cac__cpp_1_1cac__bb_1abd8c2355c6c893da18e9009e7b3e860c" prot="public" virt="non-virtual"><scope>gr::cac_cpp::cac_bb</scope><name>sptr</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

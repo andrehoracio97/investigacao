@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="rs__encoder__custom_8h" kind="file" language="C++">
+    <compoundname>rs_encoder_custom.h</compoundname>
+    <includes refid="api_8h" local="no">rs_cpp/api.h</includes>
+    <includes local="no">gnuradio/block.h</includes>
+    <includedby refid="rs__encoder__custom__impl_8h" local="no">rs_encoder_custom_impl.h</includedby>
+    <incdepgraph>
+      <node id="9">
+        <label>rs_encoder_custom.h</label>
+        <link refid="rs__encoder__custom_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>gnuradio/attributes.h</label>
+      </node>
+      <node id="12">
+        <label>gnuradio/block.h</label>
+      </node>
+      <node id="10">
+        <label>rs_cpp/api.h</label>
+        <link refid="api_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="13">
+        <label>rs_encoder_custom.h</label>
+        <link refid="rs__encoder__custom_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>rs_encoder_custom_impl.h</label>
+        <link refid="rs__encoder__custom__impl_8h"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classgr_1_1rs__cpp_1_1rs__encoder__custom" prot="public">gr::rs_cpp::rs_encoder_custom</innerclass>
+    <innernamespace refid="namespacegr">gr</innernamespace>
+    <innernamespace refid="namespacegr_1_1rs__cpp">gr::rs_cpp</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/andre/investigacao/OOT/gr-rs_cpp/include/rs_cpp/rs_encoder_custom.h"/>
+  </compounddef>
+</doxygen>

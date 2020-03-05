@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.13">
+  <compound refid="classgr_1_1rs__cpp_1_1rs__encoder__custom" kind="class"><name>gr::rs_cpp::rs_encoder_custom</name>
+    <member refid="classgr_1_1rs__cpp_1_1rs__encoder__custom_1ae15ced61f239090e70b23e0aef4b7239" kind="typedef"><name>sptr</name></member>
+    <member refid="classgr_1_1rs__cpp_1_1rs__encoder__custom_1aef76573f9658606345d88785eaf59514" kind="function"><name>make</name></member>
+  </compound>
+  <compound refid="classgr_1_1rs__cpp_1_1rs__encoder__custom__impl" kind="class"><name>gr::rs_cpp::rs_encoder_custom_impl</name>
+    <member refid="classgr_1_1rs__cpp_1_1rs__encoder__custom__impl_1a432ddd9de7fab4c8623990a1b559f858" kind="function"><name>rs_encoder_custom_impl</name></member>
+    <member refid="classgr_1_1rs__cpp_1_1rs__encoder__custom__impl_1a9d4731c30920a52915ec4c2978db3b99" kind="function"><name>~rs_encoder_custom_impl</name></member>
+    <member refid="classgr_1_1rs__cpp_1_1rs__encoder__custom__impl_1ae63f68b7275bdc5cfbf9a20929b1722d" kind="function"><name>forecast</name></member>
+    <member refid="classgr_1_1rs__cpp_1_1rs__encoder__custom__impl_1afcd4c5992b571fe3fb6da68134df86ae" kind="function"><name>general_work</name></member>
+    <member refid="classgr_1_1rs__cpp_1_1rs__encoder__custom__impl_1ae40e824ec557f19693c3b5844ccfb155" kind="function"><name>init_rs</name></member>
+  </compound>
+  <compound refid="namespacegr" kind="namespace"><name>gr</name>
+  </compound>
+  <compound refid="namespacegr_1_1rs__cpp" kind="namespace"><name>gr::rs_cpp</name>
+  </compound>
+  <compound refid="namespacestd" kind="namespace"><name>std</name>
+  </compound>
+  <compound refid="api_8h" kind="file"><name>api.h</name>
+    <member refid="api_8h_1a4c30f0a7c469516ba8f456431b90d04d" kind="define"><name>RS_CPP_API</name></member>
+  </compound>
+  <compound refid="group__defs_8dox" kind="file"><name>group_defs.dox</name>
+  </compound>
+  <compound refid="main__page_8dox" kind="file"><name>main_page.dox</name>
+  </compound>
+  <compound refid="rs__encoder__custom_8h" kind="file"><name>rs_encoder_custom.h</name>
+  </compound>
+  <compound refid="rs__encoder__custom__impl_8h" kind="file"><name>rs_encoder_custom_impl.h</name>
+  </compound>
+  <compound refid="group__block" kind="group"><name>block</name>
+  </compound>
+  <compound refid="dir_d44c64559bbebec7f509842c48db8b23" kind="dir"><name>include</name>
+  </compound>
+  <compound refid="dir_97aefd0d527b934f1d99a682da8fe6a9" kind="dir"><name>lib</name>
+  </compound>
+  <compound refid="dir_a4e89e881750f2332da2b242074abc35" kind="dir"><name>rs_cpp</name>
+  </compound>
+  <compound refid="indexpage" kind="page"><name>index</name>
+  </compound>
+</doxygenindex>

@@ -1,0 +1,430 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classgr_1_1cac__cpp_1_1cac__bb__impl" kind="class" language="C++" prot="public">
+    <compoundname>gr::cac_cpp::cac_bb_impl</compoundname>
+    <basecompoundref refid="classgr_1_1cac__cpp_1_1cac__bb" prot="public" virt="non-virtual">gr::cac_cpp::cac_bb</basecompoundref>
+    <includes refid="cac__bb__impl_8h" local="no">cac_bb_impl.h</includes>
+      <sectiondef kind="private-type">
+      <memberdef kind="enum" id="classgr_1_1cac__cpp_1_1cac__bb__impl_1afb0d938074e464c95f3059d868862e99" prot="private" static="no">
+        <name>state_t</name>
+        <enumvalue id="classgr_1_1cac__cpp_1_1cac__bb__impl_1afb0d938074e464c95f3059d868862e99a50a0579986ae2904bfa824f2fe036e83" prot="private">
+          <name>STATE_SYNC_SEARCH</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classgr_1_1cac__cpp_1_1cac__bb__impl_1afb0d938074e464c95f3059d868862e99aeab29dafde116a831acfe0e5be29c113" prot="private">
+          <name>STATE_HAVE_SYNC</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classgr_1_1cac__cpp_1_1cac__bb__impl_1afb0d938074e464c95f3059d868862e99ac6f7537f968255a345378ab8b9af17fc" prot="private">
+          <name>STATE_HAVE_HEADER</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-cac_cpp/lib/cac_bb_impl.h" line="32" column="1" bodyfile="/home/andre/investigacao/OOT/gr-cac_cpp/lib/cac_bb_impl.h" bodystart="32" bodyend="32"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classgr_1_1cac__cpp_1_1cac__bb__impl_1ab9677a8d48dfb78f590c3d6562b74e2d" prot="private" static="no" mutable="no">
+        <type>state_t</type>
+        <definition>state_t gr::cac_cpp::cac_bb_impl::d_state</definition>
+        <argsstring></argsstring>
+        <name>d_state</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-cac_cpp/lib/cac_bb_impl.h" line="34" column="1" bodyfile="/home/andre/investigacao/OOT/gr-cac_cpp/lib/cac_bb_impl.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1cac__cpp_1_1cac__bb__impl_1a823d5afec1493ed78266d7e65588e1bb" prot="private" static="no" mutable="no">
+        <type>unsigned long long</type>
+        <definition>unsigned long long gr::cac_cpp::cac_bb_impl::d_access_code</definition>
+        <argsstring></argsstring>
+        <name>d_access_code</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-cac_cpp/lib/cac_bb_impl.h" line="36" column="1" bodyfile="/home/andre/investigacao/OOT/gr-cac_cpp/lib/cac_bb_impl.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1cac__cpp_1_1cac__bb__impl_1a2719721ac464a4928559884373388cb0" prot="private" static="no" mutable="no">
+        <type>unsigned long long</type>
+        <definition>unsigned long long gr::cac_cpp::cac_bb_impl::d_data_reg</definition>
+        <argsstring></argsstring>
+        <name>d_data_reg</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-cac_cpp/lib/cac_bb_impl.h" line="38" column="1" bodyfile="/home/andre/investigacao/OOT/gr-cac_cpp/lib/cac_bb_impl.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1cac__cpp_1_1cac__bb__impl_1aad85b613f4e67ef2056b652270c2f887" prot="private" static="no" mutable="no">
+        <type>unsigned long long</type>
+        <definition>unsigned long long gr::cac_cpp::cac_bb_impl::d_mask</definition>
+        <argsstring></argsstring>
+        <name>d_mask</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-cac_cpp/lib/cac_bb_impl.h" line="39" column="1" bodyfile="/home/andre/investigacao/OOT/gr-cac_cpp/lib/cac_bb_impl.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1cac__cpp_1_1cac__bb__impl_1aa7b7020a2318660ad8e5898584c0bd6c" prot="private" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int gr::cac_cpp::cac_bb_impl::d_threshold</definition>
+        <argsstring></argsstring>
+        <name>d_threshold</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-cac_cpp/lib/cac_bb_impl.h" line="41" column="1" bodyfile="/home/andre/investigacao/OOT/gr-cac_cpp/lib/cac_bb_impl.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1cac__cpp_1_1cac__bb__impl_1aad258720d073556244e39110aafb1edb" prot="private" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int gr::cac_cpp::cac_bb_impl::d_len</definition>
+        <argsstring></argsstring>
+        <name>d_len</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-cac_cpp/lib/cac_bb_impl.h" line="42" column="1" bodyfile="/home/andre/investigacao/OOT/gr-cac_cpp/lib/cac_bb_impl.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1cac__cpp_1_1cac__bb__impl_1aaf0e63162026f4303458cb013e76f1f0" prot="private" static="no" mutable="no">
+        <type>unsigned long long</type>
+        <definition>unsigned long long gr::cac_cpp::cac_bb_impl::d_hdr_reg</definition>
+        <argsstring></argsstring>
+        <name>d_hdr_reg</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-cac_cpp/lib/cac_bb_impl.h" line="44" column="1" bodyfile="/home/andre/investigacao/OOT/gr-cac_cpp/lib/cac_bb_impl.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1cac__cpp_1_1cac__bb__impl_1a7afd77ac8b6c46375d160dce3028189f" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int gr::cac_cpp::cac_bb_impl::d_hdr_count</definition>
+        <argsstring></argsstring>
+        <name>d_hdr_count</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-cac_cpp/lib/cac_bb_impl.h" line="45" column="1" bodyfile="/home/andre/investigacao/OOT/gr-cac_cpp/lib/cac_bb_impl.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1cac__cpp_1_1cac__bb__impl_1ac7f2055c5e76529a583fc98a15cf8fb8" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int gr::cac_cpp::cac_bb_impl::d_pkt_len</definition>
+        <argsstring></argsstring>
+        <name>d_pkt_len</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-cac_cpp/lib/cac_bb_impl.h" line="48" column="1" bodyfile="/home/andre/investigacao/OOT/gr-cac_cpp/lib/cac_bb_impl.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1cac__cpp_1_1cac__bb__impl_1a1bf64ff30afbdbea92f091401a75f3df" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int gr::cac_cpp::cac_bb_impl::d_pkt_count</definition>
+        <argsstring></argsstring>
+        <name>d_pkt_count</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-cac_cpp/lib/cac_bb_impl.h" line="48" column="1" bodyfile="/home/andre/investigacao/OOT/gr-cac_cpp/lib/cac_bb_impl.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classgr_1_1cac__cpp_1_1cac__bb__impl_1a80301b78e0b35b55ed7c85434afeb285" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void gr::cac_cpp::cac_bb_impl::enter_search</definition>
+        <argsstring>()</argsstring>
+        <name>enter_search</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-cac_cpp/lib/cac_bb_impl.h" line="51" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1cac__cpp_1_1cac__bb__impl_1a0586700edb51b8b701cd555ed2fc6392" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void gr::cac_cpp::cac_bb_impl::enter_have_sync</definition>
+        <argsstring>()</argsstring>
+        <name>enter_have_sync</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-cac_cpp/lib/cac_bb_impl.h" line="52" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1cac__cpp_1_1cac__bb__impl_1a9aff5b7edfd26e2c687b6912f1686ee0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void gr::cac_cpp::cac_bb_impl::enter_have_header</definition>
+        <argsstring>(int payload_len)</argsstring>
+        <name>enter_have_header</name>
+        <param>
+          <type>int</type>
+          <declname>payload_len</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-cac_cpp/lib/cac_bb_impl.h" line="53" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1cac__cpp_1_1cac__bb__impl_1a8347d9b2ef2bd0d492e311af369c2a6c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool gr::cac_cpp::cac_bb_impl::header_ok</definition>
+        <argsstring>()</argsstring>
+        <name>header_ok</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-cac_cpp/lib/cac_bb_impl.h" line="55" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1cac__cpp_1_1cac__bb__impl_1a8b40c987952d82c4f277d2ff670966ec" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int gr::cac_cpp::cac_bb_impl::header_payload</definition>
+        <argsstring>()</argsstring>
+        <name>header_payload</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-cac_cpp/lib/cac_bb_impl.h" line="56" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classgr_1_1cac__cpp_1_1cac__bb__impl_1a06db2b097a1258b47d743b1d7736d6f0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>gr::cac_cpp::cac_bb_impl::cac_bb_impl</definition>
+        <argsstring>(const std::string &amp;access_code, int threshold)</argsstring>
+        <name>cac_bb_impl</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>access_code</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>threshold</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-cac_cpp/lib/cac_bb_impl.h" line="58" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1cac__cpp_1_1cac__bb__impl_1ab2e7f6c50d4a4bdb3e916bf96f465410" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>gr::cac_cpp::cac_bb_impl::~cac_bb_impl</definition>
+        <argsstring>()</argsstring>
+        <name>~cac_bb_impl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-cac_cpp/lib/cac_bb_impl.h" line="59" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1cac__cpp_1_1cac__bb__impl_1a3b552d735d6dd1d9db786a106cf1df17" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void gr::cac_cpp::cac_bb_impl::forecast</definition>
+        <argsstring>(int noutput_items, gr_vector_int &amp;ninput_items_required)</argsstring>
+        <name>forecast</name>
+        <param>
+          <type>int</type>
+          <declname>noutput_items</declname>
+        </param>
+        <param>
+          <type>gr_vector_int &amp;</type>
+          <declname>ninput_items_required</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-cac_cpp/lib/cac_bb_impl.h" line="62" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1cac__cpp_1_1cac__bb__impl_1a687093d4d051e127992b55285b6fa9ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int gr::cac_cpp::cac_bb_impl::general_work</definition>
+        <argsstring>(int noutput_items, gr_vector_int &amp;ninput_items, gr_vector_const_void_star &amp;input_items, gr_vector_void_star &amp;output_items)</argsstring>
+        <name>general_work</name>
+        <param>
+          <type>int</type>
+          <declname>noutput_items</declname>
+        </param>
+        <param>
+          <type>gr_vector_int &amp;</type>
+          <declname>ninput_items</declname>
+        </param>
+        <param>
+          <type>gr_vector_const_void_star &amp;</type>
+          <declname>input_items</declname>
+        </param>
+        <param>
+          <type>gr_vector_void_star &amp;</type>
+          <declname>output_items</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-cac_cpp/lib/cac_bb_impl.h" line="64" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1cac__cpp_1_1cac__bb__impl_1a77e367ad7366fd04ecd14ff7ba2d2a9a" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool gr::cac_cpp::cac_bb_impl::set_access_code</definition>
+        <argsstring>(const std::string &amp;access_code)</argsstring>
+        <name>set_access_code</name>
+        <reimplements refid="classgr_1_1cac__cpp_1_1cac__bb_1a515c7878704ea8116b16c90f2205c490">set_access_code</reimplements>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>access_code</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-cac_cpp/lib/cac_bb_impl.h" line="69" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1cac__cpp_1_1cac__bb__impl_1aecb081b71522c34271c22c719a49cbc4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>unsigned long long</type>
+        <definition>unsigned long long gr::cac_cpp::cac_bb_impl::access_code</definition>
+        <argsstring>() const</argsstring>
+        <name>access_code</name>
+        <reimplements refid="classgr_1_1cac__cpp_1_1cac__bb_1aa1227550e58fe04c97f0b26bc07fb965">access_code</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-cac_cpp/lib/cac_bb_impl.h" line="70" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="5">
+        <label>gr::cac_cpp::cac_bb_impl</label>
+        <link refid="classgr_1_1cac__cpp_1_1cac__bb__impl"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>gr::cac_cpp::cac_bb</label>
+        <link refid="classgr_1_1cac__cpp_1_1cac__bb"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>gr::block</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="8">
+        <label>gr::cac_cpp::cac_bb_impl</label>
+        <link refid="classgr_1_1cac__cpp_1_1cac__bb__impl"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>gr::cac_cpp::cac_bb</label>
+        <link refid="classgr_1_1cac__cpp_1_1cac__bb"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>gr::block</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/andre/investigacao/OOT/gr-cac_cpp/lib/cac_bb_impl.h" line="30" column="1" bodyfile="/home/andre/investigacao/OOT/gr-cac_cpp/lib/cac_bb_impl.h" bodystart="29" bodyend="71"/>
+    <listofallmembers>
+      <member refid="classgr_1_1cac__cpp_1_1cac__bb__impl_1aecb081b71522c34271c22c719a49cbc4" prot="public" virt="virtual"><scope>gr::cac_cpp::cac_bb_impl</scope><name>access_code</name></member>
+      <member refid="classgr_1_1cac__cpp_1_1cac__bb__impl_1a06db2b097a1258b47d743b1d7736d6f0" prot="public" virt="non-virtual"><scope>gr::cac_cpp::cac_bb_impl</scope><name>cac_bb_impl</name></member>
+      <member refid="classgr_1_1cac__cpp_1_1cac__bb__impl_1a823d5afec1493ed78266d7e65588e1bb" prot="private" virt="non-virtual"><scope>gr::cac_cpp::cac_bb_impl</scope><name>d_access_code</name></member>
+      <member refid="classgr_1_1cac__cpp_1_1cac__bb__impl_1a2719721ac464a4928559884373388cb0" prot="private" virt="non-virtual"><scope>gr::cac_cpp::cac_bb_impl</scope><name>d_data_reg</name></member>
+      <member refid="classgr_1_1cac__cpp_1_1cac__bb__impl_1a7afd77ac8b6c46375d160dce3028189f" prot="private" virt="non-virtual"><scope>gr::cac_cpp::cac_bb_impl</scope><name>d_hdr_count</name></member>
+      <member refid="classgr_1_1cac__cpp_1_1cac__bb__impl_1aaf0e63162026f4303458cb013e76f1f0" prot="private" virt="non-virtual"><scope>gr::cac_cpp::cac_bb_impl</scope><name>d_hdr_reg</name></member>
+      <member refid="classgr_1_1cac__cpp_1_1cac__bb__impl_1aad258720d073556244e39110aafb1edb" prot="private" virt="non-virtual"><scope>gr::cac_cpp::cac_bb_impl</scope><name>d_len</name></member>
+      <member refid="classgr_1_1cac__cpp_1_1cac__bb__impl_1aad85b613f4e67ef2056b652270c2f887" prot="private" virt="non-virtual"><scope>gr::cac_cpp::cac_bb_impl</scope><name>d_mask</name></member>
+      <member refid="classgr_1_1cac__cpp_1_1cac__bb__impl_1a1bf64ff30afbdbea92f091401a75f3df" prot="private" virt="non-virtual"><scope>gr::cac_cpp::cac_bb_impl</scope><name>d_pkt_count</name></member>
+      <member refid="classgr_1_1cac__cpp_1_1cac__bb__impl_1ac7f2055c5e76529a583fc98a15cf8fb8" prot="private" virt="non-virtual"><scope>gr::cac_cpp::cac_bb_impl</scope><name>d_pkt_len</name></member>
+      <member refid="classgr_1_1cac__cpp_1_1cac__bb__impl_1ab9677a8d48dfb78f590c3d6562b74e2d" prot="private" virt="non-virtual"><scope>gr::cac_cpp::cac_bb_impl</scope><name>d_state</name></member>
+      <member refid="classgr_1_1cac__cpp_1_1cac__bb__impl_1aa7b7020a2318660ad8e5898584c0bd6c" prot="private" virt="non-virtual"><scope>gr::cac_cpp::cac_bb_impl</scope><name>d_threshold</name></member>
+      <member refid="classgr_1_1cac__cpp_1_1cac__bb__impl_1a9aff5b7edfd26e2c687b6912f1686ee0" prot="private" virt="non-virtual"><scope>gr::cac_cpp::cac_bb_impl</scope><name>enter_have_header</name></member>
+      <member refid="classgr_1_1cac__cpp_1_1cac__bb__impl_1a0586700edb51b8b701cd555ed2fc6392" prot="private" virt="non-virtual"><scope>gr::cac_cpp::cac_bb_impl</scope><name>enter_have_sync</name></member>
+      <member refid="classgr_1_1cac__cpp_1_1cac__bb__impl_1a80301b78e0b35b55ed7c85434afeb285" prot="private" virt="non-virtual"><scope>gr::cac_cpp::cac_bb_impl</scope><name>enter_search</name></member>
+      <member refid="classgr_1_1cac__cpp_1_1cac__bb__impl_1a3b552d735d6dd1d9db786a106cf1df17" prot="public" virt="non-virtual"><scope>gr::cac_cpp::cac_bb_impl</scope><name>forecast</name></member>
+      <member refid="classgr_1_1cac__cpp_1_1cac__bb__impl_1a687093d4d051e127992b55285b6fa9ce" prot="public" virt="non-virtual"><scope>gr::cac_cpp::cac_bb_impl</scope><name>general_work</name></member>
+      <member refid="classgr_1_1cac__cpp_1_1cac__bb__impl_1a8347d9b2ef2bd0d492e311af369c2a6c" prot="private" virt="non-virtual"><scope>gr::cac_cpp::cac_bb_impl</scope><name>header_ok</name></member>
+      <member refid="classgr_1_1cac__cpp_1_1cac__bb__impl_1a8b40c987952d82c4f277d2ff670966ec" prot="private" virt="non-virtual"><scope>gr::cac_cpp::cac_bb_impl</scope><name>header_payload</name></member>
+      <member refid="classgr_1_1cac__cpp_1_1cac__bb_1a8beaf4d2b9ac63ae269eecfb3e95e483" prot="public" virt="non-virtual"><scope>gr::cac_cpp::cac_bb_impl</scope><name>make</name></member>
+      <member refid="classgr_1_1cac__cpp_1_1cac__bb__impl_1a77e367ad7366fd04ecd14ff7ba2d2a9a" prot="public" virt="virtual"><scope>gr::cac_cpp::cac_bb_impl</scope><name>set_access_code</name></member>
+      <member refid="classgr_1_1cac__cpp_1_1cac__bb_1abd8c2355c6c893da18e9009e7b3e860c" prot="public" virt="non-virtual"><scope>gr::cac_cpp::cac_bb_impl</scope><name>sptr</name></member>
+      <member refid="classgr_1_1cac__cpp_1_1cac__bb__impl_1afb0d938074e464c95f3059d868862e99ac6f7537f968255a345378ab8b9af17fc" prot="private" virt="non-virtual"><scope>gr::cac_cpp::cac_bb_impl</scope><name>STATE_HAVE_HEADER</name></member>
+      <member refid="classgr_1_1cac__cpp_1_1cac__bb__impl_1afb0d938074e464c95f3059d868862e99aeab29dafde116a831acfe0e5be29c113" prot="private" virt="non-virtual"><scope>gr::cac_cpp::cac_bb_impl</scope><name>STATE_HAVE_SYNC</name></member>
+      <member refid="classgr_1_1cac__cpp_1_1cac__bb__impl_1afb0d938074e464c95f3059d868862e99a50a0579986ae2904bfa824f2fe036e83" prot="private" virt="non-virtual"><scope>gr::cac_cpp::cac_bb_impl</scope><name>STATE_SYNC_SEARCH</name></member>
+      <member refid="classgr_1_1cac__cpp_1_1cac__bb__impl_1afb0d938074e464c95f3059d868862e99" prot="private" virt="non-virtual"><scope>gr::cac_cpp::cac_bb_impl</scope><name>state_t</name></member>
+      <member refid="classgr_1_1cac__cpp_1_1cac__bb__impl_1ab2e7f6c50d4a4bdb3e916bf96f465410" prot="public" virt="non-virtual"><scope>gr::cac_cpp::cac_bb_impl</scope><name>~cac_bb_impl</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

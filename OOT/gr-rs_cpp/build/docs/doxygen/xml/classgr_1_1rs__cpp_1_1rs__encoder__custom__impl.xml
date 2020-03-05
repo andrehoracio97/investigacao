@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classgr_1_1rs__cpp_1_1rs__encoder__custom__impl" kind="class" language="C++" prot="public">
+    <compoundname>gr::rs_cpp::rs_encoder_custom_impl</compoundname>
+    <basecompoundref refid="classgr_1_1rs__cpp_1_1rs__encoder__custom" prot="public" virt="non-virtual">gr::rs_cpp::rs_encoder_custom</basecompoundref>
+    <includes refid="rs__encoder__custom__impl_8h" local="no">rs_encoder_custom_impl.h</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classgr_1_1rs__cpp_1_1rs__encoder__custom__impl_1a432ddd9de7fab4c8623990a1b559f858" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>gr::rs_cpp::rs_encoder_custom_impl::rs_encoder_custom_impl</definition>
+        <argsstring>(int test)</argsstring>
+        <name>rs_encoder_custom_impl</name>
+        <param>
+          <type>int</type>
+          <declname>test</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-rs_cpp/lib/rs_encoder_custom_impl.h" line="35" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1rs__cpp_1_1rs__encoder__custom__impl_1a9d4731c30920a52915ec4c2978db3b99" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>gr::rs_cpp::rs_encoder_custom_impl::~rs_encoder_custom_impl</definition>
+        <argsstring>()</argsstring>
+        <name>~rs_encoder_custom_impl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-rs_cpp/lib/rs_encoder_custom_impl.h" line="36" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1rs__cpp_1_1rs__encoder__custom__impl_1ae63f68b7275bdc5cfbf9a20929b1722d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void gr::rs_cpp::rs_encoder_custom_impl::forecast</definition>
+        <argsstring>(int noutput_items, gr_vector_int &amp;ninput_items_required)</argsstring>
+        <name>forecast</name>
+        <param>
+          <type>int</type>
+          <declname>noutput_items</declname>
+        </param>
+        <param>
+          <type>gr_vector_int &amp;</type>
+          <declname>ninput_items_required</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-rs_cpp/lib/rs_encoder_custom_impl.h" line="39" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1rs__cpp_1_1rs__encoder__custom__impl_1afcd4c5992b571fe3fb6da68134df86ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int gr::rs_cpp::rs_encoder_custom_impl::general_work</definition>
+        <argsstring>(int noutput_items, gr_vector_int &amp;ninput_items, gr_vector_const_void_star &amp;input_items, gr_vector_void_star &amp;output_items)</argsstring>
+        <name>general_work</name>
+        <param>
+          <type>int</type>
+          <declname>noutput_items</declname>
+        </param>
+        <param>
+          <type>gr_vector_int &amp;</type>
+          <declname>ninput_items</declname>
+        </param>
+        <param>
+          <type>gr_vector_const_void_star &amp;</type>
+          <declname>input_items</declname>
+        </param>
+        <param>
+          <type>gr_vector_void_star &amp;</type>
+          <declname>output_items</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-rs_cpp/lib/rs_encoder_custom_impl.h" line="41" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1rs__cpp_1_1rs__encoder__custom__impl_1ae40e824ec557f19693c3b5844ccfb155" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void gr::rs_cpp::rs_encoder_custom_impl::init_rs</definition>
+        <argsstring>(void)</argsstring>
+        <name>init_rs</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-rs_cpp/lib/rs_encoder_custom_impl.h" line="43" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="5">
+        <label>gr::rs_cpp::rs_encoder_custom_impl</label>
+        <link refid="classgr_1_1rs__cpp_1_1rs__encoder__custom__impl"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>gr::rs_cpp::rs_encoder_custom</label>
+        <link refid="classgr_1_1rs__cpp_1_1rs__encoder__custom"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>gr::block</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="8">
+        <label>gr::rs_cpp::rs_encoder_custom_impl</label>
+        <link refid="classgr_1_1rs__cpp_1_1rs__encoder__custom__impl"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>gr::rs_cpp::rs_encoder_custom</label>
+        <link refid="classgr_1_1rs__cpp_1_1rs__encoder__custom"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>gr::block</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/andre/investigacao/OOT/gr-rs_cpp/lib/rs_encoder_custom_impl.h" line="30" column="1" bodyfile="/home/andre/investigacao/OOT/gr-rs_cpp/lib/rs_encoder_custom_impl.h" bodystart="29" bodyend="44"/>
+    <listofallmembers>
+      <member refid="classgr_1_1rs__cpp_1_1rs__encoder__custom__impl_1ae63f68b7275bdc5cfbf9a20929b1722d" prot="public" virt="non-virtual"><scope>gr::rs_cpp::rs_encoder_custom_impl</scope><name>forecast</name></member>
+      <member refid="classgr_1_1rs__cpp_1_1rs__encoder__custom__impl_1afcd4c5992b571fe3fb6da68134df86ae" prot="public" virt="non-virtual"><scope>gr::rs_cpp::rs_encoder_custom_impl</scope><name>general_work</name></member>
+      <member refid="classgr_1_1rs__cpp_1_1rs__encoder__custom__impl_1ae40e824ec557f19693c3b5844ccfb155" prot="public" virt="non-virtual"><scope>gr::rs_cpp::rs_encoder_custom_impl</scope><name>init_rs</name></member>
+      <member refid="classgr_1_1rs__cpp_1_1rs__encoder__custom_1aef76573f9658606345d88785eaf59514" prot="public" virt="non-virtual"><scope>gr::rs_cpp::rs_encoder_custom_impl</scope><name>make</name></member>
+      <member refid="classgr_1_1rs__cpp_1_1rs__encoder__custom__impl_1a432ddd9de7fab4c8623990a1b559f858" prot="public" virt="non-virtual"><scope>gr::rs_cpp::rs_encoder_custom_impl</scope><name>rs_encoder_custom_impl</name></member>
+      <member refid="classgr_1_1rs__cpp_1_1rs__encoder__custom_1ae15ced61f239090e70b23e0aef4b7239" prot="public" virt="non-virtual"><scope>gr::rs_cpp::rs_encoder_custom_impl</scope><name>sptr</name></member>
+      <member refid="classgr_1_1rs__cpp_1_1rs__encoder__custom__impl_1a9d4731c30920a52915ec4c2978db3b99" prot="public" virt="non-virtual"><scope>gr::rs_cpp::rs_encoder_custom_impl</scope><name>~rs_encoder_custom_impl</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

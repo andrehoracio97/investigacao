@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="namespacegr_1_1rs__cpp" kind="namespace" language="C++">
+    <compoundname>gr::rs_cpp</compoundname>
+    <innerclass refid="classgr_1_1rs__cpp_1_1rs__encoder__custom" prot="public">gr::rs_cpp::rs_encoder_custom</innerclass>
+    <innerclass refid="classgr_1_1rs__cpp_1_1rs__encoder__custom__impl" prot="public">gr::rs_cpp::rs_encoder_custom_impl</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/andre/investigacao/OOT/gr-rs_cpp/include/rs_cpp/rs_encoder_custom.h" line="29" column="1"/>
+  </compounddef>
+</doxygen>

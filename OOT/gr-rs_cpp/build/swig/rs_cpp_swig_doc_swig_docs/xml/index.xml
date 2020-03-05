@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.13">
+  <compound refid="classgr_1_1rs__cpp_1_1rs__encoder__custom" kind="class"><name>gr::rs_cpp::rs_encoder_custom</name>
+    <member refid="classgr_1_1rs__cpp_1_1rs__encoder__custom_1ae15ced61f239090e70b23e0aef4b7239" kind="typedef"><name>sptr</name></member>
+    <member refid="classgr_1_1rs__cpp_1_1rs__encoder__custom_1aef76573f9658606345d88785eaf59514" kind="function"><name>make</name></member>
+  </compound>
+  <compound refid="namespacegr" kind="namespace"><name>gr</name>
+  </compound>
+  <compound refid="namespacegr_1_1rs__cpp" kind="namespace"><name>gr::rs_cpp</name>
+  </compound>
+  <compound refid="namespacestd" kind="namespace"><name>std</name>
+  </compound>
+  <compound refid="api_8h" kind="file"><name>api.h</name>
+    <member refid="api_8h_1a4c30f0a7c469516ba8f456431b90d04d" kind="define"><name>RS_CPP_API</name></member>
+  </compound>
+  <compound refid="rs__encoder__custom_8h" kind="file"><name>rs_encoder_custom.h</name>
+  </compound>
+  <compound refid="dir_d44c64559bbebec7f509842c48db8b23" kind="dir"><name>include</name>
+  </compound>
+  <compound refid="dir_a4e89e881750f2332da2b242074abc35" kind="dir"><name>rs_cpp</name>
+  </compound>
+</doxygenindex>

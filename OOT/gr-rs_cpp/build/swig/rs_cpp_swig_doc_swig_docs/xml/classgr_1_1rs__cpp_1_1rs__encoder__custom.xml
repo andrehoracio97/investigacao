@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classgr_1_1rs__cpp_1_1rs__encoder__custom" kind="class" language="C++" prot="public">
+    <compoundname>gr::rs_cpp::rs_encoder_custom</compoundname>
+    <basecompoundref prot="public" virt="virtual">block</basecompoundref>
+    <includes refid="rs__encoder__custom_8h" local="no">rs_encoder_custom.h</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classgr_1_1rs__cpp_1_1rs__encoder__custom_1ae15ced61f239090e70b23e0aef4b7239" prot="public" static="no">
+        <type>boost::shared_ptr&lt; <ref refid="classgr_1_1rs__cpp_1_1rs__encoder__custom" kindref="compound">rs_encoder_custom</ref> &gt;</type>
+        <definition>typedef boost::shared_ptr&lt;rs_encoder_custom&gt; gr::rs_cpp::rs_encoder_custom::sptr</definition>
+        <argsstring></argsstring>
+        <name>sptr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-rs_cpp/include/rs_cpp/rs_encoder_custom.h" line="39" column="1" bodyfile="/home/andre/investigacao/OOT/gr-rs_cpp/include/rs_cpp/rs_encoder_custom.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classgr_1_1rs__cpp_1_1rs__encoder__custom_1aef76573f9658606345d88785eaf59514" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classgr_1_1rs__cpp_1_1rs__encoder__custom_1ae15ced61f239090e70b23e0aef4b7239" kindref="member">sptr</ref></type>
+        <definition>static sptr gr::rs_cpp::rs_encoder_custom::make</definition>
+        <argsstring>(int test)</argsstring>
+        <name>make</name>
+        <param>
+          <type>int</type>
+          <declname>test</declname>
+        </param>
+        <briefdescription>
+<para>Return a shared_ptr to a new instance of <ref refid="classgr_1_1rs__cpp_1_1rs__encoder__custom" kindref="compound">rs_cpp::rs_encoder_custom</ref>. </para>        </briefdescription>
+        <detaileddescription>
+<para>To avoid accidental use of raw pointers, <ref refid="classgr_1_1rs__cpp_1_1rs__encoder__custom" kindref="compound">rs_cpp::rs_encoder_custom</ref>&apos;s constructor is in a private implementation class. <ref refid="classgr_1_1rs__cpp_1_1rs__encoder__custom_1aef76573f9658606345d88785eaf59514" kindref="member">rs_cpp::rs_encoder_custom::make</ref> is the public interface for creating new instances. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-rs_cpp/include/rs_cpp/rs_encoder_custom.h" line="49" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>&lt;+description of block+&gt; </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="0">
+        <label>gr::rs_cpp::rs_encoder_custom</label>
+        <link refid="classgr_1_1rs__cpp_1_1rs__encoder__custom"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>gr::block</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>gr::rs_cpp::rs_encoder_custom</label>
+        <link refid="classgr_1_1rs__cpp_1_1rs__encoder__custom"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>gr::block</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/andre/investigacao/OOT/gr-rs_cpp/include/rs_cpp/rs_encoder_custom.h" line="37" column="1" bodyfile="/home/andre/investigacao/OOT/gr-rs_cpp/include/rs_cpp/rs_encoder_custom.h" bodystart="36" bodyend="50"/>
+    <listofallmembers>
+      <member refid="classgr_1_1rs__cpp_1_1rs__encoder__custom_1aef76573f9658606345d88785eaf59514" prot="public" virt="non-virtual"><scope>gr::rs_cpp::rs_encoder_custom</scope><name>make</name></member>
+      <member refid="classgr_1_1rs__cpp_1_1rs__encoder__custom_1ae15ced61f239090e70b23e0aef4b7239" prot="public" virt="non-virtual"><scope>gr::rs_cpp::rs_encoder_custom</scope><name>sptr</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
