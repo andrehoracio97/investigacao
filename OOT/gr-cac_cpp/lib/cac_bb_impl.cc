@@ -64,14 +64,19 @@ namespace gr {
 
     std::stringstream str;
     str << name() << unique_id();
-    //d_me = pmt::string_to_symbol(str.str());
-    //d_key = pmt::string_to_symbol(tag_name);
+    d_me = pmt::string_to_symbol(str.str());
+    d_key = pmt::string_to_symbol("tag_name");
 
     d_state = STATE_SYNC_SEARCH;
     d_pkt_len = 0;
     d_pkt_count = 0;
     d_hdr_reg = 0;
     d_hdr_count = 0;
+
+    //Added by me
+    count_bits_read=0;
+    reset_counts_input_bit();
+    init_rs();
 }
 
     /*
@@ -125,6 +130,14 @@ namespace gr {
     inline void cac_bb_impl::enter_search()
     {
         d_state = STATE_SYNC_SEARCH;
+
+        //Maybe rest data to decode???
+        //Added by me
+        count_bits_read=0;
+        reset_counts_input_bit();
+        printf("RESET CONTS\n");
+
+
     }
 
     inline void cac_bb_impl::enter_have_sync()
@@ -166,76 +179,65 @@ namespace gr {
       uint64_t abs_out_sample_cnt = nitems_written(0);
 
       int nprod = 0;
-
       int count = 0;
+
+
       while (count < noutput_items) {
           switch (d_state) {
             case STATE_SYNC_SEARCH: // Look for the access code correlation
-
                 while (count < noutput_items) {
+                    //printf("Received_Bit=%d\n",in[count_bits_read]);
+                    if(count_bits_read<155){ //read 155 bits to fill the data in RS to be decoded
+                        input_bit_in_received_data(in[count]);
+                    }else{ //all bytes filled
+                        printf("All 155 bits readed: SHIFTS\n");
+                        decode_costum(); //Decode
 
-                    for (int i = 0; i < 31; ++i)
-                    {
-                        printf("Received %d\n",in[i]);
-                        insert_data_to_decode(in[i],i);
-                    }
-                    decode_information_inserted();
-                    print_message_decoded();
-
-
-
-
-                    // shift in new data
-                    //d_data_reg = (d_data_reg << 1) | ((in[count++]) & 0x1);
-
-                    // compute hamming distance between desired access code and current data
-                    uint64_t wrong_bits = 0;
-                    uint64_t nwrong = d_threshold + 1;
-                
-                    wrong_bits = (d_data_reg ^ d_access_code) & d_mask;
-                    volk_64u_popcnt(&nwrong, wrong_bits);
-
-                    if (nwrong <= d_threshold) {
-                        enter_have_sync();
-                        break;
-                    }
-                }
-                break;
-
-            case STATE_HAVE_SYNC:
-                while (count < noutput_items) { // Shift bits one at a time into header
-                    d_hdr_reg = (d_hdr_reg << 1) | (in[count++] & 0x1);
-                    d_hdr_count++;
-
-                    if (d_hdr_count == 32) {
-                        // we have a full header, check to see if it has been received
-                        // properly
-                        if (header_ok()) {
-                            int payload_len = header_payload();
-                            enter_have_header(payload_len);
-                        } else {
-                            enter_search(); // bad header
+                        uint64_t word_decoded=get_64bit_ac_received_word(); //Word in64bit len resulted from RS decode
+                        uint64_t wrong_bits = 0;
+                        uint64_t nwrong = d_threshold + 1;
+                        wrong_bits = (word_decoded ^ d_access_code) & d_mask;
+                        volk_64u_popcnt(&nwrong, wrong_bits); //How many 1's - ERRORS
+                        if (nwrong <= d_threshold) {
+                            //printf("Acces Code Decoded Catched!!");
+                            d_hdr_reg=get_64bit_payload_lenght_word(); //Pick the 32bit len of the payload lenght decoded by the RS.
+                            if (header_ok()) {
+                                //printf("Header is equal\n");
+                                int payload_len = header_payload();
+                                enter_have_header(payload_len);
+                                break; //End, caso contratio irá continuar a fazer o count e andar sempre neste loop
+                            } else {
+                                printf("POR ENQUANTO NAO PODE AQUI, SERA realizado um shift-----_PAYLOAD DIFF\n");
+                                //keep searching----??????????????????
+                                //shift_and_input_bit_in_received_data(in[count_bits_read], count_bits_read);
+                            }
+                        }else{
+                            printf("POR ENQUANTO NAO PODE AQUI, SERA realizado um shift -----NWORNG\n");
+                            //Muitos erros por isso faz shift e tenta proxmio
+                            //shift_and_input_bit_in_received_data(in[count_bits_read], count_bits_read);
                         }
-                        break;
                     }
+                    count_bits_read++;
+                    count++;
                 }
-                break;
-
+                break; //break because its a CASE
+         
             case STATE_HAVE_HEADER:
-                /*if (d_pkt_count == 0) {
+                if (d_pkt_count == 0) {
                     // MAKE A TAG OUT OF THIS AND UPDATE OFFSET
                     add_item_tag(0,                          // stream ID
                                  abs_out_sample_cnt + nprod, // sample
                                  d_key,                      // length key
                                  pmt::from_long(d_pkt_len),  // length data
                                  d_me);                      // block src id
-                }*/
+                }
 
                 while (count < noutput_items) {
                     if (d_pkt_count < d_pkt_len) {
                         out[nprod++] = in[count++];
                         d_pkt_count++;
                     } else {
+                        printf("End Payload\n");
                         enter_search();
                         break;
                     }

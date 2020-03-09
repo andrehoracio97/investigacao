@@ -53,8 +53,12 @@ namespace gr {
       unsigned long long d_hdr_reg; // used to look for header
       int d_hdr_count;
 
-      //pmt::pmt_t d_key, d_me; // d_key is the tag name, d_me is the block name + unique ID
+      pmt::pmt_t d_key, d_me; // d_key is the tag name, d_me is the block name + unique ID
       int d_pkt_len, d_pkt_count;
+
+      //NOVO
+      int count_bits_read;
+      unsigned char byte_to_be_inputed;
 
 
       void enter_search();
