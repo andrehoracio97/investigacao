@@ -283,15 +283,15 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
         self.blocks_repack_bits_bb_1_0_0_1 = blocks.repack_bits_bb(8, 1, '', False, gr.GR_MSB_FIRST)
         self.blocks_repack_bits_bb_1_0_0_0 = blocks.repack_bits_bb(1, pld_const.bits_per_symbol(), '', False, gr.GR_MSB_FIRST)
         self.blocks_multiply_const_vxx_1 = blocks.multiply_const_vcc((0.7, ))
-        self.blocks_file_source_0_0_1_0_0_0_0 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Dropbox/Investiga\xc3\xa7\xc3\xa3o_Metricas_Sync/Scrambler_test/Testes_frase/abcsequence10000.txt', False)
-        self.blocks_file_source_0_0_1_0_0_0_0.set_begin_tag(pmt.PMT_NIL)
+        self.blocks_file_source_0_0_1_0_0_0_0_0_0 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Dropbox/Investiga\xc3\xa7\xc3\xa3o_Metricas_Sync/Scrambler_test/Test_Additive_51bytes/sequence51_10000.txt', False)
+        self.blocks_file_source_0_0_1_0_0_0_0_0_0.set_begin_tag(pmt.PMT_NIL)
 
 
 
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.blocks_file_source_0_0_1_0_0_0_0, 0), (self.blocks_repack_bits_bb_1_0_0_1, 0))
+        self.connect((self.blocks_file_source_0_0_1_0_0_0_0_0_0, 0), (self.blocks_repack_bits_bb_1_0_0_1, 0))
         self.connect((self.blocks_multiply_const_vxx_1, 0), (self.qtgui_const_sink_x_0_0_0_0, 0))
         self.connect((self.blocks_multiply_const_vxx_1, 0), (self.qtgui_freq_sink_x_0, 0))
         self.connect((self.blocks_multiply_const_vxx_1, 0), (self.qtgui_time_sink_x_1, 0))
