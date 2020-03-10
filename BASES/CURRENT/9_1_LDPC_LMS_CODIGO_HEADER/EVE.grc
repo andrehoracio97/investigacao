@@ -1148,11 +1148,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1104, 1036)</value>
+      <value>(1112, 1036)</value>
     </param>
     <param>
       <key>_rotation</key>
