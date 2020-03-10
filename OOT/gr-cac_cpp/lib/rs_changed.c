@@ -56,7 +56,7 @@
 
 int pp [mm+1] = { 1, 0, 1, 0, 0, 1} ; /* specify irreducible polynomial coeffts */
 int alpha_to [nn+1], index_of [nn+1], gg [nn-kk+1] ;
-int recd [nn], data [kk], bb [nn-kk] ;
+int recd [nn], data [kk], bb [nn-kk], copy_recd [nn] ;
 int n_bits_added_byte=0;
 int n_filled_bytes=0;
 int temp_byte=0;
@@ -379,28 +379,48 @@ void reset_counts_input_bit(){
   }
   
 }
-void input_bit_in_received_data(unsigned char bit_to_be_inputed){
-  //FILL recd[] vector with the receivd bits. n_filled_bytes  n_bits_added_byte
-  //printf("INPUT BIT: %d\n",bit_to_be_inputed);
-  if(n_bits_added_byte<mm){ //byte not filled 
+
+void input_bit_in_received_data(unsigned char bit_to_be_inputed){ //Add received bit in recd and copy_recd vectors
+
+  if(n_bits_added_byte<mm){ //byte (symbol) not filled 
     temp_byte = (temp_byte << 1) | ((bit_to_be_inputed) & 0x1);
     n_bits_added_byte=n_bits_added_byte+1;
 
-    if(n_bits_added_byte==mm){ //byte filled
+    if(n_bits_added_byte==mm){ //byte(symbol) filled
       //printf("STORE_BYTE:= %d\n",temp_byte);
-      recd[n_filled_bytes]=temp_byte; //store byte
-      n_filled_bytes=n_filled_bytes+1; 
+      recd[n_filled_bytes]=temp_byte; //Store byte in main vector
+      copy_recd[n_filled_bytes]=temp_byte; //Store byte in copy_recd vector to futher shift if it is not found.
+      
+      n_filled_bytes=n_filled_bytes+1; //Symbol complete
       n_bits_added_byte=0; //reset counts
       temp_byte=0; //reset counts
     }
   }
-
-
-
 }
-void shift_and_input_bit_in_received_data(unsigned char bit_to_be_inputed, int position){
-  //printf("SHIFT\n");
+
+void shift_and_input_bit_in_received_data(unsigned char bit_to_be_inputed){
+
+  for (int i = 0; i < (nn-1); i++){
+   // printf("rec[%d]=%d\n",i,recd[i]);
+    //printf("Shift<<: %d\n", recd[i] << 1);
+    //printf("New_bit: %d\n",(recd[i+1]>>4) & 0x1);
+    copy_recd[i]= (copy_recd[i] << 1) | (((copy_recd[i+1]>>4) & 0x1F)); //mask 00011111
+    //printf("Result: %d\n", recd[i]);
+    copy_recd[i]= (copy_recd[i]&0x1F);
+    recd[i]= copy_recd[i];
+
+    //printf("Result_clean: %d\n", recd[i]);
+    //printf("rec[%d]=%d\n",i,recd[i]);
+  }
+  copy_recd[30]=((copy_recd[30] << 1) | (bit_to_be_inputed & 0x1F)) ;
+  copy_recd[30]=(copy_recd[30] & 0x1F);
+  recd[30]=copy_recd[30];
+
+  /*for (int i = 0; i < nn; ++i){ //Set copy shifted in the main vector to be decoded next 
+    recd[i]=copy_recd[i];
+  }*/
 }
+
 
 void print_codeword(){
   for (int i = 0; i < nn; ++i)
@@ -410,19 +430,13 @@ void print_codeword(){
 }
 
 void decode_costum(){
-  for (int i = 0; i < nn; ++i)
-  {
-    //printf("Codeword [%d] = %d\n",i,recd[i]);
-  }
-  for (int i=0; i<nn; i++){
-    recd[i] = index_of[recd[i]] ;         
+
+  for (int i = 0; i < nn; ++i){
+    //copy_recd[i]=recd[i];   //Make a copy, to futher shift if not found.
+    recd[i] = index_of[recd[i]]; //put recd[i] into index form 
   }
   decode_rs();
-  for (int i = nn-kk; i < nn; ++i)
-  {
-    //printf("Recovered [%d] = %d\n",i,recd[i]);
   }
-}
 
 uint64_t get_64bit_payload_lenght_word_old(){
   uint64_t received_word=0;
@@ -500,7 +514,7 @@ uint64_t get_64bit_payload_lenght_word(){
   temp=temp & 0x1;
   received_word=(received_word | temp);
 
-  printf("Payload: %d\n",received_word);
+  //printf("Payload: %d\n",received_word);
   return received_word;
 
 }
@@ -524,15 +538,15 @@ uint64_t get_64bit_ac_received_word(){
 
   for (int i = 0; i < 12; ++i){ //12 pq 12*5 = 60, ficam a faltar 4 bits tratados depois
     temp=recd[10+i];
-    temp=temp<< (64-((i+1)*5));  //shift 59bits, then 54 bit, then 49, 44, 39, 34,..
+    temp=temp << (64-((i+1)*5));  //shift 59bits, then 54 bit, then 49, 44, 39, 34,..
     received_word=(received_word | temp);
   }
   temp=0;
   temp=recd[22];
   temp=temp>>1;
   received_word=(received_word | temp);
-  return received_word;
   //printf("%llx\n",received_word);
+  return received_word;
 }
 
 void print_message_decoded(){

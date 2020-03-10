@@ -135,7 +135,7 @@ namespace gr {
         //Added by me
         count_bits_read=0;
         reset_counts_input_bit();
-        printf("RESET CONTS\n");
+        //printf("RESET CONTS\n");
 
 
     }
@@ -189,9 +189,9 @@ namespace gr {
                     //printf("Received_Bit=%d\n",in[count_bits_read]);
                     if(count_bits_read<155){ //read 155 bits to fill the data in RS to be decoded
                         input_bit_in_received_data(in[count]);
+
                     }else{ //all bytes filled
-                        printf("All 155 bits readed: SHIFTS\n");
-                        decode_costum(); //Decode
+                        decode_costum(); //Make a copy of the received symbols, and try decode
 
                         uint64_t word_decoded=get_64bit_ac_received_word(); //Word in64bit len resulted from RS decode
                         uint64_t wrong_bits = 0;
@@ -207,14 +207,14 @@ namespace gr {
                                 enter_have_header(payload_len);
                                 break; //End, caso contratio irá continuar a fazer o count e andar sempre neste loop
                             } else {
-                                printf("POR ENQUANTO NAO PODE AQUI, SERA realizado um shift-----_PAYLOAD DIFF\n");
+                                printf("POR ENQUANTO NAO PODE AQUI, SERA realizado um shift-----PAYLOAD DIFF\n");
                                 //keep searching----??????????????????
-                                //shift_and_input_bit_in_received_data(in[count_bits_read], count_bits_read);
+                                shift_and_input_bit_in_received_data(in[count]);
                             }
                         }else{
-                            printf("POR ENQUANTO NAO PODE AQUI, SERA realizado um shift -----NWORNG\n");
+                            //printf("Shift\n");
                             //Muitos erros por isso faz shift e tenta proxmio
-                            //shift_and_input_bit_in_received_data(in[count_bits_read], count_bits_read);
+                            shift_and_input_bit_in_received_data(in[count]); //Faz shift da copia realizada e não do vetor apos a tentativa de decode
                         }
                     }
                     count_bits_read++;
@@ -237,7 +237,7 @@ namespace gr {
                         out[nprod++] = in[count++];
                         d_pkt_count++;
                     } else {
-                        printf("End Payload\n");
+                        //printf("End Payload\n");
                         enter_search();
                         break;
                     }
