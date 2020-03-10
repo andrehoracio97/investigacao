@@ -209,7 +209,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1408, 132)</value>
+      <value>(1276, 128)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -346,7 +346,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1208, 4)</value>
+      <value>(1076, 0)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -365,13 +365,8 @@
       <value>1</value>
     </param>
     <param>
-<<<<<<< HEAD:BASES/CURRENT/9_1_1_CC_LMS_CODIGO_HEADER/BOB.grc
       <key>polys</key>
       <value>polys</value>
-=======
-      <key>max_iterations</key>
-      <value>10</value>
->>>>>>> c054914b3725d72f5088767abb19444fee1d8304:BASES/CURRENT/9_1_1_LDPC_LMS_CODIGO_HEADER_RATE/BOB.grc
     </param>
     <param>
       <key>rate</key>
@@ -398,7 +393,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1408, 76)</value>
+      <value>(1276, 72)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -425,7 +420,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1472, 132)</value>
+      <value>(1340, 128)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -507,7 +502,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>samp_rate_array_MCR[9]</value>
+      <value>samp_rate_array_MCR[15]</value>
     </param>
   </block>
   <block>
@@ -1039,7 +1034,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(592, 1396)</value>
+      <value>(612, 1428)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1231,7 +1226,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>file</key>
@@ -1333,7 +1328,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>file</key>
@@ -1384,7 +1379,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(320, 1380)</value>
+      <value>(340, 1410)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2212,7 +2207,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(472, 1396)</value>
+      <value>(492, 1428)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2334,7 +2329,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(752, 1372)</value>
+      <value>(772, 1402)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2436,7 +2431,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1536, 4)</value>
+      <value>(1404, 2)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -10080,7 +10075,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(168, 1396)</value>
+      <value>(188, 1428)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -10380,6 +10375,12 @@
   <connection>
     <source_block_id>fec_extended_decoder_0_0_1_0_1_0</source_block_id>
     <sink_block_id>scrambler_cpp_custom_descrambler_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>fec_extended_decoder_0_0_1_0_1_0</source_block_id>
+    <sink_block_id>scrambler_packets_same_seed_descramble_packetize_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
