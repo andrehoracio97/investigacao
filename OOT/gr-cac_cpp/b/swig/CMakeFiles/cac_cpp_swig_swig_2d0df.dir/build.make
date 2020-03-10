@@ -88,17 +88,27 @@ swig/cac_cpp_swig_swig_2d0df.cpp: ../swig/cac_cpp_swig.i
 swig/cac_cpp_swig_swig_2d0df.cpp: /usr/local/include/gnuradio/swig/sync_decimator.i
 swig/cac_cpp_swig_swig_2d0df.cpp: /usr/local/include/gnuradio/swig/gr_logger.i
 swig/cac_cpp_swig_swig_2d0df.cpp: /usr/local/include/gnuradio/swig/prefs.i
+swig/cac_cpp_swig_swig_2d0df.cpp: swig/cac_cpp_swig_doc.i
 swig/cac_cpp_swig_swig_2d0df.cpp: swig/cac_cpp_swig.tag
 	cd /home/it/investigacao/OOT/gr-cac_cpp/b/swig && /usr/bin/cmake -E copy /home/it/investigacao/OOT/gr-cac_cpp/b/swig/cac_cpp_swig_swig_2d0df.cpp.in /home/it/investigacao/OOT/gr-cac_cpp/b/swig/cac_cpp_swig_swig_2d0df.cpp
 
+swig/cac_cpp_swig_doc.i: swig/cac_cpp_swig_doc_swig_docs/xml/index.xml
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/it/investigacao/OOT/gr-cac_cpp/b/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating python docstrings for cac_cpp_swig_doc"
+	cd /home/it/investigacao/OOT/gr-cac_cpp/docs/doxygen && /usr/bin/python2 -B /home/it/investigacao/OOT/gr-cac_cpp/docs/doxygen/swig_doc.py /home/it/investigacao/OOT/gr-cac_cpp/b/swig/cac_cpp_swig_doc_swig_docs/xml /home/it/investigacao/OOT/gr-cac_cpp/b/swig/cac_cpp_swig_doc.i
+
 swig/cac_cpp_swig.tag: swig/_cac_cpp_swig_swig_tag
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/it/investigacao/OOT/gr-cac_cpp/b/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating cac_cpp_swig.tag"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/it/investigacao/OOT/gr-cac_cpp/b/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating cac_cpp_swig.tag"
 	cd /home/it/investigacao/OOT/gr-cac_cpp/b/swig && ./_cac_cpp_swig_swig_tag
 	cd /home/it/investigacao/OOT/gr-cac_cpp/b/swig && /usr/bin/cmake -E touch /home/it/investigacao/OOT/gr-cac_cpp/b/swig/cac_cpp_swig.tag
 
+swig/cac_cpp_swig_doc_swig_docs/xml/index.xml: swig/_cac_cpp_swig_doc_tag
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/it/investigacao/OOT/gr-cac_cpp/b/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating doxygen xml for cac_cpp_swig_doc docs"
+	cd /home/it/investigacao/OOT/gr-cac_cpp/b/swig && ./_cac_cpp_swig_doc_tag
+	cd /home/it/investigacao/OOT/gr-cac_cpp/b/swig && /usr/bin/doxygen /home/it/investigacao/OOT/gr-cac_cpp/b/swig/cac_cpp_swig_doc_swig_docs/Doxyfile
+
 swig/CMakeFiles/cac_cpp_swig_swig_2d0df.dir/cac_cpp_swig_swig_2d0df.cpp.o: swig/CMakeFiles/cac_cpp_swig_swig_2d0df.dir/flags.make
 swig/CMakeFiles/cac_cpp_swig_swig_2d0df.dir/cac_cpp_swig_swig_2d0df.cpp.o: swig/cac_cpp_swig_swig_2d0df.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/it/investigacao/OOT/gr-cac_cpp/b/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object swig/CMakeFiles/cac_cpp_swig_swig_2d0df.dir/cac_cpp_swig_swig_2d0df.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/it/investigacao/OOT/gr-cac_cpp/b/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object swig/CMakeFiles/cac_cpp_swig_swig_2d0df.dir/cac_cpp_swig_swig_2d0df.cpp.o"
 	cd /home/it/investigacao/OOT/gr-cac_cpp/b/swig && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cac_cpp_swig_swig_2d0df.dir/cac_cpp_swig_swig_2d0df.cpp.o -c /home/it/investigacao/OOT/gr-cac_cpp/b/swig/cac_cpp_swig_swig_2d0df.cpp
 
 swig/CMakeFiles/cac_cpp_swig_swig_2d0df.dir/cac_cpp_swig_swig_2d0df.cpp.i: cmake_force
@@ -130,7 +140,7 @@ cac_cpp_swig_swig_2d0df_EXTERNAL_OBJECTS =
 swig/cac_cpp_swig_swig_2d0df: swig/CMakeFiles/cac_cpp_swig_swig_2d0df.dir/cac_cpp_swig_swig_2d0df.cpp.o
 swig/cac_cpp_swig_swig_2d0df: swig/CMakeFiles/cac_cpp_swig_swig_2d0df.dir/build.make
 swig/cac_cpp_swig_swig_2d0df: swig/CMakeFiles/cac_cpp_swig_swig_2d0df.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/it/investigacao/OOT/gr-cac_cpp/b/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable cac_cpp_swig_swig_2d0df"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/it/investigacao/OOT/gr-cac_cpp/b/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable cac_cpp_swig_swig_2d0df"
 	cd /home/it/investigacao/OOT/gr-cac_cpp/b/swig && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/cac_cpp_swig_swig_2d0df.dir/link.txt --verbose=$(VERBOSE)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Swig source"
 	cd /home/it/investigacao/OOT/gr-cac_cpp/b/swig && /usr/bin/cmake -E make_directory /home/it/investigacao/OOT/gr-cac_cpp/b/swig
@@ -150,7 +160,9 @@ swig/CMakeFiles/cac_cpp_swig_swig_2d0df.dir/clean:
 .PHONY : swig/CMakeFiles/cac_cpp_swig_swig_2d0df.dir/clean
 
 swig/CMakeFiles/cac_cpp_swig_swig_2d0df.dir/depend: swig/cac_cpp_swig_swig_2d0df.cpp
+swig/CMakeFiles/cac_cpp_swig_swig_2d0df.dir/depend: swig/cac_cpp_swig_doc.i
 swig/CMakeFiles/cac_cpp_swig_swig_2d0df.dir/depend: swig/cac_cpp_swig.tag
+swig/CMakeFiles/cac_cpp_swig_swig_2d0df.dir/depend: swig/cac_cpp_swig_doc_swig_docs/xml/index.xml
 	cd /home/it/investigacao/OOT/gr-cac_cpp/b && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/it/investigacao/OOT/gr-cac_cpp /home/it/investigacao/OOT/gr-cac_cpp/swig /home/it/investigacao/OOT/gr-cac_cpp/b /home/it/investigacao/OOT/gr-cac_cpp/b/swig /home/it/investigacao/OOT/gr-cac_cpp/b/swig/CMakeFiles/cac_cpp_swig_swig_2d0df.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : swig/CMakeFiles/cac_cpp_swig_swig_2d0df.dir/depend
 
