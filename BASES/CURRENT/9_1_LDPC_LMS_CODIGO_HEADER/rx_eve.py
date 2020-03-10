@@ -29,6 +29,7 @@ from gnuradio.eng_option import eng_option
 from gnuradio.filter import firdes
 from gnuradio.qtgui import Range, RangeWidget
 from optparse import OptionParser
+import cac_cpp
 import scrambler_cpp
 import sip
 import sys
@@ -368,10 +369,9 @@ class rx_eve(gr.top_block, Qt.QWidget):
         self.digital_map_bb_0_0_0_0_0_0 = digital.map_bb(([-1, 1]))
         self.digital_diff_decoder_bb_0 = digital.diff_decoder_bb(pld_const.arity())
         self.digital_costas_loop_cc_0_0 = digital.costas_loop_cc(6.28/100.0, pld_const.arity(), False)
-        self.digital_correlate_access_code_xx_ts_0_0 = digital.correlate_access_code_bb_ts(digital.packet_utils.default_access_code,
-          4, 'packet_len')
         self.digital_constellation_decoder_cb_0 = digital.constellation_decoder_cb(pld_const)
         self.digital_cma_equalizer_cc_0 = digital.cma_equalizer_cc(15, 1, 0.01, 2)
+        self.cac_cpp_cac_bb_0 = cac_cpp.cac_bb(digital.packet_utils.default_access_code, 1)
         self.blocks_repack_bits_bb_0_0_0_1_0 = blocks.repack_bits_bb(1, 8, '', False, gr.GR_MSB_FIRST)
         self.blocks_repack_bits_bb_0 = blocks.repack_bits_bb(pld_const.bits_per_symbol(), 1, '', False, gr.GR_MSB_FIRST)
         self.blocks_keep_m_in_n_0_1_1_0 = blocks.keep_m_in_n(gr.sizeof_char, 440, 442, 0)
@@ -392,13 +392,13 @@ class rx_eve(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_char_to_float_1_0_1, 0), (self.qtgui_time_sink_x_0_1, 0))
         self.connect((self.blocks_keep_m_in_n_0_0_2_0_0, 0), (self.digital_map_bb_0_0_0_0_0_0, 0))
         self.connect((self.blocks_keep_m_in_n_0_1_1_0, 0), (self.scrambler_cpp_additive_descrambler_0, 0))
-        self.connect((self.blocks_repack_bits_bb_0, 0), (self.digital_correlate_access_code_xx_ts_0_0, 0))
+        self.connect((self.blocks_repack_bits_bb_0, 0), (self.cac_cpp_cac_bb_0, 0))
         self.connect((self.blocks_repack_bits_bb_0_0_0_1_0, 0), (self.blocks_char_to_float_1_0_1, 0))
         self.connect((self.blocks_repack_bits_bb_0_0_0_1_0, 0), (self.blocks_file_sink_0_0_0_0_0, 0))
+        self.connect((self.cac_cpp_cac_bb_0, 0), (self.blocks_char_to_float_0_0, 0))
+        self.connect((self.cac_cpp_cac_bb_0, 0), (self.blocks_keep_m_in_n_0_0_2_0_0, 0))
         self.connect((self.digital_cma_equalizer_cc_0, 0), (self.digital_costas_loop_cc_0_0, 0))
         self.connect((self.digital_constellation_decoder_cb_0, 0), (self.digital_diff_decoder_bb_0, 0))
-        self.connect((self.digital_correlate_access_code_xx_ts_0_0, 0), (self.blocks_char_to_float_0_0, 0))
-        self.connect((self.digital_correlate_access_code_xx_ts_0_0, 0), (self.blocks_keep_m_in_n_0_0_2_0_0, 0))
         self.connect((self.digital_costas_loop_cc_0_0, 0), (self.digital_constellation_decoder_cb_0, 0))
         self.connect((self.digital_costas_loop_cc_0_0, 0), (self.qtgui_const_sink_x_0_0_0, 0))
         self.connect((self.digital_diff_decoder_bb_0, 0), (self.blocks_repack_bits_bb_0, 0))

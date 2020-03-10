@@ -207,7 +207,7 @@ namespace gr {
                                 enter_have_header(payload_len);
                                 break; //End, caso contratio irá continuar a fazer o count e andar sempre neste loop
                             } else {
-                                printf("POR ENQUANTO NAO PODE AQUI, SERA realizado um shift-----PAYLOAD DIFF\n");
+                                //printf("POR ENQUANTO NAO PODE AQUI, SERA realizado um shift-----PAYLOAD DIFF\n");
                                 //keep searching----??????????????????
                                 shift_and_input_bit_in_received_data(in[count]);
                             }
