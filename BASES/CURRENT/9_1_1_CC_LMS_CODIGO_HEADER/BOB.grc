@@ -365,8 +365,13 @@
       <value>1</value>
     </param>
     <param>
+<<<<<<< HEAD:BASES/CURRENT/9_1_1_CC_LMS_CODIGO_HEADER/BOB.grc
       <key>polys</key>
       <value>polys</value>
+=======
+      <key>max_iterations</key>
+      <value>10</value>
+>>>>>>> c054914b3725d72f5088767abb19444fee1d8304:BASES/CURRENT/9_1_1_LDPC_LMS_CODIGO_HEADER_RATE/BOB.grc
     </param>
     <param>
       <key>rate</key>
@@ -502,7 +507,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>samp_rate_array_MCR[15]</value>
+      <value>samp_rate_array_MCR[9]</value>
     </param>
   </block>
   <block>
