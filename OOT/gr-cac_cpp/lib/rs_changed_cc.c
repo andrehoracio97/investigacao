@@ -519,12 +519,13 @@ data[11] = 15 ;
 data[12] = 24 ;
 data[13] = 0 ;
 data[14] = 3 ;
-data[15] = 10 ;
-data[16] = 16 ;
-data[17] = 0 ;
-data[18] = 1 ;
-data[19] = 24 ;
+data[15] = 16 ;
+data[16] = 0 ;
+data[17] = 1 ;
+data[18] = 24 ;
+data[19] = 0 ;
 data[20] = 0 ;
+
 
 
 /* encode data[] to produce parity in bb[].  Data input and parity output
@@ -539,8 +540,8 @@ data[20] = 0 ;
 /* if you want to test the program, corrupt some of the elements of recd[]
    here. This can also be done easily in a debugger. */
 /* Again, lets say that a middle element is changed */
-  data[nn-nn/2] = 1 ;
-  data[nn-nn/2+1] = 1 ;
+ // data[nn-nn/2] = 1 ;
+  //data[nn-nn/2+1] = 1 ;
 
 
 
