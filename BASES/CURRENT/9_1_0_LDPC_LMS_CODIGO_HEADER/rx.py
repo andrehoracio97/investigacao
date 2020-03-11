@@ -449,7 +449,7 @@ class rx(gr.top_block, Qt.QWidget):
         self.digital_constellation_decoder_cb_0 = digital.constellation_decoder_cb(pld_const)
         self.digital_cma_equalizer_cc_0_0 = digital.cma_equalizer_cc(15, 1, 0.01, 2)
         self.custom_corr = correlate_and_delay.corr_and_delay(200*sps, 0, 0.9995, sps)
-        self.cac_cpp_cac_bb_0 = cac_cpp.cac_bb(digital.packet_utils.default_access_code, 1)
+        self.cac_cpp_cac_bb_0 = cac_cpp.cac_bb(digital.packet_utils.default_access_code, 2)
         self.blocks_repack_bits_bb_0_0_0_1_0 = blocks.repack_bits_bb(1, 8, '', False, gr.GR_MSB_FIRST)
         self.blocks_repack_bits_bb_0 = blocks.repack_bits_bb(pld_const.bits_per_symbol(), 1, '', False, gr.GR_MSB_FIRST)
         self.blocks_null_sink_1 = blocks.null_sink(gr.sizeof_gr_complex*1)
