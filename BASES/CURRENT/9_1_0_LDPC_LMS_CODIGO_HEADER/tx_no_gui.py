@@ -80,7 +80,7 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
         self.nfilts = nfilts = 32
         self.eb = eb = 0.22
         self.H = H = fec.ldpc_H_matrix('/usr/local/share/gnuradio/fec/ldpc/n_1100_k_0442_gap_24.alist', 24)
-        self.vector = vector = [int(random.random()*4) for i in range(49600)]
+        self.vector = vector = [int(random.random()*4) for i in range(198400)]
         self.variable_qtgui_range_0_0 = variable_qtgui_range_0_0 = 43
 
         self.tx_rrc_taps = tx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts, 1.0, eb, 11*sps*nfilts)
@@ -283,8 +283,8 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
         self.blocks_repack_bits_bb_1_0_0_1 = blocks.repack_bits_bb(8, 1, '', False, gr.GR_MSB_FIRST)
         self.blocks_repack_bits_bb_1_0_0_0 = blocks.repack_bits_bb(1, pld_const.bits_per_symbol(), '', False, gr.GR_MSB_FIRST)
         self.blocks_multiply_const_vxx_1 = blocks.multiply_const_vcc((0.7, ))
-        self.blocks_file_source_0_0_1_0 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Desktop/Files_To_Transmit/trasmit_10_mb.txt', False)
-        self.blocks_file_source_0_0_1_0.set_begin_tag(pmt.PMT_NIL)
+        self.blocks_file_source_0_0_1_0_0_0 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Desktop/Files_To_Transmit/video_lion.mpeg', False)
+        self.blocks_file_source_0_0_1_0_0_0.set_begin_tag(pmt.PMT_NIL)
         self.blocks_delay_0 = blocks.delay(gr.sizeof_gr_complex*1, 500000)
 
 
@@ -296,7 +296,7 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_delay_0, 0), (self.qtgui_freq_sink_x_0, 0))
         self.connect((self.blocks_delay_0, 0), (self.qtgui_time_sink_x_1, 0))
         self.connect((self.blocks_delay_0, 0), (self.uhd_usrp_sink_0_0, 0))
-        self.connect((self.blocks_file_source_0_0_1_0, 0), (self.blocks_repack_bits_bb_1_0_0_1, 0))
+        self.connect((self.blocks_file_source_0_0_1_0_0_0, 0), (self.blocks_repack_bits_bb_1_0_0_1, 0))
         self.connect((self.blocks_multiply_const_vxx_1, 0), (self.blocks_delay_0, 0))
         self.connect((self.blocks_repack_bits_bb_1_0_0_0, 0), (self.insert_vec_cpp_new_vec_0, 0))
         self.connect((self.blocks_repack_bits_bb_1_0_0_1, 0), (self.scrambler_cpp_additive_scrambler_0, 0))
