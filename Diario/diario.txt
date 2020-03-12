@@ -228,5 +228,6 @@ Semana Março
 Semana
 9- Continuação da iplementação do Reed Solomon.
 10-Conclusão CAC custom, a funcionar direitinho - Acho eu.
-
+11- Manha tratar Residencia. Reunião Prof, ver Puncturing. 
+12-Manha tratar Residencia- Tarde Ver Puncturing e Criar script para me dar o header pronto a colocar no GR - Concluido. Alguns Testes com puncturing, mais lento. 
 

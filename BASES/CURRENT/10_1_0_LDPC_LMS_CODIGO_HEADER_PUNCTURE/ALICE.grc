@@ -494,11 +494,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1280, 108)</value>
+      <value>(1240, 108)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -525,7 +525,34 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1232, 164)</value>
+      <value>(1360, 108)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>punc_pattern</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>33550335</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1192, 164)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -548,11 +575,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1192, 108)</value>
+      <value>(1152, 108)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -565,6 +592,33 @@
     <param>
       <key>value</key>
       <value>31</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1272, 108)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>punc_size</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>25</value>
     </param>
   </block>
   <block>
@@ -645,7 +699,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>samp_rate_array_MCR[15]</value>
+      <value>samp_rate_array_MCR[17]</value>
     </param>
   </block>
   <block>
@@ -1740,7 +1794,7 @@
     </param>
     <param>
       <key>lengths</key>
-      <value>155, 1104</value>
+      <value>155, 1056</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -2306,6 +2360,37 @@
     <param>
       <key>stream_id</key>
       <value>Packet_modulated</value>
+    </param>
+  </block>
+  <block>
+    <key>note</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1496, 108)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>note_0</value>
+    </param>
+    <param>
+      <key>note</key>
+      <value>15 -&gt; 400K</value>
     </param>
   </block>
   <block>

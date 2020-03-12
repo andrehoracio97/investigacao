@@ -473,7 +473,7 @@ main()
   printf("\n\n") ;
 
 /* compute the generator polynomial for this RS code */
-  gen_poly() ;
+  gen_poly();
 
 
 /* for known data, stick a few numbers into a zero codeword. Data is in
@@ -504,6 +504,7 @@ data[18] = 9 ;
 data[19] = 9 ;
 data[20] = 15 ;*/
 
+/*
 data[0] = 21 ;
 data[1] = 19 ;
 data[2] = 14 ;
@@ -524,9 +525,69 @@ data[16] = 0 ;
 data[17] = 2 ;
 data[18] = 2 ;
 data[19] = 0 ;
-data[20] = 0 ;
+data[20] = 0 ;*/
+
+int bits_payload;
+int bytes_payload;
+
+printf("How many bits?");
+scanf("%d", &bits_payload);
+
+bytes_payload=bits_payload/8;
+printf("BYTES: %d\n", bytes_payload);
+
+short int bytes_short=bytes_payload;
+int temp_bit_get;
+//SET ACCESS CODE
+data[0] = 21 ; //= 00010101
+data[1] = 19 ; //= 00010011
+data[2] = 14 ; //= 00001110
+data[3] = 26 ; //= 00011010
+data[4] = 9 ; //= 00001001
+data[5] = 24 ; //= 00011000
+data[6] = 23 ; //= 00010111
+data[7] = 18 ; //= 00010010
+data[8] = 17 ; //= 00010001
+data[9] = 16 ; //= 00010000
+data[10] = 16 ; //= 00010000
+data[11] = 15 ; //= 00001111
+data[12] = 24 ; //= 0001100
+                         
+temp_bit_get=(bytes_short&0x8000)>>15; //1000000000000000
+data[12]=data[12]|temp_bit_get;
+
+temp_bit_get=(bytes_short&0x7C00)>>10; //0111110000000000
+data[13]=0x0|temp_bit_get;
 
 
+temp_bit_get=(bytes_short&0x3E0)>>5; //0000001111100000
+data[14]=0x0|temp_bit_get;
+
+temp_bit_get=(bytes_short&0x1F); //0000000000011111
+data[15]=0x0|temp_bit_get;
+
+
+temp_bit_get=(bytes_short&0xF800)>>11; //1111100000000000
+data[16]=0x0|temp_bit_get;
+
+temp_bit_get=(bytes_short&0x7C0)>>6; //0000011111000000
+data[17]=0x0|temp_bit_get;
+
+temp_bit_get=(bytes_short&0x3E)>>1; //0000000000111110
+data[18]=0x0|temp_bit_get;
+
+temp_bit_get=(bytes_short&0x1); //0000000000000001
+data[19]=0x0|temp_bit_get;
+
+data[20]=0x0;
+
+
+/*
+for (int i = 0; i < 21; ++i)
+{
+  printf("data[%d]= %d\n", i, data[i]);
+}
+*/
 
 /* encode data[] to produce parity in bb[].  Data input and parity output
    is in polynomial form
@@ -543,21 +604,44 @@ data[20] = 0 ;
  // data[nn-nn/2] = 1 ;
   //data[nn-nn/2+1] = 1 ;
 
+printf("[");
+for (int i = 0; i < 30; ++i)
+{
+  //printf("data[%d]= %d\n", i, recd[i]);
+  printf("0x%d, ",(recd[i]>>4)&0x1);
+  printf("0x%d, ",(recd[i]>>3)&0x1);
+  printf("0x%d, ",(recd[i]>>2)&0x1);
+  printf("0x%d, ",(recd[i]>>1)&0x1);
+  printf("0x%d, ",(recd[i]>>0)&0x1);
+}
+  printf("0x%d, ",(recd[30]>>4)&0x1);
+  printf("0x%d, ",(recd[30]>>3)&0x1);
+  printf("0x%d, ",(recd[30]>>2)&0x1);
+  printf("0x%d, ",(recd[30]>>1)&0x1);
+  printf("0x%d",(recd[30]>>0)&0x1);
+printf("]\n\n\n\n");
 
 
-  for (i=0; i<nn; i++)
-     recd[i] = index_of[recd[i]] ;          /* put recd[i] into index form */
+
+
+/*  for (i=0; i<nn; i++)
+     recd[i] = index_of[recd[i]] ;    */     /* put recd[i] into index form */
 
 /* decode recv[] */
-  decode_rs() ;         /* recd[] is returned in polynomial form */
+//  decode_rs() ;         /* recd[] is returned in polynomial form */
+
+
 
 /* print out the relevant stuff - initial and decoded {parity and message} */
-  printf("Results for Reed-Solomon code (n=%3d, k=%3d, t= %3d)\n\n",nn,kk,tt) ;
-  printf("  i  data[i]   recd[i](decoded)   (data, recd in polynomial form)\n");
+//  printf("Results for Reed-Solomon code (n=%3d, k=%3d, t= %3d)\n\n",nn,kk,tt) ;
+//  printf("  i  data[i]   recd[i](decoded)   (data, recd in polynomial form)\n");
+/*
   for (i=0; i<nn-kk; i++)
     printf("%3d    %3d      %3d\n",i, bb[i], recd[i]) ;
   for (i=nn-kk; i<nn; i++)
     printf("%3d    %3d      %3d\n",i, data[i-nn+kk], recd[i]) ;
+*/
+
 }
 
 
