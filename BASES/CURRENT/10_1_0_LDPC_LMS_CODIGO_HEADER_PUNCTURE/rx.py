@@ -83,16 +83,16 @@ class rx(gr.top_block, Qt.QWidget):
         self.H_dec = H_dec = fec.ldpc_H_matrix('/usr/local/share/gnuradio/fec/ldpc/n_1100_k_0442_gap_24.alist', 24)
         self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 30
         self.variable_qtgui_range_0_0 = variable_qtgui_range_0_0 = 52
-        self.samp_rate = samp_rate = samp_rate_array_MCR[15]
+        self.samp_rate = samp_rate = samp_rate_array_MCR[17]
 
         self.rx_rrc_taps = rx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts*sps, 1.0, eb, 11*sps*nfilts)
 
-        self.punc_size = punc_size = 31
-        self.punc_replace = punc_replace = 127
-        self.punc_pattern = punc_pattern = 2147483646
+        self.punc_size = punc_size = 25
+        self.punc_replace = punc_replace = 0
+        self.punc_pattern = punc_pattern = 33550335
 
 
-        self.pld_dec = pld_dec = map((lambda a: fec.ldpc_bit_flip_decoder.make(H_dec.get_base_sptr(), 100)), range(0,8))
+        self.pld_dec = pld_dec = map((lambda a: fec.ldpc_bit_flip_decoder.make(H_dec.get_base_sptr(), 10)), range(0,8))
         self.pld_const = pld_const = digital.constellation_rect(([0.707+0.707j, -0.707+0.707j, -0.707-0.707j, 0.707-0.707j]), ([0, 1, 2, 3]), 4, 2, 2, 1, 1).base()
         self.pld_const.gen_soft_dec_lut(8)
         self.frequencia_usrp = frequencia_usrp = 484e6
@@ -459,9 +459,9 @@ class rx(gr.top_block, Qt.QWidget):
         self.blocks_null_sink_1 = blocks.null_sink(gr.sizeof_gr_complex*1)
         self.blocks_null_sink_0 = blocks.null_sink(gr.sizeof_gr_complex*1)
         self.blocks_multiply_const_vxx_1_0 = blocks.multiply_const_vcc((0.5, ))
-        self.blocks_keep_m_in_n_0_0_2_0_0 = blocks.keep_m_in_n(gr.sizeof_char, 1100, 1104, 0)
-        self.blocks_file_sink_0_0_0_0 = blocks.file_sink(gr.sizeof_char*1, '/home/it/Desktop/Trasmited/depois.mpeg', False)
-        self.blocks_file_sink_0_0_0_0.set_unbuffered(False)
+        self.blocks_keep_m_in_n_0_1_1_0 = blocks.keep_m_in_n(gr.sizeof_char, 440, 442, 0)
+        self.blocks_file_sink_0_0_0_0_2 = blocks.file_sink(gr.sizeof_char*1, '/home/it/Desktop/Trasmited/depois.txt', False)
+        self.blocks_file_sink_0_0_0_0_2.set_unbuffered(False)
         self.blocks_char_to_float_1_0_1 = blocks.char_to_float(1, 1)
         self.blocks_char_to_float_0_2_0_0_0 = blocks.char_to_float(1, 1)
         self.analog_noise_source_x_0_0 = analog.noise_source_c(analog.GR_GAUSSIAN, 1, -5)
@@ -477,15 +477,15 @@ class rx(gr.top_block, Qt.QWidget):
         self.connect((self.analog_noise_source_x_0_0, 0), (self.interp_fir_filter_xxx_1, 0))
         self.connect((self.blocks_char_to_float_0_2_0_0_0, 0), (self.fec_extended_decoder_0_0_1_0_1_0_0, 0))
         self.connect((self.blocks_char_to_float_1_0_1, 0), (self.qtgui_time_sink_x_0_1, 0))
-        self.connect((self.blocks_keep_m_in_n_0_0_2_0_0, 0), (self.digital_map_bb_0_0_0_0_0_0, 0))
+        self.connect((self.blocks_keep_m_in_n_0_1_1_0, 0), (self.scrambler_cpp_additive_descrambler_0, 0))
         self.connect((self.blocks_multiply_const_vxx_1_0, 0), (self.custom_corr, 0))
         self.connect((self.blocks_multiply_const_vxx_1_0, 0), (self.qtgui_freq_sink_x_1, 0))
         self.connect((self.blocks_multiply_const_vxx_1_0, 0), (self.qtgui_time_sink_x_1_0_0, 0))
         self.connect((self.blocks_multiply_const_vxx_1_0, 0), (self.uhd_usrp_sink_0, 0))
         self.connect((self.blocks_repack_bits_bb_0, 0), (self.cac_cpp_cac_bb_0, 0))
         self.connect((self.blocks_repack_bits_bb_0_0_0_1_0, 0), (self.blocks_char_to_float_1_0_1, 0))
-        self.connect((self.blocks_repack_bits_bb_0_0_0_1_0, 0), (self.blocks_file_sink_0_0_0_0, 0))
-        self.connect((self.cac_cpp_cac_bb_0, 0), (self.blocks_keep_m_in_n_0_0_2_0_0, 0))
+        self.connect((self.blocks_repack_bits_bb_0_0_0_1_0, 0), (self.blocks_file_sink_0_0_0_0_2, 0))
+        self.connect((self.cac_cpp_cac_bb_0, 0), (self.fec_depuncture_bb_0, 0))
         self.connect((self.custom_corr, 0), (self.adapt_lms_filter_xx_0, 1))
         self.connect((self.custom_corr, 1), (self.adapt_lms_filter_xx_0, 0))
         self.connect((self.custom_corr, 2), (self.blocks_null_sink_1, 0))
@@ -496,8 +496,8 @@ class rx(gr.top_block, Qt.QWidget):
         self.connect((self.digital_diff_decoder_bb_0, 0), (self.blocks_repack_bits_bb_0, 0))
         self.connect((self.digital_map_bb_0_0_0_0_0_0, 0), (self.blocks_char_to_float_0_2_0_0_0, 0))
         self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.digital_cma_equalizer_cc_0_0, 0))
-        self.connect((self.fec_depuncture_bb_0, 0), (self.scrambler_cpp_additive_descrambler_0, 0))
-        self.connect((self.fec_extended_decoder_0_0_1_0_1_0_0, 0), (self.fec_depuncture_bb_0, 0))
+        self.connect((self.fec_depuncture_bb_0, 0), (self.digital_map_bb_0_0_0_0_0_0, 0))
+        self.connect((self.fec_extended_decoder_0_0_1_0_1_0_0, 0), (self.blocks_keep_m_in_n_0_1_1_0, 0))
         self.connect((self.interp_fir_filter_xxx_1, 0), (self.blocks_multiply_const_vxx_1_0, 0))
         self.connect((self.scrambler_cpp_additive_descrambler_0, 0), (self.blocks_repack_bits_bb_0_0_0_1_0, 0))
         self.connect((self.uhd_usrp_source_0_0, 0), (self.custom_corr, 1))
@@ -526,7 +526,7 @@ class rx(gr.top_block, Qt.QWidget):
 
     def set_samp_rate_array_MCR(self, samp_rate_array_MCR):
         self.samp_rate_array_MCR = samp_rate_array_MCR
-        self.set_samp_rate(self.samp_rate_array_MCR[15])
+        self.set_samp_rate(self.samp_rate_array_MCR[17])
 
     def get_nfilts(self):
         return self.nfilts

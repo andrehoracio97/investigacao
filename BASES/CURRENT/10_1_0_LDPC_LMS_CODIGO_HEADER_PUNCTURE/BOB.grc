@@ -409,7 +409,7 @@
     </param>
     <param>
       <key>max_iterations</key>
-      <value>100</value>
+      <value>10</value>
     </param>
     <param>
       <key>ndim</key>
@@ -440,7 +440,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>2147483646</value>
+      <value>33550335</value>
     </param>
   </block>
   <block>
@@ -467,7 +467,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>127</value>
+      <value>0</value>
     </param>
   </block>
   <block>
@@ -494,7 +494,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>31</value>
+      <value>25</value>
     </param>
   </block>
   <block>
@@ -564,7 +564,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>samp_rate_array_MCR[15]</value>
+      <value>samp_rate_array_MCR[17]</value>
     </param>
   </block>
   <block>
@@ -1288,7 +1288,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>file</key>
@@ -1390,7 +1390,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>file</key>
@@ -1437,7 +1437,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1492,7 +1492,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2442,7 +2442,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(888, 1500)</value>
+      <value>(220, 1482)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -10558,19 +10558,13 @@
   </connection>
   <connection>
     <source_block_id>fec_depuncture_bb_0</source_block_id>
-    <sink_block_id>scrambler_cpp_additive_descrambler_0</sink_block_id>
+    <sink_block_id>digital_map_bb_0_0_0_0_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>fec_extended_decoder_0_0_1_0_1_0_0</source_block_id>
     <sink_block_id>blocks_keep_m_in_n_0_1_1_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>fec_extended_decoder_0_0_1_0_1_0_0</source_block_id>
-    <sink_block_id>fec_depuncture_bb_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -10631,6 +10625,12 @@
   <connection>
     <source_block_id>virtual_source_0_0_0_0</source_block_id>
     <sink_block_id>blocks_keep_m_in_n_0_0_2_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>virtual_source_0_0_0_0</source_block_id>
+    <sink_block_id>fec_depuncture_bb_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
