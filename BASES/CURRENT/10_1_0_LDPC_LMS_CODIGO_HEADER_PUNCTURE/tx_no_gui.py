@@ -86,6 +86,9 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
         self.tx_rrc_taps = tx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts, 1.0, eb, 11*sps*nfilts)
 
         self.samp_rate = samp_rate = samp_rate_array_MCR[15]
+        self.punc_size = punc_size = 31
+        self.punc_replace = punc_replace = 127
+        self.punc_pattern = punc_pattern = 2147483646
 
 
         self.pld_enc = pld_enc = map((lambda a: fec.ldpc_par_mtrx_encoder_make_H(H)), range(0,4))
@@ -271,20 +274,19 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
         self.pfb_arb_resampler_xxx_0.declare_sample_delay(0)
 
         self.insert_vec_cpp_new_vec_0 = insert_vec_cpp.new_vec((vector))
+        self.fec_puncture_xx_0 = fec.puncture_bb(punc_size, punc_pattern, 0)
         self.fec_extended_encoder_0 = fec.extended_encoder(encoder_obj_list=pld_enc, threading='capillary', puncpat=puncpat)
         self.digital_diff_encoder_bb_0 = digital.diff_encoder_bb(pld_const.arity())
         self.digital_chunks_to_symbols_xx_0_0 = digital.chunks_to_symbols_bc((pld_const.points()), 1)
-        self.blocks_vector_source_x_0_0_0 = blocks.vector_source_b([0], True, 1, [])
+        self.blocks_vector_source_x_0_1 = blocks.vector_source_b([0x0, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x1, 0x0, 0x1, 0x0, 0x0, 0x1, 0x1, 0x0, 0x0, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0, 0x1, 0x0, 0x1, 0x0, 0x0, 0x0, 0x0, 0x1, 0x1, 0x0, 0x0, 0x1, 0x1, 0x0, 0x1, 0x0, 0x1, 0x1, 0x0, 0x1, 0x0, 0x1, 0x0, 0x1, 0x0, 0x1, 0x1, 0x0, 0x0, 0x1, 0x1, 0x0, 0x1, 0x1, 0x1, 0x0, 0x1, 0x1, 0x0, 0x1, 0x0, 0x0, 0x1, 0x0, 0x0, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x1, 0x0, 0x1, 0x1, 0x1, 0x1, 0x0, 0x0, 0x1, 0x0, 0x1, 0x0, 0x0, 0x0, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0], True, 1, [])
         self.blocks_vector_source_x_0_0 = blocks.vector_source_b([0], True, 1, [])
-        self.blocks_vector_source_x_0 = blocks.vector_source_b([0x0, 0x0, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x1, 0x1, 0x1, 0x0, 0x1, 0x1, 0x0, 0x1, 0x1, 0x1, 0x1, 0x0, 0x0, 0x1, 0x0, 0x0, 0x1, 0x0, 0x0, 0x1, 0x1, 0x1, 0x0, 0x1, 0x1, 0x0, 0x0, 0x0, 0x1, 0x1, 0x1, 0x1, 0x0, 0x0, 0x1, 0x0, 0x0, 0x1, 0x1, 0x0, 0x1, 0x0, 0x1, 0x1, 0x0, 0x0, 0x1, 0x1, 0x0, 0x1, 0x1, 0x1, 0x0, 0x1, 0x1, 0x0, 0x1, 0x0, 0x0, 0x1, 0x0, 0x0, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x1, 0x0, 0x1, 0x1, 0x1, 0x1, 0x0, 0x0, 0x1, 0x0, 0x1, 0x0, 0x0, 0x0, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0, 0x1, 0x0, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0, 0x1, 0x0, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0], True, 1, [])
         self.blocks_stream_mux_0_1_0_0 = blocks.stream_mux(gr.sizeof_char*1, (155, 1104))
-        self.blocks_stream_mux_0_0_0 = blocks.stream_mux(gr.sizeof_char*1, (1100, 4))
         self.blocks_stream_mux_0_0 = blocks.stream_mux(gr.sizeof_char*1, (440, 2))
         self.blocks_repack_bits_bb_1_0_0_1 = blocks.repack_bits_bb(8, 1, '', False, gr.GR_MSB_FIRST)
         self.blocks_repack_bits_bb_1_0_0_0 = blocks.repack_bits_bb(1, pld_const.bits_per_symbol(), '', False, gr.GR_MSB_FIRST)
         self.blocks_multiply_const_vxx_1 = blocks.multiply_const_vcc((0.7, ))
-        self.blocks_file_source_0_0_1_0_0_0 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Desktop/Files_To_Transmit/video_lion.mpeg', False)
-        self.blocks_file_source_0_0_1_0_0_0.set_begin_tag(pmt.PMT_NIL)
+        self.blocks_file_source_0_0_1_0 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Desktop/Files_To_Transmit/trasmit_10_mb.txt', False)
+        self.blocks_file_source_0_0_1_0.set_begin_tag(pmt.PMT_NIL)
         self.blocks_delay_0 = blocks.delay(gr.sizeof_gr_complex*1, 500000)
 
 
@@ -296,19 +298,18 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_delay_0, 0), (self.qtgui_freq_sink_x_0, 0))
         self.connect((self.blocks_delay_0, 0), (self.qtgui_time_sink_x_1, 0))
         self.connect((self.blocks_delay_0, 0), (self.uhd_usrp_sink_0_0, 0))
-        self.connect((self.blocks_file_source_0_0_1_0_0_0, 0), (self.blocks_repack_bits_bb_1_0_0_1, 0))
+        self.connect((self.blocks_file_source_0_0_1_0, 0), (self.blocks_repack_bits_bb_1_0_0_1, 0))
         self.connect((self.blocks_multiply_const_vxx_1, 0), (self.blocks_delay_0, 0))
         self.connect((self.blocks_repack_bits_bb_1_0_0_0, 0), (self.insert_vec_cpp_new_vec_0, 0))
         self.connect((self.blocks_repack_bits_bb_1_0_0_1, 0), (self.scrambler_cpp_additive_scrambler_0, 0))
         self.connect((self.blocks_stream_mux_0_0, 0), (self.fec_extended_encoder_0, 0))
-        self.connect((self.blocks_stream_mux_0_0_0, 0), (self.blocks_stream_mux_0_1_0_0, 1))
         self.connect((self.blocks_stream_mux_0_1_0_0, 0), (self.blocks_repack_bits_bb_1_0_0_0, 0))
-        self.connect((self.blocks_vector_source_x_0, 0), (self.blocks_stream_mux_0_1_0_0, 0))
         self.connect((self.blocks_vector_source_x_0_0, 0), (self.blocks_stream_mux_0_0, 1))
-        self.connect((self.blocks_vector_source_x_0_0_0, 0), (self.blocks_stream_mux_0_0_0, 1))
+        self.connect((self.blocks_vector_source_x_0_1, 0), (self.blocks_stream_mux_0_1_0_0, 0))
         self.connect((self.digital_chunks_to_symbols_xx_0_0, 0), (self.pfb_arb_resampler_xxx_0, 0))
         self.connect((self.digital_diff_encoder_bb_0, 0), (self.digital_chunks_to_symbols_xx_0_0, 0))
-        self.connect((self.fec_extended_encoder_0, 0), (self.blocks_stream_mux_0_0_0, 0))
+        self.connect((self.fec_extended_encoder_0, 0), (self.fec_puncture_xx_0, 0))
+        self.connect((self.fec_puncture_xx_0, 0), (self.blocks_stream_mux_0_1_0_0, 1))
         self.connect((self.insert_vec_cpp_new_vec_0, 0), (self.digital_diff_encoder_bb_0, 0))
         self.connect((self.pfb_arb_resampler_xxx_0, 0), (self.blocks_multiply_const_vxx_1, 0))
         self.connect((self.scrambler_cpp_additive_scrambler_0, 0), (self.blocks_stream_mux_0_0, 0))
@@ -385,6 +386,24 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
         self.uhd_usrp_sink_0_0.set_samp_rate(self.samp_rate)
         self.qtgui_time_sink_x_1.set_samp_rate(self.samp_rate)
         self.qtgui_freq_sink_x_0.set_frequency_range(0, self.samp_rate)
+
+    def get_punc_size(self):
+        return self.punc_size
+
+    def set_punc_size(self, punc_size):
+        self.punc_size = punc_size
+
+    def get_punc_replace(self):
+        return self.punc_replace
+
+    def set_punc_replace(self, punc_replace):
+        self.punc_replace = punc_replace
+
+    def get_punc_pattern(self):
+        return self.punc_pattern
+
+    def set_punc_pattern(self, punc_pattern):
+        self.punc_pattern = punc_pattern
 
     def get_pld_enc(self):
         return self.pld_enc

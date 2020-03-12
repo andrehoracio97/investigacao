@@ -78,9 +78,9 @@ class tutorial_7_LDPC(gr.top_block, Qt.QWidget):
 
         self.rx_rrc_taps = rx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts*sps, 1.0, eb, 11*sps*nfilts)
 
-        self.punc_size = punc_size = 32
+        self.punc_size = punc_size = 31
         self.punc_replace = punc_replace = 127
-        self.punc_pattern = punc_pattern = 4294967294
+        self.punc_pattern = punc_pattern = 2147483646
 
 
         self.pld_enc = pld_enc = map((lambda a: fec.ldpc_par_mtrx_encoder_make_H(H)), range(0,4))

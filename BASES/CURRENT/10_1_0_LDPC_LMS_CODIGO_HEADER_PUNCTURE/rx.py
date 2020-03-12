@@ -87,6 +87,9 @@ class rx(gr.top_block, Qt.QWidget):
 
         self.rx_rrc_taps = rx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts*sps, 1.0, eb, 11*sps*nfilts)
 
+        self.punc_size = punc_size = 31
+        self.punc_replace = punc_replace = 127
+        self.punc_pattern = punc_pattern = 2147483646
 
 
         self.pld_dec = pld_dec = map((lambda a: fec.ldpc_bit_flip_decoder.make(H_dec.get_base_sptr(), 100)), range(0,8))
@@ -442,6 +445,7 @@ class rx(gr.top_block, Qt.QWidget):
         self.interp_fir_filter_xxx_1 = filter.interp_fir_filter_ccc(4, ([1,0,0,0]))
         self.interp_fir_filter_xxx_1.declare_sample_delay(0)
         self.fec_extended_decoder_0_0_1_0_1_0_0 = fec.extended_decoder(decoder_obj_list=pld_dec, threading='capillary', ann=None, puncpat=puncpat, integration_period=10000)
+        self.fec_depuncture_bb_0 = fec.depuncture_bb(punc_size, punc_pattern, 0, punc_replace)
         self.digital_pfb_clock_sync_xxx_0 = digital.pfb_clock_sync_ccf(sps, 6.28/100.0, (rx_rrc_taps), nfilts, nfilts/2, 1.5, 2)
         self.digital_map_bb_0_0_0_0_0_0 = digital.map_bb(([-1, 1]))
         self.digital_diff_decoder_bb_0 = digital.diff_decoder_bb(pld_const.arity())
@@ -455,7 +459,6 @@ class rx(gr.top_block, Qt.QWidget):
         self.blocks_null_sink_1 = blocks.null_sink(gr.sizeof_gr_complex*1)
         self.blocks_null_sink_0 = blocks.null_sink(gr.sizeof_gr_complex*1)
         self.blocks_multiply_const_vxx_1_0 = blocks.multiply_const_vcc((0.5, ))
-        self.blocks_keep_m_in_n_0_1_1_0 = blocks.keep_m_in_n(gr.sizeof_char, 440, 442, 0)
         self.blocks_keep_m_in_n_0_0_2_0_0 = blocks.keep_m_in_n(gr.sizeof_char, 1100, 1104, 0)
         self.blocks_file_sink_0_0_0_0 = blocks.file_sink(gr.sizeof_char*1, '/home/it/Desktop/Trasmited/depois.mpeg', False)
         self.blocks_file_sink_0_0_0_0.set_unbuffered(False)
@@ -475,7 +478,6 @@ class rx(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_char_to_float_0_2_0_0_0, 0), (self.fec_extended_decoder_0_0_1_0_1_0_0, 0))
         self.connect((self.blocks_char_to_float_1_0_1, 0), (self.qtgui_time_sink_x_0_1, 0))
         self.connect((self.blocks_keep_m_in_n_0_0_2_0_0, 0), (self.digital_map_bb_0_0_0_0_0_0, 0))
-        self.connect((self.blocks_keep_m_in_n_0_1_1_0, 0), (self.scrambler_cpp_additive_descrambler_0, 0))
         self.connect((self.blocks_multiply_const_vxx_1_0, 0), (self.custom_corr, 0))
         self.connect((self.blocks_multiply_const_vxx_1_0, 0), (self.qtgui_freq_sink_x_1, 0))
         self.connect((self.blocks_multiply_const_vxx_1_0, 0), (self.qtgui_time_sink_x_1_0_0, 0))
@@ -494,7 +496,8 @@ class rx(gr.top_block, Qt.QWidget):
         self.connect((self.digital_diff_decoder_bb_0, 0), (self.blocks_repack_bits_bb_0, 0))
         self.connect((self.digital_map_bb_0_0_0_0_0_0, 0), (self.blocks_char_to_float_0_2_0_0_0, 0))
         self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.digital_cma_equalizer_cc_0_0, 0))
-        self.connect((self.fec_extended_decoder_0_0_1_0_1_0_0, 0), (self.blocks_keep_m_in_n_0_1_1_0, 0))
+        self.connect((self.fec_depuncture_bb_0, 0), (self.scrambler_cpp_additive_descrambler_0, 0))
+        self.connect((self.fec_extended_decoder_0_0_1_0_1_0_0, 0), (self.fec_depuncture_bb_0, 0))
         self.connect((self.interp_fir_filter_xxx_1, 0), (self.blocks_multiply_const_vxx_1_0, 0))
         self.connect((self.scrambler_cpp_additive_descrambler_0, 0), (self.blocks_repack_bits_bb_0_0_0_1_0, 0))
         self.connect((self.uhd_usrp_source_0_0, 0), (self.custom_corr, 1))
@@ -577,6 +580,24 @@ class rx(gr.top_block, Qt.QWidget):
     def set_rx_rrc_taps(self, rx_rrc_taps):
         self.rx_rrc_taps = rx_rrc_taps
         self.digital_pfb_clock_sync_xxx_0.update_taps((self.rx_rrc_taps))
+
+    def get_punc_size(self):
+        return self.punc_size
+
+    def set_punc_size(self, punc_size):
+        self.punc_size = punc_size
+
+    def get_punc_replace(self):
+        return self.punc_replace
+
+    def set_punc_replace(self, punc_replace):
+        self.punc_replace = punc_replace
+
+    def get_punc_pattern(self):
+        return self.punc_pattern
+
+    def set_punc_pattern(self, punc_pattern):
+        self.punc_pattern = punc_pattern
 
     def get_pld_dec(self):
         return self.pld_dec

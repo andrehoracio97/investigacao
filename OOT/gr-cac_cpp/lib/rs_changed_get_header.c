@@ -45,9 +45,6 @@
    during use.
                                  Simon Rockliff, 26th June 1991
 */
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdint.h>  // Must have this!
 
 #include <math.h>
 #include <stdio.h>
@@ -56,9 +53,13 @@
 #define tt  5           /* number of errors that can be corrected */
 #define kk  21           /* kk = nn-2*tt  */
 
-int pp [mm+1] = { 1, 1, 0, 0, 1} ; /* specify irreducible polynomial coeffts */
+
+int pp [mm+1] = { 1, 0, 1, 0, 0, 1} ; /* specify irreducible polynomial coeffts */
 int alpha_to [nn+1], index_of [nn+1], gg [nn-kk+1] ;
-int recd [nn], data [kk], bb [nn-kk] ;
+int recd [nn], data [kk], bb [nn-kk], copy_recd [nn] ;
+int n_bits_added_byte=0;
+int n_filled_bytes=0;
+int temp_byte=0;
 
 
 void generate_gf()
@@ -68,6 +69,7 @@ void generate_gf()
    alpha=2 is the primitive element of GF(2**mm)
 */
  {
+  printf("Generate_GF\n");
    register int i, mask ;
 
   mask = 1 ;
@@ -92,10 +94,12 @@ void generate_gf()
 
 
 void gen_poly()
-/* Obtain the generator polynomial of the tt-error correcting, length
+/* Obtain the generato
+r polynomial of the tt-error correcting, length
   nn=(2**mm -1) Reed Solomon code  from the product of (X+alpha**i), i=1..2*tt
 */
  {
+  printf("Generate_Poly\n");
    register int i,j ;
 
    gg[0] = 2 ;    /* primitive element alpha = 2  for GF(2**mm)  */
@@ -113,6 +117,7 @@ void gen_poly()
 
 
 void encode_rs()
+
 /* take the string of symbols in data[i], i=0..(k-1) and encode systematically
    to produce 2*tt parity symbols in bb[0]..bb[2*tt-1]
    data[] is input and bb[] is output in polynomial form.
@@ -120,6 +125,7 @@ void encode_rs()
    connections specified by the elements of gg[], which was generated above.
    Codeword is   c(X) = data(X)*X**(nn-kk)+ b(X)          */
  {
+    printf("Encoder\n");
    register int i,j ;
    int feedback ;
 
@@ -343,6 +349,116 @@ void decode_rs()
  }
 
 
+void insert_data(unsigned char info ,int i){
+  data[i]=info;
+  printf("Insert i[%d] = %d \n",i,data[i]);
+}
+
+void insert_data_to_decode(unsigned char info ,int i){
+  recd[i] = info;
+}
+
+/*void get_codeword(){
+  int i;
+  for (i=0; i<nn-kk; i++)  recd[i] = bb[i] ;
+  for (i=0; i<kk; i++) recd[i+nn-kk] = data[i] ;
+
+  for (i = 0; i < nn; ++i)
+  {
+    printf("I=%d\n",recd[i]);
+  }
+}*/
+
+void reset_counts_input_bit(){
+  n_bits_added_byte=0;
+  n_filled_bytes=0;
+  temp_byte=0;
+  for (int i = 0; i < nn; ++i)
+  {
+    recd[i]=0;
+  }
+  
+}
+
+void input_bit_in_received_data(unsigned char bit_to_be_inputed){ //Add received bit in recd and copy_recd vectors
+
+  if(n_bits_added_byte<mm){ //byte (symbol) not filled 
+    temp_byte = (temp_byte << 1) | ((bit_to_be_inputed) & 0x1);
+    n_bits_added_byte=n_bits_added_byte+1;
+
+    if(n_bits_added_byte==mm){ //byte(symbol) filled
+      //printf("STORE_BYTE:= %d\n",temp_byte);
+      recd[n_filled_bytes]=temp_byte; //Store byte in main vector
+      copy_recd[n_filled_bytes]=temp_byte; //Store byte in copy_recd vector to futher shift if it is not found.
+      
+      n_filled_bytes=n_filled_bytes+1; //Symbol complete
+      n_bits_added_byte=0; //reset counts
+      temp_byte=0; //reset counts
+    }
+  }
+}
+
+void shift_and_input_bit_in_received_data(unsigned char bit_to_be_inputed){
+
+  for (int i = 0; i < (nn-1); i++){
+   // printf("rec[%d]=%d\n",i,recd[i]);
+    //printf("Shift<<: %d\n", recd[i] << 1);
+    //printf("New_bit: %d\n",(recd[i+1]>>4) & 0x1);
+    copy_recd[i]= (copy_recd[i] << 1) | (((copy_recd[i+1]>>4) & 0x1F)); //mask 00011111
+    //printf("Result: %d\n", recd[i]);
+    copy_recd[i]= (copy_recd[i]&0x1F);
+    recd[i]= copy_recd[i];
+
+    //printf("Result_clean: %d\n", recd[i]);
+    //printf("rec[%d]=%d\n",i,recd[i]);
+  }
+  copy_recd[30]=((copy_recd[30] << 1) | (bit_to_be_inputed & 0x1F)) ;
+  copy_recd[30]=(copy_recd[30] & 0x1F);
+  recd[30]=copy_recd[30];
+
+  /*for (int i = 0; i < nn; ++i){ //Set copy shifted in the main vector to be decoded next 
+    recd[i]=copy_recd[i];
+  }*/
+}
+
+
+void print_codeword(){
+  for (int i = 0; i < nn; ++i)
+  {
+    printf("Codeword [%d] = %d\n",i,recd[i]);
+  }
+}
+
+void decode_costum(){
+
+  for (int i = 0; i < nn; ++i){
+    //copy_recd[i]=recd[i];   //Make a copy, to futher shift if not found.
+    recd[i] = index_of[recd[i]]; //put recd[i] into index form 
+  }
+  decode_rs();
+  }
+
+
+void print_message_decoded(){
+  for (int i = 0; i < kk; ++i)
+  {
+    printf("Message_decoded = %d --- ",recd[i]);
+  }
+}
+
+void decode_information_inserted(){
+  int i=0;
+  for (i=0; i<nn; i++)     recd[i] = index_of[recd[i]] ;          /* put recd[i] into index form */
+  decode_rs() ;
+}
+
+
+int * get_codeword(){
+  int i=0;
+  for (i=0; i<nn-kk; i++)  recd[i] = bb[i] ;
+  for (i=0; i<kk; i++) recd[i+nn-kk] = data[i] ;
+  return recd;
+}
 
 main()
 {
@@ -366,13 +482,13 @@ main()
 for  (i=0; i<kk; i++)   data[i] = 0 ;
 
 /* for example, say we transmit the following message (nothing special!) */
-data[0] = 8 ;
+/*data[0] = 8 ;
 data[1] = 6 ;
 data[2] = 8 ;
 data[3] = 1 ;
 data[4] = 2 ;
 data[5] = 4 ;
-data[6] = 15 ;
+data[6] = 16 ;
 data[7] = 9 ;
 data[8] = 9 ;
 data[9] = 8 ;
@@ -380,13 +496,37 @@ data[10] = 6 ;
 data[11] = 6 ;
 data[12] = 8 ;
 data[13] = 1 ;
-data[14] = 2 ;
+data[14] = 17 ;
 data[15] = 4 ;
 data[16] = 15 ;
 data[17] = 9 ;
 data[18] = 9 ;
 data[19] = 9 ;
-data[20] = 15 ;
+data[20] = 15 ;*/
+
+data[0] = 21 ;
+data[1] = 19 ;
+data[2] = 14 ;
+data[3] = 26 ;
+data[4] = 9 ;
+data[5] = 24 ;
+data[6] = 23 ;
+data[7] = 18 ;
+data[8] = 17 ;
+data[9] = 16 ;
+data[10] = 16 ;
+data[11] = 15 ;
+data[12] = 24 ;
+data[13] = 0 ;
+data[14] = 4 ;
+data[15] = 4 ;
+data[16] = 0 ;
+data[17] = 2 ;
+data[18] = 2 ;
+data[19] = 0 ;
+data[20] = 0 ;
+
+
 
 /* encode data[] to produce parity in bb[].  Data input and parity output
    is in polynomial form
@@ -400,7 +540,9 @@ data[20] = 15 ;
 /* if you want to test the program, corrupt some of the elements of recd[]
    here. This can also be done easily in a debugger. */
 /* Again, lets say that a middle element is changed */
-  data[nn-nn/2] = 3 ;
+ // data[nn-nn/2] = 1 ;
+  //data[nn-nn/2+1] = 1 ;
+
 
 
   for (i=0; i<nn; i++)
