@@ -1,0 +1,81 @@
+OK
+
+So if you look at this FG, both the header & payload go through the same decoding (post H/P demux):
+6:13
+FFT -> Channel estimation -> Eq -> Serializer -> Const Decoder
+6:13
+the ordering is important!
+6:14
+the ChanEst needs to come before anything else, and then those parameters used for Eq
+6:15
+you have access to the correlation code, which can be used to do the ChanEst, and then do Eq
+6:15
+you still need to do the clock sync & stuff, to get symbol & frequency alignment
+6:16
+but once you have those, then use the TX signal knowledge to equalize the channel out
+6:16
+that should take care of the differential issue
+6:17
+also remember that the costas loop is only good for *PSK symbols … if you want to move to *QAM, then you’ll need to use some other method
+6:18
+the above will take a bit of work, but once you do get it working, it’ll be a lot more robust than you current method
+
+
+Ok, I will take a look and then I tell you something.
+6:37
+Thanks
+
+indianam1ke  6:38 PM
+:+2: YW!
+
+indianam1ke  8:37 PM
+Check out this presentation … could be really useful for you!
+
+Hello! Firslty thanks for the help.
+I took a look into the FG that you send. However, that is OFDM, I want use only QPSK modulation without OFDM. I already try to use "Correlation Estimator" to remove the phase ambiguity but I did not get it work. (edited) 
+
+indianam1ke  1:48 PM
+Yes, I know my FG is OFDM. I’m -not- saying you should use OFDM & I know you’re using QPSK. What I’m saying is that you should find a way to replicate what OFDM is doing with respect to decoding: since you know the “sync code(s)“, use those to do channel estimation and then equalization, -then- do the rest of what you’d normally do. you still need all of the sync stuff before all of that, of course. the missing piece here is the “H/P demux” equivalent: you need -some- basic sync code detection before doing channel estimation. fun times ahead!
+
+André Silva  2:59 PM
+yes, but for do the "channel estimation" it is required the "Channel estimator" block, right?
+
+indianam1ke  3:04 PM
+could be … I mean a channel estimator just takes the known sync code(s) & uses them to create the ChanEst parameters
+3:05
+you could probably use the OFDM ones … just have to vectorize to the sync code length
+
+André Silva  3:05 PM
+Humm, I never get the "Channel Estimator" working correctly. I will take a look on the OFDM ones.
+3:07
+Meanwhile, you do not know how to remove the phase ambiguity like I was trying to do? (previously by encoding the symbol difference, now by encoding the phase difference?)
+
+indianam1ke  3:08 PM
+If you can get the pre-sync stuff working, then to ChanEst -> Eq, then you have no phase ambiguity. that’s why OFDM works as well as it does
+
+André Silva  3:13 PM
+okok, I will take a look. Thanks a lot for the help.
+
+indianam1ke  3:13 PM
+:thumbsup_all:
+
+
+indianam1ke  9:48 PM
+Yoy might find this blog post interesting: https://destevez.net/2020/02/simulating-the-ted-gain-for-a-polyphase-matched-filter/
+9:50
+Daniel is the creator of gr-satellites, which can decode a lot of satellite signals … so it needs very good sync detection and the like.
+
+André Silva  9:33 AM
+Hello! It's holyday here in portugal. But I will take a look when I get back to work. Thanks for remember me.  :slightly_smiling_face:
+
+indianam1ke  2:25 PM
+:+1::skin-tone-4:
+2:25
+Have a great holiday!
+2:25
+I’m traveling to Austin TX today. Back Friday. For work. Lots of meetings Tu W Th ...
+
+
+
+
+

@@ -1,5 +1,5 @@
 int main(int argc, char *argv[]) {
-	float value=1104;
+	float value=1100;
 	float result=0;
 	for (int i = 1; i < 32; ++i)
 	{
