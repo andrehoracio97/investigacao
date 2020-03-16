@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.13">
+  <compound refid="classgr_1_1puncture64__cpp_1_1depuncture64" kind="class"><name>gr::puncture64_cpp::depuncture64</name>
+    <member refid="classgr_1_1puncture64__cpp_1_1depuncture64_1a52f61930b68e58058e5259784f4ce5e2" kind="typedef"><name>sptr</name></member>
+    <member refid="classgr_1_1puncture64__cpp_1_1depuncture64_1ac25cfca5e23674ae9acf258418baf898" kind="function"><name>make</name></member>
+  </compound>
+  <compound refid="classgr_1_1puncture64__cpp_1_1depuncture64__impl" kind="class"><name>gr::puncture64_cpp::depuncture64_impl</name>
+    <member refid="classgr_1_1puncture64__cpp_1_1depuncture64__impl_1a3c0731520381e999b01c6b01a7656f7a" kind="variable"><name>d_puncsize</name></member>
+    <member refid="classgr_1_1puncture64__cpp_1_1depuncture64__impl_1a94b8f9a7c2896020076f5689969146db" kind="variable"><name>d_puncholes</name></member>
+    <member refid="classgr_1_1puncture64__cpp_1_1depuncture64__impl_1a52e6b68f0b680f457657a414e9faee0b" kind="variable"><name>d_puncpat</name></member>
+    <member refid="classgr_1_1puncture64__cpp_1_1depuncture64__impl_1abda7b9db2009444484fe6c48654ec8e0" kind="variable"><name>d_sym</name></member>
+    <member refid="classgr_1_1puncture64__cpp_1_1depuncture64__impl_1a37d6bc4e2cd181d639f321e7c5ef0b50" kind="function"><name>depuncture64_impl</name></member>
+    <member refid="classgr_1_1puncture64__cpp_1_1depuncture64__impl_1ad9f67b7f0e078e4bce43b142c586935f" kind="function"><name>~depuncture64_impl</name></member>
+    <member refid="classgr_1_1puncture64__cpp_1_1depuncture64__impl_1a1b87ce2762281ab183048a6070c2a27c" kind="function"><name>forecast</name></member>
+    <member refid="classgr_1_1puncture64__cpp_1_1depuncture64__impl_1afd642e3f138efe2fef3b2e7173baea62" kind="function"><name>general_work</name></member>
+    <member refid="classgr_1_1puncture64__cpp_1_1depuncture64__impl_1afc086ac94055cb1a6b4b437a129b6495" kind="function"><name>fixed_rate_ninput_to_noutput</name></member>
+    <member refid="classgr_1_1puncture64__cpp_1_1depuncture64__impl_1a0941daa9ba3c5ccbb7df828bef8a8682" kind="function"><name>fixed_rate_noutput_to_ninput</name></member>
+  </compound>
+  <compound refid="classgr_1_1puncture64__cpp_1_1puncture64" kind="class"><name>gr::puncture64_cpp::puncture64</name>
+    <member refid="classgr_1_1puncture64__cpp_1_1puncture64_1a8dada013c83f4bc6e38f439b42c3f2f3" kind="typedef"><name>sptr</name></member>
+    <member refid="classgr_1_1puncture64__cpp_1_1puncture64_1a8c94a85577ca776fb93a3f67465c68ea" kind="function"><name>make</name></member>
+  </compound>
+  <compound refid="classgr_1_1puncture64__cpp_1_1puncture64__impl" kind="class"><name>gr::puncture64_cpp::puncture64_impl</name>
+    <member refid="classgr_1_1puncture64__cpp_1_1puncture64__impl_1a449d19192eb8e4015f076cd7024ea057" kind="variable"><name>d_puncsize</name></member>
+    <member refid="classgr_1_1puncture64__cpp_1_1puncture64__impl_1ac845dce2c3159ada7aac8a928268631c" kind="variable"><name>d_puncholes</name></member>
+    <member refid="classgr_1_1puncture64__cpp_1_1puncture64__impl_1a0fee8f674bcf9a0ce37bbd0bffaf3587" kind="variable"><name>d_puncpat</name></member>
+    <member refid="classgr_1_1puncture64__cpp_1_1puncture64__impl_1ad5d20b8f9576be9dc7f3a8b07ffdb26f" kind="function"><name>puncture64_impl</name></member>
+    <member refid="classgr_1_1puncture64__cpp_1_1puncture64__impl_1aabe2e3f8f7ae47f879299028a124ba31" kind="function"><name>~puncture64_impl</name></member>
+    <member refid="classgr_1_1puncture64__cpp_1_1puncture64__impl_1a7f1012007d5f492dfd984f0918dfd941" kind="function"><name>forecast</name></member>
+    <member refid="classgr_1_1puncture64__cpp_1_1puncture64__impl_1ad085b88fb497fd9f7685519082d6b967" kind="function"><name>general_work</name></member>
+    <member refid="classgr_1_1puncture64__cpp_1_1puncture64__impl_1a2ae72b922acccf972349b413755f9b7c" kind="function"><name>fixed_rate_ninput_to_noutput</name></member>
+    <member refid="classgr_1_1puncture64__cpp_1_1puncture64__impl_1a9f2c7bb2269342b2205aeeab0cc3b0fc" kind="function"><name>fixed_rate_noutput_to_ninput</name></member>
+  </compound>
+  <compound refid="namespacegr" kind="namespace"><name>gr</name>
+  </compound>
+  <compound refid="namespacegr_1_1puncture64__cpp" kind="namespace"><name>gr::puncture64_cpp</name>
+  </compound>
+  <compound refid="namespacestd" kind="namespace"><name>std</name>
+  </compound>
+  <compound refid="api_8h" kind="file"><name>api.h</name>
+    <member refid="api_8h_1a7572c59b433b70268eb5f5835ff5589e" kind="define"><name>PUNCTURE64_CPP_API</name></member>
+  </compound>
+  <compound refid="depuncture64_8h" kind="file"><name>depuncture64.h</name>
+  </compound>
+  <compound refid="depuncture64__impl_8h" kind="file"><name>depuncture64_impl.h</name>
+  </compound>
+  <compound refid="group__defs_8dox" kind="file"><name>group_defs.dox</name>
+  </compound>
+  <compound refid="main__page_8dox" kind="file"><name>main_page.dox</name>
+  </compound>
+  <compound refid="puncture64_8h" kind="file"><name>puncture64.h</name>
+  </compound>
+  <compound refid="puncture64__impl_8h" kind="file"><name>puncture64_impl.h</name>
+  </compound>
+  <compound refid="group__block" kind="group"><name>block</name>
+  </compound>
+  <compound refid="dir_d44c64559bbebec7f509842c48db8b23" kind="dir"><name>include</name>
+  </compound>
+  <compound refid="dir_97aefd0d527b934f1d99a682da8fe6a9" kind="dir"><name>lib</name>
+  </compound>
+  <compound refid="dir_e4955e5b75f180389c66f70f7b3f1065" kind="dir"><name>puncture64_cpp</name>
+  </compound>
+  <compound refid="indexpage" kind="page"><name>index</name>
+  </compound>
+</doxygenindex>

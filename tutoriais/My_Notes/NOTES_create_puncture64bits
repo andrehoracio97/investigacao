@@ -1,0 +1,17 @@
+gr_modtool newmod puncture64_cpp
+cd gr-puncture64_cpp/
+
+
+gr_modtool add puncture64
+
+general
+cpp
+Andre
+int puncsize, uint64_t puncpat
+
+
+gr_modtool add depuncture64
+general
+cpp
+Andre
+int puncsize, uint64_t puncpat, char sym

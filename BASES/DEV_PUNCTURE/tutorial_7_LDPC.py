@@ -27,6 +27,7 @@ from gnuradio.eng_option import eng_option
 from gnuradio.filter import firdes
 from optparse import OptionParser
 import pmt
+import puncture64_cpp
 import sys
 from gnuradio import qtgui
 
@@ -78,9 +79,9 @@ class tutorial_7_LDPC(gr.top_block, Qt.QWidget):
 
         self.rx_rrc_taps = rx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts*sps, 1.0, eb, 11*sps*nfilts)
 
-        self.punc_size = punc_size = 31
+        self.punc_size = punc_size = 34
         self.punc_replace = punc_replace = 127
-        self.punc_pattern = punc_pattern = 2147483646
+        self.punc_pattern = punc_pattern = 17179869182
 
 
         self.pld_enc = pld_enc = map((lambda a: fec.ldpc_par_mtrx_encoder_make_H(H)), range(0,4))
@@ -93,10 +94,9 @@ class tutorial_7_LDPC(gr.top_block, Qt.QWidget):
         ##################################################
         # Blocks
         ##################################################
-        self.fec_puncture_xx_0 = fec.puncture_bb(punc_size, punc_pattern, 0)
-        self.fec_depuncture_bb_0 = fec.depuncture_bb(punc_size, punc_pattern, 0, punc_replace)
+        self.puncture64_cpp_puncture64_1 = puncture64_cpp.puncture64(punc_size, punc_pattern)
+        self.puncture64_cpp_depuncture64_0 = puncture64_cpp.depuncture64(punc_size, punc_pattern, 127)
         self.blocks_repack_bits_bb_1_0_0_1 = blocks.repack_bits_bb(8, 1, '', False, gr.GR_MSB_FIRST)
-        self.blocks_repack_bits_bb_0_0_0 = blocks.repack_bits_bb(1, 8, '', False, gr.GR_MSB_FIRST)
         self.blocks_file_source_0_0_1_0_0_1 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Desktop/Files_To_Transmit/sequence55bytes_abc.txt', False)
         self.blocks_file_source_0_0_1_0_0_1.set_begin_tag(pmt.PMT_NIL)
         self.blocks_file_sink_2_0_0 = blocks.file_sink(gr.sizeof_char*1, '/home/andre/Desktop/Trasmited/seq_unpacked_depunc.txt', False)
@@ -105,8 +105,6 @@ class tutorial_7_LDPC(gr.top_block, Qt.QWidget):
         self.blocks_file_sink_2_0.set_unbuffered(False)
         self.blocks_file_sink_2 = blocks.file_sink(gr.sizeof_char*1, '/home/andre/Desktop/Trasmited/seq_unpacked.txt', False)
         self.blocks_file_sink_2.set_unbuffered(False)
-        self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_char*1, '/home/andre/Desktop/Trasmited/depois.txt', False)
-        self.blocks_file_sink_0.set_unbuffered(False)
 
 
 
@@ -114,13 +112,11 @@ class tutorial_7_LDPC(gr.top_block, Qt.QWidget):
         # Connections
         ##################################################
         self.connect((self.blocks_file_source_0_0_1_0_0_1, 0), (self.blocks_repack_bits_bb_1_0_0_1, 0))
-        self.connect((self.blocks_repack_bits_bb_0_0_0, 0), (self.blocks_file_sink_0, 0))
         self.connect((self.blocks_repack_bits_bb_1_0_0_1, 0), (self.blocks_file_sink_2, 0))
-        self.connect((self.blocks_repack_bits_bb_1_0_0_1, 0), (self.fec_puncture_xx_0, 0))
-        self.connect((self.fec_depuncture_bb_0, 0), (self.blocks_file_sink_2_0_0, 0))
-        self.connect((self.fec_depuncture_bb_0, 0), (self.blocks_repack_bits_bb_0_0_0, 0))
-        self.connect((self.fec_puncture_xx_0, 0), (self.blocks_file_sink_2_0, 0))
-        self.connect((self.fec_puncture_xx_0, 0), (self.fec_depuncture_bb_0, 0))
+        self.connect((self.blocks_repack_bits_bb_1_0_0_1, 0), (self.puncture64_cpp_puncture64_1, 0))
+        self.connect((self.puncture64_cpp_depuncture64_0, 0), (self.blocks_file_sink_2_0_0, 0))
+        self.connect((self.puncture64_cpp_puncture64_1, 0), (self.blocks_file_sink_2_0, 0))
+        self.connect((self.puncture64_cpp_puncture64_1, 0), (self.puncture64_cpp_depuncture64_0, 0))
 
     def closeEvent(self, event):
         self.settings = Qt.QSettings("GNU Radio", "tutorial_7_LDPC")

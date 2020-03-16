@@ -1,0 +1,30 @@
+INCLUDE(FindPkgConfig)
+PKG_CHECK_MODULES(PC_PUNCTURE64_CPP puncture64_cpp)
+
+FIND_PATH(
+    PUNCTURE64_CPP_INCLUDE_DIRS
+    NAMES puncture64_cpp/api.h
+    HINTS $ENV{PUNCTURE64_CPP_DIR}/include
+        ${PC_PUNCTURE64_CPP_INCLUDEDIR}
+    PATHS ${CMAKE_INSTALL_PREFIX}/include
+          /usr/local/include
+          /usr/include
+)
+
+FIND_LIBRARY(
+    PUNCTURE64_CPP_LIBRARIES
+    NAMES gnuradio-puncture64_cpp
+    HINTS $ENV{PUNCTURE64_CPP_DIR}/lib
+        ${PC_PUNCTURE64_CPP_LIBDIR}
+    PATHS ${CMAKE_INSTALL_PREFIX}/lib
+          ${CMAKE_INSTALL_PREFIX}/lib64
+          /usr/local/lib
+          /usr/local/lib64
+          /usr/lib
+          /usr/lib64
+)
+
+INCLUDE(FindPackageHandleStandardArgs)
+FIND_PACKAGE_HANDLE_STANDARD_ARGS(PUNCTURE64_CPP DEFAULT_MSG PUNCTURE64_CPP_LIBRARIES PUNCTURE64_CPP_INCLUDE_DIRS)
+MARK_AS_ADVANCED(PUNCTURE64_CPP_LIBRARIES PUNCTURE64_CPP_INCLUDE_DIRS)
+

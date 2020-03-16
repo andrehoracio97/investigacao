@@ -1,0 +1,7 @@
+/*!
+ * \defgroup block GNU Radio PUNCTURE64_CPP C++ Signal Processing Blocks
+ * \brief All C++ blocks that can be used from the PUNCTURE64_CPP GNU Radio
+ *        module are listed here or in the subcategories below.
+ *
+ */
+

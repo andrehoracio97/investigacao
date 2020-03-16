@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="namespacegr_1_1puncture64__cpp" kind="namespace" language="C++">
+    <compoundname>gr::puncture64_cpp</compoundname>
+    <innerclass refid="classgr_1_1puncture64__cpp_1_1depuncture64" prot="public">gr::puncture64_cpp::depuncture64</innerclass>
+    <innerclass refid="classgr_1_1puncture64__cpp_1_1depuncture64__impl" prot="public">gr::puncture64_cpp::depuncture64_impl</innerclass>
+    <innerclass refid="classgr_1_1puncture64__cpp_1_1puncture64" prot="public">gr::puncture64_cpp::puncture64</innerclass>
+    <innerclass refid="classgr_1_1puncture64__cpp_1_1puncture64__impl" prot="public">gr::puncture64_cpp::puncture64_impl</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/andre/investigacao/OOT/gr-puncture64_cpp/include/puncture64_cpp/depuncture64.h" line="29" column="1"/>
+  </compounddef>
+</doxygen>

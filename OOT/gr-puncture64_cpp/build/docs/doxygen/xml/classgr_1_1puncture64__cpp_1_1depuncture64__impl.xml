@@ -1,0 +1,239 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classgr_1_1puncture64__cpp_1_1depuncture64__impl" kind="class" language="C++" prot="public">
+    <compoundname>gr::puncture64_cpp::depuncture64_impl</compoundname>
+    <basecompoundref refid="classgr_1_1puncture64__cpp_1_1depuncture64" prot="public" virt="non-virtual">gr::puncture64_cpp::depuncture64</basecompoundref>
+    <includes refid="depuncture64__impl_8h" local="no">depuncture64_impl.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classgr_1_1puncture64__cpp_1_1depuncture64__impl_1a3c0731520381e999b01c6b01a7656f7a" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int gr::puncture64_cpp::depuncture64_impl::d_puncsize</definition>
+        <argsstring></argsstring>
+        <name>d_puncsize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-puncture64_cpp/lib/depuncture64_impl.h" line="32" column="1" bodyfile="/home/andre/investigacao/OOT/gr-puncture64_cpp/lib/depuncture64_impl.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1puncture64__cpp_1_1depuncture64__impl_1a94b8f9a7c2896020076f5689969146db" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int gr::puncture64_cpp::depuncture64_impl::d_puncholes</definition>
+        <argsstring></argsstring>
+        <name>d_puncholes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-puncture64_cpp/lib/depuncture64_impl.h" line="34" column="1" bodyfile="/home/andre/investigacao/OOT/gr-puncture64_cpp/lib/depuncture64_impl.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1puncture64__cpp_1_1depuncture64__impl_1a52e6b68f0b680f457657a414e9faee0b" prot="private" static="no" mutable="no">
+        <type>uint64_t</type>
+        <definition>uint64_t gr::puncture64_cpp::depuncture64_impl::d_puncpat</definition>
+        <argsstring></argsstring>
+        <name>d_puncpat</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-puncture64_cpp/lib/depuncture64_impl.h" line="35" column="1" bodyfile="/home/andre/investigacao/OOT/gr-puncture64_cpp/lib/depuncture64_impl.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1puncture64__cpp_1_1depuncture64__impl_1abda7b9db2009444484fe6c48654ec8e0" prot="private" static="no" mutable="no">
+        <type>char</type>
+        <definition>char gr::puncture64_cpp::depuncture64_impl::d_sym</definition>
+        <argsstring></argsstring>
+        <name>d_sym</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-puncture64_cpp/lib/depuncture64_impl.h" line="36" column="1" bodyfile="/home/andre/investigacao/OOT/gr-puncture64_cpp/lib/depuncture64_impl.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classgr_1_1puncture64__cpp_1_1depuncture64__impl_1a37d6bc4e2cd181d639f321e7c5ef0b50" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>gr::puncture64_cpp::depuncture64_impl::depuncture64_impl</definition>
+        <argsstring>(int puncsize, uint64_t puncpat, char sym)</argsstring>
+        <name>depuncture64_impl</name>
+        <param>
+          <type>int</type>
+          <declname>puncsize</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>puncpat</declname>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>sym</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-puncture64_cpp/lib/depuncture64_impl.h" line="39" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1puncture64__cpp_1_1depuncture64__impl_1ad9f67b7f0e078e4bce43b142c586935f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>gr::puncture64_cpp::depuncture64_impl::~depuncture64_impl</definition>
+        <argsstring>()</argsstring>
+        <name>~depuncture64_impl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-puncture64_cpp/lib/depuncture64_impl.h" line="40" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1puncture64__cpp_1_1depuncture64__impl_1a1b87ce2762281ab183048a6070c2a27c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void gr::puncture64_cpp::depuncture64_impl::forecast</definition>
+        <argsstring>(int noutput_items, gr_vector_int &amp;ninput_items_required)</argsstring>
+        <name>forecast</name>
+        <param>
+          <type>int</type>
+          <declname>noutput_items</declname>
+        </param>
+        <param>
+          <type>gr_vector_int &amp;</type>
+          <declname>ninput_items_required</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-puncture64_cpp/lib/depuncture64_impl.h" line="43" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1puncture64__cpp_1_1depuncture64__impl_1afd642e3f138efe2fef3b2e7173baea62" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int gr::puncture64_cpp::depuncture64_impl::general_work</definition>
+        <argsstring>(int noutput_items, gr_vector_int &amp;ninput_items, gr_vector_const_void_star &amp;input_items, gr_vector_void_star &amp;output_items)</argsstring>
+        <name>general_work</name>
+        <param>
+          <type>int</type>
+          <declname>noutput_items</declname>
+        </param>
+        <param>
+          <type>gr_vector_int &amp;</type>
+          <declname>ninput_items</declname>
+        </param>
+        <param>
+          <type>gr_vector_const_void_star &amp;</type>
+          <declname>input_items</declname>
+        </param>
+        <param>
+          <type>gr_vector_void_star &amp;</type>
+          <declname>output_items</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-puncture64_cpp/lib/depuncture64_impl.h" line="45" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1puncture64__cpp_1_1depuncture64__impl_1afc086ac94055cb1a6b4b437a129b6495" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int gr::puncture64_cpp::depuncture64_impl::fixed_rate_ninput_to_noutput</definition>
+        <argsstring>(int ninput)</argsstring>
+        <name>fixed_rate_ninput_to_noutput</name>
+        <param>
+          <type>int</type>
+          <declname>ninput</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-puncture64_cpp/lib/depuncture64_impl.h" line="49" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1puncture64__cpp_1_1depuncture64__impl_1a0941daa9ba3c5ccbb7df828bef8a8682" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int gr::puncture64_cpp::depuncture64_impl::fixed_rate_noutput_to_ninput</definition>
+        <argsstring>(int noutput)</argsstring>
+        <name>fixed_rate_noutput_to_ninput</name>
+        <param>
+          <type>int</type>
+          <declname>noutput</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/andre/investigacao/OOT/gr-puncture64_cpp/lib/depuncture64_impl.h" line="50" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="5">
+        <label>gr::puncture64_cpp::depuncture64_impl</label>
+        <link refid="classgr_1_1puncture64__cpp_1_1depuncture64__impl"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>gr::puncture64_cpp::depuncture64</label>
+        <link refid="classgr_1_1puncture64__cpp_1_1depuncture64"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>block</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="8">
+        <label>gr::puncture64_cpp::depuncture64_impl</label>
+        <link refid="classgr_1_1puncture64__cpp_1_1depuncture64__impl"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>gr::puncture64_cpp::depuncture64</label>
+        <link refid="classgr_1_1puncture64__cpp_1_1depuncture64"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>block</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/andre/investigacao/OOT/gr-puncture64_cpp/lib/depuncture64_impl.h" line="30" column="1" bodyfile="/home/andre/investigacao/OOT/gr-puncture64_cpp/lib/depuncture64_impl.h" bodystart="29" bodyend="51"/>
+    <listofallmembers>
+      <member refid="classgr_1_1puncture64__cpp_1_1depuncture64__impl_1a94b8f9a7c2896020076f5689969146db" prot="private" virt="non-virtual"><scope>gr::puncture64_cpp::depuncture64_impl</scope><name>d_puncholes</name></member>
+      <member refid="classgr_1_1puncture64__cpp_1_1depuncture64__impl_1a52e6b68f0b680f457657a414e9faee0b" prot="private" virt="non-virtual"><scope>gr::puncture64_cpp::depuncture64_impl</scope><name>d_puncpat</name></member>
+      <member refid="classgr_1_1puncture64__cpp_1_1depuncture64__impl_1a3c0731520381e999b01c6b01a7656f7a" prot="private" virt="non-virtual"><scope>gr::puncture64_cpp::depuncture64_impl</scope><name>d_puncsize</name></member>
+      <member refid="classgr_1_1puncture64__cpp_1_1depuncture64__impl_1abda7b9db2009444484fe6c48654ec8e0" prot="private" virt="non-virtual"><scope>gr::puncture64_cpp::depuncture64_impl</scope><name>d_sym</name></member>
+      <member refid="classgr_1_1puncture64__cpp_1_1depuncture64__impl_1a37d6bc4e2cd181d639f321e7c5ef0b50" prot="public" virt="non-virtual"><scope>gr::puncture64_cpp::depuncture64_impl</scope><name>depuncture64_impl</name></member>
+      <member refid="classgr_1_1puncture64__cpp_1_1depuncture64__impl_1afc086ac94055cb1a6b4b437a129b6495" prot="public" virt="non-virtual"><scope>gr::puncture64_cpp::depuncture64_impl</scope><name>fixed_rate_ninput_to_noutput</name></member>
+      <member refid="classgr_1_1puncture64__cpp_1_1depuncture64__impl_1a0941daa9ba3c5ccbb7df828bef8a8682" prot="public" virt="non-virtual"><scope>gr::puncture64_cpp::depuncture64_impl</scope><name>fixed_rate_noutput_to_ninput</name></member>
+      <member refid="classgr_1_1puncture64__cpp_1_1depuncture64__impl_1a1b87ce2762281ab183048a6070c2a27c" prot="public" virt="non-virtual"><scope>gr::puncture64_cpp::depuncture64_impl</scope><name>forecast</name></member>
+      <member refid="classgr_1_1puncture64__cpp_1_1depuncture64__impl_1afd642e3f138efe2fef3b2e7173baea62" prot="public" virt="non-virtual"><scope>gr::puncture64_cpp::depuncture64_impl</scope><name>general_work</name></member>
+      <member refid="classgr_1_1puncture64__cpp_1_1depuncture64_1ac25cfca5e23674ae9acf258418baf898" prot="public" virt="non-virtual"><scope>gr::puncture64_cpp::depuncture64_impl</scope><name>make</name></member>
+      <member refid="classgr_1_1puncture64__cpp_1_1depuncture64_1a52f61930b68e58058e5259784f4ce5e2" prot="public" virt="non-virtual"><scope>gr::puncture64_cpp::depuncture64_impl</scope><name>sptr</name></member>
+      <member refid="classgr_1_1puncture64__cpp_1_1depuncture64__impl_1ad9f67b7f0e078e4bce43b142c586935f" prot="public" virt="non-virtual"><scope>gr::puncture64_cpp::depuncture64_impl</scope><name>~depuncture64_impl</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

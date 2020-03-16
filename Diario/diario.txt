@@ -226,8 +226,12 @@ Semana Março
 5- Implementação Reed Solomon
 
 Semana
-9- Continuação da iplementação do Reed Solomon.
+9- Continuação da implementação do Reed Solomon.
 10-Conclusão CAC custom, a funcionar direitinho - Acho eu.
 11- Manha tratar Residencia. Reunião Prof, ver Puncturing. 
 12-Manha tratar Residencia- Tarde Ver Puncturing e Criar script para me dar o header pronto a colocar no GR - Concluido. Alguns Testes com puncturing, mais lento. 
 
+
+Semana - CASA
+16- Montar equipamento todo. Ver puncturing com 64 bits - Concluido
+17- 

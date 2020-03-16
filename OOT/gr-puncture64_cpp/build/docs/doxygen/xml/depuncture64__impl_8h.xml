@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="depuncture64__impl_8h" kind="file" language="C++">
+    <compoundname>depuncture64_impl.h</compoundname>
+    <includes refid="depuncture64_8h" local="no">puncture64_cpp/depuncture64.h</includes>
+    <incdepgraph>
+      <node id="13">
+        <label>depuncture64_impl.h</label>
+        <link refid="depuncture64__impl_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>gnuradio/attributes.h</label>
+      </node>
+      <node id="15">
+        <label>puncture64_cpp/api.h</label>
+        <link refid="api_8h"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>gnuradio/block.h</label>
+      </node>
+      <node id="14">
+        <label>puncture64_cpp/depuncture64.h</label>
+        <link refid="depuncture64_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classgr_1_1puncture64__cpp_1_1depuncture64__impl" prot="public">gr::puncture64_cpp::depuncture64_impl</innerclass>
+    <innernamespace refid="namespacegr">gr</innernamespace>
+    <innernamespace refid="namespacegr_1_1puncture64__cpp">gr::puncture64_cpp</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/andre/investigacao/OOT/gr-puncture64_cpp/lib/depuncture64_impl.h"/>
+  </compounddef>
+</doxygen>

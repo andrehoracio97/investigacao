@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<block>
+  <name>depuncture64</name>
+  <key>puncture64_cpp_depuncture64</key>
+  <category>[puncture64_cpp]</category>
+  <import>import puncture64_cpp</import>
+  <make>puncture64_cpp.depuncture64($puncsize, $puncpat, $sym)</make>
+  <!-- Make one 'param' node for every Parameter you want settable from the GUI.
+       Sub-nodes:
+       * name
+       * key (makes the value accessible as $keyname, e.g. in the make node)
+       * type -->
+
+  <param>
+    <name>Puncture Size</name>
+    <key>puncsize</key>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>Puncture Pattern</name>
+    <key>puncpat</key>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>Symbol</name>
+    <key>sym</key>
+    <value>127</value>
+    <type>int</type>
+    <hide>part</hide>
+  </param>
+
+  <sink>
+    <name>in</name>
+    <type>byte</type>
+  </sink>
+
+  <source>
+    <name>out</name>
+    <type>byte</type>
+  </source>
+</block>
