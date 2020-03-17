@@ -21,6 +21,7 @@
     <key>seed</key>
     <value>0x7F</value>
     <type>hex</type>
+    <hide>part</hide>
   </param>
   <param>
     <name>Lenght</name>
