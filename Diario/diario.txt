@@ -234,4 +234,4 @@ Semana
 
 Semana - CASA
 16- Montar equipamento todo. Ver puncturing com 64 bits - Concluido
-17- 
+17- Organizar tudo. Mudar nomes dos blocos para nomes mais sugestivos. Alterar o additive Scrambler para usar 8 bits de see apenas em vez de 32 bits. Pensar nas metricas. Mandar email ao prof.

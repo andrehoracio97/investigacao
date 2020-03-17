@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="namespacegr_1_1scrambler__cpp" kind="namespace" language="C++">
+    <compoundname>gr::scrambler_cpp</compoundname>
+    <innerclass refid="classgr_1_1scrambler__cpp_1_1additive__descrambler" prot="public">gr::scrambler_cpp::additive_descrambler</innerclass>
+    <innerclass refid="classgr_1_1scrambler__cpp_1_1additive__descrambler__impl" prot="public">gr::scrambler_cpp::additive_descrambler_impl</innerclass>
+    <innerclass refid="classgr_1_1scrambler__cpp_1_1additive__scrambler" prot="public">gr::scrambler_cpp::additive_scrambler</innerclass>
+    <innerclass refid="classgr_1_1scrambler__cpp_1_1additive__scrambler__impl" prot="public">gr::scrambler_cpp::additive_scrambler_impl</innerclass>
+    <innerclass refid="classgr_1_1scrambler__cpp_1_1custom__descrambler" prot="public">gr::scrambler_cpp::custom_descrambler</innerclass>
+    <innerclass refid="classgr_1_1scrambler__cpp_1_1custom__descrambler__impl" prot="public">gr::scrambler_cpp::custom_descrambler_impl</innerclass>
+    <innerclass refid="classgr_1_1scrambler__cpp_1_1custom__scrambler" prot="public">gr::scrambler_cpp::custom_scrambler</innerclass>
+    <innerclass refid="classgr_1_1scrambler__cpp_1_1custom__scrambler__impl" prot="public">gr::scrambler_cpp::custom_scrambler_impl</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/andre/investigacao/OOT/gr-scrambler_cpp/include/scrambler_cpp/additive_descrambler.h" line="29" column="1"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<block>
+  <name>Additive Scrambler With Key</name>
+  <key>scrambler_cpp_additive_scrambler</key>
+  <category>[scrambler_cpp]</category>
+  <import>import scrambler_cpp</import>
+  <make>scrambler_cpp.additive_scrambler($mask, $seed, $len, $frame_bits)</make>
+  <!-- Make one 'param' node for every Parameter you want settable from the GUI.
+       Sub-nodes:
+       * name
+       * key (makes the value accessible as $keyname, e.g. in the make node)
+       * type -->
+  <param>
+    <name>Polinomio</name>
+    <key>mask</key>
+    <value>0x8A</value>
+    <type>hex</type>
+  </param>
+  <param>
+    <name>Seed</name>
+    <key>seed</key>
+    <value>0x7F</value>
+    <type>hex</type>
+    <hide>part</hide>
+  </param>
+  <param>
+    <name>Lenght</name>
+    <key>len</key>
+    <value>7</value>
+    <type>int</type>
+  </param>
+    <param>
+    <name>Frame Bits</name>
+    <key>frame_bits</key>
+    <value>440</value>
+    <type>int</type>
+  </param>
+
+  <!-- Make one 'sink' node per input. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <sink>
+    <name>in</name>
+    <type>byte</type>
+  </sink>
+
+  <!-- Make one 'source' node per output. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <source>
+    <name>out</name>
+    <type>byte</type>
+  </source>
+</block>

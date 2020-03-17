@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.13">
+  <compound refid="classgr_1_1scrambler__cpp_1_1additive__descrambler" kind="class"><name>gr::scrambler_cpp::additive_descrambler</name>
+    <member refid="classgr_1_1scrambler__cpp_1_1additive__descrambler_1a78746813489be0b384723c6b27ca0407" kind="typedef"><name>sptr</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1additive__descrambler_1ad8e20a254a9d8ae6cc8386a74c768789" kind="function"><name>make</name></member>
+  </compound>
+  <compound refid="classgr_1_1scrambler__cpp_1_1additive__scrambler" kind="class"><name>gr::scrambler_cpp::additive_scrambler</name>
+    <member refid="classgr_1_1scrambler__cpp_1_1additive__scrambler_1a66de3c083f80a7e8c88b38767fe8d806" kind="typedef"><name>sptr</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1additive__scrambler_1a03f1846eae526dcb5ec7271b50e6f14e" kind="function"><name>make</name></member>
+  </compound>
+  <compound refid="classgr_1_1scrambler__cpp_1_1custom__descrambler" kind="class"><name>gr::scrambler_cpp::custom_descrambler</name>
+    <member refid="classgr_1_1scrambler__cpp_1_1custom__descrambler_1ab683206796d601ab03c4fc78befca6e8" kind="typedef"><name>sptr</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1custom__descrambler_1a8a9a24cf69396ee08f33ce0b03914424" kind="function"><name>make</name></member>
+  </compound>
+  <compound refid="classgr_1_1scrambler__cpp_1_1custom__scrambler" kind="class"><name>gr::scrambler_cpp::custom_scrambler</name>
+    <member refid="classgr_1_1scrambler__cpp_1_1custom__scrambler_1acb2e86850cbb24a316cdbd63e8b431f5" kind="typedef"><name>sptr</name></member>
+    <member refid="classgr_1_1scrambler__cpp_1_1custom__scrambler_1a3d3540ee73a508c61cbe90b3dcb085f6" kind="function"><name>make</name></member>
+  </compound>
+  <compound refid="namespacegr" kind="namespace"><name>gr</name>
+  </compound>
+  <compound refid="namespacegr_1_1scrambler__cpp" kind="namespace"><name>gr::scrambler_cpp</name>
+  </compound>
+  <compound refid="namespacestd" kind="namespace"><name>std</name>
+  </compound>
+  <compound refid="additive__descrambler_8h" kind="file"><name>additive_descrambler.h</name>
+  </compound>
+  <compound refid="additive__scrambler_8h" kind="file"><name>additive_scrambler.h</name>
+  </compound>
+  <compound refid="api_8h" kind="file"><name>api.h</name>
+    <member refid="api_8h_1a75f5bfb8209fedbd5cb30431f5955a5f" kind="define"><name>SCRAMBLER_CPP_API</name></member>
+  </compound>
+  <compound refid="custom__descrambler_8h" kind="file"><name>custom_descrambler.h</name>
+  </compound>
+  <compound refid="custom__scrambler_8h" kind="file"><name>custom_scrambler.h</name>
+  </compound>
+  <compound refid="dir_d44c64559bbebec7f509842c48db8b23" kind="dir"><name>include</name>
+  </compound>
+  <compound refid="dir_eec20cd2d33e480068c09e037cc9e4b8" kind="dir"><name>scrambler_cpp</name>
+  </compound>
+</doxygenindex>

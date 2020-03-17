@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="dir_eec20cd2d33e480068c09e037cc9e4b8" kind="dir">
+    <compoundname>scrambler_cpp</compoundname>
+    <innerfile refid="additive__descrambler_8h">additive_descrambler.h</innerfile>
+    <innerfile refid="additive__scrambler_8h">additive_scrambler.h</innerfile>
+    <innerfile refid="api_8h">api.h</innerfile>
+    <innerfile refid="custom__descrambler_8h">custom_descrambler.h</innerfile>
+    <innerfile refid="custom__scrambler_8h">custom_scrambler.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/it/investigacao/OOT/gr-scrambler_cpp/include/scrambler_cpp/"/>
+  </compounddef>
+</doxygen>
