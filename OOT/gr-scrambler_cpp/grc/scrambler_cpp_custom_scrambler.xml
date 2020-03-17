@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <block>
-  <name>custom_scrambler</name>
+  <name>Multiplicative Scrambler With Key</name>
   <key>scrambler_cpp_custom_scrambler</key>
   <category>[scrambler_cpp]</category>
   <import>import scrambler_cpp</import>

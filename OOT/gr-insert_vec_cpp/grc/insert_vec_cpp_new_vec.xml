@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <block>
-  <name>new_vec</name>
+  <name>Insert Vector</name>
   <key>insert_vec_cpp_new_vec</key>
   <category>[insert_vec_cpp]</category>
   <import>import insert_vec_cpp</import>

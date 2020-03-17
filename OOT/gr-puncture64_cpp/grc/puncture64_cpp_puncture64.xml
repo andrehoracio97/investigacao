@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <block>
-  <name>puncture64</name>
+  <name>Puncture 64Bits</name>
   <key>puncture64_cpp_puncture64</key>
   <category>[puncture64_cpp]</category>
   <import>import puncture64_cpp</import>

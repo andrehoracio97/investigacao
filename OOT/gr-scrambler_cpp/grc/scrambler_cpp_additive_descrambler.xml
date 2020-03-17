@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <block>
-  <name>additive_descrambler</name>
+  <name>Additive Descrambler With Key</name>
   <key>scrambler_cpp_additive_descrambler</key>
   <category>[scrambler_cpp]</category>
   <import>import scrambler_cpp</import>
