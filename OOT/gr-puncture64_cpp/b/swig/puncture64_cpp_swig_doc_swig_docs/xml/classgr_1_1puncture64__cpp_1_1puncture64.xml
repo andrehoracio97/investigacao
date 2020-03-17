@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classgr_1_1puncture64__cpp_1_1puncture64" kind="class" language="C++" prot="public">
+    <compoundname>gr::puncture64_cpp::puncture64</compoundname>
+    <basecompoundref prot="public" virt="virtual">block</basecompoundref>
+    <includes refid="puncture64_8h" local="no">puncture64.h</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classgr_1_1puncture64__cpp_1_1puncture64_1a8dada013c83f4bc6e38f439b42c3f2f3" prot="public" static="no">
+        <type>boost::shared_ptr&lt; <ref refid="classgr_1_1puncture64__cpp_1_1puncture64" kindref="compound">puncture64</ref> &gt;</type>
+        <definition>typedef boost::shared_ptr&lt;puncture64&gt; gr::puncture64_cpp::puncture64::sptr</definition>
+        <argsstring></argsstring>
+        <name>sptr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/it/investigacao/OOT/gr-puncture64_cpp/include/puncture64_cpp/puncture64.h" line="39" column="1" bodyfile="/home/it/investigacao/OOT/gr-puncture64_cpp/include/puncture64_cpp/puncture64.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classgr_1_1puncture64__cpp_1_1puncture64_1a8c94a85577ca776fb93a3f67465c68ea" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classgr_1_1puncture64__cpp_1_1puncture64_1a8dada013c83f4bc6e38f439b42c3f2f3" kindref="member">sptr</ref></type>
+        <definition>static sptr gr::puncture64_cpp::puncture64::make</definition>
+        <argsstring>(int puncsize, uint64_t puncpat)</argsstring>
+        <name>make</name>
+        <param>
+          <type>int</type>
+          <declname>puncsize</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>puncpat</declname>
+        </param>
+        <briefdescription>
+<para>Return a shared_ptr to a new instance of <ref refid="classgr_1_1puncture64__cpp_1_1puncture64" kindref="compound">puncture64_cpp::puncture64</ref>. </para>        </briefdescription>
+        <detaileddescription>
+<para>To avoid accidental use of raw pointers, <ref refid="classgr_1_1puncture64__cpp_1_1puncture64" kindref="compound">puncture64_cpp::puncture64</ref>&apos;s constructor is in a private implementation class. <ref refid="classgr_1_1puncture64__cpp_1_1puncture64_1a8c94a85577ca776fb93a3f67465c68ea" kindref="member">puncture64_cpp::puncture64::make</ref> is the public interface for creating new instances. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/it/investigacao/OOT/gr-puncture64_cpp/include/puncture64_cpp/puncture64.h" line="49" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>&lt;+description of block+&gt; </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="4">
+        <label>gr::puncture64_cpp::puncture64</label>
+        <link refid="classgr_1_1puncture64__cpp_1_1puncture64"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>gr::block</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="6">
+        <label>gr::puncture64_cpp::puncture64</label>
+        <link refid="classgr_1_1puncture64__cpp_1_1puncture64"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>gr::block</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/it/investigacao/OOT/gr-puncture64_cpp/include/puncture64_cpp/puncture64.h" line="37" column="1" bodyfile="/home/it/investigacao/OOT/gr-puncture64_cpp/include/puncture64_cpp/puncture64.h" bodystart="36" bodyend="50"/>
+    <listofallmembers>
+      <member refid="classgr_1_1puncture64__cpp_1_1puncture64_1a8c94a85577ca776fb93a3f67465c68ea" prot="public" virt="non-virtual"><scope>gr::puncture64_cpp::puncture64</scope><name>make</name></member>
+      <member refid="classgr_1_1puncture64__cpp_1_1puncture64_1a8dada013c83f4bc6e38f439b42c3f2f3" prot="public" virt="non-virtual"><scope>gr::puncture64_cpp::puncture64</scope><name>sptr</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

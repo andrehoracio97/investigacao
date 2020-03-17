@@ -84,6 +84,7 @@ swig/insert_vec_cpp_swig_swig_2d0df.cpp: /usr/local/include/gnuradio/swig/buffer
 swig/insert_vec_cpp_swig_swig_2d0df.cpp: /usr/local/include/gnuradio/swig/gr_swig_block_magic.i
 swig/insert_vec_cpp_swig_swig_2d0df.cpp: /usr/local/include/gnuradio/swig/hier_block2.i
 swig/insert_vec_cpp_swig_swig_2d0df.cpp: /usr/local/include/gnuradio/swig/runtime_swig_doc.i
+swig/insert_vec_cpp_swig_swig_2d0df.cpp: swig/insert_vec_cpp_swig_doc.i
 swig/insert_vec_cpp_swig_swig_2d0df.cpp: /usr/local/include/gnuradio/swig/feval.i
 swig/insert_vec_cpp_swig_swig_2d0df.cpp: /usr/local/include/gnuradio/swig/sync_decimator.i
 swig/insert_vec_cpp_swig_swig_2d0df.cpp: /usr/local/include/gnuradio/swig/gr_logger.i
@@ -91,14 +92,23 @@ swig/insert_vec_cpp_swig_swig_2d0df.cpp: /usr/local/include/gnuradio/swig/prefs.
 swig/insert_vec_cpp_swig_swig_2d0df.cpp: swig/insert_vec_cpp_swig.tag
 	cd /home/it/investigacao/OOT/gr-insert_vec_cpp/b/swig && /usr/bin/cmake -E copy /home/it/investigacao/OOT/gr-insert_vec_cpp/b/swig/insert_vec_cpp_swig_swig_2d0df.cpp.in /home/it/investigacao/OOT/gr-insert_vec_cpp/b/swig/insert_vec_cpp_swig_swig_2d0df.cpp
 
+swig/insert_vec_cpp_swig_doc.i: swig/insert_vec_cpp_swig_doc_swig_docs/xml/index.xml
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/it/investigacao/OOT/gr-insert_vec_cpp/b/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating python docstrings for insert_vec_cpp_swig_doc"
+	cd /home/it/investigacao/OOT/gr-insert_vec_cpp/docs/doxygen && /usr/bin/python2 -B /home/it/investigacao/OOT/gr-insert_vec_cpp/docs/doxygen/swig_doc.py /home/it/investigacao/OOT/gr-insert_vec_cpp/b/swig/insert_vec_cpp_swig_doc_swig_docs/xml /home/it/investigacao/OOT/gr-insert_vec_cpp/b/swig/insert_vec_cpp_swig_doc.i
+
 swig/insert_vec_cpp_swig.tag: swig/_insert_vec_cpp_swig_swig_tag
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/it/investigacao/OOT/gr-insert_vec_cpp/b/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating insert_vec_cpp_swig.tag"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/it/investigacao/OOT/gr-insert_vec_cpp/b/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating insert_vec_cpp_swig.tag"
 	cd /home/it/investigacao/OOT/gr-insert_vec_cpp/b/swig && ./_insert_vec_cpp_swig_swig_tag
 	cd /home/it/investigacao/OOT/gr-insert_vec_cpp/b/swig && /usr/bin/cmake -E touch /home/it/investigacao/OOT/gr-insert_vec_cpp/b/swig/insert_vec_cpp_swig.tag
 
+swig/insert_vec_cpp_swig_doc_swig_docs/xml/index.xml: swig/_insert_vec_cpp_swig_doc_tag
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/it/investigacao/OOT/gr-insert_vec_cpp/b/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating doxygen xml for insert_vec_cpp_swig_doc docs"
+	cd /home/it/investigacao/OOT/gr-insert_vec_cpp/b/swig && ./_insert_vec_cpp_swig_doc_tag
+	cd /home/it/investigacao/OOT/gr-insert_vec_cpp/b/swig && /usr/bin/doxygen /home/it/investigacao/OOT/gr-insert_vec_cpp/b/swig/insert_vec_cpp_swig_doc_swig_docs/Doxyfile
+
 swig/CMakeFiles/insert_vec_cpp_swig_swig_2d0df.dir/insert_vec_cpp_swig_swig_2d0df.cpp.o: swig/CMakeFiles/insert_vec_cpp_swig_swig_2d0df.dir/flags.make
 swig/CMakeFiles/insert_vec_cpp_swig_swig_2d0df.dir/insert_vec_cpp_swig_swig_2d0df.cpp.o: swig/insert_vec_cpp_swig_swig_2d0df.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/it/investigacao/OOT/gr-insert_vec_cpp/b/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object swig/CMakeFiles/insert_vec_cpp_swig_swig_2d0df.dir/insert_vec_cpp_swig_swig_2d0df.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/it/investigacao/OOT/gr-insert_vec_cpp/b/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object swig/CMakeFiles/insert_vec_cpp_swig_swig_2d0df.dir/insert_vec_cpp_swig_swig_2d0df.cpp.o"
 	cd /home/it/investigacao/OOT/gr-insert_vec_cpp/b/swig && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/insert_vec_cpp_swig_swig_2d0df.dir/insert_vec_cpp_swig_swig_2d0df.cpp.o -c /home/it/investigacao/OOT/gr-insert_vec_cpp/b/swig/insert_vec_cpp_swig_swig_2d0df.cpp
 
 swig/CMakeFiles/insert_vec_cpp_swig_swig_2d0df.dir/insert_vec_cpp_swig_swig_2d0df.cpp.i: cmake_force
@@ -130,7 +140,7 @@ insert_vec_cpp_swig_swig_2d0df_EXTERNAL_OBJECTS =
 swig/insert_vec_cpp_swig_swig_2d0df: swig/CMakeFiles/insert_vec_cpp_swig_swig_2d0df.dir/insert_vec_cpp_swig_swig_2d0df.cpp.o
 swig/insert_vec_cpp_swig_swig_2d0df: swig/CMakeFiles/insert_vec_cpp_swig_swig_2d0df.dir/build.make
 swig/insert_vec_cpp_swig_swig_2d0df: swig/CMakeFiles/insert_vec_cpp_swig_swig_2d0df.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/it/investigacao/OOT/gr-insert_vec_cpp/b/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable insert_vec_cpp_swig_swig_2d0df"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/it/investigacao/OOT/gr-insert_vec_cpp/b/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable insert_vec_cpp_swig_swig_2d0df"
 	cd /home/it/investigacao/OOT/gr-insert_vec_cpp/b/swig && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/insert_vec_cpp_swig_swig_2d0df.dir/link.txt --verbose=$(VERBOSE)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Swig source"
 	cd /home/it/investigacao/OOT/gr-insert_vec_cpp/b/swig && /usr/bin/cmake -E make_directory /home/it/investigacao/OOT/gr-insert_vec_cpp/b/swig
@@ -150,7 +160,9 @@ swig/CMakeFiles/insert_vec_cpp_swig_swig_2d0df.dir/clean:
 .PHONY : swig/CMakeFiles/insert_vec_cpp_swig_swig_2d0df.dir/clean
 
 swig/CMakeFiles/insert_vec_cpp_swig_swig_2d0df.dir/depend: swig/insert_vec_cpp_swig_swig_2d0df.cpp
+swig/CMakeFiles/insert_vec_cpp_swig_swig_2d0df.dir/depend: swig/insert_vec_cpp_swig_doc.i
 swig/CMakeFiles/insert_vec_cpp_swig_swig_2d0df.dir/depend: swig/insert_vec_cpp_swig.tag
+swig/CMakeFiles/insert_vec_cpp_swig_swig_2d0df.dir/depend: swig/insert_vec_cpp_swig_doc_swig_docs/xml/index.xml
 	cd /home/it/investigacao/OOT/gr-insert_vec_cpp/b && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/it/investigacao/OOT/gr-insert_vec_cpp /home/it/investigacao/OOT/gr-insert_vec_cpp/swig /home/it/investigacao/OOT/gr-insert_vec_cpp/b /home/it/investigacao/OOT/gr-insert_vec_cpp/b/swig /home/it/investigacao/OOT/gr-insert_vec_cpp/b/swig/CMakeFiles/insert_vec_cpp_swig_swig_2d0df.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : swig/CMakeFiles/insert_vec_cpp_swig_swig_2d0df.dir/depend
 

@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="dir_e4955e5b75f180389c66f70f7b3f1065" kind="dir">
+    <compoundname>puncture64_cpp</compoundname>
+    <innerfile refid="api_8h">api.h</innerfile>
+    <innerfile refid="depuncture64_8h">depuncture64.h</innerfile>
+    <innerfile refid="puncture64_8h">puncture64.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/it/investigacao/OOT/gr-puncture64_cpp/include/puncture64_cpp/"/>
+  </compounddef>
+</doxygen>

@@ -34,7 +34,6 @@ from optparse import OptionParser
 import adapt
 import cac_cpp
 import correlate_and_delay
-import scrambler_cpp
 import sip
 import sys
 import time
@@ -139,7 +138,6 @@ class rx(gr.top_block, Qt.QWidget):
         self.uhd_usrp_sink_0.set_center_freq(frequencia_usrp, 0)
         self.uhd_usrp_sink_0.set_gain(variable_qtgui_range_0_0, 0)
         self.uhd_usrp_sink_0.set_antenna('TX/RX', 0)
-        self.scrambler_cpp_additive_descrambler_0 = scrambler_cpp.additive_descrambler(0x8A, 0x7F, 7, 440-32)
         self.qtgui_time_sink_x_1_0_0 = qtgui.time_sink_c(
         	1024, #size
         	samp_rate, #samp_rate
@@ -475,7 +473,7 @@ class rx(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_char_to_float_0_2_0_0_0, 0), (self.fec_extended_decoder_0_0_1_0_1_0_0, 0))
         self.connect((self.blocks_char_to_float_1_0_1, 0), (self.qtgui_time_sink_x_0_1, 0))
         self.connect((self.blocks_keep_m_in_n_0_0_2_0_0, 0), (self.digital_map_bb_0_0_0_0_0_0, 0))
-        self.connect((self.blocks_keep_m_in_n_0_1_1_0, 0), (self.scrambler_cpp_additive_descrambler_0, 0))
+        self.connect((self.blocks_keep_m_in_n_0_1_1_0, 0), (self.blocks_repack_bits_bb_0_0_0_1_0, 0))
         self.connect((self.blocks_multiply_const_vxx_1_0, 0), (self.custom_corr, 0))
         self.connect((self.blocks_multiply_const_vxx_1_0, 0), (self.qtgui_freq_sink_x_1, 0))
         self.connect((self.blocks_multiply_const_vxx_1_0, 0), (self.qtgui_time_sink_x_1_0_0, 0))
@@ -496,7 +494,6 @@ class rx(gr.top_block, Qt.QWidget):
         self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.digital_cma_equalizer_cc_0_0, 0))
         self.connect((self.fec_extended_decoder_0_0_1_0_1_0_0, 0), (self.blocks_keep_m_in_n_0_1_1_0, 0))
         self.connect((self.interp_fir_filter_xxx_1, 0), (self.blocks_multiply_const_vxx_1_0, 0))
-        self.connect((self.scrambler_cpp_additive_descrambler_0, 0), (self.blocks_repack_bits_bb_0_0_0_1_0, 0))
         self.connect((self.uhd_usrp_source_0_0, 0), (self.custom_corr, 1))
         self.connect((self.uhd_usrp_source_0_0, 0), (self.qtgui_const_sink_x_0_0_0_1, 0))
         self.connect((self.uhd_usrp_source_0_0, 0), (self.qtgui_time_sink_x_1_0, 0))

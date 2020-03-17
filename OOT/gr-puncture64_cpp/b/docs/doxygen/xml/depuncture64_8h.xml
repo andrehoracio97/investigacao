@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="depuncture64_8h" kind="file" language="C++">
+    <compoundname>depuncture64.h</compoundname>
+    <includes refid="api_8h" local="no">puncture64_cpp/api.h</includes>
+    <includes local="no">gnuradio/block.h</includes>
+    <includedby refid="depuncture64__impl_8h" local="no">depuncture64_impl.h</includedby>
+    <incdepgraph>
+      <node id="7">
+        <label>depuncture64.h</label>
+        <link refid="depuncture64_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>gnuradio/attributes.h</label>
+      </node>
+      <node id="8">
+        <label>puncture64_cpp/api.h</label>
+        <link refid="api_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>gnuradio/block.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="11">
+        <label>depuncture64.h</label>
+        <link refid="depuncture64_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>depuncture64_impl.h</label>
+        <link refid="depuncture64__impl_8h"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classgr_1_1puncture64__cpp_1_1depuncture64" prot="public">gr::puncture64_cpp::depuncture64</innerclass>
+    <innernamespace refid="namespacegr">gr</innernamespace>
+    <innernamespace refid="namespacegr_1_1puncture64__cpp">gr::puncture64_cpp</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/it/investigacao/OOT/gr-puncture64_cpp/include/puncture64_cpp/depuncture64.h"/>
+  </compounddef>
+</doxygen>

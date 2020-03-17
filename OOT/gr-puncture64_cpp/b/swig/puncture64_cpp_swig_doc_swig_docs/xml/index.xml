@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.13">
+  <compound refid="classgr_1_1puncture64__cpp_1_1depuncture64" kind="class"><name>gr::puncture64_cpp::depuncture64</name>
+    <member refid="classgr_1_1puncture64__cpp_1_1depuncture64_1a52f61930b68e58058e5259784f4ce5e2" kind="typedef"><name>sptr</name></member>
+    <member refid="classgr_1_1puncture64__cpp_1_1depuncture64_1ac25cfca5e23674ae9acf258418baf898" kind="function"><name>make</name></member>
+  </compound>
+  <compound refid="classgr_1_1puncture64__cpp_1_1puncture64" kind="class"><name>gr::puncture64_cpp::puncture64</name>
+    <member refid="classgr_1_1puncture64__cpp_1_1puncture64_1a8dada013c83f4bc6e38f439b42c3f2f3" kind="typedef"><name>sptr</name></member>
+    <member refid="classgr_1_1puncture64__cpp_1_1puncture64_1a8c94a85577ca776fb93a3f67465c68ea" kind="function"><name>make</name></member>
+  </compound>
+  <compound refid="namespacegr" kind="namespace"><name>gr</name>
+  </compound>
+  <compound refid="namespacegr_1_1puncture64__cpp" kind="namespace"><name>gr::puncture64_cpp</name>
+  </compound>
+  <compound refid="namespacestd" kind="namespace"><name>std</name>
+  </compound>
+  <compound refid="api_8h" kind="file"><name>api.h</name>
+    <member refid="api_8h_1a7572c59b433b70268eb5f5835ff5589e" kind="define"><name>PUNCTURE64_CPP_API</name></member>
+  </compound>
+  <compound refid="depuncture64_8h" kind="file"><name>depuncture64.h</name>
+  </compound>
+  <compound refid="puncture64_8h" kind="file"><name>puncture64.h</name>
+  </compound>
+  <compound refid="dir_d44c64559bbebec7f509842c48db8b23" kind="dir"><name>include</name>
+  </compound>
+  <compound refid="dir_e4955e5b75f180389c66f70f7b3f1065" kind="dir"><name>puncture64_cpp</name>
+  </compound>
+</doxygenindex>
