@@ -1000,15 +1000,15 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>file</key>
-      <value>/home/andre/Desktop/Files_To_Transmit/sequence10000.txt</value>
+      <value>/home/andre/Desktop/Files_To_Transmit/trasmit_1_mb.txt</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(0, 276)</value>
+      <value>(16, 292)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1067,7 +1067,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(0, 220)</value>
+      <value>(0, 236)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1126,7 +1126,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(0, 140)</value>
+      <value>(24, 156)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1185,7 +1185,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(0, 76)</value>
+      <value>(8, 76)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1236,7 +1236,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>file</key>
@@ -1244,7 +1244,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(16, 220)</value>
+      <value>(8, 108)</value>
     </param>
     <param>
       <key>_rotation</key>
