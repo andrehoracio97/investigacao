@@ -81,7 +81,7 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
         self.eb = eb = 0.22
         self.H = H = fec.ldpc_H_matrix('/usr/local/share/gnuradio/fec/ldpc/n_1100_k_0442_gap_24.alist', 24)
         self.vector = vector = [int(random.random()*4) for i in range(198400)]
-        self.variable_qtgui_range_0_0 = variable_qtgui_range_0_0 = 52
+        self.variable_qtgui_range_0_0 = variable_qtgui_range_0_0 = 43
 
         self.tx_rrc_taps = tx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts, 1.0, eb, 11*sps*nfilts)
 
@@ -97,7 +97,7 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
         ##################################################
         # Blocks
         ##################################################
-        self._variable_qtgui_range_0_0_range = Range(0, 90, 1, 52, 200)
+        self._variable_qtgui_range_0_0_range = Range(0, 90, 1, 43, 200)
         self._variable_qtgui_range_0_0_win = RangeWidget(self._variable_qtgui_range_0_0_range, self.set_variable_qtgui_range_0_0, 'Gain_TX', "counter_slider", float)
         self.top_grid_layout.addWidget(self._variable_qtgui_range_0_0_win, 0, 2, 1, 1)
         for r in range(0, 1):
@@ -283,7 +283,7 @@ class tx_no_gui(gr.top_block, Qt.QWidget):
         self.blocks_repack_bits_bb_1_0_0_1 = blocks.repack_bits_bb(8, 1, '', False, gr.GR_MSB_FIRST)
         self.blocks_repack_bits_bb_1_0_0_0 = blocks.repack_bits_bb(1, pld_const.bits_per_symbol(), '', False, gr.GR_MSB_FIRST)
         self.blocks_multiply_const_vxx_1 = blocks.multiply_const_vcc((0.7, ))
-        self.blocks_file_source_0_0_1_0_0_0_1 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Dropbox/Investiga\xc3\xa7\xc3\xa3o_Metricas_Sync/Testes_C_Scrambler/Test_Additive_54bytes/sequence54_20000.txt', False)
+        self.blocks_file_source_0_0_1_0_0_0_1 = blocks.file_source(gr.sizeof_char*1, '/home/andre/Dropbox/Investiga\xc3\xa7\xc3\xa3o_Metricas_Sync/Scrambler_test/Test_Additive_54bytes/sequence54_100000.txt', False)
         self.blocks_file_source_0_0_1_0_0_0_1.set_begin_tag(pmt.PMT_NIL)
 
 

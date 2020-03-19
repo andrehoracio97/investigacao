@@ -726,7 +726,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>52</value>
+      <value>43</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -734,7 +734,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1496, 372)</value>
+      <value>(1304, 532)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -1240,7 +1240,7 @@
     </param>
     <param>
       <key>file</key>
-      <value>/home/andre/Dropbox/Investigação_Metricas_Sync/Testes_C_Scrambler/Test_Additive_54bytes/sequence54_20000.txt</value>
+      <value>/home/andre/Dropbox/Investigação_Metricas_Sync/Scrambler_test/Test_Additive_54bytes/sequence54_100000.txt</value>
     </param>
     <param>
       <key>_coordinate</key>

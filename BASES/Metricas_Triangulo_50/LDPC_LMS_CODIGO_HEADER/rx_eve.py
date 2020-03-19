@@ -77,7 +77,7 @@ class rx_eve(gr.top_block, Qt.QWidget):
         self.nfilts = nfilts = 32
         self.eb = eb = 0.22
         self.H_dec = H_dec = fec.ldpc_H_matrix('/usr/local/share/gnuradio/fec/ldpc/n_1100_k_0442_gap_24.alist', 24)
-        self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 40
+        self.variable_qtgui_range_0_1 = variable_qtgui_range_0_1 = 48
         self.samp_rate = samp_rate = samp_rate_array_MCR[17]
 
         self.rx_rrc_taps = rx_rrc_taps = firdes.root_raised_cosine(nfilts, nfilts*sps, 1.0, eb, 11*sps*nfilts)
@@ -93,7 +93,7 @@ class rx_eve(gr.top_block, Qt.QWidget):
         ##################################################
         # Blocks
         ##################################################
-        self._variable_qtgui_range_0_1_range = Range(0, 73, 1, 40, 200)
+        self._variable_qtgui_range_0_1_range = Range(0, 73, 1, 48, 200)
         self._variable_qtgui_range_0_1_win = RangeWidget(self._variable_qtgui_range_0_1_range, self.set_variable_qtgui_range_0_1, 'Gain_RX', "counter_slider", float)
         self.top_grid_layout.addWidget(self._variable_qtgui_range_0_1_win, 0, 2, 1, 1)
         for r in range(0, 1):

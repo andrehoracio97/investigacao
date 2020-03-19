@@ -602,7 +602,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>48</value>
+      <value>40</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -610,7 +610,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(80, 324)</value>
+      <value>(1240, 116)</value>
     </param>
     <param>
       <key>gui_hint</key>
