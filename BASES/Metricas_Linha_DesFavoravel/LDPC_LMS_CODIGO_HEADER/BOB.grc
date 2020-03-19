@@ -483,7 +483,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>samp_rate_array_MCR[15]</value>
+      <value>samp_rate_array_MCR[17]</value>
     </param>
   </block>
   <block>
@@ -649,7 +649,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>52</value>
+      <value>51</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -657,7 +657,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(944, 206)</value>
+      <value>(1384, 170)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -712,7 +712,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>30</value>
+      <value>28</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -720,7 +720,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(776, 206)</value>
+      <value>(1216, 170)</value>
     </param>
     <param>
       <key>gui_hint</key>
