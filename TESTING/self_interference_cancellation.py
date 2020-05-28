@@ -226,7 +226,6 @@ class self_interference_cancellation(gr.top_block, Qt.QWidget):
         self.fir_filter_xxx_0.declare_sample_delay(0)
         self.blocks_throttle_0 = blocks.throttle(gr.sizeof_float*1, samp_rate,True)
         self.blocks_add_xx_0 = blocks.add_vff(1)
-        self.analog_sig_source_x_0_0 = analog.sig_source_f(samp_rate, analog.GR_SIN_WAVE, samp_rate/32, 0, 0)
         self.analog_sig_source_x_0 = analog.sig_source_f(samp_rate, analog.GR_SIN_WAVE, samp_rate/32, 1, 0)
         self.analog_noise_source_x_0_0 = analog.noise_source_f(analog.GR_GAUSSIAN, 1, 0)
         self.adapt_lms_filter_xx_0 = adapt.lms_filter_ff(False, n_taps, gui_lms_mu, 0, 1, gui_adapt, False, gui_reset)
@@ -239,15 +238,14 @@ class self_interference_cancellation(gr.top_block, Qt.QWidget):
         self.connect((self.adapt_lms_filter_xx_0, 1), (self.qtgui_freq_sink_x_0, 2))
         self.connect((self.adapt_lms_filter_xx_0, 0), (self.qtgui_freq_sink_x_0, 3))
         self.connect((self.adapt_lms_filter_xx_0, 2), (self.qtgui_vector_sink_f_0, 0))
-        self.connect((self.analog_noise_source_x_0_0, 0), (self.adapt_lms_filter_xx_0, 0))
-        self.connect((self.analog_noise_source_x_0_0, 0), (self.blocks_add_xx_0, 0))
+        self.connect((self.analog_noise_source_x_0_0, 0), (self.blocks_throttle_0, 0))
         self.connect((self.analog_sig_source_x_0, 0), (self.fir_filter_xxx_0, 0))
-        self.connect((self.analog_sig_source_x_0, 0), (self.qtgui_freq_sink_x_0, 0))
-        self.connect((self.analog_sig_source_x_0_0, 0), (self.blocks_throttle_0, 0))
         self.connect((self.blocks_add_xx_0, 0), (self.adapt_lms_filter_xx_0, 1))
         self.connect((self.blocks_add_xx_0, 0), (self.qtgui_freq_sink_x_0, 1))
-        self.connect((self.blocks_throttle_0, 0), (self.blocks_add_xx_0, 1))
-        self.connect((self.fir_filter_xxx_0, 0), (self.blocks_add_xx_0, 2))
+        self.connect((self.blocks_throttle_0, 0), (self.adapt_lms_filter_xx_0, 0))
+        self.connect((self.blocks_throttle_0, 0), (self.blocks_add_xx_0, 0))
+        self.connect((self.blocks_throttle_0, 0), (self.qtgui_freq_sink_x_0, 0))
+        self.connect((self.fir_filter_xxx_0, 0), (self.blocks_add_xx_0, 1))
 
     def closeEvent(self, event):
         self.settings = Qt.QSettings("GNU Radio", "self_interference_cancellation")
@@ -261,8 +259,6 @@ class self_interference_cancellation(gr.top_block, Qt.QWidget):
         self.samp_rate = samp_rate
         self.qtgui_freq_sink_x_0.set_frequency_range(0, self.samp_rate)
         self.blocks_throttle_0.set_sample_rate(self.samp_rate)
-        self.analog_sig_source_x_0_0.set_sampling_freq(self.samp_rate)
-        self.analog_sig_source_x_0_0.set_frequency(self.samp_rate/32)
         self.analog_sig_source_x_0.set_sampling_freq(self.samp_rate)
         self.analog_sig_source_x_0.set_frequency(self.samp_rate/32)
 

@@ -2418,6 +2418,10 @@
       <value>100</value>
     </param>
     <param>
+      <key>sps</key>
+      <value>1</value>
+    </param>
+    <param>
       <key>threshold</key>
       <value>99</value>
     </param>

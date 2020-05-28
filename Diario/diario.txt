@@ -235,3 +235,39 @@ Semana
 Semana - CASA
 16- Montar equipamento todo. Ver puncturing com 64 bits - Concluido
 17- Organizar tudo. Mudar nomes dos blocos para nomes mais sugestivos. Alterar o additive Scrambler para usar 8 bits de see apenas em vez de 32 bits. Pensar nas metricas. Mandar email ao prof.
+18- Criar Plano
+19- Plano
+20- Reuniao Prof Marco para verificar plano
+
+Semana
+23- Reuniao 2 Profs para validar plano
+24- Fazer o 1 no Plano
+25- Fazer o 2 e 3 no Plano
+26- Fazer o 4 e começar o 5-LMS no Plano
+27- Fazer o 5-LMS no Plano
+
+Semana ABRIL
+30- Reunião Profs. Fazer Intervalo de confiança e Desvio padrao do 1 do plano.
+31- Fazer o 5-NLMS do Plano
+1- Fazer o 5-RLS do Plano
+2- Fazer o 5-RLS do Plano 
+3- Fazer o 5-QRRLS do Plano
+
+Semana
+6- Fazer EVM de tuudo anterior e reunio profs
+7-
+8-
+9-
+10-Falar com prof de estatistica.
+
+Semana
+13-Criar script para correr multiplas vezes a simulação
+14-Criar script para extrair EVM de 1 Simulação e extrair EVM de 1 Silmuação dividida em 30 vezes.
+15-Correr 30 Simulações para o LMS e correr 1 Simulação para o LMS
+16-
+17-Criar script para fazer os IC's.
+
+Semana-
+20-Reunião Prof.
+21-Correr o RLS todo
+
