@@ -31,6 +31,7 @@ namespace gr {
      private:
       digital::lfsr d_lfsr;
       int n_frame;
+      int n_bits_seed;
       int track_n_bits_seed;
       int new_seed;
       int time_to_create;

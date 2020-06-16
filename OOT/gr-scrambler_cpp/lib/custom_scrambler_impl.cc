@@ -46,7 +46,8 @@ namespace gr {
               gr::io_signature::make(1, 1, sizeof(unsigned char))),
       d_lfsr(mask,seed,len),
       n_frame(frame_bits),
-      track_n_bits_seed(32),
+      n_bits_seed(8),
+      track_n_bits_seed(8),
       new_seed(0),
       time_to_create(1),
       remaining_bits(frame_bits),
@@ -96,9 +97,9 @@ namespace gr {
       	}
     }
     else if(time_to_create==1){      
-      	if(track_n_bits_seed==32){ //If the first time in Seed Block
+      	if(track_n_bits_seed==n_bits_seed){ //If the first time in Seed Block
       		new_seed = rand()%255;	//We generate a new seed.
-      		mask= 1 << (32-1); //Reset mask
+      		mask= 1 << (n_bits_seed-1); //Reset mask
           //new_seed=163;
       	}
       	max_n_produce=(std::min(noutput_items,track_n_bits_seed));
@@ -108,7 +109,7 @@ namespace gr {
         	oo++;//do not consume, only produce
         }
         if(max_n_produce==track_n_bits_seed){ //All bits sent SO: -Drop first bits and OUT of Seed Block
-        	track_n_bits_seed=32;
+        	track_n_bits_seed=n_bits_seed;
           //std::cout << "SCRAMBLER new seed: " << new_seed <<"\n";
         	d_lfsr.reset_to_value(new_seed); //Set the new seed
         	

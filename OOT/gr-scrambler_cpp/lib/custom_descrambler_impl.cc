@@ -45,7 +45,8 @@ namespace gr {
               gr::io_signature::make(1, 1, sizeof(unsigned char))),
       d_lfsr(mask, seed, len),
       n_frame(frame_bits),
-      track_n_bits_seed(32),
+      track_n_bits_seed(8),
+      n_bits_seed(8),
       new_seed(0),
       remaining_bits(frame_bits),
       max_n_produce(0),
@@ -85,7 +86,7 @@ namespace gr {
           new_seed=(new_seed|in[i]);
           ii++;
         }if(max_n_produce==track_n_bits_seed){ //If all bits sent out of seed block ->SAIR
-          track_n_bits_seed=32;
+          track_n_bits_seed=n_bits_seed;
           time_to_get=0;
           //new_seed=163;
           //std::cout << "DESCRAMBLER: " << new_seed <<"\n";
